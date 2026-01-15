@@ -35,23 +35,23 @@ header, footer {
 
 .container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
+grid-template-columns: repeat(2, 1fr);
+  gap: 10px;      /* 👈 sát lại hơn */
+  padding: 10px;  /* 👈 bớt trống xung quanh */
 }
+
 
 .product {
   background: white;
-  padding: 12px;
+  padding: 10px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   text-align: center;
-  
-  /* 👉 QUAN TRỌNG: làm khung ôm sát nội dung */
-  width: fit-content;
-  max-width: 320px;
-  margin: 0 auto;
+
+  max-width: 320px; /* giới hạn tối đa */
+  margin: 0 auto;   /* căn giữa trong mỗi ô lưới */
 }
+
 
 
 .product img {
@@ -198,6 +198,23 @@ header, footer {
 </div>
 
 <!-- SẢN PHẨM 2 -->
+<div class="product">
+<img src="https://i.ibb.co/chGM77K1/m.jpg">
+<h3>Bộ đồ crop top, chân váy xòe</h3>
+<div class="price-box">
+  <span class="discount-badge">-26%</span>
+  <span class="sale-price">111.000đ</span>
+  <span class="old-price">150.000đ</span>
+</div>
+<div class="btn-group">
+  <button class="buy-btn" onclick="openForm('Bộ đồ crop top, chân váy xòe',111000)">MUA NGAY</button>
+  <button class="zalo-btn" onclick="openZalo()">CHAT ZALO</button>
+</div>
+</div>
+
+</div>
+
+<!-- SẢN PHẨM 3 -->
 <div class="product">
 <img src="https://i.ibb.co/chGM77K1/m.jpg">
 <h3>Bộ đồ crop top, chân váy xòe</h3>
