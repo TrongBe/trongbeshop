@@ -36,9 +36,11 @@ header, footer {
 .container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 10px;      /* 👈 sát lại hơn */
-  padding: 10px;  /* 👈 bớt trống xung quanh */
+  gap: 10px;
+  padding: 10px;
+  justify-items: center;
 }
+
 
 
 .product {
@@ -48,8 +50,8 @@ header, footer {
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   text-align: center;
 
-  max-width: 320px; /* giới hạn tối đa */
-  margin: 0 auto;   /* căn giữa trong mỗi ô lưới */
+  width: fit-content; /* 🔥 QUAN TRỌNG: làm nền ôm nội dung */
+  margin: 0 auto;  
 }
 
 
@@ -150,27 +152,25 @@ header, footer {
   color: #999;
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": "Trong Be Shop",
+  "image": "...",
+  "url": "https://trongbe.github.io/trongbeshop/",
+  "telephone": "0977162967",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Đồng Nai",
+    "addressCountry": "VN"
+  },
+  "priceRange": "₫"
+}
+</script>
+
 </head>
 
-
-    </footer>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Store",
-      "name": "Trong Be Shop",
-      "image": "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lk0g1a1c0xv1f1",
-      "url": "https://trongbe.github.io/trongbeshop/",
-      "telephone": "0977162967",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Đồng Nai",
-        "addressCountry": "VN"
-      },
-      "priceRange": "₫"
-    }
-</script>
 <body>
     
 
