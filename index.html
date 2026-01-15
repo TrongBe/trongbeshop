@@ -103,6 +103,8 @@ header, footer {
   background: white;
   width: 90%;
   max-width: 400px;
+  max-height: 85vh;          /* 👈 QUAN TRỌNG */
+  overflow-y: auto;          /* 👈 CHO CUỘN */
   padding: 20px;
   border-radius: 10px;
   position: fixed;
@@ -111,12 +113,18 @@ header, footer {
   transform: translate(-50%, -50%);
 }
 
+
 #orderForm input,
 #orderForm textarea {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
+  min-height: 80px;
 }
+
+#orderForm::after {
+  content: "";
+  display: block;
+  height: 80px;   /* 👈 đệm cho bàn phím */
+}
+
 
 .close-btn {
   text-align: right;
