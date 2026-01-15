@@ -64,46 +64,64 @@ header, footer {
   font-size: 14px;
 }
 
-button {
+/* NÚT */
+.btn-group {
+  display: flex;
+  gap: 10px;
+}
+
+.buy-btn {
   background: black;
   color: white;
   border: none;
   padding: 12px;
   width: 100%;
   border-radius: 5px;
-  margin-top: 10px;
   cursor: pointer;
 }
 
-button:hover {
-  background: #333;
+.zalo-btn {
+  background: #0a7cff;
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-/* FORM */
-#orderForm {
+/* POPUP */
+#overlay {
   display: none;
-  background: white;
-  padding: 20px;
-  margin: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 999;
 }
 
-#orderForm input {
+#orderForm {
+  background: white;
+  width: 90%;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 10px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#orderForm input,
+#orderForm textarea {
   width: 100%;
   padding: 8px;
   margin-bottom: 10px;
 }
 
-.qty-box {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.qty-box button {
-  width: 40px;
-  font-size: 20px;
+.close-btn {
+  text-align: right;
+  cursor: pointer;
+  color: #999;
 }
 </style>
 </head>
@@ -126,7 +144,10 @@ button:hover {
   <span class="sale-price">120.000đ</span>
   <span class="old-price">160.000đ</span>
 </div>
-<button onclick="openForm('Áo Croptop Basic',160000,25)">MUA NGAY</button>
+<div class="btn-group">
+  <button class="buy-btn" onclick="openForm('Áo Croptop Basic',120000)">MUA NGAY</button>
+  <button class="zalo-btn" onclick="openZalo()">CHAT ZALO</button>
+</div>
 </div>
 
 <!-- SẢN PHẨM 2 -->
@@ -138,38 +159,30 @@ button:hover {
   <span class="sale-price">150.000đ</span>
   <span class="old-price">215.000đ</span>
 </div>
-<button onclick="openForm('Váy ngắn nữ',215000,30)">MUA NGAY</button>
+<div class="btn-group">
+  <button class="buy-btn" onclick="openForm('Váy ngắn nữ',150000)">MUA NGAY</button>
+  <button class="zalo-btn" onclick="openZalo()">CHAT ZALO</button>
 </div>
-
-<!-- SẢN PHẨM 3 -->
-<div class="product">
-<img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lk0g1a1c0xv1f1">
-<h3>Áo Sweater form rộng</h3>
-<div class="price-box">
-  <span class="discount-badge">-32%</span>
-  <span class="sale-price">283.100đ</span>
-  <span class="old-price">418.000đ</span>
-</div>
-<button onclick="openForm('Áo Sweater form rộng',418000,32)">MUA NGAY</button>
 </div>
 
 </div>
 
-<!-- FORM DÙNG CHUNG -->
-<div id="orderForm">
-<h3>📝 Thông tin đặt hàng</h3>
+<!-- POPUP FORM -->
+<div id="overlay">
+  <div id="orderForm">
+    <div class="close-btn" onclick="closeForm()">✖</div>
 
-<p><b>Sản phẩm:</b> <span id="productName"></span></p>
+    <h3>📝 Thông tin đặt hàng</h3>
+    <p><b>Sản phẩm:</b> <span id="productName"></span></p>
+    <p><b>Tổng tiền:</b> <span id="totalText"></span></p>
 
-<p><b>Số lượng:</b> <span id="qtyText"></span></p>
+    <input id="name" placeholder="Họ và tên">
+    <input id="phone" placeholder="Số điện thoại">
+    <input id="address" placeholder="Địa chỉ">
+    <textarea id="note" placeholder="Ghi chú (size, màu, yêu cầu thêm...)"></textarea>
 
-<p><b>Số tiền:</b> <span id="totalText"></span></p>
-
-<input id="name" placeholder="Họ và tên">
-<input id="phone" placeholder="Số điện thoại">
-<input id="address" placeholder="Địa chỉ">
-
-<button onclick="sendOrder()">Gửi đơn hàng</button>
+    <button class="buy-btn" onclick="sendOrder()">GỬI ĐƠN</button>
+  </div>
 </div>
 
 <footer>
@@ -179,31 +192,31 @@ button:hover {
 <script>
 let product = "";
 let price = 0;
-let discount = 0;
 
-function openForm(p, pr, d) {
+function openForm(p, pr) {
   product = p;
   price = pr;
-  discount = d;
 
   document.getElementById("productName").innerText = product;
-  document.getElementById("orderForm").style.display = "block";
+  document.getElementById("totalText").innerText =
+    price.toLocaleString("vi-VN") + " đ";
 
-  calcTotal();
-  window.scrollTo(0, document.body.scrollHeight);
+  document.getElementById("overlay").style.display = "block";
 }
 
-function calcTotal() {
-  let salePrice = price - price * discount / 100;
-  document.getElementById("totalText").innerText =
-    salePrice.toLocaleString("vi-VN") + " đ";
+function closeForm() {
+  document.getElementById("overlay").style.display = "none";
+}
+
+function openZalo() {
+  window.open("http://zaloapp.com/qr/p/zrdh0azjcnbr", "_blank");
 }
 
 function sendOrder() {
   const name = document.getElementById("name").value.trim();
   const phone = document.getElementById("phone").value.trim();
   const address = document.getElementById("address").value.trim();
-  const total = document.getElementById("totalText").innerText;
+  const note = document.getElementById("note").value.trim();
 
   if (!name || !phone || !address) {
     alert("Vui lòng nhập đầy đủ thông tin!");
@@ -218,15 +231,14 @@ function sendOrder() {
   data.append("entry.1913338152", phone);
   data.append("entry.1464387788", address);
   data.append("entry.1384420991", product);
-  data.append("entry.535808915", total);
+  data.append("entry.535808915", note); // nếu form có ô ghi chú riêng
 
   fetch(formURL, { method: "POST", mode: "no-cors", body: data });
 
   alert("🎉 Đặt hàng thành công! Shop sẽ liên hệ sớm 💖");
-  document.getElementById("orderForm").style.display = "none";
+  closeForm();
 }
 </script>
-
 
 </body>
 </html>
