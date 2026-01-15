@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Thông tin đặt hàng</title>
+
+<style>
+body {
+  font-family: Arial;
+  padding: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 12px;
+  width: 100%;
+  background: green;
+  color: white;
+  border: none;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Thông tin khách hàng</h2>
+
+<p>Đơn hàng: <b id="summary"></b></p>
+
+<form
+  action="https://docs.google.com/forms/d/e/1FAIpQLSe2QVBkjkEvnfdcduCh0TOHPB6qw1kmZsFSVSVb26-E1oQ__A/formResponse"
+  method="POST"
+  target="hidden_iframe"
+  onsubmit="sendData()">
+
+<input type="text" placeholder="Họ tên" required>
+<input type="text" placeholder="Số điện thoại" required>
+<input type="text" placeholder="Địa chỉ" required>
+
+<!-- dữ liệu ngầm -->
+<input type="hidden" name="entry.2117813281" id="f_price">
+<input type="hidden" name="entry.1913338152" id="f_qty">
+<input type="hidden" name="entry.1464387788" id="f_total">
+
+<button type="submit">GỬI ĐƠN</button>
+</form>
+
+<iframe name="hidden_iframe" style="display:none;"></iframe>
+
+<script>
+document.getElementById("summary").innerText =
+  localStorage.getItem("qty") + " sản phẩm – " +
+  localStorage.getItem("total");
+
+function sendData() {
+  document.getElementById("f_price").value =
+    localStorage.getItem("price");
+
+  document.getElementById("f_qty").value =
+    localStorage.getItem("qty");
+
+  document.getElementById("f_total").value =
+    localStorage.getItem("total");
+
+  alert("Đã gửi đơn thành công!");
+}
+</script>
+
+</body>
+</html>

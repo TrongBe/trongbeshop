@@ -7,68 +7,101 @@
 
 <style>
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background: #f5f5f5;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f5f5f5;
 }
 
 header, footer {
-    background: black;
-    color: white;
-    text-align: center;
-    padding: 15px;
+  background: black;
+  color: white;
+  text-align: center;
+  padding: 15px;
 }
 
 .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
+  padding: 20px;
 }
 
 .product {
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    text-align: center;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 .product img {
-    width: 100%;
-    border-radius: 10px;
+  width: 100%;
+  border-radius: 10px;
 }
 
+/* GIÁ KIỂU SHOPEE */
+.price-box {
+  margin: 10px 0;
+}
+
+.discount-badge {
+  background: #ff424e;
+  color: white;
+  padding: 4px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.sale-price {
+  color: #ff424e;
+  font-size: 26px;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+.old-price {
+  color: #999;
+  text-decoration: line-through;
+  font-size: 14px;
+}
+
+/* NÚT */
 button {
-    background: black;
-    color: white;
-    border: none;
-    padding: 10px;
-    width: 100%;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 10px;
+  background: black;
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
 button:hover {
-    background: #333;
+  background: #333;
 }
 
-/* FORM ĐẶT HÀNG */
+/* FORM */
 #orderForm {
-    display: none;
-    background: white;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  display: none;
+  background: white;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
-#orderForm input,
-#orderForm textarea {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
+#orderForm input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.qty-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.qty-box button {
+  width: 40px;
+  font-size: 20px;
 }
 </style>
 </head>
@@ -82,91 +115,104 @@ button:hover {
 
 <div class="container">
 
-<!-- SẢN PHẨM 1 -->
 <div class="product">
 <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lk0g1a1c0xv1f1">
-<h3>Áo Croptop Basic</h3>
-<p>💰 Giá: 120.000đ</p>
-<button onclick="openForm('Áo Croptop Basic')">Đặt hàng</button>
+
+<h3>[MẪU MỚI] Áo hoodie khoá kéo</h3>
+
+<div class="price-box">
+  <span class="discount-badge">-32%</span>
+  <span class="sale-price">283.100đ</span>
+  <span class="old-price">418.000đ</span>
 </div>
 
-<!-- SẢN PHẨM 2 -->
-<div class="product">
-<img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lk0g1a1c0xv1f1">
-<h3>Váy ngắn nữ</h3>
-<p>💰 Giá: 150.000đ</p>
-<button onclick="openForm('Váy ngắn nữ')">Đặt hàng</button>
+<button onclick="openForm()">MUA NGAY</button>
 </div>
 
 </div>
 
-<!-- FORM NHẬP THÔNG TIN -->
+<!-- FORM -->
 <div id="orderForm">
-<h3>📝 Nhập thông tin đặt hàng</h3>
+<h3>📝 Thông tin đặt hàng</h3>
+
+<p><b>Sản phẩm:</b> Áo hoodie khoá kéo</p>
+
+<label>Số lượng</label>
+<div class="qty-box">
+  <button onclick="changeQty(-1)">−</button>
+  <input id="qty" value="1" readonly>
+  <button onclick="changeQty(1)">+</button>
+</div>
+
+<p><b>Tổng tiền:</b> <span id="totalText"></span></p>
 
 <input id="name" placeholder="Họ và tên">
 <input id="phone" placeholder="Số điện thoại">
 <input id="address" placeholder="Địa chỉ">
-<textarea id="note" placeholder="Ghi chú (size, màu...)"></textarea>
 
 <button onclick="sendOrder()">Gửi đơn hàng</button>
 </div>
 
 <footer>
-<p>📞 Zalo: 0977162967 | 📍 Tổ 4, khu phố Trung Lợi, phường Chơn Thành, tỉnh Đồng Nai</p>
+<p>📞 Zalo: 0977162967 | 📍 Đồng Nai</p>
 </footer>
 
 <script>
-let productName = "";
+let price = 418000;
+let discount = 32;
+let qty = 1;
 
-function openForm(product) {
-    productName = product;
-    document.getElementById("orderForm").style.display = "block";
-    window.scrollTo(0, document.body.scrollHeight);
+function openForm() {
+  document.getElementById("orderForm").style.display = "block";
+  calcTotal();
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
+function changeQty(n) {
+  qty += n;
+  if (qty < 1) qty = 1;
+  document.getElementById("qty").value = qty;
+  calcTotal();
+}
+
+function calcTotal() {
+  let salePrice = price - price * discount / 100;
+  let total = salePrice * qty;
+  document.getElementById("totalText").innerText =
+    total.toLocaleString("vi-VN") + " đ";
 }
 
 function sendOrder() {
-    const name = document.getElementById("name").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const address = document.getElementById("address").value.trim();
-    const note = document.getElementById("note").value.trim();
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const address = document.getElementById("address").value.trim();
+  const total = document.getElementById("totalText").innerText;
 
-    if (!name || !phone || !address) {
-        alert("📌 Vui lòng nhập đầy đủ thông tin!");
-        return;
-    }
+  if (!name || !phone || !address) {
+    alert("Vui lòng nhập đầy đủ thông tin!");
+    return;
+  }
 
-    const formURL =
-      "https://docs.google.com/forms/d/e/1FAIpQLSe2QVBkjkEvnfdcduCh0TOHPB6qw1kmZsFSVSVb26-E1oQ__A/formResponse";
+  const formURL =
+    "https://docs.google.com/forms/d/e/1FAIpQLSe2QVBkjkEvnfdcduCh0TOHPB6qw1kmZsFSVSVb26-E1oQ__A/formResponse";
 
-    const data = new FormData();
-    data.append("entry.2117813281", name);
-    data.append("entry.1913338152", phone);
-    data.append("entry.1464387788", address);
-    data.append("entry.1384420991", productName);
-    data.append("entry.535808915", note);
+  const data = new FormData();
+  data.append("entry.2117813281", name);
+  data.append("entry.1913338152", phone);
+  data.append("entry.1464387788", address);
+  data.append("entry.1384420991", "Áo hoodie khoá kéo x" + qty);
+  data.append("entry.535808915", total);
 
-    // GỬI NGẦM – KHÔNG CHỜ PHẢN HỒI
-    fetch(formURL, {
-        method: "POST",
-        mode: "no-cors",
-        body: data
-    });
+  fetch(formURL, {
+    method: "POST",
+    mode: "no-cors",
+    body: data
+  });
 
-    // ĐÓNG FORM NGAY
-    document.getElementById("orderForm").style.display = "none";
-
-    // XÓA DỮ LIỆU ĐÃ NHẬP
-    document.getElementById("name").value = "";
-    document.getElementById("phone").value = "";
-    document.getElementById("address").value = "";
-    document.getElementById("note").value = "";
-
-    alert("🎉 Đặt hàng thành công! Shop sẽ liên hệ sớm 💖");
+  alert("🎉 Đặt hàng thành công! Shop sẽ liên hệ sớm 💖");
+  document.getElementById("orderForm").style.display = "none";
 }
 </script>
-
-
 
 </body>
 </html>
