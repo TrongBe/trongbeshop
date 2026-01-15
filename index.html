@@ -47,10 +47,28 @@ button {
     width: 100%;
     cursor: pointer;
     border-radius: 5px;
+    margin-top: 10px;
 }
 
 button:hover {
     background: #333;
+}
+
+/* FORM ĐẶT HÀNG */
+#orderForm {
+    display: none;
+    background: white;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+#orderForm input,
+#orderForm textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
 }
 </style>
 </head>
@@ -64,39 +82,73 @@ button:hover {
 
 <div class="container">
 
+<!-- SẢN PHẨM 1 -->
 <div class="product">
-<img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lk0g1a1c0xv1f1" alt="Áo Croptop Basic">
+<img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lk0g1a1c0xv1f1">
 <h3>Áo Croptop Basic</h3>
 <p>💰 Giá: 120.000đ</p>
-<button onclick="order('Áo Croptop Basic')">Đặt hàng</button>
+<button onclick="openForm('Áo Croptop Basic')">Đặt hàng</button>
 </div>
 
+<!-- SẢN PHẨM 2 -->
 <div class="product">
-<img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lk0g1a1c0xv1f1" alt="Váy ngắn nữ">
+<img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lk0g1a1c0xv1f1">
 <h3>Váy ngắn nữ</h3>
 <p>💰 Giá: 150.000đ</p>
-<button onclick="order('Váy ngắn nữ')">Đặt hàng</button>
+<button onclick="openForm('Váy ngắn nữ')">Đặt hàng</button>
 </div>
 
-<div class="product">
-<img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lk0g1a1c0xv1f1" alt="Áo Sweater form rộng">
-<h3>Áo Sweater form rộng</h3>
-<p>💰 Giá: 180.000đ</p>
-<button onclick="order('Áo Sweater form rộng')">Đặt hàng</button>
 </div>
 
+<!-- FORM NHẬP THÔNG TIN -->
+<div id="orderForm">
+<h3>📝 Nhập thông tin đặt hàng</h3>
+
+<input id="name" placeholder="Họ và tên">
+<input id="phone" placeholder="Số điện thoại">
+<input id="address" placeholder="Địa chỉ">
+<textarea id="note" placeholder="Ghi chú (size, màu...)"></textarea>
+
+<button onclick="sendOrder()">Gửi đơn hàng</button>
 </div>
 
 <footer>
-<p>📞 Zalo: 0977162967 | 📍 tổ 4, khu phố Trung Lợi, Phường Chơn Thành, tỉnh Đồng Nai</p>
+<p>📞 Zalo: 0977162967 | 📍 TP.HCM</p>
 </footer>
 
 <script>
-function order(product) {
-    const phone = "0977162967";
-    const message = "Em muốn đặt: " + product;
-    const link = "https://zalo.me/" + phone + "?text=" + encodeURIComponent(message);
-    window.open(link, "_blank");
+let productName = "";
+
+function openForm(product) {
+    productName = product;
+    document.getElementById("orderForm").style.display = "block";
+    window.scrollTo(0, document.body.scrollHeight);
+}
+
+function sendOrder() {
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const address = document.getElementById("address").value;
+    const note = document.getElementById("note").value;
+
+    if (!name || !phone || !address) {
+        alert("Vui lòng nhập đầy đủ thông tin!");
+        return;
+    }
+
+    const message =
+        "🛍 ĐƠN HÀNG MỚI\n" +
+        "Sản phẩm: " + productName + "\n" +
+        "Tên KH: " + name + "\n" +
+        "SĐT: " + phone + "\n" +
+        "Địa chỉ: " + address + "\n" +
+        "Ghi chú: " + note;
+
+    const zaloLink =
+        "http://zaloapp.com/qr/p/zrdh0azjcnbr?text=" +
+        encodeURIComponent(message);
+
+    window.open(zaloLink, "_blank");
 }
 </script>
 
