@@ -126,31 +126,37 @@ function openForm(product) {
 }
 
 function sendOrder() {
-    const name = document.getElementById("name").value;
-    const phone = document.getElementById("phone").value;
-    const address = document.getElementById("address").value;
-    const note = document.getElementById("note").value;
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const note = document.getElementById("note").value.trim();
 
     if (!name || !phone || !address) {
-        alert("Vui lòng nhập đầy đủ thông tin!");
+        alert("📌 Phải nhập họ tên, số điện thoại và địa chỉ!");
         return;
     }
 
-    const message =
-        "🛍 ĐƠN HÀNG MỚI\n" +
-        "Sản phẩm: " + productName + "\n" +
-        "Tên KH: " + name + "\n" +
-        "SĐT: " + phone + "\n" +
-        "Địa chỉ: " + address + "\n" +
-        "Ghi chú: " + note;
+    // Link Google Form
+    const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSe2QVBkjkEvnfdcduCh0TOHPB6qw1kmZsFSVSVb26-E1oQ__A/formResponse";
 
-    const zaloLink =
-        "http://zaloapp.com/qr/p/zrdh0azjcnbr?text=" +
-        encodeURIComponent(message);
+    const data = new FormData();
+    data.append("entry.2117813281", name);         // Họ và tên
+    data.append("entry.1913338152", phone);        // Số điện thoại
+    data.append("entry.1464387788", address);      // Địa chỉ
+    data.append("entry.1384420991", productName);  // Sản phẩm
+    data.append("entry.535808915", note);          // Ghi chú
 
-    window.open(zaloLink, "_blank");
+    fetch(formURL, {
+        method: "POST",
+        mode: "no-cors",
+        body: data
+    });
+
+    alert("🎉 Đặt hàng thành công! Cảm ơn bạn 😊");
+    document.getElementById("orderForm").style.display = "none";
 }
 </script>
+
 
 </body>
 </html>
