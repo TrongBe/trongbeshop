@@ -42,14 +42,21 @@ header, footer {
 
 .product {
   background: white;
-  padding: 15px;
+  padding: 12px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+  
+  /* 👉 QUAN TRỌNG: làm khung ôm sát nội dung */
+  width: fit-content;
+  max-width: 320px;
+  margin: 0 auto;
 }
+
 
 .product img {
   width: 100%;
-  max-width: 280px;   /* 👈 giới hạn trên máy tính */
+  max-width: 300px;   /* 👈 giới hạn trên máy tính */
   height: auto;
   border-radius: 10px;
   display: block;
