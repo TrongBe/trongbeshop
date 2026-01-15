@@ -12,7 +12,7 @@ body {
     background: #f5f5f5;
 }
 
-header {
+header, footer {
     background: black;
     color: white;
     text-align: center;
@@ -52,13 +52,6 @@ button {
 button:hover {
     background: #333;
 }
-
-footer {
-    text-align: center;
-    padding: 10px;
-    background: black;
-    color: white;
-}
 </style>
 </head>
 
@@ -71,25 +64,22 @@ footer {
 
 <div class="container">
 
-<!-- SẢN PHẨM 1 -->
 <div class="product">
-<img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lk0g1a1c0xv1f1" alt="Áo croptop">
+<img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lk0g1a1c0xv1f1" alt="Áo Croptop Basic">
 <h3>Áo Croptop Basic</h3>
 <p>💰 Giá: 120.000đ</p>
 <button onclick="order('Áo Croptop Basic')">Đặt hàng</button>
 </div>
 
-<!-- SẢN PHẨM 2 -->
 <div class="product">
-<img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lk0g1a1c0xv1f1" alt="Váy ngắn">
+<img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lk0g1a1c0xv1f1" alt="Váy ngắn nữ">
 <h3>Váy ngắn nữ</h3>
 <p>💰 Giá: 150.000đ</p>
 <button onclick="order('Váy ngắn nữ')">Đặt hàng</button>
 </div>
 
-<!-- SẢN PHẨM 3 -->
 <div class="product">
-<img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lk0g1a1c0xv1f1" alt="Áo sweater">
+<img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lk0g1a1c0xv1f1" alt="Áo Sweater form rộng">
 <h3>Áo Sweater form rộng</h3>
 <p>💰 Giá: 180.000đ</p>
 <button onclick="order('Áo Sweater form rộng')">Đặt hàng</button>
@@ -98,14 +88,14 @@ footer {
 </div>
 
 <footer>
-<p>📞 Zalo: 0xxxxxxxxx | 📍 TP.HCM</p>
+<p>📞 Zalo: 0977162967 | 📍 TP.HCM</p>
 </footer>
 
 <script>
 function order(product) {
-    let phone = "0xxxxxxxxx"; // 👉 đổi thành số Zalo của em
-    let message = "Em muốn đặt: " + product;
-    let link = "https://zalo.me/" + phone + "?text=" + encodeURIComponent(message);
+    const phone = "0977162967";
+    const message = "Em muốn đặt: " + product;
+    const link = "https://zalo.me/" + phone + "?text=" + encodeURIComponent(message);
     window.open(link, "_blank");
 }
 </script>
