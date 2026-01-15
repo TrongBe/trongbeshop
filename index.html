@@ -103,35 +103,20 @@ header, footer {
   background: white;
   width: 90%;
   max-width: 400px;
-  max-height: 80vh;
-  border-radius: 12px;
-  padding: 15px;
+  padding: 20px;
+  border-radius: 10px;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
 }
-
-.form-body {
-  overflow-y: auto;
-  margin: 10px 0;
-  padding-right: 4px;
-}
-
-.form-body textarea {
-  min-height: 90px;
-}
-
-
 
 #orderForm input,
-.form-body textarea {
-  min-height: 90px;
+#orderForm textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
 }
-
-
 
 .close-btn {
   text-align: right;
@@ -185,26 +170,20 @@ header, footer {
 <!-- POPUP FORM -->
 <div id="overlay">
   <div id="orderForm">
-
     <div class="close-btn" onclick="closeForm()">✖</div>
 
     <h3>📝 Thông tin đặt hàng</h3>
+    <p><b>Sản phẩm:</b> <span id="productName"></span></p>
+    <p><b>Tổng tiền:</b> <span id="totalText"></span></p>
 
-    <div class="form-body">
-      <p><b>Sản phẩm:</b> <span id="productName"></span></p>
-      <p><b>Tổng tiền:</b> <span id="totalText"></span></p>
-
-      <input id="name" placeholder="Họ và tên">
-      <input id="phone" placeholder="Số điện thoại">
-      <input id="address" placeholder="Địa chỉ">
-      <textarea id="note" placeholder="Ghi chú (size, màu...)"></textarea>
-    </div>
+    <input id="name" placeholder="Họ và tên">
+    <input id="phone" placeholder="Số điện thoại">
+    <input id="address" placeholder="Địa chỉ">
+    <textarea id="note" placeholder="Ghi chú (size, màu, yêu cầu thêm...)"></textarea>
 
     <button class="buy-btn" onclick="sendOrder()">GỬI ĐƠN</button>
-
   </div>
 </div>
-
 
 <footer>
 <p>📞 Zalo: 0977162967 | 📍 Đồng Nai</p>
