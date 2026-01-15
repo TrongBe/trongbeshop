@@ -20,6 +20,9 @@ header, footer {
 }
 
 .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
   padding: 20px;
 }
 
@@ -35,7 +38,7 @@ header, footer {
   border-radius: 10px;
 }
 
-/* GIÁ KIỂU SHOPEE */
+/* GIÁ */
 .price-box {
   margin: 10px 0;
 }
@@ -50,7 +53,7 @@ header, footer {
 
 .sale-price {
   color: #ff424e;
-  font-size: 26px;
+  font-size: 22px;
   font-weight: bold;
   margin-left: 8px;
 }
@@ -61,7 +64,6 @@ header, footer {
   font-size: 14px;
 }
 
-/* NÚT */
 button {
   background: black;
   color: white;
@@ -115,27 +117,49 @@ button:hover {
 
 <div class="container">
 
+<!-- SẢN PHẨM 1 -->
 <div class="product">
 <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lk0g1a1c0xv1f1">
+<h3>Áo Croptop Basic</h3>
+<div class="price-box">
+  <span class="discount-badge">-25%</span>
+  <span class="sale-price">120.000đ</span>
+  <span class="old-price">160.000đ</span>
+</div>
+<button onclick="openForm('Áo Croptop Basic',160000,25)">MUA NGAY</button>
+</div>
 
-<h3>[MẪU MỚI] Áo hoodie khoá kéo</h3>
+<!-- SẢN PHẨM 2 -->
+<div class="product">
+<img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lk0g1a1c0xv1f1">
+<h3>Váy ngắn nữ</h3>
+<div class="price-box">
+  <span class="discount-badge">-30%</span>
+  <span class="sale-price">150.000đ</span>
+  <span class="old-price">215.000đ</span>
+</div>
+<button onclick="openForm('Váy ngắn nữ',215000,30)">MUA NGAY</button>
+</div>
 
+<!-- SẢN PHẨM 3 -->
+<div class="product">
+<img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lk0g1a1c0xv1f1">
+<h3>Áo Sweater form rộng</h3>
 <div class="price-box">
   <span class="discount-badge">-32%</span>
   <span class="sale-price">283.100đ</span>
   <span class="old-price">418.000đ</span>
 </div>
-
-<button onclick="openForm()">MUA NGAY</button>
+<button onclick="openForm('Áo Sweater form rộng',418000,32)">MUA NGAY</button>
 </div>
 
 </div>
 
-<!-- FORM -->
+<!-- FORM DÙNG CHUNG -->
 <div id="orderForm">
 <h3>📝 Thông tin đặt hàng</h3>
 
-<p><b>Sản phẩm:</b> Áo hoodie khoá kéo</p>
+<p><b>Sản phẩm:</b> <span id="productName"></span></p>
 
 <label>Số lượng</label>
 <div class="qty-box">
@@ -158,12 +182,21 @@ button:hover {
 </footer>
 
 <script>
-let price = 418000;
-let discount = 32;
+let product = "";
+let price = 0;
+let discount = 0;
 let qty = 1;
 
-function openForm() {
+function openForm(p, pr, d) {
+  product = p;
+  price = pr;
+  discount = d;
+  qty = 1;
+
+  document.getElementById("productName").innerText = product;
+  document.getElementById("qty").value = qty;
   document.getElementById("orderForm").style.display = "block";
+
   calcTotal();
   window.scrollTo(0, document.body.scrollHeight);
 }
@@ -200,14 +233,10 @@ function sendOrder() {
   data.append("entry.2117813281", name);
   data.append("entry.1913338152", phone);
   data.append("entry.1464387788", address);
-  data.append("entry.1384420991", "Áo hoodie khoá kéo x" + qty);
+  data.append("entry.1384420991", product + " x" + qty);
   data.append("entry.535808915", total);
 
-  fetch(formURL, {
-    method: "POST",
-    mode: "no-cors",
-    body: data
-  });
+  fetch(formURL, { method: "POST", mode: "no-cors", body: data });
 
   alert("🎉 Đặt hàng thành công! Shop sẽ liên hệ sớm 💖");
   document.getElementById("orderForm").style.display = "none";
