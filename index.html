@@ -161,14 +161,9 @@ button:hover {
 
 <p><b>Sản phẩm:</b> <span id="productName"></span></p>
 
-<label>Số lượng</label>
-<div class="qty-box">
-  <button onclick="changeQty(-1)">−</button>
-  <input id="qty" value="1" readonly>
-  <button onclick="changeQty(1)">+</button>
-</div>
+<p><b>Số lượng:</b> <span id="qtyText"></span></p>
 
-<p><b>Tổng tiền:</b> <span id="totalText"></span></p>
+<p><b>Số tiền:</b> <span id="totalText"></span></p>
 
 <input id="name" placeholder="Họ và tên">
 <input id="phone" placeholder="Số điện thoại">
@@ -185,34 +180,23 @@ button:hover {
 let product = "";
 let price = 0;
 let discount = 0;
-let qty = 1;
 
 function openForm(p, pr, d) {
   product = p;
   price = pr;
   discount = d;
-  qty = 1;
 
   document.getElementById("productName").innerText = product;
-  document.getElementById("qty").value = qty;
   document.getElementById("orderForm").style.display = "block";
 
   calcTotal();
   window.scrollTo(0, document.body.scrollHeight);
 }
 
-function changeQty(n) {
-  qty += n;
-  if (qty < 1) qty = 1;
-  document.getElementById("qty").value = qty;
-  calcTotal();
-}
-
 function calcTotal() {
   let salePrice = price - price * discount / 100;
-  let total = salePrice * qty;
   document.getElementById("totalText").innerText =
-    total.toLocaleString("vi-VN") + " đ";
+    salePrice.toLocaleString("vi-VN") + " đ";
 }
 
 function sendOrder() {
@@ -233,7 +217,7 @@ function sendOrder() {
   data.append("entry.2117813281", name);
   data.append("entry.1913338152", phone);
   data.append("entry.1464387788", address);
-  data.append("entry.1384420991", product + " x" + qty);
+  data.append("entry.1384420991", product);
   data.append("entry.535808915", total);
 
   fetch(formURL, { method: "POST", mode: "no-cors", body: data });
@@ -242,6 +226,7 @@ function sendOrder() {
   document.getElementById("orderForm").style.display = "none";
 }
 </script>
+
 
 </body>
 </html>
