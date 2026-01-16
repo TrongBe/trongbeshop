@@ -183,7 +183,7 @@ fetch(SHEET_URL)
     rows.forEach(row => {
       if (!row.trim()) return;
 
-      // TÁCH CSV AN TOÀN HƠN (không lỗi khi có dấu phẩy)
+      // Tách CSV (an toàn hơn)
       const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
 
       const id = cols[0];
@@ -214,7 +214,6 @@ fetch(SHEET_URL)
   })
   .catch(err => console.error("Lỗi tải Sheet:", err));
 
-  
 
 
 function openForm(p, pr) {
