@@ -151,6 +151,40 @@ header, footer {
   cursor: pointer;
   color: #999;
 }
+
+/* NÚT CHỌN SIZE - MÀU - LOẠI */
+.option-group {
+  text-align: left;
+  margin: 8px 0;
+}
+
+.option-title {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.option-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.option-btn {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.option-btn.selected {
+  border: 1px solid black;
+  background: #000;
+  color: white;
+}
+
 </style>
 <script type="application/ld+json">
 {
@@ -206,8 +240,41 @@ header, footer {
   <span class="sale-price">73.000đ</span>
   <span class="old-price">124.000đ</span>
 </div>
+<div class="option-group">
+  <div class="option-title">Size:</div>
+  <div class="option-buttons">
+    <button class="option-btn" onclick="selectOption(this, 'size', 'S')">S</button>
+    <button class="option-btn" onclick="selectOption(this, 'size', 'M')">M</button>
+  </div>
+</div>
 <div class="btn-group">
   <button class="buy-btn" onclick="openForm('[Mã 2] áo khoác Jean cá tính, size S/M (ghi vào ghi chú)',73000)">MUA NGAY</button>
+  <button class="zalo-btn" onclick="openZalo()">CHAT ZALO</button>
+</div>
+</div>
+
+<!-- SẢN PHẨM 3 -->
+<div class="product">
+<img src="https://i.ibb.co/qFNzsSgW/7fc5116c62c4ed9ab4d5.jpg">
+<h3>[Mã 1] áo sweater nỉ xám năng động, size S/M (ghi vào ghi chú)</h3>
+<div class="price-box">
+  <span class="discount-badge">-40%</span>
+  <span class="sale-price">60.000đ</span>
+  <span class="old-price">100.000đ</span>
+</div>
+<!-- CHỌN LOẠI -->
+<div class="option-group">
+  <div class="option-title">Loại:</div>
+  <div class="option-buttons">
+    <button class="option-btn" onclick="selectOption(this, 'type', '1')">1</button>
+    <button class="option-btn" onclick="selectOption(this, 'type', '2')">2</button>
+    <button class="option-btn" onclick="selectOption(this, 'type', '3')">3</button>
+    <button class="option-btn" onclick="selectOption(this, 'type', '4')">4</button>
+    <button class="option-btn" onclick="selectOption(this, 'type', 'combo')">combo</button>
+  </div>
+</div>
+<div class="btn-group">
+  <button class="buy-btn" onclick="openForm('[Mã 1] áo sweater nỉ xám năng động',60000)">MUA NGAY</button>
   <button class="zalo-btn" onclick="openZalo()">CHAT ZALO</button>
 </div>
 </div>
@@ -218,8 +285,11 @@ header, footer {
     <div class="close-btn" onclick="closeForm()">✖</div>
 
     <h3>📝 Thông tin đặt hàng</h3>
-    <p><b>Sản phẩm:</b> <span id="productName"></span></p>
-    <p><b>Tổng tiền:</b> <span id="totalText"></span></p>
+   <p><b>Sản phẩm:</b> <span id="productName"></span></p>
+   <p><b>Size:</b> <span id="selectedSize">—</span></p>
+   <p><b>Màu:</b> <span id="selectedColor">—</span></p>
+   <p><b>Loại:</b> <span id="selectedType">—</span></p>
+
 
     <input id="name" placeholder="Họ và tên">
     <input id="phone" placeholder="Số điện thoại">
@@ -244,17 +314,41 @@ header, footer {
 <script>
 let product = "";
 let price = 0;
+let selectedSize = "";
+let selectedColor = "";
+let selectedType = "";
+
+function selectOption(btn, type, value) {
+  // bỏ chọn cũ trong cùng nhóm
+  let parent = btn.parentElement;
+  let buttons = parent.querySelectorAll(".option-btn");
+  buttons.forEach(b => b.classList.remove("selected"));
+
+  // chọn cái mới
+  btn.classList.add("selected");
+
+  // lưu giá trị
+  if (type === "size") selectedSize = value;
+  if (type === "color") selectedColor = value;
+  if (type === "type") selectedType = value;
+}
+
 
 function openForm(p, pr) {
   product = p;
   price = pr;
 
   document.getElementById("productName").innerText = product;
+  document.getElementById("selectedSize").innerText = selectedSize || "Chưa chọn";
+  document.getElementById("selectedColor").innerText = selectedColor || "Chưa chọn";
+  document.getElementById("selectedType").innerText = selectedType || "Chưa chọn";
+
   document.getElementById("totalText").innerText =
     price.toLocaleString("vi-VN") + " đ";
 
   document.getElementById("overlay").style.display = "block";
 }
+
 
 function closeForm() {
   document.getElementById("overlay").style.display = "none";
@@ -282,8 +376,16 @@ function sendOrder() {
   data.append("entry.2117813281", name);
   data.append("entry.1913338152", phone);
   data.append("entry.1464387788", address);
-  data.append("entry.1384420991", product);
-  data.append("entry.535808915", note); // nếu form có ô ghi chú riêng
+  let fullProduct =
+  product +
+  " | Size: " + (selectedSize || "chưa chọn") +
+  " | Màu: " + (selectedColor || "chưa chọn") +
+  " | Loại: " + (selectedType || "chưa chọn") +
+  " | Ghi chú: " + note;
+
+data.append("entry.1384420991", fullProduct);
+data.append("entry.535808915", note);
+
 
   fetch(formURL, { method: "POST", mode: "no-cors", body: data });
 
