@@ -171,18 +171,20 @@ let product = "";
 let price = 0;
 
 // ======= 🔥 QUAN TRỌNG: DÁN LINK GOOGLE SHEET CỦA EM VÀO ĐÂY 🔥 =======
-const SHEET_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfP4nK-Tefz7SxgHqlEtiMxNWgNMawMEEH9kJBoWSxXkqL_Dg/viewform?usp=dialog";
+const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQZqtzNLbYo3eWDB7XAkPqULetvxmHCYpz0_Eh8qiGeZL1O4GchB8klv9xXh_9pzhXhdo4RvkbvGsbT/pub?output=csv";
 // 👆 EM PHẢI THAY LINK NÀY BẰNG LINK SHEET CỦA EM (anh sẽ hướng dẫn bên dưới)
 
 fetch(SHEET_URL)
   .then(res => res.text())
   .then(data => {
-    const rows = data.split("\n").slice(1); // bỏ dòng tiêu đề
+    const rows = data.trim().split("\n").slice(1);
     let html = "";
 
     rows.forEach(row => {
       if (!row.trim()) return;
-      const cols = row.split(",");
+
+      // TÁCH CSV AN TOÀN HƠN (không lỗi khi có dấu phẩy)
+      const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
 
       const id = cols[0];
       const name = cols[1];
@@ -209,7 +211,11 @@ fetch(SHEET_URL)
     });
 
     document.getElementById("product-list").innerHTML = html;
-  });
+  })
+  .catch(err => console.error("Lỗi tải Sheet:", err));
+
+  
+
 
 function openForm(p, pr) {
   product = p;
