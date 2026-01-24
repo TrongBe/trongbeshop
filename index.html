@@ -176,9 +176,8 @@ header, footer {
 let product = "";
 let price = 0;
 
-// ======= 🔥 QUAN TRỌNG: DÁN LINK GOOGLE SHEET CỦA EM VÀO ĐÂY 🔥 =======
+// ======= 🔥 QUAN TRỌNG: DÁN LINK GOOGLE SHEET VÀO ĐÂY 🔥 =======
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQZqtzNLbYo3eWDB7XAkPqULetvxmHCYpz0_Eh8qiGeZL1O4GchB8klv9xXh_9pzhXhdo4RvkbvGsbT/pub?output=csv";
-// 👆 EM PHẢI THAY LINK NÀY BẰNG LINK SHEET CỦA EM (anh sẽ hướng dẫn bên dưới)
 
 fetch(SHEET_URL)
   .then(res => res.text())
@@ -189,7 +188,7 @@ fetch(SHEET_URL)
     rows.forEach(row => {
       if (!row.trim()) return;
 
-      // Tách CSV (an toàn hơn)
+      // Tách CSV
       const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
 
       const id = cols[0];
@@ -200,23 +199,39 @@ fetch(SHEET_URL)
       const discount = cols[5];
 
       html += `
-      <div class="product">
-        <img src="${image}">
-        <h3>[Mã ${id}] ${name}</h3>
-        <div class="price-box">
-          <span class="discount-badge">-${discount}%</span>
-          <span class="sale-price">${Number(sale).toLocaleString("vi-VN")}đ</span>
-          <span class="old-price">${Number(old).toLocaleString("vi-VN")}đ</span>
-        </div>
-        <div class="btn-group">
-          <button class="buy-btn" onclick="openForm('[Mã ${id}] ${name}', ${sale})">MUA NGAY</button>
-          <button class="zalo-btn" onclick="openZalo()">CHAT ZALO</button>
-        </div>
-      </div>
-      `;
+<div class="product">
+  <img src="${image}">
+  <h3>[Mã ${id}] ${name}</h3>
+
+  <div class="price-box">
+    <span class="discount-badge">-${discount}%</span>
+    <span class="sale-price">${Number(sale).toLocaleString("vi-VN")}đ</span>
+    <span class="old-price">${Number(old).toLocaleString("vi-VN")}đ</span>
+  </div>
+
+  <div class="btn-group">
+    <button class="buy-btn"
+      data-name="[Mã ${id}] ${name}"
+      data-price="${sale}">
+      MUA NGAY
+    </button>
+
+    <button class="zalo-btn" onclick="openZalo()">CHAT ZALO</button>
+  </div>
+</div>
+`;
+
     });
 
     document.getElementById("product-list").innerHTML = html;
+    document.querySelectorAll(".buy-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const p = btn.dataset.name;
+    const pr = Number(btn.dataset.price);
+    openForm(p, pr);
+  });
+});
+
   })
   .catch(err => console.error("Lỗi tải Sheet:", err));
 
