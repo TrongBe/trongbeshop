@@ -1,288 +1,214 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trong Be Shop</title>
-
-<style>
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background: #f5f5f5;
-}
-
-header, footer {
-  background: black;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  width: 100%;
-}
-
-.container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 10px;
-  padding: 10px;
-  justify-items: center;
-}
-
-.product {
-  background: white;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  text-align: center;
-  width: fit-content;
-  margin: 0 auto;
-}
-
-.product img {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  border-radius: 10px;
-  display: block;
-  margin: 0 auto;
-}
-
-.price-box {
-  margin: 10px 0;
-}
-
-.discount-badge {
-  background: #ff424e;
-  color: white;
-  padding: 4px 6px;
-  border-radius: 4px;
-  font-size: 14px;
-}
-
-.sale-price {
-  color: #ff424e;
-  font-size: 22px;
-  font-weight: bold;
-  margin-left: 8px;
-}
-
-.old-price {
-  color: #999;
-  text-decoration: line-through;
-  font-size: 14px;
-}
-
-.btn-group {
-  display: flex;
-  gap: 10px;
-}
-
-.buy-btn {
-  background: black;
-  color: white;
-  border: none;
-  padding: 12px;
-  width: 100%;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.zalo-btn {
-  background: #0a7cff;
-  color: white;
-  border: none;
-  padding: 12px;
-  width: 100%;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-/* POPUP */
-#overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  z-index: 999;
-}
-
-#orderForm {
-  background: white;
-  width: 90%;
-  max-width: 400px;
-  padding: 20px;
-  border-radius: 10px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-#orderForm input,
-#orderForm textarea {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-}
-
-.close-btn {
-  text-align: right;
-  cursor: pointer;
-  color: #999;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trong Be Clothing - Thời Trang Phái Đẹp</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Icon (Optional) -->
+  <link rel="icon" href="https://img.icons8.com/color/48/clothes.png" type="image/png">
 </head>
 
 <body>
 
-<header>
-<h1>Trong Be Clothing</h1>
-<p>Quần áo nữ xinh xắn • Giá tốt • Uy tín</p>
-</header>
+  <header>
+    <div class="header-container">
+      <h1>Trong Be Shop</h1>
+      <p>Elegant & Stylish • Thời Trang Nữ</p>
+    </div>
+  </header>
 
-<div class="container" id="product-list">
-  <!-- Sản phẩm sẽ tự load vào đây -->
-</div>
-
-<!-- POPUP FORM -->
-<div id="overlay">
-  <div id="orderForm">
-    <div class="close-btn" onclick="closeForm()">✖</div>
-
-    <h3>📝 Thông tin đặt hàng</h3>
-    <p><b>Sản phẩm:</b> <span id="productName"></span></p>
-    <p><b>Tổng tiền:</b> <span id="totalText"></span></p>
-
-    <input id="name" placeholder="Họ và tên">
-    <input id="phone" placeholder="Số điện thoại">
-    <input id="address" placeholder="Địa chỉ">
-    <textarea id="note" placeholder="Ghi chú (size, màu, yêu cầu thêm...)"></textarea>
-
-    <button class="buy-btn" onclick="sendOrder()">GỬI ĐƠN</button>
-  </div>
-</div>
-
-<footer>
-<p>📍 Địa chỉ:Tổ 4, khu phố Trung Lợi, phường Chơn Thành, tỉnh Đồng Nai</p>
-<p>📞 Hotline: <b>0977 162 967</b></p>
-<p>📧 Email: <b>nguyentrong0398787723@gmail.com</b></p>
-<hr style="border: 0.5px solid #333; width: 80%;">
-<p style="font-size: 14px; opacity: 0.8;">
-© 2026 Trong Be Shop — Bản quyền thuộc về Trong Be Clothing.
-</p>
-</footer>
-
-<script>
-let product = "";
-let price = 0;
-
-// ======= 🔥 QUAN TRỌNG: DÁN LINK GOOGLE SHEET VÀO ĐÂY 🔥 =======
-const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQZqtzNLbYo3eWDB7XAkPqULetvxmHCYpz0_Eh8qiGeZL1O4GchB8klv9xXh_9pzhXhdo4RvkbvGsbT/pub?output=csv";
-
-fetch(SHEET_URL)
-  .then(res => res.text())
-  .then(data => {
-    const rows = data.trim().split("\n").slice(1);
-    let html = "";
-
-    rows.forEach(row => {
-      if (!row.trim()) return;
-
-      // Tách CSV
-      const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
-
-      const id = cols[0];
-      const name = cols[1];
-      const image = cols[2];
-      const sale = cols[3];
-      const old = cols[4];
-      const discount = cols[5];
-
-      html += `
-<div class="product">
-  <img src="${image}">
-  <h3>[Mã ${id}] ${name}</h3>
-
-  <div class="price-box">
-    <span class="discount-badge">-${discount}%</span>
-    <span class="sale-price">${Number(sale).toLocaleString("vi-VN")}đ</span>
-    <span class="old-price">${Number(old).toLocaleString("vi-VN")}đ</span>
+  <div class="hero">
+    <div class="hero-content">
+      <h2>Phong Cách Hiện Đại</h2>
+      <p>Khám phá bộ sưu tập mới nhất dành cho bạn</p>
+    </div>
   </div>
 
-  <div class="btn-group">
-    <button class="buy-btn"
-      data-name="[Mã ${id}] ${name}"
-      data-price="${sale}">
-      MUA NGAY
-    </button>
-
-    <button class="zalo-btn" onclick="openZalo()">CHAT ZALO</button>
+  <div class="container" id="product-list">
+    <!-- Loader -->
+    <div class="loader">
+      <p>Đang tải sản phẩm mới nhất...</p>
+    </div>
   </div>
-</div>
-`;
 
-    });
+  <!-- POPUP FORM -->
+  <div id="overlay">
+    <div id="orderForm">
+      <div class="close-btn" onclick="closeForm()">×</div>
 
-    document.getElementById("product-list").innerHTML = html;
-    document.querySelectorAll(".buy-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const p = btn.dataset.name;
-    const pr = Number(btn.dataset.price);
-    openForm(p, pr);
-  });
-});
+      <h3>Đặt Hàng Ngay</h3>
+      <div style="text-align: center; margin-bottom: 20px;">
+        <p><b id="productName" style="font-size: 1.1em;"></b></p>
+        <p style="color: var(--discount-bg); font-weight: bold; font-size: 1.2em; margin-top: 5px;" id="totalText"></p>
+      </div>
 
-  })
-  .catch(err => console.error("Lỗi tải Sheet:", err));
+      <div class="form-group">
+        <input id="name" placeholder="Họ và tên của bạn" required>
+      </div>
+      <div class="form-group">
+        <input id="phone" placeholder="Số điện thoại" required>
+      </div>
+      <div class="form-group">
+        <input id="address" placeholder="Địa chỉ giao hàng" required>
+      </div>
+      <div class="form-group">
+        <textarea id="note" rows="3" placeholder="Ghi chú (Size, Màu sắc, v.v.)"></textarea>
+      </div>
 
+      <button class="order-btn" onclick="sendOrder()">Xác Nhận Đặt Hàng</button>
+    </div>
+  </div>
 
+  <footer>
+    <div class="footer-content">
+      <p>📍 <b>Địa chỉ:</b> Tổ 4, khu phố Trung Lợi, phường Chơn Thành, tỉnh Đồng Nai</p>
+      <p>📞 <b>Hotline:</b> 0977 162 967</p>
+      <p>📧 <b>Email:</b> nguyentrong0398787723@gmail.com</p>
+      <br>
+      <p style="font-size: 0.8rem; opacity: 0.6;">© 2026 Trong Be Shop. All rights reserved.</p>
+    </div>
+  </footer>
 
-function openForm(p, pr) {
-  product = p;
-  price = pr;
+  <script>
+    let product = "";
+    let price = 0;
 
-  document.getElementById("productName").innerText = product;
-  document.getElementById("totalText").innerText =
-    price.toLocaleString("vi-VN") + " đ";
+    // Link Google Sheet (PUBLISHED CSV)
+    const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQZqtzNLbYo3eWDB7XAkPqULetvxmHCYpz0_Eh8qiGeZL1O4GchB8klv9xXh_9pzhXhdo4RvkbvGsbT/pub?output=csv";
 
-  document.getElementById("overlay").style.display = "block";
-}
+    fetch(SHEET_URL)
+      .then(res => res.text())
+      .then(data => {
+        const rows = data.trim().split("\n").slice(1);
+        let html = "";
 
-function closeForm() {
-  document.getElementById("overlay").style.display = "none";
-}
+        rows.forEach(row => {
+          if (!row.trim()) return;
 
-function openZalo() {
-  window.open("http://zaloapp.com/qr/p/zrdh0azjcnbr", "_blank");
-}
+          // Parse CSV properly handling quotes if needed (Same logic as before)
+          // Simple split logic for now as per original
+          const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
 
-function sendOrder() {
-  const name = document.getElementById("name").value.trim();
-  const phone = document.getElementById("phone").value.trim();
-  const address = document.getElementById("address").value.trim();
-  const note = document.getElementById("note").value.trim();
+          if (!cols || cols.length < 6) return;
 
-  if (!name || !phone || !address) {
-    alert("Vui lòng nhập đầy đủ thông tin!");
-    return;
-  }
+          const id = cols[0].replace(/"/g, "");
+          const name = cols[1].replace(/"/g, "");
+          const image = cols[2].replace(/"/g, "");
+          const sale = cols[3].replace(/"/g, "");
+          const old = cols[4].replace(/"/g, "");
+          const discount = cols[5].replace(/"/g, "");
 
-  const formURL =
-    "https://docs.google.com/forms/d/e/1FAIpQLSe2QVBkjkEvnfdcduCh0TOHPB6qw1kmZsFSVSVb26-E1oQ__A/formResponse";
+          html += `
+                        <div class="product">
+                             <div class="discount-badge">-${discount}%</div>
+                             <img src="${image}" alt="${name}" loading="lazy">
+                             <h3>${name}</h3>
 
-  const data = new FormData();
-  data.append("entry.2117813281", name);
-  data.append("entry.1913338152", phone);
-  data.append("entry.1464387788", address);
-  data.append("entry.1384420991", product);
-  data.append("entry.535808915", note);
+                             <div class="price-box">
+                                 <span class="sale-price">${Number(sale).toLocaleString("vi-VN")}đ</span>
+                                 <span class="old-price">${Number(old).toLocaleString("vi-VN")}đ</span>
+                             </div>
 
-  fetch(formURL, { method: "POST", mode: "no-cors", body: data });
+                             <div class="btn-group">
+                                 <button class="btn buy-btn" 
+                                     data-name="[Mã ${id}] ${name}" 
+                                     data-price="${sale}">
+                                     MUA NGAY
+                                 </button>
+                                 <button class="btn zalo-btn" onclick="openZalo()">
+                                     Chat Zalo
+                                 </button>
+                             </div>
+                        </div>
+                    `;
+        });
 
-  alert("🎉 Đặt hàng thành công! Shop sẽ liên hệ sớm 💖");
-  closeForm();
-}
-</script>
+        document.getElementById("product-list").innerHTML = html;
+
+        // Add Event Listeners
+        document.querySelectorAll(".buy-btn").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const p = btn.dataset.name;
+            const pr = Number(btn.dataset.price);
+            openForm(p, pr);
+          });
+        });
+      })
+      .catch(err => {
+        console.error("Lỗi:", err);
+        document.getElementById("product-list").innerHTML = "<p>Lỗi tải giữ liệu. Vui lòng thử lại sau.</p>";
+      });
+
+    // Functions
+    function openForm(p, pr) {
+      product = p;
+      price = pr;
+      document.getElementById("productName").innerText = product;
+      document.getElementById("totalText").innerText = price.toLocaleString("vi-VN") + " đ";
+      document.getElementById("overlay").style.display = "block";
+    }
+
+    function closeForm() {
+      document.getElementById("overlay").style.display = "none";
+    }
+
+    function openZalo() {
+      window.open("http://zaloapp.com/qr/p/zrdh0azjcnbr", "_blank");
+    }
+
+    function sendOrder() {
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const address = document.getElementById("address").value.trim();
+      const note = document.getElementById("note").value.trim();
+
+      if (!name || !phone || !address) {
+        alert("Vui lòng điền tên, số điện thoại và địa chỉ nhận hàng.");
+        return;
+      }
+
+      const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSe2QVBkjkEvnfdcduCh0TOHPB6qw1kmZsFSVSVb26-E1oQ__A/formResponse";
+
+      const data = new FormData();
+      data.append("entry.2117813281", name);
+      data.append("entry.1913338152", phone);
+      data.append("entry.1464387788", address);
+      data.append("entry.1384420991", product);
+      data.append("entry.535808915", note);
+
+      // Change button state
+      const btn = document.querySelector(".order-btn");
+      const originalText = btn.innerText;
+      btn.innerText = "Đang gửi...";
+      btn.disabled = true;
+
+      fetch(formURL, { method: "POST", mode: "no-cors", body: data })
+        .then(() => {
+          alert("🎉 Đặt hàng thành công! Shop sẽ liên hệ sớm.");
+          closeForm();
+          // Reset form
+          document.getElementById("name").value = "";
+          document.getElementById("phone").value = "";
+          document.getElementById("address").value = "";
+          document.getElementById("note").value = "";
+        })
+        .catch(err => alert("Lỗi gửi đơn, vui lòng thử lại!"))
+        .finally(() => {
+          btn.innerText = originalText;
+          btn.disabled = false;
+        });
+    }
+
+    // Close modal on outside click
+    window.onclick = function (event) {
+      if (event.target == document.getElementById("overlay")) {
+        closeForm();
+      }
+    }
+  </script>
 
 </body>
+
 </html>
