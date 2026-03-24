@@ -55,6 +55,7 @@ const mockQuizzes = [
 
 // === TRẠNG THÁI (STATE) ===
 let currentQuiz = null;
+let userAnswers = {};
 
 // === PHẦN TỬ DOM ===
 const views = {
@@ -96,8 +97,15 @@ window.startQuiz = function(quizId) {
     currentQuiz = mockQuizzes.find(q => q.id === quizId);
     if (!currentQuiz) return;
     
-    // Xóa kết quả chọn cũ
+    // Xóa kết quả chọn cũ & Reset form
     quizForm.reset();
+    quizForm.dataset.mode = 'exam';
+    const submitBtn = quizForm.querySelector('button[type="submit"]');
+    if(submitBtn) {
+        submitBtn.textContent = 'Nộp Bài Ngay';
+        submitBtn.classList.remove('btn-outline');
+        submitBtn.classList.add('btn-primary');
+    }
     
     currentQuizTitle.textContent = currentQuiz.title;
     renderQuestions();
@@ -157,20 +165,32 @@ function renderQuestions() {
 quizForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
+    // Nếu đang ở chế độ xem lại (review), nhấn nút sẽ quay lại màn kết quả
+    if (quizForm.dataset.mode === 'review') {
+        showView('result');
+        return;
+    }
+    
     // Chấm điểm
     let correct = 0;
     let incorrect = 0;
     let unanswered = 0;
+    userAnswers = {}; // Reset lại đáp án đã chọn
     
     const formData = new FormData(quizForm);
     currentQuiz.questions.forEach(q => {
         const selectedVal = formData.get(`question_${q.id}`);
         if (selectedVal === null) {
             unanswered++;
-        } else if (parseInt(selectedVal) === q.correctIndex) {
-            correct++;
+            userAnswers[q.id] = null;
         } else {
-            incorrect++;
+            const val = parseInt(selectedVal);
+            userAnswers[q.id] = val;
+            if (val === q.correctIndex) {
+                correct++;
+            } else {
+                incorrect++;
+            }
         }
     });
     
@@ -193,9 +213,47 @@ document.getElementById('btnBackToMenu').addEventListener('click', () => {
 });
 
 document.getElementById('btnRetry').addEventListener('click', () => {
-    // Chỉ cần hiển thị lại form vì id form và radio đã được sinh ra
-    // và quizForm.reset() sẽ làm sạch lựa chọn đã tick
     quizForm.reset();
+    quizForm.dataset.mode = 'exam';
+    const submitBtn = quizForm.querySelector('button[type="submit"]');
+    submitBtn.textContent = 'Nộp Bài Ngay';
+    submitBtn.classList.remove('btn-outline');
+    submitBtn.classList.add('btn-primary');
+    
+    // Gọi lại renderQuestions để xóa các class correct-answer/wrong-answer và bật lại input
+    renderQuestions();
+    showView('active');
+});
+
+document.getElementById('btnReview').addEventListener('click', () => {
+    quizForm.dataset.mode = 'review';
+    
+    currentQuiz.questions.forEach(q => {
+        const selectedVal = userAnswers[q.id];
+        const inputs = document.querySelectorAll(`input[name="question_${q.id}"]`);
+        
+        inputs.forEach(input => {
+            input.disabled = true; // Khóa thay đổi đáp án
+            const label = input.closest('label');
+            const val = parseInt(input.value);
+            
+            // Đánh dấu đáp án đúng
+            if (val === q.correctIndex) {
+                label.classList.add('correct-answer');
+            } 
+            // Đánh dấu đáp án sai mà người dùng đã chọn
+            else if (val === selectedVal) {
+                label.classList.add('wrong-answer');
+            }
+        });
+    });
+    
+    // Đổi nút nộp bài thành nút quay lại
+    const submitBtn = quizForm.querySelector('button[type="submit"]');
+    submitBtn.textContent = 'Quay Lại Kết Quả';
+    submitBtn.classList.remove('btn-primary');
+    submitBtn.classList.add('btn-outline');
+    
     showView('active');
 });
 

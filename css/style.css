@@ -371,3 +371,40 @@ body {
     color: var(--text-main);
     font-weight: 600;
 }
+
+/* --- TÍNH NĂNG XEM LẠI BÀI --- */
+.correct-answer {
+    background-color: #D1FAE5 !important;
+    border-color: var(--secondary) !important;
+}
+
+.correct-answer span {
+    color: #065F46;
+    font-weight: 600;
+}
+
+.correct-answer::after {
+    content: "✓";
+    margin-left: auto;
+    color: var(--secondary);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.wrong-answer {
+    background-color: #FEE2E2 !important;
+    border-color: var(--danger) !important;
+}
+
+.wrong-answer span {
+    color: #991B1B;
+    font-weight: 600;
+}
+
+.wrong-answer::after {
+    content: "✗";
+    margin-left: auto;
+    color: var(--danger);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
