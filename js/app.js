@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
 import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAAEI9nMEMfUwbGbPHTyGRJ2dAfBRW7_Fo",
@@ -430,6 +430,26 @@ document.getElementById('btnEmailRegister').addEventListener('click', async (e) 
         } else {
             authError.textContent = "Lỗi đăng ký. Vui lòng thử lại!";
         }
+    }
+});
+
+// Quên Mật Khẩu
+document.getElementById('btnForgotPassword').addEventListener('click', async (e) => {
+    e.preventDefault();
+    const email = emailInput.value.trim();
+    if (!email) {
+        authError.style.display = 'block';
+        authError.textContent = "Bạn cần nhập Email vào ô phía trên rồi mới bấm Quên Mật Khẩu nhé!";
+        return;
+    }
+    try {
+        authError.style.display = 'none';
+        await sendPasswordResetEmail(auth, email);
+        alert("Thành công! Một đường link đặt lại mật khẩu đã được gửi vào Email " + email + " của bạn. Vui lòng kiểm tra mục Hộp thư đến (hoặc Thư rác).");
+    } catch (error) {
+        authError.style.display = 'block';
+        authError.textContent = "Lỗi gửi email reset. Có thể tài khoản chưa tồn tại!";
+        console.error(error);
     }
 });
 
