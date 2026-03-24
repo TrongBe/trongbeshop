@@ -328,16 +328,17 @@ quizForm.addEventListener('submit', (e) => {
     let correct = 0;
     let incorrect = 0;
     let unanswered = 0;
-    userAnswers = {}; // Reset lại đáp án đã chọn
+    userAnswers = {};
 
-    const formData = new FormData(quizForm);
     currentQuiz.questions.forEach(q => {
-        const selectedVal = formData.get(`question_${q.id}`);
-        if (selectedVal === null) {
+        // Tìm radio đã được chọn (kể cả khi bị disabled trong chế độ Luyện tập)
+        const selectedRadio = quizForm.querySelector(`input[name="question_${q.id}"]:checked`);
+        
+        if (!selectedRadio) {
             unanswered++;
             userAnswers[q.id] = null;
         } else {
-            const val = parseInt(selectedVal);
+            const val = parseInt(selectedRadio.value);
             userAnswers[q.id] = val;
             if (val === q.correctIndex) {
                 correct++;
