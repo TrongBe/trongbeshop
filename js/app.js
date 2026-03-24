@@ -103,9 +103,9 @@ function initQuizList() {
         card.innerHTML = `
             <h3>${quiz.title}</h3>
             <p>${quiz.description}</p>
-            <div class="tags-container" style="margin-bottom: 24px;">
+            <div class="tags-container" style="margin-bottom: 24px; display: flex; align-items: center;">
                 <span class="quiz-meta">📚 Số câu: ${quiz.questions.length}</span>
-                <span class="quiz-views" id="views-${quiz.id}">👁️ Lượt truy cập: Đang tải...</span>
+                <span class="quiz-views" id="views-${quiz.id}">Lượt truy cập: Đang tải...</span>
             </div>
             <button class="btn btn-primary" style="width:100%" onclick="startQuiz('${quiz.id}')">Bắt Đầu Làm Bài</button>
         `;
@@ -123,7 +123,7 @@ function initRealtimeViews() {
                 const data = docSnap.data();
                 const viewEl = document.getElementById(`views-${docSnap.id}`);
                 if (viewEl) {
-                    viewEl.innerHTML = `👁️ Lượt truy cập: <strong>${data.views || 0}</strong>`;
+                    viewEl.innerHTML = `Lượt truy cập: ${data.views || 0}`;
                 }
             });
 
@@ -131,7 +131,7 @@ function initRealtimeViews() {
             mockQuizzes.forEach(quiz => {
                 const viewEl = document.getElementById(`views-${quiz.id}`);
                 if (viewEl && (viewEl.textContent.includes("Đang tải") || viewEl.textContent === "")) {
-                    viewEl.innerHTML = `👁️ Lượt truy cập: <strong>0</strong>`;
+                    viewEl.innerHTML = `Lượt truy cập: 0`;
                 }
             });
         }, (error) => {
