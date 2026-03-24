@@ -3,13 +3,13 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebas
 import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAAEI9nMEMfUwbGbPHTyGRJ2dAfBRW7_Fo",
-  authDomain: "hoctaptructuyen-7c09a.firebaseapp.com",
-  projectId: "hoctaptructuyen-7c09a",
-  storageBucket: "hoctaptructuyen-7c09a.firebasestorage.app",
-  messagingSenderId: "329551572068",
-  appId: "1:329551572068:web:41b7b3174ef45a77008371",
-  measurementId: "G-F0DTTKEBHC"
+    apiKey: "AIzaSyAAEI9nMEMfUwbGbPHTyGRJ2dAfBRW7_Fo",
+    authDomain: "hoctaptructuyen-7c09a.firebaseapp.com",
+    projectId: "hoctaptructuyen-7c09a",
+    storageBucket: "hoctaptructuyen-7c09a.firebasestorage.app",
+    messagingSenderId: "329551572068",
+    appId: "1:329551572068:web:41b7b3174ef45a77008371",
+    measurementId: "G-F0DTTKEBHC"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -125,7 +125,7 @@ async function fetchViewCounts() {
                 viewEl.innerHTML = `👁️ Lượt truy cập: <strong>${data.views || 0}</strong>`;
             }
         });
-        
+
         // Cập nhật 0 cho những tài liệu chưa có trong bảng dữ liệu
         mockQuizzes.forEach(quiz => {
             const viewEl = document.getElementById(`views-${quiz.id}`);
@@ -167,31 +167,46 @@ function shuffleQuestionsBySection(questions) {
 window.startQuiz = async function (quizId) {
     currentQuiz = mockQuizzes.find(q => q.id === quizId);
     if (!currentQuiz) return;
-    
-    // Tăng lượt xem (view) trên Firebase
+
+    // Tăng lượt xem (view) trên Firebase nếu người dùng chưa xem đề này
     try {
-        const quizRef = doc(db, "quizzes", quizId);
-        const quizSnap = await getDoc(quizRef);
-        if (quizSnap.exists()) {
-            await updateDoc(quizRef, { views: increment(1) });
-        } else {
-            await setDoc(quizRef, { views: 1 });
+        let viewedQuizzes = [];
+        try {
+            viewedQuizzes = JSON.parse(localStorage.getItem('viewedQuizzes') || '[]');
+        } catch (err) {
+            viewedQuizzes = [];
         }
         
-        // Cập nhật UI ngay lập tức
-        const viewEl = document.getElementById(`views-${quizId}`);
-        if (viewEl) {
-            const currentViewsMatch = viewEl.innerText.match(/\d+/);
-            const currentViews = currentViewsMatch ? parseInt(currentViewsMatch[0]) : 0;
-            viewEl.innerHTML = `👁️ Lượt truy cập: <strong>${currentViews + 1}</strong>`;
+        if (!Array.isArray(viewedQuizzes)) viewedQuizzes = [];
+
+        if (!viewedQuizzes.includes(quizId)) {
+            const quizRef = doc(db, "quizzes", quizId);
+            const quizSnap = await getDoc(quizRef);
+            if (quizSnap.exists()) {
+                await updateDoc(quizRef, { views: increment(1) });
+            } else {
+                await setDoc(quizRef, { views: 1 });
+            }
+
+            // Lưu vào localStorage để không tăng lượt xem lần sau
+            viewedQuizzes.push(quizId);
+            localStorage.setItem('viewedQuizzes', JSON.stringify(viewedQuizzes));
+
+            // Cập nhật UI ngay lập tức
+            const viewEl = document.getElementById(`views-${quizId}`);
+            if (viewEl) {
+                const currentViewsMatch = viewEl.innerText.match(/\d+/);
+                const currentViews = currentViewsMatch ? parseInt(currentViewsMatch[0]) : 0;
+                viewEl.innerHTML = `👁️ Lượt truy cập: <strong>${currentViews + 1}</strong>`;
+            }
         }
     } catch (e) {
         console.error("Lỗi cập nhật view số lượng:", e);
     }
-    
+
     // Tráo câu hỏi nhưng giữ nguyên các phần
     currentQuiz.questions = shuffleQuestionsBySection(currentQuiz.questions);
-    
+
     // Xóa kết quả chọn cũ & Reset form
     quizForm.reset();
     quizForm.dataset.mode = 'exam';
@@ -318,10 +333,10 @@ document.getElementById('btnRetry').addEventListener('click', () => {
     submitBtn.textContent = 'Nộp Bài Ngay';
     submitBtn.classList.remove('btn-outline');
     submitBtn.classList.add('btn-primary');
-    
+
     // Tráo câu hỏi nhưng giữ nguyên các phần khi làm lại
     currentQuiz.questions = shuffleQuestionsBySection(currentQuiz.questions);
-    
+
     // Gọi lại renderQuestions để xóa các class correct-answer/wrong-answer và bật lại input
     renderQuestions();
     showView('active');
