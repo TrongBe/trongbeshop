@@ -92,11 +92,35 @@ function initQuizList() {
     });
 }
 
+// === HÀM ĐẢO CÂU HỎI THEO PHẦN ===
+function shuffleQuestionsBySection(questions) {
+    const sections = [];
+    questions.forEach(q => {
+        if (!sections.includes(q.section)) {
+            sections.push(q.section);
+        }
+    });
+
+    let shuffled = [];
+    sections.forEach(sec => {
+        let group = questions.filter(q => q.section === sec);
+        for (let i = group.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [group[i], group[j]] = [group[j], group[i]];
+        }
+        shuffled = shuffled.concat(group);
+    });
+    return shuffled;
+}
+
 // === BẮT ĐẦU LÀM BÀI ===
 window.startQuiz = function (quizId) {
     currentQuiz = mockQuizzes.find(q => q.id === quizId);
     if (!currentQuiz) return;
-
+    
+    // Tráo câu hỏi nhưng giữ nguyên các phần
+    currentQuiz.questions = shuffleQuestionsBySection(currentQuiz.questions);
+    
     // Xóa kết quả chọn cũ & Reset form
     quizForm.reset();
     quizForm.dataset.mode = 'exam';
@@ -223,7 +247,10 @@ document.getElementById('btnRetry').addEventListener('click', () => {
     submitBtn.textContent = 'Nộp Bài Ngay';
     submitBtn.classList.remove('btn-outline');
     submitBtn.classList.add('btn-primary');
-
+    
+    // Tráo câu hỏi nhưng giữ nguyên các phần khi làm lại
+    currentQuiz.questions = shuffleQuestionsBySection(currentQuiz.questions);
+    
     // Gọi lại renderQuestions để xóa các class correct-answer/wrong-answer và bật lại input
     renderQuestions();
     showView('active');
