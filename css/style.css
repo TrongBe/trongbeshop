@@ -553,3 +553,31 @@ body {
     gap: 12px;
     margin-left: 8px;
 }
+
+/* Comparison Table for questions */
+.comparison-table-wrapper {
+    margin: 15px 0;
+    overflow-x: auto;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.comparison-table th, .comparison-table td {
+    border: 1px solid var(--border);
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.comparison-table th {
+    background: #F3F4F6;
+    color: var(--text-main);
+    font-weight: 600;
+}

@@ -209,9 +209,23 @@ const mockQuizzes = [
             { id: "bio_q7", section: "PHẦN I: TRẮC NGHIỆM", type: "multiple_choice", text: "In vết là hình thức học tập mà con vật mới sinh ra:", options: ["A. bám theo vật thể tĩnh mà nó nhìn thấy đầu tiên", "B. bám theo vật thể chuyển động mà nó nhìn thấy đầu tiên", "C. bám theo vật thể chuyển động bất kỳ", "D. bám theo mẹ nó"], correctIndex: 1 },
             { id: "bio_q8", section: "PHẦN I: TRẮC NGHIỆM", type: "multiple_choice", text: "Học ngầm là kiểu học không có ý thức, sau đó những điều đã học:", options: ["A. không được dùng đến nên động vật sẽ quên đi", "B. lại được củng cố bằng các hoạt động có ý thức", "C. được tái hiện giúp động vật giải quyết tình huống tương tự", "D. được tái hiện giúp động vật giải quyết tình huống khác lạ"], correctIndex: 2 },
             { id: "bio_q9", section: "PHẦN I: TRẮC NGHIỆM", type: "multiple_choice", text: "Tinh tinh con học cách đập vỡ vỏ hạt cứng bằng cách quan sát tinh tinh mẹ. Ví dụ về:", options: ["A. Học tập qua giao tiếp xã hội", "B. In vết", "C. Học liên hệ", "D. Quen nhờn"], correctIndex: 0 },
-            { id: "bio_q10", section: "PHẦN I: TRẮC NGHIỆM", type: "multiple_choice", text: "Tập tính nào là bẩm sinh: (1) Di cư cá hồi, (3) Nhện giăng tơ, (6) Ếch kêu mùa sinh sản, (8) Ve kêu mùa hè. Tập tính nào học được: (2) Báo săn mồi, (4) Vẹt nói tiếng người, (5) Cá nổi lên tìm thức ăn, (7) Xiếc chó.", options: ["A. Bẩm sinh: (1,3,6,8); Học được: (2,4,5,7)", "B. Bẩm sinh: (1,2,6,8); Học được: (3,4,5,7)", "C. Bẩm sinh: (1,3,5,8); Học được: (2,4,6,7)", "D. Bẩm sinh: (1,3,6,7); Học được: (2,4,5,8)"], correctIndex: 0 },
+            { 
+                id: "bio_q10", 
+                section: "PHẦN I: TRẮC NGHIỆM", 
+                type: "multiple_choice", 
+                text: "Xác định tập tính bẩm sinh và tập tính học được trong các ví dụ sau:<br><br><strong>Nhóm 1 (Bẩm sinh):</strong><br>(1) Di cư cá hồi, (3) Nhện giăng tơ<br>(6) Ếch kêu mùa sinh sản, (8) Ve kêu mùa hè<br><br><strong>Nhóm 2 (Học được):</strong><br>(2) Báo săn mồi, (4) Vẹt nói tiếng người<br>(5) Cá nổi lên tìm thức ăn, (7) Xiếc chó", 
+                options: ["A. Bẩm sinh: (1,3,6,8); Học được: (2,4,5,7)", "B. Bẩm sinh: (1,2,6,8); Học được: (3,4,5,7)", "C. Bẩm sinh: (1,3,5,8); Học được: (2,4,6,7)", "D. Bẩm sinh: (1,3,6,7); Học được: (2,4,5,8)"], 
+                correctIndex: 0 
+            },
             { id: "bio_q11", section: "PHẦN I: TRẮC NGHIỆM", type: "multiple_choice", text: "Sinh trưởng ở sinh vật là:", options: ["A. quá trình tăng chiều cao", "B. quá trình tăng về kích thước cơ thể", "C. quá trình tăng số lượng tế bào", "D. quá trình tăng về kích thước và khối lượng cơ thể do tăng số lượng/kích thước tế bào"], correctIndex: 3 },
-            { id: "bio_q12", section: "PHẦN I: TRẮC NGHIỆM", type: "multiple_choice", text: "Ghép cột: 1. Sinh trưởng (b: Cây lên cao, e: Diện tích lá tăng, f: Lợn tăng cân); 2. Phát triển (a: Hạt nảy mầm, c: Gà gáy, d: Cây ra hoa).", options: ["A. 1 - b,d,f ; 2 - a,c,e", "B. 1 - b,e,f ; 2 - a,c,d", "C. 1 - a,b,e ; 2 - c,d,f", "D. 1 - a,b,f ; 2 - c,d,e"], correctIndex: 1 },
+            { 
+                id: "bio_q12", 
+                section: "PHẦN I: TRẮC NGHIỆM", 
+                type: "multiple_choice", 
+                text: "Ghép cột nội dung (1, 2) với các ví dụ (a, b, c, d, e, f) tương ứng:<br><br><div class='comparison-table-wrapper'><table class='comparison-table'><thead><tr><th>1. Sinh trưởng</th><th>2. Phát triển</th></tr></thead><tbody><tr><td>(b) Cây lên cao<br>(e) Diện tích lá tăng<br>(f) Lợn tăng cân</td><td>(a) Hạt nảy mầm<br>(c) Gà gáy<br>(d) Cây ra hoa</td></tr></tbody></table></div>", 
+                options: ["A. 1 - b,d,f ; 2 - a,c,e", "B. 1 - b,e,f ; 2 - a,c,d", "C. 1 - a,b,e ; 2 - c,d,f", "D. 1 - a,b,f ; 2 - c,d,e"], 
+                correctIndex: 1 
+            },
             { id: "bio_q13", section: "PHẦN I: TRẮC NGHIỆM", type: "multiple_choice", text: "Hormone thực vật là những chất hữu cơ cho cơ thể thực vật tiết ra:", options: ["A. có tác dụng điều hòa", "B. chỉ có tác dụng ức chế", "C. có tác dụng kháng bệnh", "D. có tác dụng kích thích sinh trưởng"], correctIndex: 0 },
             { id: "bio_q14", section: "PHẦN I: TRẮC NGHIỆM", type: "multiple_choice", text: "Chức năng của mô phân sinh đỉnh là gì?", options: ["A. Làm cho thân và rễ cây dài ra", "B. Làm cho rễ dài và to ra", "C. Làm cho thân cây dài và to ra", "D. Làm cho thân cây, cành cây to ra"], correctIndex: 0 },
             { id: "bio_q15", section: "PHẦN I: TRẮC NGHIỆM", type: "multiple_choice", text: "Có bao nhiêu phát biểu đúng về mô phân sinh? (II: MS đỉnh ở đỉnh rễ/chồi; V: MS lóng chỉ có ở cây Một lá mầm)", options: ["A. 1", "B. 2", "C. 3", "D. 4"], correctIndex: 1 },
