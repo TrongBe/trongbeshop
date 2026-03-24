@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
 import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, collection, getDocs, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getDatabase, ref, onValue, set, runTransaction } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAAEI9nMEMfUwbGbPHTyGRJ2dAfBRW7_Fo",
@@ -15,6 +16,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
+const dbRT = getDatabase(app);
 
 // === MOCK DATA: BỘ ĐỀ MẪU ===
 // Bạn có thể dễ dàng thêm hoặc thay đổi câu hỏi tại đây
@@ -114,28 +116,23 @@ function initQuizList() {
     initRealtimeViews();
 }
 
-// === LẮNG NGHE DỮ LIỆU LƯỢT TRUY CẬP THỜI GIAN THỰC TỪ FIREBASE ===
+// === LẮNG NGHE DỮ LIỆU LƯỢT TRUY CẬP THỜI GIAN THỰC TỪ REALTIME DATABASE ===
 function initRealtimeViews() {
     try {
-        // Sử dụng onSnapshot để cập nhật tự động mà không cần load lại trang
-        onSnapshot(collection(db, "quizzes"), (querySnapshot) => {
-            querySnapshot.forEach((docSnap) => {
-                const data = docSnap.data();
-                const viewEl = document.getElementById(`views-${docSnap.id}`);
-                if (viewEl) {
-                    viewEl.innerHTML = `Lượt truy cập: ${data.views || 0}`;
-                }
-            });
-
-            // Cập nhật 0 cho những tài liệu chưa có trong bảng dữ liệu
+        // Lắng nghe tất cả các đề cùng một lúc từ nút 'quiz_views'
+        const viewsRef = ref(dbRT, 'quiz_views');
+        onValue(viewsRef, (snapshot) => {
+            const allViews = snapshot.val() || {};
+            
             mockQuizzes.forEach(quiz => {
+                const viewCount = allViews[quiz.id] || 0;
                 const viewEl = document.getElementById(`views-${quiz.id}`);
-                if (viewEl && (viewEl.textContent.includes("Đang tải") || viewEl.textContent === "")) {
-                    viewEl.innerHTML = `Lượt truy cập: 0`;
+                if (viewEl) {
+                    viewEl.innerHTML = `Lượt truy cập: ${viewCount}`;
                 }
             });
         }, (error) => {
-            console.error("Lỗi lắng nghe lượt truy cập Firebase:", error);
+            console.error("Lỗi lắng nghe Realtime Database:", error);
         });
     } catch (error) {
         console.error("Lỗi khởi tạo tính năng thời gian thực:", error);
@@ -187,7 +184,7 @@ window.startQuiz = async function (quizId) {
     showView('active'); 
     // ---------------------------------------------------------
 
-    // Tăng lượt xem (view) trên Firebase chạy ngầm phía dưới
+    // Tăng lượt xem (view) trên Realtime Database chạy ngầm
     try {
         let viewedQuizzes = [];
         try {
@@ -203,18 +200,14 @@ window.startQuiz = async function (quizId) {
             viewedQuizzes.push(quizId);
             localStorage.setItem('viewedQuizzes', JSON.stringify(viewedQuizzes));
 
-            const quizRef = doc(db, "quizzes", quizId);
+            const quizViewRef = ref(dbRT, `quiz_views/${quizId}`);
             try {
-                // Tăng lượt xem ngầm
-                const quizSnap = await getDoc(quizRef);
-                if (quizSnap.exists()) {
-                    await updateDoc(quizRef, { views: increment(1) });
-                } else {
-                    await setDoc(quizRef, { views: 1 });
-                }
-                // Do đã sử dụng onSnapshot, UI sẽ tự động cập nhật mà không cần gán thủ công ở đây
+                // Tăng lượt xem sử dụng transaction để đảm bảo tính an toàn
+                runTransaction(quizViewRef, (currentValue) => {
+                    return (currentValue || 0) + 1;
+                });
             } catch (error) {
-                console.error("Lỗi khi cập nhật view:", error);
+                console.error("Lỗi khi cập nhật Realtime view:", error);
             }
         }
     } catch (e) {
