@@ -7,22 +7,22 @@ const mockQuizzes = [
         description: "Đề ôn tập giữa kỳ 2 môn Tiếng Anh lớp 11 (Phonetics, Stress, Vocabulary & Grammar).",
         questions: [
             // PHONETICS
-            { id: "q1", text: "PHONETICS - Choose the word whose underlined part is pronounced differently: A. heritage B. historic C. honor D. habitat", options: ["A. heritage", "B. historic", "C. honor", "D. habitat"], correctIndex: 2 },
-            { id: "q2", text: "PHONETICS - Choose the word whose underlined part is pronounced differently: A. ancient B. preserve C. relic D. setting", options: ["A. ancient", "B. preserve", "C. relic", "D. setting"], correctIndex: 0 },
-            { id: "q3", text: "PHONETICS - Choose the word whose underlined part is pronounced differently: A. degree B. apprentice C. college D. university", options: ["A. degree", "B. apprentice", "C. college", "D. university"], correctIndex: 1 },
-            { id: "q4", text: "PHONETICS - Choose the word whose underlined part is pronounced differently: A. choice B. chance C. character D. chair", options: ["A. choice", "B. chance", "C. character", "D. chair"], correctIndex: 2 },
-            { id: "q5", text: "PHONETICS - Choose the word whose underlined part is pronounced differently: A. decide B. depend C. develop D. dedicated", options: ["A. decide", "B. depend", "C. develop", "D. dedicated"], correctIndex: 3 },
-            { id: "q6", text: "PHONETICS - Choose the word whose underlined part is pronounced differently: A. rise B. skill C. time D. life", options: ["A. rise", "B. skill", "C. time", "D. life"], correctIndex: 1 },
-            { id: "q7", text: "PHONETICS - Choose the word whose underlined part is pronounced differently: A. ancient B. landscape C. valley D. state", options: ["A. ancient", "B. landscape", "C. valley", "D. state"], correctIndex: 2 },
-            { id: "q8", text: "PHONETICS - Choose the word whose underlined part is pronounced differently: A. mechanic B. choice C. chance D. change", options: ["A. mechanic", "B. choice", "C. chance", "D. change"], correctIndex: 0 },
+            { id: "q1", text: "PHONETICS - Choose the word whose underlined part is pronounced differently:", options: ["A. heritage", "B. historic", "C. honor", "D. habitat"], correctIndex: 2 },
+            { id: "q2", text: "PHONETICS - Choose the word whose underlined part is pronounced differently:", options: ["A. ancient", "B. preserve", "C. relic", "D. setting"], correctIndex: 0 },
+            { id: "q3", text: "PHONETICS - Choose the word whose underlined part is pronounced differently:", options: ["A. degree", "B. apprentice", "C. college", "D. university"], correctIndex: 1 },
+            { id: "q4", text: "PHONETICS - Choose the word whose underlined part is pronounced differently:", options: ["A. choice", "B. chance", "C. character", "D. chair"], correctIndex: 2 },
+            { id: "q5", text: "PHONETICS - Choose the word whose underlined part is pronounced differently:", options: ["A. decide", "B. depend", "C. develop", "D. dedicated"], correctIndex: 3 },
+            { id: "q6", text: "PHONETICS - Choose the word whose underlined part is pronounced differently:", options: ["A. rise", "B. skill", "C. time", "D. life"], correctIndex: 1 },
+            { id: "q7", text: "PHONETICS - Choose the word whose underlined part is pronounced differently:", options: ["A. ancient", "B. landscape", "C. valley", "D. state"], correctIndex: 2 },
+            { id: "q8", text: "PHONETICS - Choose the word whose underlined part is pronounced differently:", options: ["A. mechanic", "B. choice", "C. chance", "D. change"], correctIndex: 0 },
             
             // STRESS
-            { id: "q9", text: "STRESS - Choose the word that has a different stress pattern: A. routine B. laundry C. household D. budget", options: ["A. routine", "B. laundry", "C. household", "D. budget"], correctIndex: 0 },
-            { id: "q10", text: "STRESS - Choose the word that has a different stress pattern: A. independent B. irresponsible C. intermediate D. individual", options: ["A. independent", "B. irresponsible", "C. intermediate", "D. individual"], correctIndex: 1 },
-            { id: "q11", text: "STRESS - Choose the word that has a different stress pattern: A. manage B. master C. polite D. student", options: ["A. manage", "B. master", "C. polite", "D. student"], correctIndex: 2 },
-            { id: "q12", text: "STRESS - Choose the word that has a different stress pattern: A. academic B. vocational C. professional D. responsible", options: ["A. academic", "B. vocational", "C. professional", "D. responsible"], correctIndex: 0 },
-            { id: "q13", text: "STRESS - Choose the word that has a different stress pattern: A. temple B. relic C. complex D. suggest", options: ["A. temple", "B. relic", "C. complex", "D. suggest"], correctIndex: 3 },
-            { id: "q14", text: "STRESS - Choose the word that has a different stress pattern: A. recognize B. monument C. recommend D. landscape", options: ["A. recognize", "B. monument", "C. recommend", "D. landscape"], correctIndex: 2 },
+            { id: "q9", text: "STRESS - Choose the word that has a different stress pattern:", options: ["A. routine", "B. laundry", "C. household", "D. budget"], correctIndex: 0 },
+            { id: "q10", text: "STRESS - Choose the word that has a different stress pattern:", options: ["A. independent", "B. irresponsible", "C. intermediate", "D. individual"], correctIndex: 1 },
+            { id: "q11", text: "STRESS - Choose the word that has a different stress pattern:", options: ["A. manage", "B. master", "C. polite", "D. student"], correctIndex: 2 },
+            { id: "q12", text: "STRESS - Choose the word that has a different stress pattern:", options: ["A. academic", "B. vocational", "C. professional", "D. responsible"], correctIndex: 0 },
+            { id: "q13", text: "STRESS - Choose the word that has a different stress pattern:", options: ["A. temple", "B. relic", "C. complex", "D. suggest"], correctIndex: 3 },
+            { id: "q14", text: "STRESS - Choose the word that has a different stress pattern:", options: ["A. recognize", "B. monument", "C. recommend", "D. landscape"], correctIndex: 2 },
             
             // VOCABULARY AND GRAMMAR
             { id: "q15", text: "The Citadel of the Ho Dynasty was ______ as a World Heritage Site in 2011.", options: ["A. recognized", "B. performed", "C. restored", "D. protected"], correctIndex: 0 },
@@ -122,7 +122,7 @@ function renderQuestions() {
             const label = document.createElement('label');
             label.className = 'option-label';
             label.innerHTML = `
-                <input type="radio" name="question_${q.id}" value="${optIndex}" required>
+                <input type="radio" name="question_${q.id}" value="${optIndex}">
                 <span>${opt}</span>
             `;
             optionsList.appendChild(label);
@@ -140,12 +140,14 @@ quizForm.addEventListener('submit', (e) => {
     // Chấm điểm
     let correct = 0;
     let incorrect = 0;
+    let unanswered = 0;
     
     const formData = new FormData(quizForm);
     currentQuiz.questions.forEach(q => {
         const selectedVal = formData.get(`question_${q.id}`);
-        // Chú ý: giá trị lấy từ formData làchuỗi text
-        if (selectedVal !== null && parseInt(selectedVal) === q.correctIndex) {
+        if (selectedVal === null) {
+            unanswered++;
+        } else if (parseInt(selectedVal) === q.correctIndex) {
             correct++;
         } else {
             incorrect++;
@@ -156,6 +158,9 @@ quizForm.addEventListener('submit', (e) => {
     document.getElementById('scoreText').textContent = `${correct}/${currentQuiz.questions.length}`;
     document.getElementById('correctCount').textContent = correct;
     document.getElementById('incorrectCount').textContent = incorrect;
+    
+    const unansweredEl = document.getElementById('unansweredCount');
+    if(unansweredEl) unansweredEl.textContent = unanswered;
     
     showView('result');
 });
