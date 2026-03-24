@@ -27,6 +27,44 @@
       </div>
     </div>
 
+    <!-- View: Cấu hình trước khi làm bài -->
+    <div id="setupView" class="view-section">
+      <div class="setup-card">
+        <button id="btnBackFromSetup" class="btn btn-text">← Quay lại danh sách</button>
+        <h2 id="setupQuizTitle" class="section-title">Cấu hình bài tập</h2>
+        
+        <div class="setup-options">
+          <div class="option-item">
+            <label class="checkbox-container">
+              <input type="checkbox" id="chkShuffle" checked>
+              <span class="checkmark"></span>
+              Tráo thứ tự câu hỏi
+            </label>
+            <button class="info-btn" onclick="showHelp('shuffle')">?</button>
+          </div>
+
+          <div class="option-item">
+            <label>Chế độ làm bài:</label>
+            <div class="radio-group">
+              <label class="radio-container">
+                <input type="radio" name="quizMode" value="exam" checked>
+                <span class="radio-mark"></span>
+                Thi cử
+              </label>
+              <label class="radio-container">
+                <input type="radio" name="quizMode" value="practice">
+                <span class="radio-mark"></span>
+                Luyện tập
+              </label>
+            </div>
+            <button class="info-btn" onclick="showHelp('mode')">?</button>
+          </div>
+        </div>
+
+        <button id="btnConfirmStart" class="btn btn-primary btn-large" style="margin-top: 24px;">Bắt Đầu Làm Bài Ngay</button>
+      </div>
+    </div>
+
     <!-- View: Đang làm bài -->
     <div id="activeQuizView" class="view-section">
       <div class="quiz-header">

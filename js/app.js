@@ -80,6 +80,7 @@ let userAnswers = {};
 // === PHẦN TỬ DOM ===
 const views = {
     list: document.getElementById('quizListView'),
+    setup: document.getElementById('setupView'),
     active: document.getElementById('activeQuizView'),
     result: document.getElementById('resultView')
 };
@@ -165,13 +166,28 @@ window.startQuiz = async function (quizId) {
     currentQuiz = mockQuizzes.find(q => q.id === quizId);
     if (!currentQuiz) return;
 
-    // --- TỐI ƯU HIỆU SUẤT: HIỂN THỊ GIAO DIỆN NGAY LẬP TỨC ---
-    // Tráo câu hỏi nhưng giữ nguyên các phần
-    currentQuiz.questions = shuffleQuestionsBySection(currentQuiz.questions);
+    // Hiển thị màn hình cấu hình trước
+    document.getElementById('setupQuizTitle').textContent = `Cấu hình: ${currentQuiz.title}`;
+    showView('setup');
+};
 
+// === XÁC NHẬN BẮT ĐẦU LÀM BÀI SAU KHI CẤU HÌNH ===
+document.getElementById('btnConfirmStart').onclick = async function() {
+    const isShuffle = document.getElementById('chkShuffle').checked;
+    const quizMode = document.querySelector('input[name="quizMode"]:checked').value;
+    
+    // Lưu lại cấu hình vào dataset của form hoặc biến state
+    quizForm.dataset.quizMode = quizMode;
+    quizForm.dataset.isShuffle = isShuffle;
+
+    // --- HIỂN THỊ GIAO DIỆN LÀM BÀI ---
+    if (isShuffle) {
+        currentQuiz.questions = shuffleQuestionsBySection(currentQuiz.questions);
+    }
+    
     // Xóa kết quả chọn cũ & Reset form
     quizForm.reset();
-    quizForm.dataset.mode = 'exam';
+    quizForm.dataset.mode = 'exam'; // Mặc định là chế độ thi cử khi bắt đầu
     const submitBtn = quizForm.querySelector('button[type="submit"]');
     if (submitBtn) {
         submitBtn.textContent = 'Nộp Bài Ngay';
@@ -181,11 +197,11 @@ window.startQuiz = async function (quizId) {
 
     currentQuizTitle.textContent = currentQuiz.title;
     renderQuestions();
-    showView('active'); 
-    // ---------------------------------------------------------
+    showView('active');
 
     // Tăng lượt xem (view) trên Realtime Database chạy ngầm
     try {
+        const quizId = currentQuiz.id;
         let viewedQuizzes = [];
         try {
             viewedQuizzes = JSON.parse(localStorage.getItem('viewedQuizzes') || '[]');
@@ -196,13 +212,11 @@ window.startQuiz = async function (quizId) {
         if (!Array.isArray(viewedQuizzes)) viewedQuizzes = [];
 
         if (!viewedQuizzes.includes(quizId)) {
-            // Đánh dấu đã xem ngay lập tức
             viewedQuizzes.push(quizId);
             localStorage.setItem('viewedQuizzes', JSON.stringify(viewedQuizzes));
 
             const quizViewRef = ref(dbRT, `quiz_views/${quizId}`);
             try {
-                // Tăng lượt xem sử dụng transaction để đảm bảo tính an toàn
                 runTransaction(quizViewRef, (currentValue) => {
                     return (currentValue || 0) + 1;
                 });
@@ -213,6 +227,19 @@ window.startQuiz = async function (quizId) {
     } catch (e) {
         console.error("Lỗi logic lượt xem:", e);
     }
+};
+
+document.getElementById('btnBackFromSetup').onclick = () => showView('list');
+
+// === HÀM HIỂN THỊ TRỢ GIÚP ===
+window.showHelp = function(type) {
+    let msg = "";
+    if (type === 'shuffle') {
+        msg = "Tráo thứ tự câu hỏi: Các câu hỏi trong mỗi phần sẽ được đảo vị trí ngẫu nhiên để tăng tính thử thách.";
+    } else if (type === 'mode') {
+        msg = "Chế độ làm bài:\n- Thi cử: Chỉ xem được kết quả và đáp án sau khi nhấn Nộp bài.\n- Luyện tập: Thấy ngay đáp án đúng/sai ngay sau khi bạn chọn mỗi câu hỏi.";
+    }
+    alert(msg);
 };
 
 // === KIẾN TẠO GIAO DIỆN CÂU HỎI TRONG ĐỀ ===
@@ -258,6 +285,25 @@ function renderQuestions() {
                 <input type="radio" name="question_${q.id}" value="${optIndex}">
                 <span>${opt}</span>
             `;
+            
+            // Xử lý Chế độ Luyện tập: Hiện đáp án ngay khi chọn
+            const radio = label.querySelector('input');
+            radio.addEventListener('change', () => {
+                if (quizForm.dataset.quizMode === 'practice') {
+                    const allInputs = optionsList.querySelectorAll('input');
+                    allInputs.forEach(input => {
+                        input.disabled = true; // Khóa lại sau khi chọn
+                        const parentLabel = input.closest('label');
+                        const val = parseInt(input.value);
+                        if (val === q.correctIndex) {
+                            parentLabel.classList.add('correct-answer');
+                        } else if (input.checked) {
+                            parentLabel.classList.add('wrong-answer');
+                        }
+                    });
+                }
+            });
+
             optionsList.appendChild(label);
         });
 
