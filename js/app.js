@@ -68,31 +68,78 @@ const mockQuizzes = [
             { id: "q35", section: "VOCABULARY AND GRAMMAR", text: "Parents should encourage their children to take responsibility ______ their own actions.", options: ["A. with", "B. for", "C. in", "D. to"], correctIndex: 1 },
             { id: "q36", section: "VOCABULARY AND GRAMMAR", text: "It was in 2010 ______ they first met each other in London.", options: ["A. that", "B. which", "C. when", "D. where"], correctIndex: 0 },
             { id: "q37", section: "VOCABULARY AND GRAMMAR", text: "______ her household chores early, she had more time to study for the exam.", options: ["A. Having finished", "B. Finishing", "C. Finishes", "D. Finish"], correctIndex: 0 },
-            { id: "q38", section: "VOCABULARY AND GRAMMAR", text: "We should ______ the natural light to save energy in our classroom.", options: ["A. make use of", "B. come up with", "C. get into", "D. look forward to"], correctIndex: 0 },
-
-            // ANNOUNCEMENT/ADVERTISEMENT/LEAFLET (Unit 6)
-            { id: "q39", section: "ANNOUNCEMENT/ADVERTISEMENT/LEAFLET", text: "Preserving the Old Citadel – A Call for Volunteers!<br>We are looking for energetic students to join our heritage preservation project. This is a great chance to contribute (20) _____ the protection of our local history.", options: ["A. with", "B. in", "C. at", "D. to"], correctIndex: 3 },
-            { id: "q40", section: "ANNOUNCEMENT/ADVERTISEMENT/LEAFLET", text: "Activities include: • Cleaning historical sites and (21) _____ ancient relics.", options: ["A. destroying", "B. identifying", "C. preserving", "D. removing"], correctIndex: 2 },
-            { id: "q41", section: "ANNOUNCEMENT/ADVERTISEMENT/LEAFLET", text: "• Guiding tourists through the world (22) _____ sites.", options: ["A. culture", "B. heritage", "C. nature", "D. custom"], correctIndex: 1 },
-            { id: "q42", section: "ANNOUNCEMENT/ADVERTISEMENT/LEAFLET", text: "DAN CA QUAN HO FESTIVAL<br>Event Features: • Enjoy (23) _____ singing performances by local artists.", options: ["A. tradition", "B. traditional", "C. traditionally", "D. traditionalism"], correctIndex: 1 },
-            { id: "q43", section: "ANNOUNCEMENT/ADVERTISEMENT/LEAFLET", text: "• Discover (24) _____ ancient artifacts in the museum.", options: ["A. much", "B. many", "C. a few", "D. few"], correctIndex: 1 },
-            { id: "q44", section: "ANNOUNCEMENT/ADVERTISEMENT/LEAFLET", text: "• Our organization ensures this event (25) _____ the best cultural experience!", options: ["A. is", "B. are", "C. was", "D. were"], correctIndex: 0 },
+            { id: "q38", section: "VOCABULARY AND GRAMMAR", text: "We should ______ the natural light to save energy in our classroom.", options: ["A. make use of", "B. come up with", "C. get into", "D            // ANNOUNCEMENT/ADVERTISEMENT/LEAFLET (Unit 6)
+            {
+                id: "q39_41_group",
+                section: "ANNOUNCEMENT/ADVERTISEMENT/LEAFLET",
+                type: "reading_group",
+                passage: "<strong>Preserving the Old Citadel – A Call for Volunteers!</strong><br>We are looking for energetic students to join our heritage preservation project. This is a great chance to contribute (20) _____ the protection of our local history.<br>Activities include:<br>• Cleaning historical sites and (21) _____ ancient relics.<br>• Guiding tourists through the world (22) _____ sites.",
+                subQuestions: [
+                    { id: "q39", text: "(20)", options: ["A. with", "B. in", "C. at", "D. to"], correctIndex: 3 },
+                    { id: "q40", text: "(21)", options: ["A. destroying", "B. identifying", "C. preserving", "D. removing"], correctIndex: 2 },
+                    { id: "q41", text: "(22)", options: ["A. culture", "B. heritage", "C. nature", "D. custom"], correctIndex: 1 }
+                ]
+            },
+            {
+                id: "q42_44_group",
+                section: "ANNOUNCEMENT/ADVERTISEMENT/LEAFLET",
+                type: "reading_group",
+                passage: "<strong>DAN CA QUAN HO FESTIVAL</strong><br>Event Features:<br>• Enjoy (23) _____ singing performances by local artists.<br>• Discover (24) _____ ancient artifacts in the museum.<br>• Our organization ensures this event (25) _____ the best cultural experience!",
+                subQuestions: [
+                    { id: "q42", text: "(23)", options: ["A. tradition", "B. traditional", "C. traditionally", "D. traditionalism"], correctIndex: 1 },
+                    { id: "q43", text: "(24)", options: ["A. much", "B. many", "C. a few", "D. few"], correctIndex: 1 },
+                    { id: "q44", text: "(25)", options: ["A. is", "B. are", "C. was", "D. were"], correctIndex: 0 }
+                ]
+            },
 
             // ANNOUNCEMENT/ADVERTISEMENT/LEAFLET (Unit 7)
-            { id: "q45", section: "ANNOUNCEMENT/ADVERTISEMENT/LEAFLET", text: "Career Fair for School-Leavers<br>Are you confused about your future? Don't miss out! Our Career Fair will help you find the best path. Sign (20) _____ today to explore various vocational options.", options: ["A. up", "B. down", "C. off", "D. out"], correctIndex: 0 },
-            { id: "q46", section: "ANNOUNCEMENT/ADVERTISEMENT/LEAFLET", text: "• Tips for (21) _____ practical experience through internships.", options: ["A. losing", "B. gaining", "C. missing", "D. failing"], correctIndex: 1 },
-            { id: "q47", section: "ANNOUNCEMENT/ADVERTISEMENT/LEAFLET", text: "• Advice on how to succeed in the modern (22) _____.", options: ["A. classroom", "B. workplace", "C. playground", "D. library"], correctIndex: 1 },
-            { id: "q48", section: "ANNOUNCEMENT/ADVERTISEMENT/LEAFLET", text: "VOCATIONAL COLLEGE ADMISSIONS<br>Why choose us? • We provide (23) _____ support for students in need.", options: ["A. finance", "B. financial", "C. financially", "D. financier"], correctIndex: 1 },
-            { id: "q49", section: "ANNOUNCEMENT/ADVERTISEMENT/LEAFLET", text: "• (24) _____ modern facilities including labs and workshops.", options: ["A. many", "B. a lot of", "C. number of", "D. few"], correctIndex: 1 },
-            { id: "q50", section: "ANNOUNCEMENT/ADVERTISEMENT/LEAFLET", text: "• Our college (25) _____ a wide range of short-term courses.", options: ["A. offer", "B. offers", "C. offering", "D. offered"], correctIndex: 1 },
+            {
+                id: "q45_47_group",
+                section: "ANNOUNCEMENT/ADVERTISEMENT/LEAFLET",
+                type: "reading_group",
+                passage: "<strong>Career Fair for School-Leavers</strong><br>Are you confused about your future? Don't miss out! Our Career Fair will help you find the best path. Sign (20) _____ today to explore various vocational options.<br>• Tips for (21) _____ practical experience through internships.<br>• Advice on how to succeed in the modern (22) _____.",
+                subQuestions: [
+                    { id: "q45", text: "(20)", options: ["A. up", "B. down", "C. off", "D. out"], correctIndex: 0 },
+                    { id: "q46", text: "(21)", options: ["A. losing", "B. gaining", "C. missing", "D. failing"], correctIndex: 1 },
+                    { id: "q47", text: "(22)", options: ["A. classroom", "B. workplace", "C. playground", "D. library"], correctIndex: 1 }
+                ]
+            },
+            {
+                id: "q48_50_group",
+                section: "ANNOUNCEMENT/ADVERTISEMENT/LEAFLET",
+                type: "reading_group",
+                passage: "<strong>VOCATIONAL COLLEGE ADMISSIONS</strong><br>Why choose us?<br>• We provide (23) _____ support for students in need.<br>• (24) _____ modern facilities including labs and workshops.<br>• Our college (25) _____ a wide range of short-term courses.",
+                subQuestions: [
+                    { id: "q48", text: "(23)", options: ["A. finance", "B. financial", "C. financially", "D. financier"], correctIndex: 1 },
+                    { id: "q49", text: "(24)", options: ["A. many", "B. a lot of", "C. number of", "D. few"], correctIndex: 1 },
+                    { id: "q50", text: "(25)", options: ["A. offer", "B. offers", "C. offering", "D. offered"], correctIndex: 1 }
+                ]
+            },
 
             // ANNOUNCEMENT/ADVERTISEMENT/LEAFLET (Unit 8)
-            { id: "q51", section: "ANNOUNCEMENT/ADVERTISEMENT/LEAFLET", text: "Workshop: Becoming Independent<br>Transitioning (20) _____ adulthood can be tough. Join our weekend session to master the art of living alone.", options: ["A. into", "B. for", "C. to", "D. on"], correctIndex: 0 },
-            { id: "q52", section: "ANNOUNCEMENT/ADVERTISEMENT/LEAFLET", text: "• (21) _____ your self-confidence in making decisions.", options: ["A. increasing", "B. boosting", "C. losing", "D. training"], correctIndex: 1 },
-            { id: "q53", section: "ANNOUNCEMENT/ADVERTISEMENT/LEAFLET", text: "• Finding the right (22) _____ for your daily life problems.", options: ["A. solution", "B. success", "C. problem", "D. failure"], correctIndex: 0 },
-            { id: "q54", section: "ANNOUNCEMENT/ADVERTISEMENT/LEAFLET", text: "HOME MANAGEMENT CLASS<br>Class Highlights: • Learn to be (23) _____ for your own living space.", options: ["A. responsible", "B. responsibility", "C. responsibly", "D. responsive"], correctIndex: 0 },
-            { id: "q55", section: "ANNOUNCEMENT/ADVERTISEMENT/LEAFLET", text: "• Get (24) _____ useful tips on laundry and cleaning.", options: ["A. much", "B. little", "C. lots of", "D. a little"], correctIndex: 2 },
-            { id: "q56", section: "ANNOUNCEMENT/ADVERTISEMENT/LEAFLET", text: "• An expert (25) _____ you how to manage your time.", options: ["A. teach", "B. teaches", "C. teaching", "D. taught"], correctIndex: 1 },
+            {
+                id: "q51_53_group",
+                section: "ANNOUNCEMENT/ADVERTISEMENT/LEAFLET",
+                type: "reading_group",
+                passage: "<strong>Workshop: Becoming Independent</strong><br>Transitioning (20) _____ adulthood can be tough. Join our weekend session to master the art of living alone.<br>• (21) _____ your self-confidence in making decisions.<br>• Finding the right (22) _____ for your daily life problems.",
+                subQuestions: [
+                    { id: "q51", text: "(20)", options: ["A. into", "B. for", "C. to", "D. on"], correctIndex: 0 },
+                    { id: "q52", text: "(21)", options: ["A. increasing", "B. boosting", "C. losing", "D. training"], correctIndex: 1 },
+                    { id: "q53", text: "(22)", options: ["A. solution", "B. success", "C. problem", "D. failure"], correctIndex: 0 }
+                ]
+            },
+            {
+                id: "q54_56_group",
+                section: "ANNOUNCEMENT/ADVERTISEMENT/LEAFLET",
+                type: "reading_group",
+                passage: "<strong>HOME MANAGEMENT CLASS</strong><br>Class Highlights:<br>• Learn to be (23) _____ for your own living space.<br>• Get (24) _____ useful tips on laundry and cleaning.<br>• An expert (25) _____ you how to manage your time.",
+                subQuestions: [
+                    { id: "q54", text: "(23)", options: ["A. responsible", "B. responsibility", "C. responsibly", "D. responsive"], correctIndex: 0 },
+                    { id: "q55", text: "(24)", options: ["A. much", "B. little", "C. lots of", "D. a little"], correctIndex: 2 },
+                    { id: "q56", text: "(25)", options: ["A. teach", "B. teaches", "C. teaching", "D. taught"], correctIndex: 1 }
+                ]
+            },
+"A. teach", "B. teaches", "C. teaching", "D. taught"], correctIndex: 1 },
 
             // TEXT ARRANGEMENT
             { id: "q57", section: "TEXT ARRANGEMENT", text: "Question 26 - Unit 6:<br>a. Finally, digital technology can help document and store these values for the future.<br>b. Preserving our cultural heritage is essential for maintaining our identity.<br>c. Secondly, local communities should be encouraged to participate in restoration projects.<br>d. First, we need to raise awareness among young people about the value of ancient relics.", options: ["A. b-d-c-a", "B. b-c-a-d", "C. d-a-c-b", "D. d-b-a-c"], correctIndex: 0 },
@@ -100,28 +147,51 @@ const mockQuizzes = [
             { id: "q59", section: "TEXT ARRANGEMENT", text: "Question 26 - Unit 7:<br>a. Moreover, university life helps students develop soft skills like teamwork and leadership.<br>b. Pursuing higher education offers many benefits for school-leavers.<br>c. In conclusion, whether it's a degree or a trade, further study is a key to success.<br>d. Firstly, it provides the necessary qualifications for a professional career.", options: ["A. b-d-a-c", "B. b-c-a-d", "C. d-a-c-b", "D. a-b-c-d"], correctIndex: 0 },
             { id: "q60", section: "TEXT ARRANGEMENT", text: "Question 27 - Unit 7:<br>a. Our vocational school offers various courses in IT and mechanics.<br>b. Want to start your career early?<br>c. Contact us today for more information about the new semester!", options: ["A. b-a-c", "B. a-b-c", "C. c-b-a", "D. b-c-a"], correctIndex: 0 },
             { id: "q61", section: "TEXT ARRANGEMENT", text: "Question 26 - Unit 8:<br>a. In addition, knowing how to manage money prevents you from getting into debt.<br>b. Being independent requires a set of essential life skills.<br>c. Finally, time management allows you to balance work and relaxation effectively.<br>d. For instance, cooking for yourself ensures you have a healthy diet.", options: ["A. b-d-a-c", "B. b-c-a-d", "C. d-a-c-b", "D. a-b-c-d"], correctIndex: 0 },
-            { id: "q62", section: "TEXT ARRANGEMENT", text: "Question 27 - Unit 8:<br>a. Learn to cook, clean, and manage your budget with our experts.<br>b. Do you want to live on your own confidently?<br>c. Sign up for our 'Life Skills for Teens' workshop this summer!", options: ["A. b-a-c", "B. a-b-c", "C. b-c-a", "D. c-a-b"], correctIndex: 0 },
-
-            // READING (Unit 6)
-            { id: "q63", section: "READING (Unit 6)", text: "<strong>THE CHALLENGE OF PRESERVING OUR HERITAGE</strong><br>Preserving our heritage is a vital goal for every nation as it moves toward a more modernized and globalized future... (Đoạn văn trong ảnh)<br><br>Question 1: What is the passage mainly about?", options: ["A. The history of ancient architecture in Vietnam.", "B. The significance of government funding in tourism.", "C. The importance and challenges of preserving cultural heritage.", "D. The impact of modern commercialization on local education."], correctIndex: 2 },
-            { id: "q64", section: "READING (Unit 6)", text: "Question 2: The phrase 'intangible values' in the passage refers to ______.", options: ["A. physical buildings and monuments.", "B. values that cannot be touched, such as stories and music.", "C. expensive artifacts sold in museums.", "D. modern technology used in digital archiving."], correctIndex: 1 },
-            { id: "q65", section: "READING (Unit 6)", text: "Question 3: According to the passage, what is an internal challenge in heritage preservation?", options: ["A. The rise of sustainable tourism models.", "B. Anxiety about cultural loss and lack of cultural literacy among youth.", "C. An abundance of funding for restoring ancient sites.", "D. The development of high-tech digital archives."], correctIndex: 1 },
-            { id: "q66", section: "READING (Unit 6)", text: "Question 4: The word 'which' in the third paragraph refers to ______.", options: ["A. over-tourism in historical areas.", "B. the fact that over-tourism prevents sites from remaining in their original state.", "C. the development of sustainable tourism.", "D. local communities feeling overwhelmed."], correctIndex: 1 },
-            { id: "q67", section: "READING (Unit 6)", text: "Question 5: Which of the following is NOT true according to the passage?", options: ["A. Preserving heritage helps young people build pride in their roots.", "B. Modern commercialization can sometimes lead to 'fake traditions.'", "C. Only the government is responsible for protecting historical monuments.", "D. Teenagers can contribute to preservation through small actions like visiting museums."], correctIndex: 2 },
+            { id: "q62", section: "TEXT ARRANGEMENT", text: "Question 27 - Unit 8:<br>a. Learn to cook, clean, and manage your budget with our experts.<br>b. Do you want to live on your own confidently?<br>c. Sign up for our 'Life Skills for Teens' workshop this summer!", option            // READING (Unit 6)
+            {
+                id: "reading_unit6",
+                section: "READING (Unit 6)",
+                type: "reading_group",
+                passage: "<strong>THE CHALLENGE OF PRESERVING OUR HERITAGE</strong><br>Preserving our heritage is a vital goal for every nation as it moves toward a more modernized and globalized future. Cultural heritage includes not only physical monuments and ancient relics, but also intangible values such as traditional music, stories, and customs that form the core of a country's identity. However, this process faces significant challenges from both external and internal factors. Externally, the rise of mass tourism can sometimes lead to the commercialization of heritage sites, where local traditions are changed to satisfy tourists, resulting in what some call 'fake traditions.' Internally, there is often a lack of awareness among the younger generation about the importance of their roots. Many teenagers feel the pressure of modern social media trends and may overlook the values that have shaped their society for centuries. To address these issues, sustainable tourism models should be promoted, ensuring that sites remain in their original state while providing economic benefits to local communities. Moreover, education plays a key role, as it helps young people recognize that preserving heritage is not about living in the past, but about building pride and confidence for the future.",
+                subQuestions: [
+                    { id: "q63", text: "Question 1: What is the passage mainly about?", options: ["A. The history of ancient architecture in Vietnam.", "B. The significance of government funding in tourism.", "C. The importance and challenges of preserving cultural heritage.", "D. The impact of modern commercialization on local education."], correctIndex: 2 },
+                    { id: "q64", text: "Question 2: The phrase 'intangible values' in the passage refers to ______.", options: ["A. physical buildings and monuments.", "B. values that cannot be touched, such as stories and music.", "C. expensive artifacts sold in museums.", "D. modern technology used in digital archiving."], correctIndex: 1 },
+                    { id: "q65", text: "Question 3: According to the passage, what is an internal challenge in heritage preservation?", options: ["A. The rise of sustainable tourism models.", "B. Anxiety about cultural loss and lack of cultural literacy among youth.", "C. An abundance of funding for restoring ancient sites.", "D. The development of high-tech digital archives."], correctIndex: 1 },
+                    { id: "q66", text: "Question 4: The word 'which' in the third paragraph refers to ______.", options: ["A. over-tourism in historical areas.", "B. the fact that over-tourism prevents sites from remaining in their original state.", "C. the development of sustainable tourism.", "D. local communities feeling overwhelmed."], correctIndex: 1 },
+                    { id: "q67", text: "Question 5: Which of the following is NOT true according to the passage?", options: ["A. Preserving heritage helps young people build pride in their roots.", "B. Modern commercialization can sometimes lead to 'fake traditions.'", "C. Only the government is responsible for protecting historical monuments.", "D. Teenagers can contribute to preservation through small actions like visiting museums."], correctIndex: 2 }
+                ]
+            },
 
             // READING (Unit 7)
-            { id: "q68", section: "READING (Unit 7)", text: "<strong>EDUCATION PATHWAYS FOR SCHOOL-LEAVERS</strong><br>After finishing high school, many students face the difficult and often stressful choice between pursuing a university degree or choosing vocational education. This critical transition involves much more than just picking a subject; it requires young people to evaluate their personal strengths and long-term career aspirations... (Đoạn văn trong ảnh)<br><br>Question 1: What is the passage mainly about?", options: ["A. The history of vocational schools.", "B. Different educational paths and challenges for school-leavers.", "C. How to become a doctor or an engineer.", "D. The importance of traveling during a gap year."], correctIndex: 1 },
-            { id: "q69", section: "READING (Unit 7)", text: "Question 2: The phrase 'hands-on' in the passage is closest in meaning to ______.", options: ["A. theoretical", "B. impractical", "C. practical", "D. boring"], correctIndex: 2 },
-            { id: "q70", section: "READING (Unit 7)", text: "Question 3: According to the passage, why is a 'gap year' beneficial for some students?", options: ["A. It allows them to avoid studying forever.", "B. It helps them gain maturity and self-understanding.", "C. It is the only way to save money for university.", "D. It guarantees a high-paying job immediately."], correctIndex: 1 },
-            { id: "q71", section: "READING (Unit 7)", text: "Question 4: The word 'They' in the second paragraph refers to ______.", options: ["A. vocational skills", "B. university programs", "C. school-leavers", "D. formal qualifications"], correctIndex: 2 },
-            { id: "q72", section: "READING (Unit 7)", text: "Question 5: Which of the following is NOT true according to the passage?", options: ["A. University is suitable for those seeking professional careers like law or medicine.", "B. Vocational education often leads to entering the workforce earlier.", "C. Family expectations never influence a student's choice of career.", "D. Lifelong learning is necessary in today's fast-changing job market."], correctIndex: 2 },
+            {
+                id: "reading_unit7",
+                section: "READING (Unit 7)",
+                type: "reading_group",
+                passage: "<strong>EDUCATION PATHWAYS FOR SCHOOL-LEAVERS</strong><br>After finishing high school, many students face the difficult and often stressful choice between pursuing a university degree or choosing vocational education. This critical transition involves much more than just picking a subject; it requires young people to evaluate their personal strengths and long-term career aspirations. For those seeking professional careers in fields like law, medicine, or engineering, a university degree is often the necessary pathway. It provides a broad academic foundation and specialized knowledge that are recognized globally. However, vocational education is becoming increasingly popular as it offers hands-on training for specific trades, such as IT, mechanics, or hospitality. They focus on preparing students to enter the workforce earlier with practical skills that are in high demand. Another option for some school-leavers is taking a 'gap year,' during which they travel, volunteer, or work part-time. This can be beneficial for gaining maturity and a better understanding of themselves before committing to further study. Regardless of the chosen path, the most important factor is the willingness to engage in lifelong learning, as the modern job market is constantly evolving and requires people to adapt new skills throughout their lives.",
+                subQuestions: [
+                    { id: "q68", text: "Question 1: What is the passage mainly about?", options: ["A. The history of vocational schools.", "B. Different educational paths and challenges for school-leavers.", "C. How to become a doctor or an engineer.", "D. The importance of traveling during a gap year."], correctIndex: 1 },
+                    { id: "q69", text: "Question 2: The phrase 'hands-on' in the passage is closest in meaning to ______.", options: ["A. theoretical", "B. impractical", "C. practical", "D. boring"], correctIndex: 2 },
+                    { id: "q70", text: "Question 3: According to the passage, why is a 'gap year' beneficial for some students?", options: ["A. It allows them to avoid studying forever.", "B. It helps them gain maturity and self-understanding.", "C. It is the only way to save money for university.", "D. It guarantees a high-paying job immediately."], correctIndex: 1 },
+                    { id: "q71", text: "Question 4: The word 'They' in the second paragraph refers to ______.", options: ["A. vocational skills", "B. university programs", "C. school-leavers", "D. formal qualifications"], correctIndex: 2 },
+                    { id: "q72", text: "Question 5: Which of the following is NOT true according to the passage?", options: ["A. University is suitable for those seeking professional careers like law or medicine.", "B. Vocational education often leads to entering the workforce earlier.", "C. Family expectations never influence a student's choice of career.", "D. Lifelong learning is necessary in today's fast-changing job market."], correctIndex: 2 }
+                ]
+            },
 
             // READING (Unit 8)
-            { id: "q73", section: "READING (Unit 8)", text: "<strong>BECOMING INDEPENDENT</strong><br>Becoming independent is a vital goal for most teenagers as they move toward adulthood. This process involves learning how to manage daily tasks and making important decisions without always relying on parents... (Đoạn văn trong ảnh)<br><br>Question 1: What is the passage mainly about?", options: ["A. Vietnam's challenges in education", "B. The significance of parental support", "C. The process and challenges of becoming independent", "D. Economic competition among young people"], correctIndex: 2 },
-            { id: "q74", section: "READING (Unit 8)", text: "Question 2: The phrase 'master life skills' in the passage means ______.", options: ["A. learn to do things well", "B. avoid difficult tasks", "C. teach others how to live", "D. depend on someone else"], correctIndex: 0 },
-            { id: "q75", section: "READING (Unit 8)", text: "Question 3: According to the passage, what is an internal challenge that teenagers face?", options: ["A. High levels of skilled labor", "B. Strong competitiveness in schools", "C. Anxiety about making mistakes and lack of financial knowledge", "D. An abundance of finished goods for export"], correctIndex: 2 },
-            { id: "q76", section: "READING (Unit 8)", text: "Question 4: The word 'which' in the passage refers to ______.", options: ["A. overprotective parents", "B. preventing children from making choices", "C. development of skills", "D. problem-solving skills"], correctIndex: 1 },
-            { id: "q77", section: "READING (Unit 8)", text: "Question 5: Which of the following is NOT true according to the passage?", options: ["A. Teenagers face challenges in both internal and external factors.", "B. Social media pressure can make young people feel overwhelmed.", "C. Vietnam has fully adapted its strategies to address independence.", "D. Recognizing the importance of life skills can help teenagers live responsibly."], correctIndex: 2 }
+            {
+                id: "reading_unit8",
+                section: "READING (Unit 8)",
+                type: "reading_group",
+                passage: "<strong>BECOMING INDEPENDENT</strong><br>Becoming independent is a vital goal for most teenagers as they move toward adulthood. This process involves learning how to manage daily tasks and making important decisions without always relying on parents. It is a journey that requires time-management skills, financial literacy, and self-reliance. For instance, being able to cook healthy meals and keep a clean living space are basic steps toward independence. Moreover, learning to manage a budget is essential, as it prevents young people from getting into debt and helps them live within their means. However, the path to independence is often filled with challenges. Many teenagers face internal pressure, such as anxiety about making mistakes or feeling overwhelmed by responsibilities. External factors, such as peer pressure or overprotective parents who prevent their children from making their own choices, can also hinder the development of these skills. To overcome which, teenagers should be encouraged to take on more responsibilities at home and in their communities. Recognizing the importance of life skills through workshops and social activities can help young people build the confidence they need to live responsibly and successfully as adults.",
+                subQuestions: [
+                    { id: "q73", text: "Question 1: What is the passage mainly about?", options: ["A. Vietnam's challenges in education", "B. The significance of parental support", "C. The process and challenges of becoming independent", "D. Economic competition among young people"], correctIndex: 2 },
+                    { id: "q74", text: "Question 2: The phrase 'master life skills' in the passage means ______.", options: ["A. learn to do things well", "B. avoid difficult tasks", "C. teach others how to live", "D. depend on someone else"], correctIndex: 0 },
+                    { id: "q75", text: "Question 3: According to the passage, what is an internal challenge that teenagers face?", options: ["A. High levels of skilled labor", "B. Strong competitiveness in schools", "C. Anxiety about making mistakes and lack of financial knowledge", "D. An abundance of finished goods for export"], correctIndex: 2 },
+                    { id: "q76", text: "Question 4: The word 'which' in the passage refers to ______.", options: ["A. overprotective parents", "B. preventing children from making choices", "C. development of skills", "D. problem-solving skills"], correctIndex: 1 },
+                    { id: "q77", text: "Question 5: Which of the following is NOT true according to the passage?", options: ["A. Teenagers face challenges in both internal and external factors.", "B. Social media pressure can make young people feel overwhelmed.", "C. Vietnam has fully adapted its strategies to address independence.", "D. Recognizing the importance of life skills can help teenagers live responsibly."], correctIndex: 2 }
+                ]
+            }
+ing the importance of life skills can help teenagers live responsibly."], correctIndex: 2 }
         ]
     },
     {
