@@ -209,32 +209,32 @@ const mockQuizzes = [
             { id: "bio_q7", section: "PHẦN I: TRẮC NGHIỆM", type: "multiple_choice", text: "In vết là hình thức học tập mà con vật mới sinh ra:", options: ["A. bám theo vật thể tĩnh mà nó nhìn thấy đầu tiên", "B. bám theo vật thể chuyển động mà nó nhìn thấy đầu tiên", "C. bám theo vật thể chuyển động bất kỳ", "D. bám theo mẹ nó"], correctIndex: 1 },
             { id: "bio_q8", section: "PHẦN I: TRẮC NGHIỆM", type: "multiple_choice", text: "Học ngầm là kiểu học không có ý thức, sau đó những điều đã học:", options: ["A. không được dùng đến nên động vật sẽ quên đi", "B. lại được củng cố bằng các hoạt động có ý thức", "C. được tái hiện giúp động vật giải quyết tình huống tương tự", "D. được tái hiện giúp động vật giải quyết tình huống khác lạ"], correctIndex: 2 },
             { id: "bio_q9", section: "PHẦN I: TRẮC NGHIỆM", type: "multiple_choice", text: "Tinh tinh con học cách đập vỡ vỏ hạt cứng bằng cách quan sát tinh tinh mẹ. Ví dụ về:", options: ["A. Học tập qua giao tiếp xã hội", "B. In vết", "C. Học liên hệ", "D. Quen nhờn"], correctIndex: 0 },
-            { 
-                id: "bio_q10", 
-                section: "PHẦN I: TRẮC NGHIỆM", 
-                type: "multiple_choice", 
-                text: "Xác định tập tính bẩm sinh và tập tính học được trong các ví dụ sau:<br><br><strong>Nhóm 1 (Bẩm sinh):</strong><br>(1) Di cư cá hồi, (3) Nhện giăng tơ<br>(6) Ếch kêu mùa sinh sản, (8) Ve kêu mùa hè<br><br><strong>Nhóm 2 (Học được):</strong><br>(2) Báo săn mồi, (4) Vẹt nói tiếng người<br>(5) Cá nổi lên tìm thức ăn, (7) Xiếc chó", 
-                options: ["A. Bẩm sinh: (1,3,6,8); Học được: (2,4,5,7)", "B. Bẩm sinh: (1,2,6,8); Học được: (3,4,5,7)", "C. Bẩm sinh: (1,3,5,8); Học được: (2,4,6,7)", "D. Bẩm sinh: (1,3,6,7); Học được: (2,4,5,8)"], 
-                correctIndex: 0 
+            {
+                id: "bio_q10",
+                section: "PHẦN I: TRẮC NGHIỆM",
+                type: "multiple_choice",
+                text: "Xác định tập tính bẩm sinh và tập tính học được trong các ví dụ sau:<br><br>(1) Di cư cá hồi<br>(2) Báo săn mồi<br>(3) Nhện giăng tơ<br>(4) Vẹt nói tiếng người<br>(5) Cá nổi lên tìm thức ăn<br>(6) Ếch kêu mùa sinh sản<br>(7) Xiếc chó<br>(8) Ve kêu mùa hè",
+                options: ["A. Bẩm sinh: (1,3,6,8); Học được: (2,4,5,7)", "B. Bẩm sinh: (1,2,6,8); Học được: (3,4,5,7)", "C. Bẩm sinh: (1,3,5,8); Học được: (2,4,6,7)", "D. Bẩm sinh: (1,3,6,7); Học được: (2,4,5,8)"],
+                correctIndex: 0
             },
             { id: "bio_q11", section: "PHẦN I: TRẮC NGHIỆM", type: "multiple_choice", text: "Sinh trưởng ở sinh vật là:", options: ["A. quá trình tăng chiều cao", "B. quá trình tăng về kích thước cơ thể", "C. quá trình tăng số lượng tế bào", "D. quá trình tăng về kích thước và khối lượng cơ thể do tăng số lượng/kích thước tế bào"], correctIndex: 3 },
-            { 
-                id: "bio_q12", 
-                section: "PHẦN I: TRẮC NGHIỆM", 
-                type: "multiple_choice", 
-                text: "Hãy ghép cột A với cột B tương ứng:<br><br><div class='comparison-table-wrapper'><table class='comparison-table'><thead><tr><th style='width: 35%;'>Cột A</th><th>Cột B</th></tr></thead><tbody><tr><td>1. Sinh trưởng<br><br>2. Phát triển</td><td>a. Hạt nảy mầm<br>b. Cây lên cao<br>c. Gà trống bắt đầu biết gáy<br>d. Cây ra hoa<br>e. Diện tích phiến lá tăng lên<br>f. Lợn con tăng cân từ 2 kg lên 4 kg</td></tr></tbody></table></div>", 
-                options: ["A. 1 - b,d,f ; 2 - a,c,e", "B. 1 - b,e,f ; 2 - a,c,d", "C. 1 - a,b,e ; 2 - c,d,f", "D. 1 - a,b,f ; 2 - c,d,e"], 
-                correctIndex: 1 
+            {
+                id: "bio_q12",
+                section: "PHẦN I: TRẮC NGHIỆM",
+                type: "multiple_choice",
+                text: "Hãy ghép cột A với cột B tương ứng:<br><br><div class='comparison-table-wrapper'><table class='comparison-table'><thead><tr><th style='width: 35%;'>Cột A</th><th>Cột B</th></tr></thead><tbody><tr><td>1. Sinh trưởng<br><br>2. Phát triển</td><td>a. Hạt nảy mầm<br>b. Cây lên cao<br>c. Gà trống bắt đầu biết gáy<br>d. Cây ra hoa<br>e. Diện tích phiến lá tăng lên<br>f. Lợn con tăng cân từ 2 kg lên 4 kg</td></tr></tbody></table></div>",
+                options: ["A. 1 - b,d,f ; 2 - a,c,e", "B. 1 - b,e,f ; 2 - a,c,d", "C. 1 - a,b,e ; 2 - c,d,f", "D. 1 - a,b,f ; 2 - c,d,e"],
+                correctIndex: 1
             },
             { id: "bio_q13", section: "PHẦN I: TRẮC NGHIỆM", type: "multiple_choice", text: "Hormone thực vật là những chất hữu cơ cho cơ thể thực vật tiết ra:", options: ["A. có tác dụng điều hòa", "B. chỉ có tác dụng ức chế", "C. có tác dụng kháng bệnh", "D. có tác dụng kích thích sinh trưởng"], correctIndex: 0 },
             { id: "bio_q14", section: "PHẦN I: TRẮC NGHIỆM", type: "multiple_choice", text: "Chức năng của mô phân sinh đỉnh là gì?", options: ["A. Làm cho thân và rễ cây dài ra", "B. Làm cho rễ dài và to ra", "C. Làm cho thân cây dài và to ra", "D. Làm cho thân cây, cành cây to ra"], correctIndex: 0 },
-            { 
-                id: "bio_q15", 
-                section: "PHẦN I: TRẮC NGHIỆM", 
-                type: "multiple_choice", 
-                text: "Khi nói về các loại mô phân sinh của cây, có các phát biểu sau:<br>I. Mô phân sinh là nhóm tế bào đã phân hóa, duy trì được khả năng nguyên phân.<br>II. Mô phân sinh đỉnh nằm ở chồi đỉnh, chồi nách, đỉnh rễ.<br>III. Mô phân sinh đỉnh chỉ có ở cây Một lá mầm.<br>IV. Mô phân sinh bên nằm dọc thân và rễ, có ở cây Một lá mầm và cây Một lá mầm.<br>V. Mô phân sinh lóng chỉ có ở cây Một lá mầm.<br><br>Có bao nhiêu phát biểu đúng?", 
-                options: ["A. 1", "B. 2", "C. 3", "D. 4"], 
-                correctIndex: 1 
+            {
+                id: "bio_q15",
+                section: "PHẦN I: TRẮC NGHIỆM",
+                type: "multiple_choice",
+                text: "Khi nói về các loại mô phân sinh của cây, có các phát biểu sau:<br>I. Mô phân sinh là nhóm tế bào đã phân hóa, duy trì được khả năng nguyên phân.<br>II. Mô phân sinh đỉnh nằm ở chồi đỉnh, chồi nách, đỉnh rễ.<br>III. Mô phân sinh đỉnh chỉ có ở cây Một lá mầm.<br>IV. Mô phân sinh bên nằm dọc thân và rễ, có ở cây Một lá mầm và cây Một lá mầm.<br>V. Mô phân sinh lóng chỉ có ở cây Một lá mầm.<br><br>Có bao nhiêu phát biểu đúng?",
+                options: ["A. 1", "B. 2", "C. 3", "D. 4"],
+                correctIndex: 1
             },
             { id: "bio_q16", section: "PHẦN I: TRẮC NGHIỆM", type: "multiple_choice", text: "Sinh trưởng thứ cấp theo thứ tự từ ngoài vào trong thân là:", options: ["A. Bần -> tầng sinh bần -> mạch rây sơ cấp -> mạch rây thứ cấp -> tầng sinh mạch -> mạch gỗ thứ cấp -> mạch gỗ sơ cấp -> tủy", "B. Bần -> tầng sinh bần -> mạch rây thứ cấp -> mạch rây sơ cấp -> tầng sinh mạch -> mạch gỗ thứ cấp -> mạch gỗ sơ cấp -> tủy", "C. Bần -> tầng sinh bần -> mạch rây sơ cấp -> mạch rây thứ cấp -> tầng sinh mạch -> mạch gỗ sơ cấp -> mạch gỗ thứ cấp -> tủy", "D. Tầng sinh bần -> bần -> mạch rây sơ cấp -> mạch rây thứ cấp -> tầng sinh mạch -> mạch gỗ thứ cấp -> mạch gỗ sơ cấp -> tủy"], correctIndex: 0 },
             { id: "bio_q18", section: "PHẦN I: TRẮC NGHIỆM", type: "multiple_choice", text: "Cảm ứng là:", options: ["A. sự phản ứng đối với thay đổi môi trường", "B. sự tiếp nhận của sinh vật đối với thay đổi môi trường", "C. sự tiếp nhận và phản ứng đối với những thay đổi của môi trường để thích ứng", "D. sự lan truyền xung thần kinh"], correctIndex: 2 },
@@ -311,19 +311,19 @@ const mockQuizzes = [
             // PHẦN III: TRẢ LỜI NGẮN
             { id: "bio_sa1", section: "PHẦN III: TRẢ LỜI NGẮN", type: "short_answer", text: "Trong số các hormone: auxin, gibberellin, cytokinin, abscisic acid, ethylene, thyroxine, estrogen. Có bao nhiêu hormone có ở thực vật?", correctAnswer: "5" },
             { id: "bio_sa2", section: "PHẦN III: TRẢ LỜI NGẮN", type: "short_answer", text: "Cho các nhân tố: di truyền, hormone, ánh sáng, nhiệt độ, chất dinh dưỡng. Có bao nhiêu nhân tố BÊN NGOÀI chi phối quá trình phát triển của thực vật có hoa?", correctAnswer: "3" },
-            { 
-                id: "bio_sa3", 
-                section: "PHẦN III: TRẢ LỜI NGẮN", 
-                type: "short_answer", 
-                text: "Vì sao ở động vật không xương sống có rất ít tập tính học được?<br>(1) Chúng sống trong môi trường sống đơn giản.<br>(2) Chúng có tuổi thọ ngắn.<br>(3) Chúng không thể hình thành mối liên kết giữa các neuron.<br>(4) Chúng có hệ thần kinh kém phát triển.<br><br>Hãy cho biết có bao nhiêu lý do đúng?", 
-                correctAnswer: "2" 
+            {
+                id: "bio_sa3",
+                section: "PHẦN III: TRẢ LỜI NGẮN",
+                type: "short_answer",
+                text: "Vì sao ở động vật không xương sống có rất ít tập tính học được?<br>(1) Chúng sống trong môi trường sống đơn giản.<br>(2) Chúng có tuổi thọ ngắn.<br>(3) Chúng không thể hình thành mối liên kết giữa các neuron.<br>(4) Chúng có hệ thần kinh kém phát triển.<br><br>Hãy cho biết có bao nhiêu lý do đúng?",
+                correctAnswer: "2"
             },
-            { 
-                id: "bio_sa4", 
-                section: "PHẦN III: TRẢ LỜI NGẮN", 
-                type: "short_answer", 
-                text: "Trong các kiểu hướng động rễ cây sau:<br>(1) Hướng sáng<br>(2) Hướng hóa<br>(3) Hướng nước<br>(4) Hướng trọng lực<br>(5) Hướng tiếp xúc<br><br>Có bao nhiêu kiểu là hướng động âm?", 
-                correctAnswer: "1" 
+            {
+                id: "bio_sa4",
+                section: "PHẦN III: TRẢ LỜI NGẮN",
+                type: "short_answer",
+                text: "Trong các kiểu hướng động rễ cây sau:<br>(1) Hướng sáng<br>(2) Hướng hóa<br>(3) Hướng nước<br>(4) Hướng trọng lực<br>(5) Hướng tiếp xúc<br><br>Có bao nhiêu kiểu là hướng động âm?",
+                correctAnswer: "1"
             }
         ]
     }
@@ -564,7 +564,7 @@ function renderQuestions() {
         } else if (qType === 'true_false_group') {
             const groupDiv = document.createElement('div');
             groupDiv.className = 'tf-group-container';
-            
+
             const table = document.createElement('table');
             table.className = 'tf-table';
             table.style.marginBottom = '20px';
@@ -635,7 +635,7 @@ function renderQuestions() {
             // Hiển thị các câu hỏi con
             const subContainer = document.createElement('div');
             subContainer.className = 'sub-questions-list';
-            
+
             q.subQuestions.forEach((subQ) => {
                 const subQEl = document.createElement('div');
                 subQEl.className = 'sub-question-item';
@@ -691,7 +691,7 @@ function renderQuestions() {
                 <input type="number" name="question_${q.id}" class="form-control" placeholder="Nhập số đáp án..." style="width: 200px; padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
                 <div class="practice-result" style="display:none; margin-top: 5px; font-weight: 600;"></div>
             `;
-            
+
             const input = inputField.querySelector('input');
             input.addEventListener('change', () => {
                 if (quizForm.dataset.quizMode === 'practice') {
@@ -736,7 +736,7 @@ quizForm.addEventListener('submit', (e) => {
 
     currentQuiz.questions.forEach(q => {
         const qType = q.type || 'multiple_choice';
-        
+
         if (qType === 'multiple_choice' || qType === 'true_false') {
             const selectedRadio = quizForm.querySelector(`input[name="question_${q.id}"]:checked`);
             if (!selectedRadio) {
