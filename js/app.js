@@ -28,9 +28,9 @@ const mockQuizzes = [
         questions: [
             // PHONETICS
             { id: "q1", section: "PHONETICS", text: "", options: ["A. <u>h</u>eritage", "B. <u>h</u>istoric", "C. <u>h</u>onor", "D. <u>h</u>abitat"], correctIndex: 2 },
-            { id: "q2", section: "PHONETICS", text: "", options: ["A. <u>a</u>ncient", "B. pr<u>e</u>serve", "C. r<u>e</u>lic", "D. s<u>e</u>tting"], correctIndex: 0 },
+            { id: "q2", section: "PHONETICS", text: "", options: ["A. acad<u>e</u>mic", "B. pr<u>e</u>serve", "C. r<u>e</u>lic", "D. s<u>e</u>tting"], correctIndex: 1 },
             { id: "q3", section: "PHONETICS", text: "", options: ["A. d<u>e</u>gree", "B. appr<u>e</u>ntice", "C. coll<u>e</u>ge", "D. univ<u>e</u>rsity"], correctIndex: 1 },
-            { id: "q4", section: "PHONETICS", text: "", options: ["A. <u>ch</u>oice", "B. <u>ch</u>ance", "C. <u>ch</u>aracter", "D. <u>ch</u>air"], correctIndex: 2 },
+            { id: "q4", section: "PHONETICS", text: "", options: ["A. <u>ch</u>oice", "B. <u>ch</u>ance", "C. <u>ch</u>aracter", "D. <u>ch</u>air"], correctIndex: 3 },
             { id: "q5", section: "PHONETICS", text: "", options: ["A. d<u>e</u>cide", "B. d<u>e</u>pend", "C. d<u>e</u>velop", "D. d<u>e</u>dicated"], correctIndex: 3 },
             { id: "q6", section: "PHONETICS", text: "", options: ["A. r<u>i</u>se", "B. sk<u>i</u>ll", "C. t<u>i</u>me", "D. l<u>i</u>fe"], correctIndex: 1 },
             { id: "q7", section: "PHONETICS", text: "", options: ["A. <u>a</u>ncient", "B. l<u>a</u>ndscape", "C. v<u>a</u>lley", "D. st<u>a</u>te"], correctIndex: 2 },
@@ -124,7 +124,7 @@ function initRealtimeViews() {
         const viewsRef = ref(dbRT, 'quiz_views');
         onValue(viewsRef, (snapshot) => {
             const allViews = snapshot.val() || {};
-            
+
             mockQuizzes.forEach(quiz => {
                 const viewCount = allViews[quiz.id] || 0;
                 const viewEl = document.getElementById(`views-${quiz.id}`);
@@ -172,10 +172,10 @@ window.startQuiz = async function (quizId) {
 };
 
 // === XÁC NHẬN BẮT ĐẦU LÀM BÀI SAU KHI CẤU HÌNH ===
-document.getElementById('btnConfirmStart').onclick = async function() {
+document.getElementById('btnConfirmStart').onclick = async function () {
     const isShuffle = document.getElementById('chkShuffle').checked;
     const quizMode = document.querySelector('input[name="quizMode"]:checked').value;
-    
+
     // Lưu lại cấu hình vào dataset của form hoặc biến state
     quizForm.dataset.quizMode = quizMode;
     quizForm.dataset.isShuffle = isShuffle;
@@ -184,7 +184,7 @@ document.getElementById('btnConfirmStart').onclick = async function() {
     if (isShuffle) {
         currentQuiz.questions = shuffleQuestionsBySection(currentQuiz.questions);
     }
-    
+
     // Xóa kết quả chọn cũ & Reset form
     quizForm.reset();
     quizForm.dataset.mode = 'exam'; // Mặc định là chế độ thi cử khi bắt đầu
@@ -208,7 +208,7 @@ document.getElementById('btnConfirmStart').onclick = async function() {
         } catch (err) {
             viewedQuizzes = [];
         }
-        
+
         if (!Array.isArray(viewedQuizzes)) viewedQuizzes = [];
 
         if (!viewedQuizzes.includes(quizId)) {
@@ -232,7 +232,7 @@ document.getElementById('btnConfirmStart').onclick = async function() {
 document.getElementById('btnBackFromSetup').onclick = () => showView('list');
 
 // === HÀM HIỂN THỊ TRỢ GIÚP ===
-window.showHelp = function(type) {
+window.showHelp = function (type) {
     let msg = "";
     if (type === 'shuffle') {
         msg = "Tráo thứ tự câu hỏi: Các câu hỏi trong mỗi phần sẽ được đảo vị trí ngẫu nhiên để tăng tính thử thách.";
@@ -285,7 +285,7 @@ function renderQuestions() {
                 <input type="radio" name="question_${q.id}" value="${optIndex}">
                 <span>${opt}</span>
             `;
-            
+
             // Xử lý Chế độ Luyện tập: Hiện đáp án ngay khi chọn
             const radio = label.querySelector('input');
             radio.addEventListener('change', () => {
@@ -333,7 +333,7 @@ quizForm.addEventListener('submit', (e) => {
     currentQuiz.questions.forEach(q => {
         // Tìm radio đã được chọn (kể cả khi bị disabled trong chế độ Luyện tập)
         const selectedRadio = quizForm.querySelector(`input[name="question_${q.id}"]:checked`);
-        
+
         if (!selectedRadio) {
             unanswered++;
             userAnswers[q.id] = null;
