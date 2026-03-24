@@ -1,3 +1,21 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
+import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAAEI9nMEMfUwbGbPHTyGRJ2dAfBRW7_Fo",
+  authDomain: "hoctaptructuyen-7c09a.firebaseapp.com",
+  projectId: "hoctaptructuyen-7c09a",
+  storageBucket: "hoctaptructuyen-7c09a.firebasestorage.app",
+  messagingSenderId: "329551572068",
+  appId: "1:329551572068:web:41b7b3174ef45a77008371",
+  measurementId: "G-F0DTTKEBHC"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const db = getFirestore(app);
+
 // === MOCK DATA: BỘ ĐỀ MẪU ===
 // Bạn có thể dễ dàng thêm hoặc thay đổi câu hỏi tại đây
 const mockQuizzes = [
@@ -85,11 +103,43 @@ function initQuizList() {
         card.innerHTML = `
             <h3>${quiz.title}</h3>
             <p>${quiz.description}</p>
-            <div class="quiz-meta">📚 Số câu: ${quiz.questions.length}</div>
+            <div class="tags-container" style="margin-bottom: 24px;">
+                <span class="quiz-meta">📚 Số câu: ${quiz.questions.length}</span>
+                <span class="quiz-views" id="views-${quiz.id}">👁️ Lượt truy cập: Đang tải...</span>
+            </div>
             <button class="btn btn-primary" style="width:100%" onclick="startQuiz('${quiz.id}')">Bắt Đầu Làm Bài</button>
         `;
         quizListContainer.appendChild(card);
     });
+    fetchViewCounts();
+}
+
+// === LẤY DỮ LIỆU LƯỢT LÀM BÀI TỪ FIREBASE ===
+async function fetchViewCounts() {
+    try {
+        const querySnapshot = await getDocs(collection(db, "quizzes"));
+        querySnapshot.forEach((docSnap) => {
+            const data = docSnap.data();
+            const viewEl = document.getElementById(`views-${docSnap.id}`);
+            if (viewEl) {
+                viewEl.innerHTML = `👁️ Lượt truy cập: <strong>${data.views || 0}</strong>`;
+            }
+        });
+        
+        // Cập nhật 0 cho những tài liệu chưa có trong bảng dữ liệu
+        mockQuizzes.forEach(quiz => {
+            const viewEl = document.getElementById(`views-${quiz.id}`);
+            if (viewEl && viewEl.textContent.includes("Đang tải")) {
+                viewEl.innerHTML = `👁️ Lượt truy cập: <strong>0</strong>`;
+            }
+        });
+    } catch (error) {
+        console.error("Lỗi tải lượt truy cập Firebase:", error);
+        mockQuizzes.forEach(quiz => {
+            const viewEl = document.getElementById(`views-${quiz.id}`);
+            if (viewEl) viewEl.innerHTML = `👁️ Lượt truy cập: <strong>0</strong>`;
+        });
+    }
 }
 
 // === HÀM ĐẢO CÂU HỎI THEO PHẦN ===
@@ -114,9 +164,30 @@ function shuffleQuestionsBySection(questions) {
 }
 
 // === BẮT ĐẦU LÀM BÀI ===
-window.startQuiz = function (quizId) {
+window.startQuiz = async function (quizId) {
     currentQuiz = mockQuizzes.find(q => q.id === quizId);
     if (!currentQuiz) return;
+    
+    // Tăng lượt xem (view) trên Firebase
+    try {
+        const quizRef = doc(db, "quizzes", quizId);
+        const quizSnap = await getDoc(quizRef);
+        if (quizSnap.exists()) {
+            await updateDoc(quizRef, { views: increment(1) });
+        } else {
+            await setDoc(quizRef, { views: 1 });
+        }
+        
+        // Cập nhật UI ngay lập tức
+        const viewEl = document.getElementById(`views-${quizId}`);
+        if (viewEl) {
+            const currentViewsMatch = viewEl.innerText.match(/\d+/);
+            const currentViews = currentViewsMatch ? parseInt(currentViewsMatch[0]) : 0;
+            viewEl.innerHTML = `👁️ Lượt truy cập: <strong>${currentViews + 1}</strong>`;
+        }
+    } catch (e) {
+        console.error("Lỗi cập nhật view số lượng:", e);
+    }
     
     // Tráo câu hỏi nhưng giữ nguyên các phần
     currentQuiz.questions = shuffleQuestionsBySection(currentQuiz.questions);
