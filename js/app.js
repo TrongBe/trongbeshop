@@ -15,7 +15,7 @@ const mockQuizzes = [
             { id: "q6", section: "PHONETICS", text: "", options: ["A. r<u>i</u>se", "B. sk<u>i</u>ll", "C. t<u>i</u>me", "D. l<u>i</u>fe"], correctIndex: 1 },
             { id: "q7", section: "PHONETICS", text: "", options: ["A. <u>a</u>ncient", "B. l<u>a</u>ndscape", "C. v<u>a</u>lley", "D. st<u>a</u>te"], correctIndex: 2 },
             { id: "q8", section: "PHONETICS", text: "", options: ["A. me<u>ch</u>anic", "B. <u>ch</u>oice", "C. <u>ch</u>ance", "D. <u>ch</u>ange"], correctIndex: 0 },
-            
+
             // STRESS
             { id: "q9", section: "STRESS", text: "", options: ["A. routine", "B. laundry", "C. household", "D. budget"], correctIndex: 0 },
             { id: "q10", section: "STRESS", text: "", options: ["A. independent", "B. irresponsible", "C. intermediate", "D. individual"], correctIndex: 1 },
@@ -23,7 +23,7 @@ const mockQuizzes = [
             { id: "q12", section: "STRESS", text: "", options: ["A. academic", "B. vocational", "C. professional", "D. responsible"], correctIndex: 0 },
             { id: "q13", section: "STRESS", text: "", options: ["A. temple", "B. relic", "C. complex", "D. suggest"], correctIndex: 3 },
             { id: "q14", section: "STRESS", text: "", options: ["A. recognize", "B. monument", "C. recommend", "D. landscape"], correctIndex: 2 },
-            
+
             // VOCABULARY AND GRAMMAR
             { id: "q15", section: "VOCABULARY AND GRAMMAR", text: "The Citadel of the Ho Dynasty was ______ as a World Heritage Site in 2011.", options: ["A. recognized", "B. performed", "C. restored", "D. protected"], correctIndex: 0 },
             { id: "q16", section: "VOCABULARY AND GRAMMAR", text: "It is important to ______ our traditional music so that future generations can enjoy it.", options: ["A. damage", "B. preserve", "C. ignore", "D. replace"], correctIndex: 1 },
@@ -93,20 +93,20 @@ function initQuizList() {
 }
 
 // === BẮT ĐẦU LÀM BÀI ===
-window.startQuiz = function(quizId) {
+window.startQuiz = function (quizId) {
     currentQuiz = mockQuizzes.find(q => q.id === quizId);
     if (!currentQuiz) return;
-    
+
     // Xóa kết quả chọn cũ & Reset form
     quizForm.reset();
     quizForm.dataset.mode = 'exam';
     const submitBtn = quizForm.querySelector('button[type="submit"]');
-    if(submitBtn) {
+    if (submitBtn) {
         submitBtn.textContent = 'Nộp Bài Ngay';
         submitBtn.classList.remove('btn-outline');
         submitBtn.classList.add('btn-primary');
     }
-    
+
     currentQuizTitle.textContent = currentQuiz.title;
     renderQuestions();
     showView('active');
@@ -116,6 +116,7 @@ window.startQuiz = function(quizId) {
 function renderQuestions() {
     questionsContainer.innerHTML = '';
     let currentSection = "";
+    let sectionQuestionIndex = 1;
 
     currentQuiz.questions.forEach((q, index) => {
         // Render phần tiêu đề nhóm câu hỏi nếu có
@@ -129,23 +130,24 @@ function renderQuestions() {
             secHeader.textContent = q.section;
             questionsContainer.appendChild(secHeader);
             currentSection = q.section;
+            sectionQuestionIndex = 1; // Khởi động lại đếm số câu cho phần mới
         }
 
         const qBlock = document.createElement('div');
         qBlock.className = 'question-card';
-        
+
         const qTitle = document.createElement('h4');
         if (q.text) {
-            qTitle.innerHTML = `Câu ${index + 1}: ${q.text}`;
+            qTitle.innerHTML = `Câu ${sectionQuestionIndex}: ${q.text}`;
         } else {
-            qTitle.innerHTML = `Câu ${index + 1}:`;
+            qTitle.innerHTML = `Câu ${sectionQuestionIndex}:`;
             qTitle.style.marginBottom = '12px'; // Giảm khoảng cách nếu không có nội dung chữ dài
         }
         qBlock.appendChild(qTitle);
-        
+
         const optionsList = document.createElement('div');
         optionsList.className = 'options-list';
-        
+
         q.options.forEach((opt, optIndex) => {
             const label = document.createElement('label');
             label.className = 'option-label';
@@ -155,28 +157,30 @@ function renderQuestions() {
             `;
             optionsList.appendChild(label);
         });
-        
+
         qBlock.appendChild(optionsList);
         questionsContainer.appendChild(qBlock);
+
+        sectionQuestionIndex++; // Tăng số đếm câu hiện tại lên 1
     });
 }
 
 // === XỬ LÝ KHI NỘP BÀI TẬP ===
 quizForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    
+
     // Nếu đang ở chế độ xem lại (review), nhấn nút sẽ quay lại màn kết quả
     if (quizForm.dataset.mode === 'review') {
         showView('result');
         return;
     }
-    
+
     // Chấm điểm
     let correct = 0;
     let incorrect = 0;
     let unanswered = 0;
     userAnswers = {}; // Reset lại đáp án đã chọn
-    
+
     const formData = new FormData(quizForm);
     currentQuiz.questions.forEach(q => {
         const selectedVal = formData.get(`question_${q.id}`);
@@ -193,21 +197,21 @@ quizForm.addEventListener('submit', (e) => {
             }
         }
     });
-    
+
     // Hiển thị kết quả lên màn hình Result
     document.getElementById('scoreText').textContent = `${correct}/${currentQuiz.questions.length}`;
     document.getElementById('correctCount').textContent = correct;
     document.getElementById('incorrectCount').textContent = incorrect;
-    
+
     const unansweredEl = document.getElementById('unansweredCount');
-    if(unansweredEl) unansweredEl.textContent = unanswered;
-    
+    if (unansweredEl) unansweredEl.textContent = unanswered;
+
     showView('result');
 });
 
 // === CÁC NÚT ĐIỀU HƯỚNG ===
 document.getElementById('btnBackToMenu').addEventListener('click', () => {
-    if(confirm("Bạn có chắc muốn thoát? Tiến trình bài đang làm sẽ bị hủy bỏ.")) {
+    if (confirm("Bạn có chắc muốn thoát? Tiến trình bài đang làm sẽ bị hủy bỏ.")) {
         showView('list');
     }
 });
@@ -219,7 +223,7 @@ document.getElementById('btnRetry').addEventListener('click', () => {
     submitBtn.textContent = 'Nộp Bài Ngay';
     submitBtn.classList.remove('btn-outline');
     submitBtn.classList.add('btn-primary');
-    
+
     // Gọi lại renderQuestions để xóa các class correct-answer/wrong-answer và bật lại input
     renderQuestions();
     showView('active');
@@ -227,33 +231,33 @@ document.getElementById('btnRetry').addEventListener('click', () => {
 
 document.getElementById('btnReview').addEventListener('click', () => {
     quizForm.dataset.mode = 'review';
-    
+
     currentQuiz.questions.forEach(q => {
         const selectedVal = userAnswers[q.id];
         const inputs = document.querySelectorAll(`input[name="question_${q.id}"]`);
-        
+
         inputs.forEach(input => {
             input.disabled = true; // Khóa thay đổi đáp án
             const label = input.closest('label');
             const val = parseInt(input.value);
-            
+
             // Đánh dấu đáp án đúng
             if (val === q.correctIndex) {
                 label.classList.add('correct-answer');
-            } 
+            }
             // Đánh dấu đáp án sai mà người dùng đã chọn
             else if (val === selectedVal) {
                 label.classList.add('wrong-answer');
             }
         });
     });
-    
+
     // Đổi nút nộp bài thành nút quay lại
     const submitBtn = quizForm.querySelector('button[type="submit"]');
     submitBtn.textContent = 'Quay Lại Kết Quả';
     submitBtn.classList.remove('btn-primary');
     submitBtn.classList.add('btn-outline');
-    
+
     showView('active');
 });
 
