@@ -1,7 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
 import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAAEI9nMEMfUwbGbPHTyGRJ2dAfBRW7_Fo",
@@ -16,7 +15,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
-const auth = getAuth(app);
 
 // === MOCK DATA: BỘ ĐỀ MẪU ===
 // Bạn có thể dễ dàng thêm hoặc thay đổi câu hỏi tại đây
@@ -79,7 +77,6 @@ let userAnswers = {};
 
 // === PHẦN TỬ DOM ===
 const views = {
-    auth: document.getElementById('authView'),
     list: document.getElementById('quizListView'),
     active: document.getElementById('activeQuizView'),
     result: document.getElementById('resultView')
@@ -367,108 +364,7 @@ document.getElementById('btnBackToMenuFromResult').addEventListener('click', () 
 });
 
 // === LOGIC XÁC THỰC (AUTHENTICATION) ===
-const userInfoHeader = document.getElementById('userInfoHeader');
-const userNameDisplay = document.getElementById('userNameDisplay');
-const btnLogout = document.getElementById('btnLogout');
+// Đã được gỡ bỏ theo yêu cầu
 
-const emailAuthForm = document.getElementById('emailAuthForm');
-const emailInput = document.getElementById('emailInput');
-const passwordInput = document.getElementById('passwordInput');
-const authError = document.getElementById('authError');
-
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-        // Đã đăng nhập
-        if (userInfoHeader) userInfoHeader.style.display = 'block';
-        if (userNameDisplay) userNameDisplay.textContent = user.displayName || user.email.split('@')[0];
-        
-        // Khởi chạy load đề thi nếu chưa làm
-        if (quizListContainer.innerHTML === '') {
-            initQuizList();
-        }
-        
-        showView('list');
-    } else {
-        // Chưa đăng nhập
-        if (userInfoHeader) userInfoHeader.style.display = 'none';
-        showView('auth');
-    }
-});
-
-// Đăng nhập Email
-document.getElementById('btnEmailLogin').addEventListener('click', async (e) => {
-    if(!emailAuthForm.checkValidity()) {
-        emailAuthForm.reportValidity();
-        return;
-    }
-    e.preventDefault();
-    try {
-        authError.style.display = 'none';
-        await signInWithEmailAndPassword(auth, emailInput.value, passwordInput.value);
-    } catch (error) {
-        authError.style.display = 'block';
-        authError.textContent = "Sai Email hoặc Mật khẩu!";
-    }
-});
-
-// Tạo tài khoản Email
-document.getElementById('btnEmailRegister').addEventListener('click', async (e) => {
-    if(!emailAuthForm.checkValidity()) {
-        emailAuthForm.reportValidity();
-        return;
-    }
-    e.preventDefault();
-    try {
-        authError.style.display = 'none';
-        await createUserWithEmailAndPassword(auth, emailInput.value, passwordInput.value);
-    } catch (error) {
-        authError.style.display = 'block';
-        if (error.code === 'auth/email-already-in-use') {
-            authError.textContent = "Email này đã được sử dụng!";
-        } else if (error.code === 'auth/weak-password') {
-            authError.textContent = "Mật khẩu phải từ 6 ký tự trở lên!";
-        } else {
-            authError.textContent = "Lỗi đăng ký. Vui lòng thử lại!";
-        }
-    }
-});
-
-// Quên Mật Khẩu
-document.getElementById('btnForgotPassword').addEventListener('click', async (e) => {
-    e.preventDefault();
-    const email = emailInput.value.trim();
-    if (!email) {
-        authError.style.display = 'block';
-        authError.textContent = "Bạn cần nhập Email vào ô phía trên rồi mới bấm Quên Mật Khẩu nhé!";
-        return;
-    }
-    try {
-        authError.style.display = 'none';
-        await sendPasswordResetEmail(auth, email);
-        alert("Thành công! Một đường link đặt lại mật khẩu đã được gửi vào Email " + email + " của bạn. Vui lòng kiểm tra mục Hộp thư đến (hoặc Thư rác).");
-    } catch (error) {
-        authError.style.display = 'block';
-        authError.textContent = "Lỗi gửi email reset. Có thể tài khoản chưa tồn tại!";
-        console.error(error);
-    }
-});
-
-// Đăng nhập Google
-const googleProvider = new GoogleAuthProvider();
-document.getElementById('btnGoogleLogin').addEventListener('click', async () => {
-    try {
-        authError.style.display = 'none';
-        await signInWithPopup(auth, googleProvider);
-    } catch (error) {
-        if(error.code !== 'auth/popup-closed-by-user') {
-            authError.style.display = 'block';
-            authError.textContent = "Lỗi đăng nhập Google.";
-        }
-    }
-});
-
-// Đăng xuất
-btnLogout.addEventListener('click', (e) => {
-    e.preventDefault();
-    signOut(auth);
-});
+// === KHỞI CHẠY TỰ ĐỘNG LÚC LOAD TRANG ===
+initQuizList();

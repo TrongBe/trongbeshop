@@ -13,45 +13,14 @@
 
 <body>
   <header class="header">
-    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
-      <h1 style="margin: 0;">Học Tập Trực Tuyến</h1>
-      <div id="userInfoHeader" style="display: none; font-size: 14px; color: var(--text-muted);">
-        Xin chào, <strong id="userNameDisplay">...</strong> 
-        <a href="#" id="btnLogout" style="color: var(--danger); margin-left: 10px; text-decoration: none; font-weight: 500;">(Đăng xuất)</a>
-      </div>
+    <div class="container">
+      <h1>Học Tập Trực Tuyến</h1>
     </div>
   </header>
 
   <main class="container">
-    <!-- View: Đăng nhập -->
-    <div id="authView" class="view-section active">
-      <div class="auth-card">
-        <h2>Đăng Nhập / Đăng Ký</h2>
-        <p style="color: var(--text-muted); margin-bottom: 24px;">Vui lòng đăng nhập để lưu lại kết quả và tham gia các bài thi.</p>
-        
-        <form id="emailAuthForm">
-          <input type="email" id="emailInput" class="auth-input" placeholder="Nhập Email của bạn" required>
-          <input type="password" id="passwordInput" class="auth-input" placeholder="Nhập Mật khẩu (từ 6 ký tự)" required>
-          <a href="#" id="btnForgotPassword" style="font-size: 14px; color: var(--primary); display: block; text-align: right; margin-bottom: 16px; text-decoration: none;">Quên mật khẩu?</a>
-          
-          <div class="auth-buttons">
-            <button type="submit" id="btnEmailLogin" class="btn btn-primary" style="flex: 1;">Đăng nhập</button>
-            <button type="button" id="btnEmailRegister" class="btn btn-outline" style="flex: 1;">Đăng ký</button>
-          </div>
-          <p id="authError" class="text-danger" style="display: none; margin-top: 16px; font-size: 14px; text-align: center;"></p>
-        </form>
-
-        <div class="auth-divider"><span>Hoặc</span></div>
-
-        <button id="btnGoogleLogin" class="btn btn-google">
-          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" style="width: 20px; height: 20px; margin-right: 12px;">
-          Đăng nhập bằng Google
-        </button>
-      </div>
-    </div>
-
     <!-- View: Danh sách đề -->
-    <div id="quizListView" class="view-section">
+    <div id="quizListView" class="view-section active">
       <h2 class="section-title">Danh sách bộ đề hiện có</h2>
       <div id="quizList" class="quiz-grid">
         <!-- Javascript sẽ tự động thêm các đề vào đây -->
