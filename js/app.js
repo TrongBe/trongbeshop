@@ -415,6 +415,71 @@ function renderQuestions() {
                 });
                 optionsList.appendChild(label);
             });
+        } else if (qType === 'reading_group') {
+            // Hiển thị đoạn văn
+            const passageDiv = document.createElement('div');
+            passageDiv.className = 'reading-passage';
+            passageDiv.style.background = '#f8fafc';
+            passageDiv.style.padding = '20px';
+            passageDiv.style.borderRadius = '12px';
+            passageDiv.style.marginBottom = '24px';
+            passageDiv.style.borderLeft = '5px solid var(--primary)';
+            passageDiv.style.fontSize = '1.05rem';
+            passageDiv.style.lineHeight = '1.7';
+            passageDiv.innerHTML = q.passage;
+            qBlock.appendChild(passageDiv);
+
+            // Hiển thị các câu hỏi con
+            const subContainer = document.createElement('div');
+            subContainer.className = 'sub-questions-list';
+            
+            q.subQuestions.forEach((subQ) => {
+                const subQEl = document.createElement('div');
+                subQEl.className = 'sub-question-item';
+                subQEl.style.marginBottom = '25px';
+                subQEl.style.padding = '15px';
+                subQEl.style.background = '#fff';
+                subQEl.style.borderRadius = '8px';
+                subQEl.style.boxShadow = '0 2px 4px rgba(0,0,0,0.02)';
+
+                const subTitle = document.createElement('h5');
+                subTitle.style.marginBottom = '12px';
+                subTitle.innerHTML = subQ.text;
+                subQEl.appendChild(subTitle);
+
+                const subOptionsList = document.createElement('div');
+                subOptionsList.className = 'options-list';
+
+                subQ.options.forEach((opt, optIndex) => {
+                    const label = document.createElement('label');
+                    label.className = 'option-label';
+                    label.innerHTML = `
+                        <input type="radio" name="question_${subQ.id}" value="${optIndex}">
+                        <span>${opt}</span>
+                    `;
+
+                    const radio = label.querySelector('input');
+                    radio.addEventListener('change', () => {
+                        if (quizForm.dataset.quizMode === 'practice') {
+                            const allInputs = subOptionsList.querySelectorAll('input');
+                            allInputs.forEach(input => {
+                                input.disabled = true;
+                                const parentLabel = input.closest('label');
+                                const val = parseInt(input.value);
+                                if (val === subQ.correctIndex) {
+                                    parentLabel.classList.add('correct-answer');
+                                } else if (input.checked) {
+                                    parentLabel.classList.add('wrong-answer');
+                                }
+                            });
+                        }
+                    });
+                    subOptionsList.appendChild(label);
+                });
+                subQEl.appendChild(subOptionsList);
+                subContainer.appendChild(subQEl);
+            });
+            qBlock.appendChild(subContainer);
         } else if (qType === 'short_answer') {
             const inputField = document.createElement('div');
             inputField.className = 'short-answer-container';
@@ -483,6 +548,22 @@ quizForm.addEventListener('submit', (e) => {
                     incorrect++;
                 }
             }
+        } else if (qType === 'reading_group') {
+            q.subQuestions.forEach(subQ => {
+                const selectedRadio = quizForm.querySelector(`input[name="question_${subQ.id}"]:checked`);
+                if (!selectedRadio) {
+                    unanswered++;
+                    userAnswers[subQ.id] = null;
+                } else {
+                    const val = parseInt(selectedRadio.value);
+                    userAnswers[subQ.id] = val;
+                    if (val === subQ.correctIndex) {
+                        correct++;
+                    } else {
+                        incorrect++;
+                    }
+                }
+            });
         } else if (qType === 'short_answer') {
             const input = quizForm.querySelector(`input[name="question_${q.id}"]`);
             const val = input.value.trim();
@@ -535,10 +616,10 @@ document.getElementById('btnReview').addEventListener('click', () => {
     quizForm.dataset.mode = 'review';
 
     currentQuiz.questions.forEach(q => {
-        const selectedVal = userAnswers[q.id];
         const qType = q.type || 'multiple_choice';
 
         if (qType === 'multiple_choice' || qType === 'true_false') {
+            const selectedVal = userAnswers[q.id];
             const inputs = document.querySelectorAll(`input[name="question_${q.id}"]`);
             inputs.forEach(input => {
                 input.disabled = true;
@@ -550,7 +631,23 @@ document.getElementById('btnReview').addEventListener('click', () => {
                     label.classList.add('wrong-answer');
                 }
             });
+        } else if (qType === 'reading_group') {
+            q.subQuestions.forEach(subQ => {
+                const selectedVal = userAnswers[subQ.id];
+                const inputs = document.querySelectorAll(`input[name="question_${subQ.id}"]`);
+                inputs.forEach(input => {
+                    input.disabled = true;
+                    const label = input.closest('label');
+                    const val = parseInt(input.value);
+                    if (val === subQ.correctIndex) {
+                        label.classList.add('correct-answer');
+                    } else if (val === selectedVal) {
+                        label.classList.add('wrong-answer');
+                    }
+                });
+            });
         } else if (qType === 'short_answer') {
+            const selectedVal = userAnswers[q.id];
             const input = document.querySelector(`input[name="question_${q.id}"]`);
             input.disabled = true;
             const container = input.closest('.short-answer-container');
