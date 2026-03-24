@@ -560,6 +560,7 @@ function renderQuestions() {
                 });
                 optionsList.appendChild(label);
             });
+            // End of multiple choice processing
         } else if (qType === 'true_false_group') {
             const groupDiv = document.createElement('div');
             groupDiv.className = 'tf-group-container';
