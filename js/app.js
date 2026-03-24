@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
-import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, collection, getDocs, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAAEI9nMEMfUwbGbPHTyGRJ2dAfBRW7_Fo",
@@ -111,34 +111,34 @@ function initQuizList() {
         `;
         quizListContainer.appendChild(card);
     });
-    fetchViewCounts();
+    initRealtimeViews();
 }
 
-// === LẤY DỮ LIỆU LƯỢT LÀM BÀI TỪ FIREBASE ===
-async function fetchViewCounts() {
+// === LẮNG NGHE DỮ LIỆU LƯỢT TRUY CẬP THỜI GIAN THỰC TỪ FIREBASE ===
+function initRealtimeViews() {
     try {
-        const querySnapshot = await getDocs(collection(db, "quizzes"));
-        querySnapshot.forEach((docSnap) => {
-            const data = docSnap.data();
-            const viewEl = document.getElementById(`views-${docSnap.id}`);
-            if (viewEl) {
-                viewEl.innerHTML = `👁️ Lượt truy cập: <strong>${data.views || 0}</strong>`;
-            }
-        });
+        // Sử dụng onSnapshot để cập nhật tự động mà không cần load lại trang
+        onSnapshot(collection(db, "quizzes"), (querySnapshot) => {
+            querySnapshot.forEach((docSnap) => {
+                const data = docSnap.data();
+                const viewEl = document.getElementById(`views-${docSnap.id}`);
+                if (viewEl) {
+                    viewEl.innerHTML = `👁️ Lượt truy cập: <strong>${data.views || 0}</strong>`;
+                }
+            });
 
-        // Cập nhật 0 cho những tài liệu chưa có trong bảng dữ liệu
-        mockQuizzes.forEach(quiz => {
-            const viewEl = document.getElementById(`views-${quiz.id}`);
-            if (viewEl && viewEl.textContent.includes("Đang tải")) {
-                viewEl.innerHTML = `👁️ Lượt truy cập: <strong>0</strong>`;
-            }
+            // Cập nhật 0 cho những tài liệu chưa có trong bảng dữ liệu
+            mockQuizzes.forEach(quiz => {
+                const viewEl = document.getElementById(`views-${quiz.id}`);
+                if (viewEl && (viewEl.textContent.includes("Đang tải") || viewEl.textContent === "")) {
+                    viewEl.innerHTML = `👁️ Lượt truy cập: <strong>0</strong>`;
+                }
+            });
+        }, (error) => {
+            console.error("Lỗi lắng nghe lượt truy cập Firebase:", error);
         });
     } catch (error) {
-        console.error("Lỗi tải lượt truy cập Firebase:", error);
-        mockQuizzes.forEach(quiz => {
-            const viewEl = document.getElementById(`views-${quiz.id}`);
-            if (viewEl) viewEl.innerHTML = `👁️ Lượt truy cập: <strong>0</strong>`;
-        });
+        console.error("Lỗi khởi tạo tính năng thời gian thực:", error);
     }
 }
 
@@ -168,48 +168,7 @@ window.startQuiz = async function (quizId) {
     currentQuiz = mockQuizzes.find(q => q.id === quizId);
     if (!currentQuiz) return;
 
-    // Tăng lượt xem (view) trên Firebase nếu người dùng chưa xem đề này
-    try {
-        let viewedQuizzes = [];
-        try {
-            viewedQuizzes = JSON.parse(localStorage.getItem('viewedQuizzes') || '[]');
-        } catch (err) {
-            viewedQuizzes = [];
-        }
-        
-        if (!Array.isArray(viewedQuizzes)) viewedQuizzes = [];
-
-        if (!viewedQuizzes.includes(quizId)) {
-            // Đánh dấu đã xem ngay lập tức để chặn các yêu cầu trùng lặp (tránh race condition)
-            viewedQuizzes.push(quizId);
-            localStorage.setItem('viewedQuizzes', JSON.stringify(viewedQuizzes));
-
-            const quizRef = doc(db, "quizzes", quizId);
-            try {
-                // Tăng lượt xem trên Firebase
-                const quizSnap = await getDoc(quizRef);
-                if (quizSnap.exists()) {
-                    await updateDoc(quizRef, { views: increment(1) });
-                } else {
-                    await setDoc(quizRef, { views: 1 });
-                }
-
-                // Cập nhật UI ngay lập tức
-                const viewEl = document.getElementById(`views-${quizId}`);
-                if (viewEl) {
-                    const currentViewsMatch = viewEl.innerText.match(/\d+/);
-                    const currentViews = currentViewsMatch ? parseInt(currentViewsMatch[0]) : 0;
-                    viewEl.innerHTML = `👁️ Lượt truy cập: <strong>${currentViews + 1}</strong>`;
-                }
-            } catch (error) {
-                console.error("Lỗi khi cập nhật view:", error);
-                // Nếu lỗi, có thể cân nhắc xóa khỏi localStorage để cho phép thử lại
-            }
-        }
-    } catch (e) {
-        console.error("Lỗi cập nhật view số lượng:", e);
-    }
-
+    // --- TỐI ƯU HIỆU SUẤT: HIỂN THỊ GIAO DIỆN NGAY LẬP TỨC ---
     // Tráo câu hỏi nhưng giữ nguyên các phần
     currentQuiz.questions = shuffleQuestionsBySection(currentQuiz.questions);
 
@@ -225,7 +184,42 @@ window.startQuiz = async function (quizId) {
 
     currentQuizTitle.textContent = currentQuiz.title;
     renderQuestions();
-    showView('active');
+    showView('active'); 
+    // ---------------------------------------------------------
+
+    // Tăng lượt xem (view) trên Firebase chạy ngầm phía dưới
+    try {
+        let viewedQuizzes = [];
+        try {
+            viewedQuizzes = JSON.parse(localStorage.getItem('viewedQuizzes') || '[]');
+        } catch (err) {
+            viewedQuizzes = [];
+        }
+        
+        if (!Array.isArray(viewedQuizzes)) viewedQuizzes = [];
+
+        if (!viewedQuizzes.includes(quizId)) {
+            // Đánh dấu đã xem ngay lập tức
+            viewedQuizzes.push(quizId);
+            localStorage.setItem('viewedQuizzes', JSON.stringify(viewedQuizzes));
+
+            const quizRef = doc(db, "quizzes", quizId);
+            try {
+                // Tăng lượt xem ngầm
+                const quizSnap = await getDoc(quizRef);
+                if (quizSnap.exists()) {
+                    await updateDoc(quizRef, { views: increment(1) });
+                } else {
+                    await setDoc(quizRef, { views: 1 });
+                }
+                // Do đã sử dụng onSnapshot, UI sẽ tự động cập nhật mà không cần gán thủ công ở đây
+            } catch (error) {
+                console.error("Lỗi khi cập nhật view:", error);
+            }
+        }
+    } catch (e) {
+        console.error("Lỗi logic lượt xem:", e);
+    }
 };
 
 // === KIẾN TẠO GIAO DIỆN CÂU HỎI TRONG ĐỀ ===
