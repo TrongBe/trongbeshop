@@ -222,7 +222,7 @@ const mockQuizzes = [
                 id: "bio_q12", 
                 section: "PHẦN I: TRẮC NGHIỆM", 
                 type: "multiple_choice", 
-                text: "Ghép cột nội dung (1, 2) với các ví dụ (a, b, c, d, e, f) tương ứng:<br><br><div class='comparison-table-wrapper'><table class='comparison-table'><thead><tr><th>1. Sinh trưởng</th><th>2. Phát triển</th></tr></thead><tbody><tr><td>(b) Cây lên cao<br>(e) Diện tích lá tăng<br>(f) Lợn tăng cân</td><td>(a) Hạt nảy mầm<br>(c) Gà gáy<br>(d) Cây ra hoa</td></tr></tbody></table></div>", 
+                text: "Hãy ghép cột A với cột B tương ứng:<br><br><div class='comparison-table-wrapper'><table class='comparison-table'><thead><tr><th style='width: 35%;'>Cột A</th><th>Cột B</th></tr></thead><tbody><tr><td>1. Sinh trưởng<br><br>2. Phát triển</td><td>a. Hạt nảy mầm<br>b. Cây lên cao<br>c. Gà trống bắt đầu biết gáy<br>d. Cây ra hoa<br>e. Diện tích phiến lá tăng lên<br>f. Lợn con tăng cân từ 2 kg lên 4 kg</td></tr></tbody></table></div>", 
                 options: ["A. 1 - b,d,f ; 2 - a,c,e", "B. 1 - b,e,f ; 2 - a,c,d", "C. 1 - a,b,e ; 2 - c,d,f", "D. 1 - a,b,f ; 2 - c,d,e"], 
                 correctIndex: 1 
             },
