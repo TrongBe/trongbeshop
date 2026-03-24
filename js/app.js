@@ -558,8 +558,8 @@ function renderQuestions() {
                         });
                     }
                 });
+                optionsList.appendChild(label);
             });
-            optionsList.appendChild(label);
         } else if (qType === 'true_false_group') {
             const groupDiv = document.createElement('div');
             groupDiv.className = 'tf-group-container';
