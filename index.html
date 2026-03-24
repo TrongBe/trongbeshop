@@ -13,14 +13,44 @@
 
 <body>
   <header class="header">
-    <div class="container">
-      <h1>Học Tập Trực Tuyến</h1>
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+      <h1 style="margin: 0;">Học Tập Trực Tuyến</h1>
+      <div id="userInfoHeader" style="display: none; font-size: 14px; color: var(--text-muted);">
+        Xin chào, <strong id="userNameDisplay">...</strong> 
+        <a href="#" id="btnLogout" style="color: var(--danger); margin-left: 10px; text-decoration: none; font-weight: 500;">(Đăng xuất)</a>
+      </div>
     </div>
   </header>
 
   <main class="container">
+    <!-- View: Đăng nhập -->
+    <div id="authView" class="view-section active">
+      <div class="auth-card">
+        <h2>Đăng Nhập / Đăng Ký</h2>
+        <p style="color: var(--text-muted); margin-bottom: 24px;">Vui lòng đăng nhập để lưu lại kết quả và tham gia các bài thi.</p>
+        
+        <form id="emailAuthForm">
+          <input type="email" id="emailInput" class="auth-input" placeholder="Nhập Email của bạn" required>
+          <input type="password" id="passwordInput" class="auth-input" placeholder="Nhập Mật khẩu (từ 6 ký tự)" minlength="6" required>
+          
+          <div class="auth-buttons">
+            <button type="submit" id="btnEmailLogin" class="btn btn-primary" style="flex: 1;">Đăng nhập</button>
+            <button type="button" id="btnEmailRegister" class="btn btn-outline" style="flex: 1;">Đăng ký</button>
+          </div>
+          <p id="authError" class="text-danger" style="display: none; margin-top: 16px; font-size: 14px; text-align: center;"></p>
+        </form>
+
+        <div class="auth-divider"><span>Hoặc</span></div>
+
+        <button id="btnGoogleLogin" class="btn btn-google">
+          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" style="width: 20px; height: 20px; margin-right: 12px;">
+          Đăng nhập bằng Google
+        </button>
+      </div>
+    </div>
+
     <!-- View: Danh sách đề -->
-    <div id="quizListView" class="view-section active">
+    <div id="quizListView" class="view-section">
       <h2 class="section-title">Danh sách bộ đề hiện có</h2>
       <div id="quizList" class="quiz-grid">
         <!-- Javascript sẽ tự động thêm các đề vào đây -->
@@ -73,12 +103,9 @@
         <p>Facebook: <a href="https://www.facebook.com/trong.be.nguyen.2025" target="_blank">Nguyễn Thanh Trọng</a></p>
       </div>
       <div class="footer-section">
-        <h3>Điều Khoản Sử Dụng</h3>
-        <p>Nền tảng được tạo ra với mục đích hỗ trợ học sinh học tập và ôn luyện hiệu quả, nhanh chóng. Nghiêm cấm mọi hành vi sử dụng cho mục đích gian lận hoặc sao chép thương mại.</p>
-      </div>
-      <div class="footer-section">
-        <h3>Quyền Riêng Tư</h3>
-        <p>Hệ thống không thu thập hay lưu trữ bất kỳ dữ liệu cá nhân nào ngoài những câu trả lời bạn chọn nhằm phục vụ cho việc chấm điểm tức thì. Chúng tôi cam kết bảo vệ sự riêng tư tối đa cho bạn.</p>
+        <h3>Điều Khoản & Quyền Riêng Tư</h3>
+        <p><a href="terms.html">👉 Điều khoản sử dụng</a></p>
+        <p><a href="privacy.html">👉 Chính sách quyền riêng tư</a></p>
       </div>
     </div>
     <div class="footer-bottom">
