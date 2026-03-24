@@ -582,13 +582,13 @@ function renderQuestions() {
                             <td style="font-size: 14px; line-height: 1.5;">${sq.text}</td>
                             <td class="tf-col">
                                 <label class="radio-label">
-                                    <input type="radio" name="question_${q.id}_${sq.id}" value="Đúng" required>
+                                    <input type="radio" name="question_${q.id}_${sq.id}" value="Đúng">
                                     <span class="custom-radio"></span>
                                 </label>
                             </td>
                             <td class="tf-col">
                                 <label class="radio-label">
-                                    <input type="radio" name="question_${q.id}_${sq.id}" value="Sai" required>
+                                    <input type="radio" name="question_${q.id}_${sq.id}" value="Sai">
                                     <span class="custom-radio"></span>
                                 </label>
                             </td>
