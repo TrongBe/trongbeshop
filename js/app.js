@@ -228,7 +228,14 @@ const mockQuizzes = [
             },
             { id: "bio_q13", section: "PHẦN I: TRẮC NGHIỆM", type: "multiple_choice", text: "Hormone thực vật là những chất hữu cơ cho cơ thể thực vật tiết ra:", options: ["A. có tác dụng điều hòa", "B. chỉ có tác dụng ức chế", "C. có tác dụng kháng bệnh", "D. có tác dụng kích thích sinh trưởng"], correctIndex: 0 },
             { id: "bio_q14", section: "PHẦN I: TRẮC NGHIỆM", type: "multiple_choice", text: "Chức năng của mô phân sinh đỉnh là gì?", options: ["A. Làm cho thân và rễ cây dài ra", "B. Làm cho rễ dài và to ra", "C. Làm cho thân cây dài và to ra", "D. Làm cho thân cây, cành cây to ra"], correctIndex: 0 },
-            { id: "bio_q15", section: "PHẦN I: TRẮC NGHIỆM", type: "multiple_choice", text: "Có bao nhiêu phát biểu đúng về mô phân sinh? (II: MS đỉnh ở đỉnh rễ/chồi; V: MS lóng chỉ có ở cây Một lá mầm)", options: ["A. 1", "B. 2", "C. 3", "D. 4"], correctIndex: 1 },
+            { 
+                id: "bio_q15", 
+                section: "PHẦN I: TRẮC NGHIỆM", 
+                type: "multiple_choice", 
+                text: "Khi nói về các loại mô phân sinh của cây, có các phát biểu sau:<br>I. Mô phân sinh là nhóm tế bào đã phân hóa, duy trì được khả năng nguyên phân.<br>II. Mô phân sinh đỉnh nằm ở chồi đỉnh, chồi nách, đỉnh rễ.<br>III. Mô phân sinh đỉnh chỉ có ở cây Một lá mầm.<br>IV. Mô phân sinh bên nằm dọc thân và rễ, có ở cây Một lá mầm và cây Một lá mầm.<br>V. Mô phân sinh lóng chỉ có ở cây Một lá mầm.<br><br>Có bao nhiêu phát biểu đúng?", 
+                options: ["A. 1", "B. 2", "C. 3", "D. 4"], 
+                correctIndex: 1 
+            },
             { id: "bio_q16", section: "PHẦN I: TRẮC NGHIỆM", type: "multiple_choice", text: "Sinh trưởng thứ cấp theo thứ tự từ ngoài vào trong thân là:", options: ["A. Bần -> tầng sinh bần -> mạch rây sơ cấp -> mạch rây thứ cấp -> tầng sinh mạch -> mạch gỗ thứ cấp -> mạch gỗ sơ cấp -> tủy", "B. Bần -> tầng sinh bần -> mạch rây thứ cấp -> mạch rây sơ cấp -> tầng sinh mạch -> mạch gỗ thứ cấp -> mạch gỗ sơ cấp -> tủy", "C. Bần -> tầng sinh bần -> mạch rây sơ cấp -> mạch rây thứ cấp -> tầng sinh mạch -> mạch gỗ sơ cấp -> mạch gỗ thứ cấp -> tủy", "D. Tầng sinh bần -> bần -> mạch rây sơ cấp -> mạch rây thứ cấp -> tầng sinh mạch -> mạch gỗ thứ cấp -> mạch gỗ sơ cấp -> tủy"], correctIndex: 0 },
             { id: "bio_q18", section: "PHẦN I: TRẮC NGHIỆM", type: "multiple_choice", text: "Cảm ứng là:", options: ["A. sự phản ứng đối với thay đổi môi trường", "B. sự tiếp nhận của sinh vật đối với thay đổi môi trường", "C. sự tiếp nhận và phản ứng đối với những thay đổi của môi trường để thích ứng", "D. sự lan truyền xung thần kinh"], correctIndex: 2 },
             { id: "bio_q19", section: "PHẦN I: TRẮC NGHIỆM", type: "multiple_choice", text: "Ở người, khi ánh sáng mạnh chiếu vào mắt thì đồng tử co lại nhằm:", options: ["A. giúp mắt nhìn thấy ánh sáng nhiều hơn", "B. giúp mắt mở to hơn", "C. tránh cho mắt nhắm lại", "D. tránh cho mắt bị tổn thương"], correctIndex: 3 },
@@ -251,19 +258,73 @@ const mockQuizzes = [
             { id: "bio_q40", section: "PHẦN I: TRẮC NGHIỆM", type: "multiple_choice", text: "Ve sầu kêu vào mùa hè, ếch đực kêu mùa sinh sản là tập tính:", options: ["A. học được", "B. bẩm sinh", "C. hỗn hợp", "D. vừa bẩm sinh vừa hỗn hợp"], correctIndex: 1 },
 
             // PHẦN II: ĐÚNG / SAI
-            { id: "bio_tf1_a", section: "PHẦN II: ĐÚNG / SAI", type: "true_false", text: "Dừng xe trước vạch kẻ khi thấy đèn tín hiệu chuyển sang màu đỏ là Phản xạ có điều kiện?", correctIndex: 0 },
-            { id: "bio_tf1_b", section: "PHẦN II: ĐÚNG / SAI", type: "true_false", text: "Người run lập cập khi mặc không đủ ấm trong tiết trời lạnh giá là Phản xạ có điều kiện?", correctIndex: 1 },
-            { id: "bio_tf1_c", section: "PHẦN II: ĐÚNG / SAI", type: "true_false", text: "Thở nhanh khi không khí trong phòng không đủ O2 là Phản xạ có điều kiện?", correctIndex: 1 },
-            { id: "bio_tf1_d", section: "PHẦN II: ĐÚNG / SAI", type: "true_false", text: "Tìm cách tránh xa khi gặp chó dại trên đường là Phản xạ có điều kiện?", correctIndex: 0 },
-            { id: "bio_tf2_a", section: "PHẦN II: ĐÚNG / SAI", type: "true_false", text: "Con bò tăng khối lượng từ 50kg đến 100kg là biểu hiện sự sinh trưởng?", correctIndex: 0 },
-            { id: "bio_tf2_b", section: "PHẦN II: ĐÚNG / SAI", type: "true_false", text: "Con gà trống mọc mào là biểu hiện sự sinh trưởng?", correctIndex: 1 },
-            { id: "bio_tf2_c", section: "PHẦN II: ĐÚNG / SAI", type: "true_false", text: "Con gà mái đẻ trứng là biểu hiện sự sinh trưởng?", correctIndex: 1 },
-            { id: "bio_tf2_d", section: "PHẦN II: ĐÚNG / SAI", type: "true_false", text: "Con rắn tăng chiều dài cơ thể thêm 20cm là biểu hiện sự sinh trưởng?", correctIndex: 0 },
+            {
+                id: "bio_tf1",
+                section: "PHẦN II: ĐÚNG / SAI",
+                type: "true_false_group",
+                text: "Khi nói về phản xạ có điều kiện. Theo lí thuyết, mỗi nhận định sau đây là Đúng hay Sai?",
+                subQuestions: [
+                    { id: "a", text: "a) Dừng xe trước vạch kẻ khi thấy đèn tín hiệu giao thông chuyển sang màu đỏ.", correctAnswer: "Đúng" },
+                    { id: "b", text: "b) Người run lập cập khi mặc không đủ ấm trong thời tiết lạnh giá.", correctAnswer: "Sai" },
+                    { id: "c", text: "c) Thở nhanh khi không khí trong phòng không đủ O2.", correctAnswer: "Sai" },
+                    { id: "d", text: "d) Tìm cách tránh xa khi gặp chó dại trên đường.", correctAnswer: "Đúng" }
+                ]
+            },
+            {
+                id: "bio_tf2",
+                section: "PHẦN II: ĐÚNG / SAI",
+                type: "true_false_group",
+                text: "Nhận định đúng sai về các dấu hiệu biểu hiện sự sinh trưởng ở động vật:",
+                subQuestions: [
+                    { id: "a", text: "a) Con bò tăng khối lượng từ 50 kg đến 100 kg.", correctAnswer: "Đúng" },
+                    { id: "b", text: "b) Con gà trống mọc mào.", correctAnswer: "Sai" },
+                    { id: "c", text: "c) Con gà mái đẻ trứng.", correctAnswer: "Sai" },
+                    { id: "d", text: "d) Con rắn tăng chiều dài cơ thể thêm 20 cm.", correctAnswer: "Đúng" }
+                ]
+            },
+
+            {
+                id: "bio_tf3",
+                section: "PHẦN II: ĐÚNG / SAI",
+                type: "true_false_group",
+                text: "Nhận định nội dung đúng sai cho các nội dung sau:",
+                subQuestions: [
+                    { id: "a", text: "a) Các vận động cảm ứng có liên quan đến sức trương nước của các miền.", correctAnswer: "Đúng" },
+                    { id: "b", text: "b) Vận động cảm ứng do sự khác biệt về tốc độ sinh trưởng của các tế bào tại hai phía đối diện nhau của cơ quan (như lá, cánh hoa) thường liên quan đến đồng hồ sinh học.", correctAnswer: "Sai" },
+                    { id: "c", text: "c) Sự đóng mở khí khổng.", correctAnswer: "Đúng" },
+                    { id: "d", text: "d) Sự nở ở hoa mười giờ, tulip, bồ công anh.", correctAnswer: "Đúng" }
+                ]
+            },
+            {
+                id: "bio_tf4",
+                section: "PHẦN II: ĐÚNG / SAI",
+                type: "true_false_group",
+                text: "Nhận định đúng sai về phản xạ trong các phát biểu sau:",
+                subQuestions: [
+                    { id: "a", text: "a) Phản xạ chỉ có ở những sinh vật có hệ thần kinh.", correctAnswer: "Đúng" },
+                    { id: "b", text: "b) Phản xạ được thực hiện nhờ cung phản xạ.", correctAnswer: "Đúng" },
+                    { id: "c", text: "c) Phản xạ được coi là một dạng điển hình của cảm ứng.", correctAnswer: "Đúng" },
+                    { id: "d", text: "d) Phản xạ là khái niệm rộng hơn cảm ứng.", correctAnswer: "Sai" }
+                ]
+            },
 
             // PHẦN III: TRẢ LỜI NGẮN
             { id: "bio_sa1", section: "PHẦN III: TRẢ LỜI NGẮN", type: "short_answer", text: "Trong số các hormone: auxin, gibberellin, cytokinin, abscisic acid, ethylene, thyroxine, estrogen. Có bao nhiêu hormone có ở thực vật?", correctAnswer: "5" },
-            { id: "bio_sa2", section: "PHẦN III: TRẢ LỜI NGẮN", type: "short_answer", text: "Cho các nhân tố: di truyền, hormone, ánh sáng, nhiệt độ, chất dinh dưỡng. Có bao nhiêu nhân tố BÊN NGOÀI chi phối phát triển thực vật?", correctAnswer: "3" },
-            { id: "bio_sa4", section: "PHẦN III: TRẢ LỜI NGẮN", type: "short_answer", text: "Các kiểu hướng động âm (tránh xa nguồn kích thích) ở rễ là hướng nào? (1. Sáng, 2. Hóa, 3. Nước, 4. Trọng lực, 5. Tiếp xúc)", correctAnswer: "1" }
+            { id: "bio_sa2", section: "PHẦN III: TRẢ LỜI NGẮN", type: "short_answer", text: "Cho các nhân tố: di truyền, hormone, ánh sáng, nhiệt độ, chất dinh dưỡng. Có bao nhiêu nhân tố BÊN NGOÀI chi phối quá trình phát triển của thực vật có hoa?", correctAnswer: "3" },
+            { 
+                id: "bio_sa3", 
+                section: "PHẦN III: TRẢ LỜI NGẮN", 
+                type: "short_answer", 
+                text: "Vì sao ở động vật không xương sống có rất ít tập tính học được?<br>(1) Chúng sống trong môi trường sống đơn giản.<br>(2) Chúng có tuổi thọ ngắn.<br>(3) Chúng không thể hình thành mối liên kết giữa các neuron.<br>(4) Chúng có hệ thần kinh kém phát triển.<br><br>Hãy cho biết có bao nhiêu lý do đúng?", 
+                correctAnswer: "2" 
+            },
+            { 
+                id: "bio_sa4", 
+                section: "PHẦN III: TRẢ LỜI NGẮN", 
+                type: "short_answer", 
+                text: "Trong các kiểu hướng động rễ cây sau:<br>(1) Hướng sáng<br>(2) Hướng hóa<br>(3) Hướng nước<br>(4) Hướng trọng lực<br>(5) Hướng tiếp xúc<br><br>Có bao nhiêu kiểu là hướng động âm?", 
+                correctAnswer: "1" 
+            }
         ]
     }
 ];
@@ -497,8 +558,65 @@ function renderQuestions() {
                         });
                     }
                 });
-                optionsList.appendChild(label);
             });
+            optionsList.appendChild(label);
+        } else if (qType === 'true_false_group') {
+            const groupDiv = document.createElement('div');
+            groupDiv.className = 'tf-group-container';
+            
+            const table = document.createElement('table');
+            table.className = 'tf-table';
+            table.style.marginBottom = '20px';
+            table.innerHTML = `
+                <thead>
+                    <tr>
+                        <th style="text-align: left;">Nội dung</th>
+                        <th class="tf-col">Đúng</th>
+                        <th class="tf-col">Sai</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${q.subQuestions.map(sq => `
+                        <tr>
+                            <td style="font-size: 14px; line-height: 1.5;">${sq.text}</td>
+                            <td class="tf-col">
+                                <label class="radio-label">
+                                    <input type="radio" name="question_${q.id}_${sq.id}" value="Đúng" required>
+                                    <span class="custom-radio"></span>
+                                </label>
+                            </td>
+                            <td class="tf-col">
+                                <label class="radio-label">
+                                    <input type="radio" name="question_${q.id}_${sq.id}" value="Sai" required>
+                                    <span class="custom-radio"></span>
+                                </label>
+                            </td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            `;
+            groupDiv.appendChild(table);
+            optionsList.appendChild(groupDiv);
+
+            if (quizForm.dataset.quizMode === 'practice') {
+                q.subQuestions.forEach(sq => {
+                    const radios = table.querySelectorAll(`input[name="question_${q.id}_${sq.id}"]`);
+                    radios.forEach(radio => {
+                        radio.addEventListener('change', () => {
+                            radios.forEach(r => r.disabled = true);
+                            const label = radio.closest('label');
+                            const row = radio.closest('tr');
+                            if (radio.value === sq.correctAnswer) {
+                                label.classList.add('correct-answer-circle');
+                            } else {
+                                label.classList.add('wrong-answer-circle');
+                                const correctRadio = row.querySelector(`input[value="${sq.correctAnswer}"]`);
+                                correctRadio.closest('label').classList.add('correct-answer-circle');
+                            }
+                        });
+                    });
+                });
+            }
         } else if (qType === 'reading_group') {
             // Hiển thị đoạn văn
             const passageDiv = document.createElement('div');
@@ -632,6 +750,22 @@ quizForm.addEventListener('submit', (e) => {
                     incorrect++;
                 }
             }
+        } else if (qType === 'true_false_group') {
+            q.subQuestions.forEach(sq => {
+                const selected = quizForm.querySelector(`input[name="question_${q.id}_${sq.id}"]:checked`);
+                if (!selected) {
+                    unanswered++;
+                    userAnswers[`${q.id}_${sq.id}`] = null;
+                } else {
+                    const val = selected.value;
+                    userAnswers[`${q.id}_${sq.id}`] = val;
+                    if (val === sq.correctAnswer) {
+                        correct++;
+                    } else {
+                        incorrect++;
+                    }
+                }
+            });
         } else if (qType === 'reading_group') {
             q.subQuestions.forEach(subQ => {
                 const selectedRadio = quizForm.querySelector(`input[name="question_${subQ.id}"]:checked`);
@@ -714,6 +848,34 @@ document.getElementById('btnReview').addEventListener('click', () => {
                 } else if (val === selectedVal) {
                     label.classList.add('wrong-answer');
                 }
+            });
+        } else if (qType === 'true_false_group') {
+            q.subQuestions.forEach(sq => {
+                const selectedVal = userAnswers[`${q.id}_${sq.id}`];
+                const radios = document.querySelectorAll(`input[name="question_${q.id}_${sq.id}"]`);
+                radios.forEach(radio => {
+                    radio.disabled = true;
+                    const label = radio.closest('label');
+                    if (radio.value === sq.correctAnswer) {
+                        label.classList.add('correct-answer-circle');
+                    } else if (radio.value === selectedVal) {
+                        label.classList.add('wrong-answer-circle');
+                    }
+                });
+            });
+        } else if (qType === 'true_false_group') {
+            q.subQuestions.forEach(sq => {
+                const selectedVal = userAnswers[`${q.id}_${sq.id}`];
+                const radios = document.querySelectorAll(`input[name="question_${q.id}_${sq.id}"]`);
+                radios.forEach(radio => {
+                    radio.disabled = true;
+                    const label = radio.closest('label');
+                    if (radio.value === sq.correctAnswer) {
+                        label.classList.add('correct-answer-circle');
+                    } else if (radio.value === selectedVal) {
+                        label.classList.add('wrong-answer-circle');
+                    }
+                });
             });
         } else if (qType === 'reading_group') {
             q.subQuestions.forEach(subQ => {

@@ -156,6 +156,49 @@ body {
     color: var(--text-main);
 }
 
+.tf-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: white;
+}
+.tf-table th, .tf-table td {
+    border: 1px solid var(--border);
+    padding: 10px;
+}
+.tf-col {
+    text-align: center;
+    width: 60px;
+}
+.correct-answer-circle {
+    background-color: rgba(16, 185, 129, 0.2);
+    border-radius: 50%;
+    border: 2px solid var(--correct) !important;
+}
+.wrong-answer-circle {
+    background-color: rgba(239, 68, 68, 0.2);
+    border-radius: 50%;
+    border: 2px solid var(--wrong) !important;
+}
+.radio-label {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+}
+.radio-label input {
+    display: none;
+}
+.radio-label input:checked + .custom-radio {
+    width: 12px;
+    height: 12px;
+    background: var(--primary);
+    border-radius: 50%;
+}
 .btn-outline:hover {
     background-color: #F9FAFB;
     border-color: #D1D5DB;
