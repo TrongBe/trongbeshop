@@ -313,57 +313,82 @@ function renderQuestions() {
             secHeader.textContent = q.section;
             questionsContainer.appendChild(secHeader);
             currentSection = q.section;
-            sectionQuestionIndex = 1; // Khởi động lại đếm số câu cho phần mới
+            sectionQuestionIndex = 1;
         }
 
         const qBlock = document.createElement('div');
         qBlock.className = 'question-card';
 
         const qTitle = document.createElement('h4');
-        if (q.text) {
-            qTitle.innerHTML = `Câu ${sectionQuestionIndex}: ${q.text}`;
-        } else {
-            qTitle.innerHTML = `Câu ${sectionQuestionIndex}:`;
-            qTitle.style.marginBottom = '12px'; // Giảm khoảng cách nếu không có nội dung chữ dài
-        }
+        qTitle.innerHTML = `Câu ${sectionQuestionIndex}: ${q.text || ''}`;
+        if (!q.text) qTitle.style.marginBottom = '12px';
         qBlock.appendChild(qTitle);
 
         const optionsList = document.createElement('div');
         optionsList.className = 'options-list';
 
-        q.options.forEach((opt, optIndex) => {
-            const label = document.createElement('label');
-            label.className = 'option-label';
-            label.innerHTML = `
-                <input type="radio" name="question_${q.id}" value="${optIndex}">
-                <span>${opt}</span>
-            `;
+        const qType = q.type || 'multiple_choice';
 
-            // Xử lý Chế độ Luyện tập: Hiện đáp án ngay khi chọn
-            const radio = label.querySelector('input');
-            radio.addEventListener('change', () => {
+        if (qType === 'multiple_choice' || qType === 'true_false') {
+            const opts = qType === 'true_false' ? ["Đúng", "Sai"] : q.options;
+            opts.forEach((opt, optIndex) => {
+                const label = document.createElement('label');
+                label.className = 'option-label';
+                label.innerHTML = `
+                    <input type="radio" name="question_${q.id}" value="${optIndex}">
+                    <span>${opt}</span>
+                `;
+
+                const radio = label.querySelector('input');
+                radio.addEventListener('change', () => {
+                    if (quizForm.dataset.quizMode === 'practice') {
+                        const allInputs = optionsList.querySelectorAll('input');
+                        allInputs.forEach(input => {
+                            input.disabled = true;
+                            const parentLabel = input.closest('label');
+                            const val = parseInt(input.value);
+                            if (val === q.correctIndex) {
+                                parentLabel.classList.add('correct-answer');
+                            } else if (input.checked) {
+                                parentLabel.classList.add('wrong-answer');
+                            }
+                        });
+                    }
+                });
+                optionsList.appendChild(label);
+            });
+        } else if (qType === 'short_answer') {
+            const inputField = document.createElement('div');
+            inputField.className = 'short-answer-container';
+            inputField.style.marginTop = '10px';
+            inputField.innerHTML = `
+                <input type="number" name="question_${q.id}" class="form-control" placeholder="Nhập số đáp án..." style="width: 200px; padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
+                <div class="practice-result" style="display:none; margin-top: 5px; font-weight: 600;"></div>
+            `;
+            
+            const input = inputField.querySelector('input');
+            input.addEventListener('change', () => {
                 if (quizForm.dataset.quizMode === 'practice') {
-                    const allInputs = optionsList.querySelectorAll('input');
-                    allInputs.forEach(input => {
-                        input.disabled = true; // Khóa lại sau khi chọn
-                        const parentLabel = input.closest('label');
-                        const val = parseInt(input.value);
-                        if (val === q.correctIndex) {
-                            parentLabel.classList.add('correct-answer');
-                        } else if (input.checked) {
-                            parentLabel.classList.add('wrong-answer');
-                        }
-                    });
+                    const resDiv = inputField.querySelector('.practice-result');
+                    resDiv.style.display = 'block';
+                    input.disabled = true;
+                    if (input.value.trim() == q.correctAnswer) {
+                        resDiv.textContent = 'Chính xác! Đáp án: ' + q.correctAnswer;
+                        resDiv.style.color = 'var(--correct)';
+                        input.style.borderColor = 'var(--correct)';
+                    } else {
+                        resDiv.textContent = 'Sai rồi! Đáp án đúng: ' + q.correctAnswer;
+                        resDiv.style.color = 'var(--wrong)';
+                        input.style.borderColor = 'var(--wrong)';
+                    }
                 }
             });
-
-            optionsList.appendChild(label);
-        });
+            optionsList.appendChild(inputField);
+        }
 
         qBlock.appendChild(optionsList);
         questionsContainer.appendChild(qBlock);
-
-        sectionQuestionIndex++; // Tăng số đếm câu hiện tại lên 1
+        sectionQuestionIndex++;
     });
 }
 
@@ -384,16 +409,29 @@ quizForm.addEventListener('submit', (e) => {
     userAnswers = {};
 
     currentQuiz.questions.forEach(q => {
-        // Tìm radio đã được chọn (kể cả khi bị disabled trong chế độ Luyện tập)
-        const selectedRadio = quizForm.querySelector(`input[name="question_${q.id}"]:checked`);
-
-        if (!selectedRadio) {
-            unanswered++;
-            userAnswers[q.id] = null;
-        } else {
-            const val = parseInt(selectedRadio.value);
+        const qType = q.type || 'multiple_choice';
+        
+        if (qType === 'multiple_choice' || qType === 'true_false') {
+            const selectedRadio = quizForm.querySelector(`input[name="question_${q.id}"]:checked`);
+            if (!selectedRadio) {
+                unanswered++;
+                userAnswers[q.id] = null;
+            } else {
+                const val = parseInt(selectedRadio.value);
+                userAnswers[q.id] = val;
+                if (val === q.correctIndex) {
+                    correct++;
+                } else {
+                    incorrect++;
+                }
+            }
+        } else if (qType === 'short_answer') {
+            const input = quizForm.querySelector(`input[name="question_${q.id}"]`);
+            const val = input.value.trim();
             userAnswers[q.id] = val;
-            if (val === q.correctIndex) {
+            if (val === "") {
+                unanswered++;
+            } else if (val == q.correctAnswer) {
                 correct++;
             } else {
                 incorrect++;
@@ -440,22 +478,36 @@ document.getElementById('btnReview').addEventListener('click', () => {
 
     currentQuiz.questions.forEach(q => {
         const selectedVal = userAnswers[q.id];
-        const inputs = document.querySelectorAll(`input[name="question_${q.id}"]`);
+        const qType = q.type || 'multiple_choice';
 
-        inputs.forEach(input => {
-            input.disabled = true; // Khóa thay đổi đáp án
-            const label = input.closest('label');
-            const val = parseInt(input.value);
-
-            // Đánh dấu đáp án đúng
-            if (val === q.correctIndex) {
-                label.classList.add('correct-answer');
+        if (qType === 'multiple_choice' || qType === 'true_false') {
+            const inputs = document.querySelectorAll(`input[name="question_${q.id}"]`);
+            inputs.forEach(input => {
+                input.disabled = true;
+                const label = input.closest('label');
+                const val = parseInt(input.value);
+                if (val === q.correctIndex) {
+                    label.classList.add('correct-answer');
+                } else if (val === selectedVal) {
+                    label.classList.add('wrong-answer');
+                }
+            });
+        } else if (qType === 'short_answer') {
+            const input = document.querySelector(`input[name="question_${q.id}"]`);
+            input.disabled = true;
+            const container = input.closest('.short-answer-container');
+            const resDiv = container.querySelector('.practice-result');
+            resDiv.style.display = 'block';
+            if (selectedVal == q.correctAnswer) {
+                resDiv.textContent = 'Chính xác: ' + q.correctAnswer;
+                resDiv.style.color = 'var(--correct)';
+                input.style.borderColor = 'var(--correct)';
+            } else {
+                resDiv.textContent = 'Đáp án đúng: ' + q.correctAnswer + ' (Bạn nhập: ' + (selectedVal || 'trống') + ')';
+                resDiv.style.color = 'var(--wrong)';
+                input.style.borderColor = 'var(--wrong)';
             }
-            // Đánh dấu đáp án sai mà người dùng đã chọn
-            else if (val === selectedVal) {
-                label.classList.add('wrong-answer');
-            }
-        });
+        }
     });
 
     // Đổi nút nộp bài thành nút quay lại
