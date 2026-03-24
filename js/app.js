@@ -797,8 +797,19 @@ quizForm.addEventListener('submit', (e) => {
         }
     });
 
+    // Tính tổng số item cần chấm (bao gồm cả các câu hỏi con)
+    let totalItems = 0;
+    currentQuiz.questions.forEach(q => {
+        const qType = q.type || 'multiple_choice';
+        if (qType === 'true_false_group' || qType === 'reading_group') {
+            totalItems += q.subQuestions.length;
+        } else {
+            totalItems += 1;
+        }
+    });
+
     // Hiển thị kết quả lên màn hình Result
-    document.getElementById('scoreText').textContent = `${correct}/${currentQuiz.questions.length}`;
+    document.getElementById('scoreText').textContent = `${correct}/${totalItems}`;
     document.getElementById('correctCount').textContent = correct;
     document.getElementById('incorrectCount').textContent = incorrect;
 
