@@ -7,48 +7,48 @@ const mockQuizzes = [
         description: "Đề ôn tập giữa kỳ 2 môn Tiếng Anh lớp 11 (Phonetics, Stress, Vocabulary & Grammar).",
         questions: [
             // PHONETICS
-            { id: "q1", text: "PHONETICS - Choose the word whose underlined part is pronounced differently:", options: ["A. heritage", "B. historic", "C. honor", "D. habitat"], correctIndex: 2 },
-            { id: "q2", text: "PHONETICS - Choose the word whose underlined part is pronounced differently:", options: ["A. ancient", "B. preserve", "C. relic", "D. setting"], correctIndex: 0 },
-            { id: "q3", text: "PHONETICS - Choose the word whose underlined part is pronounced differently:", options: ["A. degree", "B. apprentice", "C. college", "D. university"], correctIndex: 1 },
-            { id: "q4", text: "PHONETICS - Choose the word whose underlined part is pronounced differently:", options: ["A. choice", "B. chance", "C. character", "D. chair"], correctIndex: 2 },
-            { id: "q5", text: "PHONETICS - Choose the word whose underlined part is pronounced differently:", options: ["A. decide", "B. depend", "C. develop", "D. dedicated"], correctIndex: 3 },
-            { id: "q6", text: "PHONETICS - Choose the word whose underlined part is pronounced differently:", options: ["A. rise", "B. skill", "C. time", "D. life"], correctIndex: 1 },
-            { id: "q7", text: "PHONETICS - Choose the word whose underlined part is pronounced differently:", options: ["A. ancient", "B. landscape", "C. valley", "D. state"], correctIndex: 2 },
-            { id: "q8", text: "PHONETICS - Choose the word whose underlined part is pronounced differently:", options: ["A. mechanic", "B. choice", "C. chance", "D. change"], correctIndex: 0 },
+            { id: "q1", section: "PHONETICS", text: "", options: ["A. <u>h</u>eritage", "B. <u>h</u>istoric", "C. <u>h</u>onor", "D. <u>h</u>abitat"], correctIndex: 2 },
+            { id: "q2", section: "PHONETICS", text: "", options: ["A. <u>a</u>ncient", "B. pr<u>e</u>serve", "C. r<u>e</u>lic", "D. s<u>e</u>tting"], correctIndex: 0 },
+            { id: "q3", section: "PHONETICS", text: "", options: ["A. d<u>e</u>gree", "B. appr<u>e</u>ntice", "C. coll<u>e</u>ge", "D. univ<u>e</u>rsity"], correctIndex: 1 },
+            { id: "q4", section: "PHONETICS", text: "", options: ["A. <u>ch</u>oice", "B. <u>ch</u>ance", "C. <u>ch</u>aracter", "D. <u>ch</u>air"], correctIndex: 2 },
+            { id: "q5", section: "PHONETICS", text: "", options: ["A. d<u>e</u>cide", "B. d<u>e</u>pend", "C. d<u>e</u>velop", "D. d<u>e</u>dicated"], correctIndex: 3 },
+            { id: "q6", section: "PHONETICS", text: "", options: ["A. r<u>i</u>se", "B. sk<u>i</u>ll", "C. t<u>i</u>me", "D. l<u>i</u>fe"], correctIndex: 1 },
+            { id: "q7", section: "PHONETICS", text: "", options: ["A. <u>a</u>ncient", "B. l<u>a</u>ndscape", "C. v<u>a</u>lley", "D. st<u>a</u>te"], correctIndex: 2 },
+            { id: "q8", section: "PHONETICS", text: "", options: ["A. me<u>ch</u>anic", "B. <u>ch</u>oice", "C. <u>ch</u>ance", "D. <u>ch</u>ange"], correctIndex: 0 },
             
             // STRESS
-            { id: "q9", text: "STRESS - Choose the word that has a different stress pattern:", options: ["A. routine", "B. laundry", "C. household", "D. budget"], correctIndex: 0 },
-            { id: "q10", text: "STRESS - Choose the word that has a different stress pattern:", options: ["A. independent", "B. irresponsible", "C. intermediate", "D. individual"], correctIndex: 1 },
-            { id: "q11", text: "STRESS - Choose the word that has a different stress pattern:", options: ["A. manage", "B. master", "C. polite", "D. student"], correctIndex: 2 },
-            { id: "q12", text: "STRESS - Choose the word that has a different stress pattern:", options: ["A. academic", "B. vocational", "C. professional", "D. responsible"], correctIndex: 0 },
-            { id: "q13", text: "STRESS - Choose the word that has a different stress pattern:", options: ["A. temple", "B. relic", "C. complex", "D. suggest"], correctIndex: 3 },
-            { id: "q14", text: "STRESS - Choose the word that has a different stress pattern:", options: ["A. recognize", "B. monument", "C. recommend", "D. landscape"], correctIndex: 2 },
+            { id: "q9", section: "STRESS", text: "", options: ["A. routine", "B. laundry", "C. household", "D. budget"], correctIndex: 0 },
+            { id: "q10", section: "STRESS", text: "", options: ["A. independent", "B. irresponsible", "C. intermediate", "D. individual"], correctIndex: 1 },
+            { id: "q11", section: "STRESS", text: "", options: ["A. manage", "B. master", "C. polite", "D. student"], correctIndex: 2 },
+            { id: "q12", section: "STRESS", text: "", options: ["A. academic", "B. vocational", "C. professional", "D. responsible"], correctIndex: 0 },
+            { id: "q13", section: "STRESS", text: "", options: ["A. temple", "B. relic", "C. complex", "D. suggest"], correctIndex: 3 },
+            { id: "q14", section: "STRESS", text: "", options: ["A. recognize", "B. monument", "C. recommend", "D. landscape"], correctIndex: 2 },
             
             // VOCABULARY AND GRAMMAR
-            { id: "q15", text: "The Citadel of the Ho Dynasty was ______ as a World Heritage Site in 2011.", options: ["A. recognized", "B. performed", "C. restored", "D. protected"], correctIndex: 0 },
-            { id: "q16", text: "It is important to ______ our traditional music so that future generations can enjoy it.", options: ["A. damage", "B. preserve", "C. ignore", "D. replace"], correctIndex: 1 },
-            { id: "q17", text: "______ the ancient temple, we were amazed by the intricate carvings.", options: ["A. Visit", "B. Visiting", "C. Visited", "D. To visiting"], correctIndex: 1 },
-            { id: "q18", text: "The ______ of the old palace took several years and cost millions of dollars.", options: ["A. restore", "B. restorative", "C. restoration", "D. restorer"], correctIndex: 2 },
-            { id: "q19", text: "Participating in the folk-singing club helps students contribute ______ the preservation of local culture.", options: ["A. in", "B. on", "C. to", "D. for"], correctIndex: 2 },
-            { id: "q20", text: "It was my mother ______ taught me how to cook when I was a child.", options: ["A. which", "B. whom", "C. that", "D. whose"], correctIndex: 2 },
-            { id: "q21", text: "______ in his financial report, he went to bed.", options: ["A. Having handed", "B. Handing", "C. To handing", "D. To hand"], correctIndex: 0 },
-            { id: "q22", text: "Scientists are trying to come up ______ new ways to reduce plastic waste in the oceans.", options: ["A. with", "B. on", "C. in", "D. by"], correctIndex: 0 },
-            { id: "q23", text: "Many school-leavers choose ______ education to learn practical skills for a specific job.", options: ["A. academic", "B. vocational", "C. secondary", "D. primary"], correctIndex: 1 },
-            { id: "q24", text: "After finishing high school, you can apply for an ______ to work and learn at the same time.", options: ["A. internship", "B. appointment", "C. application", "D. apprenticeship"], correctIndex: 3 },
-            { id: "q25", text: "______ hard for the entrance exam, she felt confident about her results.", options: ["A. Study", "B. Studying", "C. Studied", "D. To study"], correctIndex: 1 },
-            { id: "q26", text: "Higher education provides students with specialized ______ in various fields.", options: ["A. know", "B. knowledgeable", "C. knowledge", "D. known"], correctIndex: 2 },
-            { id: "q27", text: "Students often depend ______ their parents for financial support during their university years.", options: ["A. on", "B. in", "C. with", "D. at"], correctIndex: 0 },
-            { id: "q28", text: "It was the vintage car ______ my father bought at the auction last Sunday.", options: ["A. whose", "B. whom", "C. who", "D. that"], correctIndex: 3 },
-            { id: "q29", text: "______ for a gap year, he gained a lot of life experience before starting college.", options: ["A. Having opted", "B. To opting", "C. Opts", "D. To opt"], correctIndex: 0 },
-            { id: "q30", text: "To protect the environment, we should get ______ the habit of recycling our household waste every day.", options: ["A. into", "B. in", "C. on", "D. by"], correctIndex: 0 },
-            { id: "q31", text: "Learning how to ______ a budget is an essential life skill for teenagers.", options: ["A. make", "B. do", "C. manage", "D. carry"], correctIndex: 2 },
-            { id: "q32", text: "Teenagers should learn to be ______ so they don't have to rely on their parents for everything.", options: ["A. dependent", "B. self-reliant", "C. helpful", "D. curious"], correctIndex: 1 },
-            { id: "q33", text: "______ how to cook, Nam can now prepare healthy meals for himself.", options: ["A. Learn", "B. Learning", "C. Learned", "D. To learn"], correctIndex: 1 },
-            { id: "q34", text: "Developing time-management skills is key to your ______.", options: ["A. independent", "B. independence", "C. independently", "D. independed"], correctIndex: 1 },
-            { id: "q35", text: "Parents should encourage their children to take responsibility ______ their own actions.", options: ["A. with", "B. for", "C. in", "D. to"], correctIndex: 1 },
-            { id: "q36", text: "It was in 2010 ______ they first met each other in London.", options: ["A. that", "B. which", "C. when", "D. where"], correctIndex: 0 },
-            { id: "q37", text: "______ her household chores early, she had more time to study for the exam.", options: ["A. Having finished", "B. Finishing", "C. Finishes", "D. Finish"], correctIndex: 0 },
-            { id: "q38", text: "We should ______ the natural light to save energy in our classroom.", options: ["A. make use of", "B. come up with", "C. get into", "D. look forward to"], correctIndex: 0 }
+            { id: "q15", section: "VOCABULARY AND GRAMMAR", text: "The Citadel of the Ho Dynasty was ______ as a World Heritage Site in 2011.", options: ["A. recognized", "B. performed", "C. restored", "D. protected"], correctIndex: 0 },
+            { id: "q16", section: "VOCABULARY AND GRAMMAR", text: "It is important to ______ our traditional music so that future generations can enjoy it.", options: ["A. damage", "B. preserve", "C. ignore", "D. replace"], correctIndex: 1 },
+            { id: "q17", section: "VOCABULARY AND GRAMMAR", text: "______ the ancient temple, we were amazed by the intricate carvings.", options: ["A. Visit", "B. Visiting", "C. Visited", "D. To visiting"], correctIndex: 1 },
+            { id: "q18", section: "VOCABULARY AND GRAMMAR", text: "The ______ of the old palace took several years and cost millions of dollars.", options: ["A. restore", "B. restorative", "C. restoration", "D. restorer"], correctIndex: 2 },
+            { id: "q19", section: "VOCABULARY AND GRAMMAR", text: "Participating in the folk-singing club helps students contribute ______ the preservation of local culture.", options: ["A. in", "B. on", "C. to", "D. for"], correctIndex: 2 },
+            { id: "q20", section: "VOCABULARY AND GRAMMAR", text: "It was my mother ______ taught me how to cook when I was a child.", options: ["A. which", "B. whom", "C. that", "D. whose"], correctIndex: 2 },
+            { id: "q21", section: "VOCABULARY AND GRAMMAR", text: "______ in his financial report, he went to bed.", options: ["A. Having handed", "B. Handing", "C. To handing", "D. To hand"], correctIndex: 0 },
+            { id: "q22", section: "VOCABULARY AND GRAMMAR", text: "Scientists are trying to come up ______ new ways to reduce plastic waste in the oceans.", options: ["A. with", "B. on", "C. in", "D. by"], correctIndex: 0 },
+            { id: "q23", section: "VOCABULARY AND GRAMMAR", text: "Many school-leavers choose ______ education to learn practical skills for a specific job.", options: ["A. academic", "B. vocational", "C. secondary", "D. primary"], correctIndex: 1 },
+            { id: "q24", section: "VOCABULARY AND GRAMMAR", text: "After finishing high school, you can apply for an ______ to work and learn at the same time.", options: ["A. internship", "B. appointment", "C. application", "D. apprenticeship"], correctIndex: 3 },
+            { id: "q25", section: "VOCABULARY AND GRAMMAR", text: "______ hard for the entrance exam, she felt confident about her results.", options: ["A. Study", "B. Studying", "C. Studied", "D. To study"], correctIndex: 1 },
+            { id: "q26", section: "VOCABULARY AND GRAMMAR", text: "Higher education provides students with specialized ______ in various fields.", options: ["A. know", "B. knowledgeable", "C. knowledge", "D. known"], correctIndex: 2 },
+            { id: "q27", section: "VOCABULARY AND GRAMMAR", text: "Students often depend ______ their parents for financial support during their university years.", options: ["A. on", "B. in", "C. with", "D. at"], correctIndex: 0 },
+            { id: "q28", section: "VOCABULARY AND GRAMMAR", text: "It was the vintage car ______ my father bought at the auction last Sunday.", options: ["A. whose", "B. whom", "C. who", "D. that"], correctIndex: 3 },
+            { id: "q29", section: "VOCABULARY AND GRAMMAR", text: "______ for a gap year, he gained a lot of life experience before starting college.", options: ["A. Having opted", "B. To opting", "C. Opts", "D. To opt"], correctIndex: 0 },
+            { id: "q30", section: "VOCABULARY AND GRAMMAR", text: "To protect the environment, we should get ______ the habit of recycling our household waste every day.", options: ["A. into", "B. in", "C. on", "D. by"], correctIndex: 0 },
+            { id: "q31", section: "VOCABULARY AND GRAMMAR", text: "Learning how to ______ a budget is an essential life skill for teenagers.", options: ["A. make", "B. do", "C. manage", "D. carry"], correctIndex: 2 },
+            { id: "q32", section: "VOCABULARY AND GRAMMAR", text: "Teenagers should learn to be ______ so they don't have to rely on their parents for everything.", options: ["A. dependent", "B. self-reliant", "C. helpful", "D. curious"], correctIndex: 1 },
+            { id: "q33", section: "VOCABULARY AND GRAMMAR", text: "______ how to cook, Nam can now prepare healthy meals for himself.", options: ["A. Learn", "B. Learning", "C. Learned", "D. To learn"], correctIndex: 1 },
+            { id: "q34", section: "VOCABULARY AND GRAMMAR", text: "Developing time-management skills is key to your ______.", options: ["A. independent", "B. independence", "C. independently", "D. independed"], correctIndex: 1 },
+            { id: "q35", section: "VOCABULARY AND GRAMMAR", text: "Parents should encourage their children to take responsibility ______ their own actions.", options: ["A. with", "B. for", "C. in", "D. to"], correctIndex: 1 },
+            { id: "q36", section: "VOCABULARY AND GRAMMAR", text: "It was in 2010 ______ they first met each other in London.", options: ["A. that", "B. which", "C. when", "D. where"], correctIndex: 0 },
+            { id: "q37", section: "VOCABULARY AND GRAMMAR", text: "______ her household chores early, she had more time to study for the exam.", options: ["A. Having finished", "B. Finishing", "C. Finishes", "D. Finish"], correctIndex: 0 },
+            { id: "q38", section: "VOCABULARY AND GRAMMAR", text: "We should ______ the natural light to save energy in our classroom.", options: ["A. make use of", "B. come up with", "C. get into", "D. look forward to"], correctIndex: 0 }
         ]
     }
 ];
@@ -107,12 +107,32 @@ window.startQuiz = function(quizId) {
 // === KIẾN TẠO GIAO DIỆN CÂU HỎI TRONG ĐỀ ===
 function renderQuestions() {
     questionsContainer.innerHTML = '';
+    let currentSection = "";
+
     currentQuiz.questions.forEach((q, index) => {
+        // Render phần tiêu đề nhóm câu hỏi nếu có
+        if (q.section && q.section !== currentSection) {
+            const secHeader = document.createElement('h3');
+            secHeader.className = 'section-title';
+            secHeader.style.marginTop = '32px';
+            secHeader.style.marginBottom = '16px';
+            secHeader.style.color = 'var(--primary)';
+            secHeader.style.textTransform = 'uppercase';
+            secHeader.textContent = q.section;
+            questionsContainer.appendChild(secHeader);
+            currentSection = q.section;
+        }
+
         const qBlock = document.createElement('div');
         qBlock.className = 'question-card';
         
         const qTitle = document.createElement('h4');
-        qTitle.textContent = `Câu ${index + 1}: ${q.text}`;
+        if (q.text) {
+            qTitle.innerHTML = `Câu ${index + 1}: ${q.text}`;
+        } else {
+            qTitle.innerHTML = `Câu ${index + 1}:`;
+            qTitle.style.marginBottom = '12px'; // Giảm khoảng cách nếu không có nội dung chữ dài
+        }
         qBlock.appendChild(qTitle);
         
         const optionsList = document.createElement('div');
