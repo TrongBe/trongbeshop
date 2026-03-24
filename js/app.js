@@ -180,24 +180,30 @@ window.startQuiz = async function (quizId) {
         if (!Array.isArray(viewedQuizzes)) viewedQuizzes = [];
 
         if (!viewedQuizzes.includes(quizId)) {
-            const quizRef = doc(db, "quizzes", quizId);
-            const quizSnap = await getDoc(quizRef);
-            if (quizSnap.exists()) {
-                await updateDoc(quizRef, { views: increment(1) });
-            } else {
-                await setDoc(quizRef, { views: 1 });
-            }
-
-            // Lưu vào localStorage để không tăng lượt xem lần sau
+            // Đánh dấu đã xem ngay lập tức để chặn các yêu cầu trùng lặp (tránh race condition)
             viewedQuizzes.push(quizId);
             localStorage.setItem('viewedQuizzes', JSON.stringify(viewedQuizzes));
 
-            // Cập nhật UI ngay lập tức
-            const viewEl = document.getElementById(`views-${quizId}`);
-            if (viewEl) {
-                const currentViewsMatch = viewEl.innerText.match(/\d+/);
-                const currentViews = currentViewsMatch ? parseInt(currentViewsMatch[0]) : 0;
-                viewEl.innerHTML = `👁️ Lượt truy cập: <strong>${currentViews + 1}</strong>`;
+            const quizRef = doc(db, "quizzes", quizId);
+            try {
+                // Tăng lượt xem trên Firebase
+                const quizSnap = await getDoc(quizRef);
+                if (quizSnap.exists()) {
+                    await updateDoc(quizRef, { views: increment(1) });
+                } else {
+                    await setDoc(quizRef, { views: 1 });
+                }
+
+                // Cập nhật UI ngay lập tức
+                const viewEl = document.getElementById(`views-${quizId}`);
+                if (viewEl) {
+                    const currentViewsMatch = viewEl.innerText.match(/\d+/);
+                    const currentViews = currentViewsMatch ? parseInt(currentViewsMatch[0]) : 0;
+                    viewEl.innerHTML = `👁️ Lượt truy cập: <strong>${currentViews + 1}</strong>`;
+                }
+            } catch (error) {
+                console.error("Lỗi khi cập nhật view:", error);
+                // Nếu lỗi, có thể cân nhắc xóa khỏi localStorage để cho phép thử lại
             }
         }
     } catch (e) {
