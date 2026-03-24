@@ -68,7 +68,9 @@ const mockQuizzes = [
             { id: "q35", section: "VOCABULARY AND GRAMMAR", text: "Parents should encourage their children to take responsibility ______ their own actions.", options: ["A. with", "B. for", "C. in", "D. to"], correctIndex: 1 },
             { id: "q36", section: "VOCABULARY AND GRAMMAR", text: "It was in 2010 ______ they first met each other in London.", options: ["A. that", "B. which", "C. when", "D. where"], correctIndex: 0 },
             { id: "q37", section: "VOCABULARY AND GRAMMAR", text: "______ her household chores early, she had more time to study for the exam.", options: ["A. Having finished", "B. Finishing", "C. Finishes", "D. Finish"], correctIndex: 0 },
-            { id: "q38", section: "VOCABULARY AND GRAMMAR", text: "We should ______ the natural light to save energy in our classroom.", options: ["A. make use of", "B. come up with", "C. get into", "D            // ANNOUNCEMENT/ADVERTISEMENT/LEAFLET (Unit 6)
+            { id: "q38", section: "VOCABULARY AND GRAMMAR", text: "We should ______ the natural light to save energy in our classroom.", options: ["A. make use of", "B. come up with", "C. get into", "D. look forward to"], correctIndex: 0 },
+
+            // ANNOUNCEMENT/ADVERTISEMENT/LEAFLET (Unit 6)
             {
                 id: "q39_41_group",
                 section: "ANNOUNCEMENT/ADVERTISEMENT/LEAFLET",
@@ -139,7 +141,6 @@ const mockQuizzes = [
                     { id: "q56", text: "(25)", options: ["A. teach", "B. teaches", "C. teaching", "D. taught"], correctIndex: 1 }
                 ]
             },
-"A. teach", "B. teaches", "C. teaching", "D. taught"], correctIndex: 1 },
 
             // TEXT ARRANGEMENT
             { id: "q57", section: "TEXT ARRANGEMENT", text: "Question 26 - Unit 6:<br>a. Finally, digital technology can help document and store these values for the future.<br>b. Preserving our cultural heritage is essential for maintaining our identity.<br>c. Secondly, local communities should be encouraged to participate in restoration projects.<br>d. First, we need to raise awareness among young people about the value of ancient relics.", options: ["A. b-d-c-a", "B. b-c-a-d", "C. d-a-c-b", "D. d-b-a-c"], correctIndex: 0 },
@@ -147,10 +148,12 @@ const mockQuizzes = [
             { id: "q59", section: "TEXT ARRANGEMENT", text: "Question 26 - Unit 7:<br>a. Moreover, university life helps students develop soft skills like teamwork and leadership.<br>b. Pursuing higher education offers many benefits for school-leavers.<br>c. In conclusion, whether it's a degree or a trade, further study is a key to success.<br>d. Firstly, it provides the necessary qualifications for a professional career.", options: ["A. b-d-a-c", "B. b-c-a-d", "C. d-a-c-b", "D. a-b-c-d"], correctIndex: 0 },
             { id: "q60", section: "TEXT ARRANGEMENT", text: "Question 27 - Unit 7:<br>a. Our vocational school offers various courses in IT and mechanics.<br>b. Want to start your career early?<br>c. Contact us today for more information about the new semester!", options: ["A. b-a-c", "B. a-b-c", "C. c-b-a", "D. b-c-a"], correctIndex: 0 },
             { id: "q61", section: "TEXT ARRANGEMENT", text: "Question 26 - Unit 8:<br>a. In addition, knowing how to manage money prevents you from getting into debt.<br>b. Being independent requires a set of essential life skills.<br>c. Finally, time management allows you to balance work and relaxation effectively.<br>d. For instance, cooking for yourself ensures you have a healthy diet.", options: ["A. b-d-a-c", "B. b-c-a-d", "C. d-a-c-b", "D. a-b-c-d"], correctIndex: 0 },
-            { id: "q62", section: "TEXT ARRANGEMENT", text: "Question 27 - Unit 8:<br>a. Learn to cook, clean, and manage your budget with our experts.<br>b. Do you want to live on your own confidently?<br>c. Sign up for our 'Life Skills for Teens' workshop this summer!", option            // READING (Unit 6)
+            { id: "q62", section: "TEXT ARRANGEMENT", text: "Question 27 - Unit 8:<br>a. Learn to cook, clean, and manage your budget with our experts.<br>b. Do you want to live on your own confidently?<br>c. Sign up for our 'Life Skills for Teens' workshop this summer!", options: ["A. b-a-c", "B. a-b-c", "C. b-c-a", "D. c-a-b"], correctIndex: 0 },
+
+            // READING
             {
                 id: "reading_unit6",
-                section: "READING (Unit 6)",
+                section: "READING",
                 type: "reading_group",
                 passage: "<strong>THE CHALLENGE OF PRESERVING OUR HERITAGE</strong><br>Preserving our heritage is a vital goal for every nation as it moves toward a more modernized and globalized future. Cultural heritage includes not only physical monuments and ancient relics, but also intangible values such as traditional music, stories, and customs that form the core of a country's identity. However, this process faces significant challenges from both external and internal factors. Externally, the rise of mass tourism can sometimes lead to the commercialization of heritage sites, where local traditions are changed to satisfy tourists, resulting in what some call 'fake traditions.' Internally, there is often a lack of awareness among the younger generation about the importance of their roots. Many teenagers feel the pressure of modern social media trends and may overlook the values that have shaped their society for centuries. To address these issues, sustainable tourism models should be promoted, ensuring that sites remain in their original state while providing economic benefits to local communities. Moreover, education plays a key role, as it helps young people recognize that preserving heritage is not about living in the past, but about building pride and confidence for the future.",
                 subQuestions: [
@@ -161,11 +164,10 @@ const mockQuizzes = [
                     { id: "q67", text: "Question 5: Which of the following is NOT true according to the passage?", options: ["A. Preserving heritage helps young people build pride in their roots.", "B. Modern commercialization can sometimes lead to 'fake traditions.'", "C. Only the government is responsible for protecting historical monuments.", "D. Teenagers can contribute to preservation through small actions like visiting museums."], correctIndex: 2 }
                 ]
             },
-
             // READING (Unit 7)
             {
                 id: "reading_unit7",
-                section: "READING (Unit 7)",
+                section: "READING",
                 type: "reading_group",
                 passage: "<strong>EDUCATION PATHWAYS FOR SCHOOL-LEAVERS</strong><br>After finishing high school, many students face the difficult and often stressful choice between pursuing a university degree or choosing vocational education. This critical transition involves much more than just picking a subject; it requires young people to evaluate their personal strengths and long-term career aspirations. For those seeking professional careers in fields like law, medicine, or engineering, a university degree is often the necessary pathway. It provides a broad academic foundation and specialized knowledge that are recognized globally. However, vocational education is becoming increasingly popular as it offers hands-on training for specific trades, such as IT, mechanics, or hospitality. They focus on preparing students to enter the workforce earlier with practical skills that are in high demand. Another option for some school-leavers is taking a 'gap year,' during which they travel, volunteer, or work part-time. This can be beneficial for gaining maturity and a better understanding of themselves before committing to further study. Regardless of the chosen path, the most important factor is the willingness to engage in lifelong learning, as the modern job market is constantly evolving and requires people to adapt new skills throughout their lives.",
                 subQuestions: [
@@ -176,11 +178,10 @@ const mockQuizzes = [
                     { id: "q72", text: "Question 5: Which of the following is NOT true according to the passage?", options: ["A. University is suitable for those seeking professional careers like law or medicine.", "B. Vocational education often leads to entering the workforce earlier.", "C. Family expectations never influence a student's choice of career.", "D. Lifelong learning is necessary in today's fast-changing job market."], correctIndex: 2 }
                 ]
             },
-
             // READING (Unit 8)
             {
                 id: "reading_unit8",
-                section: "READING (Unit 8)",
+                section: "READING",
                 type: "reading_group",
                 passage: "<strong>BECOMING INDEPENDENT</strong><br>Becoming independent is a vital goal for most teenagers as they move toward adulthood. This process involves learning how to manage daily tasks and making important decisions without always relying on parents. It is a journey that requires time-management skills, financial literacy, and self-reliance. For instance, being able to cook healthy meals and keep a clean living space are basic steps toward independence. Moreover, learning to manage a budget is essential, as it prevents young people from getting into debt and helps them live within their means. However, the path to independence is often filled with challenges. Many teenagers face internal pressure, such as anxiety about making mistakes or feeling overwhelmed by responsibilities. External factors, such as peer pressure or overprotective parents who prevent their children from making their own choices, can also hinder the development of these skills. To overcome which, teenagers should be encouraged to take on more responsibilities at home and in their communities. Recognizing the importance of life skills through workshops and social activities can help young people build the confidence they need to live responsibly and successfully as adults.",
                 subQuestions: [
@@ -191,7 +192,6 @@ const mockQuizzes = [
                     { id: "q77", text: "Question 5: Which of the following is NOT true according to the passage?", options: ["A. Teenagers face challenges in both internal and external factors.", "B. Social media pressure can make young people feel overwhelmed.", "C. Vietnam has fully adapted its strategies to address independence.", "D. Recognizing the importance of life skills can help teenagers live responsibly."], correctIndex: 2 }
                 ]
             }
-ing the importance of life skills can help teenagers live responsibly."], correctIndex: 2 }
         ]
     },
     {
