@@ -452,6 +452,7 @@ document.getElementById('btnConfirmStart').onclick = async function () {
     }
 
     currentQuizTitle.textContent = currentQuiz.title;
+    resetScoreCircle();
     renderQuestions();
     showView('active');
 
@@ -787,6 +788,19 @@ quizForm.addEventListener('submit', (e) => {
     const unansweredEl = document.getElementById('unansweredCount');
     if (unansweredEl) unansweredEl.textContent = unanswered;
 
+    // Cập nhật biểu đồ vòng tròn
+    const circle = document.querySelector('.score-circle');
+    const correctP = (correct / totalItems) * 100;
+    const incorrectP = (incorrect / totalItems) * 100;
+    const unansweredP = (unanswered / totalItems) * 100;
+
+    circle.style.background = `conic-gradient(
+        var(--secondary) 0% ${correctP}%, 
+        var(--danger) ${correctP}% ${correctP + incorrectP}%, 
+        #f59e0b ${correctP + incorrectP}% ${correctP + incorrectP + unansweredP}%, 
+        #E5E7EB ${correctP + incorrectP + unansweredP}% 100%
+    )`;
+
     showView('result');
 });
 
@@ -809,6 +823,7 @@ document.getElementById('btnRetry').addEventListener('click', () => {
     currentQuiz.questions = shuffleQuestionsBySection(currentQuiz.questions);
 
     // Gọi lại renderQuestions để xóa các class correct-answer/wrong-answer và bật lại input
+    resetScoreCircle();
     renderQuestions();
     showView('active');
 });
