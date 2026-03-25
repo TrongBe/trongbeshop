@@ -915,6 +915,13 @@ function highlightSubAnswer(sq, container, radio, selectedVal = null) {
     }
 }
 
+function resetScoreCircle() {
+    const circle = document.querySelector('.score-circle');
+    if (circle) {
+        circle.style.background = '#E5E7EB';
+    }
+}
+
 // === LOGIC XÁC THỰC (AUTHENTICATION) ===
 // Đã được gỡ bỏ theo yêu cầu
 
