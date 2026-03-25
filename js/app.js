@@ -113,7 +113,7 @@ const mockQuizzes = [
                 passage: "<strong>VOCATIONAL COLLEGE ADMISSIONS</strong><br>Why choose us?<br>• We provide (23) _____ support for students in need.<br>• (24) _____ modern facilities including labs and workshops.<br>• Our college (25) _____ a wide range of short-term courses.",
                 subQuestions: [
                     { id: "q48", text: "(23)", options: ["A. finance", "B. financial", "C. financially", "D. financier"], correctIndex: 1 },
-                    { id: "q49", text: "(24)", options: ["A. many", "B. a lot of", "C. number of", "D. few"], correctIndex: 1 },
+                    { id: "q49", text: "(24)", options: ["A. many", "B. a lot of", "C. number of", "D. few"], correctIndex: 0 },
                     { id: "q50", text: "(25)", options: ["A. offer", "B. offers", "C. offering", "D. offered"], correctIndex: 1 }
                 ]
             },
@@ -887,7 +887,7 @@ function highlightSubAnswer(sq, container, radio, selectedVal = null) {
     radios.forEach(r => r.disabled = true);
     const label = radio.closest('label');
     const row = radio.closest('tr');
-    
+
     if (radio.value === sq.correctAnswer || (selectedVal !== null && selectedVal === sq.correctAnswer)) {
         // Find correct radio in row
         const correctRadio = row.querySelector(`input[value="${sq.correctAnswer}"]`);
