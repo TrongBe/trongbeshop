@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
-import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, collection, getDocs, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-import { getDatabase, ref, onValue, set, runTransaction } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+import { getDatabase, ref, onValue, runTransaction } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAAEI9nMEMfUwbGbPHTyGRJ2dAfBRW7_Fo",
@@ -15,8 +15,8 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-const db = getFirestore(app);
 const dbRT = getDatabase(app);
+// Firestore (db) is not currently used for main quiz logic, only RTDB for views.
 
 // === MOCK DATA: BỘ ĐỀ MẪU ===
 // Bạn có thể dễ dàng thêm hoặc thay đổi câu hỏi tại đây
@@ -545,17 +545,7 @@ function renderQuestions() {
                 const radio = label.querySelector('input');
                 radio.addEventListener('change', () => {
                     if (quizForm.dataset.quizMode === 'practice') {
-                        const allInputs = optionsList.querySelectorAll('input');
-                        allInputs.forEach(input => {
-                            input.disabled = true;
-                            const parentLabel = input.closest('label');
-                            const val = parseInt(input.value);
-                            if (val === q.correctIndex) {
-                                parentLabel.classList.add('correct-answer');
-                            } else if (input.checked) {
-                                parentLabel.classList.add('wrong-answer');
-                            }
-                        });
+                        highlightAnswer(q, optionsList);
                     }
                 });
                 optionsList.appendChild(label);
@@ -604,16 +594,7 @@ function renderQuestions() {
                     const radios = table.querySelectorAll(`input[name="question_${q.id}_${sq.id}"]`);
                     radios.forEach(radio => {
                         radio.addEventListener('change', () => {
-                            radios.forEach(r => r.disabled = true);
-                            const label = radio.closest('label');
-                            const row = radio.closest('tr');
-                            if (radio.value === sq.correctAnswer) {
-                                label.classList.add('correct-answer-circle');
-                            } else {
-                                label.classList.add('wrong-answer-circle');
-                                const correctRadio = row.querySelector(`input[value="${sq.correctAnswer}"]`);
-                                correctRadio.closest('label').classList.add('correct-answer-circle');
-                            }
+                            highlightSubAnswer(sq, table, radio);
                         });
                     });
                 });
@@ -664,17 +645,7 @@ function renderQuestions() {
                     const radio = label.querySelector('input');
                     radio.addEventListener('change', () => {
                         if (quizForm.dataset.quizMode === 'practice') {
-                            const allInputs = subOptionsList.querySelectorAll('input');
-                            allInputs.forEach(input => {
-                                input.disabled = true;
-                                const parentLabel = input.closest('label');
-                                const val = parseInt(input.value);
-                                if (val === subQ.correctIndex) {
-                                    parentLabel.classList.add('correct-answer');
-                                } else if (input.checked) {
-                                    parentLabel.classList.add('wrong-answer');
-                                }
-                            });
+                            highlightAnswer(subQ, subOptionsList);
                         }
                     });
                     subOptionsList.appendChild(label);
@@ -850,59 +821,19 @@ document.getElementById('btnReview').addEventListener('click', () => {
 
         if (qType === 'multiple_choice' || qType === 'true_false') {
             const selectedVal = userAnswers[q.id];
-            const inputs = document.querySelectorAll(`input[name="question_${q.id}"]`);
-            inputs.forEach(input => {
-                input.disabled = true;
-                const label = input.closest('label');
-                const val = parseInt(input.value);
-                if (val === q.correctIndex) {
-                    label.classList.add('correct-answer');
-                } else if (val === selectedVal) {
-                    label.classList.add('wrong-answer');
-                }
-            });
+            const container = questionsContainer.querySelector(`input[name="question_${q.id}"]`).closest('.options-list');
+            highlightAnswer(q, container, selectedVal);
         } else if (qType === 'true_false_group') {
             q.subQuestions.forEach(sq => {
                 const selectedVal = userAnswers[`${q.id}_${sq.id}`];
-                const radios = document.querySelectorAll(`input[name="question_${q.id}_${sq.id}"]`);
-                radios.forEach(radio => {
-                    radio.disabled = true;
-                    const label = radio.closest('label');
-                    if (radio.value === sq.correctAnswer) {
-                        label.classList.add('correct-answer-circle');
-                    } else if (radio.value === selectedVal) {
-                        label.classList.add('wrong-answer-circle');
-                    }
-                });
-            });
-        } else if (qType === 'true_false_group') {
-            q.subQuestions.forEach(sq => {
-                const selectedVal = userAnswers[`${q.id}_${sq.id}`];
-                const radios = document.querySelectorAll(`input[name="question_${q.id}_${sq.id}"]`);
-                radios.forEach(radio => {
-                    radio.disabled = true;
-                    const label = radio.closest('label');
-                    if (radio.value === sq.correctAnswer) {
-                        label.classList.add('correct-answer-circle');
-                    } else if (radio.value === selectedVal) {
-                        label.classList.add('wrong-answer-circle');
-                    }
-                });
+                const radio = questionsContainer.querySelector(`input[name="question_${q.id}_${sq.id}"]`);
+                highlightSubAnswer(sq, radio.closest('table'), radio, selectedVal);
             });
         } else if (qType === 'reading_group') {
             q.subQuestions.forEach(subQ => {
                 const selectedVal = userAnswers[subQ.id];
-                const inputs = document.querySelectorAll(`input[name="question_${subQ.id}"]`);
-                inputs.forEach(input => {
-                    input.disabled = true;
-                    const label = input.closest('label');
-                    const val = parseInt(input.value);
-                    if (val === subQ.correctIndex) {
-                        label.classList.add('correct-answer');
-                    } else if (val === selectedVal) {
-                        label.classList.add('wrong-answer');
-                    }
-                });
+                const container = questionsContainer.querySelector(`input[name="question_${subQ.id}"]`).closest('.options-list');
+                highlightAnswer(subQ, container, selectedVal);
             });
         } else if (qType === 'short_answer') {
             const selectedVal = userAnswers[q.id];
@@ -935,6 +866,39 @@ document.getElementById('btnReview').addEventListener('click', () => {
 document.getElementById('btnBackToMenuFromResult').addEventListener('click', () => {
     showView('list');
 });
+
+// === HELPER FUNCTIONS FOR HIGHLIGHTING ===
+function highlightAnswer(q, container, selectedVal = null) {
+    const inputs = container.querySelectorAll('input');
+    inputs.forEach(input => {
+        input.disabled = true;
+        const label = input.closest('label');
+        const val = parseInt(input.value);
+        if (val === q.correctIndex) {
+            label.classList.add('correct-answer');
+        } else if (input.checked || (selectedVal !== null && val === selectedVal)) {
+            label.classList.add('wrong-answer');
+        }
+    });
+}
+
+function highlightSubAnswer(sq, container, radio, selectedVal = null) {
+    const radios = container.querySelectorAll(`input[name="${radio.name}"]`);
+    radios.forEach(r => r.disabled = true);
+    const label = radio.closest('label');
+    const row = radio.closest('tr');
+    
+    if (radio.value === sq.correctAnswer || (selectedVal !== null && selectedVal === sq.correctAnswer)) {
+        // Find correct radio in row
+        const correctRadio = row.querySelector(`input[value="${sq.correctAnswer}"]`);
+        correctRadio.closest('label').classList.add('correct-answer-circle');
+    } else {
+        const currentLabel = selectedVal !== null ? row.querySelector(`input[value="${selectedVal}"]`).closest('label') : label;
+        currentLabel.classList.add('wrong-answer-circle');
+        const correctRadio = row.querySelector(`input[value="${sq.correctAnswer}"]`);
+        correctRadio.closest('label').classList.add('correct-answer-circle');
+    }
+}
 
 // === LOGIC XÁC THỰC (AUTHENTICATION) ===
 // Đã được gỡ bỏ theo yêu cầu
