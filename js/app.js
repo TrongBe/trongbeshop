@@ -326,6 +326,112 @@ const mockQuizzes = [
                 correctAnswer: "1"
             }
         ]
+    },
+    {
+        id: "cong_nghe_11_gk2",
+        title: "Công nghệ 11 - Giữa Kỳ II",
+        description: "Bộ đề ôn tập trắc nghiệm Công nghệ 11 - Giữa học kỳ 2 (Cơ khí động lực, Động cơ đốt trong).",
+        questions: [
+            // TRẮC NGHIỆM
+            { id: "tech_q1", section: "TRẮC NGHIỆM", type: "multiple_choice", text: "Máy phát điện là máy tĩnh tại sử dụng động cơ đốt trong, hãy cho biết máy phát điện <b>không</b> được sử dụng ở đâu?", options: ["A. Trạm điện dự phòng tại doanh nghiệp", "B. Trạm điện dự phòng tại trường học", "C. Trạm điện dự phòng tại trung tâm thương mại", "D. Trạm biến áp"], correctIndex: 3 },
+            { id: "tech_q2", section: "TRẮC NGHIỆM", type: "multiple_choice", text: "Hiện nay, nguồn động lực được sử dụng phổ biến là?", options: ["A. Động cơ hơi nước", "B. Động cơ đốt trong", "C. Động cơ phản lực", "D. Động cơ thủy lực"], correctIndex: 1 },
+            { id: "tech_q3", section: "TRẮC NGHIỆM", type: "multiple_choice", text: "Sơ đồ hệ thống cơ khí động lực là", options: ["A. Nguồn động lực → Máy công tác → Hệ thống truyền động", "B. Nguồn động lực → Hệ thống truyền động → Máy công tác", "C. Hệ thống truyền động → Nguồn động lực → Máy công tác", "D. Máy công tác → Hệ thống truyền động → Nguồn động lực"], correctIndex: 1 },
+            { id: "tech_q4", section: "TRẮC NGHIỆM", type: "multiple_choice", text: "Vai trò của nguồn động lực trong hệ thống cơ khí động lực là?", options: ["A. Sinh ra công suất và mômen", "B. Truyền và biến đổi số vòng quay, mômen", "C. Nhận năng lượng để thực hiện nhiệm vụ của hệ thống cơ khí động lực", "D. Vận chuyển con người và hàng hóa."], correctIndex: 0 },
+            { id: "tech_q5", section: "TRẮC NGHIỆM", type: "multiple_choice", text: "Công việc làm chặt đất là công việc chủ yếu của máy móc cơ khí động lực nào?", options: ["A. Máy đào", "B. Máy đầm", "C. Máy ủi", "D. Máy bơm"], correctIndex: 1 },
+            { id: "tech_q6", section: "TRẮC NGHIỆM", type: "multiple_choice", text: "Công việc bảo dưỡng, sửa chữa máy, thiết bị cơ khí động lực thường được thực hiện ở đâu?", options: ["A. Phòng thiết kế của các viện nghiên cứu, nhà máy sản xuất", "B. Các phân xưởng, nhà máy sản xuất", "C. Các dây chuyền lắp ráp của nhà máy sản xuất", "D. Các trạm hoặc phân xưởng bảo dưỡng"], correctIndex: 3 },
+            { id: "tech_q7", section: "TRẮC NGHIỆM", type: "multiple_choice", text: "Đâu <b>không phải</b> ngành nghề liên quan đến cơ khí động lực?", options: ["A. Thiết kế kĩ thuật cơ khí động lực", "B. Chế tạo máy thiết bị cơ khí động lực", "C. Lắp ráp máy, thiết bị cơ khí động lực", "D. Bảo dưỡng, sửa chữa máy, thiết bị điện"], correctIndex: 3 },
+            { id: "tech_q8", section: "TRẮC NGHIỆM", type: "multiple_choice", text: "Công việc lắp ráp máy, thiết bị cơ khí động lực thường được thực hiện ở đâu?", options: ["A. Phòng thiết kế của các viện nghiên cứu, nhà máy sản xuất", "B. Các phân xưởng, nhà máy sản xuất", "C. Các dây chuyền lắp ráp của nhà máy sản xuất", "D. Các trạm hoặc phân xưởng bảo dưỡng"], correctIndex: 2 },
+            { id: "tech_q9", section: "TRẮC NGHIỆM", type: "multiple_choice", text: "Nghề nghiệp của những người thực hiện công việc gia công, chế tạo, ... các máy móc, thiết bị thuộc lĩnh vực cơ khí động lực là?", options: ["A. Thiết kế kĩ thuật cơ khí động lực", "B. Chế tạo máy thiết bị cơ khí động lực", "C. Lắp ráp máy, thiết bị cơ khí động lực", "D. Bảo dưỡng, sửa chữa máy, thiết bị cơ khí động lực"], correctIndex: 1 },
+            { id: "tech_q10", section: "TRẮC NGHIỆM", type: "multiple_choice", text: "Nghề nghiệp của những người thực hiện công việc xây dựng các bản vẽ, tính toán, mô phỏng,... các sản phẩm máy móc, thiết bị thuộc lĩnh vực cơ khí động lực là?", options: ["A. Thiết kế kĩ thuật cơ khí động lực", "B. Chế tạo máy thiết bị cơ khí động lực", "C. Lắp ráp máy, thiết bị cơ khí động lực", "D. Bảo dưỡng, sửa chữa máy, thiết bị cơ khí động lực"], correctIndex: 0 },
+            { id: "tech_q11", section: "TRẮC NGHIỆM", type: "multiple_choice", text: "Động cơ đốt trong <b>không</b> giữ vai trò quan trọng trong lĩnh vực nào?", options: ["A. Giao thông vận tải", "B. Xây dựng", "C. Năng lượng", "D. Giáo dục"], correctIndex: 3 },
+            { id: "tech_q12", section: "TRẮC NGHIỆM", type: "multiple_choice", text: "Hệ thống làm mát trong động cơ đốt trong có vai trò gì?", options: ["A. Là nơi lắp đặt, bố trí các cơ cấu, hệ thống của động cơ", "B. Duy trì nhiệt độ của các chi tiết máy của động cơ trong giới hạn nhất định", "C. Tạo mômen quay để dẫn động đến máy công tác", "D. Thực hiện khởi động để động cơ tự làm việc"], correctIndex: 1 },
+            { id: "tech_q13", section: "TRẮC NGHIỆM", type: "multiple_choice", text: "Động cơ 1 hàng xi lanh, động cơ chữ V, động cơ hình sao, ... là các động cơ đốt trong được phân loại theo tiêu chí nào?", options: ["A. Theo nhiên liệu sử dụng", "B. Theo chu trình công tác", "C. Theo số xi lanh", "D. Theo cách bố trí xi lanh"], correctIndex: 3 },
+            { id: "tech_q14", section: "TRẮC NGHIỆM", type: "multiple_choice", text: "Bộ phận nào của động cơ đốt trong có chức năng cung cấp nhiên liệu (xăng, diesel,...) để duy trì hoạt động của động cơ?", options: ["A. Cơ cấu trục khuỷu, thanh truyền", "B. Cơ cấu phân phối khí", "C. Hệ thống nhiên liệu", "D. Hệ thống bôi trơn"], correctIndex: 2 },
+            { id: "tech_q15", section: "TRẮC NGHIỆM", type: "multiple_choice", text: "Quá trình chuyển hóa năng lượng trong động cơ đốt trong là?", options: ["A. Nhiệt năng → Điện năng → Cơ năng", "B. Nhiệt năng → Hóa năng → Cơ năng", "C. Hóa năng → Nhiệt năng → Cơ năng", "D. Hóa năng → Cơ năng → Nhiệt năng"], correctIndex: 2 },
+            { id: "tech_q16", section: "TRẮC NGHIỆM", type: "multiple_choice", text: "Ở động cơ xăng có thêm hệ thống nào so với động cơ Diesel?", options: ["A. Hệ thống nhiên liệu", "B. Hệ thống khởi động", "C. Hệ thống đánh lửa", "D. Hệ thống làm mát"], correctIndex: 2 },
+            { id: "tech_q17", section: "TRẮC NGHIỆM", type: "multiple_choice", text: "Chọn phát biểu <b>sai</b>: Hành trình pít tông là?", options: ["A. Là quãng đường mà pít tông đi được từ điểm chết trên xuống điểm chết dưới.", "B. Là quãng đường mà pít tông đi được từ điểm chết dưới lên điểm chết trên", "C. Là quãng đường mà pít tông đi được trong một chu trình", "D. Là quãng đường mà pít tông đi được trong một kì"], correctIndex: 2 },
+            { id: "tech_q18", section: "TRẮC NGHIỆM", type: "multiple_choice", text: "Chu trình làm việc của động cơ gồm các quá trình:", options: ["A. Nạp, nén, cháy, thải", "B. Nạp, nén, dẫn nở, thải", "C. Nạp, nén, thải", "D. Nạp, nén, cháy – dẫn nở, thải"], correctIndex: 3 },
+            { id: "tech_q19", section: "TRẮC NGHIỆM", type: "multiple_choice", text: "Công suất định mức của động cơ là gì?", options: ["A. Tốc độ quay tại đó động cơ phát động công suất lớn nhất", "B. Công suất lớn nhất của động cơ theo thiết kế", "C. Công suất của động cơ phát ra từ trục khuỷu truyền tới máy công tác", "D. Khối lượng nhiên liệu tiêu thụ trong một đơn vị thời gian"], correctIndex: 1 },
+            { id: "tech_q20", section: "TRẮC NGHIỆM", type: "multiple_choice", text: "Tỉ số nén là?", options: ["A. Tỉ số giữa thể tích buồng cháy và thể tích toàn phần", "B. Tỉ số giữa thể tích toàn phần và thể tích buồng cháy", "C. Tỉ số giữa thể tích công tác và thể tích buồng cháy", "D. Tỉ số giữa thể tích toàn phần và thể tích công tác"], correctIndex: 1 },
+            { id: "tech_q21", section: "TRẮC NGHIỆM", type: "multiple_choice", text: "Vận tốc của pít tông tại các điểm chết là?", options: ["A. Bằng 0", "B. Nhỏ nhất", "C. Lớn nhất", "D. Không xác định được"], correctIndex: 0 },
+            { id: "tech_q22", section: "TRẮC NGHIỆM", type: "multiple_choice", text: "Chi tiết nào <b>không</b> được bố trí trên nắp máy?", options: ["A. Bugi", "B. Áo nước", "C. Cánh tản nhiệt", "D. Trục khuỷu"], correctIndex: 3 },
+            { id: "tech_q23", section: "TRẮC NGHIỆM", type: "multiple_choice", text: "Hệ thống làm mát bằng không khí có chi tiết đặc trưng nào?", options: ["A. Trục khuỷu", "B. Vòi phun", "C. Cánh tản nhiệt", "D. Bugi"], correctIndex: 2 },
+            { id: "tech_q24", section: "TRẮC NGHIỆM", type: "multiple_choice", text: "Bộ phận nào trong hệ thống phun xăng nhận tín hiệu từ cảm biến ?", options: ["A. Cảm biến", "B. Bộ điều khiển trung tâm", "C. Bộ ổn định áp suất", "D. Vòi phun"], correctIndex: 1 },
+
+            // TRẮC NGHIỆM ĐÚNG SAI
+            {
+                id: "tech_tf1",
+                section: "TRẮC NGHIỆM ĐÚNG SAI",
+                type: "true_false_group",
+                text: "Khái quát về cơ khí động lực:",
+                subQuestions: [
+                    { id: "a", text: "a. Máy bơm là máy móc xây dựng.", correctAnswer: "Sai" },
+                    { id: "b", text: "b. Nguồn động lực sinh ra công suất và momen kéo máy công tác.", correctAnswer: "Đúng" },
+                    { id: "c", text: "c. Máy bay, máy phát điện là máy công tác.", correctAnswer: "Đúng" },
+                    { id: "d", text: "d. Xe máy có dung tích xilanh dưới 50 cm3 thường dùng truyền động các đăng.", correctAnswer: "Sai" }
+                ]
+            },
+            {
+                id: "tech_tf2",
+                section: "TRẮC NGHIỆM ĐÚNG SAI",
+                type: "true_false_group",
+                text: "Động cơ Diesel:",
+                subQuestions: [
+                    { id: "a", text: "a. Cấu tạo động cơ Diesel 4 kì có bugi đánh lửa.", correctAnswer: "Sai" },
+                    { id: "b", text: "b. Cuối kì nén, ở động cơ Diesel diễn ra quá trình bật tia lửa điện.", correctAnswer: "Sai" },
+                    { id: "c", text: "c. Ở động cơ Diesel 4 kì, cuối kì nén hòa khí tự bốc cháy.", correctAnswer: "Sai" },
+                    { id: "d", text: "d. Động cơ Diesel 2 kì không có xu páp nạp, thải.", correctAnswer: "Đúng" }
+                ]
+            },
+            {
+                id: "tech_tf3",
+                section: "TRẮC NGHIỆM ĐÚNG SAI",
+                type: "true_false_group",
+                text: "Thân máy và các cơ cấu của động cơ đốt trong:",
+                subQuestions: [
+                    { id: "a", text: "a. Thân máy là chi tiết cố định.", correctAnswer: "Đúng" },
+                    { id: "b", text: "b. Thân máy của động cơ làm mát bằng nước có cánh tản nhiệt.", correctAnswer: "Sai" },
+                    { id: "c", text: "c. Đầu to thanh truyền thường được chia làm 2 nửa để lắp ghép với chốt pít tông được dễ dàng.", correctAnswer: "Sai" },
+                    { id: "d", text: "d. Xilanh của động cơ được lắp ở thân xilanh.", correctAnswer: "Đúng" }
+                ]
+            },
+            {
+                id: "tech_tf4",
+                section: "TRẮC NGHIỆM ĐÚNG SAI",
+                type: "true_false_group",
+                text: "Hệ thống làm mát:",
+                subQuestions: [
+                    { id: "a", text: "a. Có tác dụng giữ cho nhiệt độ các chi tiết của động cơ không vượt quá giới hạn cho phép khi làm việc.", correctAnswer: "Đúng" },
+                    { id: "b", text: "b. Hệ thống làm mát bằng chất lỏng có két nước.", correctAnswer: "Đúng" },
+                    { id: "c", text: "c. Van hằng nhiệt dùng để ổn định nhiệt độ của động cơ.", correctAnswer: "Đúng" },
+                    { id: "d", text: "d. Hệ thống làm mát bằng không khí có két nước.", correctAnswer: "Sai" }
+                ]
+            },
+            {
+                id: "tech_tf5",
+                section: "TRẮC NGHIỆM ĐÚNG SAI",
+                type: "true_false_group",
+                text: "Hệ thống bôi trơn:",
+                subQuestions: [
+                    { id: "a", text: "a. Tác dụng của dầu bôi trơn bôi trơn các bề mặt ma sát.", correctAnswer: "Đúng" },
+                    { id: "b", text: "b. Cacte dầu là một bộ phận của hệ thống bôi trơn.", correctAnswer: "Đúng" },
+                    { id: "c", text: "c. Van an toàn bơm dầu mở khi nhiệt độ dầu cao quá giới hạn.", correctAnswer: "Sai" },
+                    { id: "d", text: "d. Pha dầu bôi trơn vào dung dịch làm mát là một trong các phương pháp bôi trơn.", correctAnswer: "Sai" }
+                ]
+            },
+            {
+                id: "tech_tf6",
+                section: "TRẮC NGHIỆM ĐÚNG SAI",
+                type: "true_false_group",
+                text: "Hệ thống nhiên liệu dùng bộ chế hòa khí:",
+                subQuestions: [
+                    { id: "a", text: "a. Xăng và không khí hòa trộn với nhau tại họng khuếch tán.", correctAnswer: "Đúng" },
+                    { id: "b", text: "b. Bộ chế hòa khí ở động cơ xăng dùng để đưa xăng vào xilanh khi cần.", correctAnswer: "Sai" },
+                    { id: "c", text: "c. Bơm hút xăng đưa tới bầu phao của bộ chế hòa khí sau khi qua bầu lọc.", correctAnswer: "Đúng" },
+                    { id: "d", text: "d. Có cả bầu lọc tinh và bầu lọc thô.", correctAnswer: "Đúng" }
+                ]
+            }
+        ]
     }
 ];
 
