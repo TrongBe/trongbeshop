@@ -196,7 +196,7 @@ const mockQuizzes = [
     },
     {
         id: "biology_grade_11_gk2",
-        title: "Sinh 11 - Giữa Kỳ II",
+        title: "Sinh 11 - Giữa Kỳ II(còn lỗi vài câu)",
         description: "Đề kiểm tra trắc nghiệm môn Sinh học lớp 11 - Nội dung Cảm ứng, Sinh trưởng và Phát triển. Bao gồm 3 dạng câu hỏi: Trắc nghiệm, Đúng/Sai và Trả lời ngắn.",
         questions: [
             // PHẦN I: TRẮC NGHIỆM
