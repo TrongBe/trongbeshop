@@ -316,14 +316,14 @@ const mockQuizzes = [
                 section: "PHẦN III: TRẢ LỜI NGẮN",
                 type: "short_answer",
                 text: "Vì sao ở động vật không xương sống có rất ít tập tính học được?<br>(1) Chúng sống trong môi trường sống đơn giản.<br>(2) Chúng có tuổi thọ ngắn.<br>(3) Chúng không thể hình thành mối liên kết giữa các neuron.<br>(4) Chúng có hệ thần kinh kém phát triển.<br><br>Hãy cho biết có bao nhiêu lý do đúng?",
-                correctAnswer: "2"
+                correctAnswer: "24"
             },
             {
                 id: "bio_sa4",
                 section: "PHẦN III: TRẢ LỜI NGẮN",
                 type: "short_answer",
                 text: "Trong các kiểu hướng động rễ cây sau:<br>(1) Hướng sáng<br>(2) Hướng hóa<br>(3) Hướng nước<br>(4) Hướng trọng lực<br>(5) Hướng tiếp xúc<br><br>Có bao nhiêu kiểu là hướng động âm?",
-                correctAnswer: "1"
+                correctAnswer: "23"
             }
         ]
     },
