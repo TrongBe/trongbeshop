@@ -23,8 +23,13 @@ function rK() {
     console.log(`[Gemini] Đang xoay sang API Key #${_idx + 1}...`);
 }
 
-// Danh sách các mô hình khả dụng
-const _MODELS = ["gemini-2.0-flash"];
+// Danh sách các mô hình khả dụng (Ưu tiên bản 8B và Lite để lách luật Free Tier)
+const _MODELS = [
+    "gemini-1.5-flash-8b", 
+    "gemini-2.0-flash-lite-preview-02-05", 
+    "gemini-1.5-pro", 
+    "gemini-2.0-flash"
+];
 let _mIdx = 0;
 
 // ---- Trạng thái nội bộ (CRITICAL) ----
