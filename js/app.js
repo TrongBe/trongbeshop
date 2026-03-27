@@ -472,12 +472,26 @@ function initQuizList() {
                 <span class="quiz-meta">📚 Số câu: ${quiz.questions.length}</span>
                 <span class="quiz-views" id="views-${quiz.id}">Lượt truy cập: Đang tải...</span>
             </div>
-            <button class="btn btn-primary" style="width:100%" onclick="startQuiz('${quiz.id}')">Bắt Đầu Làm Bài</button>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn btn-primary" style="flex: 1;" onclick="startQuiz('${quiz.id}')">Bắt Đầu Làm Bài</button>
+                ${quiz.id.toString().startsWith("gemini_") ? `<button class="btn btn-outline" style="padding: 12px; color: #EF4444; border-color: #EF4444;" onclick="deleteCustomQuiz('${quiz.id}')" title="Xóa đề này">🗑️</button>` : ""}
+            </div>
         `;
         quizListContainer.appendChild(card);
     });
     initRealtimeViews();
 }
+
+window.deleteCustomQuiz = function(id) {
+    if (confirm("Bạn có chắc muốn xóa đề thi tự tạo này không?")) {
+        const idx = mockQuizzes.findIndex(q => q.id === id);
+        if (idx !== -1) {
+            mockQuizzes.splice(idx, 1);
+            if (window.__saveCustomQuizzes) window.__saveCustomQuizzes();
+            initQuizList();
+        }
+    }
+};
 
 // === LẮNG NGHE DỮ LIỆU LƯỢT TRUY CẬP THỜI GIAN THỰC TỪ REALTIME DATABASE ===
 function initRealtimeViews() {
@@ -1032,9 +1046,33 @@ function resetScoreCircle() {
 // Đã được gỡ bỏ theo yêu cầu
 
 // === KHỞI CHẠY TỰ ĐỘNG LÚC LOAD TRANG ===
+// Tải các đề tự tạo từ localStorage
+function loadCustomQuizzes() {
+    try {
+        const saved = localStorage.getItem("trongbeshop_custom_quizzes");
+        if (saved) {
+            const parsed = JSON.parse(saved);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+                // Thêm vào đầu danh sách (đề mới nhất lên trên)
+                mockQuizzes.unshift(...parsed);
+            }
+        }
+    } catch (e) {
+        console.error("Lỗi khi tải đề tự tạo:", e);
+    }
+}
+loadCustomQuizzes();
 initQuizList();
 
 // === EXPOSE CHO GEMINI MODULE ===
 window.__mockQuizzes = mockQuizzes;
 window.__initQuizList = initQuizList;
+window.__saveCustomQuizzes = function() {
+    try {
+        const customOnly = mockQuizzes.filter(q => q.id.toString().startsWith("gemini_"));
+        localStorage.setItem("trongbeshop_custom_quizzes", JSON.stringify(customOnly));
+    } catch (e) {
+        console.error("Lỗi khi lưu đề:", e);
+    }
+};
 
