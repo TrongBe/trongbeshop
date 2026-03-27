@@ -118,7 +118,7 @@ async function analyzeQuizImage(images, extraNote = "", retryCount = 0) {
 Quy tắc TRÍCH XUẤT TUYỆT ĐỐI (QUAN TRỌNG):
 1. KHÔNG THAY ĐỔI DÙ CHỈ 1 CHỮ: Giữ nguyên 100% văn bản gốc.
 2. BẢNG BIỂU & ĐỊNH DẠNG: Vẽ lại chính xác các bảng bằng thẻ HTML <table>. Bất kỳ ký tự nào in đậm, in nghiêng, GẠCH CHÂN phải được giữ nguyên và bọc trong thẻ HTML tương ứng (VD: <u>gạch chân</u>, <b>in đậm</b>).
-3. HÌNH ẢNH: Phải nhận diện và cắt chính xác tọa độ mọi hình vẽ hoặc biểu đồ vào mảng "imageBox" (nếu có đoạn hội thoại hoặc chữ thuần túy thì không được cho vào imageBox).
+3. HÌNH ẢNH (QUAN TRỌNG): TUYỆT ĐỐI KHÔNG tự gõ chữ "[Hình vẽ]" hay tự miêu tả hình vào văn bản câu hỏi. BẮT BUỘC phải dùng mảng "imageBox" và "imageIndex" để khoanh vùng tọa độ của HÌNH MINH HỌA/BIỂU ĐỒ để hệ thống cắt ảnh tự động.
 
 Cấu trúc JSON yêu cầu:
 {
@@ -483,7 +483,15 @@ function renderQuestionEditor() {
         const typeLabel = type === "multiple_choice" ? "Nhiều lựa chọn" : type === "true_false_group" ? "Đúng / Sai" : "Trả lời ngắn";
         const typeClass = type === "multiple_choice" ? "badge-mc" : type === "true_false_group" ? "badge-tf" : "badge-sa";
 
-        let imageHTML = q.imageSrc ? `<div class="q-image-preview"><img src="${q.imageSrc}" alt="Hình minh họa"></div>` : "";
+        let imageHTML = `
+            <div class="q-image-controls" style="margin-top: 15px; padding: 10px; background: #f9fafb; border-radius: 8px; border: 1px dashed #d1d5db;">
+                <div style="display: flex; gap: 10px; align-items: center; margin-bottom: ${q.imageSrc ? '10px' : '0'};">
+                    <button class="q-action-btn q-upload-img-btn" data-qi="${qi}" title="Tải lên ảnh cục bộ cho câu hỏi này" style="font-size: 12px; background: #e5e7eb; padding: 4px 10px; border-radius: 4px; font-weight: 500;">🖼️ Đổi/Thêm Ảnh</button>
+                    ${q.imageSrc ? `<button class="q-action-btn q-remove-img-btn" data-qi="${qi}" title="Xóa ảnh hiện tại" style="font-size: 12px; background: #fee2e2; color: #ef4444; padding: 4px 10px; border-radius: 4px; font-weight: 500;">✕ Xóa Ảnh</button>` : ""}
+                </div>
+                ${q.imageSrc ? `<div class="q-image-preview" style="text-align: center;"><img src="${q.imageSrc}" alt="Hình minh họa" style="max-width: 100%; border-radius: 4px; border: 1px solid #d1d5db;"></div>` : ""}
+            </div>
+        `;
         let bodyHTML = "";
 
         if (type === "multiple_choice") {
@@ -553,8 +561,8 @@ function renderQuestionEditor() {
                 </div>
             </div>
             <div class="q-editor-body">
-                ${imageHTML}
                 ${bodyHTML}
+                ${imageHTML}
             </div>
         `;
         container.appendChild(card);
@@ -614,6 +622,35 @@ function renderQuestionEditor() {
         btn.addEventListener("click", () => {
             const qi = parseInt(btn.dataset.qi);
             extractedQuestions.splice(qi, 1);
+            renderQuestionEditor();
+        });
+    });
+
+    container.querySelectorAll(".q-upload-img-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const qi = parseInt(btn.dataset.qi);
+            const input = document.createElement("input");
+            input.type = "file";
+            input.accept = "image/*";
+            input.onchange = async (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                try {
+                    const base64Data = await fileToBase64(file);
+                    extractedQuestions[qi].imageSrc = `data:${base64Data.mimeType};base64,${base64Data.base64}`;
+                    renderQuestionEditor();
+                } catch(err) {
+                    alert("Lỗi tải ảnh: " + err.message);
+                }
+            };
+            input.click();
+        });
+    });
+
+    container.querySelectorAll(".q-remove-img-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const qi = parseInt(btn.dataset.qi);
+            delete extractedQuestions[qi].imageSrc;
             renderQuestionEditor();
         });
     });
