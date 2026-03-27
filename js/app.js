@@ -587,8 +587,8 @@ function shuffleQuestionsBySection(questions) {
 
 // === BẮT ĐẦU LÀM BÀI ===
 window.startQuiz = async function (quizId) {
-    currentQuiz = mockQuizzes.find(q => q.id === quizId);
-    if (!currentQuiz) return;
+    currentQuiz = mockQuizzes.find(q => q.id == quizId);
+    if (!currentQuiz || !currentQuiz.questions) return;
 
     // Hiển thị màn hình cấu hình trước
     document.getElementById('setupQuizTitle').textContent = `Cấu hình: ${currentQuiz.title}`;
@@ -605,8 +605,13 @@ document.getElementById('btnConfirmStart').onclick = async function () {
     quizForm.dataset.isShuffle = isShuffle;
 
     // --- HIỂN THỊ GIAO DIỆN LÀM BÀI ---
+    // Copy câu hỏi để tránh ghi đè dữ liệu gốc khi tráo
+    const questionsToRender = JSON.parse(JSON.stringify(currentQuiz.questions));
+    
     if (isShuffle) {
-        currentQuiz.questions = shuffleQuestionsBySection(currentQuiz.questions);
+        currentQuiz.renderedQuestions = shuffleQuestionsBySection(questionsToRender);
+    } else {
+        currentQuiz.renderedQuestions = questionsToRender;
     }
 
     // Xóa kết quả chọn cũ & Reset form
@@ -674,7 +679,10 @@ function renderQuestions() {
     let lastGroupText = "";
     let sectionQuestionIndex = 1;
 
-    currentQuiz.questions.forEach((q, index) => {
+    // Sử dụng renderedQuestions (đã được tráo hoặc copy) để hiển thị
+    const qs = currentQuiz.renderedQuestions || currentQuiz.questions;
+
+    qs.forEach((q, index) => {
         // --- PHẦN TIÊU ĐỀ NHÓM (SECTION) ---
         if (q.section && q.section !== currentSection) {
             const secHeader = document.createElement('h3');
@@ -831,7 +839,9 @@ quizForm.addEventListener('submit', (e) => {
     let unanswered = 0;
     userAnswers = {};
 
-    currentQuiz.questions.forEach(q => {
+    const qs = currentQuiz.renderedQuestions || currentQuiz.questions;
+
+    qs.forEach(q => {
         const qType = q.type || 'multiple_choice';
 
         if (qType === 'multiple_choice' || qType === 'true_false') {
@@ -896,7 +906,8 @@ quizForm.addEventListener('submit', (e) => {
 
     // Tính tổng số item cần chấm (bao gồm cả các câu hỏi con)
     let totalItems = 0;
-    currentQuiz.questions.forEach(q => {
+    // Sử dụng lại qs đã khai báo ở trên
+    qs.forEach(q => {
         const qType = q.type || 'multiple_choice';
         if (qType === 'true_false_group' || qType === 'reading_group') {
             totalItems += q.subQuestions.length;
@@ -945,7 +956,12 @@ document.getElementById('btnRetry').addEventListener('click', () => {
     submitBtn.classList.add('btn-primary');
 
     // Tráo câu hỏi nhưng giữ nguyên các phần khi làm lại
-    currentQuiz.questions = shuffleQuestionsBySection(currentQuiz.questions);
+    const questionsToRender = JSON.parse(JSON.stringify(currentQuiz.questions));
+    if (quizForm.dataset.isShuffle === "true") {
+        currentQuiz.renderedQuestions = shuffleQuestionsBySection(questionsToRender);
+    } else {
+        currentQuiz.renderedQuestions = questionsToRender;
+    }
 
     // Gọi lại renderQuestions để xóa các class correct-answer/wrong-answer và bật lại input
     resetScoreCircle();
@@ -956,7 +972,8 @@ document.getElementById('btnRetry').addEventListener('click', () => {
 document.getElementById('btnReview').addEventListener('click', () => {
     quizForm.dataset.mode = 'review';
 
-    currentQuiz.questions.forEach(q => {
+    const qs = currentQuiz.renderedQuestions || currentQuiz.questions;
+    qs.forEach(q => {
         const qType = q.type || 'multiple_choice';
 
         if (qType === 'multiple_choice' || qType === 'true_false') {
@@ -1077,8 +1094,20 @@ function loadPublicQuizzes() {
                 const publicList = Object.values(data);
                 let addedNew = false;
                 publicList.forEach(pq => {
+                    // Đảm bảo questions luôn là mảng (Firebase đôi khi trả về object nếu index bị nhảy)
+                    if (pq.questions && !Array.isArray(pq.questions)) {
+                        pq.questions = Object.values(pq.questions);
+                    }
+                    if (pq.questions) {
+                        pq.questions.forEach(q => {
+                            if (q.subQuestions && !Array.isArray(q.subQuestions)) {
+                                q.subQuestions = Object.values(q.subQuestions);
+                            }
+                        });
+                    }
+
                     // Check if already in mockQuizzes (maybe from localStorage)
-                    const exists = mockQuizzes.find(q => q.id === pq.id);
+                    const exists = mockQuizzes.find(q => q.id == pq.id);
                     if (!exists) {
                         mockQuizzes.push(pq);
                         addedNew = true;
