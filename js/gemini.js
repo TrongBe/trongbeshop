@@ -24,7 +24,7 @@ function rK() {
 }
 
 // Danh sách các mô hình khả dụng
-const _MODELS = ["gemini-2.0-flash-exp", "gemini-2.0-flash"];
+const _MODELS = ["gemini-2.0-flash"];
 let _mIdx = 0;
 
 // ---- Trạng thái nội bộ (CRITICAL) ----
