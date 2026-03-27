@@ -27,6 +27,11 @@ function rK() {
 const _MODELS = ["gemini-1.5-flash", "gemini-1.5-flash-8b", "gemini-2.0-flash-exp"];
 let _mIdx = 0;
 
+// ---- Trạng thái nội bộ (CRITICAL) ----
+let uploadedImages = [];      // [{base64, mimeType, name}]
+let extractedQuestions = [];  // câu hỏi sau khi AI phân tích
+let modalInitialized = false; // chống double-init
+
 // ============================================================
 // HÀM GỘP ẢNH (Bypass vision limit bản Free)
 // ============================================================
