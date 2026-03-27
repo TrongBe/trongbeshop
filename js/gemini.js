@@ -2,7 +2,8 @@
 // GEMINI AI - NHẬP ĐỀ BẰNG ẢNH
 // ============================================================
 const GEMINI_API_KEY = "AIzaSyChR-vkkNOsb3iMrpwCnLljDTB1QfzrNY8";
-const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
+
 
 
 
@@ -14,7 +15,7 @@ let modalInitialized = false; // chống double-init
 // ============================================================
 // PHÂN TÍCH ẢNH VỚI GEMINI
 // ============================================================
-async function analyzeQuizImage(images, extraNote = "") {
+async function analyzeQuizImage(images, extraNote = "", retryCount = 0) {
     const prompt = `Bạn là AI chuyên trích xuất câu hỏi từ ảnh đề thi. Hãy phân tích TẤT CẢ các câu hỏi trong ảnh và trả về JSON THUẦN TÚY (không có markdown fence, không có \`\`\`json).
 
 Cấu trúc JSON cần trả về:
@@ -76,7 +77,22 @@ CHỈ TRẢ VỀ JSON, KHÔNG CÓ VĂN BẢN KHÁC.`;
 
     if (!response.ok) {
         const err = await response.json();
-        throw new Error(err.error?.message || "Gemini API lỗi");
+        const msg = err.error?.message || "Gemini API lỗi";
+
+        // Nếu bị rate limit, tự động retry sau 25 giây
+        if (response.status === 429 && retryCount < 2) {
+            const waitTime = 25000;
+            const loadingTitle = document.querySelector(".gemini-loading-title");
+            const loadingSub = document.querySelector(".gemini-loading-sub");
+            if (loadingTitle) loadingTitle.textContent = `Đang chờ ${waitTime / 1000}s để thử lại...`;
+            if (loadingSub) loadingSub.textContent = `Gemini đang bận, tự động thử lại (lần ${retryCount + 1}/2)`;
+            await new Promise(r => setTimeout(r, waitTime));
+            if (loadingTitle) loadingTitle.textContent = "Gemini đang phân tích ảnh...";
+            if (loadingSub) loadingSub.textContent = "Quá trình này có thể mất 10-30 giây";
+            return analyzeQuizImage(images, extraNote, retryCount + 1);
+        }
+
+        throw new Error(msg);
     }
 
     const data = await response.json();
