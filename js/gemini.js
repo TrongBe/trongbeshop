@@ -117,7 +117,7 @@ async function analyzeQuizImage(images, extraNote = "", retryCount = 0) {
 
 Quy tắc TRÍCH XUẤT TUYỆT ĐỐI (QUAN TRỌNG):
 1. KHÔNG THAY ĐỔI DÙ CHỈ 1 CHỮ: Giữ nguyên 100% văn bản gốc.
-2. BẢNG BIỂU & ĐỊNH DẠNG: BẮT BUỘC tự viết mã HTML (<table>, <div>, CSS inline) để vẽ lại chính xác 100% các bảng biểu, vé máy bay, khung tin nhắn, lịch trình. Chèn thẳng đoạn HTML này vào `groupText`. CHỈ DÙNG mảng "imageBox" khi gặp tranh vẽ nghệ thuật phức tạp không thể code được bằng HTML. Nhớ bọc đúng HTML in đậm <b>, gạch chân <u>.
+2. BẢNG BIỂU & ĐỊNH DẠNG: BẮT BUỘC tự viết mã HTML (<table>, <div>, CSS inline) để vẽ lại chính xác 100% các bảng biểu, vé máy bay, khung tin nhắn, lịch trình. Chèn thẳng đoạn HTML này vào 'groupText'. CHỈ DÙNG mảng "imageBox" khi gặp tranh vẽ nghệ thuật phức tạp không thể code được bằng HTML. Nhớ bọc đúng HTML in đậm <b>, gạch chân <u>.
 3. HÌNH ẢNH CẮT (QUAN TRỌNG): CHỈ dùng mảng "imageBox" cho các bức tranh phức tạp. TUYỆT ĐỐI KHÔNG tự gõ chữ "[Hình vẽ]" hay tự miêu tả hình vào văn bản. 
 
 Cấu trúc JSON yêu cầu:
@@ -676,6 +676,34 @@ function renderQuestionEditor() {
             renderQuestionEditor();
         });
     });
+
+    // --- ZOOM ẢNH (Lightbox) ---
+    container.querySelectorAll(".q-image-preview img").forEach(img => {
+        img.addEventListener("click", () => showImageLightbox(img.src));
+    });
+}
+
+/**
+ * Hiển thị lightbox cho ảnh
+ */
+export function showImageLightbox(src) {
+    let overlay = document.querySelector(".lightbox-overlay");
+    if (!overlay) {
+        overlay = document.createElement("div");
+        overlay.className = "lightbox-overlay";
+        overlay.innerHTML = `<img src="" class="lightbox-content" alt="Large view">`;
+        document.body.appendChild(overlay);
+        
+        overlay.addEventListener("click", () => {
+            overlay.classList.remove("active");
+            setTimeout(() => { overlay.style.display = "none"; }, 300);
+        });
+    }
+    
+    const content = overlay.querySelector(".lightbox-content");
+    content.src = src;
+    overlay.style.display = "flex";
+    setTimeout(() => { overlay.classList.add("active"); }, 10);
 }
 
 // ============================================================

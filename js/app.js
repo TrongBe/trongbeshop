@@ -1,4 +1,5 @@
 import { mockQuizzes } from './data.js';
+import { showImageLightbox } from './gemini.js';
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
@@ -320,7 +321,11 @@ function renderQuestions() {
             const imgDiv = document.createElement('div');
             imgDiv.className = 'question-image';
             imgDiv.style.cssText = 'margin-bottom: 15px; text-align: center; background: #fff; border-radius: 8px; border: 1px solid #eee; padding: 10px;';
-            imgDiv.innerHTML = `<img src="${q.imageSrc}" style="max-width: 100%; max-height: 400px; border-radius: 6px;">`;
+            imgDiv.innerHTML = `<img src="${q.imageSrc}" style="max-width: 100%; max-height: 400px; border-radius: 6px; cursor: zoom-in;">`;
+            
+            const imgEl = imgDiv.querySelector('img');
+            imgEl.onclick = () => showImageLightbox(q.imageSrc);
+            
             qBlock.appendChild(imgDiv);
         }
 
