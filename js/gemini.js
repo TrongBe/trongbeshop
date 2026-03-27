@@ -22,10 +22,13 @@ function rK() {
     console.log(`[Gemini] Đang xoay sang API Key #${_idx + 1}...`);
 }
 
+// Danh sách các mô hình khả dụng (Sẽ thử lần lượt nếu bị 404 hoặc 403)
+const _MODELS = ["gemini-1.5-flash", "gemini-2.0-flash-exp", "gemini-1.5-pro"];
+let _mIdx = 0;
+
 function getGeminiUrl() {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${gK()}`;
-    console.log("[Gemini] Request URL:", url.split("key=")[0] + "key=AIzaSy..." + gK().slice(-4));
-    return url;
+    const model = _MODELS[_mIdx % _MODELS.length];
+    return `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${gK()}`;
 }
 
 
@@ -97,32 +100,36 @@ Quy tắc ưu tiên độ chính xác:
     });
 
     if (!response.ok) {
-        const err = await response.json();
-        let msg = err.error?.message || "Gemini API lỗi";
+        let errData = {};
+        try { errData = await response.json(); } catch(e) {}
+        
+        console.error("[Gemini Error Detail]:", {
+            status: response.status,
+            model: _MODELS[_mIdx % _MODELS.length],
+            keyIdx: (_idx % _K.length) + 1,
+            error: errData
+        });
 
-        // Lỗi 429 (Hết lượt) hoặc 400/404 (Lỗi yêu cầu) - XOAY TUA KEY ĐỂ THỬ LẠI
-        if (response.status === 429 || response.status === 400 || response.status === 404) {
-            if (retryCount < _K.length) {
-                const isRateLimit = response.status === 429;
-                
-                rK(); // Xoay sang key mới
-                
+        // Xử lý xoay tua nếu lỗi do Key hoặc Model (429, 403, 404, 400)
+        if ([429, 403, 404, 400].includes(response.status)) {
+            if (retryCount < _K.length * _MODELS.length) {
+                // Thử hết các Key cho model này, sau đó mới đổi Model
+                if ((retryCount + 1) % _K.length === 0) {
+                    _mIdx++;
+                    console.log(`[Gemini] Đang đổi sang mô hình dự phòng: ${_MODELS[_mIdx % _MODELS.length]}`);
+                }
+                rK();
+
                 const loadingSub = document.querySelector(".gemini-loading-sub");
                 if (loadingSub) {
-                    loadingSub.textContent = isRateLimit 
-                        ? `AI đang bận, đang chuyển hướng (Lần thử ${retryCount + 1}/${_K.length})`
-                        : `Đang kết nối lại với máy chủ dự phòng (Lần thử ${retryCount + 1}/${_K.length})`;
+                    loadingSub.textContent = `Đang thử cấu hình dự phòng ${retryCount + 2}/${_K.length * _MODELS.length}...`;
                 }
                 
                 return analyzeQuizImage(images, extraNote, retryCount + 1);
-            } else {
-                const debugUrl = getGeminiUrl().split("key=")[0] + "key=AIzaSy...";
-                msg = `Không thể kết nối với AI (Lỗi ${response.status}).\nURL: ${debugUrl}\nVui lòng kiểm tra lại ảnh hoặc thử lại sau 1 phút.`;
             }
-        } else if (response.status === 500) {
-           msg = "Máy chủ AI đang gặp sự cố. Vui lòng thử lại sau vài giây.";
         }
 
+        let msg = errData.error?.message || `Lỗi ${response.status} từ máy chủ AI.`;
         throw new Error(msg);
     }
 
