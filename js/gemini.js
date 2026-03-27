@@ -34,7 +34,7 @@ function rK() {
 }
 
 function getGeminiUrl() {
-    return `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${gK()}`;
+    return `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${gK()}`;
 }
 
 
@@ -105,21 +105,23 @@ Trả về MỘT KHỐI JSON DUY NHẤT.`;
         const err = await response.json();
         let msg = err.error?.message || "Gemini API lỗi";
 
-        // Nếu bị rate limit (429) - XOAY TUA KEY
-        if (response.status === 429) {
+        // Nếu bị rate limit (429) hoặc lỗi yêu cầu (400) - XOAY TUA KEY ĐỂ THỬ LẠI
+        if (response.status === 429 || response.status === 400) {
             if (retryCount < _K.length) {
+                const isRateLimit = response.status === 429;
                 rK(); // Xoay sang key mới
                 const loadingSub = document.querySelector(".gemini-loading-sub");
-                if (loadingSub) loadingSub.textContent = `Hệ thống AI đang bận, đang chuyển hướng (Lần thử ${retryCount + 1}/${_K.length})`;
+                if (loadingSub) loadingSub.textContent = isRateLimit 
+                    ? `Hệ thống AI đang bận, đang chuyển hướng (Lần thử ${retryCount + 1}/${_K.length})`
+                    : `Đang thử lại với phân vùng dự phòng (Lần thử ${retryCount + 1}/${_K.length})`;
                 
                 // Thử lại ngay lập tức với key mới
                 return analyzeQuizImage(images, extraNote, retryCount + 1);
             } else {
-                msg = "Tất cả các lượt AI miễn phí đã hết. Vui lòng đợi 1-2 phút rồi nhấn 'Phân tích' lại nhé.";
+                msg = response.status === 429 
+                    ? "Tất cả các lượt AI miễn phí đã hết. Vui lòng đợi 1-2 phút nhé."
+                    : `Lỗi 400: ${err.error?.message || "Yêu cầu không hợp lệ."}`;
             }
-        } else if (response.status === 400) {
-           console.error("Gemini 400 Error Body:", err);
-           msg = `Lỗi 400: ${err.error?.message || "Dữ liệu không hợp lệ hoặc ảnh quá lớn."}`;
         } else if (response.status === 500) {
            msg = "Máy chủ AI đang gặp sự cố. Vui lòng thử lại sau vài giây.";
         }
