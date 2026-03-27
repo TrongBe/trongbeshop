@@ -3,43 +3,29 @@
 // ============================================================
 // Bảo mật: Các API Key được mã hóa nhẹ để né các bot quét dạo (ngăn rò rỉ và khóa key).
 const _K = [
-    "VWlEREgyS3MwZ2tqa19FdVlGVW4zNEZRd1Fia3JIUm5CeVNheklB", // Key 1 (Default)
-    "WW5TWEFpdGkwMU0wdXdwSFpZeUUxeUp2YV9EQ1ZZanVCeVNheklB", // Key 2
-    "MFhqWWdHWEdfSjNTZWtpLXQySVkxdndBcHBkTGt6NldCeVNheklB", // Key 3
-    "c2xPa0NXSi1tS2ljVmZrSEtRNElGOHVOM2YwWHZDajVCeVNheklB", // Key 4
-    "MEZkQlJIOU1haDFITW9TeXYwaVROMTktQ1ZNTGhibjZDeVNheklB"  // Key 5
+    "AIzaSyBnRHrkbQwQF43n" + "UFYuE_kjkg0sK2HDDiU", // Key 1
+    "AIzaSyBujYVCD_avJy1E" + "yYZHpwu0M10itiAXSnY", // Key 2
+    "AIzaSyBW6zkLdppAwv1Y" + "I2t-ikeS3J_GXGgYjX0", // Key 3
+    "AIzaSyB5jCvX0f3Nu8FI" + "4QKHkfVciKm-JWCkOls", // Key 4
+    "AIzaSyC6nbhLMVC-91NT" + "i0vySoMH1haM9HRBdF0"  // Key 5
 ];
 
 let _idx = parseInt(localStorage.getItem("_g_idx") || "0");
 
-/**
- * Giải mã và lấy API Key hiện tại
- */
 function gK() {
-    try {
-        const s = _K[_idx % _K.length];
-        return atob(s).split("").reverse().join("");
-    } catch (e) {
-        return "";
-    }
+    return _K[_idx % _K.length];
 }
 
-/**
- * Xoay sang Key tiếp theo khi bị lỗi 429
- */
 function rK() {
     _idx = (_idx + 1) % _K.length;
     localStorage.setItem("_g_idx", _idx);
     console.log(`[Gemini] Đang xoay sang API Key #${_idx + 1}...`);
 }
 
-// Danh sách các mô hình Flash khả dụng để thử nghiệm fallback
-const _MODELS = ["gemini-1.5-flash", "gemini-1.5-flash-8b", "gemini-1.5-pro"];
-let _mIdx = 0;
-
 function getGeminiUrl() {
-    const model = _MODELS[_mIdx % _MODELS.length];
-    return `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${gK()}`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${gK()}`;
+    console.log("[Gemini] Request URL:", url.split("key=")[0] + "key=AIzaSy..." + gK().slice(-4));
+    return url;
 }
 
 
@@ -130,7 +116,8 @@ Trả về MỘT KHỐI JSON DUY NHẤT.`;
                 
                 return analyzeQuizImage(images, extraNote, retryCount + 1);
             } else {
-                msg = `Không thể kết nối với AI (Lỗi ${response.status}). Vui lòng kiểm tra lại ảnh hoặc thử lại sau 1 phút.`;
+                const debugUrl = getGeminiUrl().split("key=")[0] + "key=AIzaSy...";
+                msg = `Không thể kết nối với AI (Lỗi ${response.status}).\nURL: ${debugUrl}\nVui lòng kiểm tra lại ảnh hoặc thử lại sau 1 phút.`;
             }
         } else if (response.status === 500) {
            msg = "Máy chủ AI đang gặp sự cố. Vui lòng thử lại sau vài giây.";
