@@ -385,8 +385,10 @@ function renderQuestionEditor() {
 function importQuizToList() {
     const titleEl = document.getElementById("geminiQuizTitle");
     const descEl = document.getElementById("geminiQuizDesc");
+    const privacyEl = document.querySelector('input[name="geminiQuizPrivacy"]:checked');
     const title = titleEl.value.trim();
     const desc = descEl.value.trim();
+    const privacy = privacyEl ? privacyEl.value : "private";
 
     if (!title) {
         titleEl.style.borderColor = "#EF4444";
@@ -405,12 +407,22 @@ function importQuizToList() {
         section: q.section || "TRẮC NGHIỆM"
     }));
 
-    window.__mockQuizzes.push({
+    const newQuiz = {
         id: newId,
         title: title,
         description: desc || "Đề thi được tạo tự động bởi Gemini AI.",
-        questions: finalQuestions
-    });
+        questions: finalQuestions,
+        privacy: privacy
+    };
+    
+    window.__mockQuizzes.unshift(newQuiz);
+    
+    if (privacy === "public" && window.__publishPublicQuiz) {
+        window.__publishPublicQuiz(newQuiz);
+    } else {
+        if (window.__saveCustomQuizzes) window.__saveCustomQuizzes();
+    }
+    
     window.__initQuizList();
     showGeminiStep(5);
 }

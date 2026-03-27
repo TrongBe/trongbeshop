@@ -222,6 +222,31 @@
             <label for="geminiQuizDesc">Mô tả (tuỳ chọn)</label>
             <textarea id="geminiQuizDesc" class="save-input save-textarea" placeholder="Mô tả ngắn về nội dung đề thi..."></textarea>
           </div>
+          <div class="save-field privacy-toggle-container">
+            <label class="privacy-label">Quyền riêng tư</label>
+            <div class="privacy-options">
+              <label class="privacy-radio">
+                <input type="radio" name="geminiQuizPrivacy" value="private" checked>
+                <div class="privacy-card">
+                  <div class="p-icon">🔒</div>
+                  <div class="p-info">
+                    <div class="p-title">Riêng tư</div>
+                    <div class="p-desc">Chỉ lưu trên trình duyệt của bạn</div>
+                  </div>
+                </div>
+              </label>
+              <label class="privacy-radio">
+                <input type="radio" name="geminiQuizPrivacy" value="public">
+                <div class="privacy-card">
+                  <div class="p-icon">🌍</div>
+                  <div class="p-info">
+                    <div class="p-title">Công khai</div>
+                    <div class="p-desc">Chia sẻ cho mọi người cùng làm</div>
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
         </div>
         <div class="gemini-step-footer">
           <button id="btnBackToEdit" class="gemini-btn-secondary">← Quay lại chỉnh sửa</button>
@@ -261,8 +286,8 @@
     </div>
   </footer>
 
-  <script type="module" src="js/app.js?v=4"></script>
-  <script type="module" src="js/gemini.js?v=4"></script>
+  <script type="module" src="js/app.js?v=5"></script>
+  <script type="module" src="js/gemini.js?v=5"></script>
 </body>
 
 </html>

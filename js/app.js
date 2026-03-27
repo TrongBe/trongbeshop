@@ -468,13 +468,14 @@ function initQuizList() {
         card.innerHTML = `
             <h3>${quiz.title}</h3>
             <p>${quiz.description}</p>
-            <div class="tags-container" style="margin-bottom: 24px; display: flex; align-items: center;">
+            <div class="tags-container" style="margin-bottom: 24px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px;">
+                ${quiz.privacy === 'public' ? '<span style="background:#10B981; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🌍 Công Khai</span>' : ''}
                 <span class="quiz-meta">📚 Số câu: ${quiz.questions.length}</span>
                 <span class="quiz-views" id="views-${quiz.id}">Lượt truy cập: Đang tải...</span>
             </div>
             <div style="display: flex; gap: 10px;">
                 <button class="btn btn-primary" style="flex: 1;" onclick="startQuiz('${quiz.id}')">Bắt Đầu Làm Bài</button>
-                ${quiz.id.toString().startsWith("gemini_") ? `<button class="btn btn-outline" style="padding: 12px; color: #EF4444; border-color: #EF4444;" onclick="deleteCustomQuiz('${quiz.id}')" title="Xóa đề này">🗑️</button>` : ""}
+                ${isQuizOwner(quiz.id) ? `<button class="btn btn-outline" style="padding: 12px; color: #EF4444; border-color: #EF4444;" onclick="deleteCustomQuiz('${quiz.id}')" title="Xóa đề này">🗑️</button>` : ""}
             </div>
         `;
         quizListContainer.appendChild(card);
@@ -482,13 +483,34 @@ function initQuizList() {
     initRealtimeViews();
 }
 
+function isQuizOwner(id) {
+    if (!id.toString().startsWith("gemini_")) return false;
+    try {
+        const saved = localStorage.getItem("trongbeshop_custom_quizzes");
+        if (saved) {
+            const parsed = JSON.parse(saved);
+            return parsed.some(q => q.id === id);
+        }
+    } catch(e) {}
+    return true; // Nếu load lỗi thì cho phép xóa tạm
+}
+
 window.deleteCustomQuiz = function(id) {
     if (confirm("Bạn có chắc muốn xóa đề thi tự tạo này không?")) {
         const idx = mockQuizzes.findIndex(q => q.id === id);
         if (idx !== -1) {
+            const isPublic = mockQuizzes[idx].privacy === "public";
             mockQuizzes.splice(idx, 1);
             if (window.__saveCustomQuizzes) window.__saveCustomQuizzes();
             initQuizList();
+            
+            // Xóa trên database công khai nếu là đề công khai
+            if (isPublic) {
+                try {
+                    const publicRef = ref(dbRT, 'public_quizzes/' + id);
+                    runTransaction(publicRef, () => null);
+                } catch(e) { console.error("Lỗi xóa db:", e); }
+            }
         }
     }
 };
@@ -1061,7 +1083,34 @@ function loadCustomQuizzes() {
         console.error("Lỗi khi tải đề tự tạo:", e);
     }
 }
+
+// Tải các đề công khai từ Firebase
+function loadPublicQuizzes() {
+    try {
+        const publicRef = ref(dbRT, 'public_quizzes');
+        onValue(publicRef, (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+                const publicList = Object.values(data);
+                let addedNew = false;
+                publicList.forEach(pq => {
+                    // Check if already in mockQuizzes (maybe from localStorage)
+                    const exists = mockQuizzes.find(q => q.id === pq.id);
+                    if (!exists) {
+                        mockQuizzes.push(pq);
+                        addedNew = true;
+                    }
+                });
+                if (addedNew) initQuizList();
+            }
+        });
+    } catch(e) {
+        console.error("Lỗi tải đề công khai:", e);
+    }
+}
+
 loadCustomQuizzes();
+loadPublicQuizzes();
 initQuizList();
 
 // === EXPOSE CHO GEMINI MODULE ===
@@ -1069,10 +1118,27 @@ window.__mockQuizzes = mockQuizzes;
 window.__initQuizList = initQuizList;
 window.__saveCustomQuizzes = function() {
     try {
+        // We only save quizzes created by this browser (starts with gemini_)
         const customOnly = mockQuizzes.filter(q => q.id.toString().startsWith("gemini_"));
         localStorage.setItem("trongbeshop_custom_quizzes", JSON.stringify(customOnly));
     } catch (e) {
         console.error("Lỗi khi lưu đề:", e);
+    }
+};
+
+window.__publishPublicQuiz = function(quizObj) {
+    try {
+        if (window.__saveCustomQuizzes) window.__saveCustomQuizzes();
+        
+        const publicRef = ref(dbRT, 'public_quizzes/' + quizObj.id);
+        runTransaction(publicRef, () => {
+            return quizObj;
+        }).catch(e => {
+            console.error(e);
+            alert("Lỗi khi đăng công khai (Firebase không cho phép ghi): " + e.message);
+        });
+    } catch(e) {
+        console.error("Lỗi publish:", e);
     }
 };
 
