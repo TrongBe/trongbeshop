@@ -1002,6 +1002,8 @@ body {
     border-radius: 14px;
     overflow: hidden;
     transition: border-color 0.2s, box-shadow 0.2s;
+    flex-shrink: 0; /* Khắc phục lỗi thẻ bị nén và dính vào nhau khi có nhiều câu hỏi */
+    background: #fff;
 }
 .q-editor-card:hover { border-color: #A5B4FC; box-shadow: 0 2px 12px rgba(99,102,241,0.08); }
 
