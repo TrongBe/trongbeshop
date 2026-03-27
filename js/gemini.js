@@ -21,35 +21,38 @@ let modalInitialized = false; // chống double-init
 // PHÂN TÍCH ẢNH VỚI GEMINI
 // ============================================================
 async function analyzeQuizImage(images, extraNote = "", retryCount = 0) {
-    const prompt = `Bạn là AI chuyên trích xuất câu hỏi từ ảnh đề thi. Hãy phân tích TẤT CẢ các câu hỏi Cấu trúc JSON cần trả về:
+    const prompt = `Bạn là chuyên gia trích xuất câu hỏi từ đề thi (OCR). Hãy phân tích ảnh và trả về JSON chuẩn xác 100%.
+Cấu trúc JSON yêu cầu:
 {
   "questions": [
     {
       "qNumber": 1, 
       "type": "multiple_choice",
-      "section": "PHẦN I: PHÁT ÂM",
-      "groupText": "Choose the word whose underlined part is pronounced differently...",
-      "text": "Nội dung câu hỏi",
+      "text": "Nội dung câu hỏi trắc nghiệm?",
       "options": ["A. ...", "B. ...", "C. ...", "D. ..."],
-      "correctIndex": 0,
-      "imageBox": [ymin, xmin, ymax, xmax],
-      "imageIndex": 0
+      "correctIndex": 0
+    },
+    {
+      "qNumber": 2,
+      "type": "true_false_group",
+      "groupText": "Câu lệnh chung: Chọn Đúng hoặc Sai cho các ý sau:",
+      "text": "Câu hỏi số 2",
+      "subQuestions": [
+        {"text": "a. Ý thứ nhất", "correctAnswer": "Đúng"},
+        {"text": "b. Ý thứ hai", "correctAnswer": "Sai"}
+      ]
     }
   ]
 }
 
-Quy tắc quan trọng:
-- qNumber: Số thứ tự câu hỏi trong đề (ví dụ: 1, 2, 3...). Rất quan trọng để sắp xếp.
-- section: Tiêu đề lớn của phần đó (ví dụ: I. Trắc nghiệm, Bài tập 1, Pronunciation...).
-- groupText: Nội dung dùng chung cho nhiều câu (đoạn văn đọc hiểu, bối cảnh, câu lệnh chung...). Chỉ cần ghi ở câu đầu tiên của nhóm, các câu sau để trống "".
-- imageBox: Nếu câu hỏi có hình minh họa trong ảnh, hãy trả về tọa độ bao quanh hình đó [ymin, xmin, ymax, xmax] (0-1000).
-- imageIndex: Chỉ số ảnh (0-based) trong danh sách ảnh gửi lên chứa hình minh họa đó.
-- type: "multiple_choice", "true_false_group", "short_answer".
-- correctIndex: 0-based.
-- Giữ nguyên tiếng Việt/Anh chuẩn theo đề.
-${extraNote ? `\nGhi chú thêm: ${extraNote}` : ""}
+Quy tắc ưu tiên độ chính xác:
+1. type: "multiple_choice" (4 đáp án), "true_false_group" (có 4 ý a,b,c,d trả lời Đúng/Sai), "short_answer".
+2. groupText: TRÍCH XUẤT ĐẦY ĐỦ các đoạn văn, ngữ cảnh dùng chung cho một nhóm câu hỏi. Ghi vào câu đầu tiên của nhóm.
+3. imageBox: [ymin, xmin, ymax, xmax] (tọa độ 0-1000) bao quanh hình minh họa (nếu có).
+4. Phải giữ nguyên văn bản, kể cả các ký hiệu toán học hoặc gạch chân (<u>) trong Tiếng Anh.
+${extraNote ? `\nGhi chú đặc biệt từ người dùng: ${extraNote}` : ""}
 
-CHỈ TRẢ VỀ JSON THUẦN, KHÔNG CÓ GIẢI THÍCH. `;
+Trả về MỘT KHỐI JSON DUY NHẤT.`;
 
     const parts = [{ text: prompt }];
     images.forEach(img => {
@@ -101,9 +104,17 @@ CHỈ TRẢ VỀ JSON THUẦN, KHÔNG CÓ GIẢI THÍCH. `;
 
     try {
         const data = await response.json();
-        const rawText = data.candidates?.[0]?.content?.parts?.[0]?.text || "{}";
-        const cleaned = rawText.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
-        const parsed = JSON.parse(cleaned);
+        let rawText = data.candidates?.[0]?.content?.parts?.[0]?.text || "{}";
+        
+        // Làm sạch JSON một cách triệt để
+        rawText = rawText.replace(/^[^{]*/, "").replace(/[^}]*$/, "");
+        if (rawText.includes("```json")) {
+            rawText = rawText.split("```json")[1].split("```")[0];
+        } else if (rawText.includes("```")) {
+            rawText = rawText.split("```")[1].split("```")[0];
+        }
+        
+        const parsed = JSON.parse(rawText.trim());
         const newQs = parsed.questions || [];
 
         // Xử lý tọa độ ảnh (nếu có)
@@ -116,7 +127,7 @@ CHỈ TRẢ VỀ JSON THUẦN, KHÔNG CÓ GIẢI THÍCH. `;
         return newQs;
     } catch (err) {
         console.error("JSON parse error:", err);
-        throw new Error("Gemini trả về dữ liệu không đúng định dạng JSON. Hãy thử lại.");
+        throw new Error("Không thể đọc dữ liệu từ AI (Lỗi định dạng). Hãy thử lại hoặc gửi ít ảnh hơn.");
     }
 }
 
@@ -170,10 +181,64 @@ function fileToBase64(file) {
 async function processFiles(files) {
     const validFiles = files.filter(f => f.type.startsWith("image/"));
     if (validFiles.length === 0) return;
-    const newImgs = await Promise.all(validFiles.map(fileToBase64));
+    
+    // Hiển thị trạng thái đang nén
+    const dropIcon = document.querySelector(".drop-icon");
+    const dropTitle = document.querySelector(".drop-title");
+    const originalIcon = dropIcon ? dropIcon.textContent : "📷";
+    const originalTitle = dropTitle ? dropTitle.textContent : "";
+    
+    if (dropIcon) dropIcon.textContent = "⚙️";
+    if (dropTitle) dropTitle.textContent = "Đang tối ưu dung lượng ảnh...";
+    
+    const newImgs = await Promise.all(validFiles.map(async file => {
+        const base64Data = await fileToBase64(file);
+        return await compressImage(base64Data.base64, file.type, file.name);
+    }));
+    
+    if (dropIcon) dropIcon.textContent = originalIcon;
+    if (dropTitle) dropTitle.textContent = originalTitle;
+    
     uploadedImages.push(...newImgs);
     renderImagePreviews();
     updateDropZoneVisibility();
+}
+
+/**
+ * Nén ảnh để giảm tải cho AI mà vẫn giữ được độ nét
+ */
+async function compressImage(base64, mimeType, name) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => {
+            const canvas = document.createElement("canvas");
+            let width = img.width;
+            let height = img.height;
+            const MAX_SIZE = 1600;
+
+            if (width > height) {
+                if (width > MAX_SIZE) {
+                    height *= MAX_SIZE / width;
+                    width = MAX_SIZE;
+                }
+            } else {
+                if (height > MAX_SIZE) {
+                    width *= MAX_SIZE / height;
+                    height = MAX_SIZE;
+                }
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, width, height);
+            
+            // Nén vễ JPEG 0.7 để cân bằng dung lượng và chất lượng
+            const compressedBase64 = canvas.toDataURL("image/jpeg", 0.7).split(",")[1];
+            resolve({ base64: compressedBase64, mimeType: "image/jpeg", name: name });
+        };
+        img.src = "data:" + mimeType + ";base64," + base64;
+    });
 }
 
 function updateDropZoneVisibility() {
