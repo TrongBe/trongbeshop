@@ -141,22 +141,35 @@ Cấu trúc JSON yêu cầu:
       ]
     },
     {
-      "qNumber": 3,
-      "type": "true_false_group",
-      "groupText": "Câu lệnh chung: Chọn Đúng/Sai",
-      "text": "Câu hỏi 3",
-      "subQuestions": [
-        {"text": "a. Ý 1", "correctAnswer": "Đúng"}
-      ]
+      "qNumber": 12,
+      "type": "multiple_choice",
+      "groupText": "※ [12-14] 다음을 읽고 질문에 답하세요.",
+      "text": "우유 한 병에 얼마예요?",
+      "options": ["A. 20,000 동", "B. 30,000 동", "C. 70,000 동", "D. 100,000 동"],
+      "correctIndex": 0,
+      "imageBox": [ymin, xmin, ymax, xmax],
+      "imageIndex": 0
+    },
+    {
+      "qNumber": 13,
+      "type": "multiple_choice",
+      "groupText": "※ [12-14] 다음을 읽고 질문에 답하세요.",
+      "text": "가장 싼 과일은 얼마예요?",
+      "options": ["A. ...", "B. ...", "C. ...", "D. ..."],
+      "correctIndex": 0
     }
   ]
 }
+
+Quy tắc VÀNG về HÌNH ẢNH chung (VD: [12-14] dùng chung 1 Bảng giá / Vé máy bay): 
+- Khi dùng "imageBox" khoảnh ảnh biểu đồ/bảng giá, HÃY GÁN nó vào câu hỏi ĐẦU TIÊN của nhóm (vd: Câu 12).
+- Các câu sau (Câu 13, 14) CHỈ CẦN sao chép "groupText" giống hệt câu 12 để hệ thống biết chúng cùng 1 nhóm, nhưng KHÔNG CẦN gán lại "imageBox".
 
 Quy tắc phân loại:
 - "reading_group": Phân 1 đoạn văn lớn chùm có các câu hỏi nhỏ/lựa chọn nhỏ thành 1 phần lớn.
 - "true_false_group": Trắc nghiệm phần Đúng/Sai.
 - "multiple_choice": Trắc nghiệm 4 đáp án thông thường.
-Lưu ý: imageBox là mảng 4 số [ymin, xmin, ymax, xmax] tỉ lệ 0-1000 bao quanh khu vực có HÌNH ẢNH/BIỂU ĐỒ. BẮT BUỘC chỉ định imageIndex (0, 1, 2...) tương ứng trang chứa hình đó.`;
+Lưu ý: imageBox là mảng 4 số [ymin, xmin, ymax, xmax] tỉ lệ 0-1000 bao quanh khu vực có HÌNH ẢNH/BIỂU ĐỒ (toạ độ Y trước, X sau). BẮT BUỘC chỉ định imageIndex (0, 1, 2...) tương ứng trang chứa hình đó.`;
 
     try {
         const currentKey = gK();
