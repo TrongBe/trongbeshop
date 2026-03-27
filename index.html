@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=12">
-  
+
   <!-- Import Map cho thư viện AI -->
   <script type="importmap">
     {
@@ -179,7 +179,8 @@
 
         <div class="gemini-note-section">
           <label for="geminiExtraNote">Ghi chú thêm cho AI (tuỳ chọn):</label>
-          <textarea id="geminiExtraNote" class="gemini-note-input" placeholder="Ví dụ: Đây là đề Sinh học lớp 11, phần đúng/sai có 4 ý mỗi câu..."></textarea>
+          <textarea id="geminiExtraNote" class="gemini-note-input"
+            placeholder="Ví dụ: Đây là đề Sinh học lớp 11, phần đúng/sai có 4 ý mỗi câu..."></textarea>
         </div>
 
         <div class="gemini-step-footer">
@@ -194,7 +195,7 @@
         <div class="gemini-loading-container">
           <div class="gemini-spinner"></div>
           <div class="gemini-loading-title">Gemini đang phân tích ảnh...</div>
-          <div class="gemini-loading-sub">Quá trình này có thể mất 10-30 giây</div>
+          <div class="gemini-loading-sub">Quá trình này có thể mất 30-60 giây</div>
           <div class="gemini-loading-dots">
             <span></span><span></span><span></span>
           </div>
@@ -210,7 +211,8 @@
             <span id="geminiQuestionCount" class="question-count-badge">0 câu</span>
           </div>
           <div class="editor-actions-top">
-            <button id="btnAnalyzeMore" class="btn-analyze-more" title="Chọn thêm ảnh để phân tích và nối vào danh sách hiện tại">➕ Phân tích thêm</button>
+            <button id="btnAnalyzeMore" class="btn-analyze-more"
+              title="Chọn thêm ảnh để phân tích và nối vào danh sách hiện tại">➕ Phân tích thêm</button>
             <button id="btnReanalyze" class="btn-reanalyze">🔄 Phân tích lại</button>
           </div>
         </div>
@@ -229,11 +231,13 @@
           <h3 class="save-form-title">Đặt tên cho bộ đề</h3>
           <div class="save-field">
             <label for="geminiQuizTitle">Tên đề thi <span class="required">*</span></label>
-            <input type="text" id="geminiQuizTitle" class="save-input" placeholder="Ví dụ: Toán 11 - Giữa Kỳ II" oninput="this.style.borderColor=''">
+            <input type="text" id="geminiQuizTitle" class="save-input" placeholder="Ví dụ: Toán 11 - Giữa Kỳ II"
+              oninput="this.style.borderColor=''">
           </div>
           <div class="save-field">
             <label for="geminiQuizDesc">Mô tả (tuỳ chọn)</label>
-            <textarea id="geminiQuizDesc" class="save-input save-textarea" placeholder="Mô tả ngắn về nội dung đề thi..."></textarea>
+            <textarea id="geminiQuizDesc" class="save-input save-textarea"
+              placeholder="Mô tả ngắn về nội dung đề thi..."></textarea>
           </div>
           <div class="save-field privacy-toggle-container">
             <label class="privacy-label">Quyền riêng tư</label>
@@ -299,8 +303,8 @@
     </div>
   </footer>
 
-  <script type="module" src="js/app.js?v=30"></script>
-  <script type="module" src="js/gemini.js?v=30"></script>
+  <script type="module" src="js/app.js?v=31"></script>
+  <script type="module" src="js/gemini.js?v=31"></script>
 </body>
 
 </html>

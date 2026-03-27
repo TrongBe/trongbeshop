@@ -194,8 +194,12 @@ Lưu ý: imageBox là mảng 4 số [ymin, xmin, ymax, xmax] tỉ lệ 0-1000 ba
         for (let q of newQs) {
             if (q.imageBox) {
                 let idx = q.imageIndex !== undefined ? q.imageIndex : 0;
-                if (images[idx]) {
-                    q.imageSrc = await cropImage(images[idx].base64, q.imageBox);
+                // Nếu ảnh đã bị gộp thành 1 dải dọc, thì toạ độ AI trả về là ăn theo dải dọc!
+                // Do đó BẮT BUỘC phải cắt từ frame dải dọc (finalImages[0])
+                if (finalImages.length === 1) idx = 0;
+                
+                if (finalImages[idx]) {
+                    q.imageSrc = await cropImage(finalImages[idx].base64, q.imageBox);
                 }
             }
         }
@@ -765,18 +769,33 @@ function initGeminiModal() {
                 const newQuestions = await analyzeQuizImage(newImages, extraNote);
                 
                 if (newQuestions && newQuestions.length > 0) {
-                    // Smart Merging: Gộp theo số thứ tự câu (qNumber)
+                    // Cập nhật hoặc thêm mới dựa trên số câu (chống trùng lặp)
                     newQuestions.forEach(newQ => {
                         const existingIdx = extractedQuestions.findIndex(eq => 
                             eq.qNumber !== undefined && newQ.qNumber !== undefined && eq.qNumber === newQ.qNumber
                         );
                         if (existingIdx !== -1) {
-                            // Nếu trùng số câu, ghi đè câu cũ (ưu tiên dữ liệu mới nhất từ AI)
                             extractedQuestions[existingIdx] = newQ;
                         } else {
-                            // Nếu không trùng, thêm mới vào danh sách
                             extractedQuestions.push(newQ);
                         }
+                    });
+                    
+                    // Sắp xếp lại danh sách theo đúng cấu trúc: Trắc nghiệm -> Đúng/Sai -> Trả lời ngắn -> Tự luận
+                    const typeOrder = {
+                        "multiple_choice": 1,
+                        "reading_group": 1,
+                        "true_false_group": 2,
+                        "short_answer": 3,
+                        "essay": 4
+                    };
+                    
+                    extractedQuestions.sort((a, b) => {
+                        const orderA = typeOrder[a.type] || 5;
+                        const orderB = typeOrder[b.type] || 5;
+                        if (orderA !== orderB) return orderA - orderB;
+                        // Nếu cùng loại, xếp theo số thứ tự câu
+                        return parseInt(a.qNumber || 999) - parseInt(b.qNumber || 999);
                     });
                     
                     renderQuestionEditor();
