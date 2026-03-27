@@ -541,23 +541,48 @@ function initRealtimeViews() {
 
 // === HÀM ĐẢO CÂU HỎI THEO PHẦN ===
 function shuffleQuestionsBySection(questions) {
-    const sections = [];
-    questions.forEach(q => {
-        if (!sections.includes(q.section)) {
-            sections.push(q.section);
-        }
-    });
+    const sections = [...new Set(questions.map(q => q.section))];
+    let finalShuffled = [];
 
-    let shuffled = [];
     sections.forEach(sec => {
-        let group = questions.filter(q => q.section === sec);
-        for (let i = group.length - 1; i > 0; i--) {
+        let sectionQs = questions.filter(q => q.section === sec);
+        
+        // Nhóm các câu có cùng groupText (văn bản chung/đoạn văn) lại với nhau để không bị tách rời khi tráo
+        let groups = [];
+        let currentGroup = [];
+        let currentGT = null;
+
+        sectionQs.forEach(q => {
+            const gt = (q.groupText || "").trim();
+            if (gt !== "") {
+                if (gt === currentGT) {
+                    currentGroup.push(q);
+                } else {
+                    if (currentGroup.length > 0) groups.push(currentGroup);
+                    currentGroup = [q];
+                    currentGT = gt;
+                }
+            } else {
+                if (currentGroup.length > 0) groups.push(currentGroup);
+                groups.push([q]);
+                currentGroup = [];
+                currentGT = null;
+            }
+        });
+        if (currentGroup.length > 0) groups.push(currentGroup);
+
+        // Tráo thứ tự các nhóm trong section
+        for (let i = groups.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-            [group[i], group[j]] = [group[j], group[i]];
+            [groups[i], groups[j]] = [groups[j], groups[i]];
         }
-        shuffled = shuffled.concat(group);
+
+        // Nối vào danh sách kết quả
+        groups.forEach(g => {
+            finalShuffled = finalShuffled.concat(g);
+        });
     });
-    return shuffled;
+    return finalShuffled;
 }
 
 // === BẮT ĐẦU LÀM BÀI ===
@@ -646,28 +671,46 @@ window.showHelp = function (type) {
 function renderQuestions() {
     questionsContainer.innerHTML = '';
     let currentSection = "";
+    let lastGroupText = "";
     let sectionQuestionIndex = 1;
 
     currentQuiz.questions.forEach((q, index) => {
-        // Render phần tiêu đề nhóm câu hỏi nếu có
+        // --- PHẦN TIÊU ĐỀ NHÓM (SECTION) ---
         if (q.section && q.section !== currentSection) {
             const secHeader = document.createElement('h3');
             secHeader.className = 'section-title';
-            secHeader.style.marginTop = '32px';
-            secHeader.style.marginBottom = '16px';
-            secHeader.style.color = 'var(--primary)';
-            secHeader.style.textTransform = 'uppercase';
+            secHeader.style.cssText = 'margin-top: 32px; margin-bottom: 16px; color: var(--primary); text-transform: uppercase;';
             secHeader.textContent = q.section;
             questionsContainer.appendChild(secHeader);
             currentSection = q.section;
             sectionQuestionIndex = 1;
         }
 
+        // --- ĐOẠN VĂN / BỐI CẢNH CHUNG (GROUP TEXT) ---
+        if (q.groupText && q.groupText.trim() !== "" && q.groupText !== lastGroupText) {
+            const passageDiv = document.createElement('div');
+            passageDiv.className = 'reading-passage';
+            passageDiv.style.cssText = 'background: #f8fafc; padding: 20px; border-radius: 12px; margin-bottom: 24px; border-left: 5px solid var(--primary); font-size: 1.05rem; line-height: 1.7;';
+            passageDiv.innerHTML = q.groupText;
+            questionsContainer.appendChild(passageDiv);
+            lastGroupText = q.groupText;
+        }
+
         const qBlock = document.createElement('div');
         qBlock.className = 'question-card';
 
+        // --- HÌNH ẢNH MINH HỌA (IMAGE SRC) ---
+        if (q.imageSrc) {
+            const imgDiv = document.createElement('div');
+            imgDiv.className = 'question-image';
+            imgDiv.style.cssText = 'margin-bottom: 15px; text-align: center; background: #fff; border-radius: 8px; border: 1px solid #eee; padding: 10px;';
+            imgDiv.innerHTML = `<img src="${q.imageSrc}" style="max-width: 100%; max-height: 400px; border-radius: 6px;">`;
+            qBlock.appendChild(imgDiv);
+        }
+
         const qTitle = document.createElement('h4');
-        qTitle.innerHTML = `Câu ${sectionQuestionIndex}: ${q.text || ''}`;
+        const qNumDisplay = q.qNumber || sectionQuestionIndex;
+        qTitle.innerHTML = `Câu ${qNumDisplay}: ${q.text || ''}`;
         if (!q.text) qTitle.style.marginBottom = '12px';
         qBlock.appendChild(qTitle);
 
@@ -694,24 +737,18 @@ function renderQuestions() {
                 });
                 optionsList.appendChild(label);
             });
-            // End of multiple choice processing
         } else if (qType === 'true_false_group') {
             const groupDiv = document.createElement('div');
             groupDiv.className = 'tf-group-container';
-
             const table = document.createElement('table');
             table.className = 'tf-table';
             table.style.marginBottom = '20px';
             table.innerHTML = `
                 <thead>
-                    <tr>
-                        <th style="text-align: left;">Nội dung</th>
-                        <th class="tf-col">Đúng</th>
-                        <th class="tf-col">Sai</th>
-                    </tr>
+                    <tr><th style="text-align: left;">Nội dung</th><th class="tf-col">Đúng</th><th class="tf-col">Sai</th></tr>
                 </thead>
                 <tbody>
-                    ${q.subQuestions.map(sq => `
+                    ${(q.subQuestions || []).map(sq => `
                         <tr>
                             <td style="font-size: 14px; line-height: 1.5;">${sq.text}</td>
                             <td class="tf-col">
@@ -743,67 +780,12 @@ function renderQuestions() {
                     });
                 });
             }
-        } else if (qType === 'reading_group') {
-            // Hiển thị đoạn văn
-            const passageDiv = document.createElement('div');
-            passageDiv.className = 'reading-passage';
-            passageDiv.style.background = '#f8fafc';
-            passageDiv.style.padding = '20px';
-            passageDiv.style.borderRadius = '12px';
-            passageDiv.style.marginBottom = '24px';
-            passageDiv.style.borderLeft = '5px solid var(--primary)';
-            passageDiv.style.fontSize = '1.05rem';
-            passageDiv.style.lineHeight = '1.7';
-            passageDiv.innerHTML = q.passage;
-            qBlock.appendChild(passageDiv);
-
-            // Hiển thị các câu hỏi con
-            const subContainer = document.createElement('div');
-            subContainer.className = 'sub-questions-list';
-
-            q.subQuestions.forEach((subQ) => {
-                const subQEl = document.createElement('div');
-                subQEl.className = 'sub-question-item';
-                subQEl.style.marginBottom = '25px';
-                subQEl.style.padding = '15px';
-                subQEl.style.background = '#fff';
-                subQEl.style.borderRadius = '8px';
-                subQEl.style.boxShadow = '0 2px 4px rgba(0,0,0,0.02)';
-
-                const subTitle = document.createElement('h5');
-                subTitle.style.marginBottom = '12px';
-                subTitle.innerHTML = subQ.text;
-                subQEl.appendChild(subTitle);
-
-                const subOptionsList = document.createElement('div');
-                subOptionsList.className = 'options-list';
-
-                subQ.options.forEach((opt, optIndex) => {
-                    const label = document.createElement('label');
-                    label.className = 'option-label';
-                    label.innerHTML = `
-                        <input type="radio" name="question_${subQ.id}" value="${optIndex}">
-                        <span>${opt}</span>
-                    `;
-
-                    const radio = label.querySelector('input');
-                    radio.addEventListener('change', () => {
-                        if (quizForm.dataset.quizMode === 'practice') {
-                            highlightAnswer(subQ, subOptionsList);
-                        }
-                    });
-                    subOptionsList.appendChild(label);
-                });
-                subQEl.appendChild(subOptionsList);
-                subContainer.appendChild(subQEl);
-            });
-            qBlock.appendChild(subContainer);
         } else if (qType === 'short_answer') {
             const inputField = document.createElement('div');
             inputField.className = 'short-answer-container';
             inputField.style.marginTop = '10px';
             inputField.innerHTML = `
-                <input type="number" name="question_${q.id}" class="form-control" placeholder="Nhập số đáp án..." style="width: 200px; padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
+                <input type="text" name="question_${q.id}" class="form-control" placeholder="Nhập đáp án..." style="width: 100%; max-width: 300px; padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
                 <div class="practice-result" style="display:none; margin-top: 5px; font-weight: 600;"></div>
             `;
 
@@ -813,7 +795,7 @@ function renderQuestions() {
                     const resDiv = inputField.querySelector('.practice-result');
                     resDiv.style.display = 'block';
                     input.disabled = true;
-                    if (input.value.trim() == q.correctAnswer) {
+                    if (input.value.trim().toLowerCase() == (q.correctAnswer || "").toLowerCase()) {
                         resDiv.textContent = 'Chính xác! Đáp án: ' + q.correctAnswer;
                         resDiv.style.color = 'var(--correct)';
                         input.style.borderColor = 'var(--correct)';

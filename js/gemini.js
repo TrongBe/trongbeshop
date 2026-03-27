@@ -21,50 +21,35 @@ let modalInitialized = false; // chống double-init
 // PHÂN TÍCH ẢNH VỚI GEMINI
 // ============================================================
 async function analyzeQuizImage(images, extraNote = "", retryCount = 0) {
-    const prompt = `Bạn là AI chuyên trích xuất câu hỏi từ ảnh đề thi. Hãy phân tích TẤT CẢ các câu hỏi trong ảnh và trả về JSON THUẦN TÚY (không có markdown fence, không có \`\`\`json).
-
-Cấu trúc JSON cần trả về:
+    const prompt = `Bạn là AI chuyên trích xuất câu hỏi từ ảnh đề thi. Hãy phân tích TẤT CẢ các câu hỏi Cấu trúc JSON cần trả về:
 {
   "questions": [
     {
-      "id": "q1",
+      "qNumber": 1, 
       "type": "multiple_choice",
-      "section": "TRẮC NGHIỆM",
+      "section": "PHẦN I: PHÁT ÂM",
+      "groupText": "Choose the word whose underlined part is pronounced differently...",
       "text": "Nội dung câu hỏi",
       "options": ["A. ...", "B. ...", "C. ...", "D. ..."],
-      "correctIndex": 0
-    },
-    {
-      "id": "q2",
-      "type": "true_false_group",
-      "section": "TRẮC NGHIỆM ĐÚNG SAI",
-      "text": "Nội dung nhóm câu hỏi đúng/sai",
-      "subQuestions": [
-        {"id": "a", "text": "a) Nội dung", "correctAnswer": "Đúng"},
-        {"id": "b", "text": "b) Nội dung", "correctAnswer": "Sai"}
-      ]
-    },
-    {
-      "id": "q3",
-      "type": "short_answer",
-      "section": "TRẢ LỜI NGẮN",
-      "text": "Nội dung câu hỏi",
-      "correctAnswer": "đáp án ngắn"
+      "correctIndex": 0,
+      "imageBox": [ymin, xmin, ymax, xmax],
+      "imageIndex": 0
     }
   ]
 }
 
-Quy tắc:
-- Sử dụng type "multiple_choice" cho câu trắc nghiệm có 4 lựa chọn A/B/C/D
-- Sử dụng type "true_false_group" cho câu hỏi đúng/sai có nhiều ý
-- Sử dụng type "short_answer" cho câu trả lời ngắn/điền số
-- correctIndex là chỉ số 0-based (0=A, 1=B, 2=C, 3=D)
-- Nếu không xác định được đáp án đúng, đặt correctIndex: 0 hoặc correctAnswer: "?"
-- id phải là chuỗi duy nhất: "q1", "q2",... hoặc "tf1", "sa1",...
-- Giữ nguyên nội dung câu hỏi bằng tiếng Việt
+Quy tắc quan trọng:
+- qNumber: Số thứ tự câu hỏi trong đề (ví dụ: 1, 2, 3...). Rất quan trọng để sắp xếp.
+- section: Tiêu đề lớn của phần đó (ví dụ: I. Trắc nghiệm, Bài tập 1, Pronunciation...).
+- groupText: Nội dung dùng chung cho nhiều câu (đoạn văn đọc hiểu, bối cảnh, câu lệnh chung...). Chỉ cần ghi ở câu đầu tiên của nhóm, các câu sau để trống "".
+- imageBox: Nếu câu hỏi có hình minh họa trong ảnh, hãy trả về tọa độ bao quanh hình đó [ymin, xmin, ymax, xmax] (0-1000).
+- imageIndex: Chỉ số ảnh (0-based) trong danh sách ảnh gửi lên chứa hình minh họa đó.
+- type: "multiple_choice", "true_false_group", "short_answer".
+- correctIndex: 0-based.
+- Giữ nguyên tiếng Việt/Anh chuẩn theo đề.
 ${extraNote ? `\nGhi chú thêm: ${extraNote}` : ""}
 
-CHỈ TRẢ VỀ JSON, KHÔNG CÓ VĂN BẢN KHÁC.`;
+CHỈ TRẢ VỀ JSON THUẦN, KHÔNG CÓ GIẢI THÍCH. `;
 
     const parts = [{ text: prompt }];
     images.forEach(img => {
@@ -109,11 +94,53 @@ CHỈ TRẢ VỀ JSON, KHÔNG CÓ VĂN BẢN KHÁC.`;
         const rawText = data.candidates?.[0]?.content?.parts?.[0]?.text || "{}";
         const cleaned = rawText.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
         const parsed = JSON.parse(cleaned);
-        return parsed.questions || [];
-    } catch (error) {
-        console.error("JSON Parse Error:", error);
-        throw new Error("Đề thi quá dài khiến AI trả về dữ liệu bị ngắt quãng. Vui lòng thử chụp gần hơn hoặc tách ra phân tích từng ảnh một (1-2 trang/lần).");
+        const newQs = parsed.questions || [];
+
+        // Xử lý tọa độ ảnh (nếu có)
+        for (let q of newQs) {
+            if (q.imageBox && q.imageIndex !== undefined && images[q.imageIndex]) {
+                q.imageSrc = await cropImage(images[q.imageIndex].base64, q.imageBox);
+            }
+        }
+
+        return newQs;
+    } catch (err) {
+        console.error("JSON parse error:", err);
+        throw new Error("Gemini trả về dữ liệu không đúng định dạng JSON. Hãy thử lại.");
     }
+}
+
+// ============================================================
+// TRÍCH XUẤT ẢNH TỪ TỌA ĐỘ
+// ============================================================
+async function cropImage(base64, box) {
+    if (!box || box.length !== 4) return null;
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => {
+            try {
+                const canvas = document.createElement("canvas");
+                const ctx = canvas.getContext("2d");
+                // Tọa độ Gemini là 0-1000
+                const ymin = box[0] / 1000 * img.height;
+                const xmin = box[1] / 1000 * img.width;
+                const ymax = box[2] / 1000 * img.height;
+                const xmax = box[3] / 1000 * img.width;
+                const width = Math.max(1, xmax - xmin);
+                const height = Math.max(1, ymax - ymin);
+                
+                canvas.width = width;
+                canvas.height = height;
+                ctx.drawImage(img, xmin, ymin, width, height, 0, 0, width, height);
+                resolve(canvas.toDataURL("image/png"));
+            } catch (e) {
+                console.error("Crop error:", e);
+                resolve(null);
+            }
+        };
+        img.onerror = () => resolve(null);
+        img.src = "data:image/png;base64," + base64;
+    });
 }
 
 // ============================================================
@@ -240,9 +267,33 @@ function renderQuestionEditor() {
         return;
     }
 
+    // Sắp xếp câu hỏi theo qNumber (số thứ tự câu trong đề)
+    extractedQuestions.sort((a, b) => (a.qNumber || 0) - (b.qNumber || 0));
+
     document.getElementById("geminiQuestionCount").textContent = `${extractedQuestions.length} câu hỏi`;
 
+    let currentSection = null;
+    let currentGroupText = null;
+
     extractedQuestions.forEach((q, qi) => {
+        // --- RENDER SECTION HEADER ---
+        if (q.section && q.section !== currentSection) {
+            const secHeader = document.createElement("div");
+            secHeader.className = "editor-section-header";
+            secHeader.textContent = q.section;
+            container.appendChild(secHeader);
+            currentSection = q.section;
+        }
+
+        // --- RENDER GROUP TEXT (Bối cảnh chung / Đoạn văn) ---
+        if (q.groupText && q.groupText.trim() !== "" && q.groupText !== currentGroupText) {
+            const groupHeader = document.createElement("div");
+            groupHeader.className = "editor-group-text";
+            groupHeader.innerHTML = `<strong>Ngữ cảnh/Đoạn văn:</strong><br>${escapeHTML(q.groupText)}`;
+            container.appendChild(groupHeader);
+            currentGroupText = q.groupText;
+        }
+
         const card = document.createElement("div");
         card.className = "q-editor-card";
         card.dataset.index = qi;
@@ -255,6 +306,7 @@ function renderQuestionEditor() {
         const typeLabel = type === "multiple_choice" ? "Nhiều lựa chọn" : type === "true_false_group" ? "Đúng / Sai" : "Trả lời ngắn";
         const typeClass = type === "multiple_choice" ? "badge-mc" : type === "true_false_group" ? "badge-tf" : "badge-sa";
 
+        let imageHTML = q.imageSrc ? `<div class="q-image-preview"><img src="${q.imageSrc}" alt="Hình minh họa"></div>` : "";
         let bodyHTML = "";
 
         if (type === "multiple_choice") {
@@ -317,18 +369,21 @@ function renderQuestionEditor() {
 
         card.innerHTML = `
             <div class="q-editor-header">
-                <div class="q-editor-num">Câu ${qi + 1}</div>
+                <div class="q-editor-num">Câu ${q.qNumber || qi + 1}</div>
                 <span class="q-type-badge ${typeClass}">${typeLabel}</span>
                 <div class="q-editor-actions">
                     <button class="q-action-btn q-delete-btn" data-qi="${qi}" title="Xóa câu này">🗑️</button>
                 </div>
             </div>
-            <div class="q-editor-body">${bodyHTML}</div>
+            <div class="q-editor-body">
+                ${imageHTML}
+                ${bodyHTML}
+            </div>
         `;
         container.appendChild(card);
     });
 
-    // Attach events using event delegation on container
+    // --- GẮN SỰ KIỆN (Delegation) ---
     container.querySelectorAll(".q-text-input").forEach(ta => {
         ta.addEventListener("input", () => {
             const qi = parseInt(ta.closest(".q-editor-card").dataset.index);
@@ -361,8 +416,7 @@ function renderQuestionEditor() {
             const si = parseInt(radio.dataset.si);
             extractedQuestions[qi].subQuestions[si].correctAnswer = radio.value;
             const card = container.querySelector(`.q-editor-card[data-index="${qi}"]`);
-            const rows = card.querySelectorAll("tbody tr");
-            const row = rows[si];
+            const row = card.querySelectorAll("tbody tr")[si];
             row.querySelectorAll(".tf-radio-label").forEach(l => l.classList.remove("tf-selected"));
             radio.closest(".tf-radio-label").classList.add("tf-selected");
         });
@@ -373,10 +427,10 @@ function renderQuestionEditor() {
             const oi = parseInt(btn.dataset.oi);
             extractedQuestions[qi].correctIndex = oi;
             const card = container.querySelector(`.q-editor-card[data-index="${qi}"]`);
-            card.querySelectorAll(".q-option-row").forEach((row, i) => {
-                row.classList.toggle("is-correct", i === oi);
-                row.querySelector(".correct-selector").classList.toggle("selected", i === oi);
-            });
+            card.querySelectorAll(".q-option-row").forEach(r => r.classList.remove("is-correct"));
+            card.querySelectorAll(".correct-selector").forEach(b => b.classList.remove("selected"));
+            btn.closest(".q-option-row").classList.add("is-correct");
+            btn.classList.add("selected");
         });
     });
     container.querySelectorAll(".q-delete-btn").forEach(btn => {
@@ -538,8 +592,20 @@ function initGeminiModal() {
                 const newQuestions = await analyzeQuizImage(newImages, extraNote);
                 
                 if (newQuestions && newQuestions.length > 0) {
-                    // Nối thêm câu hỏi mới vào danh sách hiện tại
-                    extractedQuestions.push(...newQuestions);
+                    // Smart Merging: Gộp theo số thứ tự câu (qNumber)
+                    newQuestions.forEach(newQ => {
+                        const existingIdx = extractedQuestions.findIndex(eq => 
+                            eq.qNumber !== undefined && newQ.qNumber !== undefined && eq.qNumber === newQ.qNumber
+                        );
+                        if (existingIdx !== -1) {
+                            // Nếu trùng số câu, ghi đè câu cũ (ưu tiên dữ liệu mới nhất từ AI)
+                            extractedQuestions[existingIdx] = newQ;
+                        } else {
+                            // Nếu không trùng, thêm mới vào danh sách
+                            extractedQuestions.push(newQ);
+                        }
+                    });
+                    
                     renderQuestionEditor();
                 } else {
                     alert("Gemini không nhận diện thêm được câu hỏi nào từ ảnh mới.");
