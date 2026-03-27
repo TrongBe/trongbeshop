@@ -117,8 +117,8 @@ async function analyzeQuizImage(images, extraNote = "", retryCount = 0) {
 
 Quy tắc TRÍCH XUẤT TUYỆT ĐỐI (QUAN TRỌNG):
 1. KHÔNG THAY ĐỔI DÙ CHỈ 1 CHỮ: Giữ nguyên 100% văn bản gốc.
-2. BẢNG BIỂU & ĐỊNH DẠNG: Vẽ lại chính xác các bảng bằng thẻ HTML <table>. Bất kỳ ký tự nào in đậm, in nghiêng, GẠCH CHÂN phải được giữ nguyên và bọc trong thẻ HTML tương ứng (VD: <u>gạch chân</u>, <b>in đậm</b>).
-3. HÌNH ẢNH (QUAN TRỌNG): TUYỆT ĐỐI KHÔNG tự gõ chữ "[Hình vẽ]" hay tự miêu tả hình vào văn bản câu hỏi. BẮT BUỘC phải dùng mảng "imageBox" và "imageIndex" để khoanh vùng tọa độ của HÌNH MINH HỌA/BIỂU ĐỒ để hệ thống cắt ảnh tự động.
+2. BẢNG BIỂU & ĐỊNH DẠNG: BẮT BUỘC tự viết mã HTML (<table>, <div>, CSS inline) để vẽ lại chính xác 100% các bảng biểu, vé máy bay, khung tin nhắn, lịch trình. Chèn thẳng đoạn HTML này vào `groupText`. CHỈ DÙNG mảng "imageBox" khi gặp tranh vẽ nghệ thuật phức tạp không thể code được bằng HTML. Nhớ bọc đúng HTML in đậm <b>, gạch chân <u>.
+3. HÌNH ẢNH CẮT (QUAN TRỌNG): CHỈ dùng mảng "imageBox" cho các bức tranh phức tạp. TUYỆT ĐỐI KHÔNG tự gõ chữ "[Hình vẽ]" hay tự miêu tả hình vào văn bản. 
 
 Cấu trúc JSON yêu cầu:
 {
@@ -143,17 +143,15 @@ Cấu trúc JSON yêu cầu:
     {
       "qNumber": 12,
       "type": "multiple_choice",
-      "groupText": "※ [12-14] 다음을 읽고 질문에 답하세요.",
+      "groupText": "<div style='border: 1px solid black; padding: 10px; text-align: center;'>★ 베트남 슈퍼마켓 ★<br><table border='1' style='width: 100%; border-collapse: collapse;'><tr><td>수박 1통</td><td>우유 1병</td></tr><tr><td>70,000 동</td><td>30,000 동</td></tr></table></div>※ [12-14] 다음을 읽고 질문에 답하세요.",
       "text": "우유 한 병에 얼마예요?",
       "options": ["A. 20,000 동", "B. 30,000 동", "C. 70,000 동", "D. 100,000 동"],
-      "correctIndex": 0,
-      "imageBox": [ymin, xmin, ymax, xmax],
-      "imageIndex": 0
+      "correctIndex": 0
     },
     {
       "qNumber": 13,
       "type": "multiple_choice",
-      "groupText": "※ [12-14] 다음을 읽고 질문에 답하세요.",
+      "groupText": "<div style='border: 1px solid black; padding: 10px; text-align: center;'>★ 베트남 슈퍼마켓 ★<br><table border='1' style='width: 100%; border-collapse: collapse;'><tr><td>수박 1통</td><td>우유 1병</td></tr><tr><td>70,000 동</td><td>30,000 동</td></tr></table></div>※ [12-14] 다음을 읽고 질문에 답하세요.",
       "text": "가장 싼 과일은 얼마예요?",
       "options": ["A. ...", "B. ...", "C. ...", "D. ..."],
       "correctIndex": 0
@@ -162,8 +160,8 @@ Cấu trúc JSON yêu cầu:
 }
 
 Quy tắc VÀNG về HÌNH ẢNH chung (VD: [12-14] dùng chung 1 Bảng giá / Vé máy bay): 
-- Khi dùng "imageBox" khoảnh ảnh biểu đồ/bảng giá, HÃY GÁN nó vào câu hỏi ĐẦU TIÊN của nhóm (vd: Câu 12).
-- Các câu sau (Câu 13, 14) CHỈ CẦN sao chép "groupText" giống hệt câu 12 để hệ thống biết chúng cùng 1 nhóm, nhưng KHÔNG CẦN gán lại "imageBox".
+- Tuyệt đối ưu tiên dùng thẻ HTML để vẽ lại bảng biểu/vé máy bay chèn vào trong "groupText" (giống ví dụ câu 12-13 ở trên). Không dùng imageBox cho những thành phần này.
+- Nếu có imageBox vẽ tranh nghệ thuật, gán vào câu đầu tiên. Các câu sau chỉ cần copy giống hệt "groupText" của câu trước.
 
 Quy tắc phân loại:
 - "reading_group": Phân 1 đoạn văn lớn chùm có các câu hỏi nhỏ/lựa chọn nhỏ thành 1 phần lớn.
