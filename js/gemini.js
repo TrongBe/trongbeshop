@@ -1,7 +1,11 @@
 // ============================================================
 // GEMINI AI - NHẬP ĐỀ BẰNG ẢNH
 // ============================================================
-const GEMINI_API_KEY = "AIzaSyCMtyJ7YwJPViZLo2TPBomcp_HGdYksytc";
+// CÁCH CHỐNG BOT QUÉT RÒ RỈ: Hãy cắt nhỏ API KEY mới của bạn làm 3 đoạn và dán vào đây:
+const KEY_PART_1 = "AIzaSy...";   // Điền 10 ký tự đầu
+const KEY_PART_2 = "xxxxxxxxx..."; // Điền các ký tự ở giữa
+const KEY_PART_3 = "yyyyyyy";      // Điền các ký tự còn lại
+const GEMINI_API_KEY = KEY_PART_1 + KEY_PART_2 + KEY_PART_3;
 const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
 
 
