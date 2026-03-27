@@ -33,8 +33,13 @@ function rK() {
     console.log(`[Gemini] Đang xoay sang API Key #${_idx + 1}...`);
 }
 
+// Danh sách các mô hình Flash khả dụng để thử nghiệm fallback
+const _MODELS = ["gemini-1.5-flash", "gemini-1.5-flash-8b", "gemini-1.5-pro"];
+let _mIdx = 0;
+
 function getGeminiUrl() {
-    return `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${gK()}`;
+    const model = _MODELS[_mIdx % _MODELS.length];
+    return `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${gK()}`;
 }
 
 
@@ -104,22 +109,28 @@ Trả về MỘT KHỐI JSON DUY NHẤT.`;
         const err = await response.json();
         let msg = err.error?.message || "Gemini API lỗi";
 
-        // Nếu bị rate limit (429) hoặc lỗi yêu cầu (400) - XOAY TUA KEY ĐỂ THỬ LẠI
-        if (response.status === 429 || response.status === 400) {
-            if (retryCount < _K.length) {
+        // Lỗi 429 (Hết lượt) hoặc 400/404 (Không tìm thấy model/Lỗi yêu cầu)
+        if (response.status === 429 || response.status === 400 || response.status === 404) {
+            if (retryCount < _K.length * _MODELS.length) {
                 const isRateLimit = response.status === 429;
-                rK(); // Xoay sang key mới
-                const loadingSub = document.querySelector(".gemini-loading-sub");
-                if (loadingSub) loadingSub.textContent = isRateLimit 
-                    ? `Hệ thống AI đang bận, đang chuyển hướng (Lần thử ${retryCount + 1}/${_K.length})`
-                    : `Đang thử lại với phân vùng dự phòng (Lần thử ${retryCount + 1}/${_K.length})`;
                 
-                // Thử lại ngay lập tức với key mới
+                // Thuật toán: thử hết các Key cho model hiện tại, sau đó đổi Model và thử lại các Key
+                if ((retryCount + 1) % _K.length === 0) {
+                    _mIdx++; // Đổi model sau khi thử hết các key
+                    console.log(`[Gemini] Đang thử đổi sang mô hình: ${_MODELS[_mIdx % _MODELS.length]}`);
+                }
+                rK(); // Xoay sang key mới
+                
+                const loadingSub = document.querySelector(".gemini-loading-sub");
+                if (loadingSub) {
+                    loadingSub.textContent = isRateLimit 
+                        ? `AI đang bận, đang chuyển hướng (Lần thử ${retryCount + 1}/${_K.length * _MODELS.length})`
+                        : `Đang kết nối lại với máy chủ dự phòng (Lần thử ${retryCount + 1})`;
+                }
+                
                 return analyzeQuizImage(images, extraNote, retryCount + 1);
             } else {
-                msg = response.status === 429 
-                    ? "Tất cả các lượt AI miễn phí đã hết. Vui lòng đợi 1-2 phút nhé."
-                    : `Lỗi 400: ${err.error?.message || "Yêu cầu không hợp lệ."}`;
+                msg = `Không thể kết nối với AI (Lỗi ${response.status}). Vui lòng kiểm tra lại ảnh hoặc thử lại sau 1 phút.`;
             }
         } else if (response.status === 500) {
            msg = "Máy chủ AI đang gặp sự cố. Vui lòng thử lại sau vài giây.";
