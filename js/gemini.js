@@ -71,19 +71,29 @@ CHỈ TRẢ VỀ JSON THUẦN, KHÔNG CÓ GIẢI THÍCH. `;
 
     if (!response.ok) {
         const err = await response.json();
-        const msg = err.error?.message || "Gemini API lỗi";
+        let msg = err.error?.message || "Gemini API lỗi";
 
-        // Nếu bị rate limit, tự động retry sau 25 giây
-        if (response.status === 429 && retryCount < 2) {
-            const waitTime = 25000;
-            const loadingTitle = document.querySelector(".gemini-loading-title");
-            const loadingSub = document.querySelector(".gemini-loading-sub");
-            if (loadingTitle) loadingTitle.textContent = `Đang chờ ${waitTime / 1000}s để thử lại...`;
-            if (loadingSub) loadingSub.textContent = `Gemini đang bận, tự động thử lại (lần ${retryCount + 1}/2)`;
-            await new Promise(r => setTimeout(r, waitTime));
-            if (loadingTitle) loadingTitle.textContent = "Gemini đang phân tích ảnh...";
-            if (loadingSub) loadingSub.textContent = "Quá trình này có thể mất 10-30 giây";
-            return analyzeQuizImage(images, extraNote, retryCount + 1);
+        // Nếu bị rate limit (429)
+        if (response.status === 429) {
+            if (retryCount < 2) {
+                const waitTime = 35000; // Đợi 35s cho chắc chắn (vì free tier giới hạn 15-60s)
+                const loadingTitle = document.querySelector(".gemini-loading-title");
+                const loadingSub = document.querySelector(".gemini-loading-sub");
+                if (loadingTitle) loadingTitle.textContent = `Đang chờ ${waitTime / 1000}s để thử lại...`;
+                if (loadingSub) loadingSub.textContent = `Hệ thống AI đang bận (hết lượt miễn phí), tự động thử lại (lần ${retryCount + 1}/2)`;
+                
+                await new Promise(r => setTimeout(r, waitTime));
+                
+                if (loadingTitle) loadingTitle.textContent = "Gemini đang phân tích ảnh...";
+                if (loadingSub) loadingSub.textContent = "Quá trình này có thể mất 10-30 giây";
+                return analyzeQuizImage(images, extraNote, retryCount + 1);
+            } else {
+                msg = "Bạn đã hết lượt sử dụng AI miễn phí trong phút này. Vui lòng đợi khoảng 1 phút rồi nhấn nút 'Phân tích' lại nhé.";
+            }
+        } else if (response.status === 400) {
+           msg = "Dữ liệu gửi lên không hợp lệ hoặc ảnh quá lớn. Hãy thử gửi ít ảnh hơn.";
+        } else if (response.status === 500) {
+           msg = "Máy chủ AI đang gặp sự cố. Vui lòng thử lại sau vài giây.";
         }
 
         throw new Error(msg);
