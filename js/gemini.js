@@ -113,35 +113,49 @@ async function analyzeQuizImage(images, extraNote = "", retryCount = 0) {
     // 1. Gộp ảnh nếu gửi nhiều
     const finalImages = (retryCount === 0 && images.length > 1) ? await mergeImages(images) : images;
 
-    const systemInstruction = `Bạn là chuyên gia trích xuất câu hỏi từ đề thi (OCR). Hãy phân tích ảnh và trả về JSON chuẩn xác 100%. 
-Mọi phản hồi của bạn phải là JSON hợp lệ để hệ thống của tôi xử lý. Không kèm theo lời giải thích bên ngoài.
+    const systemInstruction = `Bạn là chuyên gia trích xuất đề thi (OCR). Hãy phân tích ảnh và trả về JSON chuẩn xác 100%. Không giải thích.
+
+Quy tắc TRÍCH XUẤT TUYỆT ĐỐI (QUAN TRỌNG):
+1. KHÔNG THAY ĐỔI DÙ CHỈ 1 CHỮ: Giữ nguyên 100% văn bản gốc.
+2. BẢNG BIỂU & ĐỊNH DẠNG: Vẽ lại chính xác các bảng bằng thẻ HTML <table>. Bất kỳ ký tự nào in đậm, in nghiêng, GẠCH CHÂN phải được giữ nguyên và bọc trong thẻ HTML tương ứng (VD: <u>gạch chân</u>, <b>in đậm</b>).
+3. HÌNH ẢNH: Phải nhận diện và cắt chính xác tọa độ mọi hình vẽ hoặc biểu đồ vào mảng "imageBox" (nếu có đoạn hội thoại hoặc chữ thuần túy thì không được cho vào imageBox).
+
 Cấu trúc JSON yêu cầu:
 {
   "questions": [
     {
       "qNumber": 1, 
       "type": "multiple_choice",
-      "text": "Nội dung câu hỏi trắc nghiệm?",
+      "text": "Nội dung câu 1?",
       "options": ["A. ...", "B. ...", "C. ...", "D. ..."],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "imageBox": [ymin, xmin, ymax, xmax]
     },
     {
       "qNumber": 2,
-      "type": "true_false_group",
-      "groupText": "Câu lệnh chung: Chọn Đúng hoặc Sai cho các ý sau:",
-      "text": "Câu hỏi số 2",
+      "type": "reading_group",
+      "groupText": "(Dành cho 1 đoạn văn có các câu trả lời nhỏ) Đoạn văn dài dùng chung điền tại đây...",
       "subQuestions": [
-        {"text": "a. Ý thứ nhất", "correctAnswer": "Đúng"},
-        {"text": "b. Ý thứ hai", "correctAnswer": "Sai"}
+        {"text": "Câu hỏi nhỏ 1", "options": ["A. ...", "B. ...", "C. ...", "D. ..."], "correctIndex": 0}
+      ]
+    },
+    {
+      "qNumber": 3,
+      "type": "true_false_group",
+      "groupText": "Câu lệnh chung: Chọn Đúng/Sai",
+      "text": "Câu hỏi 3",
+      "subQuestions": [
+        {"text": "a. Ý 1", "correctAnswer": "Đúng"}
       ]
     }
   ]
 }
 
-Quy tắc ưu tiên độ chính xác:
-1. type: "multiple_choice", "true_false_group", "short_answer".
-2. groupText: TRÍCH XUẤT ĐẦY ĐỦ các đoạn văn, ngữ cảnh dùng chung cho một nhóm câu hỏi.
-3. imageBox: [ymin, xmin, ymax, xmax] (tọa độ 0-1000) bao quanh hình minh họa (nếu có).`;
+Quy tắc phân loại:
+- "reading_group": Phân 1 đoạn văn lớn chùm có các câu hỏi nhỏ/lựa chọn nhỏ thành 1 phần lớn.
+- "true_false_group": Trắc nghiệm phần Đúng/Sai.
+- "multiple_choice": Trắc nghiệm 4 đáp án thông thường.
+Lưu ý: imageBox là mảng 4 số [ymin, xmin, ymax, xmax] tỉ lệ 0-1000 bao quanh khu vực có HÌNH ẢNH/BIỂU ĐỒ (không bao quanh văn bản thông thường).`;
 
     try {
         const currentKey = gK();
