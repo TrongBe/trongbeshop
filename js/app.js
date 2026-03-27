@@ -1033,3 +1033,8 @@ function resetScoreCircle() {
 
 // === KHỞI CHẠY TỰ ĐỘNG LÚC LOAD TRANG ===
 initQuizList();
+
+// === EXPOSE CHO GEMINI MODULE ===
+window.__mockQuizzes = mockQuizzes;
+window.__initQuizList = initQuizList;
+

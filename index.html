@@ -106,6 +106,141 @@
     </div>
   </main>
 
+  <!-- ====== GEMINI FAB BUTTON ====== -->
+  <button class="gemini-fab" onclick="openGeminiModal()" title="Nhập đề bằng AI">
+    <span class="gemini-fab-icon">🤖</span>
+    <span class="gemini-fab-text">Nhập đề bằng AI</span>
+  </button>
+
+  <!-- ====== GEMINI MODAL ====== -->
+  <div id="geminiModalOverlay" class="gemini-modal-overlay">
+    <div class="gemini-modal">
+      <!-- Header -->
+      <div class="gemini-modal-header">
+        <div class="gemini-modal-title">
+          <span class="gemini-logo">✨</span>
+          Nhập đề thi bằng AI Gemini
+        </div>
+        <button id="btnCloseGeminiModal" class="gemini-close-btn" aria-label="Đóng">✕</button>
+      </div>
+
+      <!-- Step Indicator -->
+      <div class="gemini-steps-indicator">
+        <div class="step-item">
+          <div class="step-dot active-dot" data-step="1">1</div>
+          <span>Upload ảnh</span>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step-item">
+          <div class="step-dot" data-step="2">2</div>
+          <span>Phân tích</span>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step-item">
+          <div class="step-dot" data-step="3">3</div>
+          <span>Chỉnh sửa</span>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step-item">
+          <div class="step-dot" data-step="4">4</div>
+          <span>Lưu đề</span>
+        </div>
+      </div>
+
+      <!-- Error Box -->
+      <div id="geminiError" class="gemini-error-box" style="display:none"></div>
+
+      <!-- STEP 1: UPLOAD -->
+      <div id="geminiStep1" class="gemini-step active">
+        <div id="imageDrop" class="gemini-image-drop">
+          <div class="drop-icon">📷</div>
+          <div class="drop-title">Kéo thả ảnh đề thi vào đây</div>
+          <div class="drop-sub">hoặc click để chọn file</div>
+          <div class="drop-formats">Hỗ trợ: JPG, PNG, WebP</div>
+        </div>
+        <input type="file" id="imageFileInput" accept="image/*" multiple style="display:none">
+        <input type="file" id="addMoreFileInput" accept="image/*" multiple style="display:none">
+
+        <div id="imagePreviewContainer" class="image-preview-container"></div>
+
+        <button id="btnAddMoreImages" class="btn-add-more" style="display:none">
+          + Thêm ảnh
+        </button>
+
+        <div class="gemini-note-section">
+          <label for="geminiExtraNote">Ghi chú thêm cho AI (tuỳ chọn):</label>
+          <textarea id="geminiExtraNote" class="gemini-note-input" placeholder="Ví dụ: Đây là đề Sinh học lớp 11, phần đúng/sai có 4 ý mỗi câu..."></textarea>
+        </div>
+
+        <div class="gemini-step-footer">
+          <button id="btnAnalyze" class="gemini-btn-primary">
+            <span>🔍</span> Phân tích với AI
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 2: LOADING -->
+      <div id="geminiStep2" class="gemini-step">
+        <div class="gemini-loading-container">
+          <div class="gemini-spinner"></div>
+          <div class="gemini-loading-title">Gemini đang phân tích ảnh...</div>
+          <div class="gemini-loading-sub">Quá trình này có thể mất 10-30 giây</div>
+          <div class="gemini-loading-dots">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3: EDITOR -->
+      <div id="geminiStep3" class="gemini-step">
+        <div class="editor-toolbar">
+          <div class="editor-info">
+            <span class="editor-icon">✏️</span>
+            Kiểm tra và chỉnh sửa câu hỏi
+            <span id="geminiQuestionCount" class="question-count-badge">0 câu</span>
+          </div>
+          <button id="btnReanalyze" class="btn-reanalyze">🔄 Phân tích lại</button>
+        </div>
+        <div id="questionEditorContainer" class="question-editor-container"></div>
+        <div class="gemini-step-footer">
+          <button id="btnBackToUpload" class="gemini-btn-secondary">← Quay lại</button>
+          <button id="btnGoToSave" class="gemini-btn-primary">Tiếp theo →</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: SAVE -->
+      <div id="geminiStep4" class="gemini-step">
+        <div class="save-form">
+          <div class="save-form-icon">📚</div>
+          <h3 class="save-form-title">Đặt tên cho bộ đề</h3>
+          <div class="save-field">
+            <label for="geminiQuizTitle">Tên đề thi <span class="required">*</span></label>
+            <input type="text" id="geminiQuizTitle" class="save-input" placeholder="Ví dụ: Toán 11 - Giữa Kỳ II" oninput="this.style.borderColor=''">
+          </div>
+          <div class="save-field">
+            <label for="geminiQuizDesc">Mô tả (tuỳ chọn)</label>
+            <textarea id="geminiQuizDesc" class="save-input save-textarea" placeholder="Mô tả ngắn về nội dung đề thi..."></textarea>
+          </div>
+        </div>
+        <div class="gemini-step-footer">
+          <button id="btnBackToEdit" class="gemini-btn-secondary">← Quay lại chỉnh sửa</button>
+          <button id="btnImportQuiz" class="gemini-btn-primary">✅ Thêm vào danh sách</button>
+        </div>
+      </div>
+
+      <!-- STEP 5: SUCCESS -->
+      <div id="geminiStep5" class="gemini-step">
+        <div class="success-container">
+          <div class="success-icon">🎉</div>
+          <h3 class="success-title">Thêm đề thành công!</h3>
+          <p class="success-sub">Bộ đề mới đã được thêm vào danh sách. Bạn có thể bắt đầu làm bài ngay bây giờ.</p>
+          <button id="btnCloseSuccess" class="gemini-btn-primary">Xem danh sách đề →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <footer class="footer">
     <div class="container footer-content">
       <div class="footer-section">
@@ -126,6 +261,7 @@
   </footer>
 
   <script type="module" src="js/app.js"></script>
+  <script type="module" src="js/gemini.js"></script>
 </body>
 
 </html>
