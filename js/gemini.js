@@ -658,11 +658,13 @@ function renderQuestionEditor() {
                 const file = e.target.files[0];
                 if (!file) return;
                 try {
+                    btn.textContent = "⌛...";
                     const base64Data = await fileToBase64(file);
                     extractedQuestions[qi].imageSrc = `data:${base64Data.mimeType};base64,${base64Data.base64}`;
                     renderQuestionEditor();
                 } catch(err) {
                     alert("Lỗi tải ảnh: " + err.message);
+                    btn.textContent = "🖼️ Đổi ảnh";
                 }
             };
             input.click();
@@ -771,8 +773,7 @@ function initGeminiModal() {
     const fileInput = document.getElementById("imageFileInput");
     const addMoreInput = document.getElementById("addMoreFileInput");
 
-    // Click vùng drop để mở file picker
-    dropZone.addEventListener("click", () => fileInput.click());
+    // Note: Click events are now handled by <label for="..."> in index.html for better mobile support
 
     // Drag & drop
     dropZone.addEventListener("dragover", (e) => { e.preventDefault(); dropZone.classList.add("drag-over"); });
@@ -789,8 +790,7 @@ function initGeminiModal() {
         fileInput.value = "";
     });
 
-    // Nút "Thêm ảnh"
-    document.getElementById("btnAddMoreImages").addEventListener("click", () => addMoreInput.click());
+    // Note: Click events are now handled by <label for="..."> in index.html for better mobile support
     addMoreInput.addEventListener("change", async () => {
         await processFiles(Array.from(addMoreInput.files));
         addMoreInput.value = "";

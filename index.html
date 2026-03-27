@@ -162,20 +162,20 @@
 
       <!-- STEP 1: UPLOAD -->
       <div id="geminiStep1" class="gemini-step active">
-        <div id="imageDrop" class="gemini-image-drop">
+        <label for="imageFileInput" id="imageDrop" class="gemini-image-drop" style="cursor: pointer; display: flex;">
           <div class="drop-icon">📷</div>
           <div class="drop-title">Kéo thả ảnh đề thi vào đây</div>
-          <div class="drop-sub">hoặc click để chọn file</div>
+          <div class="drop-sub">hoặc chạm để chọn file</div>
           <div class="drop-formats">Hỗ trợ: JPG, PNG, WebP</div>
-        </div>
+        </label>
         <input type="file" id="imageFileInput" accept="image/*" multiple style="display:none">
         <input type="file" id="addMoreFileInput" accept="image/*" multiple style="display:none">
 
         <div id="imagePreviewContainer" class="image-preview-container"></div>
 
-        <button id="btnAddMoreImages" class="btn-add-more" style="display:none">
+        <label for="addMoreFileInput" id="btnAddMoreImages" class="btn-add-more" style="display:none; cursor: pointer; text-align: center;">
           + Thêm ảnh
-        </button>
+        </label>
 
         <div class="gemini-note-section">
           <label for="geminiExtraNote">Ghi chú thêm cho AI (tuỳ chọn):</label>
@@ -303,8 +303,8 @@
     </div>
   </footer>
 
-  <script type="module" src="js/app.js?v=36"></script>
-  <script type="module" src="js/gemini.js?v=36"></script>
+  <script type="module" src="js/app.js?v=37"></script>
+  <script type="module" src="js/gemini.js?v=37"></script>
 </body>
 
 </html>
