@@ -129,7 +129,8 @@ Cấu trúc JSON yêu cầu:
       "text": "Nội dung câu 1?",
       "options": ["A. ...", "B. ...", "C. ...", "D. ..."],
       "correctIndex": 0,
-      "imageBox": [ymin, xmin, ymax, xmax]
+      "imageBox": [ymin, xmin, ymax, xmax],
+      "imageIndex": 0
     },
     {
       "qNumber": 2,
@@ -155,7 +156,7 @@ Quy tắc phân loại:
 - "reading_group": Phân 1 đoạn văn lớn chùm có các câu hỏi nhỏ/lựa chọn nhỏ thành 1 phần lớn.
 - "true_false_group": Trắc nghiệm phần Đúng/Sai.
 - "multiple_choice": Trắc nghiệm 4 đáp án thông thường.
-Lưu ý: imageBox là mảng 4 số [ymin, xmin, ymax, xmax] tỉ lệ 0-1000 bao quanh khu vực có HÌNH ẢNH/BIỂU ĐỒ (không bao quanh văn bản thông thường).`;
+Lưu ý: imageBox là mảng 4 số [ymin, xmin, ymax, xmax] tỉ lệ 0-1000 bao quanh khu vực có HÌNH ẢNH/BIỂU ĐỒ. BẮT BUỘC chỉ định imageIndex (0, 1, 2...) tương ứng trang chứa hình đó.`;
 
     try {
         const currentKey = gK();
@@ -191,8 +192,11 @@ Lưu ý: imageBox là mảng 4 số [ymin, xmin, ymax, xmax] tỉ lệ 0-1000 ba
 
         // 4. Xử lý tọa độ ảnh
         for (let q of newQs) {
-            if (q.imageBox && q.imageIndex !== undefined && images[q.imageIndex]) {
-                q.imageSrc = await cropImage(images[q.imageIndex].base64, q.imageBox);
+            if (q.imageBox) {
+                let idx = q.imageIndex !== undefined ? q.imageIndex : 0;
+                if (images[idx]) {
+                    q.imageSrc = await cropImage(images[idx].base64, q.imageBox);
+                }
             }
         }
 
