@@ -41,7 +41,8 @@ let modalInitialized = false; // chống double-init
 // PHÂN TÍCH ẢNH VỚI GEMINI
 // ============================================================
 async function analyzeQuizImage(images, extraNote = "", retryCount = 0) {
-    const prompt = `Bạn là chuyên gia trích xuất câu hỏi từ đề thi (OCR). Hãy phân tích ảnh và trả về JSON chuẩn xác 100%.
+    const systemInstruction = `Bạn là chuyên gia trích xuất câu hỏi từ đề thi (OCR). Hãy phân tích ảnh và trả về JSON chuẩn xác 100%. 
+Mọi phản hồi của bạn phải là JSON hợp lệ để hệ thống của tôi xử lý. Không kèm theo lời giải thích bên ngoài.
 Cấu trúc JSON yêu cầu:
 {
   "questions": [
@@ -66,24 +67,28 @@ Cấu trúc JSON yêu cầu:
 }
 
 Quy tắc ưu tiên độ chính xác:
-1. type: "multiple_choice" (4 đáp án), "true_false_group" (có 4 ý a,b,c,d trả lời Đúng/Sai), "short_answer".
+1. type: "multiple_choice", "true_false_group", "short_answer".
 2. groupText: TRÍCH XUẤT ĐẦY ĐỦ các đoạn văn, ngữ cảnh dùng chung cho một nhóm câu hỏi. Ghi vào câu đầu tiên của nhóm.
-3. imageBox: [ymin, xmin, ymax, xmax] (tọa độ 0-1000) bao quanh hình minh họa (nếu có).
-4. Phải giữ nguyên văn bản, kể cả các ký hiệu toán học hoặc gạch chân (<u>) trong Tiếng Anh.
-${extraNote ? `\nGhi chú đặc biệt từ người dùng: ${extraNote}` : ""}
+3. imageBox: [ymin, xmin, ymax, xmax] (tạo tọa độ 0-1000) bao quanh hình minh họa (nếu có).
+4. Phải giữ nguyên văn bản, kể cả ký hiệu toán học hoặc gạch chân (<u>) trong Tiếng Anh.`;
 
-Trả về MỘT KHỐI JSON DUY NHẤT.`;
-
-    const parts = [{ text: prompt }];
+    const userParts = [];
+    if (extraNote) {
+        userParts.push({ text: `Ghi chú đặc biệt từ người dùng: ${extraNote}` });
+    }
+    
     images.forEach(img => {
-        parts.push({ inlineData: { mimeType: img.mimeType, data: img.base64 } });
+        userParts.push({ inlineData: { mimeType: img.mimeType, data: img.base64 } });
     });
 
     const response = await fetch(getGeminiUrl(), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            contents: [{ parts }],
+            systemInstruction: {
+                parts: [{ text: systemInstruction }]
+            },
+            contents: [{ parts: userParts }],
             generationConfig: { 
                 temperature: 0.1, 
                 maxOutputTokens: 8192
