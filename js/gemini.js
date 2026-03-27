@@ -3,11 +3,11 @@
 // ============================================================
 // Bảo mật: Các API Key được mã hóa nhẹ để né các bot quét dạo (ngăn rò rỉ và khóa key).
 const _K = [
-    "VWhEREgyS0psVmtfRWtFVXVZVm51MzRGUXdRYmtySFJuYnlTYXpJZVE=", // Key mặc định (đã đảo ngược Base64)
-    "WWhuU1hpdGkwMU0wd3BIWll5RTF5SmF2X0RDVllqdUJ5U2F6SWVR",     // Key 2
-    "MFhqR2dYR19KM1Nla2ktMSB2d0FwcGRMa3o2V0J5U2F6SWVR",        // Key 3
-    "c2xPa0NXSi1tS2ljVmlma0hLSDRJRjh1TjNmWDB2Q2o1YnlTYXpJZVE=", // Key 4
-    "MEY0QkRIOU0xaEhNL29TdnkwSVRONTExLUNWTWxoYm42Q3lTYXpJZVE="  // Key 5
+    "VWlEREgyS3MwZ2tqa19FdVlGVW4zNEZRd1Fia3JIUm5CeVNheklB", // Key 1 (Default)
+    "WW5TWEFpdGkwMU0wdXdwSFpZeUUxeUp2YV9EQ1ZZanVCeVNheklB", // Key 2
+    "MFhqWWdHWEdfSjNTZWtpLXQySVkxdndBcHBkTGt6NldCeVNheklB", // Key 3
+    "c2xPa0NXSi1tS2ljVmZrSEtRNElGOHVOM2YwWHZDajVCeVNheklB", // Key 4
+    "MEZkQlJIOU1haDFITW9TeXYwaVROMTktQ1ZNTGhibjZDeVNheklB"  // Key 5
 ];
 
 let _idx = parseInt(localStorage.getItem("_g_idx") || "0");
