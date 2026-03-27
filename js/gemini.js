@@ -1,7 +1,8 @@
+import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
+
 // ============================================================
 // GEMINI AI - CONFIGURATION AND KEY ROTATION
 // ============================================================
-// Bảo mật: Các API Key được mã hóa nhẹ để né các bot quét dạo (ngăn rò rỉ và khóa key).
 const _K = [
     "AIzaSyBnRHrkbQwQF43n" + "UFYuE_kjkg0sK2HDDiU", // Key 1
     "AIzaSyBujYVCD_avJy1E" + "yYZHpwu0M10itiAXSnY", // Key 2
@@ -22,27 +23,10 @@ function rK() {
     console.log(`[Gemini] Đang xoay sang API Key #${_idx + 1}...`);
 }
 
-// Danh sách các mô hình khả dụng (Sẽ thử lần lượt nếu bị 404 hoặc 403)
-const _MODELS = ["gemini-1.5-flash", "gemini-1.5-flash-8b", "gemini-2.0-flash-exp", "gemini-1.5-pro"];
+// Danh sách các mô hình khả dụng
+const _MODELS = ["gemini-1.5-flash", "gemini-1.5-flash-8b", "gemini-2.0-flash-exp"];
 let _mIdx = 0;
 
-function getGeminiUrl() {
-    const model = _MODELS[_mIdx % _MODELS.length];
-    return `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${gK()}`;
-}
-
-
-
-
-
-// ---- Trạng thái nội bộ ----
-let uploadedImages = [];      // [{base64, mimeType, name}]
-let extractedQuestions = [];  // câu hỏi sau khi AI phân tích
-let modalInitialized = false; // chống double-init
-
-// ============================================================
-// PHÂN TÍCH ẢNH VỚI GEMINI
-// ============================================================
 // ============================================================
 // HÀM GỘP ẢNH (Bypass vision limit bản Free)
 // ============================================================
@@ -85,10 +69,10 @@ async function mergeImages(images) {
 }
 
 // ============================================================
-// PHÂN TÍCH ẢNH VỚI GEMINI
+// PHÂN TÍCH ẢNH VỚI GEMINI SDK
 // ============================================================
 async function analyzeQuizImage(images, extraNote = "", retryCount = 0) {
-    // Nếu gửi nhiều ảnh, gộp thành 1 để tránh lỗi Vision 404/400 của bản Free
+    // 1. Gộp ảnh nếu gửi nhiều
     const finalImages = (retryCount === 0 && images.length > 1) ? await mergeImages(images) : images;
 
     const systemInstruction = `Bạn là chuyên gia trích xuất câu hỏi từ đề thi (OCR). Hãy phân tích ảnh và trả về JSON chuẩn xác 100%. 
@@ -118,74 +102,29 @@ Cấu trúc JSON yêu cầu:
 
 Quy tắc ưu tiên độ chính xác:
 1. type: "multiple_choice", "true_false_group", "short_answer".
-2. groupText: TRÍCH XUẤT ĐẦY ĐỦ các đoạn văn, ngữ cảnh dùng chung cho một nhóm câu hỏi. Ghi vào câu đầu tiên của nhóm.
-3. imageBox: [ymin, xmin, ymax, xmax] (tạo tọa độ 0-1000) bao quanh hình minh họa (nếu có).
-4. Phải giữ nguyên văn bản, kể cả ký hiệu toán học hoặc gạch chân (<u>) trong Tiếng Anh.`;
-
-    const userParts = [];
-    if (extraNote) {
-        userParts.push({ text: `Ghi chú đặc biệt từ người dùng: ${extraNote}` });
-    }
-    
-    finalImages.forEach(img => {
-        userParts.push({ inlineData: { mimeType: img.mimeType, data: img.base64 } });
-    });
-
-    const response = await fetch(getGeminiUrl(), {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            systemInstruction: {
-                parts: [{ text: systemInstruction }]
-            },
-            contents: [{ parts: userParts }],
-            generationConfig: { 
-                temperature: 0.1, 
-                maxOutputTokens: 8192
-            }
-        })
-    });
-
-    if (!response.ok) {
-        let errData = {};
-        try { errData = await response.json(); } catch(e) {}
-        
-        console.error("[Gemini Error Detail]:", {
-            status: response.status,
-            model: _MODELS[_mIdx % _MODELS.length],
-            keyIdx: (_idx % _K.length) + 1,
-            error: errData
-        });
-
-        // Xử lý xoay tua nếu lỗi do Key hoặc Model (429, 403, 404, 400)
-        if ([429, 403, 404, 400].includes(response.status)) {
-            if (retryCount < _K.length * _MODELS.length) {
-                // Thử hết các Key cho model này, sau đó mới đổi Model
-                if ((retryCount + 1) % _K.length === 0) {
-                    _mIdx++;
-                    console.log(`[Gemini] Đang đổi sang mô hình dự phòng: ${_MODELS[_mIdx % _MODELS.length]}`);
-                }
-                rK();
-
-                const loadingSub = document.querySelector(".gemini-loading-sub");
-                if (loadingSub) {
-                    loadingSub.textContent = `Đang thử cấu hình dự phòng ${retryCount + 2}/${_K.length * _MODELS.length}...`;
-                }
-                
-                return analyzeQuizImage(images, extraNote, retryCount + 1);
-            }
-        }
-
-        let msg = errData.error?.message || `Lỗi ${response.status} từ máy chủ AI.`;
-        throw new Error(msg);
-    }
+2. groupText: TRÍCH XUẤT ĐẦY ĐỦ các đoạn văn, ngữ cảnh dùng chung cho một nhóm câu hỏi.
+3. imageBox: [ymin, xmin, ymax, xmax] (tọa độ 0-1000) bao quanh hình minh họa (nếu có).`;
 
     try {
-        const data = await response.json();
-        let rawText = data.candidates?.[0]?.content?.parts?.[0]?.text || "{}";
+        // 2. Khởi tạo SDK với Key hiện tại
+        const genAI = new GoogleGenerativeAI(gK());
+        const model = genAI.getGenerativeModel({ 
+            model: _MODELS[_mIdx % _MODELS.length],
+            systemInstruction: systemInstruction 
+        });
+
+        const promptParts = [];
+        if (extraNote) promptParts.push({ text: `Ghi chú từ người dùng: ${extraNote}` });
         
-        // Làm sạch JSON một cách triệt để
-        rawText = rawText.replace(/^[^{]*/, "").replace(/[^}]*$/, "");
+        finalImages.forEach(img => {
+            promptParts.push({ inlineData: { mimeType: img.mimeType, data: img.base64 } });
+        });
+
+        const result = await model.generateContent(promptParts);
+        const responseText = result.response.text();
+
+        // 3. Làm sạch và Parse JSON
+        let rawText = responseText.replace(/^[^{]*/, "").replace(/[^}]*$/, "");
         if (rawText.includes("```json")) {
             rawText = rawText.split("```json")[1].split("```")[0];
         } else if (rawText.includes("```")) {
@@ -195,7 +134,7 @@ Quy tắc ưu tiên độ chính xác:
         const parsed = JSON.parse(rawText.trim());
         const newQs = parsed.questions || [];
 
-        // Xử lý tọa độ ảnh (nếu có)
+        // 4. Xử lý tọa độ ảnh
         for (let q of newQs) {
             if (q.imageBox && q.imageIndex !== undefined && images[q.imageIndex]) {
                 q.imageSrc = await cropImage(images[q.imageIndex].base64, q.imageBox);
@@ -203,11 +142,30 @@ Quy tắc ưu tiên độ chính xác:
         }
 
         return newQs;
+
     } catch (err) {
-        console.error("JSON parse error:", err);
-        throw new Error("Không thể đọc dữ liệu từ AI (Lỗi định dạng). Hãy thử lại hoặc gửi ít ảnh hơn.");
+        console.error("[Gemini SDK Error]:", err);
+        
+        // Thử lại nếu lỗi (403, 429, 404, 400)
+        const errStr = err.toString();
+        if (errStr.includes("429") || errStr.includes("403") || errStr.includes("404") || errStr.includes("400")) {
+            if (retryCount < _K.length * _MODELS.length) {
+                if ((retryCount + 1) % _K.length === 0) _mIdx++;
+                rK();
+                
+                const loadingSub = document.querySelector(".gemini-loading-sub");
+                if (loadingSub) {
+                    loadingSub.textContent = `Đang kích hoạt máy chủ dự phòng ${retryCount + 2}...`;
+                }
+                
+                return analyzeQuizImage(images, extraNote, retryCount + 1);
+            }
+        }
+        
+        throw new Error(err.message || "Không thể kết nối với AI. Vui lòng thử lại sau.");
     }
 }
+
 
 // ============================================================
 // TRÍCH XUẤT ẢNH TỪ TỌA ĐỘ
