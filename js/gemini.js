@@ -1,4 +1,4 @@
-import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // ============================================================
 // GEMINI AI - CONFIGURATION AND KEY ROTATION
