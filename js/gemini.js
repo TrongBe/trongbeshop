@@ -23,7 +23,7 @@ function rK() {
 }
 
 // Danh sách các mô hình khả dụng (Sẽ thử lần lượt nếu bị 404 hoặc 403)
-const _MODELS = ["gemini-1.5-flash", "gemini-2.0-flash-exp", "gemini-1.5-pro"];
+const _MODELS = ["gemini-1.5-flash", "gemini-1.5-flash-8b", "gemini-2.0-flash-exp", "gemini-1.5-pro"];
 let _mIdx = 0;
 
 function getGeminiUrl() {
@@ -43,7 +43,54 @@ let modalInitialized = false; // chống double-init
 // ============================================================
 // PHÂN TÍCH ẢNH VỚI GEMINI
 // ============================================================
+// ============================================================
+// HÀM GỘP ẢNH (Bypass vision limit bản Free)
+// ============================================================
+async function mergeImages(images) {
+    if (images.length <= 1) return images;
+    console.log("[Gemini] Đang gộp các ảnh lại thành 1 file duy nhất...");
+    
+    return new Promise((resolve) => {
+        const loadedImgs = [];
+        let count = 0;
+        images.forEach((imgData, idx) => {
+            const img = new Image();
+            img.onload = () => {
+                loadedImgs[idx] = img;
+                count++;
+                if (count === images.length) {
+                    const canvas = document.createElement("canvas");
+                    const ctx = canvas.getContext("2d");
+                    const width = Math.max(...loadedImgs.map(i => i.width));
+                    const totalHeight = loadedImgs.reduce((sum, i) => sum + i.height, 0);
+                    
+                    canvas.width = width;
+                    canvas.height = totalHeight;
+                    let currentY = 0;
+                    loadedImgs.forEach(i => {
+                        ctx.drawImage(i, 0, currentY);
+                        currentY += i.height;
+                    });
+                    
+                    resolve([{
+                        base64: canvas.toDataURL("image/jpeg", 0.8).split(",")[1],
+                        mimeType: "image/jpeg",
+                        name: "merged_quiz.jpg"
+                    }]);
+                }
+            };
+            img.src = "data:" + imgData.mimeType + ";base64," + imgData.base64;
+        });
+    });
+}
+
+// ============================================================
+// PHÂN TÍCH ẢNH VỚI GEMINI
+// ============================================================
 async function analyzeQuizImage(images, extraNote = "", retryCount = 0) {
+    // Nếu gửi nhiều ảnh, gộp thành 1 để tránh lỗi Vision 404/400 của bản Free
+    const finalImages = (retryCount === 0 && images.length > 1) ? await mergeImages(images) : images;
+
     const systemInstruction = `Bạn là chuyên gia trích xuất câu hỏi từ đề thi (OCR). Hãy phân tích ảnh và trả về JSON chuẩn xác 100%. 
 Mọi phản hồi của bạn phải là JSON hợp lệ để hệ thống của tôi xử lý. Không kèm theo lời giải thích bên ngoài.
 Cấu trúc JSON yêu cầu:
@@ -80,7 +127,7 @@ Quy tắc ưu tiên độ chính xác:
         userParts.push({ text: `Ghi chú đặc biệt từ người dùng: ${extraNote}` });
     }
     
-    images.forEach(img => {
+    finalImages.forEach(img => {
         userParts.push({ inlineData: { mimeType: img.mimeType, data: img.base64 } });
     });
 
