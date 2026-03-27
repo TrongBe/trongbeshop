@@ -100,23 +100,18 @@ Quy tắc ưu tiên độ chính xác:
         const err = await response.json();
         let msg = err.error?.message || "Gemini API lỗi";
 
-        // Lỗi 429 (Hết lượt) hoặc 400/404 (Không tìm thấy model/Lỗi yêu cầu)
+        // Lỗi 429 (Hết lượt) hoặc 400/404 (Lỗi yêu cầu) - XOAY TUA KEY ĐỂ THỬ LẠI
         if (response.status === 429 || response.status === 400 || response.status === 404) {
-            if (retryCount < _K.length * _MODELS.length) {
+            if (retryCount < _K.length) {
                 const isRateLimit = response.status === 429;
                 
-                // Thuật toán: thử hết các Key cho model hiện tại, sau đó đổi Model và thử lại các Key
-                if ((retryCount + 1) % _K.length === 0) {
-                    _mIdx++; // Đổi model sau khi thử hết các key
-                    console.log(`[Gemini] Đang thử đổi sang mô hình: ${_MODELS[_mIdx % _MODELS.length]}`);
-                }
                 rK(); // Xoay sang key mới
                 
                 const loadingSub = document.querySelector(".gemini-loading-sub");
                 if (loadingSub) {
                     loadingSub.textContent = isRateLimit 
-                        ? `AI đang bận, đang chuyển hướng (Lần thử ${retryCount + 1}/${_K.length * _MODELS.length})`
-                        : `Đang kết nối lại với máy chủ dự phòng (Lần thử ${retryCount + 1})`;
+                        ? `AI đang bận, đang chuyển hướng (Lần thử ${retryCount + 1}/${_K.length})`
+                        : `Đang kết nối lại với máy chủ dự phòng (Lần thử ${retryCount + 1}/${_K.length})`;
                 }
                 
                 return analyzeQuizImage(images, extraNote, retryCount + 1);
