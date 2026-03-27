@@ -212,6 +212,16 @@ function renderImagePreviews() {
 // ============================================================
 // RENDER CÂU HỎI ĐỂ CHỈNH SỬA (BƯỚC 3)
 // ============================================================
+function escapeHTML(str) {
+    return String(str || "").replace(/[&<>'"]/g, tag => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        "'": '&#39;',
+        '"': '&quot;'
+    }[tag]));
+}
+
 function renderQuestionEditor() {
     const container = document.getElementById("questionEditorContainer");
     container.innerHTML = "";
@@ -228,7 +238,11 @@ function renderQuestionEditor() {
         card.className = "q-editor-card";
         card.dataset.index = qi;
 
-        const type = q.type || "multiple_choice";
+        let rawType = (q.type || "multiple_choice").toString().toLowerCase().trim();
+        let type = "multiple_choice";
+        if (rawType.includes("true") || rawType.includes("false") || rawType.includes("sai") || rawType.includes("đúng")) type = "true_false_group";
+        else if (rawType.includes("short") || rawType.includes("ngắn")) type = "short_answer";
+
         const typeLabel = type === "multiple_choice" ? "Nhiều lựa chọn" : type === "true_false_group" ? "Đúng / Sai" : "Trả lời ngắn";
         const typeClass = type === "multiple_choice" ? "badge-mc" : type === "true_false_group" ? "badge-tf" : "badge-sa";
 
@@ -238,14 +252,14 @@ function renderQuestionEditor() {
             bodyHTML = `
                 <div class="q-text-editor">
                     <label>Nội dung câu hỏi:</label>
-                    <textarea class="q-text-input" rows="2">${q.text || ""}</textarea>
+                    <textarea class="q-text-input" rows="2">${escapeHTML(q.text)}</textarea>
                 </div>
                 <div class="q-options-editor">
                     <label>Lựa chọn (click ✓ để chọn đáp án đúng):</label>
                     ${(q.options || []).map((opt, oi) => `
                         <div class="q-option-row ${oi === q.correctIndex ? 'is-correct' : ''}" data-oi="${oi}">
                             <button class="correct-selector ${oi === q.correctIndex ? 'selected' : ''}" data-qi="${qi}" data-oi="${oi}">✓</button>
-                            <input type="text" class="q-opt-input" value="${opt}" data-qi="${qi}" data-oi="${oi}">
+                            <input type="text" class="q-opt-input" value="${escapeHTML(opt)}" data-qi="${qi}" data-oi="${oi}">
                         </div>
                     `).join("")}
                 </div>
@@ -254,7 +268,7 @@ function renderQuestionEditor() {
             bodyHTML = `
                 <div class="q-text-editor">
                     <label>Nội dung câu hỏi:</label>
-                    <textarea class="q-text-input" rows="2">${q.text || ""}</textarea>
+                    <textarea class="q-text-input" rows="2">${escapeHTML(q.text)}</textarea>
                 </div>
                 <div class="tf-editor-table">
                     <table>
@@ -262,7 +276,7 @@ function renderQuestionEditor() {
                         <tbody>
                             ${(q.subQuestions || []).map((sq, si) => `
                                 <tr>
-                                    <td><input type="text" class="tf-sub-input" value="${sq.text}" data-qi="${qi}" data-si="${si}"></td>
+                                    <td><input type="text" class="tf-sub-input" value="${escapeHTML(sq.text)}" data-qi="${qi}" data-si="${si}"></td>
                                     <td class="tf-radio-cell">
                                         <label class="tf-radio-label ${sq.correctAnswer === 'Đúng' ? 'tf-selected' : ''}">
                                             <input type="radio" name="tf_${qi}_${si}" value="Đúng" ${sq.correctAnswer === 'Đúng' ? 'checked' : ''} data-qi="${qi}" data-si="${si}">
@@ -283,11 +297,11 @@ function renderQuestionEditor() {
             bodyHTML = `
                 <div class="q-text-editor">
                     <label>Nội dung câu hỏi:</label>
-                    <textarea class="q-text-input" rows="2">${q.text || ""}</textarea>
+                    <textarea class="q-text-input" rows="2">${escapeHTML(q.text)}</textarea>
                 </div>
                 <div class="q-text-editor">
                     <label>Đáp án đúng:</label>
-                    <input type="text" class="q-answer-input" value="${q.correctAnswer || ""}" placeholder="Nhập đáp án..." data-qi="${qi}">
+                    <input type="text" class="q-answer-input" value="${escapeHTML(q.correctAnswer)}" placeholder="Nhập đáp án..." data-qi="${qi}">
                 </div>
             `;
         }
