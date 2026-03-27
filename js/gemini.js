@@ -76,7 +76,11 @@ CHỈ TRẢ VỀ JSON, KHÔNG CÓ VĂN BẢN KHÁC.`;
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             contents: [{ parts }],
-            generationConfig: { temperature: 0.1, maxOutputTokens: 8192 }
+            generationConfig: { 
+                temperature: 0.1, 
+                maxOutputTokens: 8192,
+                responseMimeType: "application/json"
+            }
         })
     });
 
@@ -100,11 +104,16 @@ CHỈ TRẢ VỀ JSON, KHÔNG CÓ VĂN BẢN KHÁC.`;
         throw new Error(msg);
     }
 
-    const data = await response.json();
-    const rawText = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
-    const cleaned = rawText.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
-    const parsed = JSON.parse(cleaned);
-    return parsed.questions || [];
+    try {
+        const data = await response.json();
+        const rawText = data.candidates?.[0]?.content?.parts?.[0]?.text || "{}";
+        const cleaned = rawText.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
+        const parsed = JSON.parse(cleaned);
+        return parsed.questions || [];
+    } catch (error) {
+        console.error("JSON Parse Error:", error);
+        throw new Error("Đề thi quá dài khiến AI trả về dữ liệu bị ngắt quãng. Vui lòng thử chụp gần hơn hoặc tách ra phân tích từng ảnh một (1-2 trang/lần).");
+    }
 }
 
 // ============================================================
