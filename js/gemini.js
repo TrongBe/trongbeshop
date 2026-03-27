@@ -2,12 +2,13 @@
 // GEMINI AI - NHẬP ĐỀ BẰNG ẢNH
 // ============================================================
 const GEMINI_API_KEY = "AIzaSyChR-vkkNOsb3iMrpwCnLljDTB1QfzrNY8";
-const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
+const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+
 
 // ---- Trạng thái nội bộ ----
-let uploadedImages = []; // [{base64, mimeType, name}]
-let extractedQuestions = []; // mảng câu hỏi sau khi AI phân tích
-let sectionName = "TRẮC NGHIỆM"; // tên section mặc định
+let uploadedImages = [];      // [{base64, mimeType, name}]
+let extractedQuestions = [];  // câu hỏi sau khi AI phân tích
+let modalInitialized = false; // chống double-init
 
 // ============================================================
 // PHÂN TÍCH ẢNH VỚI GEMINI
@@ -60,12 +61,7 @@ CHỈ TRẢ VỀ JSON, KHÔNG CÓ VĂN BẢN KHÁC.`;
 
     const parts = [{ text: prompt }];
     images.forEach(img => {
-        parts.push({
-            inlineData: {
-                mimeType: img.mimeType,
-                data: img.base64
-            }
-        });
+        parts.push({ inlineData: { mimeType: img.mimeType, data: img.base64 } });
     });
 
     const response = await fetch(GEMINI_API_URL, {
@@ -84,8 +80,6 @@ CHỈ TRẢ VỀ JSON, KHÔNG CÓ VĂN BẢN KHÁC.`;
 
     const data = await response.json();
     const rawText = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
-
-    // Clean JSON nếu có fence
     const cleaned = rawText.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
     const parsed = JSON.parse(cleaned);
     return parsed.questions || [];
@@ -98,12 +92,33 @@ function fileToBase64(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = () => {
-            const base64 = reader.result.split(",")[1];
-            resolve({ base64, mimeType: file.type, name: file.name });
+            resolve({ base64: reader.result.split(",")[1], mimeType: file.type, name: file.name });
         };
         reader.onerror = reject;
         reader.readAsDataURL(file);
     });
+}
+
+async function processFiles(files) {
+    const validFiles = files.filter(f => f.type.startsWith("image/"));
+    if (validFiles.length === 0) return;
+    const newImgs = await Promise.all(validFiles.map(fileToBase64));
+    uploadedImages.push(...newImgs);
+    renderImagePreviews();
+    updateDropZoneVisibility();
+}
+
+function updateDropZoneVisibility() {
+    const dropZone = document.getElementById("imageDrop");
+    const addMoreBtn = document.getElementById("btnAddMoreImages");
+    if (!dropZone) return;
+    if (uploadedImages.length > 0) {
+        dropZone.style.display = "none";
+        if (addMoreBtn) addMoreBtn.style.display = "inline-flex";
+    } else {
+        dropZone.style.display = "flex";
+        if (addMoreBtn) addMoreBtn.style.display = "none";
+    }
 }
 
 // ============================================================
@@ -112,6 +127,22 @@ function fileToBase64(file) {
 function openGeminiModal() {
     uploadedImages = [];
     extractedQuestions = [];
+    // Reset bước 1
+    const dropZone = document.getElementById("imageDrop");
+    const addMoreBtn = document.getElementById("btnAddMoreImages");
+    const previewContainer = document.getElementById("imagePreviewContainer");
+    const extraNote = document.getElementById("geminiExtraNote");
+    const geminiError = document.getElementById("geminiError");
+    if (dropZone) dropZone.style.display = "flex";
+    if (addMoreBtn) addMoreBtn.style.display = "none";
+    if (previewContainer) previewContainer.innerHTML = "";
+    if (extraNote) extraNote.value = "";
+    if (geminiError) geminiError.style.display = "none";
+    // Reset bước 4
+    const titleEl = document.getElementById("geminiQuizTitle");
+    const descEl = document.getElementById("geminiQuizDesc");
+    if (titleEl) { titleEl.value = ""; titleEl.style.borderColor = ""; }
+    if (descEl) descEl.value = "";
     showGeminiStep(1);
     document.getElementById("geminiModalOverlay").classList.add("active");
     document.body.style.overflow = "hidden";
@@ -126,8 +157,6 @@ function showGeminiStep(step) {
     document.querySelectorAll(".gemini-step").forEach(el => el.classList.remove("active"));
     const target = document.getElementById(`geminiStep${step}`);
     if (target) target.classList.add("active");
-
-    // Update step indicators
     document.querySelectorAll(".step-dot").forEach((dot, i) => {
         dot.classList.toggle("done", i + 1 < step);
         dot.classList.toggle("active-dot", i + 1 === step);
@@ -135,33 +164,28 @@ function showGeminiStep(step) {
 }
 
 // ============================================================
-// RENDER PREVIEW ẢNH ĐÃ UPLOAD
+// RENDER PREVIEW ẢNH
 // ============================================================
 function renderImagePreviews() {
     const container = document.getElementById("imagePreviewContainer");
+    if (!container) return;
     container.innerHTML = "";
     uploadedImages.forEach((img, i) => {
         const wrapper = document.createElement("div");
         wrapper.className = "img-preview-item";
         wrapper.innerHTML = `
             <img src="data:${img.mimeType};base64,${img.base64}" alt="${img.name}">
-            <button class="img-remove-btn" onclick="removeUploadedImage(${i})" title="Xóa ảnh">✕</button>
+            <button class="img-remove-btn" data-index="${i}" title="Xóa ảnh">✕</button>
             <span class="img-name">${img.name}</span>
         `;
+        wrapper.querySelector(".img-remove-btn").addEventListener("click", () => {
+            uploadedImages.splice(i, 1);
+            renderImagePreviews();
+            updateDropZoneVisibility();
+        });
         container.appendChild(wrapper);
     });
-
-    const addMoreBtn = document.getElementById("btnAddMoreImages");
-    if (addMoreBtn) addMoreBtn.style.display = uploadedImages.length > 0 ? "inline-flex" : "none";
 }
-
-window.removeUploadedImage = function(index) {
-    uploadedImages.splice(index, 1);
-    renderImagePreviews();
-    if (uploadedImages.length === 0) {
-        document.getElementById("imageDrop").style.display = "flex";
-    }
-};
 
 // ============================================================
 // RENDER CÂU HỎI ĐỂ CHỈNH SỬA (BƯỚC 3)
@@ -183,8 +207,8 @@ function renderQuestionEditor() {
         card.dataset.index = qi;
 
         const type = q.type || "multiple_choice";
-        let typeLabel = type === "multiple_choice" ? "Nhiều lựa chọn" : type === "true_false_group" ? "Đúng / Sai" : "Trả lời ngắn";
-        let typeClass = type === "multiple_choice" ? "badge-mc" : type === "true_false_group" ? "badge-tf" : "badge-sa";
+        const typeLabel = type === "multiple_choice" ? "Nhiều lựa chọn" : type === "true_false_group" ? "Đúng / Sai" : "Trả lời ngắn";
+        const typeClass = type === "multiple_choice" ? "badge-mc" : type === "true_false_group" ? "badge-tf" : "badge-sa";
 
         let bodyHTML = "";
 
@@ -192,14 +216,14 @@ function renderQuestionEditor() {
             bodyHTML = `
                 <div class="q-text-editor">
                     <label>Nội dung câu hỏi:</label>
-                    <textarea class="q-text-input" data-field="text" data-qi="${qi}">${q.text || ""}</textarea>
+                    <textarea class="q-text-input" rows="2">${q.text || ""}</textarea>
                 </div>
                 <div class="q-options-editor">
-                    <label>Các lựa chọn (click ô tròn để chọn đáp án đúng):</label>
+                    <label>Lựa chọn (click ✓ để chọn đáp án đúng):</label>
                     ${(q.options || []).map((opt, oi) => `
-                        <div class="q-option-row ${oi === q.correctIndex ? 'is-correct' : ''}" data-qi="${qi}" data-oi="${oi}">
-                            <button class="correct-selector ${oi === q.correctIndex ? 'selected' : ''}" onclick="setCorrectMC(${qi},${oi})" title="Đánh dấu là đáp án đúng">✓</button>
-                            <input type="text" class="q-opt-input" value="${opt}" data-qi="${qi}" data-oi="${oi}" placeholder="Lựa chọn ${oi+1}">
+                        <div class="q-option-row ${oi === q.correctIndex ? 'is-correct' : ''}" data-oi="${oi}">
+                            <button class="correct-selector ${oi === q.correctIndex ? 'selected' : ''}" data-qi="${qi}" data-oi="${oi}">✓</button>
+                            <input type="text" class="q-opt-input" value="${opt}" data-qi="${qi}" data-oi="${oi}">
                         </div>
                     `).join("")}
                 </div>
@@ -208,7 +232,7 @@ function renderQuestionEditor() {
             bodyHTML = `
                 <div class="q-text-editor">
                     <label>Nội dung câu hỏi:</label>
-                    <textarea class="q-text-input" data-field="text" data-qi="${qi}">${q.text || ""}</textarea>
+                    <textarea class="q-text-input" rows="2">${q.text || ""}</textarea>
                 </div>
                 <div class="tf-editor-table">
                     <table>
@@ -219,12 +243,12 @@ function renderQuestionEditor() {
                                     <td><input type="text" class="tf-sub-input" value="${sq.text}" data-qi="${qi}" data-si="${si}"></td>
                                     <td class="tf-radio-cell">
                                         <label class="tf-radio-label ${sq.correctAnswer === 'Đúng' ? 'tf-selected' : ''}">
-                                            <input type="radio" name="tf_${qi}_${si}" value="Đúng" ${sq.correctAnswer === 'Đúng' ? 'checked' : ''} onchange="setCorrectTF(${qi},${si},this.value)">
+                                            <input type="radio" name="tf_${qi}_${si}" value="Đúng" ${sq.correctAnswer === 'Đúng' ? 'checked' : ''} data-qi="${qi}" data-si="${si}">
                                         </label>
                                     </td>
                                     <td class="tf-radio-cell">
                                         <label class="tf-radio-label ${sq.correctAnswer === 'Sai' ? 'tf-selected' : ''}">
-                                            <input type="radio" name="tf_${qi}_${si}" value="Sai" ${sq.correctAnswer === 'Sai' ? 'checked' : ''} onchange="setCorrectTF(${qi},${si},this.value)">
+                                            <input type="radio" name="tf_${qi}_${si}" value="Sai" ${sq.correctAnswer === 'Sai' ? 'checked' : ''} data-qi="${qi}" data-si="${si}">
                                         </label>
                                     </td>
                                 </tr>
@@ -237,11 +261,11 @@ function renderQuestionEditor() {
             bodyHTML = `
                 <div class="q-text-editor">
                     <label>Nội dung câu hỏi:</label>
-                    <textarea class="q-text-input" data-field="text" data-qi="${qi}">${q.text || ""}</textarea>
+                    <textarea class="q-text-input" rows="2">${q.text || ""}</textarea>
                 </div>
                 <div class="q-text-editor">
                     <label>Đáp án đúng:</label>
-                    <input type="text" class="q-answer-input" value="${q.correctAnswer || ""}" data-qi="${qi}" placeholder="Nhập đáp án...">
+                    <input type="text" class="q-answer-input" value="${q.correctAnswer || ""}" placeholder="Nhập đáp án..." data-qi="${qi}">
                 </div>
             `;
         }
@@ -251,77 +275,73 @@ function renderQuestionEditor() {
                 <div class="q-editor-num">Câu ${qi + 1}</div>
                 <span class="q-type-badge ${typeClass}">${typeLabel}</span>
                 <div class="q-editor-actions">
-                    <button class="q-action-btn q-delete-btn" onclick="deleteExtractedQuestion(${qi})" title="Xóa câu này">🗑️</button>
+                    <button class="q-action-btn q-delete-btn" data-qi="${qi}" title="Xóa câu này">🗑️</button>
                 </div>
             </div>
-            <div class="q-editor-body">
-                ${bodyHTML}
-            </div>
+            <div class="q-editor-body">${bodyHTML}</div>
         `;
         container.appendChild(card);
     });
 
-    // Attach live-sync events
-    syncEditorEvents();
-}
-
-function syncEditorEvents() {
-    // Sync text inputs
-    document.querySelectorAll(".q-text-input").forEach(ta => {
+    // Attach events using event delegation on container
+    container.querySelectorAll(".q-text-input").forEach(ta => {
         ta.addEventListener("input", () => {
-            const qi = parseInt(ta.dataset.qi);
+            const qi = parseInt(ta.closest(".q-editor-card").dataset.index);
             extractedQuestions[qi].text = ta.value;
         });
     });
-    document.querySelectorAll(".q-opt-input").forEach(inp => {
+    container.querySelectorAll(".q-opt-input").forEach(inp => {
         inp.addEventListener("input", () => {
             const qi = parseInt(inp.dataset.qi);
             const oi = parseInt(inp.dataset.oi);
             extractedQuestions[qi].options[oi] = inp.value;
         });
     });
-    document.querySelectorAll(".q-answer-input").forEach(inp => {
+    container.querySelectorAll(".q-answer-input").forEach(inp => {
         inp.addEventListener("input", () => {
             const qi = parseInt(inp.dataset.qi);
             extractedQuestions[qi].correctAnswer = inp.value;
         });
     });
-    document.querySelectorAll(".tf-sub-input").forEach(inp => {
+    container.querySelectorAll(".tf-sub-input").forEach(inp => {
         inp.addEventListener("input", () => {
             const qi = parseInt(inp.dataset.qi);
             const si = parseInt(inp.dataset.si);
             extractedQuestions[qi].subQuestions[si].text = inp.value;
         });
     });
-}
-
-window.setCorrectMC = function(qi, oi) {
-    extractedQuestions[qi].correctIndex = oi;
-    // Update UI
-    const card = document.querySelector(`.q-editor-card[data-index="${qi}"]`);
-    if (!card) return;
-    card.querySelectorAll(".q-option-row").forEach((row, i) => {
-        row.classList.toggle("is-correct", i === oi);
-        row.querySelector(".correct-selector").classList.toggle("selected", i === oi);
+    container.querySelectorAll("input[type=radio]").forEach(radio => {
+        radio.addEventListener("change", () => {
+            const qi = parseInt(radio.dataset.qi);
+            const si = parseInt(radio.dataset.si);
+            extractedQuestions[qi].subQuestions[si].correctAnswer = radio.value;
+            const card = container.querySelector(`.q-editor-card[data-index="${qi}"]`);
+            const rows = card.querySelectorAll("tbody tr");
+            const row = rows[si];
+            row.querySelectorAll(".tf-radio-label").forEach(l => l.classList.remove("tf-selected"));
+            radio.closest(".tf-radio-label").classList.add("tf-selected");
+        });
     });
-};
-
-window.setCorrectTF = function(qi, si, val) {
-    extractedQuestions[qi].subQuestions[si].correctAnswer = val;
-    // Re-style labels
-    const card = document.querySelector(`.q-editor-card[data-index="${qi}"]`);
-    if (!card) return;
-    const rows = card.querySelectorAll("tbody tr");
-    const row = rows[si];
-    row.querySelectorAll(".tf-radio-label").forEach(l => l.classList.remove("tf-selected"));
-    const checkedRadio = row.querySelector(`input[value="${val}"]`);
-    if (checkedRadio) checkedRadio.closest(".tf-radio-label").classList.add("tf-selected");
-};
-
-window.deleteExtractedQuestion = function(qi) {
-    extractedQuestions.splice(qi, 1);
-    renderQuestionEditor();
-};
+    container.querySelectorAll(".correct-selector").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const qi = parseInt(btn.dataset.qi);
+            const oi = parseInt(btn.dataset.oi);
+            extractedQuestions[qi].correctIndex = oi;
+            const card = container.querySelector(`.q-editor-card[data-index="${qi}"]`);
+            card.querySelectorAll(".q-option-row").forEach((row, i) => {
+                row.classList.toggle("is-correct", i === oi);
+                row.querySelector(".correct-selector").classList.toggle("selected", i === oi);
+            });
+        });
+    });
+    container.querySelectorAll(".q-delete-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const qi = parseInt(btn.dataset.qi);
+            extractedQuestions.splice(qi, 1);
+            renderQuestionEditor();
+        });
+    });
+}
 
 // ============================================================
 // THÊM ĐỀ VÀO DANH SÁCH
@@ -337,13 +357,11 @@ function importQuizToList() {
         titleEl.focus();
         return;
     }
-
     if (extractedQuestions.length === 0) {
         alert("Không có câu hỏi nào để thêm!");
         return;
     }
 
-    // Gán id mới để tránh trùng
     const newId = "gemini_" + Date.now();
     const finalQuestions = extractedQuestions.map((q, i) => ({
         ...q,
@@ -351,69 +369,68 @@ function importQuizToList() {
         section: q.section || "TRẮC NGHIỆM"
     }));
 
-    const newQuiz = {
+    window.__mockQuizzes.push({
         id: newId,
-        title: title || "Đề nhập từ AI",
+        title: title,
         description: desc || "Đề thi được tạo tự động bởi Gemini AI.",
         questions: finalQuestions
-    };
-
-    // Push vào mockQuizzes (import từ app.js qua window)
-    window.__mockQuizzes.push(newQuiz);
+    });
     window.__initQuizList();
-
     showGeminiStep(5);
 }
 
 // ============================================================
-// KHỞI TẠO MODAL (chạy sau khi DOM ready)
+// KHỞI TẠO SỰ KIỆN KHÔNG TRÙNG LẶP
 // ============================================================
+function triggerFileInput(inputId) {
+    const inp = document.getElementById(inputId);
+    if (inp) inp.click();
+}
+
 function initGeminiModal() {
-    // Drag & drop zone
+    if (modalInitialized) return;
+    modalInitialized = true;
+
+    // --- DROP ZONE ---
     const dropZone = document.getElementById("imageDrop");
     const fileInput = document.getElementById("imageFileInput");
+    const addMoreInput = document.getElementById("addMoreFileInput");
 
-    if (!dropZone) return;
-
+    // Click vùng drop để mở file picker
     dropZone.addEventListener("click", () => fileInput.click());
-    dropZone.addEventListener("dragover", (e) => {
-        e.preventDefault();
-        dropZone.classList.add("drag-over");
-    });
+
+    // Drag & drop
+    dropZone.addEventListener("dragover", (e) => { e.preventDefault(); dropZone.classList.add("drag-over"); });
     dropZone.addEventListener("dragleave", () => dropZone.classList.remove("drag-over"));
     dropZone.addEventListener("drop", async (e) => {
         e.preventDefault();
         dropZone.classList.remove("drag-over");
-        const files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith("image/"));
-        await processFiles(files);
+        await processFiles(Array.from(e.dataTransfer.files));
     });
 
+    // File input change
     fileInput.addEventListener("change", async () => {
-        const files = Array.from(fileInput.files);
-        await processFiles(files);
+        await processFiles(Array.from(fileInput.files));
         fileInput.value = "";
     });
 
-    // Thêm ảnh tiếp
-    const addMoreInput = document.getElementById("addMoreFileInput");
-    document.getElementById("btnAddMoreImages")?.addEventListener("click", () => addMoreInput.click());
-    addMoreInput?.addEventListener("change", async () => {
-        const files = Array.from(addMoreInput.files);
-        await processFiles(files);
+    // Nút "Thêm ảnh"
+    document.getElementById("btnAddMoreImages").addEventListener("click", () => addMoreInput.click());
+    addMoreInput.addEventListener("change", async () => {
+        await processFiles(Array.from(addMoreInput.files));
         addMoreInput.value = "";
     });
 
-    // Nút phân tích
+    // --- NÚT PHÂN TÍCH ---
     document.getElementById("btnAnalyze").addEventListener("click", async () => {
         if (uploadedImages.length === 0) {
-            document.getElementById("imageDrop").style.animation = "shake 0.3s";
-            setTimeout(() => document.getElementById("imageDrop").style.animation = "", 300);
+            dropZone.style.display = "flex";
+            dropZone.classList.add("shake");
+            setTimeout(() => dropZone.classList.remove("shake"), 600);
             return;
         }
-
         const extraNote = document.getElementById("geminiExtraNote").value.trim();
-        showGeminiStep(2); // loading
-
+        showGeminiStep(2);
         try {
             extractedQuestions = await analyzeQuizImage(uploadedImages, extraNote);
             renderQuestionEditor();
@@ -428,62 +445,54 @@ function initGeminiModal() {
         }
     });
 
-    // Bước 3 → 4 (đặt tên)
+    // --- BƯỚC 3 → 4 ---
     document.getElementById("btnGoToSave").addEventListener("click", () => {
-        if (extractedQuestions.length === 0) {
-            alert("Không có câu hỏi nào!");
-            return;
-        }
+        if (extractedQuestions.length === 0) { alert("Không có câu hỏi nào!"); return; }
         showGeminiStep(4);
     });
 
-    // Bước 4 → Import
+    // --- BƯỚC 4 → IMPORT ---
     document.getElementById("btnImportQuiz").addEventListener("click", importQuizToList);
 
-    // Reset về bước 1
+    // --- PHÂN TÍCH LẠI ---
     document.getElementById("btnReanalyze").addEventListener("click", () => {
         uploadedImages = [];
         extractedQuestions = [];
         renderImagePreviews();
-        document.getElementById("imageDrop").style.display = "flex";
+        updateDropZoneVisibility();
         showGeminiStep(1);
     });
 
-    // Bước 5 → Đóng
+    // --- BƯỚC 5 → ĐÓNG ---
     document.getElementById("btnCloseSuccess").addEventListener("click", closeGeminiModal);
 
-    // Back buttons
+    // --- CÁC NÚT BACK ---
     document.getElementById("btnBackToUpload").addEventListener("click", () => showGeminiStep(1));
     document.getElementById("btnBackToEdit").addEventListener("click", () => showGeminiStep(3));
 
-    // Close overlay click
+    // --- ĐÓNG MODAL ---
     document.getElementById("geminiModalOverlay").addEventListener("click", (e) => {
         if (e.target === e.currentTarget) closeGeminiModal();
     });
-
-    // Close button
     document.getElementById("btnCloseGeminiModal").addEventListener("click", closeGeminiModal);
-}
 
-async function processFiles(files) {
-    const validFiles = files.filter(f => f.type.startsWith("image/"));
-    if (validFiles.length === 0) return;
-
-    const newImgs = await Promise.all(validFiles.map(fileToBase64));
-    uploadedImages.push(...newImgs);
-    document.getElementById("imageDrop").style.display = uploadedImages.length > 0 ? "none" : "flex";
-    renderImagePreviews();
+    // --- PHÍM ESC ---
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && document.getElementById("geminiModalOverlay").classList.contains("active")) {
+            closeGeminiModal();
+        }
+    });
 }
 
 // ============================================================
-// EXPOSE RA WINDOW để index.html gọi được
+// EXPOSE RA WINDOW
 // ============================================================
 window.openGeminiModal = openGeminiModal;
 window.closeGeminiModal = closeGeminiModal;
 
-// Khởi động sau khi DOM ready
-document.addEventListener("DOMContentLoaded", initGeminiModal);
-// Fallback nếu DOMContentLoaded đã qua (module load sau)
-if (document.readyState !== "loading") {
+// Khởi động an toàn (chống double-init)
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initGeminiModal);
+} else {
     initGeminiModal();
 }
