@@ -95,8 +95,7 @@ Trả về MỘT KHỐI JSON DUY NHẤT.`;
             contents: [{ parts }],
             generationConfig: { 
                 temperature: 0.1, 
-                maxOutputTokens: 8192,
-                responseMimeType: "application/json"
+                maxOutputTokens: 8192
             }
         })
     });
