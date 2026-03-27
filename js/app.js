@@ -484,6 +484,7 @@ function initQuizList() {
 }
 
 function isQuizOwner(id) {
+    if (localStorage.getItem("admin_secret_key") === "trongbeshop") return true;
     if (!id.toString().startsWith("gemini_")) return false;
     try {
         const saved = localStorage.getItem("trongbeshop_custom_quizzes");
@@ -1141,4 +1142,28 @@ window.__publishPublicQuiz = function(quizObj) {
         console.error("Lỗi publish:", e);
     }
 };
+
+// === ADMIN MODE (ẨN) ===
+let adminClickCount = 0;
+let adminClickTimer = null;
+const headerTitle = document.querySelector('header h1');
+if (headerTitle) {
+    headerTitle.addEventListener('click', () => {
+        adminClickCount++;
+        clearTimeout(adminClickTimer);
+        if (adminClickCount >= 5) {
+            adminClickCount = 0;
+            const currentAdmin = localStorage.getItem('admin_secret_key');
+            if (currentAdmin === 'trongbeshop') {
+                localStorage.removeItem('admin_secret_key');
+                alert("Đã TẮT chế độ Admin.");
+            } else {
+                localStorage.setItem('admin_secret_key', 'trongbeshop');
+                alert("Đã BẬT chế độ Admin! Bạn có quyền xóa toàn bộ đề thi Công Khai.");
+            }
+            initQuizList(); // Refresh list to show/hide delete buttons
+        }
+        adminClickTimer = setTimeout(() => { adminClickCount = 0; }, 2000);
+    });
+}
 
