@@ -118,7 +118,8 @@ Trả về MỘT KHỐI JSON DUY NHẤT.`;
                 msg = "Tất cả các lượt AI miễn phí đã hết. Vui lòng đợi 1-2 phút rồi nhấn 'Phân tích' lại nhé.";
             }
         } else if (response.status === 400) {
-           msg = "Dữ liệu gửi lên không hợp lệ hoặc ảnh quá lớn. Hãy thử gửi ít ảnh hơn.";
+           console.error("Gemini 400 Error Body:", err);
+           msg = `Lỗi 400: ${err.error?.message || "Dữ liệu không hợp lệ hoặc ảnh quá lớn."}`;
         } else if (response.status === 500) {
            msg = "Máy chủ AI đang gặp sự cố. Vui lòng thử lại sau vài giây.";
         }
