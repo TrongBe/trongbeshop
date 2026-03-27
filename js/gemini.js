@@ -513,12 +513,46 @@ function initGeminiModal() {
 
     // --- PHÂN TÍCH LẠI ---
     document.getElementById("btnReanalyze").addEventListener("click", () => {
+        if (!confirm("Bạn có chắc muốn xóa hết dữ liệu hiện tại để phân tích lại từ đầu không?")) return;
         uploadedImages = [];
         extractedQuestions = [];
         renderImagePreviews();
         updateDropZoneVisibility();
         showGeminiStep(1);
     });
+
+    // --- PHÂN TÍCH THÊM (APPEND) ---
+    const btnAnalyzeMore = document.getElementById("btnAnalyzeMore");
+    const analyzeMoreInput = document.getElementById("analyzeMoreInput");
+    if (btnAnalyzeMore && analyzeMoreInput) {
+        btnAnalyzeMore.addEventListener("click", () => analyzeMoreInput.click());
+        analyzeMoreInput.addEventListener("change", async () => {
+            const files = Array.from(analyzeMoreInput.files).filter(f => f.type.startsWith("image/"));
+            if (files.length === 0) return;
+            
+            const extraNote = document.getElementById("geminiExtraNote").value.trim();
+            showGeminiStep(2); // Show loading spinner
+            
+            try {
+                const newImages = await Promise.all(files.map(fileToBase64));
+                const newQuestions = await analyzeQuizImage(newImages, extraNote);
+                
+                if (newQuestions && newQuestions.length > 0) {
+                    // Nối thêm câu hỏi mới vào danh sách hiện tại
+                    extractedQuestions.push(...newQuestions);
+                    renderQuestionEditor();
+                } else {
+                    alert("Gemini không nhận diện thêm được câu hỏi nào từ ảnh mới.");
+                }
+                showGeminiStep(3);
+            } catch (err) {
+                console.error("Gemini append error:", err);
+                showGeminiStep(3); // Quay lại editor
+                alert("Lỗi khi phân tích thêm: " + err.message);
+            }
+            analyzeMoreInput.value = "";
+        });
+    }
 
     // --- BƯỚC 5 → ĐÓNG ---
     document.getElementById("btnCloseSuccess").addEventListener("click", closeGeminiModal);

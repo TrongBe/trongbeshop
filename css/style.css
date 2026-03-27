@@ -951,6 +951,7 @@ body {
     flex-wrap: wrap;
     gap: 10px;
 }
+.editor-actions-top { display: flex; gap: 8px; margin-left: auto; }
 .editor-info { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; color: #374151; }
 .editor-icon { font-size: 18px; }
 .question-count-badge {
@@ -961,10 +962,12 @@ body {
     font-size: 12px;
     font-weight: 700;
 }
-.btn-reanalyze {
+.btn-reanalyze:hover { background: #EEF2FF; border-color: #818CF8; }
+
+.btn-analyze-more {
     padding: 8px 16px;
-    background: #F9FAFB;
-    border: 1.5px solid #E5E7EB;
+    background: #EEF2FF;
+    border: 1.5px solid #C7D2FE;
     border-radius: 8px;
     font-size: 13px;
     font-weight: 600;
@@ -973,7 +976,7 @@ body {
     transition: all 0.2s;
     color: #4F46E5;
 }
-.btn-reanalyze:hover { background: #EEF2FF; border-color: #818CF8; }
+.btn-analyze-more:hover { background: #6366F1; border-color: #6366F1; color: white; }
 
 .question-editor-container {
     max-height: 60vh;

@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=8">
+  <link rel="stylesheet" href="css/style.css?v=9">
 </head>
 
 <body>
@@ -200,8 +200,12 @@
             Kiểm tra và chỉnh sửa câu hỏi
             <span id="geminiQuestionCount" class="question-count-badge">0 câu</span>
           </div>
-          <button id="btnReanalyze" class="btn-reanalyze">🔄 Phân tích lại</button>
+          <div class="editor-actions-top">
+            <button id="btnAnalyzeMore" class="btn-analyze-more" title="Chọn thêm ảnh để phân tích và nối vào danh sách hiện tại">➕ Phân tích thêm</button>
+            <button id="btnReanalyze" class="btn-reanalyze">🔄 Phân tích lại</button>
+          </div>
         </div>
+        <input type="file" id="analyzeMoreInput" accept="image/*" multiple style="display:none">
         <div id="questionEditorContainer" class="question-editor-container"></div>
         <div class="gemini-step-footer">
           <button id="btnBackToUpload" class="gemini-btn-secondary">← Quay lại</button>
@@ -286,8 +290,8 @@
     </div>
   </footer>
 
-  <script type="module" src="js/app.js?v=7"></script>
-  <script type="module" src="js/gemini.js?v=7"></script>
+  <script type="module" src="js/app.js?v=9"></script>
+  <script type="module" src="js/gemini.js?v=9"></script>
 </body>
 
 </html>
