@@ -78,24 +78,47 @@ function isQuizOwner(id) {
             return parsed.some(q => q.id === id);
         }
     } catch(e) {}
-    return true; // Nếu load lỗi thì cho phép xóa tạm
+    return false; // Fix: Khách vãng lai không được phép hiển thị nút xóa
 }
 
 window.deleteCustomQuiz = function(id) {
-    if (confirm("Bạn có chắc muốn xóa đề thi tự tạo này không?")) {
-        const idx = mockQuizzes.findIndex(q => q.id === id);
-        if (idx !== -1) {
-            const isPublic = mockQuizzes[idx].privacy === "public";
+    const isAdmin = localStorage.getItem("admin_secret_key") === "trongbeshop";
+    
+    // Nếu là người dùng bình thường xóa đề
+    let confirmMsg = "Bạn có chắc muốn xóa đề thi này không?";
+    let isAdminDeletingPublic = false;
+    
+    // Tìm đề để kiểm tra trạng thái
+    const idx = mockQuizzes.findIndex(q => q.id === id);
+    if (idx !== -1) {
+        const isPublic = mockQuizzes[idx].privacy === "public";
+        if (isPublic) {
+            if (isAdmin) {
+                confirmMsg = "[ADMIN] Bạn có chắc chắn muốn xóa ĐỀ CÔNG KHAI này khỏi CSDL Firebase KHÔNG?";
+                isAdminDeletingPublic = true;
+            } else {
+                confirmMsg = "Đề này là đề công khai. Quản trị viên mới có quyền xóa. Bạn chỉ có thể ẩn đề này khỏi máy của mình. Tiếp tục?";
+            }
+        }
+        
+        if (confirm(confirmMsg)) {
+            // Xóa khỏi danh sách bộ nhớ tạm
             mockQuizzes.splice(idx, 1);
             if (window.__saveCustomQuizzes) window.__saveCustomQuizzes();
             initQuizList();
             
-            // Xóa trên database công khai nếu là đề công khai
-            if (isPublic) {
+            // Firebase Action:
+            // Chỉ Admin mới được phép xóa đề công khai khỏi Firebase Database
+            if (isPublic && isAdminDeletingPublic) {
                 try {
                     const publicRef = ref(dbRT, 'public_quizzes/' + id);
                     runTransaction(publicRef, () => null);
+                    alert("Đã xóa vĩnh viễn đề công khai khỏi hệ thống máy chủ Firebase!");
                 } catch(e) { console.error("Lỗi xóa db:", e); }
+            } else if (isPublic && !isAdminDeletingPublic) {
+                // Người dùng tạo ra đề public chỉ có thể xóa mác local, 
+                // đề trên Firebase vẫn giữ nguyên để cộng đồng làm.
+                alert("Đã ẩn đề khỏi máy của bạn. Đề vẫn tồn tại trên máy chủ công khai.");
             }
         }
     }
