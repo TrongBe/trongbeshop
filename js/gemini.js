@@ -23,13 +23,8 @@ function rK() {
     console.log(`[Gemini] Đang xoay sang API Key #${_idx + 1}...`);
 }
 
-// Danh sách các mô hình khả dụng (Ưu tiên bản 8B và Lite để lách luật Free Tier)
-const _MODELS = [
-    "gemini-1.5-flash-8b", 
-    "gemini-2.0-flash-lite-preview-02-05", 
-    "gemini-1.5-pro", 
-    "gemini-2.0-flash"
-];
+// Danh sách các mô hình khả dụng
+const _MODELS = ["gemini-2.0-flash"];
 let _mIdx = 0;
 
 // ---- Trạng thái nội bộ (CRITICAL) ----
@@ -78,6 +73,39 @@ async function mergeImages(images) {
     });
 }
 
+// Caching the discovered model
+let _discoveredModel = null;
+
+async function getAuthorizedModelName(apiKey) {
+    if (_discoveredModel) return _discoveredModel;
+    try {
+        console.log("[Gemini] Đang dò tìm Model khả dụng cho Key này...");
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
+        if (!res.ok) throw new Error("Không thể ListModels");
+        const data = await res.json();
+        
+        let validModels = data.models
+            .map(m => m.name.replace("models/", ""))
+            .filter(name => name.includes("flash") && !name.includes("vision")); // Chỉ lấy model text/vision hiện đại
+            
+        if (validModels.length === 0) {
+             validModels = data.models.map(m => m.name.replace("models/", "")).filter(n => n.includes("gemini"));
+        }
+        
+        if (validModels.length > 0) {
+            // Xem có bản 8b không, nếu không lấy bản đầu tiên
+            const best = validModels.find(m => m.includes("8b")) || validModels[0];
+            console.log("[Gemini] Đã phát hiện Model hỗ trợ:", best);
+            _discoveredModel = best;
+            return best;
+        }
+    } catch(e) {
+        console.warn("[Gemini] Dò tìm thất bại, dùng fallback:", e);
+    }
+    // Fallback nếu không Fetch được
+    return _MODELS[_mIdx % _MODELS.length];
+}
+
 // ============================================================
 // PHÂN TÍCH ẢNH VỚI GEMINI SDK
 // ============================================================
@@ -116,10 +144,13 @@ Quy tắc ưu tiên độ chính xác:
 3. imageBox: [ymin, xmin, ymax, xmax] (tọa độ 0-1000) bao quanh hình minh họa (nếu có).`;
 
     try {
+        const currentKey = gK();
+        const activeModelName = await getAuthorizedModelName(currentKey);
+        
         // 2. Khởi tạo SDK với Key hiện tại
-        const genAI = new GoogleGenerativeAI(gK());
+        const genAI = new GoogleGenerativeAI(currentKey);
         const model = genAI.getGenerativeModel({ 
-            model: _MODELS[_mIdx % _MODELS.length],
+            model: activeModelName,
             systemInstruction: systemInstruction 
         });
 
@@ -160,6 +191,9 @@ Quy tắc ưu tiên độ chính xác:
         const errStr = err.toString();
         if (errStr.includes("429") || errStr.includes("403") || errStr.includes("404") || errStr.includes("400")) {
             if (retryCount < _K.length * _MODELS.length) {
+                // Xóa Cache Model để dò lại cho Key mới
+                _discoveredModel = null;
+                
                 if ((retryCount + 1) % _K.length === 0) _mIdx++;
                 rK();
                 
