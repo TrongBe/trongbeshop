@@ -2,7 +2,8 @@
 // GEMINI AI - NHẬP ĐỀ BẰNG ẢNH
 // ============================================================
 const GEMINI_API_KEY = "AIzaSyChR-vkkNOsb3iMrpwCnLljDTB1QfzrNY8";
-const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+
 
 
 // ---- Trạng thái nội bộ ----
