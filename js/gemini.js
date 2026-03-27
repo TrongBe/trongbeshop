@@ -244,18 +244,20 @@ async function cropImage(base64, box) {
             try {
                 const canvas = document.createElement("canvas");
                 const ctx = canvas.getContext("2d");
-                // Tọa độ Gemini là 0-1000
-                const ymin = box[0] / 1000 * img.height;
-                const xmin = box[1] / 1000 * img.width;
-                const ymax = box[2] / 1000 * img.height;
-                const xmax = box[3] / 1000 * img.width;
+                
+                // Tọa độ Gemini là 0-1000. Dùng Math.round để tránh lỗi nội suy pixel (sub-pixel rendering) gây biến dạng.
+                const ymin = Math.round(box[0] / 1000 * img.height);
+                const xmin = Math.round(box[1] / 1000 * img.width);
+                const ymax = Math.round(box[2] / 1000 * img.height);
+                const xmax = Math.round(box[3] / 1000 * img.width);
+                
                 const width = Math.max(1, xmax - xmin);
                 const height = Math.max(1, ymax - ymin);
                 
                 canvas.width = width;
                 canvas.height = height;
                 ctx.drawImage(img, xmin, ymin, width, height, 0, 0, width, height);
-                resolve(canvas.toDataURL("image/png"));
+                resolve(canvas.toDataURL("image/jpeg", 0.9)); // Sử dụng JPEG chất lượng tốt thay vì PNG nặng
             } catch (e) {
                 console.error("Crop error:", e);
                 resolve(null);
@@ -444,7 +446,7 @@ function renderQuestionEditor() {
         return;
     }
 
-    // Sắp xếp câu hỏi theo qNumber (số thứ tự câu trong đề)
+    // Sắp xếp câu hỏi theo qNumber
     extractedQuestions.sort((a, b) => (a.qNumber || 0) - (b.qNumber || 0));
 
     document.getElementById("geminiQuestionCount").textContent = `${extractedQuestions.length} câu hỏi`;
@@ -462,7 +464,7 @@ function renderQuestionEditor() {
             currentSection = q.section;
         }
 
-        // --- RENDER GROUP TEXT (Bối cảnh chung / Đoạn văn) ---
+        // --- RENDER GROUP TEXT ---
         if (q.groupText && q.groupText.trim() !== "" && q.groupText !== currentGroupText) {
             const groupHeader = document.createElement("div");
             groupHeader.className = "editor-group-text";
@@ -483,15 +485,24 @@ function renderQuestionEditor() {
         const typeLabel = type === "multiple_choice" ? "Nhiều lựa chọn" : type === "true_false_group" ? "Đúng / Sai" : "Trả lời ngắn";
         const typeClass = type === "multiple_choice" ? "badge-mc" : type === "true_false_group" ? "badge-tf" : "badge-sa";
 
-        let imageHTML = `
+        let imageHTML = q.imageSrc ? `
             <div class="q-image-controls" style="margin-top: 15px; padding: 10px; background: #f9fafb; border-radius: 8px; border: 1px dashed #d1d5db;">
-                <div style="display: flex; gap: 10px; align-items: center; margin-bottom: ${q.imageSrc ? '10px' : '0'};">
-                    <button class="q-action-btn q-upload-img-btn" data-qi="${qi}" title="Tải lên ảnh cục bộ cho câu hỏi này" style="font-size: 12px; background: #e5e7eb; padding: 4px 10px; border-radius: 4px; font-weight: 500;">🖼️ Đổi/Thêm Ảnh</button>
-                    ${q.imageSrc ? `<button class="q-action-btn q-remove-img-btn" data-qi="${qi}" title="Xóa ảnh hiện tại" style="font-size: 12px; background: #fee2e2; color: #ef4444; padding: 4px 10px; border-radius: 4px; font-weight: 500;">✕ Xóa Ảnh</button>` : ""}
+                <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
+                    <button class="q-action-btn q-upload-img-btn" data-qi="${qi}" title="Tải lên ảnh cục bộ cho câu hỏi này" style="font-size: 12px; background: #e5e7eb; padding: 4px 10px; border-radius: 4px; font-weight: 500;">🖼️ Đổi Ảnh</button>
+                    <button class="q-action-btn q-remove-img-btn" data-qi="${qi}" title="Xóa ảnh hiện tại" style="font-size: 12px; background: #fee2e2; color: #ef4444; padding: 4px 10px; border-radius: 4px; font-weight: 500;">✕ Xóa Ảnh</button>
                 </div>
-                ${q.imageSrc ? `<div class="q-image-preview" style="text-align: center;"><img src="${q.imageSrc}" alt="Hình minh họa" style="max-width: 100%; border-radius: 4px; border: 1px solid #d1d5db;"></div>` : ""}
+                <div class="q-image-preview" style="text-align: center;">
+                    <img src="${q.imageSrc}" alt="Hình minh họa" style="max-width: 100%; height: auto !important; object-fit: contain; border-radius: 4px; border: 1px solid #d1d5db;">
+                </div>
+            </div>
+        ` : `
+            <div class="q-image-controls" style="margin-top: 15px; padding: 10px; background: #f9fafb; border-radius: 8px; border: 1px dashed #d1d5db;">
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <button class="q-action-btn q-upload-img-btn" data-qi="${qi}" title="Tải lên ảnh cục bộ cho câu hỏi này" style="font-size: 12px; background: #e5e7eb; padding: 4px 10px; border-radius: 4px; font-weight: 500;">🖼️ Thêm Ảnh</button>
+                </div>
             </div>
         `;
+        
         let bodyHTML = "";
 
         if (type === "multiple_choice") {
@@ -568,7 +579,7 @@ function renderQuestionEditor() {
         container.appendChild(card);
     });
 
-    // --- GẮN SỰ KIỆN (Delegation) ---
+    // --- GẮN SỰ KIỆN ---
     container.querySelectorAll(".q-text-input").forEach(ta => {
         ta.addEventListener("input", () => {
             const qi = parseInt(ta.closest(".q-editor-card").dataset.index);
