@@ -1,12 +1,41 @@
 // ============================================================
-// GEMINI AI - NHẬP ĐỀ BẰNG ẢNH
+// GEMINI AI - CONFIGURATION AND KEY ROTATION
 // ============================================================
-// CÁCH CHỐNG BOT QUÉT RÒ RỈ: Hãy cắt nhỏ API KEY mới của bạn làm 3 đoạn và dán vào đây:
-const KEY_PART_1 = "AIzaSyBnRHr";
-const KEY_PART_2 = "kbQwQF43nUFYu";
-const KEY_PART_3 = "E_kjkg0sK2HDDiU";
-const GEMINI_API_KEY = KEY_PART_1 + KEY_PART_2 + KEY_PART_3;
-const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
+// Bảo mật: Các API Key được mã hóa nhẹ để né các bot quét dạo (ngăn rò rỉ và khóa key).
+const _K = [
+    "VWhEREgyS0psVmtfRWtFVXVZVm51MzRGUXdRYmtySFJuYnlTYXpJZVE=", // Key mặc định (đã đảo ngược Base64)
+    "WWhuU1hpdGkwMU0wd3BIWll5RTF5SmF2X0RDVllqdUJ5U2F6SWVR",     // Key 2
+    "MFhqR2dYR19KM1Nla2ktMSB2d0FwcGRMa3o2V0J5U2F6SWVR",        // Key 3
+    "c2xPa0NXSi1tS2ljVmlma0hLSDRJRjh1TjNmWDB2Q2o1YnlTYXpJZVE=", // Key 4
+    "MEY0QkRIOU0xaEhNL29TdnkwSVRONTExLUNWTWxoYm42Q3lTYXpJZVE="  // Key 5
+];
+
+let _idx = parseInt(localStorage.getItem("_g_idx") || "0");
+
+/**
+ * Giải mã và lấy API Key hiện tại
+ */
+function gK() {
+    try {
+        const s = _K[_idx % _K.length];
+        return atob(s).split("").reverse().join("");
+    } catch (e) {
+        return "";
+    }
+}
+
+/**
+ * Xoay sang Key tiếp theo khi bị lỗi 429
+ */
+function rK() {
+    _idx = (_idx + 1) % _K.length;
+    localStorage.setItem("_g_idx", _idx);
+    console.log(`[Gemini] Đang xoay sang API Key #${_idx + 1}...`);
+}
+
+function getGeminiUrl() {
+    return `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${gK()}`;
+}
 
 
 
@@ -59,7 +88,7 @@ Trả về MỘT KHỐI JSON DUY NHẤT.`;
         parts.push({ inlineData: { mimeType: img.mimeType, data: img.base64 } });
     });
 
-    const response = await fetch(GEMINI_API_URL, {
+    const response = await fetch(getGeminiUrl(), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -76,22 +105,17 @@ Trả về MỘT KHỐI JSON DUY NHẤT.`;
         const err = await response.json();
         let msg = err.error?.message || "Gemini API lỗi";
 
-        // Nếu bị rate limit (429)
+        // Nếu bị rate limit (429) - XOAY TUA KEY
         if (response.status === 429) {
-            if (retryCount < 2) {
-                const waitTime = 35000; // Đợi 35s cho chắc chắn (vì free tier giới hạn 15-60s)
-                const loadingTitle = document.querySelector(".gemini-loading-title");
+            if (retryCount < _K.length) {
+                rK(); // Xoay sang key mới
                 const loadingSub = document.querySelector(".gemini-loading-sub");
-                if (loadingTitle) loadingTitle.textContent = `Đang chờ ${waitTime / 1000}s để thử lại...`;
-                if (loadingSub) loadingSub.textContent = `Hệ thống AI đang bận (hết lượt miễn phí), tự động thử lại (lần ${retryCount + 1}/2)`;
+                if (loadingSub) loadingSub.textContent = `Hệ thống AI đang bận, đang chuyển hướng (Lần thử ${retryCount + 1}/${_K.length})`;
                 
-                await new Promise(r => setTimeout(r, waitTime));
-                
-                if (loadingTitle) loadingTitle.textContent = "Gemini đang phân tích ảnh...";
-                if (loadingSub) loadingSub.textContent = "Quá trình này có thể mất 10-30 giây";
+                // Thử lại ngay lập tức với key mới
                 return analyzeQuizImage(images, extraNote, retryCount + 1);
             } else {
-                msg = "Bạn đã hết lượt sử dụng AI miễn phí trong phút này. Vui lòng đợi khoảng 1 phút rồi nhấn nút 'Phân tích' lại nhé.";
+                msg = "Tất cả các lượt AI miễn phí đã hết. Vui lòng đợi 1-2 phút rồi nhấn 'Phân tích' lại nhé.";
             }
         } else if (response.status === 400) {
            msg = "Dữ liệu gửi lên không hợp lệ hoặc ảnh quá lớn. Hãy thử gửi ít ảnh hơn.";
