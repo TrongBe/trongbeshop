@@ -116,9 +116,10 @@ async function analyzeQuizImage(images, extraNote = "", retryCount = 0) {
     const systemInstruction = `Bạn là chuyên gia trích xuất đề thi (OCR). Hãy phân tích ảnh và trả về JSON chuẩn xác 100%. Không giải thích.
 
 Quy tắc TRÍCH XUẤT TUYỆT ĐỐI (QUAN TRỌNG):
-1. KHÔNG THAY ĐỔI DÙ CHỈ 1 CHỮ: Giữ nguyên 100% văn bản gốc.
-2. BẢNG BIỂU & ĐỊNH DẠNG: BẮT BUỘC tự viết mã HTML (<table>, <div>, CSS inline) để vẽ lại chính xác 100% các bảng biểu, vé máy bay, khung tin nhắn, lịch trình. Chèn thẳng đoạn HTML này vào 'groupText'. CHỈ DÙNG mảng "imageBox" khi gặp tranh vẽ nghệ thuật phức tạp không thể code được bằng HTML. Nhớ bọc đúng HTML in đậm <b>, gạch chân <u>.
-3. HÌNH ẢNH CẮT (QUAN TRỌNG): CHỈ dùng mảng "imageBox" cho các bức tranh phức tạp. TUYỆT ĐỐI KHÔNG tự gõ chữ "[Hình vẽ]" hay tự miêu tả hình vào văn bản. 
+1. THỰC THI OCR CHUẨN: Giữ nguyên 100% văn bản gốc, không tóm tắt, không thêm thắt.
+2. BẢNG BIỂU & ĐỊNH DẠNG: BẮT BUỘC tự viết mã HTML (<table>, <div>, CSS inline) để vẽ lại bảng biểu, khung tin nhắn, lịch trình. Đoạn mã HTML này CHỈ ĐƯỢC PHÉP nằm trong 'groupText'.
+3. CẤM KÝ HIỆU LẠ: TUYỆT ĐỐI KHÔNG để bất kỳ mã HTML, dấu ngoặc vuông [Hình vẽ], [Bảng], hay bất kỳ kí hiệu kỹ thuật nào rơi vào trường 'text' (nội dung câu hỏi) hoặc 'options'. Trường 'text' chỉ chứa văn bản câu hỏi thuần túy.
+4. HÌNH ẢNH CẮT: CHỈ dùng mảng "imageBox" cho các bức tranh phức tạp không thể code được.
 
 Cấu trúc JSON yêu cầu:
 {
@@ -479,7 +480,42 @@ function renderQuestionEditor() {
         if (q.groupText && q.groupText.trim() !== "" && q.groupText !== currentGroupText) {
             const groupHeader = document.createElement("div");
             groupHeader.className = "editor-group-text";
-            groupHeader.innerHTML = `<strong>Ngữ cảnh/Đoạn văn:</strong><br>${escapeHTML(q.groupText)}`;
+            groupHeader.style.cssText = "background: #fffbeb; border: 1px solid #fde68a; padding: 12px; border-radius: 8px; margin-bottom: 20px;";
+            
+            const isHTML = q.groupText.includes("<") && q.groupText.includes(">");
+            
+            groupHeader.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <strong style="color: #92400e; font-size: 13px;">Ngữ cảnh / Đoạn văn:</strong>
+                    <button class="toggle-group-edit" style="font-size: 11px; background: #fef3c7; border: 1px solid #fde68a; padding: 2px 8px; border-radius: 4px; cursor: pointer;">Sửa mã nguồn</button>
+                </div>
+                <div class="group-preview" style="background: white; border: 1px solid #fef3c7; padding: 10px; border-radius: 6px; overflow-x: auto;">
+                    ${q.groupText}
+                </div>
+                <textarea class="group-code-editor" style="display: none; width: 100%; height: 100px; font-family: monospace; font-size: 12px; margin-top: 10px; padding: 8px; border-radius: 4px; border: 1px solid #fde68a;">${q.groupText}</textarea>
+            `;
+            
+            const toggleBtn = groupHeader.querySelector(".toggle-group-edit");
+            const preview = groupHeader.querySelector(".group-preview");
+            const editor = groupHeader.querySelector(".group-code-editor");
+            
+            toggleBtn.addEventListener("click", () => {
+                const isEditing = editor.style.display === "block";
+                editor.style.display = isEditing ? "none" : "block";
+                preview.style.display = isEditing ? "block" : "none";
+                toggleBtn.textContent = isEditing ? "Sửa mã nguồn" : "Xem bản xem trước";
+            });
+            
+            editor.addEventListener("input", () => {
+                const newText = editor.value;
+                q.groupText = newText;
+                preview.innerHTML = newText;
+                // Cập nhật groupText cho tất cả câu hỏi cùng nhóm
+                extractedQuestions.forEach(item => {
+                    if (item.groupText === currentGroupText) item.groupText = newText;
+                });
+            });
+
             container.appendChild(groupHeader);
             currentGroupText = q.groupText;
         }
