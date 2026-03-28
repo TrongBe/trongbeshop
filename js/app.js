@@ -46,7 +46,27 @@ function showView(viewName) {
 // === TẠO GIAO DIỆN DANH SÁCH ĐỀ ===
 function initQuizList() {
     quizListContainer.innerHTML = '';
-    mockQuizzes.forEach(quiz => {
+    
+    // v44: Tuyệt chiêu chống trùng đề - Lọc danh sách mockQuizzes theo ID duy nhất trước khi render
+    const uniqueQuizzes = [];
+    const seenIds = new Set();
+    
+    // Ưu tiên hiển thị các đề tự tạo (ID gemini_...) lên trên đầu để người dùng thấy ngay
+    const sortedQuizzes = [...mockQuizzes].sort((a, b) => {
+        if (a.id.toString().startsWith("gemini_") && !b.id.toString().startsWith("gemini_")) return -1;
+        if (!a.id.toString().startsWith("gemini_") && b.id.toString().startsWith("gemini_")) return 1;
+        return 0;
+    });
+
+    sortedQuizzes.forEach(quiz => {
+        const qId = quiz.id.toString();
+        if (!seenIds.has(qId)) {
+            seenIds.add(qId);
+            uniqueQuizzes.push(quiz);
+        }
+    });
+
+    uniqueQuizzes.forEach(quiz => {
         const card = document.createElement('div');
         card.className = 'quiz-card';
         card.innerHTML = `
@@ -64,6 +84,10 @@ function initQuizList() {
         `;
         quizListContainer.appendChild(card);
     });
+    
+    // Cập nhật lại danh sách gốc để đồng bộ (Tùy chọn)
+    // mockQuizzes.length = 0; mockQuizzes.push(...uniqueQuizzes);
+    
     initRealtimeViews();
 }
 
@@ -399,34 +423,41 @@ function loadCustomQuizzes() {
     } catch (e) {}
 }
 
-function loadPublicQuizzes() {
+window.loadPublicQuizzes = function() {
+    console.log("🔄 Đang quét dữ liệu từ Cloud...");
     try {
         const publicRef = ref(dbRT, 'public_quizzes');
         onValue(publicRef, (snapshot) => {
             const data = snapshot.val();
             if (data) {
                 const publicList = Object.values(data);
-                let addedOrUpdated = false;
+                let changed = false;
                 publicList.forEach(pq => {
                     if (pq.questions && !Array.isArray(pq.questions)) pq.questions = Object.values(pq.questions);
                     
                     const existingIdx = mockQuizzes.findIndex(q => q.id.toString() === pq.id.toString());
                     if (existingIdx === -1) {
                         mockQuizzes.push(pq);
-                        addedOrUpdated = true;
+                        changed = true;
                     } else {
-                        // v43: Cập nhật viewCount nếu có thay đổi từ thiết bị khác
-                        if (mockQuizzes[existingIdx].viewCount !== pq.viewCount) {
-                            mockQuizzes[existingIdx].viewCount = pq.viewCount;
-                            addedOrUpdated = true;
+                        // Cập nhật dữ liệu từ Cloud nếu khác biệt (ViewCount, v.v.)
+                        if (JSON.stringify(mockQuizzes[existingIdx]) !== JSON.stringify(pq)) {
+                            mockQuizzes[existingIdx] = pq;
+                            changed = true;
                         }
                     }
                 });
-                if (addedOrUpdated) initQuizList();
+                if (changed) {
+                    console.log("☁️ Đã cập nhật xong từ Cloud.");
+                    initQuizList();
+                }
             }
         });
-    } catch(e) { console.error("Load public error:", e); }
-}
+    } catch(e) { 
+        console.error("Load public error:", e);
+        alert("Lỗi khi kết nối Cloud: " + e.message);
+    }
+};
 
 // Khởi động
 window.firebaseConfig = firebaseConfig;

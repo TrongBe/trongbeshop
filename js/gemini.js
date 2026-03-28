@@ -1015,14 +1015,14 @@ function applyImageEdit() {
     renderQuestionEditor();
 }
 
-// v43: Khởi động an toàn
+// v44: Khởi động an toàn & Xử lý sự kiện delegation (closest)
 document.addEventListener("DOMContentLoaded", () => {
-    // Đảm bảo các nút trong editor được gán sự kiện đúng
     const body = document.body;
     body.addEventListener("click", (e) => {
-        if (e.target.id === "btnRotateCW") rotateImage(90);
-        if (e.target.id === "btnRotateCCW") rotateImage(-90);
-        if (e.target.id === "btnApplyCrop") applyImageEdit();
+        // Sử dụng closest để bắt sự kiện dù người dùng bấm vào icon hay chữ bên trong nút
+        if (e.target.closest("#btnRotateCW")) rotateImage(90);
+        else if (e.target.closest("#btnRotateCCW")) rotateImage(-90);
+        else if (e.target.closest("#btnApplyCrop")) applyImageEdit();
     });
 });
 
