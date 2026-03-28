@@ -117,9 +117,10 @@ async function analyzeQuizImage(images, extraNote = "", retryCount = 0) {
 
 Quy tắc TRÍCH XUẤT TUYỆT ĐỐI (QUAN TRỌNG):
 1. THỰC THI OCR CHUẨN: Giữ nguyên 100% văn bản gốc, không tóm tắt, không thêm thắt.
-2. BẢNG BIỂU & ĐỊNH DẠNG: BẮT BUỘC tự viết mã HTML (<table>, <div>, CSS inline) để vẽ lại bảng biểu, khung tin nhắn, lịch trình. Đoạn mã HTML này CHỈ ĐƯỢC PHÉP nằm trong 'groupText'.
-3. CẤM KÝ HIỆU LẠ: TUYỆT ĐỐI KHÔNG để bất kỳ mã HTML, dấu ngoặc vuông [Hình vẽ], [Bảng], hay bất kỳ kí hiệu kỹ thuật nào rơi vào trường 'text' (nội dung câu hỏi) hoặc 'options'. Trường 'text' chỉ chứa văn bản câu hỏi thuần túy.
-4. HÌNH ẢNH CẮT: CHỈ dùng mảng "imageBox" cho các bức tranh phức tạp không thể code được.
+2. THỨ TỰ NHÓM: Phải trích xuất theo thứ tự: Trắc nghiệm (multiple_choice) -> Đúng/Sai (true_false_group) -> Trả lời ngắn (short_answer) -> Tự luận (essay).
+3. BẢNG BIỂU & ĐỊNH DẠNG: BẮT BUỘC dùng mã HTML (<table>, <div>, CSS inline) để vẽ lại bảng biểu/lịch trình trong 'groupText'. 
+4. CẤM KÝ HIỆU LẠ: TUYỆT ĐỐI KHÔNG để mã HTML, [Hình vẽ], [Bảng] vào trường 'text' hoặc 'options'.
+5. DẠNG ĐÚNG/SAI: Bắt buộc dùng type: "true_false_group". KHÔNG được biến nó thành trắc nghiệm A,B,C,D.
 
 Cấu trúc JSON yêu cầu:
 {
@@ -130,45 +131,19 @@ Cấu trúc JSON yêu cầu:
       "text": "Nội dung câu 1?",
       "options": ["A. ...", "B. ...", "C. ...", "D. ..."],
       "correctIndex": 0,
-      "imageBox": [ymin, xmin, ymax, xmax],
-      "imageIndex": 0
-    },
-    {
-      "qNumber": 2,
-      "type": "reading_group",
-      "groupText": "(Dành cho 1 đoạn văn có các câu trả lời nhỏ) Đoạn văn dài dùng chung điền tại đây...",
-      "subQuestions": [
-        {"text": "Câu hỏi nhỏ 1", "options": ["A. ...", "B. ...", "C. ...", "D. ..."], "correctIndex": 0}
-      ]
+      "imageBox": [ymin, xmin, ymax, xmax]
     },
     {
       "qNumber": 12,
-      "type": "multiple_choice",
-      "groupText": "<div style='border: 1px solid black; padding: 10px; text-align: center;'>★ 베트남 슈퍼마켓 ★<br><table border='1' style='width: 100%; border-collapse: collapse;'><tr><td>수박 1통</td><td>우유 1병</td></tr><tr><td>70,000 동</td><td>30,000 동</td></tr></table></div>※ [12-14] 다음을 읽고 질문에 답하세요.",
-      "text": "우유 한 병에 얼마예요?",
-      "options": ["A. 20,000 동", "B. 30,000 동", "C. 70,000 동", "D. 100,000 동"],
-      "correctIndex": 0
-    },
-    {
-      "qNumber": 13,
-      "type": "multiple_choice",
-      "groupText": "<div style='border: 1px solid black; padding: 10px; text-align: center;'>★ 베트남 슈퍼마켓 ★<br><table border='1' style='width: 100%; border-collapse: collapse;'><tr><td>수박 1통</td><td>우유 1병</td></tr><tr><td>70,000 동</td><td>30,000 동</td></tr></table></div>※ [12-14] 다음을 읽고 질문에 답하세요.",
-      "text": "가장 싼 과일은 얼마예요?",
-      "options": ["A. ...", "B. ...", "C. ...", "D. ..."],
-      "correctIndex": 0
+      "type": "true_false_group",
+      "groupText": "(Dùng chung nếu có - VD: [12-14] dùng chung 1 Bảng giá / Vé máy bay)",
+      "subQuestions": [
+        {"id": "a", "text": "Câu phát biểu a", "correctAnswer": "Đúng"},
+        {"id": "b", "text": "Câu phát biểu b", "correctAnswer": "Sai"}
+      ]
     }
   ]
-}
-
-Quy tắc VÀNG về HÌNH ẢNH chung (VD: [12-14] dùng chung 1 Bảng giá / Vé máy bay): 
-- Tuyệt đối ưu tiên dùng thẻ HTML để vẽ lại bảng biểu/vé máy bay chèn vào trong "groupText" (giống ví dụ câu 12-13 ở trên). Không dùng imageBox cho những thành phần này.
-- Nếu có imageBox vẽ tranh nghệ thuật, gán vào câu đầu tiên. Các câu sau chỉ cần copy giống hệt "groupText" của câu trước.
-
-Quy tắc phân loại:
-- "reading_group": Phân 1 đoạn văn lớn chùm có các câu hỏi nhỏ/lựa chọn nhỏ thành 1 phần lớn.
-- "true_false_group": Trắc nghiệm phần Đúng/Sai.
-- "multiple_choice": Trắc nghiệm 4 đáp án thông thường.
-Lưu ý: imageBox là mảng 4 số [ymin, xmin, ymax, xmax] tỉ lệ 0-1000 bao quanh khu vực có HÌNH ẢNH/BIỂU ĐỒ (toạ độ Y trước, X sau). BẮT BUỘC chỉ định imageIndex (0, 1, 2...) tương ứng trang chứa hình đó.`;
+}`;
 
     try {
         const currentKey = gK();
@@ -458,8 +433,14 @@ function renderQuestionEditor() {
         return;
     }
 
-    // Sắp xếp câu hỏi theo qNumber
-    extractedQuestions.sort((a, b) => (a.qNumber || 0) - (b.qNumber || 0));
+    // Sắp xếp câu hỏi thông minh (v39): Type Priority + qNumber
+    const typeWeights = { "multiple_choice": 1, "true_false_group": 2, "short_answer": 3, "essay": 4 };
+    extractedQuestions.sort((a, b) => {
+        const weightA = typeWeights[a.type] || 5;
+        const weightB = typeWeights[b.type] || 5;
+        if (weightA !== weightB) return weightA - weightB;
+        return (a.qNumber || 0) - (b.qNumber || 0);
+    });
 
     document.getElementById("geminiQuestionCount").textContent = `${extractedQuestions.length} câu hỏi`;
 
@@ -532,21 +513,21 @@ function renderQuestionEditor() {
         const typeLabel = type === "multiple_choice" ? "Nhiều lựa chọn" : type === "true_false_group" ? "Đúng / Sai" : "Trả lời ngắn";
         const typeClass = type === "multiple_choice" ? "badge-mc" : type === "true_false_group" ? "badge-tf" : "badge-sa";
 
-        let imageHTML = q.imageSrc ? `
-            <div class="q-image-controls" style="margin-top: 15px; padding: 10px; background: #f9fafb; border-radius: 8px; border: 1px dashed #d1d5db;">
-                <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
-                    <button class="q-action-btn q-upload-img-btn" data-qi="${qi}" title="Tải lên ảnh cục bộ cho câu hỏi này" style="font-size: 12px; background: #e5e7eb; padding: 4px 10px; border-radius: 4px; font-weight: 500;">🖼️ Đổi Ảnh</button>
-                    <button class="q-action-btn q-remove-img-btn" data-qi="${qi}" title="Xóa ảnh hiện tại" style="font-size: 12px; background: #fee2e2; color: #ef4444; padding: 4px 10px; border-radius: 4px; font-weight: 500;">✕ Xóa Ảnh</button>
+        const hasImage = !!q.imageSrc;
+        let imageHTML = `
+            <div class="q-image-controls" style="margin-top: 15px; padding: 10px; background: #f8fafc; border-radius: 8px; border: 1px dashed #cbd5e1;">
+                <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                    <button class="q-action-btn q-upload-img-btn" data-qi="${qi}" title="Tải ảnh mới" style="font-size: 11px; background: #e2e8f0; padding: 4px 10px; border-radius: 4px; font-weight: 500;">🖼️ ${hasImage ? 'Đổi Ảnh' : 'Thêm Ảnh'}</button>
+                    ${hasImage ? `
+                        <button class="q-action-btn q-edit-img-btn" data-qi="${qi}" title="Cắt và Xoay ảnh" style="font-size: 11px; background: #dcfce7; color: #166534; padding: 4px 10px; border-radius: 4px; font-weight: 500;">✂️ Cắt/Xoay</button>
+                        <button class="q-action-btn q-remove-img-btn" data-qi="${qi}" title="Xóa ảnh" style="font-size: 11px; background: #fee2e2; color: #ef4444; padding: 4px 10px; border-radius: 4px; font-weight: 500;">✕ Xóa</button>
+                    ` : ''}
                 </div>
-                <div class="q-image-preview" style="text-align: center;">
-                    <img src="${q.imageSrc}" alt="Hình minh họa" style="max-width: 100%; height: auto !important; object-fit: contain; border-radius: 4px; border: 1px solid #d1d5db;">
-                </div>
-            </div>
-        ` : `
-            <div class="q-image-controls" style="margin-top: 15px; padding: 10px; background: #f9fafb; border-radius: 8px; border: 1px dashed #d1d5db;">
-                <div style="display: flex; gap: 10px; align-items: center;">
-                    <button class="q-action-btn q-upload-img-btn" data-qi="${qi}" title="Tải lên ảnh cục bộ cho câu hỏi này" style="font-size: 12px; background: #e5e7eb; padding: 4px 10px; border-radius: 4px; font-weight: 500;">🖼️ Thêm Ảnh</button>
-                </div>
+                ${hasImage ? `
+                    <div class="q-image-preview" style="text-align: center; margin-top: 10px;">
+                        <img src="${q.imageSrc}" alt="Hình câu hỏi" style="max-width: 100%; max-height: 250px; border-radius: 6px; border: 1px solid #e2e8f0;">
+                    </div>
+                ` : ''}
             </div>
         `;
         
@@ -955,6 +936,83 @@ function initGeminiModal() {
         }
     });
 }
+
+// ============================================================
+// IMAGE EDITOR (v39) - CROP & ROTATE
+// ============================================================
+let cropper = null;
+let currentEditingQi = null;
+
+function showImageEditorModal(qi) {
+    const q = extractedQuestions[qi];
+    if (!q || !q.imageSrc) return;
+    
+    currentEditingQi = qi;
+    const modal = document.getElementById("photoEditorModal");
+    const img = document.getElementById("cropperImage");
+    
+    img.src = q.imageSrc;
+    modal.style.display = "flex";
+    
+    if (cropper) cropper.destroy();
+    
+    // Khởi tạo Cropper.js
+    cropper = new Cropper(img, {
+        viewMode: 1,
+        dragMode: 'move',
+        autoCropArea: 0.8,
+        restore: false,
+        guides: true,
+        center: true,
+        highlight: false,
+        cropBoxMovable: true,
+        cropBoxResizable: true,
+        toggleDragModeOnDblclick: false,
+    });
+}
+
+function closePhotoEditor() {
+    if (cropper) cropper.destroy();
+    cropper = null;
+    document.getElementById("photoEditorModal").style.display = "none";
+}
+
+// Xoay ảnh 90 độ
+function rotateImage(degree) {
+    if (cropper) cropper.rotate(degree);
+}
+
+// Lưu ảnh sau khi cắt/xoay
+function applyImageEdit() {
+    if (!cropper || currentEditingQi === null) return;
+    
+    const canvas = cropper.getCroppedCanvas({
+        maxWidth: 1200,
+        maxHeight: 1200,
+        fillColor: '#fff',
+        imageSmoothingEnabled: true,
+        imageSmoothingQuality: 'high',
+    });
+    
+    const newBase64 = canvas.toDataURL('image/jpeg', 0.8);
+    extractedQuestions[currentEditingQi].imageSrc = newBase64;
+    
+    closePhotoEditor();
+    renderQuestionEditor();
+}
+
+// Gắn sự kiện cho bộ công cụ chỉnh sửa ảnh
+document.addEventListener("DOMContentLoaded", () => {
+    const btnCW = document.getElementById("btnRotateCW");
+    const btnCCW = document.getElementById("btnRotateCCW");
+    const btnApply = document.getElementById("btnApplyCrop");
+    
+    if (btnCW) btnCW.onclick = () => rotateImage(90);
+    if (btnCCW) btnCCW.onclick = () => rotateImage(-90);
+    if (btnApply) btnApply.onclick = applyImageEdit;
+});
+
+window.closePhotoEditor = closePhotoEditor;
 
 // ============================================================
 // EXPOSE RA WINDOW

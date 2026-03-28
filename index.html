@@ -303,8 +303,45 @@
     </div>
   </footer>
 
-  <script type="module" src="js/app.js?v=38"></script>
-  <script type="module" src="js/gemini.js?v=38"></script>
+  <script type="module" src="js/app.js?v=39"></script>
+  <script type="module" src="js/gemini.js?v=39"></script>
+
+  <!-- PHOTO EDITOR MODAL (New v39) -->
+  <div id="photoEditorModal" class="modal-overlay" style="display:none;">
+    <div class="modal-content photo-editor-content">
+      <div class="modal-header">
+        <h3>Chỉnh sửa ảnh câu hỏi</h3>
+        <button class="modal-close" onclick="closePhotoEditor()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="cropper-container">
+          <img id="cropperImage" src="" style="max-width: 100%;">
+        </div>
+        <div class="editor-tools">
+          <button class="tool-btn" id="btnRotateCCW" title="Xoay trái">↺ Xoay trái</button>
+          <button class="tool-btn" id="btnRotateCW" title="Xoay phải">↻ Xoay phải</button>
+          <button class="tool-btn btn-primary" id="btnApplyCrop">Cắt & Lưu</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DELETION MODAL (New v39) -->
+  <div id="deleteConfirmModal" class="modal-overlay" style="display:none;">
+    <div class="modal-content delete-modal-content">
+      <div class="modal-header">
+        <h3>Xác nhận xóa đề thi</h3>
+        <button class="modal-close" onclick="closeDeleteModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn muốn thực hiện hành động nào cho đề thi này?</p>
+        <div class="delete-options">
+          <button id="btnHideLocal" class="btn btn-outline">Chỉ ẩn/xoá tại máy này</button>
+          <button id="btnDeleteFirebase" class="btn btn-danger" style="display:none;">Xóa vĩnh viễn khỏi toàn hệ thống</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

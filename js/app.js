@@ -84,45 +84,61 @@ function isQuizOwner(id) {
 
 window.deleteCustomQuiz = function(id) {
     const isAdmin = localStorage.getItem("admin_secret_key") === "trongbeshop";
-    
-    // Nếu là người dùng bình thường xóa đề
-    let confirmMsg = "Bạn có chắc muốn xóa đề thi này không?";
-    let isAdminDeletingPublic = false;
-    
-    // Tìm đề để kiểm tra trạng thái
     const idx = mockQuizzes.findIndex(q => q.id === id);
-    if (idx !== -1) {
-        const isPublic = mockQuizzes[idx].privacy === "public";
-        if (isPublic) {
-            if (isAdmin) {
-                confirmMsg = "[ADMIN] Bạn có chắc chắn muốn xóa ĐỀ CÔNG KHAI này khỏi CSDL Firebase KHÔNG?";
-                isAdminDeletingPublic = true;
-            } else {
-                confirmMsg = "Đề này là đề công khai. Quản trị viên mới có quyền xóa. Bạn chỉ có thể ẩn đề này khỏi máy của mình. Tiếp tục?";
-            }
-        }
-        
-        if (confirm(confirmMsg)) {
-            // Xóa khỏi danh sách bộ nhớ tạm
+    if (idx === -1) return;
+
+    const quiz = mockQuizzes[idx];
+    const isPublic = quiz.privacy === "public";
+    const isOwner = isQuizOwner(id);
+
+    // Mở modal xác nhận xóa
+    const deleteModal = document.getElementById("deleteConfirmModal");
+    const btnHideLocal = document.getElementById("btnHideLocal");
+    const btnDeleteFirebase = document.getElementById("btnDeleteFirebase");
+    
+    deleteModal.style.display = "flex";
+    
+    // Nút Xóa vĩnh viễn chỉ hiện cho Admin hoặc Chủ sở hữu
+    if (isAdmin || isOwner) {
+        btnDeleteFirebase.style.display = "block";
+    } else {
+        btnDeleteFirebase.style.display = "none";
+    }
+
+    // Hành động 1: Chỉ ẩn cục bộ
+    btnHideLocal.onclick = () => {
+        mockQuizzes.splice(idx, 1);
+        if (window.__saveCustomQuizzes) window.__saveCustomQuizzes();
+        initQuizList();
+        closeDeleteModal();
+        alert("Đã ẩn đề khỏi máy của bạn.");
+    };
+
+    // Hành động 2: Xóa vĩnh viễn (Firebase + Local)
+    btnDeleteFirebase.onclick = () => {
+        const msg = isAdmin ? "[ADMIN] Xóa vĩnh viễn đề này khỏi hệ thống?" : "Bạn là chủ đề này. Xóa vĩnh viễn khỏi toàn hệ thống?";
+        if (confirm(msg)) {
             mockQuizzes.splice(idx, 1);
             if (window.__saveCustomQuizzes) window.__saveCustomQuizzes();
-            initQuizList();
             
-            // Firebase Action:
-            // Chỉ Admin mới được phép xóa đề công khai khỏi Firebase Database
-            if (isPublic && isAdminDeletingPublic) {
+            if (isPublic) {
                 try {
+                    const { dbRT } = window.firebaseConfig; // Giả sử đã expose hoặc dùng import
+                    const { ref, runTransaction } = window.firebaseSDK; 
                     const publicRef = ref(dbRT, 'public_quizzes/' + id);
                     runTransaction(publicRef, () => null);
-                    alert("Đã xóa vĩnh viễn đề công khai khỏi hệ thống máy chủ Firebase!");
-                } catch(e) { console.error("Lỗi xóa db:", e); }
-            } else if (isPublic && !isAdminDeletingPublic) {
-                // Người dùng tạo ra đề public chỉ có thể xóa mác local, 
-                // đề trên Firebase vẫn giữ nguyên để cộng đồng làm.
-                alert("Đã ẩn đề khỏi máy của bạn. Đề vẫn tồn tại trên máy chủ công khai.");
+                } catch(e) { console.error("Firebase delete error:", e); }
             }
+            
+            initQuizList();
+            closeDeleteModal();
+            alert("Đã xóa vĩnh viễn đề thi thành công!");
         }
-    }
+    };
+};
+
+window.closeDeleteModal = function() {
+    document.getElementById("deleteConfirmModal").style.display = "none";
 };
 
 // === LẮNG NGHE DỮ LIỆU LƯỢT TRUY CẬP THỜI GIAN THỰC TỪ REALTIME DATABASE ===
@@ -775,7 +791,7 @@ if (headerTitle) {
     headerTitle.addEventListener('click', () => {
         adminClickCount++;
         clearTimeout(adminClickTimer);
-        if (adminClickCount >= 5) {
+        if (adminClickCount >= 10) {
             adminClickCount = 0;
             const currentAdmin = localStorage.getItem('admin_secret_key');
             if (currentAdmin === 'trongbeshop') {

@@ -1310,3 +1310,88 @@ body {
 .q-image-preview img:hover {
     transform: scale(1.02);
 }
+.q-image-preview img {
+    cursor: zoom-in;
+    transition: transform 0.2s ease;
+    max-width: 100%;
+    height: auto !important;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.q-image-preview img:hover {
+    transform: scale(1.02);
+}
+
+/* ============================================================
+   MODALS (v39)
+   ============================================================ */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 11000;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 16px;
+    width: 95%;
+    max-width: 600px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.modal-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 { margin: 0; font-size: 1.1rem; color: #1e293b; }
+.modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748b; }
+
+.modal-body { padding: 20px; overflow-y: auto; }
+
+.cropper-container {
+    background: #f1f5f9;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    max-height: 60vh;
+}
+
+.editor-tools { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+.tool-btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    background: white;
+    color: #475569;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.tool-btn:hover { background: #f8fafc; border-color: #cbd5e1; }
+.tool-btn.btn-primary { background: #4f46e5; color: white; border: none; }
+.tool-btn.btn-primary:hover { background: #4338ca; }
+
+.delete-options { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+.btn-danger { background: #ef4444; color: white; border: none; border-radius: 8px; padding: 14px; font-weight: 600; cursor: pointer; }
+.btn-danger:hover { background: #dc2626; }
+.btn-outline { background: white; color: #475569; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; cursor: pointer; font-weight: 500; }
+.btn-outline:hover { background: #f8fafc; }
