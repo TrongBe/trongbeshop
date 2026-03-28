@@ -433,4 +433,25 @@ document.addEventListener('DOMContentLoaded', () => {
     loadCustomQuizzes();
     loadPublicQuizzes();
     initQuizList();
+
+    // --- KÍCH HOẠT QUYỀN ADMIN ẨN (v41: Toggle On/Off) ---
+    let adminClickCount = 0;
+    const header = document.querySelector('.header');
+    if (header) {
+        header.addEventListener('click', () => {
+            adminClickCount++;
+            if (adminClickCount >= 10) {
+                const isAdmin = localStorage.getItem("admin_secret_key") === "trongbeshop";
+                if (isAdmin) {
+                    localStorage.removeItem("admin_secret_key");
+                    alert("Đã TẮT quyền Admin ẩn. Hệ thống đang tải lại...");
+                } else {
+                    localStorage.setItem("admin_secret_key", "trongbeshop");
+                    alert("Đã BẬT quyền Admin ẩn! (Bạn có quyền xóa vĩnh viễn đề công khai)");
+                }
+                location.reload();
+                adminClickCount = 0;
+            }
+        });
+    }
 });
