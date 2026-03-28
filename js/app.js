@@ -47,19 +47,21 @@ function showView(viewName) {
 function initQuizList() {
     quizListContainer.innerHTML = '';
     
-    // v44: Tuyệt chiêu chống trùng đề - Lọc danh sách mockQuizzes theo ID duy nhất trước khi render
+    // v46 Final: Tuyệt chiêu chống trùng đề - Lọc danh sách mockQuizzes theo ID duy nhất trước khi render
     const uniqueQuizzes = [];
     const seenIds = new Set();
     
-    // Ưu tiên hiển thị các đề tự tạo (ID gemini_...) lên trên đầu để người dùng thấy ngay
+    // Sắp xếp: ID gemini_ mới tạo lên đầu
     const sortedQuizzes = [...mockQuizzes].sort((a, b) => {
-        if (a.id.toString().startsWith("gemini_") && !b.id.toString().startsWith("gemini_")) return -1;
-        if (!a.id.toString().startsWith("gemini_") && b.id.toString().startsWith("gemini_")) return 1;
+        const aId = a.id.toString();
+        const bId = b.id.toString();
+        if (aId.startsWith("gemini_") && !bId.startsWith("gemini_")) return -1;
+        if (!aId.startsWith("gemini_") && bId.startsWith("gemini_")) return 1;
         return 0;
     });
 
     sortedQuizzes.forEach(quiz => {
-        const qId = quiz.id.toString();
+        const qId = quiz.id.toString().trim();
         if (!seenIds.has(qId)) {
             seenIds.add(qId);
             uniqueQuizzes.push(quiz);
@@ -85,20 +87,18 @@ function initQuizList() {
         quizListContainer.appendChild(card);
     });
     
-    // Cập nhật lại danh sách gốc để đồng bộ (Tùy chọn)
-    // mockQuizzes.length = 0; mockQuizzes.push(...uniqueQuizzes);
-    
     initRealtimeViews();
 }
 
 function isQuizOwner(id) {
     if (localStorage.getItem("admin_secret_key") === "trongbeshop") return true;
-    if (!id.toString().startsWith("gemini_")) return false;
+    const targetId = id.toString().trim();
+    if (!targetId.startsWith("gemini_")) return false;
     try {
         const saved = localStorage.getItem("trongbeshop_custom_quizzes");
         if (saved) {
             const parsed = JSON.parse(saved);
-            return parsed.some(q => q.id === id);
+            return parsed.some(q => q.id.toString().trim() === targetId);
         }
     } catch(e) {}
     return false;
@@ -170,29 +170,27 @@ window.closeChangelog = function() {
     document.getElementById("changelogModal").style.display = "none";
 };
 
-// === LẮNG NGHE DỮ LIỆU LƯỢT TRUY CẬP (v41: Integrated) ===
+// === LẮNG NGHE DỮ LIỆU LƯỢT TRUY CẬP (v46 Ultimate: Integrated) ===
 function initRealtimeViews() {
     try {
-        // v43: Lắng nghe quiz_views cũ (cho các đề cũ)
-        const viewsRef = ref(dbRT, 'quiz_views');
-        onValue(viewsRef, (snapshot) => {
-            const allViews = snapshot.val() || {};
+        // Lắng nghe trực tiếp từ bảng public_quizzes để lấy viewCount tích hợp
+        const publicRef = ref(dbRT, 'public_quizzes');
+        onValue(publicRef, (snapshot) => {
+            const allQuizzes = snapshot.val() || {};
             mockQuizzes.forEach(quiz => {
-                const legacyView = allViews[quiz.id] || 0;
-                // Ưu tiên viewCount trong đề (tích hợp), nếu không có mới dùng legacy
-                const integratedView = quiz.viewCount || 0;
-                const finalView = Math.max(legacyView, integratedView);
-                
-                const viewEl = document.getElementById(`views-${quiz.id}`);
-                if (viewEl) {
-                    viewEl.innerHTML = `Lượt truy cập: ${finalView}`;
+                const quizData = allQuizzes[quiz.id];
+                if (quizData && quizData.viewCount !== undefined) {
+                    const viewEl = document.getElementById(`views-${quiz.id}`);
+                    if (viewEl) {
+                        viewEl.innerHTML = `Lượt truy cập: ${quizData.viewCount}`;
+                    }
                 }
             });
         }, (error) => {
-            console.error("Lỗi lắng nghe Realtime Database:", error);
+            console.error("Lỗi lắng nghe lượt xem:", error);
         });
     } catch (error) {
-        console.error("Lỗi khởi tạo tính năng thời gian thực:", error);
+        console.error("Lỗi khởi tạo tính năng lượt xem:", error);
     }
 }
 
@@ -260,7 +258,7 @@ document.getElementById('btnConfirmStart').onclick = async function () {
         currentQuiz.renderedQuestions = questionsToRender;
     }
 
-    // Tăng lượt xem (v41: Integrated)
+    // Tăng lượt xem (v46 Ultimate: Tích hợp trực tiếp vào đề)
     if (currentQuiz.privacy === "public") {
         try {
             const quizRef = ref(dbRT, 'public_quizzes/' + currentQuiz.id + '/viewCount');
@@ -397,6 +395,71 @@ function renderQuestions() {
     });
 }
 
+// === CHẤM ĐIỂM (RESTORED v46) ===
+quizForm.onsubmit = function (e) {
+    e.preventDefault();
+    if (quizForm.dataset.mode === 'practice') {
+        alert("Bạn đã hoàn thành chế độ luyện tập. Chế độ luyện tập không chấm điểm tổng.");
+        return;
+    }
+
+    const formData = new FormData(quizForm);
+    let correct = 0;
+    let incorrect = 0;
+    let unanswered = 0;
+
+    const qs = currentQuiz.renderedQuestions || currentQuiz.questions;
+
+    qs.forEach(q => {
+        const qId = q.id;
+        const qType = q.type || 'multiple_choice';
+
+        if (qType === 'multiple_choice' || qType === 'true_false') {
+            const userVal = formData.get(`question_${qId}`);
+            if (userVal === null) unanswered++;
+            else if (parseInt(userVal) === q.correctIndex) correct++;
+            else incorrect++;
+        } else if (qType === 'short_answer') {
+            const userVal = (formData.get(`question_${qId}`) || "").trim().toLowerCase();
+            const correctVal = (q.correctAnswer || "").toLowerCase();
+            if (userVal === "") unanswered++;
+            else if (userVal === correctVal) correct++;
+            else incorrect++;
+        } else if (qType === 'true_false_group') {
+            let isAllCorrect = true;
+            let isAnyUnanswered = false;
+            (q.subQuestions || []).forEach(sq => {
+                const val = formData.get(`question_${qId}_${sq.id}`);
+                if (val === null) isAnyUnanswered = true;
+                else if (val !== sq.correctAnswer) isAllCorrect = false;
+            });
+            if (isAnyUnanswered) unanswered++;
+            else if (isAllCorrect) correct++;
+            else incorrect++;
+        }
+    });
+
+    renderResults(correct, incorrect, unanswered);
+};
+
+function renderResults(correct, incorrect, unanswered) {
+    const total = correct + incorrect + unanswered;
+    document.getElementById('scoreText').textContent = `${correct}/${total}`;
+    document.getElementById('correctCount').textContent = correct;
+    document.getElementById('incorrectCount').textContent = incorrect;
+    document.getElementById('unansweredCount').textContent = unanswered;
+
+    const percentage = (correct / total) * 100;
+    const circle = document.querySelector('.score-circle');
+    if (circle) {
+        if (percentage >= 80) circle.style.background = 'linear-gradient(135deg, #10B981, #34D399)';
+        else if (percentage >= 50) circle.style.background = 'linear-gradient(135deg, #F59E0B, #FBBF24)';
+        else circle.style.background = 'linear-gradient(135deg, #EF4444, #F87171)';
+    }
+
+    showView('result');
+}
+
 // === CÁC TIỆN ÍCH KHÁC (LOAD/SAVE/UI) ===
 function highlightAnswer(q, optionsList) {
     const inputs = optionsList.querySelectorAll('input');
@@ -434,37 +497,24 @@ window.loadPublicQuizzes = function() {
                 let changed = false;
                 
                 publicList.forEach(pq => {
-                    // Chuẩn hóa dữ liệu
                     if (pq.questions && !Array.isArray(pq.questions)) pq.questions = Object.values(pq.questions);
-                    const pqId = pq.id.toString().trim(); // v45: Ép kiểu string tuyệt đối
-                    
-                    // Tìm xem đề này đã có trong danh sách local chưa (so sánh ID chuẩn)
+                    const pqId = pq.id.toString().trim();
                     const existingIdx = mockQuizzes.findIndex(q => q.id.toString().trim() === pqId);
                     
                     if (existingIdx === -1) {
-                        console.log("📥 Thêm đề mới từ Cloud:", pqId);
                         mockQuizzes.push(pq);
                         changed = true;
-                    } else {
-                        // Nếu đã có, kiểm tra xem có bản cập nhật mới hơn không (ví dụ viewCount)
-                        if (JSON.stringify(mockQuizzes[existingIdx]) !== JSON.stringify(pq)) {
-                            console.log("🆙 Cập nhật đề từ Cloud:", pqId);
-                            mockQuizzes[existingIdx] = pq;
-                            changed = true;
-                        }
+                    } else if (JSON.stringify(mockQuizzes[existingIdx]) !== JSON.stringify(pq)) {
+                        mockQuizzes[existingIdx] = pq;
+                        changed = true;
                     }
                 });
-                
                 if (changed) {
-                    console.log("☁️ Đã đồng bộ xong từ Cloud.");
                     initQuizList();
                 }
             }
         });
-    } catch(e) { 
-        console.error("Load public error:", e);
-        alert("Lỗi kết nối Cloud: " + e.message);
-    }
+    } catch(e) { console.error("Load public error:", e); }
 };
 
 // Khởi động
@@ -478,21 +528,12 @@ window.__saveCustomQuizzes = () => {
 };
 
 window.__publishPublicQuiz = (quizObj) => {
-    // v43: Thêm Alert thông báo trạng thái đăng đề
     try {
         const publicRef = ref(dbRT, 'public_quizzes/' + quizObj.id);
-        console.log("Đang đăng đề lên Cloud...");
         set(publicRef, quizObj)
-            .then(() => {
-                alert("🚀 Đã đăng đề lên máy chủ THÀNH CÔNG! Mọi người đều có thể thấy đề này.");
-            })
-            .catch(err => {
-                console.error("Firebase Publish Error:", err);
-                alert("❌ Lỗi khi đăng đề lên Cloud: " + err.message + "\n(Có thể do ảnh quá nặng hoặc lỗi phân quyền)");
-            });
-    } catch(e) {
-        alert("❌ Lỗi hệ thống khi đăng đề: " + e.message);
-    }
+            .then(() => alert("🚀 Đã đăng đề lên máy chủ THÀNH CÔNG!"))
+            .catch(err => alert("❌ Lỗi khi đăng đề: " + err.message));
+    } catch(e) { alert("❌ Lỗi hệ thống: " + e.message); }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -500,24 +541,45 @@ document.addEventListener('DOMContentLoaded', () => {
     loadPublicQuizzes();
     initQuizList();
 
-    // --- KÍCH HOẠT QUYỀN ADMIN ẨN (v42: Toggle On/Off) ---
+    // --- ĐIỀU HƯỚNG ---
+    const navButtons = {
+        'btnBackToMenu': 'list',
+        'btnBackFromSetup': 'list',
+        'btnBackToMenuFromResult': 'list'
+    };
+    Object.entries(navButtons).forEach(([id, view]) => {
+        const btn = document.getElementById(id);
+        if (btn) btn.onclick = () => showView(view);
+    });
+
+    const btnRetry = document.getElementById('btnRetry');
+    if (btnRetry) btnRetry.onclick = () => {
+        resetScoreCircle();
+        quizForm.reset();
+        renderQuestions();
+        showView('active');
+    };
+
+    const btnReview = document.getElementById('btnReview');
+    if (btnReview) btnReview.onclick = () => showView('active');
+
+    // --- QUYỀN ADMIN ẨN ---
     let adminClickCount = 0;
-    const adminTriggerRow = document.querySelector('.header h1'); // Target H1 for better touch
+    const adminTriggerRow = document.querySelector('.header h1');
     if (adminTriggerRow) {
-        adminTriggerRow.style.cursor = "pointer"; // Chỉ dẫn người dùng ngầm
+        adminTriggerRow.style.cursor = "pointer";
         adminTriggerRow.addEventListener('click', () => {
             adminClickCount++;
             if (adminClickCount >= 10) {
                 const isAdmin = localStorage.getItem("admin_secret_key") === "trongbeshop";
                 if (isAdmin) {
                     localStorage.removeItem("admin_secret_key");
-                    alert("Đã TẮT quyền Admin ẩn. Hệ thống đang tải lại...");
+                    alert("Đã TẮT quyền Admin.");
                 } else {
                     localStorage.setItem("admin_secret_key", "trongbeshop");
-                    alert("Đã BẬT quyền Admin ẩn! (V42: Bạn có thể chọn Xóa vĩnh viễn đề)");
+                    alert("Đã BẬT quyền Admin!");
                 }
                 location.reload();
-                adminClickCount = 0;
             }
         });
     }

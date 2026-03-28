@@ -113,36 +113,28 @@ async function analyzeQuizImage(images, extraNote = "", retryCount = 0) {
     // 1. Gộp ảnh nếu gửi nhiều
     const finalImages = (retryCount === 0 && images.length > 1) ? await mergeImages(images) : images;
 
-    const systemInstruction = `Bạn là chuyên gia trích xuất đề thi (OCR). Hãy phân tích ảnh và trả về JSON chuẩn xác 100%. Không giải thích.
+    const systemInstruction = `Bạn là chuyên gia trích xuất đề thi (OCR) CẤP ĐỘ CAO NHẤT. Hãy phân tích ảnh và trả về JSON chuẩn xác 100%, không sai một chữ.
 
-Quy tắc TRÍCH XUẤT TUYỆT ĐỐI (QUAN TRỌNG):
-1. THỨ TỰ NHÓM: Phải trích xuất theo thứ tự: Trắc nghiệm (multiple_choice) -> Đúng/Sai (true_false_group) -> Trả lời ngắn (short_answer) -> Tự luận (essay).
-2. ĐOẠN VĂN DÙNG CHUNG (BÀI ĐỌC HIỂU): Nếu có một bức tranh/đoạn văn lớn dùng cho nhiều câu hỏi, TUYỆT ĐỐI KHÔNG xé lẻ. Hãy gom chúng thành 1 nhóm. Ghi đoạn văn đó vào 'groupText' của câu đầu tiên. Các câu sau chỉ cần ghi 'groupText' giống hệt câu trước. AI sẽ tự động gộp lại.
-3. THỰC THI OCR CHUẨN: Giữ nguyên 100% văn bản gốc, không tóm tắt, không thêm thắt.
-4. BẢNG BIỂU & ĐỊNH DẠNG: BẮT BUỘC dùng mã HTML (<table>, <div>, CSS inline) để vẽ lại bảng biểu/lịch trình trong 'groupText'. 
-5. CẤM KÝ HIỆU LẠ: TUYỆT ĐỐI KHÔNG để mã HTML, [Hình vẽ], [Bảng] vào trường 'text' hoặc 'options'.
-6. DẠNG ĐÚNG/SAI: Bắt buộc dùng type: "true_false_group". KHÔNG được biến nó thành trắc nghiệm A,B,C,D.
+QUY TẮC VÀNG (BẮT BUỘC):
+1. TRÍCH XUẤT HÌNH ẢNH: Nếu câu hỏi có hình minh họa, biểu đồ, sơ đồ, hoặc hình vẽ, hãy xác định tọa độ [ymin, xmin, ymax, xmax] của hình đó vào trường 'imageBox'. Đây là ưu tiên hàng đầu.
+2. NHÓM ĐOẠN VĂN: Nếu có một đoạn văn (Reading Passage) dùng chung cho các câu tiếp theo, hãy ghi đoạn văn đó vào 'groupText' của câu đầu tiên. Các câu sau chỉ cần lặp lại đúng nội dung 'groupText' đó.
+3. PHÂN LOẠI: 
+   - 'multiple_choice': A, B, C, D.
+   - 'true_false_group': Dạng câu hỏi có nhiều ý Đúng/Sai.
+   - 'short_answer': Điền từ/số vào chỗ trống.
+4. KHÔNG giải thích, KHÔNG thêm văn bản thừa ngoài JSON.
 
-Cấu trúc JSON yêu cầu:
+Cấu trúc JSON:
 {
   "questions": [
     {
-      "qNumber": 1, 
+      "qNumber": 1,
       "type": "multiple_choice",
-      "groupText": "(Nếu là bài đọc hiểu/đồi núi/tranh ảnh chung, ghi ở đây và câu sau lặp lại y hệt)",
-      "text": "Nội dung câu 1?",
+      "text": "Nội dung câu hỏi...",
       "options": ["A. ...", "B. ...", "C. ...", "D. ..."],
       "correctIndex": 0,
+      "groupText": "(Nếu có)",
       "imageBox": [ymin, xmin, ymax, xmax]
-    },
-    {
-      "qNumber": 12,
-      "type": "true_false_group",
-      "groupText": "(Dùng chung nếu có - VD: [12-14] dùng chung 1 Bảng giá / Vé máy bay)",
-      "subQuestions": [
-        {"id": "a", "text": "Câu phát biểu a", "correctAnswer": "Đúng"},
-        {"id": "b", "text": "Câu phát biểu b", "correctAnswer": "Sai"}
-      ]
     }
   ]
 }`;
@@ -738,7 +730,7 @@ function importQuizToList() {
     const privacyEl = document.querySelector('input[name="geminiQuizPrivacy"]:checked');
     const title = titleEl.value.trim();
     const desc = descEl.value.trim();
-    const privacy = privacyEl ? privacyEl.value : "private";
+    const privacy = privacyEl ? privacyEl.value : (document.getElementById("radPublic")?.checked ? "public" : "private");
 
     if (!title) {
         titleEl.style.borderColor = "#EF4444";
@@ -748,6 +740,12 @@ function importQuizToList() {
     if (extractedQuestions.length === 0) {
         alert("Không có câu hỏi nào để thêm!");
         return;
+    }
+
+    const btnImport = document.getElementById("btnImportQuiz");
+    if (btnImport) {
+        btnImport.disabled = true;
+        btnImport.textContent = "Đang lưu...";
     }
 
     const newId = "gemini_" + Date.now();
@@ -925,13 +923,7 @@ function initGeminiModal() {
     // --- BƯỚC 5 → ĐÓNG ---
     document.getElementById("btnCloseSuccess").addEventListener("click", closeGeminiModal);
 
-    // --- PHOTO EDITOR CONTROLS (v42 Restored) ---
-    const btnRotCCW = document.getElementById("btnRotateCCW");
-    const btnRotCW = document.getElementById("btnRotateCW");
-    const btnApply = document.getElementById("btnApplyCrop");
-    if (btnRotCCW) btnRotCCW.addEventListener("click", () => rotateImage(-90));
-    if (btnRotCW) btnRotCW.addEventListener("click", () => rotateImage(90));
-    if (btnApply) btnApply.addEventListener("click", applyImageEdit);
+    // --- PHOTO EDITOR CONTROLS (Delegation handled @ bottom of file) ---
 
     // --- CÁC NÚT BACK ---
     document.getElementById("btnBackToUpload").addEventListener("click", () => showGeminiStep(1));
@@ -1001,28 +993,34 @@ function applyImageEdit() {
     if (!cropper || currentEditingQi === null) return;
     
     const canvas = cropper.getCroppedCanvas({
-        maxWidth: 1200,
-        maxHeight: 1200,
+        maxWidth: 1024, // v46 Ultimate: Giới hạn kích thước để nén tốt hơn nữa
+        maxHeight: 1024,
         fillColor: '#fff',
         imageSmoothingEnabled: true,
         imageSmoothingQuality: 'high',
     });
     
-    const newBase64 = canvas.toDataURL('image/jpeg', 0.5); // v45: Nén mạnh hơn để tránh lỗi dung lượng Firebase
+    const newBase64 = canvas.toDataURL('image/jpeg', 0.5); // v46: 50% quality là tối ưu cho Firebase
     extractedQuestions[currentEditingQi].imageSrc = newBase64;
     
     closePhotoEditor();
     renderQuestionEditor();
 }
 
-// v44: Khởi động an toàn & Xử lý sự kiện delegation (closest)
+// v46: Delegation handling for photo editor and other controls
 document.addEventListener("DOMContentLoaded", () => {
     const body = document.body;
     body.addEventListener("click", (e) => {
-        // Sử dụng closest để bắt sự kiện dù người dùng bấm vào icon hay chữ bên trong nút
-        if (e.target.closest("#btnRotateCW")) rotateImage(90);
-        else if (e.target.closest("#btnRotateCCW")) rotateImage(-90);
-        else if (e.target.closest("#btnApplyCrop")) applyImageEdit();
+        const target = e.target;
+        
+        // Photo Editor Buttons
+        if (target.closest("#btnRotateCW")) {
+            if (cropper) cropper.rotate(90);
+        } else if (target.closest("#btnRotateCCW")) {
+            if (cropper) cropper.rotate(-90);
+        } else if (target.closest("#btnApplyCrop")) {
+            applyImageEdit();
+        }
     });
 });
 
@@ -1033,8 +1031,9 @@ window.closePhotoEditor = closePhotoEditor;
 // ============================================================
 window.openGeminiModal = openGeminiModal;
 window.closeGeminiModal = closeGeminiModal;
+window.showImageLightbox = showImageLightbox;
 
-// Khởi động an toàn (chống double-init)
+// Khởi động an toàn
 if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initGeminiModal);
 } else {
