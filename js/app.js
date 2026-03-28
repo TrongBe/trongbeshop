@@ -552,9 +552,13 @@ window.__publishPublicQuiz = (quizObj) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Chế độ khóa vĩnh viễn
+    console.warn("PROJECT SHUTDOWN");
+    /*
     loadCustomQuizzes();
     loadPublicQuizzes();
     initQuizList();
+    */
 
     // --- ĐIỀU HƯỚNG ---
     const navButtons = {
