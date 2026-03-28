@@ -763,14 +763,12 @@ function importQuizToList() {
         privacy: privacy
     };
     
-    // Tránh trùng lặp khi đăng public: Chỉ unshift vào mockQuizzes cục bộ nếu đang ở chế độ private.
-    // Nếu ở chế độ public, hàm loadPublicQuizzes sẽ tự động load nó về từ Firebase sau vài giây.
-    if (privacy !== "public") {
-        window.__mockQuizzes.unshift(newQuiz);
-        if (window.__saveCustomQuizzes) window.__saveCustomQuizzes();
-    }
+    // v42: Khôi phục lưu cục bộ ngay lập tức để người dùng thấy đề ngay sau khi tạo thành công.
+    // Việc kiểm tra trùng lặp trên app.js sẽ xử lý khi Firebase đồng bộ về sau.
+    window.__mockQuizzes.unshift(newQuiz);
+    if (window.__saveCustomQuizzes) window.__saveCustomQuizzes();
     
-    // Nếu là public, gửi lên server. Server sẽ đẩy về cho các client (bao gồm cả client này).
+    // Nếu là public, vẫn gửi lên server để người khác thấy
     if (privacy === "public" && window.__publishPublicQuiz) {
         window.__publishPublicQuiz(newQuiz);
     }
@@ -924,6 +922,14 @@ function initGeminiModal() {
 
     // --- BƯỚC 5 → ĐÓNG ---
     document.getElementById("btnCloseSuccess").addEventListener("click", closeGeminiModal);
+
+    // --- PHOTO EDITOR CONTROLS (v42 Restored) ---
+    const btnRotCCW = document.getElementById("btnRotateCCW");
+    const btnRotCW = document.getElementById("btnRotateCW");
+    const btnApply = document.getElementById("btnApplyCrop");
+    if (btnRotCCW) btnRotCCW.addEventListener("click", () => rotateImage(-90));
+    if (btnRotCW) btnRotCW.addEventListener("click", () => rotateImage(90));
+    if (btnApply) btnApply.addEventListener("click", applyImageEdit);
 
     // --- CÁC NÚT BACK ---
     document.getElementById("btnBackToUpload").addEventListener("click", () => showGeminiStep(1));

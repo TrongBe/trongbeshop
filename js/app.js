@@ -434,11 +434,12 @@ document.addEventListener('DOMContentLoaded', () => {
     loadPublicQuizzes();
     initQuizList();
 
-    // --- KÍCH HOẠT QUYỀN ADMIN ẨN (v41: Toggle On/Off) ---
+    // --- KÍCH HOẠT QUYỀN ADMIN ẨN (v42: Toggle On/Off) ---
     let adminClickCount = 0;
-    const header = document.querySelector('.header');
-    if (header) {
-        header.addEventListener('click', () => {
+    const adminTriggerRow = document.querySelector('.header h1'); // Target H1 for better touch
+    if (adminTriggerRow) {
+        adminTriggerRow.style.cursor = "pointer"; // Chỉ dẫn người dùng ngầm
+        adminTriggerRow.addEventListener('click', () => {
             adminClickCount++;
             if (adminClickCount >= 10) {
                 const isAdmin = localStorage.getItem("admin_secret_key") === "trongbeshop";
@@ -447,7 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert("Đã TẮT quyền Admin ẩn. Hệ thống đang tải lại...");
                 } else {
                     localStorage.setItem("admin_secret_key", "trongbeshop");
-                    alert("Đã BẬT quyền Admin ẩn! (Bạn có quyền xóa vĩnh viễn đề công khai)");
+                    alert("Đã BẬT quyền Admin ẩn! (V42: Bạn có thể chọn Xóa vĩnh viễn đề)");
                 }
                 location.reload();
                 adminClickCount = 0;
