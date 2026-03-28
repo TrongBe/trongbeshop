@@ -336,8 +336,7 @@ function renderQuestions() {
         if (q.imageSrc) {
             const imgDiv = document.createElement('div');
             imgDiv.className = 'question-image';
-            imgDiv.style.cssText = 'margin-bottom: 15px; text-align: center; background: #fff; border-radius: 8px; border: 1px solid #eee; padding: 10px;';
-            imgDiv.innerHTML = `<img src="${q.imageSrc}" style="max-width: 100%; max-height: 400px; border-radius: 6px; cursor: zoom-in;">`;
+            imgDiv.innerHTML = `<img src="${q.imageSrc}" alt="Hình minh họa">`;
             
             const imgEl = imgDiv.querySelector('img');
             imgEl.onclick = () => showImageLightbox(q.imageSrc);

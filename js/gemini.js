@@ -524,8 +524,8 @@ function renderQuestionEditor() {
                     ` : ''}
                 </div>
                 ${hasImage ? `
-                    <div class="q-image-preview" style="text-align: center; margin-top: 10px;">
-                        <img src="${q.imageSrc}" alt="Hình câu hỏi" style="max-width: 100%; max-height: 250px; border-radius: 6px; border: 1px solid #e2e8f0;">
+                    <div class="q-image-preview">
+                        <img src="${q.imageSrc}" alt="Hình câu hỏi">
                     </div>
                 ` : ''}
             </div>
