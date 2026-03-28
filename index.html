@@ -19,6 +19,11 @@
       }
     }
   </script>
+  
+  <!-- Cropper.js CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
+  <!-- Cropper.js JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
 </head>
 
 <body>
@@ -304,14 +309,14 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>Nguồn: <strong>Nguyễn Thanh Trọng</strong> | Phiên bản: <a href="javascript:void(0)" onclick="openChangelog()" style="color: #6366f1; font-weight: 700; text-decoration: none;">v44 (Xem mới nhất)</a></p>
+      <p>Nguồn: <strong>Nguyễn Thanh Trọng</strong> | Phiên bản: <a href="javascript:void(0)" onclick="openChangelog()" style="color: #6366f1; font-weight: 700; text-decoration: none;">v45 (Xem mới nhất)</a></p>
     </div>
   </footer>
 
-  <script type="module" src="js/app.js?v=44"></script>
-  <script type="module" src="js/gemini.js?v=44"></script>
+  <script type="module" src="js/app.js?v=45"></script>
+  <script type="module" src="js/gemini.js?v=45"></script>
 
-  <!-- CHANGELOG MODAL (New v44) -->
+  <!-- CHANGELOG MODAL (New v45) -->
   <div id="changelogModal" class="modal-overlay" style="display:none;">
     <div class="modal-content" style="max-width: 500px;">
       <div class="modal-header">
@@ -320,18 +325,18 @@
       </div>
       <div class="modal-body" style="line-height: 1.6;">
         <div class="changelog-item">
-          <h4 style="color:var(--primary); margin-bottom: 8px;">🚀 Phiên bản v44 (Hiện tại)</h4>
+          <h4 style="color:var(--primary); margin-bottom: 8px;">🚀 Phiên bản v45 (Hiện tại)</h4>
           <ul style="padding-left: 20px; font-size: 14px;">
-            <li><b>Chống trùng đề</b>: Thuật toán lọc ID thông minh, không bao giờ hiện 2 đề giống nhau.</li>
-            <li><b>Fix Nút Cắt/Xoay</b>: Bấm vào icon hay bất cứ đâu trên nút đều hoạt động tốt.</li>
-            <li><b>Làm mới từ Cloud</b>: Thêm nút "Làm mới" thủ công để ép đồng bộ dữ liệu ngay lập tức.</li>
+            <li><b>Kích hoạt Cắt/Xoay</b>: Tích hợp thư viện Cropper.js (vốn bị thiếu ở v44).</li>
+            <li><b>Diệt trừ trùng lặp</b>: Thuật toán lọc ID mới, đảm bảo 100% không hiện 2 đề giống nhau.</li>
+            <li><b>Tối ưu Cloud Sync</b>: Nén ảnh cực mạnh (JPEG 50%) để đảm bảo đề thi không bao giờ bị quá tải bộ nhớ Firebase.</li>
           </ul>
         </div>
         <hr style="margin: 15px 0; opacity: 0.2;">
         <div class="changelog-item" style="opacity: 0.7;">
-          <h4 style="margin-bottom: 8px;">🌟 Phiên bản v43</h4>
+          <h4 style="margin-bottom: 8px;">🌟 Phiên bản v44</h4>
           <ul style="padding-left: 20px; font-size: 13px;">
-            <li>Quy trình ảnh mới, Thông báo đăng đề, Hợp nhất View v2.</li>
+            <li>Chế độ Làm mới từ Cloud, Sửa sự kiện bấm nút editor.</li>
           </ul>
         </div>
       </div>

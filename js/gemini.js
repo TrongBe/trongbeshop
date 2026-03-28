@@ -1008,7 +1008,7 @@ function applyImageEdit() {
         imageSmoothingQuality: 'high',
     });
     
-    const newBase64 = canvas.toDataURL('image/jpeg', 0.8);
+    const newBase64 = canvas.toDataURL('image/jpeg', 0.5); // v45: Nén mạnh hơn để tránh lỗi dung lượng Firebase
     extractedQuestions[currentEditingQi].imageSrc = newBase64;
     
     closePhotoEditor();

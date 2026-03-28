@@ -432,30 +432,38 @@ window.loadPublicQuizzes = function() {
             if (data) {
                 const publicList = Object.values(data);
                 let changed = false;
+                
                 publicList.forEach(pq => {
+                    // Chuẩn hóa dữ liệu
                     if (pq.questions && !Array.isArray(pq.questions)) pq.questions = Object.values(pq.questions);
+                    const pqId = pq.id.toString().trim(); // v45: Ép kiểu string tuyệt đối
                     
-                    const existingIdx = mockQuizzes.findIndex(q => q.id.toString() === pq.id.toString());
+                    // Tìm xem đề này đã có trong danh sách local chưa (so sánh ID chuẩn)
+                    const existingIdx = mockQuizzes.findIndex(q => q.id.toString().trim() === pqId);
+                    
                     if (existingIdx === -1) {
+                        console.log("📥 Thêm đề mới từ Cloud:", pqId);
                         mockQuizzes.push(pq);
                         changed = true;
                     } else {
-                        // Cập nhật dữ liệu từ Cloud nếu khác biệt (ViewCount, v.v.)
+                        // Nếu đã có, kiểm tra xem có bản cập nhật mới hơn không (ví dụ viewCount)
                         if (JSON.stringify(mockQuizzes[existingIdx]) !== JSON.stringify(pq)) {
+                            console.log("🆙 Cập nhật đề từ Cloud:", pqId);
                             mockQuizzes[existingIdx] = pq;
                             changed = true;
                         }
                     }
                 });
+                
                 if (changed) {
-                    console.log("☁️ Đã cập nhật xong từ Cloud.");
+                    console.log("☁️ Đã đồng bộ xong từ Cloud.");
                     initQuizList();
                 }
             }
         });
     } catch(e) { 
         console.error("Load public error:", e);
-        alert("Lỗi khi kết nối Cloud: " + e.message);
+        alert("Lỗi kết nối Cloud: " + e.message);
     }
 };
 
