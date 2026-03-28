@@ -117,8 +117,13 @@ window.deleteCustomQuiz = function(id) {
             
             if (isPublic) {
                 try {
+                    // v43: Một lần xóa hết cả Đề + View vì chúng nằm chung 1 thư mục
                     const publicRef = ref(dbRT, 'public_quizzes/' + id);
-                    set(publicRef, null); // v41: Integrated delete
+                    set(publicRef, null).then(() => {
+                        console.log("Đã xóa xong trên Cloud");
+                    }).catch(e => {
+                        alert("Lỗi xóa trên Cloud: " + e.message);
+                    });
                 } catch(e) { console.error("Firebase delete error:", e); }
             }
             
@@ -144,11 +149,13 @@ window.closeChangelog = function() {
 // === LẮNG NGHE DỮ LIỆU LƯỢT TRUY CẬP (v41: Integrated) ===
 function initRealtimeViews() {
     try {
+        // v43: Lắng nghe quiz_views cũ (cho các đề cũ)
         const viewsRef = ref(dbRT, 'quiz_views');
         onValue(viewsRef, (snapshot) => {
             const allViews = snapshot.val() || {};
             mockQuizzes.forEach(quiz => {
                 const legacyView = allViews[quiz.id] || 0;
+                // Ưu tiên viewCount trong đề (tích hợp), nếu không có mới dùng legacy
                 const integratedView = quiz.viewCount || 0;
                 const finalView = Math.max(legacyView, integratedView);
                 
@@ -399,19 +406,26 @@ function loadPublicQuizzes() {
             const data = snapshot.val();
             if (data) {
                 const publicList = Object.values(data);
-                let addedNew = false;
+                let addedOrUpdated = false;
                 publicList.forEach(pq => {
                     if (pq.questions && !Array.isArray(pq.questions)) pq.questions = Object.values(pq.questions);
-                    const exists = mockQuizzes.find(q => q.id.toString() === pq.id.toString());
-                    if (!exists) {
+                    
+                    const existingIdx = mockQuizzes.findIndex(q => q.id.toString() === pq.id.toString());
+                    if (existingIdx === -1) {
                         mockQuizzes.push(pq);
-                        addedNew = true;
+                        addedOrUpdated = true;
+                    } else {
+                        // v43: Cập nhật viewCount nếu có thay đổi từ thiết bị khác
+                        if (mockQuizzes[existingIdx].viewCount !== pq.viewCount) {
+                            mockQuizzes[existingIdx].viewCount = pq.viewCount;
+                            addedOrUpdated = true;
+                        }
                     }
                 });
-                if (addedNew) initQuizList();
+                if (addedOrUpdated) initQuizList();
             }
         });
-    } catch(e) {}
+    } catch(e) { console.error("Load public error:", e); }
 }
 
 // Khởi động
@@ -425,8 +439,21 @@ window.__saveCustomQuizzes = () => {
 };
 
 window.__publishPublicQuiz = (quizObj) => {
-    const publicRef = ref(dbRT, 'public_quizzes/' + quizObj.id);
-    set(publicRef, quizObj);
+    // v43: Thêm Alert thông báo trạng thái đăng đề
+    try {
+        const publicRef = ref(dbRT, 'public_quizzes/' + quizObj.id);
+        console.log("Đang đăng đề lên Cloud...");
+        set(publicRef, quizObj)
+            .then(() => {
+                alert("🚀 Đã đăng đề lên máy chủ THÀNH CÔNG! Mọi người đều có thể thấy đề này.");
+            })
+            .catch(err => {
+                console.error("Firebase Publish Error:", err);
+                alert("❌ Lỗi khi đăng đề lên Cloud: " + err.message + "\n(Có thể do ảnh quá nặng hoặc lỗi phân quyền)");
+            });
+    } catch(e) {
+        alert("❌ Lỗi hệ thống khi đăng đề: " + e.message);
+    }
 };
 
 document.addEventListener('DOMContentLoaded', () => {

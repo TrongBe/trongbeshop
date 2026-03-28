@@ -679,11 +679,13 @@ function renderQuestionEditor() {
                 try {
                     btn.textContent = "⌛...";
                     const base64Data = await fileToBase64(file);
+                    // v43: Sau khi chọn ảnh, tự động mở bảng Cắt/Xoay luôn
                     extractedQuestions[qi].imageSrc = `data:${base64Data.mimeType};base64,${base64Data.base64}`;
-                    renderQuestionEditor();
+                    showImageEditorModal(qi); 
+                    btn.textContent = "🖼️ Đổi ảnh";
                 } catch(err) {
                     alert("Lỗi tải ảnh: " + err.message);
-                    btn.textContent = "🖼️ Đổi ảnh";
+                    btn.textContent = "🖼️ Thêm ảnh";
                 }
             };
             input.click();
@@ -1013,15 +1015,15 @@ function applyImageEdit() {
     renderQuestionEditor();
 }
 
-// Gắn sự kiện cho bộ công cụ chỉnh sửa ảnh
+// v43: Khởi động an toàn
 document.addEventListener("DOMContentLoaded", () => {
-    const btnCW = document.getElementById("btnRotateCW");
-    const btnCCW = document.getElementById("btnRotateCCW");
-    const btnApply = document.getElementById("btnApplyCrop");
-    
-    if (btnCW) btnCW.onclick = () => rotateImage(90);
-    if (btnCCW) btnCCW.onclick = () => rotateImage(-90);
-    if (btnApply) btnApply.onclick = applyImageEdit;
+    // Đảm bảo các nút trong editor được gán sự kiện đúng
+    const body = document.body;
+    body.addEventListener("click", (e) => {
+        if (e.target.id === "btnRotateCW") rotateImage(90);
+        if (e.target.id === "btnRotateCCW") rotateImage(-90);
+        if (e.target.id === "btnApplyCrop") applyImageEdit();
+    });
 });
 
 window.closePhotoEditor = closePhotoEditor;
