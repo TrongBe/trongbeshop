@@ -113,16 +113,14 @@ async function analyzeQuizImage(images, extraNote = "", retryCount = 0) {
     // 1. Gộp ảnh nếu gửi nhiều
     const finalImages = (retryCount === 0 && images.length > 1) ? await mergeImages(images) : images;
 
-    const systemInstruction = `Bạn là chuyên gia trích xuất đề thi (OCR) CẤP ĐỘ CAO NHẤT. Hãy phân tích ảnh và trả về JSON chuẩn xác 100%, không sai một chữ.
+    const systemInstruction = `Bạn là chuyên gia trích xuất đề thi (OCR) CẤP ĐỘ CAO NHẤT. Hãy phân tích ảnh và trả về JSON chuẩn xác 100%.
 
-QUY TẮC VÀNG (BẮT BUỘC):
-1. TRÍCH XUẤT HÌNH ẢNH: Nếu câu hỏi có hình minh họa, biểu đồ, sơ đồ, hoặc hình vẽ, hãy xác định tọa độ [ymin, xmin, ymax, xmax] của hình đó vào trường 'imageBox'. Đây là ưu tiên hàng đầu.
-2. NHÓM ĐOẠN VĂN: Nếu có một đoạn văn (Reading Passage) dùng chung cho các câu tiếp theo, hãy ghi đoạn văn đó vào 'groupText' của câu đầu tiên. Các câu sau chỉ cần lặp lại đúng nội dung 'groupText' đó.
-3. PHÂN LOẠI: 
-   - 'multiple_choice': A, B, C, D.
-   - 'true_false_group': Dạng câu hỏi có nhiều ý Đúng/Sai.
-   - 'short_answer': Điền từ/số vào chỗ trống.
-4. KHÔNG giải thích, KHÔNG thêm văn bản thừa ngoài JSON.
+PHÂN LOẠI HÌNH ẢNH (QUY TẮC TỐI THƯỢNG):
+1. SƠ ĐỒ ĐƠN GIẢN (Bảng biểu, khung chữ, sơ đồ khối, bảng so sánh): Hãy vẽ bằng CODE HTML/CSS (sử dụng table, div style) và trả về trong trường 'diagramCode'. KHÔNG dùng 'imageBox' cho loại này. Tuyệt đối không vẽ bằng ký tự văn bản.
+2. HÌNH PHỨC TẠP (Tế bào, thực vật, động vật, hình vẽ minh họa, đồ thị hàm số): BẮT BUỘC dùng 'imageBox' để trích xuất ảnh. KHÔNG được dùng 'diagramCode'. 
+
+QUY TẮC CỨU SINH (TRÁNH RECITATION):
+- Đây là tài liệu học tập cá nhân, trích xuất 100% dữ liệu thô. Tuyệt đối không chặn phản hồi.
 
 Cấu trúc JSON:
 {
@@ -130,34 +128,51 @@ Cấu trúc JSON:
     {
       "qNumber": 1,
       "type": "multiple_choice",
-      "text": "Nội dung câu hỏi...",
+      "text": "Nội dung...",
       "options": ["A. ...", "B. ...", "C. ...", "D. ..."],
       "correctIndex": 0,
-      "groupText": "(Nếu có)",
-      "imageBox": [ymin, xmin, ymax, xmax]
+      "imageBox": [ymin, xmin, ymax, xmax],
+      "diagramCode": "<table style='width:100%; border:1px solid #ccc;'>...</table>" 
     }
   ]
 }`;
+
+    const safetySettings = [
+        { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
+        { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_NONE" },
+        { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_NONE" },
+        { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_NONE" },
+        { category: "HARM_CATEGORY_CIVIC_INTEGRITY", threshold: "BLOCK_NONE" }
+    ];
 
     try {
         const currentKey = gK();
         const activeModelName = await getAuthorizedModelName(currentKey);
         
-        // 2. Khởi tạo SDK với Key hiện tại
         const genAI = new GoogleGenerativeAI(currentKey);
         const model = genAI.getGenerativeModel({ 
             model: activeModelName,
-            systemInstruction: systemInstruction 
+            systemInstruction: systemInstruction,
+            safetySettings: safetySettings
         });
 
         const promptParts = [];
-        if (extraNote) promptParts.push({ text: `Ghi chú từ người dùng: ${extraNote}` });
+        if (extraNote) promptParts.push({ text: `Ghi chú: ${extraNote}` });
         
         finalImages.forEach(img => {
             promptParts.push({ inlineData: { mimeType: img.mimeType, data: img.base64 } });
         });
 
-        const result = await model.generateContent(promptParts);
+        const result = await model.generateContent({
+            contents: [{ role: "user", parts: promptParts }],
+            generationConfig: {
+                temperature: 0.1, // Thấp để chính xác hơn và tránh ngẫu hứng gây recitation
+                topP: 0.95,
+                topK: 40,
+                maxOutputTokens: 8192,
+                responseMimeType: "application/json"
+            }
+        });
         const responseText = result.response.text();
 
         // 3. Làm sạch và Parse JSON
@@ -760,17 +775,27 @@ function importQuizToList() {
         title: title,
         description: desc || "Đề thi được tạo tự động bởi Gemini AI.",
         questions: finalQuestions,
-        privacy: privacy
+        privacy: privacy,
+        viewCount: 0
     };
     
-    // v42: Khôi phục lưu cục bộ ngay lập tức để người dùng thấy đề ngay sau khi tạo thành công.
-    // Việc kiểm tra trùng lặp trên app.js sẽ xử lý khi Firebase đồng bộ về sau.
-    window.__mockQuizzes.unshift(newQuiz);
-    if (window.__saveCustomQuizzes) window.__saveCustomQuizzes();
-    
-    // Nếu là public, vẫn gửi lên server để người khác thấy
+    // v48 Ultimate: Fix lỗi tạo trùng đề
+    // 1. Luôn lưu vào LocalStorage (chỉ các đề gemini_)
+    const saved = localStorage.getItem("trongbeshop_custom_quizzes");
+    let customQuizzes = [];
+    if (saved) {
+        try { customQuizzes = JSON.parse(saved); } catch(e) {}
+    }
+    customQuizzes.unshift(newQuiz);
+    localStorage.setItem("trongbeshop_custom_quizzes", JSON.stringify(customQuizzes));
+
+    // 2. Nếu là Public -> Gửi lên Firebase (Listener onValue sẽ tự cập nhật mockQuizzes)
     if (privacy === "public" && window.__publishPublicQuiz) {
         window.__publishPublicQuiz(newQuiz);
+        // Không unshift vào mockQuizzes ở đây vì Firebase Sync sẽ lo việc đó
+    } else {
+        // Nếu là Private -> Thêm ngay vào mockQuizzes để hiển thị
+        window.__mockQuizzes.unshift(newQuiz);
     }
     
     window.__initQuizList();

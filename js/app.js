@@ -322,6 +322,13 @@ function renderQuestions() {
             const imgEl = imgDiv.querySelector('img');
             imgEl.onclick = () => showImageLightbox(q.imageSrc);
             qBlock.appendChild(imgDiv);
+        } else if (q.diagramCode) {
+            // v48: Hiển thị sơ đồ được vẽ bằng code (HTML/SVG/Table)
+            const diagramDiv = document.createElement('div');
+            diagramDiv.className = 'question-diagram';
+            diagramDiv.style.cssText = 'background: white; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; margin-bottom: 20px; overflow-x: auto;';
+            diagramDiv.innerHTML = q.diagramCode;
+            qBlock.appendChild(diagramDiv);
         }
 
         const qTitle = document.createElement('h4');
@@ -450,11 +457,19 @@ function renderResults(correct, incorrect, unanswered) {
     document.getElementById('unansweredCount').textContent = unanswered;
 
     const percentage = (correct / total) * 100;
+    const unansweredPercentage = (unanswered / total) * 100;
     const circle = document.querySelector('.score-circle');
+    
     if (circle) {
-        if (percentage >= 80) circle.style.background = 'linear-gradient(135deg, #10B981, #34D399)';
-        else if (percentage >= 50) circle.style.background = 'linear-gradient(135deg, #F59E0B, #FBBF24)';
-        else circle.style.background = 'linear-gradient(135deg, #EF4444, #F87171)';
+        if (percentage >= 80) {
+            circle.style.background = 'linear-gradient(135deg, #10B981, #34D399)'; // Xanh
+        } else if (unansweredPercentage >= 30 || (unanswered > correct && percentage < 80)) {
+            circle.style.background = 'linear-gradient(135deg, #F59E0B, #FBBF24)'; // Vàng (Chưa làm nhiều)
+        } else if (percentage >= 50) {
+            circle.style.background = 'linear-gradient(135deg, #6366F1, #818CF8)'; // Tím/Xanh dương (Tạm ổn)
+        } else {
+            circle.style.background = 'linear-gradient(135deg, #EF4444, #F87171)'; // Đỏ (Sai nhiều)
+        }
     }
 
     showView('result');
@@ -531,9 +546,9 @@ window.__publishPublicQuiz = (quizObj) => {
     try {
         const publicRef = ref(dbRT, 'public_quizzes/' + quizObj.id);
         set(publicRef, quizObj)
-            .then(() => alert("🚀 Đã đăng đề lên máy chủ THÀNH CÔNG!"))
-            .catch(err => alert("❌ Lỗi khi đăng đề: " + err.message));
-    } catch(e) { alert("❌ Lỗi hệ thống: " + e.message); }
+            .then(() => console.log("🚀 Đã đăng đề lên máy chủ THÀNH CÔNG!"))
+            .catch(err => console.error("❌ Lỗi khi đăng đề:", err));
+    } catch(e) { console.error("❌ Lỗi hệ thống:", e); }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
