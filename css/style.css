@@ -1400,3 +1400,23 @@ body {
 .btn-danger:hover { background: #dc2626; }
 .btn-outline { background: white; color: #475569; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; cursor: pointer; font-weight: 500; }
 .btn-outline:hover { background: #f8fafc; }
+
+/* Style for Version Changelog Link */
+.footer-bottom a:hover {
+    text-decoration: underline !important;
+    opacity: 0.9;
+}
+
+.changelog-item ul li {
+    margin-bottom: 6px;
+}
+
+/* Fix FAB Overlap on Mobile (v41) */
+@media (max-width: 768px) {
+    .gemini-fab {
+        bottom: 85px; /* Nới rộng khoảng cách để không đè footer */
+        right: 20px;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}

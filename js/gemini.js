@@ -116,11 +116,12 @@ async function analyzeQuizImage(images, extraNote = "", retryCount = 0) {
     const systemInstruction = `Bạn là chuyên gia trích xuất đề thi (OCR). Hãy phân tích ảnh và trả về JSON chuẩn xác 100%. Không giải thích.
 
 Quy tắc TRÍCH XUẤT TUYỆT ĐỐI (QUAN TRỌNG):
-1. THỰC THI OCR CHUẨN: Giữ nguyên 100% văn bản gốc, không tóm tắt, không thêm thắt.
-2. THỨ TỰ NHÓM: Phải trích xuất theo thứ tự: Trắc nghiệm (multiple_choice) -> Đúng/Sai (true_false_group) -> Trả lời ngắn (short_answer) -> Tự luận (essay).
-3. BẢNG BIỂU & ĐỊNH DẠNG: BẮT BUỘC dùng mã HTML (<table>, <div>, CSS inline) để vẽ lại bảng biểu/lịch trình trong 'groupText'. 
-4. CẤM KÝ HIỆU LẠ: TUYỆT ĐỐI KHÔNG để mã HTML, [Hình vẽ], [Bảng] vào trường 'text' hoặc 'options'.
-5. DẠNG ĐÚNG/SAI: Bắt buộc dùng type: "true_false_group". KHÔNG được biến nó thành trắc nghiệm A,B,C,D.
+1. THỨ TỰ NHÓM: Phải trích xuất theo thứ tự: Trắc nghiệm (multiple_choice) -> Đúng/Sai (true_false_group) -> Trả lời ngắn (short_answer) -> Tự luận (essay).
+2. ĐOẠN VĂN DÙNG CHUNG (BÀI ĐỌC HIỂU): Nếu có một bức tranh/đoạn văn lớn dùng cho nhiều câu hỏi, TUYỆT ĐỐI KHÔNG xé lẻ. Hãy gom chúng thành 1 nhóm. Ghi đoạn văn đó vào 'groupText' của câu đầu tiên. Các câu sau chỉ cần ghi 'groupText' giống hệt câu trước. AI sẽ tự động gộp lại.
+3. THỰC THI OCR CHUẨN: Giữ nguyên 100% văn bản gốc, không tóm tắt, không thêm thắt.
+4. BẢNG BIỂU & ĐỊNH DẠNG: BẮT BUỘC dùng mã HTML (<table>, <div>, CSS inline) để vẽ lại bảng biểu/lịch trình trong 'groupText'. 
+5. CẤM KÝ HIỆU LẠ: TUYỆT ĐỐI KHÔNG để mã HTML, [Hình vẽ], [Bảng] vào trường 'text' hoặc 'options'.
+6. DẠNG ĐÚNG/SAI: Bắt buộc dùng type: "true_false_group". KHÔNG được biến nó thành trắc nghiệm A,B,C,D.
 
 Cấu trúc JSON yêu cầu:
 {
@@ -128,6 +129,7 @@ Cấu trúc JSON yêu cầu:
     {
       "qNumber": 1, 
       "type": "multiple_choice",
+      "groupText": "(Nếu là bài đọc hiểu/đồi núi/tranh ảnh chung, ghi ở đây và câu sau lặp lại y hệt)",
       "text": "Nội dung câu 1?",
       "options": ["A. ...", "B. ...", "C. ...", "D. ..."],
       "correctIndex": 0,
@@ -761,12 +763,16 @@ function importQuizToList() {
         privacy: privacy
     };
     
-    window.__mockQuizzes.unshift(newQuiz);
+    // Tránh trùng lặp khi đăng public: Chỉ unshift vào mockQuizzes cục bộ nếu đang ở chế độ private.
+    // Nếu ở chế độ public, hàm loadPublicQuizzes sẽ tự động load nó về từ Firebase sau vài giây.
+    if (privacy !== "public") {
+        window.__mockQuizzes.unshift(newQuiz);
+        if (window.__saveCustomQuizzes) window.__saveCustomQuizzes();
+    }
     
+    // Nếu là public, gửi lên server. Server sẽ đẩy về cho các client (bao gồm cả client này).
     if (privacy === "public" && window.__publishPublicQuiz) {
         window.__publishPublicQuiz(newQuiz);
-    } else {
-        if (window.__saveCustomQuizzes) window.__saveCustomQuizzes();
     }
     
     window.__initQuizList();
