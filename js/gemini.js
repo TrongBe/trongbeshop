@@ -129,11 +129,10 @@ Bạn phải nhận diện và phân loại chính xác 3 dạng câu hỏi sau 
 - "correctIndex" là vị trí đáp án đúng (từ 0 đến 3). Nếu không rõ, để 0.
 
 2. TRẮC NGHIỆM ĐÚNG/SAI (true_false_group):
-- Câu hỏi có thể là 1 câu hỏi độc lập (chọn Đúng/Sai) HOẶC 1 câu hỏi chính kèm theo các ý phụ (a, b, c, d) để tích Đúng/Sai.
+- Nếu thấy 1 câu hỏi chính kèm theo các ý phụ (a, b, c, d) yêu cầu tích Đúng/Sai: BẮT BUỘC phải GỘP CHUNG thành 1 câu hỏi duy nhất. (TUYỆT ĐỐI KHÔNG chia tách thành 4 câu rời rạc).
 - Trường "type" BẮT BUỘC là "true_false_group".
-- "text": Nội dung câu hỏi chính hoặc đoạn văn.
-- "subQuestions": Mảng chứa các ý phụ. Nếu là câu hỏi độc lập, mảng này chỉ chứa 1 phần tử.
-Ví dụ: "subQuestions": [{"id": "a", "text": "Phát biểu A", "correctAnswer": "Đúng"}]
+- "text": Nội dung câu hỏi chính hoặc đoạn văn tư liệu.
+- "subQuestions": Mảng chứa các ý phụ. Ví dụ: "subQuestions": [{"id": "a", "text": "Phát biểu A", "correctAnswer": "Đúng"}]
 (Lưu ý: "correctAnswer" BẮT BUỘC là "Đúng" hoặc "Sai").
 
 3. TRẢ LỜI NGẮN (short_answer):
@@ -141,12 +140,16 @@ Ví dụ: "subQuestions": [{"id": "a", "text": "Phát biểu A", "correctAnswer"
 - Trường "type" BẮT BUỘC là "short_answer".
 - "correctAnswer": Chuỗi chứa con số đáp án. Nếu không rõ, để "".
 
+QUY TẮC BỔ SUNG QUAN TRỌNG:
+- Trường "section": BẮT BUỘC trích xuất tiêu đề của phần thi chứa câu hỏi đó (ví dụ: "I. Trắc nghiệm", "PHẦN II. Câu trắc nghiệm đúng sai", "III. Trả lời ngắn"). Nhìn vào ảnh để lấy chính xác tiêu đề này.
+
 Cấu trúc JSON TRẢ VỀ PHẢI GIỐNG NHƯ MẪU DƯỚI ĐÂY:
 {
   "questions": [
     {
       "qNumber": 1,
       "type": "multiple_choice",
+      "section": "I. Trắc nghiệm nhiều phương án lựa chọn",
       "text": "Câu 1: Hình bên mô tả tế bào gì?",
       "options": ["A. Tế bào thực vật", "B. Tế bào động vật", "C. Vi khuẩn", "D. Nấm"],
       "correctIndex": 0,
@@ -155,7 +158,8 @@ Cấu trúc JSON TRẢ VỀ PHẢI GIỐNG NHƯ MẪU DƯỚI ĐÂY:
     {
       "qNumber": 2,
       "type": "true_false_group",
-      "text": "Câu 2: Đọc đoạn văn sau và xác định các phát biểu bên dưới là Đúng hay Sai...",
+      "section": "II. Trắc nghiệm đúng sai",
+      "text": "Câu 2: Đọc đoạn văn tư liệu sau và trả lời...",
       "subQuestions": [
         {"id": "a", "text": "Hạt nhân mang điện tích dương", "correctAnswer": "Đúng"},
         {"id": "b", "text": "Vỏ nguyên tử chứa proton", "correctAnswer": "Sai"}
@@ -164,6 +168,7 @@ Cấu trúc JSON TRẢ VỀ PHẢI GIỐNG NHƯ MẪU DƯỚI ĐÂY:
     {
       "qNumber": 3,
       "type": "short_answer",
+      "section": "III. Trả lời ngắn",
       "text": "Câu 3: Kết quả của phép tính 50 + 50 là bao nhiêu?",
       "correctAnswer": "100"
     }
