@@ -484,17 +484,20 @@ function renderResults(correct, incorrect, unanswered) {
     const circle = document.querySelector('.score-circle');
     
     if (circle) {
-        let colorCode = '#EF4444'; // Đỏ (Sai nhiều)
-        if (percentage >= 80) {
-            colorCode = '#10B981'; // Xanh (Tốt)
-        } else if (unansweredPercentage >= 30 || (unanswered > correct && percentage < 80)) {
-            colorCode = '#F59E0B'; // Vàng (Chưa làm nhiều)
-        } else if (percentage >= 50) {
-            colorCode = '#6366F1'; // Xanh dương (Tạm ổn)
+        if (total === 0) {
+            circle.style.background = '#E5E7EB';
+        } else {
+            const correctPct = (correct / total) * 100;
+            const incorrectPct = (incorrect / total) * 100;
+            // Phần còn lại là chưa làm (Yellow)
+            
+            // Biểu đồ tròn chia 3 phần: Xanh (Đúng), Đỏ (Sai), Vàng (Chưa làm)
+            circle.style.background = `conic-gradient(
+                #10B981 0% ${correctPct}%, 
+                #EF4444 ${correctPct}% ${correctPct + incorrectPct}%, 
+                #F59E0B ${correctPct + incorrectPct}% 100%
+            )`;
         }
-        
-        // Tạo biểu đồ hình tròn hiển thị đúng tỷ lệ phần trăm
-        circle.style.background = `conic-gradient(${colorCode} ${percentage}%, #E5E7EB 0)`;
     }
 
     showView('result');
