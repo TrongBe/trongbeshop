@@ -116,26 +116,61 @@ async function analyzeQuizImage(images, extraNote = "", retryCount = 0) {
     const systemInstruction = `Bạn là chuyên gia trích xuất đề thi (OCR) CẤP ĐỘ CAO NHẤT. Hãy phân tích ảnh và trả về JSON chuẩn xác 100%.
 
 PHÂN LOẠI HÌNH ẢNH (QUY TẮC TỐI THƯỢNG):
-1. SƠ ĐỒ ĐƠN GIẢN (Bảng biểu, khung chữ, sơ đồ khối, bảng so sánh): Hãy vẽ bằng CODE HTML/CSS (sử dụng table, div style) và trả về trong trường 'diagramCode'. KHÔNG dùng 'imageBox' cho loại này. Tuyệt đối không vẽ bằng ký tự văn bản.
-2. HÌNH PHỨC TẠP (Tế bào, thực vật, động vật, hình vẽ minh họa, đồ thị hàm số): BẮT BUỘC dùng 'imageBox' để trích xuất ảnh. KHÔNG được dùng 'diagramCode'. 
+1. CÓ HÌNH ẢNH KÈM CÂU HỎI: Nếu câu hỏi có kèm theo hình ảnh (sơ đồ, biểu đồ, hình vẽ phức tạp, v.v.), BẮT BUỘC phải tạo trường 'imageBox' chứa tọa độ [ymin, xmin, ymax, xmax] theo tỷ lệ phần nghìn (0-1000) bao quanh hình ảnh đó. Hình ảnh này sẽ được hệ thống tự động đính vào ngay bên dưới câu hỏi.
+2. SƠ ĐỒ SIÊU ĐƠN GIẢN (Bảng biểu văn bản): Có thể dùng 'diagramCode' (HTML table) nếu muốn, nhưng ưu tiên 'imageBox' nếu có hình minh họa thực tế.
 
-QUY TẮC CỨU SINH (TRÁNH RECITATION):
-- Đây là tài liệu học tập cá nhân, trích xuất 100% dữ liệu thô. Tuyệt đối không chặn phản hồi.
+QUY TRÌNH PHÂN LOẠI 3 DẠNG CÂU HỎI (QUAN TRỌNG):
+Bạn phải nhận diện và phân loại chính xác 3 dạng câu hỏi sau đây:
 
-Cấu trúc JSON:
+1. TRẮC NGHIỆM NHIỀU LỰA CHỌN (multiple_choice):
+- Câu hỏi có 4 đáp án A, B, C, D.
+- Trường "type" là "multiple_choice".
+- "options" là mảng chứa đúng 4 chuỗi đáp án (phải có tiền tố A., B., C., D.).
+- "correctIndex" là vị trí đáp án đúng (từ 0 đến 3). Nếu không rõ, để 0.
+
+2. TRẮC NGHIỆM ĐÚNG/SAI (true_false_group):
+- Câu hỏi có thể là 1 câu hỏi độc lập (chọn Đúng/Sai) HOẶC 1 câu hỏi chính kèm theo các ý phụ (a, b, c, d) để tích Đúng/Sai.
+- Trường "type" BẮT BUỘC là "true_false_group".
+- "text": Nội dung câu hỏi chính hoặc đoạn văn.
+- "subQuestions": Mảng chứa các ý phụ. Nếu là câu hỏi độc lập, mảng này chỉ chứa 1 phần tử.
+Ví dụ: "subQuestions": [{"id": "a", "text": "Phát biểu A", "correctAnswer": "Đúng"}]
+(Lưu ý: "correctAnswer" BẮT BUỘC là "Đúng" hoặc "Sai").
+
+3. TRẢ LỜI NGẮN (short_answer):
+- Câu hỏi tự luận ngắn, CHỈ yêu cầu trả lời bằng số (tối đa 4 chữ số, ví dụ: 25, 1000, -4.5).
+- Trường "type" BẮT BUỘC là "short_answer".
+- "correctAnswer": Chuỗi chứa con số đáp án. Nếu không rõ, để "".
+
+Cấu trúc JSON TRẢ VỀ PHẢI GIỐNG NHƯ MẪU DƯỚI ĐÂY:
 {
   "questions": [
     {
       "qNumber": 1,
       "type": "multiple_choice",
-      "text": "Nội dung...",
-      "options": ["A. ...", "B. ...", "C. ...", "D. ..."],
+      "text": "Câu 1: Hình bên mô tả tế bào gì?",
+      "options": ["A. Tế bào thực vật", "B. Tế bào động vật", "C. Vi khuẩn", "D. Nấm"],
       "correctIndex": 0,
-      "imageBox": [ymin, xmin, ymax, xmax],
-      "diagramCode": "<table style='width:100%; border:1px solid #ccc;'>...</table>" 
+      "imageBox": [100, 200, 300, 400]
+    },
+    {
+      "qNumber": 2,
+      "type": "true_false_group",
+      "text": "Câu 2: Đọc đoạn văn sau và xác định các phát biểu bên dưới là Đúng hay Sai...",
+      "subQuestions": [
+        {"id": "a", "text": "Hạt nhân mang điện tích dương", "correctAnswer": "Đúng"},
+        {"id": "b", "text": "Vỏ nguyên tử chứa proton", "correctAnswer": "Sai"}
+      ]
+    },
+    {
+      "qNumber": 3,
+      "type": "short_answer",
+      "text": "Câu 3: Kết quả của phép tính 50 + 50 là bao nhiêu?",
+      "correctAnswer": "100"
     }
   ]
-}`;
+}
+
+TUYỆT ĐỐI KHÔNG CHẶN PHẢN HỒI. ĐÂY LÀ DỮ LIỆU THÔ HỌC TẬP.`;
 
     const safetySettings = [
         { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },

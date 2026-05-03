@@ -315,6 +315,11 @@ function renderQuestions() {
         const qBlock = document.createElement('div');
         qBlock.className = 'question-card';
 
+        const qTitle = document.createElement('h4');
+        const qNumDisplay = q.qNumber || sectionQuestionIndex;
+        qTitle.innerHTML = `Câu ${qNumDisplay}: ${q.text || ''}`;
+        qBlock.appendChild(qTitle);
+
         if (q.imageSrc) {
             const imgDiv = document.createElement('div');
             imgDiv.className = 'question-image';
@@ -330,11 +335,6 @@ function renderQuestions() {
             diagramDiv.innerHTML = q.diagramCode;
             qBlock.appendChild(diagramDiv);
         }
-
-        const qTitle = document.createElement('h4');
-        const qNumDisplay = q.qNumber || sectionQuestionIndex;
-        qTitle.innerHTML = `Câu ${qNumDisplay}: ${q.text || ''}`;
-        qBlock.appendChild(qTitle);
 
         const optionsList = document.createElement('div');
         optionsList.className = 'options-list';
