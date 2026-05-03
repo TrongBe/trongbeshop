@@ -528,7 +528,6 @@ function renderQuestionEditor() {
                 <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
                     <button class="q-action-btn q-upload-img-btn" data-qi="${qi}" title="Tải ảnh mới" style="font-size: 11px; background: #e2e8f0; padding: 4px 10px; border-radius: 4px; font-weight: 500;">🖼️ ${hasImage ? 'Đổi Ảnh' : 'Thêm Ảnh'}</button>
                     ${hasImage ? `
-                        <button class="q-action-btn q-edit-img-btn" data-qi="${qi}" title="Cắt và Xoay ảnh" style="font-size: 11px; background: #dcfce7; color: #166534; padding: 4px 10px; border-radius: 4px; font-weight: 500;">✂️ Cắt/Xoay</button>
                         <button class="q-action-btn q-remove-img-btn" data-qi="${qi}" title="Xóa ảnh" style="font-size: 11px; background: #fee2e2; color: #ef4444; padding: 4px 10px; border-radius: 4px; font-weight: 500;">✕ Xóa</button>
                     ` : ''}
                 </div>
@@ -686,9 +685,8 @@ function renderQuestionEditor() {
                 try {
                     btn.textContent = "⌛...";
                     const base64Data = await fileToBase64(file);
-                    // v43: Sau khi chọn ảnh, tự động mở bảng Cắt/Xoay luôn
                     extractedQuestions[qi].imageSrc = `data:${base64Data.mimeType};base64,${base64Data.base64}`;
-                    showImageEditorModal(qi); 
+                    renderQuestionEditor();
                     btn.textContent = "🖼️ Đổi ảnh";
                 } catch(err) {
                     alert("Lỗi tải ảnh: " + err.message);
@@ -968,88 +966,6 @@ function initGeminiModal() {
     });
 }
 
-// ============================================================
-// IMAGE EDITOR (v39) - CROP & ROTATE
-// ============================================================
-let cropper = null;
-let currentEditingQi = null;
-
-function showImageEditorModal(qi) {
-    const q = extractedQuestions[qi];
-    if (!q || !q.imageSrc) return;
-    
-    currentEditingQi = qi;
-    const modal = document.getElementById("photoEditorModal");
-    const img = document.getElementById("cropperImage");
-    
-    img.src = q.imageSrc;
-    modal.style.display = "flex";
-    
-    if (cropper) cropper.destroy();
-    
-    // Khởi tạo Cropper.js
-    cropper = new Cropper(img, {
-        viewMode: 1,
-        dragMode: 'move',
-        autoCropArea: 0.8,
-        restore: false,
-        guides: true,
-        center: true,
-        highlight: false,
-        cropBoxMovable: true,
-        cropBoxResizable: true,
-        toggleDragModeOnDblclick: false,
-    });
-}
-
-function closePhotoEditor() {
-    if (cropper) cropper.destroy();
-    cropper = null;
-    document.getElementById("photoEditorModal").style.display = "none";
-}
-
-// Xoay ảnh 90 độ
-function rotateImage(degree) {
-    if (cropper) cropper.rotate(degree);
-}
-
-// Lưu ảnh sau khi cắt/xoay
-function applyImageEdit() {
-    if (!cropper || currentEditingQi === null) return;
-    
-    const canvas = cropper.getCroppedCanvas({
-        maxWidth: 1024, // v46 Ultimate: Giới hạn kích thước để nén tốt hơn nữa
-        maxHeight: 1024,
-        fillColor: '#fff',
-        imageSmoothingEnabled: true,
-        imageSmoothingQuality: 'high',
-    });
-    
-    const newBase64 = canvas.toDataURL('image/jpeg', 0.5); // v46: 50% quality là tối ưu cho Firebase
-    extractedQuestions[currentEditingQi].imageSrc = newBase64;
-    
-    closePhotoEditor();
-    renderQuestionEditor();
-}
-
-// v46: Delegation handling for photo editor and other controls
-document.addEventListener("DOMContentLoaded", () => {
-    const body = document.body;
-    body.addEventListener("click", (e) => {
-        const target = e.target;
-        
-        // Photo Editor Buttons
-        if (target.closest("#btnRotateCW")) {
-            if (cropper) cropper.rotate(90);
-        } else if (target.closest("#btnRotateCCW")) {
-            if (cropper) cropper.rotate(-90);
-        } else if (target.closest("#btnApplyCrop")) {
-            applyImageEdit();
-        }
-    });
-});
-
-window.closePhotoEditor = closePhotoEditor;
 
 // ============================================================
 // EXPOSE RA WINDOW
