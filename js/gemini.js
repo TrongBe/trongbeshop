@@ -253,7 +253,7 @@ async function cropImage(base64, box) {
                 canvas.width = width;
                 canvas.height = height;
                 ctx.drawImage(img, xmin, ymin, width, height, 0, 0, width, height);
-                resolve(canvas.toDataURL("image/jpeg", 0.9)); // Sử dụng JPEG chất lượng tốt thay vì PNG nặng
+                resolve(canvas.toDataURL("image/jpeg", 0.6)); // Reduce quality from 0.9 to 0.6 to prevent Firebase payload limits
             } catch (e) {
                 console.error("Crop error:", e);
                 resolve(null);
@@ -790,11 +790,10 @@ function importQuizToList() {
     // 2. Nếu là Public -> Gửi lên Firebase (Listener onValue sẽ tự cập nhật mockQuizzes)
     if (privacy === "public" && window.__publishPublicQuiz) {
         window.__publishPublicQuiz(newQuiz);
-        // Không unshift vào mockQuizzes ở đây vì Firebase Sync sẽ lo việc đó
-    } else {
-        // Nếu là Private -> Thêm ngay vào mockQuizzes để hiển thị
-        window.__mockQuizzes.unshift(newQuiz);
     }
+    
+    // LUÔN LUÔN THÊM VÀO MOCKQUIZZES NGAY LẬP TỨC ĐỂ NGƯỜI DÙNG THẤY (TRÁNH LỖI TƯỞNG CHƯA LƯU RỒI TẠO LẠI)
+    window.__mockQuizzes.unshift(newQuiz);
     
     window.__initQuizList();
     showGeminiStep(5);
