@@ -485,18 +485,14 @@ function renderResults(correct, incorrect, unanswered) {
     
     if (circle) {
         if (total === 0) {
-            circle.style.background = '#E5E7EB';
+            circle.style.backgroundImage = 'none';
+            circle.style.backgroundColor = '#E5E7EB';
         } else {
             const correctPct = (correct / total) * 100;
             const incorrectPct = (incorrect / total) * 100;
-            // Phần còn lại là chưa làm (Yellow)
             
-            // Biểu đồ tròn chia 3 phần: Xanh (Đúng), Đỏ (Sai), Vàng (Chưa làm)
-            circle.style.background = `conic-gradient(
-                #10B981 0% ${correctPct}%, 
-                #EF4444 ${correctPct}% ${correctPct + incorrectPct}%, 
-                #F59E0B ${correctPct + incorrectPct}% 100%
-            )`;
+            // Sử dụng backgroundImage để đảm bảo độ tương thích cao nhất
+            circle.style.backgroundImage = `conic-gradient(#10B981 0% ${correctPct}%, #EF4444 ${correctPct}% ${correctPct + incorrectPct}%, #F59E0B ${correctPct + incorrectPct}% 100%)`;
         }
     }
 
