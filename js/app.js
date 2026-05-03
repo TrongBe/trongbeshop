@@ -385,6 +385,14 @@ function renderQuestions() {
                     `).join('')}
                 </tbody>
             `;
+            const radios = table.querySelectorAll('input[type="radio"]');
+            radios.forEach(radio => {
+                radio.addEventListener('change', () => {
+                    if (quizForm.dataset.quizMode === 'practice') {
+                        highlightTFGroupAnswer(q, table, radio.name);
+                    }
+                });
+            });
             groupDiv.appendChild(table);
             optionsList.appendChild(groupDiv);
         } else if (qType === 'short_answer') {
@@ -461,15 +469,17 @@ function renderResults(correct, incorrect, unanswered) {
     const circle = document.querySelector('.score-circle');
     
     if (circle) {
+        let colorCode = '#EF4444'; // Đỏ (Sai nhiều)
         if (percentage >= 80) {
-            circle.style.background = 'linear-gradient(135deg, #10B981, #34D399)'; // Xanh
+            colorCode = '#10B981'; // Xanh (Tốt)
         } else if (unansweredPercentage >= 30 || (unanswered > correct && percentage < 80)) {
-            circle.style.background = 'linear-gradient(135deg, #F59E0B, #FBBF24)'; // Vàng (Chưa làm nhiều)
+            colorCode = '#F59E0B'; // Vàng (Chưa làm nhiều)
         } else if (percentage >= 50) {
-            circle.style.background = 'linear-gradient(135deg, #6366F1, #818CF8)'; // Tím/Xanh dương (Tạm ổn)
-        } else {
-            circle.style.background = 'linear-gradient(135deg, #EF4444, #F87171)'; // Đỏ (Sai nhiều)
+            colorCode = '#6366F1'; // Xanh dương (Tạm ổn)
         }
+        
+        // Tạo biểu đồ hình tròn hiển thị đúng tỷ lệ phần trăm
+        circle.style.background = `conic-gradient(${colorCode} ${percentage}%, #E5E7EB 0)`;
     }
 
     showView('result');
@@ -484,6 +494,26 @@ function highlightAnswer(q, optionsList) {
         if (idx === q.correctIndex) label.classList.add('correct-answer');
         else if (input.checked) label.classList.add('wrong-answer');
     });
+}
+
+function highlightTFGroupAnswer(q, table, radioName) {
+    const radios = table.querySelectorAll(`input[name="${radioName}"]`);
+    const parts = radioName.split('_');
+    const sqId = parts[parts.length - 1];
+    const sq = q.subQuestions ? q.subQuestions.find(s => s.id === sqId) : null;
+    
+    if (sq) {
+        radios.forEach(input => {
+            const label = input.closest('label');
+            label.classList.remove('correct-answer', 'wrong-answer');
+            const val = input.value;
+            if (val === sq.correctAnswer) {
+                label.classList.add('correct-answer');
+            } else if (input.checked) {
+                label.classList.add('wrong-answer');
+            }
+        });
+    }
 }
 
 function resetScoreCircle() {
