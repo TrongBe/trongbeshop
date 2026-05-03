@@ -250,9 +250,18 @@ async function cropImage(base64, box) {
                 const width = Math.max(1, xmax - xmin);
                 const height = Math.max(1, ymax - ymin);
                 
-                canvas.width = width;
-                canvas.height = height;
-                ctx.drawImage(img, xmin, ymin, width, height, 0, 0, width, height);
+                // Giới hạn kích thước ảnh cắt ra để giảm tối đa dung lượng Base64 gửi lên Firebase
+                const MAX_WIDTH = 800;
+                let targetWidth = width;
+                let targetHeight = height;
+                if (targetWidth > MAX_WIDTH) {
+                    targetHeight = Math.round(targetHeight * (MAX_WIDTH / targetWidth));
+                    targetWidth = MAX_WIDTH;
+                }
+                
+                canvas.width = targetWidth;
+                canvas.height = targetHeight;
+                ctx.drawImage(img, xmin, ymin, width, height, 0, 0, targetWidth, targetHeight);
                 resolve(canvas.toDataURL("image/jpeg", 0.6)); // Reduce quality from 0.9 to 0.6 to prevent Firebase payload limits
             } catch (e) {
                 console.error("Crop error:", e);
