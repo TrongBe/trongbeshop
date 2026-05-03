@@ -398,9 +398,24 @@ function renderQuestions() {
         } else if (qType === 'short_answer') {
             const input = document.createElement('input');
             input.type = 'text';
-            input.className = 'form-control';
+            input.className = 'form-control short-answer-input';
             input.name = `question_${q.id}`;
             input.placeholder = 'Nhập câu trả lời của bạn...';
+            input.style.cssText = 'max-width: 300px; margin-top: 10px; font-size: 1.1rem; padding: 10px; border: 2px solid #E5E7EB; border-radius: 8px; transition: all 0.3s ease;';
+            
+            input.addEventListener('change', () => {
+                if (quizForm.dataset.quizMode === 'practice') {
+                    highlightShortAnswer(q, input);
+                }
+            });
+            // Hỗ trợ kiểm tra ngay lập tức khi người dùng nhập xong và bấm Enter hoặc click ra ngoài
+            input.addEventListener('input', () => {
+                if (quizForm.dataset.quizMode === 'practice') {
+                    // Nếu muốn kiểm tra realtime thì mở dòng dưới, nhưng khuyên dùng change để không bị lỗi lúc đang gõ dở
+                    // highlightShortAnswer(q, input);
+                }
+            });
+            
             optionsList.appendChild(input);
         }
 
@@ -513,6 +528,28 @@ function highlightTFGroupAnswer(q, table, radioName) {
                 label.classList.add('wrong-answer');
             }
         });
+    }
+}
+
+function highlightShortAnswer(q, inputElement) {
+    const userVal = inputElement.value.trim().toLowerCase();
+    const correctVal = (q.correctAnswer || "").toString().trim().toLowerCase();
+    
+    inputElement.style.borderColor = '#E5E7EB';
+    inputElement.style.backgroundColor = 'transparent';
+    inputElement.style.color = 'inherit';
+    
+    // Nếu chưa nhập gì thì xóa định dạng
+    if (userVal === "") return;
+    
+    if (userVal === correctVal) {
+        inputElement.style.borderColor = '#10B981'; // Xanh lá
+        inputElement.style.backgroundColor = '#D1FAE5';
+        inputElement.style.color = '#065F46';
+    } else {
+        inputElement.style.borderColor = '#EF4444'; // Đỏ
+        inputElement.style.backgroundColor = '#FEE2E2';
+        inputElement.style.color = '#991B1B';
     }
 }
 
