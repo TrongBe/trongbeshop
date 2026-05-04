@@ -1397,3 +1397,13 @@ body {
         font-size: 14px;
     }
 }
+/* Gemini AI Modal Helpers */
+.gemini-hidden-input {
+    position: absolute;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+}

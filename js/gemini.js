@@ -453,25 +453,30 @@ async function processFiles(files) {
     if (dropIcon) dropIcon.textContent = "⚙️";
     if (dropTitle) dropTitle.textContent = "Đang xử lý tệp...";
     
-    const newItems = await Promise.all(validFiles.map(async file => {
+    const newItems = [];
+    for (const file of validFiles) {
         if (file.name.toLowerCase().endsWith(".docx")) {
             try {
                 const arrayBuffer = await file.arrayBuffer();
                 const result = await mammoth.extractRawText({ arrayBuffer: arrayBuffer });
-                return {
+                newItems.push({
                     type: "docx",
                     name: file.name,
                     text: result.value
-                };
+                });
             } catch(e) {
                 console.error("Mammoth error:", e);
-                return null;
             }
         } else {
-            const base64Data = await fileToBase64(file);
-            return await compressImage(base64Data.base64, file.type, file.name);
+            try {
+                const base64Data = await fileToBase64(file);
+                const compressed = await compressImage(base64Data.base64, file.type, file.name);
+                if (compressed) newItems.push(compressed);
+            } catch(e) {
+                console.error("Image process error:", e);
+            }
         }
-    }));
+    }
     
     if (dropIcon) dropIcon.textContent = originalIcon;
     if (dropTitle) dropTitle.textContent = originalTitle;
