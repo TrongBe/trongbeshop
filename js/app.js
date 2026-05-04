@@ -318,7 +318,10 @@ function renderQuestions() {
         const qTitle = document.createElement('h4');
         const qNumDisplay = q.qNumber || sectionQuestionIndex;
         qTitle.style.whiteSpace = 'pre-wrap';
-        qTitle.innerHTML = `Câu ${qNumDisplay}: ${q.text || ''}`;
+        
+        // Làm sạch text nếu AI lỡ viết đúp "Câu X:"
+        const cleanText = (q.text || '').replace(/^Câu\s+\d+[:.]\s*/i, '').trim();
+        qTitle.innerHTML = `Câu ${qNumDisplay}: ${cleanText}`;
         qBlock.appendChild(qTitle);
 
         if (q.imageSrc) {

@@ -316,7 +316,19 @@ TUYỆT ĐỐI KHÔNG CHẶN PHẢN HỒI. ĐÂY LÀ DỮ LIỆU THÔ HỌC TẬ
 
         // 3. Làm sạch và Parse JSON
         const parsed = cleanAndParseJSON(responseText);
-        const newQs = parsed.questions || [];
+        let newQs = parsed.questions || [];
+
+        // 3b. Làm sạch nội dung câu hỏi (Xoá "Câu X:" đúp nếu AI lỡ viết vào)
+        newQs = newQs.map(q => {
+            if (q.text) q.text = q.text.replace(/^Câu\s+\d+[:.]\s*/i, "").trim();
+            if (q.subQuestions) {
+                q.subQuestions = q.subQuestions.map(sq => {
+                    if (sq.text) sq.text = sq.text.replace(/^Câu\s+\d+[:.]\s*/i, "").trim();
+                    return sq;
+                });
+            }
+            return q;
+        });
 
         // 4. Xử lý tọa độ ảnh
         for (let q of newQs) {
@@ -427,7 +439,9 @@ function fileToBase64(file) {
 }
 
 async function processFiles(files) {
-    const validFiles = files.filter(f => f.type.startsWith("image/") || f.name.toLowerCase().endsWith(".docx"));
+    // Chuyển FileList thành Array chuẩn
+    const filesArray = [...files];
+    const validFiles = filesArray.filter(f => f.type.startsWith("image/") || f.name.toLowerCase().endsWith(".docx"));
     if (validFiles.length === 0) return;
     
     // Hiển thị trạng thái đang xử lý
@@ -886,13 +900,13 @@ function renderQuestionEditor() {
             const qi = parseInt(btn.dataset.qi);
             const input = document.createElement("input");
             input.type = "file";
-            input.accept = "image/*, .docx, application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+            input.accept = "image/*, .docx, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document";
             input.onchange = async (e) => {
-                const file = e.target.files[0];
-                if (!file) return;
+                const files = [...e.target.files];
+                if (files.length === 0) return;
                 try {
                     btn.textContent = "⌛...";
-                    const base64Data = await fileToBase64(file);
+                    const base64Data = await fileToBase64(files[0]);
                     extractedQuestions[qi].imageSrc = `data:${base64Data.mimeType};base64,${base64Data.base64}`;
                     renderQuestionEditor();
                     btn.textContent = "🖼️ Đổi ảnh";
@@ -1047,13 +1061,15 @@ function initGeminiModal() {
 
     // File input change
     fileInput.addEventListener("change", async () => {
-        await processFiles(Array.from(fileInput.files));
+        if (!fileInput.files || fileInput.files.length === 0) return;
+        await processFiles(fileInput.files);
         fileInput.value = "";
     });
 
     // Note: Click events are now handled by <label for="..."> in index.html for better mobile support
     addMoreInput.addEventListener("change", async () => {
-        await processFiles(Array.from(addMoreInput.files));
+        if (!addMoreInput.files || addMoreInput.files.length === 0) return;
+        await processFiles(addMoreInput.files);
         addMoreInput.value = "";
     });
 
