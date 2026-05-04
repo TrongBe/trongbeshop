@@ -23,8 +23,8 @@ function rK() {
     console.log(`[Gemini] Đang xoay sang API Key #${_idx + 1}...`);
 }
 
-// Danh sách các mô hình khả dụng (Ưu tiên bản 3.0 mới nhất)
-const _MODELS = ["gemini-3-flash-preview", "gemini-2.0-flash", "gemini-1.5-flash"];
+// Danh sách các mô hình khả dụng (Ưu tiên ổn định và tốc độ)
+const _MODELS = ["gemini-1.5-flash", "gemini-2.0-flash", "gemini-3-flash-preview"];
 let _mIdx = 0;
 
 // ---- Trạng thái nội bộ (CRITICAL) ----
@@ -93,8 +93,20 @@ async function getAuthorizedModelName(apiKey) {
         }
         
         if (validModels.length > 0) {
-            // Xem có bản 8b không, nếu không lấy bản đầu tiên
-            const best = validModels.find(m => m.includes("8b")) || validModels[0];
+            // Tìm model dựa trên _mIdx (để xoay vòng nếu bản hiện tại bận)
+            const preferred = _MODELS[_mIdx % _MODELS.length];
+            let best = validModels.find(m => m.includes(preferred));
+            
+            // Nếu không tìm thấy model ưu tiên, tìm model bất kỳ trong danh sách _MODELS
+            if (!best) {
+                for (const pref of _MODELS) {
+                    const found = validModels.find(m => m.includes(pref));
+                    if (found) { { best = found; break; } }
+                }
+            }
+            
+            if (!best) best = validModels.find(m => m.includes("8b")) || validModels[0];
+            
             console.log("[Gemini] Đã phát hiện Model hỗ trợ:", best);
             _discoveredModel = best;
             return best;
@@ -288,22 +300,23 @@ TUYỆT ĐỐI KHÔNG CHẶN PHẢN HỒI. ĐÂY LÀ DỮ LIỆU THÔ HỌC TẬ
         // Thử lại nếu lỗi (403, 429, 404, 400, 503 hoặc quá tải)
         const errStr = err.toString();
         if (errStr.includes("429") || errStr.includes("403") || errStr.includes("404") || errStr.includes("400") || errStr.includes("503") || errStr.includes("high demand")) {
-            if (retryCount < (_K.length * _MODELS.length + 5)) { // Thêm 5 lần thử lại cho lỗi 503
-                // Xóa Cache Model để dò lại cho Key mới
+            if (retryCount < (_K.length + _MODELS.length * 2)) { 
+                // Xóa Cache Model để dò lại
                 _discoveredModel = null;
                 
-                if ((retryCount + 1) % _K.length === 0) _mIdx++;
+                // Xoay Key mỗi lần lỗi
                 rK();
+                
+                // Xoay Model nhanh hơn: Cứ sau 1 lần lỗi thì thử model tiếp theo trong danh sách
+                _mIdx = (_mIdx + 1) % _MODELS.length;
                 
                 const loadingSub = document.querySelector(".gemini-loading-sub");
                 if (loadingSub) {
-                    loadingSub.textContent = `Máy chủ đang bận, đang kết nối lại lần ${retryCount + 2}...`;
+                    loadingSub.textContent = `Máy chủ bận, đang chuyển sang máy chủ dự phòng ${retryCount + 2}...`;
                 }
                 
-                // Chờ 2 giây trước khi thử lại nếu là lỗi 503 để tránh spam
-                if (errStr.includes("503") || errStr.includes("high demand")) {
-                    await new Promise(r => setTimeout(r, 2000));
-                }
+                // Chờ 1 giây trước khi thử lại
+                await new Promise(r => setTimeout(r, 1000));
                 
                 return analyzeQuizImage(images, extraNote, retryCount + 1, useThinking);
             }
