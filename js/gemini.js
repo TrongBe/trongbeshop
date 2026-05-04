@@ -195,6 +195,18 @@ TUYỆT ĐỐI KHÔNG CHẶN PHẢN HỒI. ĐÂY LÀ DỮ LIỆU THÔ HỌC TẬ
         const currentKey = gK();
         const activeModelName = await getAuthorizedModelName(currentKey);
         
+        // Cập nhật tên Model đang chạy lên UI
+        const loadingTitle = document.querySelector(".gemini-loading-title");
+        if (loadingTitle) {
+            let readableName = "Gemini AI";
+            if (activeModelName.includes("3")) readableName = "Gemini 3.0 Flash";
+            else if (activeModelName.includes("2.0")) readableName = "Gemini 2.0 Flash";
+            else if (activeModelName.includes("1.5")) readableName = "Gemini 1.5 Flash";
+            
+            if (useThinking) readableName += " (Thinking Mode)";
+            loadingTitle.textContent = `${readableName} đang phân tích...`;
+        }
+        
         const genAI = new GoogleGenerativeAI(currentKey);
         const model = genAI.getGenerativeModel({ 
             model: activeModelName,
