@@ -23,8 +23,8 @@ function rK() {
     console.log(`[Gemini] Đang xoay sang API Key #${_idx + 1}...`);
 }
 
-// Danh sách các mô hình khả dụng (Ưu tiên ổn định và tốc độ)
-const _MODELS = ["gemini-1.5-flash", "gemini-2.0-flash", "gemini-3-flash-preview"];
+// Danh sách các mô hình khả dụng (Ưu tiên bản 2.0 mạnh mẽ và ổn định)
+const _MODELS = ["gemini-2.0-flash", "gemini-3-flash-preview"];
 let _mIdx = 0;
 
 // ---- Trạng thái nội bộ (CRITICAL) ----
