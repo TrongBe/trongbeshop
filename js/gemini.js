@@ -1061,15 +1061,22 @@ function initGeminiModal() {
 
     // File input change
     fileInput.addEventListener("change", async () => {
-        if (!fileInput.files || fileInput.files.length === 0) return;
-        await processFiles(fileInput.files);
+        const files = fileInput.files;
+        if (!files || files.length === 0) return;
+        
+        // Cực kỳ quan trọng cho di động: Chuyển sang Array ngay lập tức trước khi làm bất cứ việc gì khác
+        const filesArray = Array.from(files); 
+        await processFiles(filesArray);
         fileInput.value = "";
     });
 
     // Note: Click events are now handled by <label for="..."> in index.html for better mobile support
     addMoreInput.addEventListener("change", async () => {
-        if (!addMoreInput.files || addMoreInput.files.length === 0) return;
-        await processFiles(addMoreInput.files);
+        const files = addMoreInput.files;
+        if (!files || files.length === 0) return;
+        
+        const filesArray = Array.from(files);
+        await processFiles(filesArray);
         addMoreInput.value = "";
     });
 
@@ -1139,14 +1146,17 @@ function initGeminiModal() {
     if (btnAnalyzeMore && analyzeMoreInput) {
         btnAnalyzeMore.addEventListener("click", () => analyzeMoreInput.click());
         analyzeMoreInput.addEventListener("change", async () => {
-            const files = Array.from(analyzeMoreInput.files).filter(f => f.type.startsWith("image/") || f.name.toLowerCase().endsWith(".docx"));
-            if (files.length === 0) return;
+            const files = analyzeMoreInput.files;
+            if (!files || files.length === 0) return;
+            
+            const filesArray = Array.from(files).filter(f => f.type.startsWith("image/") || f.name.toLowerCase().endsWith(".docx"));
+            if (filesArray.length === 0) return;
             
             const extraNote = document.getElementById("geminiExtraNote").value.trim();
             showGeminiStep(2); // Show loading spinner
             
             try {
-                const newImages = await Promise.all(files.map(fileToBase64));
+                const newImages = await Promise.all(filesArray.map(fileToBase64));
                 const newQuestions = await analyzeQuizImage(newImages, extraNote);
                 
                 if (newQuestions && newQuestions.length > 0) {
