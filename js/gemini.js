@@ -264,10 +264,10 @@ TUYỆT ĐỐI KHÔNG CHẶN PHẢN HỒI. ĐÂY LÀ DỮ LIỆU THÔ HỌC TẬ
     } catch (err) {
         console.error("[Gemini SDK Error]:", err);
         
-        // Thử lại nếu lỗi (403, 429, 404, 400)
+        // Thử lại nếu lỗi (403, 429, 404, 400, 503 hoặc quá tải)
         const errStr = err.toString();
-        if (errStr.includes("429") || errStr.includes("403") || errStr.includes("404") || errStr.includes("400")) {
-            if (retryCount < _K.length * _MODELS.length) {
+        if (errStr.includes("429") || errStr.includes("403") || errStr.includes("404") || errStr.includes("400") || errStr.includes("503") || errStr.includes("high demand")) {
+            if (retryCount < (_K.length * _MODELS.length + 5)) { // Thêm 5 lần thử lại cho lỗi 503
                 // Xóa Cache Model để dò lại cho Key mới
                 _discoveredModel = null;
                 
@@ -276,7 +276,12 @@ TUYỆT ĐỐI KHÔNG CHẶN PHẢN HỒI. ĐÂY LÀ DỮ LIỆU THÔ HỌC TẬ
                 
                 const loadingSub = document.querySelector(".gemini-loading-sub");
                 if (loadingSub) {
-                    loadingSub.textContent = `Đang kích hoạt máy chủ dự phòng ${retryCount + 2}...`;
+                    loadingSub.textContent = `Máy chủ đang bận, đang kết nối lại lần ${retryCount + 2}...`;
+                }
+                
+                // Chờ 2 giây trước khi thử lại nếu là lỗi 503 để tránh spam
+                if (errStr.includes("503") || errStr.includes("high demand")) {
+                    await new Promise(r => setTimeout(r, 2000));
                 }
                 
                 return analyzeQuizImage(images, extraNote, retryCount + 1);
