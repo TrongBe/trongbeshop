@@ -641,42 +641,52 @@ function renderQuestionEditor() {
                 <div class="q-text-editor">
                     <label>Nội dung câu hỏi:</label>
                     <textarea class="q-text-input" rows="2">${escapeHTML(q.text)}</textarea>
+                    <div class="math-preview" style="margin-top: 5px; font-size: 0.9em; color: #475569; min-height: 1.2em;">${escapeHTML(q.text)}</div>
                 </div>
                 <div class="q-options-editor">
                     <label>Lựa chọn (click ✓ để chọn đáp án đúng):</label>
                     ${(q.options || []).map((opt, oi) => `
                         <div class="q-option-row ${oi === q.correctIndex ? 'is-correct' : ''}" data-oi="${oi}">
                             <button class="correct-selector ${oi === q.correctIndex ? 'selected' : ''}" data-qi="${qi}" data-oi="${oi}">✓</button>
-                            <input type="text" class="q-opt-input" value="${escapeHTML(opt)}" data-qi="${qi}" data-oi="${oi}">
+                            <div style="flex: 1;">
+                                <input type="text" class="q-opt-input" value="${escapeHTML(opt)}" data-qi="${qi}" data-oi="${oi}" style="width: 100%;">
+                                <div class="math-preview" style="margin-top: 2px; font-size: 0.85em; color: #64748b;">${escapeHTML(opt)}</div>
+                            </div>
                         </div>
-                    `).join("")}
+                    `).join('')}
                 </div>
             `;
         } else if (type === "true_false_group") {
             bodyHTML = `
                 <div class="q-text-editor">
-                    <label>Nội dung câu hỏi:</label>
-                    <textarea class="q-text-input" rows="2">${escapeHTML(q.text)}</textarea>
+                    <label>Nội dung câu hỏi / Tư liệu:</label>
+                    <textarea class="q-text-input" rows="3">${escapeHTML(q.text)}</textarea>
+                    <div class="math-preview" style="margin-top: 5px; font-size: 0.9em; color: #475569; min-height: 1.2em;">${escapeHTML(q.text)}</div>
                 </div>
-                <div class="tf-editor-table">
-                    <table>
-                        <thead><tr><th>Nội dung ý</th><th>Đúng</th><th>Sai</th></tr></thead>
+                <div class="q-options-editor">
+                    <label>Danh sách các ý phụ (a, b, c, d):</label>
+                    <table class="tf-editor-table" style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                        <thead>
+                            <tr style="background: #f1f5f9;">
+                                <th style="padding: 8px; border: 1px solid #e2e8f0; text-align: left;">Nội dung ý phụ</th>
+                                <th style="padding: 8px; border: 1px solid #e2e8f0; width: 80px;">Đúng/Sai</th>
+                            </tr>
+                        </thead>
                         <tbody>
                             ${(q.subQuestions || []).map((sq, si) => `
                                 <tr>
-                                    <td><input type="text" class="tf-sub-input" value="${escapeHTML(sq.text)}" data-qi="${qi}" data-si="${si}"></td>
-                                    <td class="tf-radio-cell">
-                                        <label class="tf-radio-label ${sq.correctAnswer === 'Đúng' ? 'tf-selected' : ''}">
-                                            <input type="radio" name="tf_${qi}_${si}" value="Đúng" ${sq.correctAnswer === 'Đúng' ? 'checked' : ''} data-qi="${qi}" data-si="${si}">
-                                        </label>
+                                    <td style="padding: 8px; border: 1px solid #e2e8f0;">
+                                        <input type="text" class="sq-text-input" value="${escapeHTML(sq.text)}" data-qi="${qi}" data-si="${si}" style="width: 100%; border: none; outline: none;">
+                                        <div class="math-preview" style="margin-top: 2px; font-size: 0.85em; color: #64748b;">${escapeHTML(sq.text)}</div>
                                     </td>
-                                    <td class="tf-radio-cell">
-                                        <label class="tf-radio-label ${sq.correctAnswer === 'Sai' ? 'tf-selected' : ''}">
-                                            <input type="radio" name="tf_${qi}_${si}" value="Sai" ${sq.correctAnswer === 'Sai' ? 'checked' : ''} data-qi="${qi}" data-si="${si}">
-                                        </label>
+                                    <td style="padding: 8px; border: 1px solid #e2e8f0; text-align: center;">
+                                        <select class="sq-answer-select" data-qi="${qi}" data-si="${si}" style="border: none; background: transparent; font-weight: 600; color: ${sq.correctAnswer === 'Đúng' ? '#10b981' : '#ef4444'};">
+                                            <option value="Đúng" ${sq.correctAnswer === 'Đúng' ? 'selected' : ''}>Đúng</option>
+                                            <option value="Sai" ${sq.correctAnswer === 'Sai' ? 'selected' : ''}>Sai</option>
+                                        </select>
                                     </td>
                                 </tr>
-                            `).join("")}
+                            `).join('')}
                         </tbody>
                     </table>
                 </div>
@@ -686,6 +696,7 @@ function renderQuestionEditor() {
                 <div class="q-text-editor">
                     <label>Nội dung câu hỏi:</label>
                     <textarea class="q-text-input" rows="2">${escapeHTML(q.text)}</textarea>
+                    <div class="math-preview" style="margin-top: 5px; font-size: 0.9em; color: #475569; min-height: 1.2em;">${escapeHTML(q.text)}</div>
                 </div>
                 <div class="q-text-editor">
                     <label>Đáp án đúng:</label>
@@ -711,43 +722,64 @@ function renderQuestionEditor() {
     });
 
     // --- GẮN SỰ KIỆN ---
+    const updateMathPreview = (input) => {
+        const preview = input.parentElement.querySelector(".math-preview");
+        if (preview) {
+            preview.textContent = input.value;
+            if (window.renderMathInElement) {
+                renderMathInElement(preview, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false }
+                    ],
+                    throwOnError: false
+                });
+            }
+        }
+    };
+
     container.querySelectorAll(".q-text-input").forEach(ta => {
         ta.addEventListener("input", () => {
             const qi = parseInt(ta.closest(".q-editor-card").dataset.index);
             extractedQuestions[qi].text = ta.value;
+            updateMathPreview(ta);
         });
     });
+
     container.querySelectorAll(".q-opt-input").forEach(inp => {
         inp.addEventListener("input", () => {
             const qi = parseInt(inp.dataset.qi);
             const oi = parseInt(inp.dataset.oi);
             extractedQuestions[qi].options[oi] = inp.value;
+            updateMathPreview(inp);
         });
     });
+
     container.querySelectorAll(".q-answer-input").forEach(inp => {
         inp.addEventListener("input", () => {
             const qi = parseInt(inp.dataset.qi);
             extractedQuestions[qi].correctAnswer = inp.value;
         });
     });
-    container.querySelectorAll(".tf-sub-input").forEach(inp => {
+
+    container.querySelectorAll(".sq-text-input").forEach(inp => {
         inp.addEventListener("input", () => {
             const qi = parseInt(inp.dataset.qi);
             const si = parseInt(inp.dataset.si);
             extractedQuestions[qi].subQuestions[si].text = inp.value;
+            updateMathPreview(inp);
         });
     });
-    container.querySelectorAll("input[type=radio]").forEach(radio => {
-        radio.addEventListener("change", () => {
-            const qi = parseInt(radio.dataset.qi);
-            const si = parseInt(radio.dataset.si);
-            extractedQuestions[qi].subQuestions[si].correctAnswer = radio.value;
-            const card = container.querySelector(`.q-editor-card[data-index="${qi}"]`);
-            const row = card.querySelectorAll("tbody tr")[si];
-            row.querySelectorAll(".tf-radio-label").forEach(l => l.classList.remove("tf-selected"));
-            radio.closest(".tf-radio-label").classList.add("tf-selected");
+
+    container.querySelectorAll(".sq-answer-select").forEach(sel => {
+        sel.addEventListener("change", () => {
+            const qi = parseInt(sel.dataset.qi);
+            const si = parseInt(sel.dataset.si);
+            extractedQuestions[qi].subQuestions[si].correctAnswer = sel.value;
+            sel.style.color = sel.value === "Đúng" ? "#10b981" : "#ef4444";
         });
     });
+
     container.querySelectorAll(".correct-selector").forEach(btn => {
         btn.addEventListener("click", () => {
             const qi = parseInt(btn.dataset.qi);
