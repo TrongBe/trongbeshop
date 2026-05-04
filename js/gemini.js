@@ -645,37 +645,36 @@ function renderQuestionEditor() {
         if (q.groupText && q.groupText.trim() !== "" && q.groupText !== currentGroupText) {
             const groupHeader = document.createElement("div");
             groupHeader.className = "editor-group-text";
-            groupHeader.style.cssText = "background: #fffbeb; border: 1px solid #fde68a; padding: 12px; border-radius: 8px; margin-bottom: 20px;";
-            
-            const isHTML = q.groupText.includes("<") && q.groupText.includes(">");
+            const passageDiv = document.createElement("div");
+            passageDiv.style.cssText = 'background: #f8fafc; padding: 20px; border-radius: 12px; margin-bottom: 24px; border-left: 5px solid var(--primary); font-size: 1.05rem; line-height: 1.7; white-space: pre-wrap;';
+            passageDiv.innerHTML = q.groupText;
             
             groupHeader.innerHTML = `
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                     <strong style="color: #92400e; font-size: 13px;">Ngữ cảnh / Đoạn văn:</strong>
                     <button class="toggle-group-edit" style="font-size: 11px; background: #fef3c7; border: 1px solid #fde68a; padding: 2px 8px; border-radius: 4px; cursor: pointer;">Sửa mã nguồn</button>
                 </div>
-                <div class="group-preview" style="background: white; border: 1px solid #fef3c7; padding: 10px; border-radius: 6px; overflow-x: auto;">
-                    ${q.groupText}
-                </div>
-                <textarea class="group-code-editor" style="display: none; width: 100%; height: 100px; font-family: monospace; font-size: 12px; margin-top: 10px; padding: 8px; border-radius: 4px; border: 1px solid #fde68a;">${q.groupText}</textarea>
             `;
+            groupHeader.appendChild(passageDiv);
+            
+            const editor = document.createElement("textarea");
+            editor.className = "group-code-editor";
+            editor.style.cssText = "display: none; width: 100%; height: 100px; font-family: monospace; font-size: 12px; margin-top: 10px; padding: 8px; border-radius: 4px; border: 1px solid #fde68a;";
+            editor.value = q.groupText;
+            groupHeader.appendChild(editor);
             
             const toggleBtn = groupHeader.querySelector(".toggle-group-edit");
-            const preview = groupHeader.querySelector(".group-preview");
-            const editor = groupHeader.querySelector(".group-code-editor");
-            
             toggleBtn.addEventListener("click", () => {
                 const isEditing = editor.style.display === "block";
                 editor.style.display = isEditing ? "none" : "block";
-                preview.style.display = isEditing ? "block" : "none";
+                passageDiv.style.display = isEditing ? "block" : "none";
                 toggleBtn.textContent = isEditing ? "Sửa mã nguồn" : "Xem bản xem trước";
             });
             
             editor.addEventListener("input", () => {
                 const newText = editor.value;
                 q.groupText = newText;
-                preview.innerHTML = newText;
-                // Cập nhật groupText cho tất cả câu hỏi cùng nhóm
+                passageDiv.innerHTML = newText;
                 extractedQuestions.forEach(item => {
                     if (item.groupText === currentGroupText) item.groupText = newText;
                 });
@@ -720,8 +719,8 @@ function renderQuestionEditor() {
             bodyHTML = `
                 <div class="q-text-editor">
                     <label>Nội dung câu hỏi:</label>
-                    <textarea class="q-text-input" rows="2">${escapeHTML(q.text)}</textarea>
-                    <div class="math-preview" style="margin-top: 5px; font-size: 0.9em; color: #475569; min-height: 1.2em;">${escapeHTML(q.text)}</div>
+                    <textarea class="q-text-input" rows="2" style="white-space: pre-wrap;">${escapeHTML(q.text)}</textarea>
+                    <div class="math-preview" style="margin-top: 5px; font-size: 0.9em; color: #475569; min-height: 1.2em; white-space: pre-wrap;">${escapeHTML(q.text)}</div>
                 </div>
                 ${imageHTML}
                 <div class="q-options-editor">
@@ -731,7 +730,7 @@ function renderQuestionEditor() {
                             <button class="correct-selector ${oi === q.correctIndex ? 'selected' : ''}" data-qi="${qi}" data-oi="${oi}">✓</button>
                             <div style="flex: 1;">
                                 <input type="text" class="q-opt-input" value="${escapeHTML(opt)}" data-qi="${qi}" data-oi="${oi}" style="width: 100%;">
-                                <div class="math-preview" style="margin-top: 2px; font-size: 0.85em; color: #64748b;">${escapeHTML(opt)}</div>
+                                <div class="math-preview" style="margin-top: 2px; font-size: 0.85em; color: #64748b; white-space: pre-wrap;">${escapeHTML(opt)}</div>
                             </div>
                         </div>
                     `).join('')}
@@ -741,8 +740,8 @@ function renderQuestionEditor() {
             bodyHTML = `
                 <div class="q-text-editor">
                     <label>Nội dung câu hỏi / Tư liệu:</label>
-                    <textarea class="q-text-input" rows="3">${escapeHTML(q.text)}</textarea>
-                    <div class="math-preview" style="margin-top: 5px; font-size: 0.9em; color: #475569; min-height: 1.2em;">${escapeHTML(q.text)}</div>
+                    <textarea class="q-text-input" rows="3" style="white-space: pre-wrap;">${escapeHTML(q.text)}</textarea>
+                    <div class="math-preview" style="margin-top: 5px; font-size: 0.9em; color: #475569; min-height: 1.2em; white-space: pre-wrap;">${escapeHTML(q.text)}</div>
                 </div>
                 ${imageHTML}
                 <div class="q-options-editor">
@@ -759,7 +758,7 @@ function renderQuestionEditor() {
                                 <tr>
                                     <td style="padding: 8px; border: 1px solid #e2e8f0;">
                                         <input type="text" class="sq-text-input" value="${escapeHTML(sq.text)}" data-qi="${qi}" data-si="${si}" style="width: 100%; border: none; outline: none;">
-                                        <div class="math-preview" style="margin-top: 2px; font-size: 0.85em; color: #64748b;">${escapeHTML(sq.text)}</div>
+                                        <div class="math-preview" style="margin-top: 2px; font-size: 0.85em; color: #64748b; white-space: pre-wrap;">${escapeHTML(sq.text)}</div>
                                     </td>
                                     <td style="padding: 8px; border: 1px solid #e2e8f0; text-align: center;">
                                         <select class="sq-answer-select" data-qi="${qi}" data-si="${si}" style="border: none; background: transparent; font-weight: 600; color: ${sq.correctAnswer === 'Đúng' ? '#10b981' : '#ef4444'};">
@@ -777,8 +776,8 @@ function renderQuestionEditor() {
             bodyHTML = `
                 <div class="q-text-editor">
                     <label>Nội dung câu hỏi:</label>
-                    <textarea class="q-text-input" rows="2">${escapeHTML(q.text)}</textarea>
-                    <div class="math-preview" style="margin-top: 5px; font-size: 0.9em; color: #475569; min-height: 1.2em;">${escapeHTML(q.text)}</div>
+                    <textarea class="q-text-input" rows="2" style="white-space: pre-wrap;">${escapeHTML(q.text)}</textarea>
+                    <div class="math-preview" style="margin-top: 5px; font-size: 0.9em; color: #475569; min-height: 1.2em; white-space: pre-wrap;">${escapeHTML(q.text)}</div>
                 </div>
                 ${imageHTML}
                 <div class="q-text-editor">
@@ -887,7 +886,7 @@ function renderQuestionEditor() {
             const qi = parseInt(btn.dataset.qi);
             const input = document.createElement("input");
             input.type = "file";
-            input.accept = "image/*";
+            input.accept = "image/*, .docx, application/vnd.openxmlformats-officedocument.wordprocessingml.document";
             input.onchange = async (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
@@ -1119,11 +1118,12 @@ function initGeminiModal() {
             showGeminiStep(1);
         }
     });
+    const btnAnalyzeMore = document.getElementById("btnAnalyzeMore");
     const analyzeMoreInput = document.getElementById("analyzeMoreInput");
     if (btnAnalyzeMore && analyzeMoreInput) {
         btnAnalyzeMore.addEventListener("click", () => analyzeMoreInput.click());
         analyzeMoreInput.addEventListener("change", async () => {
-            const files = Array.from(analyzeMoreInput.files).filter(f => f.type.startsWith("image/"));
+            const files = Array.from(analyzeMoreInput.files).filter(f => f.type.startsWith("image/") || f.name.toLowerCase().endsWith(".docx"));
             if (files.length === 0) return;
             
             const extraNote = document.getElementById("geminiExtraNote").value.trim();

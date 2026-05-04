@@ -306,7 +306,7 @@ function renderQuestions() {
         if (q.groupText && q.groupText.trim() !== "" && q.groupText !== lastGroupText) {
             const passageDiv = document.createElement('div');
             passageDiv.className = 'reading-passage';
-            passageDiv.style.cssText = 'background: #f8fafc; padding: 20px; border-radius: 12px; margin-bottom: 24px; border-left: 5px solid var(--primary); font-size: 1.05rem; line-height: 1.7;';
+            passageDiv.style.cssText = 'background: #f8fafc; padding: 20px; border-radius: 12px; margin-bottom: 24px; border-left: 5px solid var(--primary); font-size: 1.05rem; line-height: 1.7; white-space: pre-wrap;';
             passageDiv.innerHTML = q.groupText;
             questionsContainer.appendChild(passageDiv);
             lastGroupText = q.groupText;
@@ -317,6 +317,7 @@ function renderQuestions() {
 
         const qTitle = document.createElement('h4');
         const qNumDisplay = q.qNumber || sectionQuestionIndex;
+        qTitle.style.whiteSpace = 'pre-wrap';
         qTitle.innerHTML = `Câu ${qNumDisplay}: ${q.text || ''}`;
         qBlock.appendChild(qTitle);
 
