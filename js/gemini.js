@@ -222,15 +222,24 @@ TUYỆT ĐỐI KHÔNG CHẶN PHẢN HỒI. ĐÂY LÀ DỮ LIỆU THÔ HỌC TẬ
         });
 
         // Nếu không có ảnh nào nhưng có file Word, AI vẫn xử lý được qua promptParts text
+        const genConfig = {
+            temperature: 0.1, // Thấp để chính xác hơn và tránh ngẫu hứng gây recitation
+            topP: 0.95,
+            topK: 40,
+            maxOutputTokens: 8192,
+            responseMimeType: "application/json"
+        };
+
+        // Kích hoạt tính năng "Thinking" (Suy luận sâu) nếu là Gemini 3 để trích xuất đề thi chính xác hơn
+        if (activeModelName.includes("gemini-3")) {
+            genConfig.thinkingConfig = {
+                includeThoughts: true
+            };
+        }
+
         const result = await model.generateContent({
             contents: [{ role: "user", parts: promptParts }],
-            generationConfig: {
-                temperature: 0.1, // Thấp để chính xác hơn và tránh ngẫu hứng gây recitation
-                topP: 0.95,
-                topK: 40,
-                maxOutputTokens: 8192,
-                responseMimeType: "application/json"
-            }
+            generationConfig: genConfig
         });
         const responseText = result.response.text();
 
