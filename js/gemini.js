@@ -111,11 +111,54 @@ async function getAuthorizedModelName(apiKey) {
             _discoveredModel = best;
             return best;
         }
-    } catch(e) {
-        console.warn("[Gemini] Dò tìm thất bại, dùng fallback:", e);
+    } catch (e) {
+        console.warn("[Gemini] Lỗi khi ListModels, dùng bản mặc định:", _MODELS[0]);
     }
-    // Fallback nếu không Fetch được
-    return _MODELS[_mIdx % _MODELS.length];
+    return _MODELS[0];
+}
+
+// Hàm làm sạch và sửa lỗi JSON tự động
+function cleanAndParseJSON(text) {
+    if (!text) return { questions: [] };
+    
+    let raw = text.trim();
+    // Loại bỏ markdown code blocks
+    if (raw.includes("```json")) raw = raw.split("```json")[1].split("```")[0];
+    else if (raw.includes("```")) raw = raw.split("```")[1].split("```")[0];
+    
+    // Tìm vị trí mở { và đóng } cuối cùng
+    const firstBrace = raw.indexOf("{");
+    const lastBrace = raw.lastIndexOf("}");
+    
+    if (firstBrace !== -1) {
+        if (lastBrace !== -1 && lastBrace > firstBrace) {
+            raw = raw.substring(firstBrace, lastBrace + 1);
+        } else {
+            raw = raw.substring(firstBrace);
+        }
+    }
+    
+    try {
+        return JSON.parse(raw);
+    } catch (e) {
+        console.warn("[JSON Repair] Thử sửa lỗi JSON bị cắt cụt...");
+        // Cố gắng đóng các dấu ngoặc bị thiếu
+        let repaired = raw;
+        const openBraces = (repaired.match(/\{/g) || []).length;
+        const closeBraces = (repaired.match(/\}/g) || []).length;
+        const openBrackets = (repaired.match(/\[/g) || []).length;
+        const closeBrackets = (repaired.match(/\]/g) || []).length;
+        
+        for (let i = 0; i < openBrackets - closeBrackets; i++) repaired += "]";
+        for (let i = 0; i < openBraces - closeBraces; i++) repaired += "}";
+        
+        try {
+            return JSON.parse(repaired);
+        } catch (e2) {
+            console.error("[JSON Repair Failed]:", e2);
+            throw new Error("Dữ liệu AI trả về bị lỗi định dạng nghiêm trọng. Hãy thử phân tích lại.");
+        }
+    }
 }
 
 // ============================================================
@@ -193,7 +236,7 @@ Cấu trúc JSON TRẢ VỀ PHẢI GIỐNG NHƯ MẪU DƯỚI ĐÂY:
   ]
 }
 
-TUYỆT ĐỐI KHÔNG CHẶN PHẢN HỒI. ĐÂY LÀ DỮ LIỆU THÔ HỌC TẬP.`;
+TUYỆT ĐỐI KHÔNG CHẶN PHẢN HỒI. ĐÂY LÀ DỮ LIỆU THÔ HỌC TẬP. BẮT BUỘC CHỈ TRẢ VỀ JSON KHÔNG KÈM GIẢI THÍCH.`;
 
     const safetySettings = [
         { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
@@ -268,14 +311,7 @@ TUYỆT ĐỐI KHÔNG CHẶN PHẢN HỒI. ĐÂY LÀ DỮ LIỆU THÔ HỌC TẬ
         const responseText = result.response.text();
 
         // 3. Làm sạch và Parse JSON
-        let rawText = responseText.replace(/^[^{]*/, "").replace(/[^}]*$/, "");
-        if (rawText.includes("```json")) {
-            rawText = rawText.split("```json")[1].split("```")[0];
-        } else if (rawText.includes("```")) {
-            rawText = rawText.split("```")[1].split("```")[0];
-        }
-        
-        const parsed = JSON.parse(rawText.trim());
+        const parsed = cleanAndParseJSON(responseText);
         const newQs = parsed.questions || [];
 
         // 4. Xử lý tọa độ ảnh
@@ -315,8 +351,9 @@ TUYỆT ĐỐI KHÔNG CHẶN PHẢN HỒI. ĐÂY LÀ DỮ LIỆU THÔ HỌC TẬ
                     loadingSub.textContent = `Máy chủ bận, đang chuyển sang máy chủ dự phòng ${retryCount + 2}...`;
                 }
                 
-                // Chờ 1 giây trước khi thử lại
-                await new Promise(r => setTimeout(r, 1000));
+                // Chờ trước khi thử lại (429 cần chờ lâu hơn)
+                const delay = errStr.includes("429") ? 3000 : 1000;
+                await new Promise(r => setTimeout(r, delay));
                 
                 return analyzeQuizImage(images, extraNote, retryCount + 1, useThinking);
             }
