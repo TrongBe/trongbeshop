@@ -109,7 +109,7 @@ async function getAuthorizedModelName(apiKey) {
 // ============================================================
 // PHÂN TÍCH ẢNH VỚI GEMINI SDK
 // ============================================================
-async function analyzeQuizImage(images, extraNote = "", retryCount = 0) {
+async function analyzeQuizImage(images, extraNote = "", retryCount = 0, useThinking = false) {
     // 1. Lọc lấy danh sách ảnh và danh sách file Word
     const onlyImages = images.filter(img => img.type !== "docx");
     const finalImages = (retryCount === 0 && onlyImages.length > 1) ? await mergeImages(onlyImages) : onlyImages;
@@ -230,8 +230,8 @@ TUYỆT ĐỐI KHÔNG CHẶN PHẢN HỒI. ĐÂY LÀ DỮ LIỆU THÔ HỌC TẬ
             responseMimeType: "application/json"
         };
 
-        // Kích hoạt tính năng "Thinking" (Suy luận sâu) nếu là Gemini 3 để trích xuất đề thi chính xác hơn
-        if (activeModelName.includes("gemini-3")) {
+        // Kích hoạt tính năng "Thinking" (Suy luận sâu) nếu là Gemini 3 VÀ được yêu cầu (thường là khi phân tích lại)
+        if (activeModelName.includes("gemini-3") && useThinking) {
             genConfig.thinkingConfig = {
                 includeThoughts: true
             };
@@ -293,7 +293,7 @@ TUYỆT ĐỐI KHÔNG CHẶN PHẢN HỒI. ĐÂY LÀ DỮ LIỆU THÔ HỌC TẬ
                     await new Promise(r => setTimeout(r, 2000));
                 }
                 
-                return analyzeQuizImage(images, extraNote, retryCount + 1);
+                return analyzeQuizImage(images, extraNote, retryCount + 1, useThinking);
             }
         }
         
@@ -1025,18 +1025,34 @@ function initGeminiModal() {
     // --- BƯỚC 4 → IMPORT ---
     document.getElementById("btnImportQuiz").addEventListener("click", importQuizToList);
 
-    // --- PHÂN TÍCH LẠI ---
-    document.getElementById("btnReanalyze").addEventListener("click", () => {
-        if (!confirm("Bạn có chắc muốn xóa hết dữ liệu hiện tại để phân tích lại từ đầu không?")) return;
-        uploadedImages = [];
-        extractedQuestions = [];
-        renderImagePreviews();
-        updateDropZoneVisibility();
-        showGeminiStep(1);
+    // --- PHÂN TÍCH LẠI (SỬ DỤNG THINKING MODE) ---
+    document.getElementById("btnReanalyze").addEventListener("click", async () => {
+        if (uploadedImages.length === 0) return;
+        if (!confirm("Hệ thống sẽ dùng chế độ Suy luận sâu (Thinking) để quét lại các ảnh này. Quá trình này sẽ chính xác hơn nhưng mất nhiều thời gian hơn (khoảng 1-2 phút). Bạn có muốn tiếp tục không?")) return;
+        
+        const extraNote = document.getElementById("geminiExtraNote").value.trim();
+        const loadingSub = document.querySelector(".gemini-loading-sub");
+        if (loadingSub) loadingSub.textContent = "Đang kích hoạt chế độ Suy luận sâu (Thinking)...";
+        
+        showGeminiStep(2);
+        try {
+            extractedQuestions = await analyzeQuizImage(uploadedImages, extraNote, 0, true); // useThinking = true
+            renderQuestionEditor();
+            showGeminiStep(3);
+        } catch (err) {
+            console.error("Gemini Reanalyze error:", err);
+            showGeminiStep(3); // Quay lại editor nếu lỗi để không mất dữ liệu đang sửa
+            alert("Lỗi khi phân tích lại: " + err.message);
+        }
     });
 
-    // --- PHÂN TÍCH THÊM (APPEND) ---
-    const btnAnalyzeMore = document.getElementById("btnAnalyzeMore");
+    // --- QUAY LẠI BƯỚC 1 (Để chọn lại ảnh) ---
+    document.getElementById("btnBackToUpload").addEventListener("click", () => {
+        if (confirm("Quay lại sẽ giữ nguyên các ảnh đã chọn nhưng xóa dữ liệu quét hiện tại. Bạn có muốn tiếp tục?")) {
+            extractedQuestions = [];
+            showGeminiStep(1);
+        }
+    });
     const analyzeMoreInput = document.getElementById("analyzeMoreInput");
     if (btnAnalyzeMore && analyzeMoreInput) {
         btnAnalyzeMore.addEventListener("click", () => analyzeMoreInput.click());
