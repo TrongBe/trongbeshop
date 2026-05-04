@@ -167,13 +167,17 @@ function cleanAndParseJSON(text) {
 async function analyzeQuizImage(images, extraNote = "", retryCount = 0, useThinking = false) {
     // 1. Lọc lấy danh sách ảnh và danh sách file Word
     const onlyImages = images.filter(img => img.type !== "docx");
-    const finalImages = (retryCount === 0 && onlyImages.length > 1) ? await mergeImages(onlyImages) : onlyImages;
+    // Không gộp ảnh nữa để tăng tốc độ tải và xử lý (Gemini Flash hỗ trợ nhiều ảnh trực tiếp)
+    const finalImages = onlyImages; 
+
 
     const systemInstruction = `Bạn là chuyên gia trích xuất đề thi (OCR) CẤP ĐỘ CAO NHẤT. Hãy phân tích ảnh và trả về JSON chuẩn xác 100%.
 
 PHÂN LOẠI HÌNH ẢNH (QUY TẮC TỐI THƯỢNG):
-1. CÓ HÌNH ẢNH KÈM CÂU HỎI: Nếu câu hỏi có kèm theo hình ảnh (sơ đồ, biểu đồ, hình vẽ phức tạp, v.v.), BẮT BUỘC phải tạo trường 'imageBox' chứa tọa độ [ymin, xmin, ymax, xmax] theo tỷ lệ phần nghìn (0-1000) bao quanh hình ảnh đó. Hình ảnh này sẽ được hệ thống tự động đính vào ngay bên dưới câu hỏi.
-2. SƠ ĐỒ SIÊU ĐƠN GIẢN (Bảng biểu văn bản): Có thể dùng 'diagramCode' (HTML table) nếu muốn, nhưng ưu tiên 'imageBox' nếu có hình minh họa thực tế.
+1. CÓ HÌNH ẢNH KÈM CÂU HỎI: Nếu câu hỏi có kèm theo hình ảnh (sơ đồ, biểu đồ, v.v.), BẮT BUỘC phải tạo:
+   - 'imageBox': tọa độ [ymin, xmin, ymax, xmax] theo tỷ lệ 0-1000.
+   - 'imageIndex': STT của ảnh chứa hình vẽ đó (0 cho ảnh thứ nhất, 1 cho ảnh thứ hai, v.v.).
+2. SƠ ĐỒ SIÊU ĐƠN GIẢN: Có thể dùng 'diagramCode' (HTML table) nếu muốn.
 
 QUY TẮC TOÁN HỌC & KHOA HỌC (QUAN TRỌNG):
 - BẮT BUỘC sử dụng LaTeX cho tất cả các ký hiệu toán học, biểu thức, công thức hóa học, vật lý (ví dụ: $x^2$, $\frac{a}{b}$, $H_2SO_4$, $\sqrt{x}$, $\alpha$, $\beta$, v.v.).
