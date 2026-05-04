@@ -423,6 +423,17 @@ function renderQuestions() {
         questionsContainer.appendChild(qBlock);
         sectionQuestionIndex++;
     });
+
+    // v1.6: Hỗ trợ hiển thị ký tự toán học/hóa học bằng KaTeX
+    if (window.renderMathInElement) {
+        renderMathInElement(questionsContainer, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false }
+            ],
+            throwOnError: false
+        });
+    }
 }
 
 // === CHẤM ĐIỂM (RESTORED v46) ===

@@ -119,6 +119,11 @@ PHÂN LOẠI HÌNH ẢNH (QUY TẮC TỐI THƯỢNG):
 1. CÓ HÌNH ẢNH KÈM CÂU HỎI: Nếu câu hỏi có kèm theo hình ảnh (sơ đồ, biểu đồ, hình vẽ phức tạp, v.v.), BẮT BUỘC phải tạo trường 'imageBox' chứa tọa độ [ymin, xmin, ymax, xmax] theo tỷ lệ phần nghìn (0-1000) bao quanh hình ảnh đó. Hình ảnh này sẽ được hệ thống tự động đính vào ngay bên dưới câu hỏi.
 2. SƠ ĐỒ SIÊU ĐƠN GIẢN (Bảng biểu văn bản): Có thể dùng 'diagramCode' (HTML table) nếu muốn, nhưng ưu tiên 'imageBox' nếu có hình minh họa thực tế.
 
+QUY TẮC TOÁN HỌC & KHOA HỌC (QUAN TRỌNG):
+- BẮT BUỘC sử dụng LaTeX cho tất cả các ký hiệu toán học, biểu thức, công thức hóa học, vật lý (ví dụ: $x^2$, $\frac{a}{b}$, $H_2SO_4$, $\sqrt{x}$, $\alpha$, $\beta$, v.v.).
+- Luôn bao quanh công thức bằng ký hiệu $ cho inline math (ví dụ: $E=mc^2$) hoặc $$ cho công thức nằm riêng một dòng.
+- Đảm bảo trích xuất giống 100% các ký hiệu xuất hiện trong đề bài.
+
 QUY TRÌNH PHÂN LOẠI 3 DẠNG CÂU HỎI (QUAN TRỌNG):
 Bạn phải nhận diện và phân loại chính xác 3 dạng câu hỏi sau đây:
 
@@ -754,10 +759,20 @@ function renderQuestionEditor() {
         });
     });
 
-    // --- ZOOM ẢNH (Lightbox) ---
     container.querySelectorAll(".q-image-preview img").forEach(img => {
         img.addEventListener("click", () => showImageLightbox(img.src));
     });
+
+    // v1.6: Hỗ trợ hiển thị ký tự toán học/hóa học bằng KaTeX trong Editor
+    if (window.renderMathInElement) {
+        renderMathInElement(container, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false }
+            ],
+            throwOnError: false
+        });
+    }
 }
 
 /**
