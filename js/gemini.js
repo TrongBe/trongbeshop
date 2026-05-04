@@ -648,6 +648,7 @@ function renderQuestionEditor() {
                     <textarea class="q-text-input" rows="2">${escapeHTML(q.text)}</textarea>
                     <div class="math-preview" style="margin-top: 5px; font-size: 0.9em; color: #475569; min-height: 1.2em;">${escapeHTML(q.text)}</div>
                 </div>
+                ${imageHTML}
                 <div class="q-options-editor">
                     <label>Lựa chọn (click ✓ để chọn đáp án đúng):</label>
                     ${(q.options || []).map((opt, oi) => `
@@ -668,6 +669,7 @@ function renderQuestionEditor() {
                     <textarea class="q-text-input" rows="3">${escapeHTML(q.text)}</textarea>
                     <div class="math-preview" style="margin-top: 5px; font-size: 0.9em; color: #475569; min-height: 1.2em;">${escapeHTML(q.text)}</div>
                 </div>
+                ${imageHTML}
                 <div class="q-options-editor">
                     <label>Danh sách các ý phụ (a, b, c, d):</label>
                     <table class="tf-editor-table" style="width: 100%; border-collapse: collapse; margin-top: 10px;">
@@ -703,6 +705,7 @@ function renderQuestionEditor() {
                     <textarea class="q-text-input" rows="2">${escapeHTML(q.text)}</textarea>
                     <div class="math-preview" style="margin-top: 5px; font-size: 0.9em; color: #475569; min-height: 1.2em;">${escapeHTML(q.text)}</div>
                 </div>
+                ${imageHTML}
                 <div class="q-text-editor">
                     <label>Đáp án đúng:</label>
                     <input type="text" class="q-answer-input" value="${escapeHTML(q.correctAnswer)}" placeholder="Nhập đáp án..." data-qi="${qi}">
@@ -720,7 +723,6 @@ function renderQuestionEditor() {
             </div>
             <div class="q-editor-body">
                 ${bodyHTML}
-                ${imageHTML}
             </div>
         `;
         container.appendChild(card);
