@@ -439,8 +439,14 @@ function fileToBase64(file) {
 }
 
 async function processFiles(files) {
-    // Chuyển FileList thành Array chuẩn
-    const filesArray = [...files];
+    if (!files || files.length === 0) return;
+    
+    // Chuyển FileList sang Array một cách an toàn nhất
+    const filesArray = [];
+    for (let i = 0; i < files.length; i++) {
+        filesArray.push(files[i]);
+    }
+    
     const validFiles = filesArray.filter(f => f.type.startsWith("image/") || f.name.toLowerCase().endsWith(".docx"));
     if (validFiles.length === 0) return;
     
@@ -455,6 +461,9 @@ async function processFiles(files) {
     
     const newItems = [];
     for (const file of validFiles) {
+        // Nghỉ một chút giữa mỗi file để điện thoại kịp giải phóng bộ nhớ
+        await new Promise(r => setTimeout(r, 200));
+
         if (file.name.toLowerCase().endsWith(".docx")) {
             try {
                 const arrayBuffer = await file.arrayBuffer();
@@ -481,7 +490,7 @@ async function processFiles(files) {
     if (dropIcon) dropIcon.textContent = originalIcon;
     if (dropTitle) dropTitle.textContent = originalTitle;
     
-    uploadedImages.push(...newItems.filter(i => i !== null));
+    uploadedImages.push(...newItems);
     renderImagePreviews();
     updateDropZoneVisibility();
 }
