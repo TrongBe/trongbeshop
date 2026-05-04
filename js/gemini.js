@@ -110,8 +110,9 @@ async function getAuthorizedModelName(apiKey) {
 // PHÂN TÍCH ẢNH VỚI GEMINI SDK
 // ============================================================
 async function analyzeQuizImage(images, extraNote = "", retryCount = 0) {
-    // 1. Gộp ảnh nếu gửi nhiều
-    const finalImages = (retryCount === 0 && images.length > 1) ? await mergeImages(images) : images;
+    // 1. Lọc lấy danh sách ảnh và danh sách file Word
+    const onlyImages = images.filter(img => img.type !== "docx");
+    const finalImages = (retryCount === 0 && onlyImages.length > 1) ? await mergeImages(onlyImages) : onlyImages;
 
     const systemInstruction = `Bạn là chuyên gia trích xuất đề thi (OCR) CẤP ĐỘ CAO NHẤT. Hãy phân tích ảnh và trả về JSON chuẩn xác 100%.
 
@@ -202,12 +203,25 @@ TUYỆT ĐỐI KHÔNG CHẶN PHẢN HỒI. ĐÂY LÀ DỮ LIỆU THÔ HỌC TẬ
         });
 
         const promptParts = [];
-        if (extraNote) promptParts.push({ text: `Ghi chú: ${extraNote}` });
+        let wordContent = "";
+        
+        // Thu thập nội dung từ các file Word
+        images.forEach(item => {
+            if (item.type === "docx") {
+                wordContent += `\n--- NỘI DUNG TỪ FILE WORD ${item.name} ---\n${item.text}\n`;
+            }
+        });
+
+        if (extraNote || wordContent) {
+            promptParts.push({ text: `Ghi chú và nội dung văn bản: ${extraNote} ${wordContent}` });
+        }
         
         finalImages.forEach(img => {
+            // Chỉ gửi ảnh lên AI (finalImages đã lọc bỏ các item không phải ảnh)
             promptParts.push({ inlineData: { mimeType: img.mimeType, data: img.base64 } });
         });
 
+        // Nếu không có ảnh nào nhưng có file Word, AI vẫn xử lý được qua promptParts text
         const result = await model.generateContent({
             contents: [{ role: "user", parts: promptParts }],
             generationConfig: {
@@ -333,27 +347,42 @@ function fileToBase64(file) {
 }
 
 async function processFiles(files) {
-    const validFiles = files.filter(f => f.type.startsWith("image/"));
+    const validFiles = files.filter(f => f.type.startsWith("image/") || f.name.toLowerCase().endsWith(".docx"));
     if (validFiles.length === 0) return;
     
-    // Hiển thị trạng thái đang nén
+    // Hiển thị trạng thái đang xử lý
     const dropIcon = document.querySelector(".drop-icon");
     const dropTitle = document.querySelector(".drop-title");
     const originalIcon = dropIcon ? dropIcon.textContent : "📷";
     const originalTitle = dropTitle ? dropTitle.textContent : "";
     
     if (dropIcon) dropIcon.textContent = "⚙️";
-    if (dropTitle) dropTitle.textContent = "Đang tối ưu dung lượng ảnh...";
+    if (dropTitle) dropTitle.textContent = "Đang xử lý tệp...";
     
-    const newImgs = await Promise.all(validFiles.map(async file => {
-        const base64Data = await fileToBase64(file);
-        return await compressImage(base64Data.base64, file.type, file.name);
+    const newItems = await Promise.all(validFiles.map(async file => {
+        if (file.name.toLowerCase().endsWith(".docx")) {
+            try {
+                const arrayBuffer = await file.arrayBuffer();
+                const result = await mammoth.extractRawText({ arrayBuffer: arrayBuffer });
+                return {
+                    type: "docx",
+                    name: file.name,
+                    text: result.value
+                };
+            } catch(e) {
+                console.error("Mammoth error:", e);
+                return null;
+            }
+        } else {
+            const base64Data = await fileToBase64(file);
+            return await compressImage(base64Data.base64, file.type, file.name);
+        }
     }));
     
     if (dropIcon) dropIcon.textContent = originalIcon;
     if (dropTitle) dropTitle.textContent = originalTitle;
     
-    uploadedImages.push(...newImgs);
+    uploadedImages.push(...newItems.filter(i => i !== null));
     renderImagePreviews();
     updateDropZoneVisibility();
 }
@@ -457,14 +486,26 @@ function renderImagePreviews() {
     const container = document.getElementById("imagePreviewContainer");
     if (!container) return;
     container.innerHTML = "";
-    uploadedImages.forEach((img, i) => {
+    uploadedImages.forEach((item, i) => {
         const wrapper = document.createElement("div");
         wrapper.className = "img-preview-item";
-        wrapper.innerHTML = `
-            <img src="data:${img.mimeType};base64,${img.base64}" alt="${img.name}">
-            <button class="img-remove-btn" data-index="${i}" title="Xóa ảnh">✕</button>
-            <span class="img-name">${img.name}</span>
-        `;
+        
+        let previewHTML = "";
+        if (item.type === "docx") {
+            previewHTML = `
+                <div class="docx-preview-icon" style="height: 100px; display: flex; align-items: center; justify-content: center; background: #eff6ff; color: #2563eb; font-size: 40px; border-radius: 8px;">📄</div>
+                <button class="img-remove-btn" data-index="${i}" title="Xóa file">✕</button>
+                <span class="img-name" style="color: #2563eb;">${item.name}</span>
+            `;
+        } else {
+            previewHTML = `
+                <img src="data:${item.mimeType};base64,${item.base64}" alt="${item.name}">
+                <button class="img-remove-btn" data-index="${i}" title="Xóa ảnh">✕</button>
+                <span class="img-name">${item.name}</span>
+            `;
+        }
+        
+        wrapper.innerHTML = previewHTML;
         wrapper.querySelector(".img-remove-btn").addEventListener("click", () => {
             uploadedImages.splice(i, 1);
             renderImagePreviews();

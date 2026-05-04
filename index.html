@@ -25,6 +25,9 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
 
+  <!-- Mammoth.js for Word (.docx) support -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+
 </head>
 
 <body>
@@ -175,10 +178,10 @@
           <div class="drop-icon">📷</div>
           <div class="drop-title">Kéo thả ảnh đề thi vào đây</div>
           <div class="drop-sub">hoặc chạm để chọn file</div>
-          <div class="drop-formats">Hỗ trợ: JPG, PNG, WebP</div>
+          <div class="drop-formats">Hỗ trợ: JPG, PNG, WebP, DOCX</div>
         </label>
-        <input type="file" id="imageFileInput" accept="image/*" multiple style="display:none">
-        <input type="file" id="addMoreFileInput" accept="image/*" multiple style="display:none">
+        <input type="file" id="imageFileInput" accept="image/*,.docx" multiple style="display:none">
+        <input type="file" id="addMoreFileInput" accept="image/*,.docx" multiple style="display:none">
 
         <div id="imagePreviewContainer" class="image-preview-container"></div>
 
@@ -314,7 +317,7 @@
     </div>
   </footer>
 
-  <script type="module" src="js/app.js?v=51"></script>
+  <script type="module" src="js/app.js?v=52"></script>
 
   <!-- CHANGELOG MODAL (New v45) -->
   <div id="changelogModal" class="modal-overlay" style="display:none;">
