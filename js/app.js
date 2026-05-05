@@ -46,11 +46,11 @@ function showView(viewName) {
 // === TẠO GIAO DIỆN DANH SÁCH ĐỀ ===
 function initQuizList() {
     quizListContainer.innerHTML = '';
-    
+
     // v46 Final: Tuyệt chiêu chống trùng đề - Lọc danh sách mockQuizzes theo ID duy nhất trước khi render
     const uniqueQuizzes = [];
     const seenIds = new Set();
-    
+
     // Sắp xếp: ID gemini_ mới tạo lên đầu
     const sortedQuizzes = [...mockQuizzes].sort((a, b) => {
         const aId = a.id.toString();
@@ -86,8 +86,6 @@ function initQuizList() {
         `;
         quizListContainer.appendChild(card);
     });
-    
-    initRealtimeViews();
 }
 
 function isQuizOwner(id) {
@@ -100,11 +98,11 @@ function isQuizOwner(id) {
             const parsed = JSON.parse(saved);
             return parsed.some(q => q.id.toString().trim() === targetId);
         }
-    } catch(e) {}
+    } catch (e) { }
     return false;
 }
 
-window.deleteCustomQuiz = function(id) {
+window.deleteCustomQuiz = function (id) {
     const isAdmin = localStorage.getItem("admin_secret_key") === "trongbeshop";
     const idx = mockQuizzes.findIndex(q => q.id === id);
     if (idx === -1) return;
@@ -116,9 +114,9 @@ window.deleteCustomQuiz = function(id) {
     const deleteModal = document.getElementById("deleteConfirmModal");
     const btnHideLocal = document.getElementById("btnHideLocal");
     const btnDeleteFirebase = document.getElementById("btnDeleteFirebase");
-    
+
     deleteModal.style.display = "flex";
-    
+
     if (isAdmin || isOwner) {
         btnDeleteFirebase.style.display = "block";
     } else {
@@ -138,7 +136,7 @@ window.deleteCustomQuiz = function(id) {
         if (confirm(msg)) {
             mockQuizzes.splice(idx, 1);
             if (window.__saveCustomQuizzes) window.__saveCustomQuizzes();
-            
+
             if (isPublic) {
                 try {
                     // v43: Một lần xóa hết cả Đề + View vì chúng nằm chung 1 thư mục
@@ -148,9 +146,9 @@ window.deleteCustomQuiz = function(id) {
                     }).catch(e => {
                         alert("Lỗi xóa trên Cloud: " + e.message);
                     });
-                } catch(e) { console.error("Firebase delete error:", e); }
+                } catch (e) { console.error("Firebase delete error:", e); }
             }
-            
+
             initQuizList();
             closeDeleteModal();
             alert("Đã xóa vĩnh viễn đề thi thành công!");
@@ -158,41 +156,17 @@ window.deleteCustomQuiz = function(id) {
     };
 };
 
-window.closeDeleteModal = function() {
+window.closeDeleteModal = function () {
     document.getElementById("deleteConfirmModal").style.display = "none";
 };
 
 // --- NHẬT KÝ CẬP NHẬT (v41) ---
-window.openChangelog = function() {
+window.openChangelog = function () {
     document.getElementById("changelogModal").style.display = "flex";
 };
-window.closeChangelog = function() {
+window.closeChangelog = function () {
     document.getElementById("changelogModal").style.display = "none";
 };
-
-// === LẮNG NGHE DỮ LIỆU LƯỢT TRUY CẬP (v46 Ultimate: Integrated) ===
-function initRealtimeViews() {
-    try {
-        // Lắng nghe trực tiếp từ bảng public_quizzes để lấy viewCount tích hợp
-        const publicRef = ref(dbRT, 'public_quizzes');
-        onValue(publicRef, (snapshot) => {
-            const allQuizzes = snapshot.val() || {};
-            mockQuizzes.forEach(quiz => {
-                const quizData = allQuizzes[quiz.id];
-                if (quizData && quizData.viewCount !== undefined) {
-                    const viewEl = document.getElementById(`views-${quiz.id}`);
-                    if (viewEl) {
-                        viewEl.innerHTML = `Lượt truy cập: ${quizData.viewCount}`;
-                    }
-                }
-            });
-        }, (error) => {
-            console.error("Lỗi lắng nghe lượt xem:", error);
-        });
-    } catch (error) {
-        console.error("Lỗi khởi tạo tính năng lượt xem:", error);
-    }
-}
 
 // === HÀM ĐẢO CÂU HỎI THEO PHẦN ===
 function shuffleQuestionsBySection(questions) {
@@ -280,7 +254,7 @@ document.getElementById('btnConfirmStart').onclick = async function () {
             runTransaction(quizRef, (currentValue) => {
                 return (currentValue || 0) + 1;
             });
-        } catch(e) { console.error("Increment view error:", e); }
+        } catch (e) { console.error("Increment view error:", e); }
     }
 
     quizForm.reset();
@@ -334,7 +308,7 @@ function renderQuestions() {
         const qTitle = document.createElement('h4');
         const qNumDisplay = q.qNumber || sectionQuestionIndex;
         qTitle.style.whiteSpace = 'pre-wrap';
-        
+
         // Làm sạch text nếu AI lỡ viết đúp "Câu X:"
         const cleanText = (q.text || '').replace(/^Câu\s+\d+[:.]\s*/i, '').trim();
         qTitle.innerHTML = `Câu ${qNumDisplay}: ${cleanText}`;
@@ -422,7 +396,7 @@ function renderQuestions() {
             input.name = `question_${q.id}`;
             input.placeholder = 'Nhập câu trả lời của bạn...';
             input.style.cssText = 'max-width: 300px; margin-top: 10px; font-size: 1.1rem; padding: 10px; border: 2px solid #E5E7EB; border-radius: 8px; transition: all 0.3s ease;';
-            
+
             input.addEventListener('change', () => {
                 if (quizForm.dataset.quizMode === 'practice') {
                     highlightShortAnswer(q, input);
@@ -435,7 +409,7 @@ function renderQuestions() {
                     // highlightShortAnswer(q, input);
                 }
             });
-            
+
             optionsList.appendChild(input);
         }
 
@@ -557,7 +531,7 @@ function renderResults(correct, incorrect, unanswered) {
     const percentage = (correct / total) * 100;
     const unansweredPercentage = (unanswered / total) * 100;
     const circle = document.querySelector('.score-circle');
-    
+
     if (circle) {
         if (total === 0) {
             circle.style.backgroundImage = 'none';
@@ -565,7 +539,7 @@ function renderResults(correct, incorrect, unanswered) {
         } else {
             const correctPct = (correct / total) * 100;
             const incorrectPct = (incorrect / total) * 100;
-            
+
             // Sử dụng backgroundImage để đảm bảo độ tương thích cao nhất
             circle.style.backgroundImage = `conic-gradient(#10B981 0% ${correctPct}%, #EF4444 ${correctPct}% ${correctPct + incorrectPct}%, #F59E0B ${correctPct + incorrectPct}% 100%)`;
         }
@@ -590,7 +564,7 @@ function highlightTFGroupAnswer(q, table, radioName) {
     const parts = radioName.split('_');
     const sqId = parts[parts.length - 1];
     const sq = q.subQuestions ? q.subQuestions.find(s => s.id === sqId) : null;
-    
+
     if (sq) {
         radios.forEach(input => {
             const label = input.closest('label');
@@ -608,11 +582,11 @@ function highlightTFGroupAnswer(q, table, radioName) {
 function highlightShortAnswer(q, inputElement, isReview = false) {
     const userVal = inputElement.value.trim().toLowerCase();
     const correctVal = (q.correctAnswer || "").toString().trim().toLowerCase();
-    
+
     inputElement.style.borderColor = '#E5E7EB';
     inputElement.style.backgroundColor = 'transparent';
     inputElement.style.color = 'inherit';
-    
+
     // Nếu chưa nhập gì thì xóa định dạng, trừ khi đang ở chế độ xem lại
     if (userVal === "") {
         if (isReview) {
@@ -623,7 +597,7 @@ function highlightShortAnswer(q, inputElement, isReview = false) {
         }
         return;
     }
-    
+
     if (userVal === correctVal) {
         inputElement.style.borderColor = '#10B981'; // Xanh lá
         inputElement.style.backgroundColor = '#D1FAE5';
@@ -650,41 +624,60 @@ function loadCustomQuizzes() {
             const parsed = JSON.parse(saved);
             if (Array.isArray(parsed)) mockQuizzes.unshift(...parsed);
         }
-    } catch (e) {}
+    } catch (e) { }
 }
 
-window.loadPublicQuizzes = function() {
+window.loadPublicQuizzes = function () {
     console.log("🔄 Đang quét dữ liệu từ Cloud...");
     try {
         const publicRef = ref(dbRT, 'public_quizzes');
         onValue(publicRef, (snapshot) => {
             const data = snapshot.val();
             if (data) {
-                const publicList = Object.values(data);
-                let changed = false;
-                
-                publicList.forEach(pq => {
-                    // Nếu cục dữ liệu trên Firebase chỉ chứa viewCount (do đề data.js tự động tăng view), ta bỏ qua để không ghi đè mất đề gốc
-                    if (!pq.title || !pq.questions) return;
-                    
-                    if (pq.questions && !Array.isArray(pq.questions)) pq.questions = Object.values(pq.questions);
-                    const pqId = pq.id.toString().trim();
+                let listChanged = false;
+
+                Object.keys(data).forEach(key => {
+                    let pq = data[key];
+                    const pqId = key.toString().trim();
                     const existingIdx = mockQuizzes.findIndex(q => q.id.toString().trim() === pqId);
-                    
+
+                    // 1. Cập nhật lượt xem trực tiếp trên DOM và Memory
+                    if (pq.viewCount !== undefined) {
+                        if (existingIdx !== -1) mockQuizzes[existingIdx].viewCount = pq.viewCount;
+                        const viewEl = document.getElementById(`views-${pqId}`);
+                        if (viewEl) {
+                            viewEl.innerHTML = `Lượt truy cập: ${pq.viewCount}`;
+                        }
+                    }
+
+                    // 2. Xử lý nội dung đề thi (Chỉ đề custom mới đồng bộ nội dung)
+                    if (!pqId.startsWith("gemini_")) return; // Bảo toàn nội dung file data.js
+
+                    if (!pq.title || !pq.questions) return;
+                    if (pq.questions && !Array.isArray(pq.questions)) pq.questions = Object.values(pq.questions);
+
                     if (existingIdx === -1) {
                         mockQuizzes.push(pq);
-                        changed = true;
-                    } else if (JSON.stringify(mockQuizzes[existingIdx]) !== JSON.stringify(pq)) {
-                        mockQuizzes[existingIdx] = pq;
-                        changed = true;
+                        listChanged = true;
+                    } else {
+                        const localCopy = { ...mockQuizzes[existingIdx] };
+                        const remoteCopy = { ...pq };
+                        delete localCopy.viewCount;
+                        delete remoteCopy.viewCount;
+
+                        if (JSON.stringify(localCopy) !== JSON.stringify(remoteCopy)) {
+                            mockQuizzes[existingIdx] = pq;
+                            listChanged = true;
+                        }
                     }
                 });
-                if (changed) {
+
+                if (listChanged) {
                     initQuizList();
                 }
             }
         });
-    } catch(e) { console.error("Load public error:", e); }
+    } catch (e) { console.error("Load public error:", e); }
 };
 
 // Khởi động
@@ -703,7 +696,7 @@ window.__publishPublicQuiz = (quizObj) => {
         set(publicRef, quizObj)
             .then(() => console.log("🚀 Đã đăng đề lên máy chủ THÀNH CÔNG!"))
             .catch(err => console.error("❌ Lỗi khi đăng đề:", err));
-    } catch(e) { console.error("❌ Lỗi hệ thống:", e); }
+    } catch (e) { console.error("❌ Lỗi hệ thống:", e); }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
