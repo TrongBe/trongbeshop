@@ -530,6 +530,51 @@ export const mockQuizzes = [
                     { id: "e_q69", text: "Question 2 (30)", options: ["A. in", "B. on", "C. for", "D. from"], correctIndex: 1 }
                 ]
             }
+            // CLOZE TEST 3
+            {
+                id: "e_cloze_3",
+                section: "READING",
+                type: "reading_group",
+                passage: "<strong>5. Read the following passage and mark the letter A, B, C, or D to indicate the correct word or phrase that best fits each of the numbered blanks.</strong><br><br><strong>Learning independence</strong><br>During March our Year 4 to Year 6 children were off on their first (1) ______ expeditions and Year 3 had their first school sleepover in preparation for their own expeditions next year. Our primary expeditions are purposefully set (2) ______ with a natural progression to independence, from a school sleepover in Year 3 leading all the way up to kayaking and hiking through the Vietnamese Jungle in Year 6. These exciting adventures are packed full of fun (3) ______ that foster new friendships and build independence and confidence. (4) ______, following 4 years without expeditions our current Year 4-Year 6 have not had the opportunity to develop these skills over time, (5) ______ makes their drive, determination and rapid growth even more of a triumph.<br><br><em>(Cited: https://www.nordangliaeducation.com/bis-hcmc/news/2023/03/31/learning-independence-primary-expeditions-2023)</em>",
+                subQuestions: [
+                    { id: "e_q70", text: "Question 1 (1)", options: ["A. residence", "B. resident", "C. residential", "D. residentially"], correctIndex: 2 },
+                    { id: "e_q71", text: "Question 2 (2)", options: ["A. up", "B. on", "C. in", "D. from"], correctIndex: 0 },
+                    { id: "e_q72", text: "Question 3 (3)", options: ["A. festival", "B. activities", "C. lessons", "D. trips"], correctIndex: 1 },
+                    { id: "e_q73", text: "Question 4 (4)", options: ["A. But", "B. Because", "C. Although", "D. However"], correctIndex: 3 },
+                    { id: "e_q74", text: "Question 5 (5)", options: ["A. which", "B. who", "C. whom", "D. why"], correctIndex: 0 }
+                ]
+            },
+
+            // READING 3
+            {
+                id: "e_reading_3",
+                section: "READING",
+                type: "reading_group",
+                passage: "<strong>6. Read the following passage and mark the letter A, B, C or D to indicate the correct answer to each of the questions below.</strong><br><br>One threat to South East Asia’s biodiversity is the illegal wildlife trade. Worth approximately US$20 billion annually, it’s the fourth-biggest illegal trade in the world.<br><br>In Southeast Asia, hunting represents the greatest threat to the future survival of many species, with few native mammals of over 2kg surviving outside protected areas. Hunting represents a threat to all species, with high-value species <u>sought</u> and traded by criminal groups and smaller species traded for medicine, food or sport.<br><br>Trade in wildlife in Asia can be grouped into three main types: for medicinal purposes, for status (either in wildlife restaurants or as ornaments) or for the pet, zoo and aquarium trades (principally birds and reptiles).<br><br>Traditional medicine in Viet Nam and China represents a threat to a wide variety of species, but most <u>notably</u> the pangolin, which is the most trafficked animal on the planet. Sadly, the use of endangered species in medicine shows little sign of decrease. Whereas celebrities have campaigned for species that are targeted for status and ornamentation, such as elephant ivory, many other animals and plants have failed to get the attention needed to prevent over-exploitation. And a number are now facing extinction.<br><br>The pet and zoo trade in wildlife, especially for reptiles and birds, have recently received attention, as many species formerly thought to be captive-bred are now known to be wild-caught. <u>They</u> have suffered serious population declines as a result of exploitation for trade.<br><br><em>Adapted from: https://theconversation.com/even-as-more-new-species-are-found-southeast-asia-is-in-the-grip-of-a-biodiversity-crisis-67700</em>",
+                subQuestions: [
+                    { id: "e_q75", text: "Question 1: Which of the following can be the best title for the passage?", options: ["A. The Diverse wildlife of South East Asia", "B. The Illegal wildlife Trade in South East Asia", "C. The Threat of Hunting to Southeast Asian Species", "D. The Impact of Traditional Medicine on wildlife"], correctIndex: 1 },
+                    { id: "e_q76", text: "Question 2: What is the greatest threat to the future survival of many species in South East Asia?", options: ["A. Habitat loss", "B. Climate change", "C. Hunting", "D. Pollution"], correctIndex: 2 },
+                    { id: "e_q77", text: "Question 3: The word \"sought\" in paragraph 2 is closest in meaning to ______", options: ["A. included", "B. protected", "C. preferred", "D. hunted"], correctIndex: 3 },
+                    { id: "e_q78", text: "Question 4: Which is NOT a reason why people hunt wild animals according to the passage?", options: ["A. medicine", "B. pet", "C. food", "D. decoration"], correctIndex: 2 },
+                    { id: "e_q79", text: "Question 5: The word \"notably\" in paragraph 3 is closest in meaning to ______", options: ["A. loudly", "B. helpfully", "C. noticeably", "D. powerfully"], correctIndex: 2 },
+                    { id: "e_q80", text: "Question 6: The word \"They\" in paragraph 5 refers to ______", options: ["A. trades", "B. plants", "C. celebrities", "D. species"], correctIndex: 3 },
+                    { id: "e_q81", text: "Question 7: Which of the following is NOT true according to the passage?", options: ["A. High-value species are mainly traded for medicinal purposes.", "B. Exploitation for trade has led to population declines in many reptiles and bird species.", "C. The pangolin is the most illegally traded animal in the world.", "D. Traditional medicine in Viet Nam and China threatens various species."], correctIndex: 0 }
+                ]
+            },
+
+            // WRITING
+            { id: "e_w1", section: "WRITING", type: "short_answer", text: "Combine each pair of sentences, beginning with the given word(s).<br>1. Verbal bullying is a common issue at school <u>but</u> many students are not aware of it. (HOWEVER)", correctAnswer: "[NHẬP ĐÁP ÁN CỦA BẠN VÀO ĐÂY]" },
+            { id: "e_w2", section: "WRITING", type: "short_answer", text: "2. Cyberbullying can negatively impact students' academic performance <u>and it can</u> cause depression as well. (MOREOVER)", correctAnswer: "[NHẬP ĐÁP ÁN CỦA BẠN VÀO ĐÂY]" },
+            { id: "e_w3", section: "WRITING", type: "short_answer", text: "3. Students often want to be liked by their peers <u>so they</u> may sometimes do things they normally don't. (AS A RESULT)", correctAnswer: "[NHẬP ĐÁP ÁN CỦA BẠN VÀO ĐÂY]" },
+            { id: "e_w4", section: "WRITING", type: "short_answer", text: "4. Bullying at school can have serious effects on the victims <u>so it's</u> essential to prevent bullying. (THEREFORE)", correctAnswer: "[NHẬP ĐÁP ÁN CỦA BẠN VÀO ĐÂY]" },
+            { id: "e_w5", section: "WRITING", type: "short_answer", text: "5. While some students stand up to bullying, others remain silent for the fear of the consequences. (BY CONTRAST)", correctAnswer: "[NHẬP ĐÁP ÁN CỦA BẠN VÀO ĐÂY]" },
+            { id: "e_w6", section: "WRITING", type: "short_answer", text: "Rewrite the sentences<br>6. After I ate my evening meal, I decide to go for a walk. (using perfect participles)", correctAnswer: "[NHẬP ĐÁP ÁN CỦA BẠN VÀO ĐÂY]" },
+            { id: "e_w7", section: "WRITING", type: "short_answer", text: "7. Because I had spent the entire day cleaning up my room, I needed to take a shower and have a rest. (using perfect participles)", correctAnswer: "[NHẬP ĐÁP ÁN CỦA BẠN VÀO ĐÂY]" },
+            { id: "e_w8", section: "WRITING", type: "short_answer", text: "8. Her parents don't allow her to go out at night.<br>➔ She", correctAnswer: "[NHẬP ĐÁP ÁN CỦA BẠN VÀO ĐÂY]" },
+            { id: "e_w9", section: "WRITING", type: "short_answer", text: "9. The man prefer working in the lab to teaching students at class.<br>➔ The man would rather", correctAnswer: "[NHẬP ĐÁP ÁN CỦA BẠN VÀO ĐÂY]" },
+            { id: "e_w10", section: "WRITING", type: "short_answer", text: "10. My neighbors always make noise <u>at night</u>. (using cleft sentence)", correctAnswer: "[NHẬP ĐÁP ÁN CỦA BẠN VÀO ĐÂY]" },
+            { id: "e_w11", section: "WRITING", type: "short_answer", text: "11. <u>The earthquake</u> destroyed everything two years ago. (using cleft sentence)", correctAnswer: "[NHẬP ĐÁP ÁN CỦA BẠN VÀO ĐÂY]" },
+            { id: "e_w12", section: "WRITING", type: "short_answer", text: "12. <u>My friend</u> helps me a lot in preparing tasks for my students. (using cleft sentence)", correctAnswer: "[NHẬP ĐÁP ÁN CỦA BẠN VÀO ĐÂY]" }
         ]
     }
 ];
