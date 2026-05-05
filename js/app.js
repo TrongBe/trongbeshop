@@ -251,15 +251,30 @@ document.getElementById('btnConfirmStart').onclick = async function () {
     quizForm.dataset.quizMode = quizMode;
     quizForm.dataset.isShuffle = isShuffle;
 
-    const questionsToRender = JSON.parse(JSON.stringify(currentQuiz.questions));
+    let flattenedQs = [];
+    JSON.parse(JSON.stringify(currentQuiz.questions)).forEach(q => {
+        if (q.type === 'reading_group') {
+            (q.subQuestions || []).forEach(sq => {
+                flattenedQs.push({
+                    ...sq,
+                    section: q.section,
+                    groupText: q.passage,
+                    type: sq.type || 'multiple_choice'
+                });
+            });
+        } else {
+            flattenedQs.push(q);
+        }
+    });
+
     if (isShuffle) {
-        currentQuiz.renderedQuestions = shuffleQuestionsBySection(questionsToRender);
+        currentQuiz.renderedQuestions = shuffleQuestionsBySection(flattenedQs);
     } else {
-        currentQuiz.renderedQuestions = questionsToRender;
+        currentQuiz.renderedQuestions = flattenedQs;
     }
 
-    // Tăng lượt xem (v46 Ultimate: Tích hợp trực tiếp vào đề)
-    if (currentQuiz.privacy === "public") {
+    // Tăng lượt xem (Áp dụng cho mọi đề không phải local, kể cả đề trong data.js)
+    if (currentQuiz.privacy !== "local") {
         try {
             const quizRef = ref(dbRT, 'public_quizzes/' + currentQuiz.id + '/viewCount');
             runTransaction(quizRef, (currentValue) => {
@@ -275,6 +290,7 @@ document.getElementById('btnConfirmStart').onclick = async function () {
         submitBtn.textContent = 'Nộp Bài Ngay';
         submitBtn.classList.remove('btn-outline');
         submitBtn.classList.add('btn-primary');
+        submitBtn.style.display = 'block';
     }
 
     currentQuizTitle.textContent = currentQuiz.title;
@@ -484,8 +500,52 @@ quizForm.onsubmit = function (e) {
         }
     });
 
+    showReviewMode(qs);
     renderResults(correct, incorrect, unanswered);
 };
+
+function showReviewMode(qs) {
+    qs.forEach(q => {
+        const qId = q.id;
+        const qType = q.type || 'multiple_choice';
+
+        if (qType === 'multiple_choice' || qType === 'true_false') {
+            const inputs = document.getElementsByName(`question_${qId}`);
+            if (inputs.length > 0) {
+                const optionsList = inputs[0].closest('.options-list');
+                if (optionsList) highlightAnswer(q, optionsList);
+            }
+        } else if (qType === 'short_answer') {
+            const inputs = document.getElementsByName(`question_${qId}`);
+            if (inputs.length > 0) {
+                highlightShortAnswer(q, inputs[0], true);
+            }
+        } else if (qType === 'true_false_group') {
+            (q.subQuestions || []).forEach(sq => {
+                const radioName = `question_${qId}_${sq.id}`;
+                const inputs = document.getElementsByName(radioName);
+                if (inputs.length > 0) {
+                    const table = inputs[0].closest('.tf-table');
+                    if (table) highlightTFGroupAnswer(q, table, radioName);
+                }
+            });
+        }
+    });
+
+    const allInputs = quizForm.querySelectorAll('input');
+    allInputs.forEach(input => {
+        if (input.type === 'text') {
+            input.readOnly = true;
+        } else {
+            input.disabled = true;
+        }
+    });
+
+    const submitBtn = quizForm.querySelector('button[type="submit"]');
+    if (submitBtn) {
+        submitBtn.style.display = 'none';
+    }
+}
 
 function renderResults(correct, incorrect, unanswered) {
     const total = correct + incorrect + unanswered;
@@ -545,7 +605,7 @@ function highlightTFGroupAnswer(q, table, radioName) {
     }
 }
 
-function highlightShortAnswer(q, inputElement) {
+function highlightShortAnswer(q, inputElement, isReview = false) {
     const userVal = inputElement.value.trim().toLowerCase();
     const correctVal = (q.correctAnswer || "").toString().trim().toLowerCase();
     
@@ -553,8 +613,16 @@ function highlightShortAnswer(q, inputElement) {
     inputElement.style.backgroundColor = 'transparent';
     inputElement.style.color = 'inherit';
     
-    // Nếu chưa nhập gì thì xóa định dạng
-    if (userVal === "") return;
+    // Nếu chưa nhập gì thì xóa định dạng, trừ khi đang ở chế độ xem lại
+    if (userVal === "") {
+        if (isReview) {
+            inputElement.style.borderColor = '#EF4444';
+            inputElement.style.backgroundColor = '#FEE2E2';
+            inputElement.value = "Chưa làm. Đáp án: " + q.correctAnswer;
+            inputElement.style.color = '#991B1B';
+        }
+        return;
+    }
     
     if (userVal === correctVal) {
         inputElement.style.borderColor = '#10B981'; // Xanh lá
@@ -564,6 +632,9 @@ function highlightShortAnswer(q, inputElement) {
         inputElement.style.borderColor = '#EF4444'; // Đỏ
         inputElement.style.backgroundColor = '#FEE2E2';
         inputElement.style.color = '#991B1B';
+        if (isReview && !inputElement.value.includes("Đáp án:")) {
+            inputElement.value = inputElement.value + " (Đáp án: " + q.correctAnswer + ")";
+        }
     }
 }
 
@@ -593,6 +664,9 @@ window.loadPublicQuizzes = function() {
                 let changed = false;
                 
                 publicList.forEach(pq => {
+                    // Nếu cục dữ liệu trên Firebase chỉ chứa viewCount (do đề data.js tự động tăng view), ta bỏ qua để không ghi đè mất đề gốc
+                    if (!pq.title || !pq.questions) return;
+                    
                     if (pq.questions && !Array.isArray(pq.questions)) pq.questions = Object.values(pq.questions);
                     const pqId = pq.id.toString().trim();
                     const existingIdx = mockQuizzes.findIndex(q => q.id.toString().trim() === pqId);
@@ -653,6 +727,8 @@ document.addEventListener('DOMContentLoaded', () => {
         resetScoreCircle();
         quizForm.reset();
         renderQuestions();
+        const submitBtn = quizForm.querySelector('button[type="submit"]');
+        if (submitBtn) submitBtn.style.display = 'block';
         showView('active');
     };
 
