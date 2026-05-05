@@ -410,6 +410,127 @@ export const mockQuizzes = [
                 ]
             }
         ]
+    },
+    {
+        id: "english_11_hk2_decuong",
+        title: "Đề Cương Tiếng Anh 11 Cuối HK2",
+        description: "Đề cương ôn tập Tiếng Anh 11 cuối học kỳ 2. Bao gồm các phần Phát âm, Trọng âm, Từ vựng & Ngữ pháp, và Đọc hiểu.",
+        questions: [
+            // PHONETICS
+            { id: "e_q1", section: "PHONETICS", text: "Find the word whose underlined part differs from the other three in pronunciation in each of the following questions.", options: ["A. r<u>e</u>source", "B. d<u>e</u>stroy", "C. d<u>e</u>lta", "D. <u>e</u>ssential"], correctIndex: 2 },
+            { id: "e_q2", section: "PHONETICS", text: "Find the word whose underlined part differs from the other three in pronunciation in each of the following questions.", options: ["A. n<u>a</u>tive", "B. h<u>a</u>bitat", "C. n<u>a</u>tural", "D. m<u>a</u>mmal"], correctIndex: 0 },
+            { id: "e_q3", section: "PHONETICS", text: "Find the word whose underlined part differs from the other three in pronunciation in each of the following questions.", options: ["A. stopp<u>ed</u>", "B. expect<u>ed</u>", "C. finish<u>ed</u>", "D. fac<u>ed</u>"], correctIndex: 1 },
+            { id: "e_q4", section: "PHONETICS", text: "Find the word whose underlined part differs from the other three in pronunciation in each of the following questions.", options: ["A. f<u>i</u>gure", "B. dec<u>i</u>sive", "C. str<u>i</u>ve", "D. adv<u>i</u>ce"], correctIndex: 0 },
+            { id: "e_q5", section: "PHONETICS", text: "Find the word whose underlined part differs from the other three in pronunciation in each of the following questions.", options: ["A. so<u>c</u>ial", "B. <u>c</u>rime", "C. <u>c</u>ontrol", "D. <u>c</u>onfidence"], correctIndex: 0 },
+            { id: "e_q6", section: "PHONETICS", text: "Find the word whose underlined part differs from the other three in pronunciation in each of the following questions.", options: ["A. depr<u>e</u>ssion", "B. pr<u>e</u>ssing", "C. pret<u>e</u>nd", "D. anxi<u>e</u>ty"], correctIndex: 3 },
+
+            // STRESS
+            { id: "e_q7", section: "STRESS", text: "Find the word that differs from the other three in the position of stress in each of the following questions.", options: ["A. flora", "B. fauna", "C. destroy", "D. delta"], correctIndex: 2 },
+            { id: "e_q8", section: "STRESS", text: "Find the word that differs from the other three in the position of stress in each of the following questions.", options: ["A. resource", "B. native", "C. restore", "D. declare"], correctIndex: 1 },
+            { id: "e_q9", section: "STRESS", text: "Find the word that differs from the other three in the position of stress in each of the following questions.", options: ["A. pretend", "B. frighten", "C. victim", "D. social"], correctIndex: 0 },
+            { id: "e_q10", section: "STRESS", text: "Find the word that differs from the other three in the position of stress in each of the following questions.", options: ["A. influence", "B. struggle", "C. campaign", "D. anger"], correctIndex: 2 },
+            { id: "e_q11", section: "STRESS", text: "Find the word that differs from the other three in the position of stress in each of the following questions.", options: ["A. routine", "B. problem", "C. money", "D. hygiene"], correctIndex: 0 },
+            { id: "e_q12", section: "STRESS", text: "Find the word that differs from the other three in the position of stress in each of the following questions.", options: ["A. successful", "B. essential", "C. humorous", "D. unselfish"], correctIndex: 2 },
+
+            // VOCABULARY AND GRAMMAR
+            { id: "e_q13", section: "VOCABULARY AND GRAMMAR", text: "It was essential for him to be financially ______ of his parents, so he decided to find a part-time job.", options: ["A. indifferent", "B. independent", "C. invaluable", "D. inefficient"], correctIndex: 1 },
+            { id: "e_q14", section: "VOCABULARY AND GRAMMAR", text: "Thanks to many investors, my biggest dream to set up my own trading company came ______", options: ["A. exactly", "B. real", "C. right", "D. true"], correctIndex: 3 },
+            { id: "e_q15", section: "VOCABULARY AND GRAMMAR", text: "His dedication to the educational charity was truly ______.", options: ["A. admirable", "B. reliable", "C. challenging", "D. disapproving"], correctIndex: 0 },
+            { id: "e_q16", section: "VOCABULARY AND GRAMMAR", text: "I was encouraged to ______ for the grandest prize in the dancing competition.", options: ["A. try", "B. strive", "C. reach", "D. achieve"], correctIndex: 1 },
+            { id: "e_q17", section: "VOCABULARY AND GRAMMAR", text: "That Tom is ______ of finishing the research project prior to the deadline satisfied our manager.", options: ["A. able", "B. skillful", "C. capable", "D. talented"], correctIndex: 2 },
+            { id: "e_q18", section: "VOCABULARY AND GRAMMAR", text: "You should make a list of things to do and ______ them if you want to work effectively.", options: ["A. do", "B. arrange", "C. prioritise", "D. approach"], correctIndex: 2 },
+            { id: "e_q19", section: "VOCABULARY AND GRAMMAR", text: "When being assigned difficult exercises, Lan always ______ to complete them without any help from her teacher.", options: ["A. confesses", "B. manages", "C. demands", "D. supposes"], correctIndex: 1 },
+            { id: "e_q20", section: "VOCABULARY AND GRAMMAR", text: "Warmth, ______, and understanding should cost nothing in any country.", options: ["A. sympathy", "B. sympathetic", "C. sympathise", "D. sympathising"], correctIndex: 0 },
+            { id: "e_q21", section: "VOCABULARY AND GRAMMAR", text: "Talking to professional counsellors who are trained to help people to process feelings, can be most ______", options: ["A. beneficial", "B. beneficially", "C. beneficiary", "D. benefit"], correctIndex: 0 },
+            { id: "e_q22", section: "VOCABULARY AND GRAMMAR", text: "They said it was a great chance to form new friendships and enjoy each other's ______", options: ["A. companion", "B. companionable", "C. companionship", "D. company"], correctIndex: 3 },
+            { id: "e_q23", section: "VOCABULARY AND GRAMMAR", text: "Learning to manage your time involves using a variety of ______ skills together.", options: ["A. life", "B. society", "C. communication", "D. computer"], correctIndex: 0 },
+            { id: "e_q24", section: "VOCABULARY AND GRAMMAR", text: "When getting into trouble, Jack never ______ on other people for help. He always solves them on his own.", options: ["A. determines", "B. influences", "C. relies", "D. manages"], correctIndex: 2 },
+            { id: "e_q25", section: "VOCABULARY AND GRAMMAR", text: "Many American teenagers have part-time jobs as they want to gain work ______ and learn how to manage their money.", options: ["A. salary", "B. experience", "C. relation", "D. habit"], correctIndex: 1 },
+            { id: "e_q26", section: "VOCABULARY AND GRAMMAR", text: "The teenage years form an important period of their development that influences ______ life.", options: ["A. adult", "B. elder", "C. young", "D. child"], correctIndex: 0 },
+            { id: "e_q27", section: "VOCABULARY AND GRAMMAR", text: "The ______ of animals in the wild depends on their ability to adapt to environmental changes.", options: ["A. level", "B. survival", "C. hunt", "D. ban"], correctIndex: 1 },
+            { id: "e_q28", section: "VOCABULARY AND GRAMMAR", text: "You cannot take anything from the sea here. It is a ______ zone.", options: ["A. no-taking", "B. no-taken", "C. no-take", "D. no-took"], correctIndex: 2 },
+            { id: "e_q29", section: "VOCABULARY AND GRAMMAR", text: "The resource of valuable plants can ______ if we do not protect them.", options: ["A. cut down", "B. run out", "C. locate in", "D. depend on"], correctIndex: 1 },
+            { id: "e_q30", section: "VOCABULARY AND GRAMMAR", text: "We have to ensure the ______ as there are more than 8 billion people living on the planet.", options: ["A. coral reef", "B. carbon footprint", "C. life expectancy", "D. food security"], correctIndex: 3 },
+            { id: "e_q31", section: "VOCABULARY AND GRAMMAR", text: "Air, water and rock are ______ things in the environment, but they are important to our ecosystem.", options: ["A. no-living", "B. no-lived", "C. non-lived", "D. non-living"], correctIndex: 3 },
+            { id: "e_q32", section: "VOCABULARY AND GRAMMAR", text: "______ asked the policeman a lot of questions.", options: ["A. It is the pedestrian whom", "B. It is the pedestrian what", "C. It was the pedestrian who", "D. It was the pedestrian when"], correctIndex: 2 },
+            { id: "e_q33", section: "VOCABULARY AND GRAMMAR", text: "______ the boy scored the goal.", options: ["A. It was for his team whom", "B. It was for his team what", "C. It was for his team that", "D. It was for his team which"], correctIndex: 2 },
+            { id: "e_q34", section: "VOCABULARY AND GRAMMAR", text: "______ my wife gave to me at my last birthday party.", options: ["A. It was this T-shirt that", "B. It is this T-shirt which", "C. It was this T-shirt who", "D. It was this T-shirt whom"], correctIndex: 0 },
+            { id: "e_q35", section: "VOCABULARY AND GRAMMAR", text: "______ the woman bought for him.", options: ["A. It was the English book which", "B. It was the English book what", "C. It was the English book that", "D. It was the English book who"], correctIndex: 2 },
+            { id: "e_q36", section: "VOCABULARY AND GRAMMAR", text: "Bullying is considered a ______ in many places and can lead to legal consequences.", options: ["A. poverty", "B. crime", "C. anxiety", "D. campaign"], correctIndex: 1 },
+            { id: "e_q37", section: "VOCABULARY AND GRAMMAR", text: "______ is a serious mental health concern that can result from bullying or peer pressure.", options: ["A. Victim", "B. Lie", "C. Depression", "D. Alcohol"], correctIndex: 2 },
+            { id: "e_q38", section: "VOCABULARY AND GRAMMAR", text: "______ is a growing concern as technology becomes more common in students' lives.", options: ["A. Overpopulation", "B. Policy", "C. Self-confidence", "D. Cyberbullying"], correctIndex: 3 },
+            { id: "e_q39", section: "VOCABULARY AND GRAMMAR", text: "Schools often have ______ actions to protect students and maintain a positive learning environment.", options: ["A. anti-bullying", "B. case", "C. distance", "D. awareness"], correctIndex: 0 },
+            { id: "e_q40", section: "VOCABULARY AND GRAMMAR", text: "______ often involves spreading rumours, or cyberbullying through social media.", options: ["A. Social bullying", "B. Verbal bullying", "C. Peer pressure", "D. Physical bullying"], correctIndex: 0 },
+            { id: "e_q41", section: "VOCABULARY AND GRAMMAR", text: "Students should be encouraged to speak out against ______ when they see it happening.", options: ["A. social group", "B. presentation skill", "C. school performance", "D. body shaming"], correctIndex: 3 },
+            { id: "e_q42", section: "VOCABULARY AND GRAMMAR", text: "It's often safer to stay with your friends or in a group, ______ bullies are less likely to target a group of people.", options: ["A. although", "B. besides", "C. because", "D. as a result"], correctIndex: 2 },
+            { id: "e_q43", section: "VOCABULARY AND GRAMMAR", text: "Peer pressure can encourage students to study harder. ______, it leads to better school performance.", options: ["A. In addition", "B. Therefore", "C. Despite", "D. Since"], correctIndex: 1 },
+            { id: "e_q44", section: "VOCABULARY AND GRAMMAR", text: "______ some students are living in poverty, they are still very positive about the future.", options: ["A. As", "B. Besides", "C. Moreover", "D. Although"], correctIndex: 3 },
+            { id: "e_q45", section: "VOCABULARY AND GRAMMAR", text: "______ the negative impact on students' mental health, cyberbullying can also affect their academic performance.", options: ["A. As a result", "B. In spite of", "C. Besides", "D. Because of"], correctIndex: 2 },
+            { id: "e_q46", section: "VOCABULARY AND GRAMMAR", text: "Teens often want to hang ______ with friends who share their interests and values.", options: ["A. up", "B. on", "C. in", "D. out"], correctIndex: 3 },
+            { id: "e_q47", section: "VOCABULARY AND GRAMMAR", text: "______ efforts of the awareness campaign, some students continue to participate in body shaming their friends.", options: ["A. Despite", "B. Moreover", "C. As a consequence", "D. In addition"], correctIndex: 0 },
+            { id: "e_q48", section: "VOCABULARY AND GRAMMAR", text: "Building confidence in students is essential for their success in school; ______, it plays a crucial role in their overall personal development.", options: ["A. moreover", "B. therefore", "C. even though", "D. because"], correctIndex: 0 },
+            { id: "e_q49", section: "VOCABULARY AND GRAMMAR", text: "Many young people find it hard to get a job immediately after ______.", options: ["A. university", "B. school", "C. class", "D. graduation"], correctIndex: 3 },
+            { id: "e_q50", section: "VOCABULARY AND GRAMMAR", text: "Higher education is really for people who want formal learning in order to get an ______ degree.", options: ["A. academic", "B. university", "C. vocational", "D. college"], correctIndex: 0 },
+            { id: "e_q51", section: "VOCABULARY AND GRAMMAR", text: "Are you sure you told me? I don't recall ______ about it.", options: ["A. having told", "B. having been told", "C. to have told", "D. to have been told"], correctIndex: 1 },
+            { id: "e_q52", section: "VOCABULARY AND GRAMMAR", text: "______ the bottles, Mike poured the drinks for everyone.", options: ["A. to open", "B. To have opened", "C. Being opened", "D. Having opened"], correctIndex: 3 },
+
+            // READING 1
+            {
+                id: "e_reading_1",
+                section: "READING",
+                type: "reading_group",
+                passage: "<strong>1. Read the following passage and mark the letter A, B, C or D to indicate the correct answer to each of the questions.</strong><br><br>Bullying leads to a decrease in academic performance. A study by CDC researchers showed that 12.9% of teenagers who missed school due to safety concerns feared bullying.<br><br>Victims of bullying may also avoid participating in class for fear of drawing attention to themselves and getting bullied. <u>They</u> may then become labelled as low achievers, putting them at an even higher risk of being targeted by bullies.<br><br>Like all forms of bullying, physical bullying can cause emotional change. It makes the victims feel unconfident and think less of themselves. This leads to feelings of shame, isolation, and <u>despair</u>. Moreover, the child may lose interest in playing or activities they previously enjoyed and engage in harmful behaviour, such as self-harm. These actions lead to more negative feelings and thoughts, creating a self-destructive cycle. In victims with existing depression and anxiety, bullying can make these conditions worse. Besides the physical injuries, victims may get from the attacks, they may also develop health issues, such as somatization. Somatization includes physical symptoms caused by psychological or emotional factors. For instance, the child may complain about headaches, body pain, or tiredness.<br><br><em>Source: https://www.positiveaction.net/blog/physical-bullying</em>",
+                subQuestions: [
+                    { id: "e_q53", text: "Question 1: What is the main idea of this passage?", options: ["A. The appearance of physical bullying among teenagers", "B. The emotional and health effects of physical bullying on victims", "C. The positive effects of bullying on academic performance", "D. The strategies to prevent bullying in schools"], correctIndex: 1 },
+                    { id: "e_q54", text: "Question 2: The word \"they\" in paragraph 2 refers to ______", options: ["A. researchers", "B. achievers", "C. victims", "D. teenagers"], correctIndex: 2 },
+                    { id: "e_q55", text: "Question 3: The word \"despair\" in paragraph 3 is closest in meaning to ______", options: ["A. aim", "B. anger", "C. policy", "D. depression"], correctIndex: 3 },
+                    { id: "e_q56", text: "Question 4: What is somatization as mentioned in the passage?", options: ["A. The fear of bullying", "B. physical injuries resulted from bullying", "C. physical symptoms caused by psychological or emotional factors", "D. a type of bullying behaviour"], correctIndex: 2 },
+                    { id: "e_q57", text: "Question 5: Which of the following is NOT true according to the passage?", options: ["A. Victims with existing depression can experience more serious conditions.", "B. Victims avoid participating in class as they do not want to be noticed.", "C. Victims of bullying may lead to health issues like somatization.", "D. Victims of bullying may become labelled as high achievers."], correctIndex: 3 }
+                ]
+            },
+
+            // READING 2
+            {
+                id: "e_reading_2",
+                section: "READING",
+                type: "reading_group",
+                passage: "<strong>2. Read the following passage and mark the letter A, B, C or D to indicate the correct answer to each of the questions.</strong><br><br>In the past hundred years, biodiversity around the world has decreased dramatically. Many species have gone extinct. Extinction is a natural process; some species naturally die out while new species evolve. But human activity has changed the natural processes of extinction and evolution. Scientists estimate that <u>they</u> are dying out at hundreds of times the natural rate.<br><br>A major reason for the loss of biodiversity is that natural habitats are being destroyed. The fields, forests, and wetlands where wild plants and animals live are disappearing. Land is cleared to plant crops or build houses and factories. Forests are cut for lumber and firewood. Between 1990 and 2005, the amount of forested land in Honduras, for instance, dropped 37 percent.<br><br>As habitats <u>shrink</u>, fewer individuals can live there. The creatures that survive have fewer breeding partners, so genetic diversity declines.<br><br>Pollution, overfishing, and overhunting have also caused a drop in biodiversity. Global climate change - the latest rise in the average temperature around the globe, linked to human activity - is also a factor. Warmer ocean temperatures damage fragile ecosystems such as coral reefs. A single coral reef can shelter 3,000 species of fish and other sea creatures such as clams and sea stars.<br><br><em>Source: https://education.nationalgeographic.org/resource/global-biodiversity/</em>",
+                subQuestions: [
+                    { id: "e_q58", text: "Question 1: Which of the following can be the best title for the passage?", options: ["A. The Impact of Global Climate Change on Biodiversity", "B. Natural Processes of Extinction and Evolution", "C. Human Activity and Its Effects on Biodiversity", "D. The Importance of Coral Reefs in Maintaining Biodiversity"], correctIndex: 2 },
+                    { id: "e_q59", text: "Question 2: The word \"they\" in paragraph 1 refers to ______", options: ["A. scientists", "B. processes", "C. species", "D. habitats"], correctIndex: 2 },
+                    { id: "e_q60", text: "Question 3: What is the main reason for the loss of biodiversity mentioned in the passage?", options: ["A. natural processes of extinction and evolution", "B. pollution, overfishing, and overhunting", "C. global climate change", "D. destruction of natural habitats"], correctIndex: 3 },
+                    { id: "e_q61", text: "Question 4: The word \"shrink\" in paragraph 3 is closest in meaning to ______", options: ["A. decrease", "B. expand", "C. describe", "D. manage"], correctIndex: 0 },
+                    { id: "e_q62", text: "Question 5: Which of the following is NOT true according to the passage?", options: ["A. Extinction is a natural process that occurs over time.", "B. Climate change does not have any effects on marine animals.", "C. Land is cleared to build houses and factories.", "D. Pollution and overfishing have contributed to declining biodiversity."], correctIndex: 1 }
+                ]
+            },
+
+            // CLOZE TEST 1
+            {
+                id: "e_cloze_1",
+                section: "READING",
+                type: "reading_group",
+                passage: "<strong>3. Read the following passage and mark the letter A, B, C, or D to indicate the correct word or phrase that best fits each of the numbered blanks.</strong><br><br><strong>Time Management For Students</strong><br>Learning to manage your time involves using a variety of life skills together. First of all, you need to know yourself. Only you know (1) ______ you are a morning or an evening person, for example. Understanding when you are (2) ______ your best can help you decide when to do certain things you have to do - like studying. Then, you need to prioritise and decide which things are the most (and least) important. After that, you need to get organised and start planning a schedule, (3) ______ could include when to study, as well as when to relax. It is important to be (4) ______ when you are trying to manage your time. You need to factor in time to sleep, (5) ______, and this should be based on your normal sleep patterns there is no point in planning to study at six in the morning if you have never managed to get out of bed before eight.",
+                subQuestions: [
+                    { id: "e_q63", text: "Question 1 (1)", options: ["A. that", "B. whether", "C. what", "D. how"], correctIndex: 1 },
+                    { id: "e_q64", text: "Question 2 (2)", options: ["A. in", "B. on", "C. at", "D. over"], correctIndex: 2 },
+                    { id: "e_q65", text: "Question 3 (3)", options: ["A. that", "B. which", "C. it", "D. there"], correctIndex: 1 },
+                    { id: "e_q66", text: "Question 4 (4)", options: ["A. real", "B. realism", "C. reality", "D. realistic"], correctIndex: 3 },
+                    { id: "e_q67", text: "Question 5 (5)", options: ["A. in contrast", "B. in addition", "C. for all", "D. for instance"], correctIndex: 3 }
+                ]
+            },
+
+            // CLOZE TEST 2
+            {
+                id: "e_cloze_2",
+                section: "READING",
+                type: "reading_group",
+                passage: "<strong>4. Read the following passage and mark the letter A, B, C, or D to indicate the correct word or phrase that best fits each of the numbered blanks.</strong><br><br>Wildlife conservation is the practice of protecting plant and animal species and their habitats. (29) ______ part of the world's ecosystems, wildlife provides balance and stability to nature's processes. The goal of wildlife conservation is to ensure the survival of these species, and to educate people (30) ______ living sustainably with other species.<br><br>The human population has grown exponentially over the past 200 years, to more than seven billion people today, and it continues to rapidly grow. (31) ______ means natural resources are being consumed faster than ever by the billions of people on the planet. This growth and development also endangers the habitats and existence of various types of wildlife around the world, particularly animals and plants that may (32) ______ for land development, or used for food or other human purposes, other threats to wildlife include the (33) ______ of invasive species from other parts of the world, climate change, pollution, hunting, fishing, and poaching.<br><br><em>Source: https://education.nationalgeographic.org/resource/wildlife-conservation/</em>",
+                subQuestions: [
+                    { id: "e_q68", text: "Question 1 (29)", options: ["A. As", "B. Though", "C. Besides", "D. Despite"], correctIndex: 0 },
+                    { id: "e_q69", text: "Question 2 (30)", options: ["A. in", "B. on", "C. for", "D. from"], correctIndex: 1 }
+                ]
+            }
+        ]
     }
 ];
 
