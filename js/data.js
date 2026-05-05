@@ -527,9 +527,12 @@ export const mockQuizzes = [
                 passage: "<strong>4. Read the following passage and mark the letter A, B, C, or D to indicate the correct word or phrase that best fits each of the numbered blanks.</strong><br><br>Wildlife conservation is the practice of protecting plant and animal species and their habitats. (29) ______ part of the world's ecosystems, wildlife provides balance and stability to nature's processes. The goal of wildlife conservation is to ensure the survival of these species, and to educate people (30) ______ living sustainably with other species.<br><br>The human population has grown exponentially over the past 200 years, to more than seven billion people today, and it continues to rapidly grow. (31) ______ means natural resources are being consumed faster than ever by the billions of people on the planet. This growth and development also endangers the habitats and existence of various types of wildlife around the world, particularly animals and plants that may (32) ______ for land development, or used for food or other human purposes, other threats to wildlife include the (33) ______ of invasive species from other parts of the world, climate change, pollution, hunting, fishing, and poaching.<br><br><em>Source: https://education.nationalgeographic.org/resource/wildlife-conservation/</em>",
                 subQuestions: [
                     { id: "e_q68", text: "Question 1 (29)", options: ["A. As", "B. Though", "C. Besides", "D. Despite"], correctIndex: 0 },
-                    { id: "e_q69", text: "Question 2 (30)", options: ["A. in", "B. on", "C. for", "D. from"], correctIndex: 1 }
+                    { id: "e_q69", text: "Question 2 (30)", options: ["A. in", "B. on", "C. for", "D. from"], correctIndex: 1 },
+                    { id: "e_q69_3", text: "Question 3 (31)", options: ["A. Those", "B. Then", "C. These", "D. This"], correctIndex: 3 },
+                    { id: "e_q69_4", text: "Question 4 (32)", options: ["A. displace", "B. displaced", "C. be displaced", "D. be displacing"], correctIndex: 2 },
+                    { id: "e_q69_5", text: "Question 5 (33)", options: ["A. belief", "B. wildlife", "C. introduction", "D. documentary"], correctIndex: 2 }
                 ]
-            }
+            },
             // CLOZE TEST 3
             {
                 id: "e_cloze_3",
@@ -563,18 +566,18 @@ export const mockQuizzes = [
             },
 
             // WRITING
-            { id: "e_w1", section: "WRITING", type: "short_answer", text: "Combine each pair of sentences, beginning with the given word(s).<br>1. Verbal bullying is a common issue at school <u>but</u> many students are not aware of it. (HOWEVER)", correctAnswer: "[NHẬP ĐÁP ÁN CỦA BẠN VÀO ĐÂY]" },
-            { id: "e_w2", section: "WRITING", type: "short_answer", text: "2. Cyberbullying can negatively impact students' academic performance <u>and it can</u> cause depression as well. (MOREOVER)", correctAnswer: "[NHẬP ĐÁP ÁN CỦA BẠN VÀO ĐÂY]" },
-            { id: "e_w3", section: "WRITING", type: "short_answer", text: "3. Students often want to be liked by their peers <u>so they</u> may sometimes do things they normally don't. (AS A RESULT)", correctAnswer: "[NHẬP ĐÁP ÁN CỦA BẠN VÀO ĐÂY]" },
-            { id: "e_w4", section: "WRITING", type: "short_answer", text: "4. Bullying at school can have serious effects on the victims <u>so it's</u> essential to prevent bullying. (THEREFORE)", correctAnswer: "[NHẬP ĐÁP ÁN CỦA BẠN VÀO ĐÂY]" },
-            { id: "e_w5", section: "WRITING", type: "short_answer", text: "5. While some students stand up to bullying, others remain silent for the fear of the consequences. (BY CONTRAST)", correctAnswer: "[NHẬP ĐÁP ÁN CỦA BẠN VÀO ĐÂY]" },
-            { id: "e_w6", section: "WRITING", type: "short_answer", text: "Rewrite the sentences<br>6. After I ate my evening meal, I decide to go for a walk. (using perfect participles)", correctAnswer: "[NHẬP ĐÁP ÁN CỦA BẠN VÀO ĐÂY]" },
-            { id: "e_w7", section: "WRITING", type: "short_answer", text: "7. Because I had spent the entire day cleaning up my room, I needed to take a shower and have a rest. (using perfect participles)", correctAnswer: "[NHẬP ĐÁP ÁN CỦA BẠN VÀO ĐÂY]" },
-            { id: "e_w8", section: "WRITING", type: "short_answer", text: "8. Her parents don't allow her to go out at night.<br>➔ She", correctAnswer: "[NHẬP ĐÁP ÁN CỦA BẠN VÀO ĐÂY]" },
-            { id: "e_w9", section: "WRITING", type: "short_answer", text: "9. The man prefer working in the lab to teaching students at class.<br>➔ The man would rather", correctAnswer: "[NHẬP ĐÁP ÁN CỦA BẠN VÀO ĐÂY]" },
-            { id: "e_w10", section: "WRITING", type: "short_answer", text: "10. My neighbors always make noise <u>at night</u>. (using cleft sentence)", correctAnswer: "[NHẬP ĐÁP ÁN CỦA BẠN VÀO ĐÂY]" },
-            { id: "e_w11", section: "WRITING", type: "short_answer", text: "11. <u>The earthquake</u> destroyed everything two years ago. (using cleft sentence)", correctAnswer: "[NHẬP ĐÁP ÁN CỦA BẠN VÀO ĐÂY]" },
-            { id: "e_w12", section: "WRITING", type: "short_answer", text: "12. <u>My friend</u> helps me a lot in preparing tasks for my students. (using cleft sentence)", correctAnswer: "[NHẬP ĐÁP ÁN CỦA BẠN VÀO ĐÂY]" }
+            { id: "e_w1", section: "WRITING", type: "short_answer", text: "Combine each pair of sentences, beginning with the given word(s).<br>1. Verbal bullying is a common issue at school <u>but</u> many students are not aware of it. (HOWEVER)", correctAnswer: "Verbal bullying is a common issue at school. However, many students are not aware of it." },
+            { id: "e_w2", section: "WRITING", type: "short_answer", text: "2. Cyberbullying can negatively impact students' academic performance <u>and it can</u> cause depression as well. (MOREOVER)", correctAnswer: "Cyberbullying can negatively impact students' academic performance. Moreover, it can cause depression as well." },
+            { id: "e_w3", section: "WRITING", type: "short_answer", text: "3. Students often want to be liked by their peers <u>so they</u> may sometimes do things they normally don't. (AS A RESULT)", correctAnswer: "Students often want to be liked by their peers. As a result, they may sometimes do things they normally don't." },
+            { id: "e_w4", section: "WRITING", type: "short_answer", text: "4. Bullying at school can have serious effects on the victims <u>so it's</u> essential to prevent bullying. (THEREFORE)", correctAnswer: "Bullying at school can have serious effects on the victims. Therefore, it's essential to prevent bullying." },
+            { id: "e_w5", section: "WRITING", type: "short_answer", text: "5. While some students stand up to bullying, others remain silent for the fear of the consequences. (BY CONTRAST)", correctAnswer: "Some students stand up to bullying. By contrast, others remain silent for the fear of the consequences." },
+            { id: "e_w6", section: "WRITING", type: "short_answer", text: "Rewrite the sentences<br>6. After I ate my evening meal, I decide to go for a walk. (using perfect participles)", correctAnswer: "Having eaten my evening meal, I decide to go for a walk." },
+            { id: "e_w7", section: "WRITING", type: "short_answer", text: "7. Because I had spent the entire day cleaning up my room, I needed to take a shower and have a rest. (using perfect participles)", correctAnswer: "Having spent the entire day cleaning up my room, I needed to take a shower and have a rest." },
+            { id: "e_w8", section: "WRITING", type: "short_answer", text: "8. Her parents don't allow her to go out at night.<br>➔ She", correctAnswer: "isn't allowed to go out at night by her parents." },
+            { id: "e_w9", section: "WRITING", type: "short_answer", text: "9. The man prefer working in the lab to teaching students at class.<br>➔ The man would rather", correctAnswer: "work in the lab than teach students at class." },
+            { id: "e_w10", section: "WRITING", type: "short_answer", text: "10. My neighbors always make noise <u>at night</u>. (using cleft sentence)", correctAnswer: "It is at night that my neighbors always make noise." },
+            { id: "e_w11", section: "WRITING", type: "short_answer", text: "11. <u>The earthquake</u> destroyed everything two years ago. (using cleft sentence)", correctAnswer: "It was the earthquake that destroyed everything two years ago." },
+            { id: "e_w12", section: "WRITING", type: "short_answer", text: "12. <u>My friend</u> helps me a lot in preparing tasks for my students. (using cleft sentence)", correctAnswer: "It is my friend who helps me a lot in preparing tasks for my students." }
         ]
     }
 ];
