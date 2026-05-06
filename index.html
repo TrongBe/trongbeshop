@@ -28,6 +28,9 @@
   <!-- Mammoth.js for Word (.docx) support -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
 
+  <!-- PDF.js for PDF (.pdf) support -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
 </head>
 
 <body>
@@ -178,10 +181,10 @@
           <div class="drop-icon">📷</div>
           <div class="drop-title">Kéo thả ảnh đề thi vào đây</div>
           <div class="drop-sub">hoặc chạm để chọn file</div>
-          <div class="drop-formats">Hỗ trợ: JPG, PNG, WebP, DOCX</div>
+          <div class="drop-formats">Hỗ trợ: JPG, PNG, WebP, DOCX, PDF</div>
         </label>
-        <input type="file" id="imageFileInput" accept="image/*, .docx" multiple style="display:none">
-        <input type="file" id="addMoreFileInput" accept="image/*, .docx" multiple style="display:none">
+        <input type="file" id="imageFileInput" accept="image/*, .docx, application/vnd.openxmlformats-officedocument.wordprocessingml.document, .pdf, application/pdf" multiple style="display:none">
+        <input type="file" id="addMoreFileInput" accept="image/*, .docx, application/vnd.openxmlformats-officedocument.wordprocessingml.document, .pdf, application/pdf" multiple style="display:none">
 
         <div id="imagePreviewContainer" class="image-preview-container"></div>
 
@@ -229,7 +232,7 @@
             <button id="btnReanalyze" class="btn-reanalyze">🔄 Phân tích lại</button>
           </div>
         </div>
-        <input type="file" id="analyzeMoreInput" accept="image/*, .docx, application/vnd.openxmlformats-officedocument.wordprocessingml.document" multiple style="display:none">
+        <input type="file" id="analyzeMoreInput" accept="image/*, .docx, application/vnd.openxmlformats-officedocument.wordprocessingml.document, .pdf, application/pdf" multiple style="display:none">
         <div id="questionEditorContainer" class="question-editor-container"></div>
         <div class="gemini-step-footer">
           <button id="btnBackToUpload" class="gemini-btn-secondary">← Quay lại</button>

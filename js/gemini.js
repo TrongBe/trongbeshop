@@ -32,6 +32,11 @@ let uploadedImages = [];      // [{base64, mimeType, name}]
 let extractedQuestions = [];  // câu hỏi sau khi AI phân tích
 let modalInitialized = false; // chống double-init
 
+// Cấu hình worker cho pdf.js
+if (typeof window.pdfjsLib !== 'undefined') {
+    window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+}
+
 // ============================================================
 // HÀM GỘP ẢNH (Bypass vision limit bản Free)
 // ============================================================
@@ -447,7 +452,7 @@ async function processFiles(files) {
         filesArray.push(files[i]);
     }
     
-    const validFiles = filesArray.filter(f => f.type.startsWith("image/") || f.name.toLowerCase().endsWith(".docx"));
+    const validFiles = filesArray.filter(f => f.type.startsWith("image/") || f.name.toLowerCase().endsWith(".docx") || f.type === "application/pdf" || f.name.toLowerCase().endsWith(".pdf"));
     if (validFiles.length === 0) return;
     
     // Hiển thị trạng thái đang xử lý
@@ -475,6 +480,34 @@ async function processFiles(files) {
                 });
             } catch(e) {
                 console.error("Mammoth error:", e);
+            }
+        } else if (file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf")) {
+            try {
+                const arrayBuffer = await file.arrayBuffer();
+                const pdf = await window.pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+                for (let i = 1; i <= pdf.numPages; i++) {
+                    const page = await pdf.getPage(i);
+                    const viewport = page.getViewport({ scale: 1.5 }); // Scale 1.5 để cân bằng độ nét và dung lượng
+                    const canvas = document.createElement("canvas");
+                    const ctx = canvas.getContext("2d");
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+                    await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+                    
+                    const base64 = canvas.toDataURL("image/jpeg", 0.7).split(",")[1];
+                    newItems.push({
+                        base64: base64,
+                        mimeType: "image/jpeg",
+                        name: `${file.name} - Trang ${i}`
+                    });
+                }
+            } catch(e) {
+                console.error("PDF process error:", e);
+                const geminiError = document.getElementById("geminiError");
+                if (geminiError) {
+                    geminiError.textContent = "Lỗi khi đọc file PDF: " + file.name;
+                    geminiError.style.display = "block";
+                }
             }
         } else {
             try {
