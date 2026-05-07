@@ -341,7 +341,7 @@ function renderQuestions() {
         const qType = q.type || 'multiple_choice';
 
         if (qType === 'multiple_choice' || qType === 'true_false') {
-            const opts = qType === 'true_false' ? ["Đúng", "Sai"] : q.options;
+            const opts = qType === 'true_false' ? ["Đúng", "Sai"] : (Array.isArray(q.options) ? q.options : []);
             opts.forEach((opt, optIndex) => {
                 const label = document.createElement('label');
                 label.className = 'option-label';
@@ -458,11 +458,11 @@ quizForm.onsubmit = function (e) {
             if (qType === 'multiple_choice' || qType === 'true_false') {
                 const userVal = formData.get(`question_${qId}`);
                 if (userVal === null) unanswered++;
-                else if (parseInt(userVal) === q.correctIndex) correct++;
+                else if (parseInt(userVal) === parseInt(q.correctIndex)) correct++;
                 else incorrect++;
             } else if (qType === 'short_answer') {
-                const userVal = (formData.get(`question_${qId}`) || "").trim().toLowerCase();
-                const correctVal = (q.correctAnswer || "").toLowerCase();
+                const userVal = (formData.get(`question_${qId}`) || "").toString().trim().toLowerCase();
+                const correctVal = (q.correctAnswer || "").toString().toLowerCase();
                 if (userVal === "") unanswered++;
                 else if (userVal === correctVal) correct++;
                 else incorrect++;
@@ -564,7 +564,7 @@ function highlightAnswer(q, optionsList) {
     inputs.forEach((input, idx) => {
         const label = input.closest('label');
         label.classList.remove('correct-answer', 'wrong-answer');
-        if (idx === q.correctIndex) label.classList.add('correct-answer');
+        if (idx === parseInt(q.correctIndex)) label.classList.add('correct-answer');
         else if (input.checked) label.classList.add('wrong-answer');
     });
 }
