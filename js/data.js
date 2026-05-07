@@ -579,6 +579,108 @@ export const mockQuizzes = [
             { id: "e_w11", section: "WRITING", type: "short_answer", text: "11. The earthquake destroyed everything two years ago. (using cleft sentence)", correctAnswer: "It was the earthquake that destroyed everything two years ago." },
             { id: "e_w12", section: "WRITING", type: "short_answer", text: "12. My friend helps me a lot in preparing tasks for my students. (using cleft sentence)", correctAnswer: "It is my friend who helps me a lot in preparing tasks for my students." }
         ]
+    },
+    {
+        id: "sinh_11_full_test",
+        title: "SINH 11 - Đề Tổng Hợp",
+        description: "Đề kiểm tra Sinh học 11 bao gồm 40 câu trắc nghiệm, 4 câu đúng sai và 4 câu trả lời ngắn.",
+        questions: [
+            // PHẦN I: TRẮC NGHIỆM
+            { id: "s1", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 1. Cảm ứng ở sinh vật là khả năng cơ thể sinh vật", options: ["A. thu nhận và trả lời kích thích của môi trường.", "B. phản ứng của sinh vật trước sự va chạm.", "C. phản ứng của sinh vật trước tác động của con người.", "D. phản ứng của sinh vật trước tác động của động vật."], correctIndex: 0 },
+            { id: "s2", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 2. Cho sơ đồ cơ chế cảm ứng ở sinh vật như sau: Kích thích -> Thu nhận kích thích -> Dẫn truyền kích thích -> Xử lí thông tin -> Trả lời kích thích -> Liên hệ ngược. Nêu ví dụ về cảm ứng ở cơ thể người thì trong các nhận xét sau có bao nhiêu nhận xét đúng?\nI. Bộ phận thu nhận kích thích có thể là các thụ quan, cơ quan cảm giác.\nII. Bộ phận dẫn truyền là các dây thần kinh.\nIII. Bộ phận xử lí thông tin là trung ương thần kinh như não và tủy sống.\nIV. Bộ phận trả lời kích thích là cơ, tuyến.", options: ["A. 1.", "B. 2.", "C. 4.", "D. 3."], correctIndex: 2 },
+            { id: "s3", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 3. Trong các ví dụ sau đây, có bao nhiêu ví dụ là cảm ứng ở sinh vật?\nI. Hoa mười giờ nở khi có ánh sáng nhiệt độ phù hợp.\nII. Rễ cây luôn mọc hướng vào trong đất.\nIII. Người nhìn thấy thức ăn chua thì tiết nước bọt.\nIV. Trời lạnh cơ thể người toát mồ hôi.", options: ["A. 1.", "B. 2.", "C. 4.", "D. 3."], correctIndex: 2 },
+            { id: "s4", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 4. Cho sơ đồ cơ chế cảm ứng ở người, khi chạm tay vật nóng thì giật tay lại. Điều nào sau đây không đúng?", options: ["A. Tủy sống là bộ phận xử lí thông tin.", "B. Khi chạm tay vào vật nóng tay người luôn giật lại.", "C. Bộ phận thực hiện trả lời kích thích là cơ tay.", "D. Đây là phản ứng giúp cơ thể người tránh được các điều kiện bất lợi gây hại cho cơ thể."], correctIndex: 1 },
+            { id: "s5", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 5. Ví dụ nào sau đây là hiện tượng cảm ứng ở thực vật?", options: ["A. Cây xương rồng lá biến thành gai để giảm thoát hơi nước.", "B. Chạm tay vào cây trinh nữ (cây xấu hổ), lá sẽ cụp xuống.", "C. Cây hoa mộc bị gió thổi bay hoa.", "D. Cây phong lan có thể sống trên thân cây cau."], correctIndex: 1 },
+            { id: "s6", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 6. Cảm ứng ở thực vật diễn ra", options: ["A. nhanh, khó nhận ra.", "B. chậm, dễ nhận ra.", "C. nhanh, dễ nhận ra.", "D. chậm, khó nhận ra."], correctIndex: 3 },
+            { id: "s7", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 7. Sinh trưởng và phát triển ở động vật không qua biến thái có đặc điểm", options: ["A. con non có cấu tạo khác con trưởng thành.", "B. con non lột xác hoàn thiện cơ thể giống con trưởng thành.", "C. con non có sự lột xác biến đổi thành con trưởng thành.", "D. con non có cấu tạo giống con trưởng thành."], correctIndex: 3 },
+            { id: "s8", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 8. Gà ri đạt khối lượng tối đa khoảng 2,8 kg sau khoảng 12 tháng tuổi. Nuôi lợn Ỉ cả năm cũng chỉ đạt 40-50 kg, trong khi giống lợn thịt nuôi 6 tháng đã đạt 70-80 kg. Giới hạn sinh trưởng của mỗi loài phụ thuộc vào", options: ["A. thức ăn.", "B. nhiệt độ.", "C. đặc điểm giống, loài.", "D. hormone sinh trưởng và phát triển."], correctIndex: 2 },
+            { id: "s9", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 9. Hình thức sinh sản mà cơ thể mẹ nguyên phân nhiều lần để tạo thành một chồi non, chồi con tách khỏi mẹ tạo thành cá thể mới được gọi là", options: ["A. trinh sinh.", "B. phân đôi.", "C. phân mảnh.", "D. nảy chồi."], correctIndex: 3 },
+            { id: "s10", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 10. Thứ tự các giai đoạn kế tiếp nhau trong quá trình sinh sản ở người:\n(1) Thụ tinh\n(2) Hình thành giao tử\n(3) Đẻ con\n(4) Phát triển phôi thai", options: ["A. (1) -> (2) -> (3) -> (4)", "B. (2) -> (3) -> (1) -> (4)", "C. (2) -> (3) -> (4) -> (1)", "D. (2) -> (1) -> (4) -> (3)"], correctIndex: 3 },
+            { id: "s11", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 11. Khi nói về đặc điểm sinh trưởng và phát triển ở thực vật, phát biểu nào sau đây đúng?", options: ["A. Quá trình sinh trưởng và phát triển từ giai đoạn ra hoa cho đến khi cây già và chết.", "B. Sinh trưởng và phát triển xảy ra tại một số vị trí, cơ quan trên cơ thể thực vật như ngọn thân, đỉnh cành, chóp rễ nơi có các mô phân sinh.", "C. Sinh trưởng và phát triển xảy ra tại tất cả cơ quan trên cơ thể thực vật làm tăng chiều cao, đường kính thân.", "D. Sinh trưởng không giới hạn được biểu hiện bằng sự xuất hiện và thay mới của các cơ quan như cành, lá, rễ, hoa, quả trong suốt chu kì sống của cây."], correctIndex: 1 },
+            { id: "s12", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 12. Mô phân sinh ở thực vật là", options: ["A. nhóm các tế bào chưa phân hóa, nhưng khả năng nguyên phân rất hạn chế.", "B. nhóm các tế bào chưa phân hóa, có khả năng phân chia tạo tế bào mới trong suốt đời sống của thực vật.", "C. nhóm các tế bào chưa phân hóa, mất dần khả năng nguyên phân.", "D. nhóm các tế bào phân hóa, chuyên hóa về chức năng."], correctIndex: 1 },
+            { id: "s13", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 13. Loại mô phân sinh nào sau đây không có ở cây một lá mầm?", options: ["A. Mô phân sinh bên.", "B. Mô phân sinh đỉnh cây.", "C. Mô phân sinh lóng.", "D. Mô phân sinh đỉnh rễ."], correctIndex: 0 },
+            { id: "s14", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 14. Phát biểu đúng về mô phân sinh bên và mô phân sinh lóng là", options: ["A. mô phân sinh bên và mô phân sinh lóng có ở thân cây một lá mầm.", "B. mô phân sinh bên có ở thân cây một lá mầm, còn mô phân sinh lóng có ở thân cây hai lá mầm.", "C. mô phân sinh bên có ở thân cây hai lá mầm, còn mô phân sinh lóng có ở thân cây một lá mầm.", "D. mô phân sinh bên và mô phân sinh lóng có ở thân cây hai lá mầm."], correctIndex: 2 },
+            { id: "s15", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 15. Khi nói về sinh trưởng thứ cấp, phát biểu nào sau đây là đúng?", options: ["A. Sinh trưởng thứ cấp là sự gia tăng về chiều dài của cơ thể thực vật.", "B. Sinh trưởng thứ cấp là do hoạt động của mô phân sinh bên.", "C. Sinh trưởng thứ cấp có ở tất cả các loài thực vật.", "D. Sinh trưởng thứ cấp chỉ có ở thực vật một lá mầm."], correctIndex: 1 },
+            { id: "s16", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 16. Ở cây hai lá mầm, tính từ ngọn đến rễ là các loại mô phân sinh theo thứ tự là:", options: ["A. Mô phân sinh đỉnh ngọn -> Mô phân sinh bên -> Mô phân sinh đỉnh rễ.", "B. Mô phân sinh đỉnh ngọn -> Mô phân sinh đỉnh rễ -> Mô phân sinh bên.", "C. Mô phân sinh đỉnh rễ -> Mô phân sinh bên -> Mô phân sinh đỉnh ngọn.", "D. Mô phân sinh bên -> Mô phân sinh đỉnh ngọn -> Mô phân sinh đỉnh rễ."], correctIndex: 0 },
+            { id: "s17", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 17. Ở cây một lá mầm, mô phân sinh gồm có", options: ["A. mô phân sinh đỉnh và mô phân sinh bên.", "B. mô phân sinh lóng và mô phân sinh bên.", "C. mô phân sinh đỉnh và mô phân sinh lóng.", "D. mô phân sinh đỉnh và mô phân sinh rễ."], correctIndex: 2 },
+            { id: "s18", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 18. Ở cây hai lá mầm, thân và rễ dài ra là nhờ hoạt động của", options: ["A. mô phân sinh cành.", "B. mô phân sinh bên.", "C. mô phân sinh lóng.", "D. mô phân sinh đỉnh."], correctIndex: 3 },
+            { id: "s19", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 19. Hormone sinh trưởng (GH) được tiết ra từ", options: ["A. thùy trước tuyến yên.", "B. tuyến giáp.", "C. tinh hoàn.", "D. buồng trứng."], correctIndex: 0 },
+            { id: "s20", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 20. Hormone estrogen được sản sinh từ", options: ["A. thùy trước tuyến yên.", "B. tuyến giáp.", "C. tinh hoàn.", "D. buồng trứng."], correctIndex: 3 },
+            { id: "s21", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 21. Hormone ảnh hưởng đến biến thái ở sâu bướm là", options: ["A. ecdysone và juvenile.", "B. juvenile và thyroxine.", "C. ecdysone và GH.", "D. thyroxine và GH."], correctIndex: 0 },
+            { id: "s22", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 22. Nhân tố quan trọng gây ảnh hưởng đến tốc độ sinh trưởng và phát triển ở động vật là", options: ["A. thức ăn.", "B. ánh sáng.", "C. nhiệt độ.", "D. độ ẩm."], correctIndex: 0 },
+            { id: "s23", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 23. Khi nói về sự phát triển của động vật, phát biểu nào sau đây là đúng?", options: ["A. Quá trình phân chia tế bào sinh dưỡng làm tăng trưởng các bộ phận cơ quan của cơ thể", "B. Quá trình biến đổi bao gồm sinh trưởng, phân hóa (biệt hóa) tế bào và phát sinh các cơ quan và cơ thể", "C. Quá trình sinh sản, làm tăng số lượng các thể trong quá trình ngày càng nhiều", "D. Giai đoạn cơ thể phát dục, có khả năng sinh sản"], correctIndex: 1 },
+            { id: "s24", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 24. Khi nói về sự sinh trưởng của động vật, phát biểu nào sau đây là đúng?", options: ["A. Sự phân hóa về chức năng của các bộ phận, cơ quan trong cơ thể động vật", "B. Quá trình phát triển cơ thể, từ giai đoạn trứng đến khi nở con ra", "C. Sự lớn lên về kích thước, khối lượng của cơ thể nhờ sự phân bào và tích lũy chất dinh dưỡng", "D. Giai đoạn cơ thể bắt đầu tạo tinh trùng và trứng để có thể tham gia vào sinh sản"], correctIndex: 2 },
+            { id: "s25", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 25. Cây nào dưới đây có thể xác định tuổi thông qua đếm số vòng hàng năm?", options: ["A. Mít.", "B. Dừa.", "C. Hoa lan.", "D. Lúa."], correctIndex: 0 },
+            { id: "s26", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 26. Tỉa cành là biện pháp thường không áp dụng đối với cây nào?", options: ["A. Ăn quả.", "B. Hoa kiểng.", "C. Gỗ nhỏ.", "D. Cây Một lá mầm."], correctIndex: 3 },
+            { id: "s27", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 27. Hình thức nào sau đây là sinh sản vô tính ở thực vật?", options: ["A. Phân tách.", "B. Sinh sản sinh dưỡng.", "C. Nảy chồi.", "D. Phân mảnh."], correctIndex: 1 },
+            { id: "s28", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 28. Trường hợp nào sau đây không phải là sinh sản vô tính ở thực vật?", options: ["A. Cây cỏ gấu non phát triển từ rễ củ.", "B. Cây dương xỉ non phát triển từ bào tử.", "C. Cây sắn dây phát triển từ một đoạn thân.", "D. Cây táo non phát triển từ hạt."], correctIndex: 3 },
+            { id: "s29", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 29. Chúng ta có thể nhân giống cây khoai tây bằng bộ phận nào của cây?", options: ["A. Lá.", "B. Thân củ.", "C. Hoa.", "D. Rễ."], correctIndex: 1 },
+            { id: "s30", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 30. Trong thiên nhiên cây tre có thể sinh sản bằng", options: ["A. rễ phụ.", "B. lóng.", "C. thân rễ.", "D. thân bò."], correctIndex: 2 },
+            { id: "s31", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 31. Trong sinh sản vô tính các cá thể mới sinh ra", options: ["A. giống nhau và giống cá thể gốc.", "B. khác nhau và giống cá thể gốc.", "C. giống nhau và khác cá thể gốc.", "D. khác nhau và khác cá thể gốc."], correctIndex: 0 },
+            { id: "s32", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 32. Hormone nào sau đây có vai trò kích thích tế bào kẽ sản xuất ra testosterone?", options: ["A. FSH.", "B. ICSH.", "C. Testosterone.", "D. GnRH."], correctIndex: 1 },
+            { id: "s33", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 33. Trong cơ chế điều hòa sinh sản ở động vật, hormone nào sau đây có vai trò kích thích tuyến yên sản xuất hormone?", options: ["A. GnRH.", "B. FSH.", "C. LH.", "D. ICSH."], correctIndex: 0 },
+            { id: "s34", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 34. Trong cơ chế điều hòa sinh tinh, testosterone tiết ra từ", options: ["A. ống sinh tinh.", "B. tế bào kẽ.", "C. tuyến yên.", "D. vùng dưới đồi."], correctIndex: 1 },
+            { id: "s35", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 35. Tế bào kẽ trong tinh hoàn tiết ra hormone nào sau đây?", options: ["A. Progesterone và estrogen.", "B. FSH, estrogen.", "C. ICSH, FSH.", "D. Testosterone."], correctIndex: 3 },
+            { id: "s36", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 36. Ở nữ giới, progesterone và estrogen được sản xuất từ", options: ["A. thể vàng.", "B. nang trứng.", "C. vùng dưới đồi.", "D. tuyến yên."], correctIndex: 0 },
+            { id: "s37", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 37. Quá trình sinh tinh và sinh trứng được điều khiển bởi", options: ["A. các hormone sinh dục.", "B. hệ thần kinh và các hormone sinh dục.", "C. buồng trứng và tinh hoàn.", "D. vùng dưới đồi và các hormone sinh dục."], correctIndex: 1 },
+            { id: "s38", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 38. Ở động vật, các hormone tham gia điều hòa sinh trứng là", options: ["A. FSH, LH, estrogen, testosterone.", "B. LH, estrogen, progesterone.", "C. LH, FSH, GnRH, testosterone.", "D. GnRH, FSH, LH, estrogen, progesterone."], correctIndex: 3 },
+            { id: "s39", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 39. Dạng hướng động nào dưới đây chỉ có ở một số loài thực vật?", options: ["A. Hướng trọng lực", "B. Hướng nước", "C. Hướng sáng", "D. Hướng tiếp xúc"], correctIndex: 3 },
+            { id: "s40", section: "I. Trắc nghiệm", type: "multiple_choice", text: "Câu 40. Hướng tiếp xúc có ở loài cây nào dưới đây?", options: ["A. Roi", "B. Cam", "C. Nho", "D. Táo"], correctIndex: 2 },
+            // PHẦN II: ĐÚNG / SAI
+            {
+                id: "tf1",
+                section: "II. Trắc nghiệm đúng/sai",
+                type: "true_false_group",
+                text: "Câu 1. Phân tích các giai đoạn phát triển ở gà, một học sinh rút ra các kết luận bên dưới. Hãy xác định đúng hay sai cho mỗi nhận định sau đây về nghiên cứu này:",
+                subQuestions: [
+                    { id: "a", text: "a) Quá trình phát triển ở gà được chia thành những giai đoạn: gà mẹ đẻ ra trứng - Giai đoạn phôi - Phát triển hợp tử, hậu phôi - gà con - gà trưởng thành", correctAnswer: "Đúng" },
+                    { id: "b", text: "b) Giai đoạn phôi, diễn ra trong trứng được thụ tinh", correctAnswer: "Đúng" },
+                    { id: "c", text: "c) Giai đoạn hậu phôi, từ lúc trứng nở thành gà con", correctAnswer: "Đúng" },
+                    { id: "d", text: "d) Gà con khác hoàn toàn gà trưởng thành.", correctAnswer: "Sai" }
+                ]
+            },
+            {
+                id: "tf2",
+                section: "II. Trắc nghiệm đúng/sai",
+                type: "true_false_group",
+                text: "Câu 2. Quan sát vòng đời của ếch và cho biết các phát biểu sau đây là đúng hay sai?",
+                subQuestions: [
+                    { id: "a", text: "a) Kiểu phát triển của ếch là phát triển qua biến thái hoàn toàn", correctAnswer: "Đúng" },
+                    { id: "b", text: "b) Sự phát triển qua biến thái giúp ếch duy trì sự tồn tại đối với các điều kiện sống khác nhau của môi trường", correctAnswer: "Đúng" },
+                    { id: "c", text: "c) Trong chăn nuôi, có thể sử dụng cùng một loại thức ăn cho cả nòng nọc và ếch.", correctAnswer: "Sai" },
+                    { id: "d", text: "d) Dựa vào tập tính sống của ếch, xung quanh hồ nuôi người ta làm hàng rào thép để đề phòng ếch nhảy ra hoặc chuột, rắn vào bắt ếch.", correctAnswer: "Đúng" }
+                ]
+            },
+            {
+                id: "tf3",
+                section: "II. Trắc nghiệm đúng/sai",
+                type: "true_false_group",
+                text: "Câu 3. Trong các nhận định sau, phát biểu sau đây đúng hay sai?",
+                subQuestions: [
+                    { id: "a", text: "a. Sinh sản theo kiểu trinh sinh thường xen kẽ với sinh sản hữu tính.", correctAnswer: "Sai" },
+                    { id: "b", text: "b. Đối với ong mật, những trứng không được thụ tinh sẽ phát triển thành ong thợ có bộ nhiễm sắc thể đơn bội, còn những trứng thụ tinh phát triển thành ong đực.", correctAnswer: "Sai" },
+                    { id: "c", text: "c. Động vật có hai phương thức sinh sản: sinh sản hữu tính và sinh sản vô tính.", correctAnswer: "Đúng" },
+                    { id: "d", text: "d. Bọt biển vừa có thể sinh sản bằng hình thức nảy chồi, vừa có thể sinh sản bằng hình thức phân đôi.", correctAnswer: "Sai" }
+                ]
+            },
+            {
+                id: "tf4",
+                section: "II. Trắc nghiệm đúng/sai",
+                type: "true_false_group",
+                text: "Câu 4. Trong các nhận định sau, phát biểu sau đây đúng hay sai?",
+                subQuestions: [
+                    { id: "a", text: "a. Đẻ trứng thai gặp ở một số loài cá, một số loài bò sát và một số loài chân khớp.", correctAnswer: "Đúng" },
+                    { id: "b", text: "b. Bò sát, Chim và nhiều động vật không xương sống đẻ trứng, trứng thụ tinh trong cơ thể con cái.", correctAnswer: "Đúng" },
+                    { id: "c", text: "c. Đẻ con có ở tất cả loài Thú và người.", correctAnswer: "Sai" },
+                    { id: "d", text: "d. Cá, lưỡng cư và nhiều loài động vật không xương sống đẻ trứng và trứng thụ tinh với tinh trùng trong môi trường nước.", correctAnswer: "Đúng" }
+                ]
+            },
+            // PHẦN III: TRẢ LỜI NGẮN
+            { id: "sa1", section: "III. Trả lời ngắn", type: "short_answer", text: "Câu 1. Ở cây rêu chân tường, tinh trùng có kiểu gen ABDEg thụ tinh cho noãn cầu có kiểu gen abdeG tạo hợp tử. Hợp tử phát triển thành thể bào tử, sau đó thể bào tử hình thành túi bào tử và mỗi bào tử lại trở thành một cây rêu đơn bội. Hãy cho biết sẽ có bao nhiêu loại kiểu gen khác nhau ở các cây rêu nói trên.", correctAnswer: "32" },
+            { id: "sa2", section: "III. Trả lời ngắn", type: "short_answer", text: "Câu 2. Cho biết, một tế bào sinh dục sơ khai đực thực hiện nguyên phân liên tiếp 5 lần. Khi các tế bào này chuyển sang giai đoạn chín và thực hiện quá trình giảm phân để hình thành giao tử đực (tinh trùng). Có bao nhiêu tinh trùng được hình thành từ quá trình trên?", correctAnswer: "128" },
+            { id: "sa3", section: "III. Trả lời ngắn", type: "short_answer", text: "Câu 3. Trong các loại hình thức sinh sản sau đây, có bao nhiêu hình thức thuộc sinh sản vô tính ở thực vật?\n1. Sinh sản sinh dưỡng\n2. Thụ phấn\n3. Sinh sản bằng bào tử\n4. Trinh sinh\n5. Giao phấn\n6. Nuôi cấy mô", correctAnswer: "3" },
+            { id: "sa4", section: "III. Trả lời ngắn", type: "short_answer", text: "Câu 4. Dựa trên hình và kiến thức về sinh sản ở thực vật. Có bao nhiêu phát biểu sau đây đúng về sinh sản vô tính ở thực vật?\n(I). Sinh sản sinh dưỡng là một hình thức sinh sản vô tính.\n(II). Từ các bộ phận cơ thể phân tách, tái sinh và tạo thành một cây mới có đặc tính giống như cây mẹ.\n(III). Sinh sản sinh dưỡng chỉ xảy ra ở lá, rễ cây và thân của nó.\n(IV). Sinh sản này tạo ra thế hệ con với nhiều biến dị đa dạng phong phú.", correctAnswer: "3" }
+        ]
     }
 ];
 
