@@ -250,10 +250,15 @@ document.getElementById('btnConfirmStart').onclick = async function () {
     // Tăng lượt xem (Áp dụng cho mọi đề không phải local, kể cả đề trong data.js)
     if (currentQuiz.privacy !== "local") {
         try {
-            const quizRef = ref(dbRT, 'public_quizzes/' + currentQuiz.id + '/viewCount');
-            runTransaction(quizRef, (currentValue) => {
-                return (currentValue || 0) + 1;
-            });
+            let viewedList = JSON.parse(localStorage.getItem("viewed_quizzes") || "[]");
+            if (!viewedList.includes(currentQuiz.id)) {
+                const quizRef = ref(dbRT, 'public_quizzes/' + currentQuiz.id + '/viewCount');
+                runTransaction(quizRef, (currentValue) => {
+                    return (currentValue || 0) + 1;
+                });
+                viewedList.push(currentQuiz.id);
+                localStorage.setItem("viewed_quizzes", JSON.stringify(viewedList));
+            }
         } catch (e) { console.error("Increment view error:", e); }
     }
 
@@ -432,50 +437,55 @@ function renderQuestions() {
 
 // === CHẤM ĐIỂM (RESTORED v46) ===
 quizForm.onsubmit = function (e) {
-    e.preventDefault();
-    if (quizForm.dataset.mode === 'practice') {
-        alert("Bạn đã hoàn thành chế độ luyện tập. Chế độ luyện tập không chấm điểm tổng.");
-        return;
-    }
-
-    const formData = new FormData(quizForm);
-    let correct = 0;
-    let incorrect = 0;
-    let unanswered = 0;
-
-    const qs = currentQuiz.renderedQuestions || currentQuiz.questions;
-
-    qs.forEach(q => {
-        const qId = q.id;
-        const qType = q.type || 'multiple_choice';
-
-        if (qType === 'multiple_choice' || qType === 'true_false') {
-            const userVal = formData.get(`question_${qId}`);
-            if (userVal === null) unanswered++;
-            else if (parseInt(userVal) === q.correctIndex) correct++;
-            else incorrect++;
-        } else if (qType === 'short_answer') {
-            const userVal = (formData.get(`question_${qId}`) || "").trim().toLowerCase();
-            const correctVal = (q.correctAnswer || "").toLowerCase();
-            if (userVal === "") unanswered++;
-            else if (userVal === correctVal) correct++;
-            else incorrect++;
-        } else if (qType === 'true_false_group') {
-            let isAllCorrect = true;
-            let isAnyUnanswered = false;
-            (q.subQuestions || []).forEach(sq => {
-                const val = formData.get(`question_${qId}_${sq.id}`);
-                if (val === null) isAnyUnanswered = true;
-                else if (val !== sq.correctAnswer) isAllCorrect = false;
-            });
-            if (isAnyUnanswered) unanswered++;
-            else if (isAllCorrect) correct++;
-            else incorrect++;
+    try {
+        e.preventDefault();
+        if (quizForm.dataset.mode === 'practice') {
+            alert("Bạn đã hoàn thành chế độ luyện tập. Chế độ luyện tập không chấm điểm tổng.");
+            return;
         }
-    });
 
-    showReviewMode(qs);
-    renderResults(correct, incorrect, unanswered);
+        const formData = new FormData(quizForm);
+        let correct = 0;
+        let incorrect = 0;
+        let unanswered = 0;
+
+        const qs = currentQuiz.renderedQuestions || currentQuiz.questions;
+
+        qs.forEach(q => {
+            const qId = q.id;
+            const qType = q.type || 'multiple_choice';
+
+            if (qType === 'multiple_choice' || qType === 'true_false') {
+                const userVal = formData.get(`question_${qId}`);
+                if (userVal === null) unanswered++;
+                else if (parseInt(userVal) === q.correctIndex) correct++;
+                else incorrect++;
+            } else if (qType === 'short_answer') {
+                const userVal = (formData.get(`question_${qId}`) || "").trim().toLowerCase();
+                const correctVal = (q.correctAnswer || "").toLowerCase();
+                if (userVal === "") unanswered++;
+                else if (userVal === correctVal) correct++;
+                else incorrect++;
+            } else if (qType === 'true_false_group') {
+                let isAllCorrect = true;
+                let isAnyUnanswered = false;
+                (q.subQuestions || []).forEach(sq => {
+                    const val = formData.get(`question_${qId}_${sq.id}`);
+                    if (val === null) isAnyUnanswered = true;
+                    else if (val !== sq.correctAnswer) isAllCorrect = false;
+                });
+                if (isAnyUnanswered) unanswered++;
+                else if (isAllCorrect) correct++;
+                else incorrect++;
+            }
+        });
+
+        showReviewMode(qs);
+        renderResults(correct, incorrect, unanswered);
+    } catch (err) {
+        alert("LỖI KHI NỘP BÀI: " + err.message + "\n\nVui lòng chụp màn hình lỗi này gửi cho tôi để tôi sửa nhé!");
+        console.error(err);
+    }
 };
 
 function showReviewMode(qs) {
@@ -747,31 +757,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === TỰ ĐỘNG ĐỒNG BỘ ĐỀ TRONG DATA.JS LÊN FIREBASE (CHẠY 1 LẦN) ===
-    setTimeout(() => {
-        mockQuizzes.forEach(quiz => {
-            const publicRef = ref(dbRT, 'public_quizzes/' + quiz.id);
-            get(publicRef).then((snapshot) => {
-                const data = snapshot.val();
-                // Chỉ đẩy lên nếu trên Firebase chưa có đầy đủ questions
-                if (!data || !data.questions) {
-                    const newQuiz = JSON.parse(JSON.stringify(quiz));
-                    newQuiz.privacy = newQuiz.privacy || "public";
-                    newQuiz.viewCount = (data && data.viewCount) ? data.viewCount : (newQuiz.viewCount || 0);
-
-                    if (newQuiz.questions) {
-                        newQuiz.questions = newQuiz.questions.map((q, idx) => {
-                            q.id = newQuiz.id + "_q" + (idx + 1);
-                            q.qNumber = idx + 1;
-                            return q;
-                        });
-                    }
-
-                    set(publicRef, newQuiz).then(() => {
-                        console.log("✅ Đã đồng bộ đầy đủ thông tin lên Firebase: " + newQuiz.title);
-                    }).catch(e => console.error("Lỗi đồng bộ: ", e));
-                }
-            });
-        });
-    }, 2000);
+    // Removed temporary sync script.
 });
