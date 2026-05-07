@@ -3,7 +3,7 @@ import { showImageLightbox } from './gemini.js';
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
-import { getDatabase, ref, onValue, runTransaction, set } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+import { getDatabase, ref, onValue, runTransaction, set, get } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAAEI9nMEMfUwbGbPHTyGRJ2dAfBRW7_Fo",
@@ -650,9 +650,7 @@ window.loadPublicQuizzes = function () {
                         }
                     }
 
-                    // 2. Xử lý nội dung đề thi (Chỉ đề custom mới đồng bộ nội dung)
-                    if (!pqId.startsWith("gemini_")) return; // Bảo toàn nội dung file data.js
-
+                    // 2. Xử lý nội dung đề thi (Đồng bộ toàn bộ đề từ Firebase)
                     if (!pq.title || !pq.questions) return;
                     if (pq.questions && !Array.isArray(pq.questions)) pq.questions = Object.values(pq.questions);
 
@@ -748,4 +746,32 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // === TỰ ĐỘNG ĐỒNG BỘ ĐỀ TRONG DATA.JS LÊN FIREBASE (CHẠY 1 LẦN) ===
+    setTimeout(() => {
+        mockQuizzes.forEach(quiz => {
+            const publicRef = ref(dbRT, 'public_quizzes/' + quiz.id);
+            get(publicRef).then((snapshot) => {
+                const data = snapshot.val();
+                // Chỉ đẩy lên nếu trên Firebase chưa có đầy đủ questions
+                if (!data || !data.questions) {
+                    const newQuiz = JSON.parse(JSON.stringify(quiz));
+                    newQuiz.privacy = newQuiz.privacy || "public";
+                    newQuiz.viewCount = (data && data.viewCount) ? data.viewCount : (newQuiz.viewCount || 0);
+
+                    if (newQuiz.questions) {
+                        newQuiz.questions = newQuiz.questions.map((q, idx) => {
+                            q.id = newQuiz.id + "_q" + (idx + 1);
+                            q.qNumber = idx + 1;
+                            return q;
+                        });
+                    }
+
+                    set(publicRef, newQuiz).then(() => {
+                        console.log("✅ Đã đồng bộ đầy đủ thông tin lên Firebase: " + newQuiz.title);
+                    }).catch(e => console.error("Lỗi đồng bộ: ", e));
+                }
+            });
+        });
+    }, 2000);
 });
