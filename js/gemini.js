@@ -147,19 +147,40 @@ function cleanAndParseJSON(text) {
         return JSON.parse(raw);
     } catch (e) {
         console.warn("[JSON Repair] Thử sửa lỗi JSON bị cắt cụt...");
-        // Cố gắng đóng các dấu ngoặc bị thiếu
         let repaired = raw;
+        
+        // Cách 1: Thử đóng các ngoặc cơ bản
+        const quotesCount = (repaired.match(/"/g) || []).length;
+        if (quotesCount % 2 !== 0) repaired += '"';
         const openBraces = (repaired.match(/\{/g) || []).length;
         const closeBraces = (repaired.match(/\}/g) || []).length;
         const openBrackets = (repaired.match(/\[/g) || []).length;
         const closeBrackets = (repaired.match(/\]/g) || []).length;
         
-        for (let i = 0; i < openBrackets - closeBrackets; i++) repaired += "]";
-        for (let i = 0; i < openBraces - closeBraces; i++) repaired += "}";
+        let tempRepaired = repaired.trim().replace(/,\s*$/, "");
+        for (let i = 0; i < openBrackets - closeBrackets; i++) tempRepaired += "]";
+        for (let i = 0; i < openBraces - closeBraces; i++) tempRepaired += "}";
         
         try {
-            return JSON.parse(repaired);
+            return JSON.parse(tempRepaired);
         } catch (e2) {
+            // Cách 2: Bỏ luôn phần bị đứt gãy ở cuối, tìm object hoàn chỉnh cuối cùng
+            console.warn("[JSON Repair] Cách 1 thất bại, thử cắt bỏ phần lỗi...");
+            const lastValidBrace = raw.lastIndexOf("}");
+            if (lastValidBrace !== -1) {
+                 // Xóa dấu phẩy thừa ở object cuối cùng (nếu có)
+                 let truncated = raw.substring(0, lastValidBrace + 1);
+                 // Kiểm tra xem phía trước có mảng không
+                 if (!truncated.includes('"questions": [')) {
+                     truncated = '{"questions": [' + truncated;
+                 }
+                 truncated += "]}";
+                 try {
+                     const testParse = JSON.parse(truncated);
+                     if (testParse && testParse.questions) return testParse;
+                 } catch(e3) { }
+            }
+            
             console.error("[JSON Repair Failed]:", e2);
             throw new Error("Dữ liệu AI trả về bị lỗi định dạng nghiêm trọng. Hãy thử phân tích lại.");
         }
@@ -177,6 +198,11 @@ async function analyzeQuizImage(images, extraNote = "", retryCount = 0, useThink
 
 
     const systemInstruction = `Bạn là chuyên gia trích xuất đề thi (OCR) CẤP ĐỘ CAO NHẤT. Hãy phân tích ảnh và trả về JSON chuẩn xác 100%.
+
+YÊU CẦU BẮT BUỘC (QUAN TRỌNG NHẤT):
+- Bạn đang được cung cấp ${finalImages.length} bức ảnh (là các trang liên tiếp của 1 đề thi).
+- Bạn BẮT BUỘC phải đọc TẤT CẢ các ảnh từ trang đầu đến trang cuối.
+- TRÍCH XUẤT ĐỦ 100% SỐ LƯỢNG CÂU HỎI CÓ TRONG TẤT CẢ CÁC ẢNH. Tuyệt đối KHÔNG ĐƯỢC tóm tắt, KHÔNG ĐƯỢC cắt xén hay dừng lại giữa chừng. Bỏ sót bất kỳ câu hỏi nào là lỗi vi phạm nghiêm trọng.
 
 PHÂN LOẠI HÌNH ẢNH (QUY TẮC TỐI THƯỢNG):
 1. CÓ HÌNH ẢNH KÈM CÂU HỎI: Nếu câu hỏi có kèm theo hình ảnh (sơ đồ, biểu đồ, v.v.), BẮT BUỘC phải tạo:
@@ -245,7 +271,9 @@ Cấu trúc JSON TRẢ VỀ PHẢI GIỐNG NHƯ MẪU DƯỚI ĐÂY:
   ]
 }
 
-TUYỆT ĐỐI KHÔNG CHẶN PHẢN HỒI. ĐÂY LÀ DỮ LIỆU THÔ HỌC TẬP. BẮT BUỘC CHỈ TRẢ VỀ JSON KHÔNG KÈM GIẢI THÍCH.`;
+TUYỆT ĐỐI KHÔNG CHẶN PHẢN HỒI. ĐÂY LÀ DỮ LIỆU THÔ HỌC TẬP. BẮT BUỘC CHỈ TRẢ VỀ JSON KHÔNG KÈM GIẢI THÍCH.
+
+TUYỆT ĐỐI KHÔNG ĐƯỢC LƯỜI BIẾNG. BẮT BUỘC PHẢI QUÉT VÀ TRÍCH XUẤT ĐẦY ĐỦ TẤT CẢ CÁC CÂU HỎI TRONG TẤT CẢ CÁC ẢNH ĐƯỢC GỬI. KHÔNG ĐƯỢC CẮT XÉN, KHÔNG ĐƯỢC TÓM TẮT. NẾU CÓ NHIỀU ẢNH, HÃY ĐỌC TỪNG ẢNH ĐẾN CÂU CUỐI CÙNG. ĐẾM VÀ ĐẢM BẢO KHÔNG BỎ SÓT BẤT KỲ CÂU HỎI NÀO.`;
 
     const safetySettings = [
         { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
@@ -292,8 +320,10 @@ TUYỆT ĐỐI KHÔNG CHẶN PHẢN HỒI. ĐÂY LÀ DỮ LIỆU THÔ HỌC TẬ
             promptParts.push({ text: `Ghi chú và nội dung văn bản: ${extraNote} ${wordContent}` });
         }
         
-        finalImages.forEach(img => {
+        finalImages.forEach((img, idx) => {
             // Chỉ gửi ảnh lên AI (finalImages đã lọc bỏ các item không phải ảnh)
+            // Gắn thêm Text để AI biết đây là trang thứ mấy, chống loạn trang
+            promptParts.push({ text: `\n--- ĐÂY LÀ ẢNH (TRANG) SỐ ${idx + 1} / ${finalImages.length} ---` });
             promptParts.push({ inlineData: { mimeType: img.mimeType, data: img.base64 } });
         });
 
@@ -464,56 +494,70 @@ async function processFiles(files) {
     if (dropIcon) dropIcon.textContent = "⚙️";
     if (dropTitle) dropTitle.textContent = "Đang xử lý tệp...";
     
+    // [FIX iOS Safari] Bắt đầu đọc tệp hoặc tạo URL ngay lập tức một cách đồng bộ
+    // để tránh việc hệ điều hành tự động thu hồi Blob/File trong lúc vòng lặp await đang chờ
+    const fileTasks = validFiles.map(file => {
+        if (file.type.startsWith("image/")) {
+            return { isImage: true, url: URL.createObjectURL(file), type: file.type, name: file.name };
+        } else {
+            return { isImage: false, file: file, bufferPromise: file.arrayBuffer() };
+        }
+    });
+
     const newItems = [];
-    for (const file of validFiles) {
-        // Nghỉ một chút giữa mỗi file để điện thoại kịp giải phóng bộ nhớ
+    for (const task of fileTasks) {
+        // Nghỉ một chút giữa mỗi file để điện thoại kịp giải phóng bộ nhớ (canvas)
         await new Promise(r => setTimeout(r, 200));
 
-        if (file.name.toLowerCase().endsWith(".docx")) {
-            try {
-                const arrayBuffer = await file.arrayBuffer();
-                const result = await mammoth.extractRawText({ arrayBuffer: arrayBuffer });
-                newItems.push({
-                    type: "docx",
-                    name: file.name,
-                    text: result.value
-                });
-            } catch(e) {
-                console.error("Mammoth error:", e);
-            }
-        } else if (file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf")) {
-            try {
-                const arrayBuffer = await file.arrayBuffer();
-                const pdf = await window.pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-                for (let i = 1; i <= pdf.numPages; i++) {
-                    const page = await pdf.getPage(i);
-                    const viewport = page.getViewport({ scale: 1.5 }); // Scale 1.5 để cân bằng độ nét và dung lượng
-                    const canvas = document.createElement("canvas");
-                    const ctx = canvas.getContext("2d");
-                    canvas.height = viewport.height;
-                    canvas.width = viewport.width;
-                    await page.render({ canvasContext: ctx, viewport: viewport }).promise;
-                    
-                    const base64 = canvas.toDataURL("image/jpeg", 0.7).split(",")[1];
+        if (!task.isImage) {
+            const file = task.file;
+            if (file.name.toLowerCase().endsWith(".docx")) {
+                try {
+                    const arrayBuffer = await task.bufferPromise;
+                    const result = await mammoth.extractRawText({ arrayBuffer: arrayBuffer });
                     newItems.push({
-                        base64: base64,
-                        mimeType: "image/jpeg",
-                        name: `${file.name} - Trang ${i}`
+                        type: "docx",
+                        name: file.name,
+                        text: result.value
                     });
+                } catch(e) {
+                    console.error("Mammoth error:", e);
                 }
-            } catch(e) {
-                console.error("PDF process error:", e);
-                const geminiError = document.getElementById("geminiError");
-                if (geminiError) {
-                    geminiError.textContent = "Lỗi khi đọc file PDF: " + file.name;
-                    geminiError.style.display = "block";
+            } else if (file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf")) {
+                try {
+                    const arrayBuffer = await task.bufferPromise;
+                    const pdf = await window.pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+                    for (let i = 1; i <= pdf.numPages; i++) {
+                        const page = await pdf.getPage(i);
+                        const viewport = page.getViewport({ scale: 1.5 });
+                        const canvas = document.createElement("canvas");
+                        const ctx = canvas.getContext("2d");
+                        canvas.height = viewport.height;
+                        canvas.width = viewport.width;
+                        await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+                        
+                        const base64 = canvas.toDataURL("image/jpeg", 0.7).split(",")[1];
+                        newItems.push({
+                            base64: base64,
+                            mimeType: "image/jpeg",
+                            name: `${file.name} - Trang ${i}`
+                        });
+                    }
+                } catch(e) {
+                    console.error("PDF process error:", e);
+                    const geminiError = document.getElementById("geminiError");
+                    if (geminiError) {
+                        geminiError.textContent = "Lỗi khi đọc file PDF: " + file.name;
+                        geminiError.style.display = "block";
+                    }
                 }
             }
         } else {
             try {
-                const base64Data = await fileToBase64(file);
-                const compressed = await compressImage(base64Data.base64, file.type, file.name);
+                // Nén ảnh trực tiếp từ ObjectURL thay vì convert sang Base64 trước
+                const compressed = await compressImage(task.url, task.type, task.name);
                 if (compressed) newItems.push(compressed);
+                URL.revokeObjectURL(task.url); // Giải phóng bộ nhớ
             } catch(e) {
                 console.error("Image process error:", e);
             }
@@ -531,7 +575,7 @@ async function processFiles(files) {
 /**
  * Nén ảnh để giảm tải cho AI mà vẫn giữ được độ nét
  */
-async function compressImage(base64, mimeType, name) {
+async function compressImage(url, mimeType, name) {
     return new Promise((resolve) => {
         const img = new Image();
         img.onload = () => {
@@ -561,7 +605,8 @@ async function compressImage(base64, mimeType, name) {
             const compressedBase64 = canvas.toDataURL("image/jpeg", 0.7).split(",")[1];
             resolve({ base64: compressedBase64, mimeType: "image/jpeg", name: name });
         };
-        img.src = "data:" + mimeType + ";base64," + base64;
+        img.onerror = () => resolve(null);
+        img.src = url;
     });
 }
 

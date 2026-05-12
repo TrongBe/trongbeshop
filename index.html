@@ -93,20 +93,49 @@
       </div>
     </div>
 
-    <!-- View: Đang làm bài -->
-    <div id="activeQuizView" class="view-section">
-      <div class="quiz-header">
-        <button id="btnBackToMenu" class="btn btn-text">← Quay lại danh sách</button>
-        <h2 id="currentQuizTitle" class="section-title quiz-title">Đang tải...</h2>
+    <!-- View: Đang làm bài / Xem lại bài (Chuẩn SHub) -->
+    <div id="activeQuizView" class="view-section shub-layout">
+      <div class="shub-main">
+        <div class="quiz-header">
+          <button id="btnBackToMenu" class="btn btn-text">← Quay lại danh sách</button>
+          <h2 id="currentQuizTitle" class="section-title quiz-title">Đang tải...</h2>
+        </div>
+        <form id="quizForm">
+          <div id="questionsContainer">
+            <!-- Javascript sẽ tự động thêm câu hỏi vào đây -->
+          </div>
+        </form>
       </div>
-      <form id="quizForm">
-        <div id="questionsContainer">
-          <!-- Javascript sẽ tự động thêm câu hỏi vào đây -->
+
+      <div class="shub-sidebar">
+        <!-- Result Card (chỉ hiện khi xem lại bài) -->
+        <div id="shubResultSummary" class="shub-result-card" style="display:none">
+          <h3 class="shub-result-title">Lấy điểm</h3>
+          <div class="shub-score"><span id="shubScoreText">0</span> / 10</div>
+          <div class="shub-stats">
+            <div class="stat-item"><span class="stat-dot dot-correct"></span>Đúng: <strong id="shubCorrect">0</strong></div>
+            <div class="stat-item"><span class="stat-dot dot-wrong"></span>Sai: <strong id="shubIncorrect">0</strong></div>
+            <div class="stat-item"><span class="stat-dot dot-unanswered"></span>Chưa làm: <strong id="shubUnanswered">0</strong></div>
+          </div>
         </div>
-        <div class="quiz-footer">
-          <button type="submit" class="btn btn-primary btn-large">Nộp Bài Ngay</button>
+
+        <div class="shub-timer-box" id="shubTimerBox">
+          <span class="timer-icon">⏱️</span>
+          <span id="quizTimer">Thời gian làm bài</span>
         </div>
-      </form>
+
+        <div class="shub-palette-container">
+          <div class="shub-palette-header">Phiếu trả lời</div>
+          <div id="questionPalette" class="shub-palette">
+            <!-- Lưới số câu hỏi sẽ được tạo bằng Javascript -->
+          </div>
+        </div>
+
+        <div class="shub-sidebar-footer">
+          <button type="button" class="btn-shub-leave" id="btnLeaveQuiz">Rời khỏi</button>
+          <button type="submit" form="quizForm" class="btn-shub-submit" id="btnSubmitQuiz">Nộp bài</button>
+        </div>
+      </div>
     </div>
 
     <!-- View: Kết quả -->

@@ -251,12 +251,13 @@ document.getElementById('btnConfirmStart').onclick = async function () {
     if (currentQuiz.privacy !== "local") {
         try {
             let viewedList = JSON.parse(localStorage.getItem("viewed_quizzes") || "[]");
-            if (!viewedList.includes(currentQuiz.id)) {
+            const qIdStr = currentQuiz.id.toString();
+            if (!viewedList.includes(qIdStr)) {
                 const quizRef = ref(dbRT, 'public_quizzes/' + currentQuiz.id + '/viewCount');
                 runTransaction(quizRef, (currentValue) => {
                     return (currentValue || 0) + 1;
                 });
-                viewedList.push(currentQuiz.id);
+                viewedList.push(qIdStr);
                 localStorage.setItem("viewed_quizzes", JSON.stringify(viewedList));
             }
         } catch (e) { console.error("Increment view error:", e); }
@@ -275,8 +276,65 @@ document.getElementById('btnConfirmStart').onclick = async function () {
     currentQuizTitle.textContent = currentQuiz.title;
     resetScoreCircle();
     renderQuestions();
+    initQuestionPalette(currentQuiz.renderedQuestions || currentQuiz.questions);
     showView('active');
+
+    // Cập nhật lại UI sau khi hiển thị
+    document.getElementById('shubResultSummary').style.display = 'none';
+    document.getElementById('btnSubmitQuiz').style.display = 'block';
 };
+
+// === INIT QUESTION PALETTE (SHUB) ===
+function initQuestionPalette(questions) {
+    const palette = document.getElementById('questionPalette');
+    if (!palette) return;
+    palette.innerHTML = '';
+    questions.forEach((q, idx) => {
+        const btn = document.createElement('div');
+        btn.className = 'shub-palette-btn';
+        btn.id = `palette-btn-${q.id}`;
+        btn.textContent = idx + 1; // Hiển thị số thứ tự
+        
+        // Click để scroll tới câu hỏi
+        btn.onclick = () => {
+            const qEl = document.getElementById(`q-block-${q.id}`);
+            if (qEl) {
+                qEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // Highlight tạm thời
+                document.querySelectorAll('.shub-palette-btn').forEach(b => b.classList.remove('active-q'));
+                btn.classList.add('active-q');
+            }
+        };
+        palette.appendChild(btn);
+    });
+}
+
+function updatePalette(questionId, letter, isCorrect = null) {
+    const btn = document.getElementById(`palette-btn-${questionId}`);
+    if (!btn) return;
+    
+    // Nếu có tham số isCorrect (dành cho chế độ xem kết quả)
+    if (isCorrect !== null) {
+        btn.classList.remove('answered', 'active-q');
+        if (isCorrect) {
+            btn.classList.add('res-correct');
+        } else {
+            btn.classList.add('res-wrong');
+        }
+        return;
+    }
+
+    // Chế độ đang làm bài
+    if (letter) {
+        btn.classList.add('answered');
+        const qIndex = Array.from(btn.parentNode.children).indexOf(btn) + 1;
+        btn.textContent = `${qIndex}:${letter}`;
+    } else {
+        btn.classList.remove('answered');
+        const qIndex = Array.from(btn.parentNode.children).indexOf(btn) + 1;
+        btn.textContent = qIndex;
+    }
+}
 
 // === KIẾN TẠO GIAO DIỆN CÂU HỎI TRONG ĐỀ ===
 function renderQuestions() {
@@ -309,6 +367,7 @@ function renderQuestions() {
 
         const qBlock = document.createElement('div');
         qBlock.className = 'question-card';
+        qBlock.id = `q-block-${q.id}`;
 
         const qTitle = document.createElement('h4');
         const qNumDisplay = q.qNumber || sectionQuestionIndex;
@@ -342,19 +401,41 @@ function renderQuestions() {
 
         if (qType === 'multiple_choice' || qType === 'true_false') {
             const opts = qType === 'true_false' ? ["Đúng", "Sai"] : (Array.isArray(q.options) ? q.options : []);
+            const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
             opts.forEach((opt, optIndex) => {
                 const label = document.createElement('label');
-                label.className = 'option-label';
+                label.className = 'shub-option-label';
+                
+                const letter = letters[optIndex] || '';
                 label.innerHTML = `
                     <input type="radio" name="question_${q.id}" value="${optIndex}">
-                    <span>${opt}</span>
+                    <div class="shub-opt-letter">${letter}</div>
+                    <div class="shub-opt-text">${opt}</div>
+                    <button type="button" class="shub-clear-btn" title="Hủy chọn">✕</button>
                 `;
+                
                 const radio = label.querySelector('input');
+                const clearBtn = label.querySelector('.shub-clear-btn');
+                
                 radio.addEventListener('change', () => {
+                    optionsList.querySelectorAll('.shub-option-label').forEach(l => l.classList.remove('selected'));
+                    if (radio.checked) {
+                        label.classList.add('selected');
+                        updatePalette(q.id, letter);
+                    }
                     if (quizForm.dataset.quizMode === 'practice') {
                         highlightAnswer(q, optionsList);
                     }
                 });
+
+                clearBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    radio.checked = false;
+                    label.classList.remove('selected');
+                    updatePalette(q.id, null);
+                });
+
                 optionsList.appendChild(label);
             });
         } else if (qType === 'true_false_group') {
@@ -533,39 +614,58 @@ function showReviewMode(qs) {
 
 function renderResults(correct, incorrect, unanswered) {
     const total = correct + incorrect + unanswered;
-    document.getElementById('scoreText').textContent = `${correct}/${total}`;
-    document.getElementById('correctCount').textContent = correct;
-    document.getElementById('incorrectCount').textContent = incorrect;
-    document.getElementById('unansweredCount').textContent = unanswered;
+    const score = total > 0 ? ((correct / total) * 10).toFixed(2) : 0;
+    
+    // Cập nhật Result Summary (SHub clone)
+    document.getElementById('shubScoreText').textContent = score;
+    document.getElementById('shubCorrect').textContent = correct;
+    document.getElementById('shubIncorrect').textContent = incorrect;
+    document.getElementById('shubUnanswered').textContent = unanswered;
 
-    const percentage = (correct / total) * 100;
-    const unansweredPercentage = (unanswered / total) * 100;
-    const circle = document.querySelector('.score-circle');
+    document.getElementById('shubResultSummary').style.display = 'block';
+    
+    const timerBox = document.getElementById('shubTimerBox');
+    if (timerBox) timerBox.style.display = 'none';
 
-    if (circle) {
-        if (total === 0) {
-            circle.style.backgroundImage = 'none';
-            circle.style.backgroundColor = '#E5E7EB';
-        } else {
-            const correctPct = (correct / total) * 100;
-            const incorrectPct = (incorrect / total) * 100;
+    const submitBtn = document.getElementById('btnSubmitQuiz');
+    if (submitBtn) submitBtn.style.display = 'none';
 
-            // Sử dụng backgroundImage để đảm bảo độ tương thích cao nhất
-            circle.style.backgroundImage = `conic-gradient(#10B981 0% ${correctPct}%, #EF4444 ${correctPct}% ${correctPct + incorrectPct}%, #F59E0B ${correctPct + incorrectPct}% 100%)`;
-        }
+    const leaveBtn = document.getElementById('btnLeaveQuiz');
+    if (leaveBtn) {
+        leaveBtn.textContent = 'Trở về danh sách';
+        leaveBtn.onclick = () => {
+            showView('list');
+            initQuizList();
+        };
     }
-
-    showView('result');
 }
 
 // === CÁC TIỆN ÍCH KHÁC (LOAD/SAVE/UI) ===
 function highlightAnswer(q, optionsList) {
     const inputs = optionsList.querySelectorAll('input');
     inputs.forEach((input, idx) => {
-        const label = input.closest('label');
-        label.classList.remove('correct-answer', 'wrong-answer');
-        if (idx === parseInt(q.correctIndex)) label.classList.add('correct-answer');
-        else if (input.checked) label.classList.add('wrong-answer');
+        const label = input.closest('label.shub-option-label') || input.closest('label');
+        if (label) {
+            label.classList.remove('correct-answer', 'wrong-answer', 'correct', 'wrong');
+            const isCorrectOption = idx === parseInt(q.correctIndex);
+            
+            if (isCorrectOption) {
+                label.classList.add('correct');
+            } else if (input.checked) {
+                label.classList.add('wrong');
+            }
+            
+            // Cập nhật luôn cho Palette nếu đang chấm điểm
+            if (input.checked) {
+                updatePalette(q.id, null, isCorrectOption);
+            } else if (isCorrectOption) {
+                // Nếu người dùng không chọn gì, mà câu này đúng thì set palette là sai (màu đỏ)
+                const isAnyChecked = Array.from(inputs).some(i => i.checked);
+                if (!isAnyChecked) {
+                    updatePalette(q.id, null, false);
+                }
+            }
+        }
     });
 }
 
