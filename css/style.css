@@ -1,4 +1,4 @@
-﻿:root {
+:root {
     --primary: #4F46E5; /* Indigo 600 - MÃƒÂ u giÃƒÂ¡o dÃ¡Â»Â¥c, Ã„â€˜ÃƒÂ¡ng tin cÃ¡ÂºÂ­y */
     --primary-hover: #4338CA;
     --secondary: #10B981; /* Emerald 500 - Ã„ÂÃƒÂºng */
@@ -1403,24 +1403,23 @@ body {
    SHUB CLASSROOM CLONE STYLES (v50)
    ============================================================ */
 
-/* Layout Chia cá»™t 70/30 */
-.view-section.shub-layout.active {
-    display: flex !important; /* Ghi Ä‘Ã¨ display: block cá»§a .view-section.active */
-}
 .shub-layout {
-    display: flex;
+    display: none !important; /* Mặc định ẩn tất cả */
     gap: 24px;
     max-width: 1280px;
     margin: 0 auto;
     align-items: flex-start;
     padding-bottom: 40px;
 }
+.view-section.shub-layout.active {
+    display: flex !important; /* Ghi đè ẩn khi đã active */
+}
 .shub-main {
-    flex: 7; /* Chia 7 pháº§n */
+    flex: 7;
     min-width: 0;
 }
 .shub-sidebar {
-    flex: 3; /* Chia 3 pháº§n */
+    flex: 3;
     position: sticky;
     top: 24px;
     display: flex;
@@ -1438,7 +1437,7 @@ body {
     margin-bottom: 24px;
 }
 
-/* CÃƒÂ¢u hÃ¡Â»Âi Card */
+/* Câu hỏi Card */
 .question-card {
     background: white;
     border-radius: 12px;
@@ -1448,14 +1447,14 @@ body {
     margin-bottom: 20px;
 }
 .question-card h4 {
-    color: #1976d2; /* MÃƒÂ u xanh SHub */
+    color: #1976d2;
     font-size: 1.05rem;
     font-weight: 700;
     margin-bottom: 16px;
     line-height: 1.6;
 }
 
-/* HÃ¡Â»â„¢p Ã„â€˜ÃƒÂ¡p ÃƒÂ¡n chuÃ¡ÂºÂ©n SHub */
+/* Hộp đáp án chuẩn SHub */
 .options-list {
     display: flex;
     flex-direction: column;
@@ -1474,7 +1473,7 @@ body {
     padding: 0;
 }
 .shub-option-label input[type="radio"] {
-    display: none; /* Ã¡ÂºÂ¨n radio mÃ¡ÂºÂ·c Ã„â€˜Ã¡Â»â€¹nh */
+    display: none;
 }
 .shub-opt-letter {
     display: flex;
@@ -1498,7 +1497,7 @@ body {
     line-height: 1.5;
 }
 
-/* TrÃ¡ÂºÂ¡ng thÃƒÂ¡i Ã„â€˜Ã†Â°Ã¡Â»Â£c chÃ¡Â»Ân (Selected) */
+/* Trạng thái được chọn */
 .shub-option-label.selected {
     border: 2px solid #1976d2;
     background: rgba(25, 118, 210, 0.04);
@@ -1508,9 +1507,9 @@ body {
     color: white;
     border-right-color: #1976d2;
 }
-/* GÃƒÂ³c gÃ¡ÂºÂ¥p tam giÃƒÂ¡c Ã„â€˜Ã¡ÂºÂ·c trÃ†Â°ng cÃ¡Â»Â§a SHub */
+/* Góc gấp tam giác đặc trưng của SHub */
 .shub-option-label.selected::after {
-    content: "Ã¢Å“â€œ";
+    content: "✓";
     position: absolute;
     bottom: 0;
     right: 0;
@@ -1526,7 +1525,7 @@ body {
     z-index: 2;
 }
 
-/* TrÃ¡ÂºÂ¡ng thÃƒÂ¡i Xem kÃ¡ÂºÂ¿t quÃ¡ÂºÂ£ (Review Mode) */
+/* Trạng thái Xem kết quả */
 .shub-option-label.correct {
     border: 2px solid #2e7d32 !important;
     background: rgba(46, 125, 50, 0.05) !important;
@@ -1537,7 +1536,7 @@ body {
     border-right-color: #2e7d32 !important;
 }
 .shub-option-label.correct::after {
-    content: "Ã¢Å“â€œ" !important;
+    content: "✓" !important;
     border-bottom-color: #2e7d32 !important;
     border-left-color: transparent !important;
 }
@@ -1552,7 +1551,7 @@ body {
     border-right-color: #d32f2f !important;
 }
 
-/* NÃƒÂºt xÃƒÂ³a lÃ¡Â»Â±a chÃ¡Â»Ân mÃ¡Â»Â mÃ¡Â»Â Ã¡Â»Å¸ gÃƒÂ³c */
+/* Nút xóa lựa chọn mờ mờ ở góc */
 .shub-clear-btn {
     position: absolute;
     right: 12px;
@@ -1630,23 +1629,37 @@ body {
     user-select: none;
 }
 .shub-palette-btn:hover { border-color: #9ca3af; background: #f3f4f6; }
-/* Ã„ÂÃƒÂ£ chÃ¡Â»Ân Ã„â€˜ÃƒÂ¡p ÃƒÂ¡n */
+/* Đã chọn đáp án */
 .shub-palette-btn.answered {
     background: #e0f2fe;
     border-color: #38bdf8;
     color: #0369a1;
 }
-/* Ã„Âang cuÃ¡Â»â„¢n Ã„â€˜Ã¡ÂºÂ¿n cÃƒÂ¢u nÃƒÂ y */
+/* Đang cuộn đến câu này */
 .shub-palette-btn.active-q {
     border: 2px solid #1976d2;
 }
-/* TrÃ¡ÂºÂ¡ng thÃƒÂ¡i Ã„â€˜ÃƒÂºng sai */
+/* Trạng thái đúng sai */
 .shub-palette-btn.res-correct { background: #dcfce7; border-color: #4ade80; color: #166534; }
 .shub-palette-btn.res-wrong { background: #fee2e2; border-color: #f87171; color: #991b1b; }
 
 .shub-sidebar-footer {
     display: flex;
     gap: 12px;
+}
+.shub-timer-box {
+    background: #1976d2;
+    color: white;
+    padding: 16px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 6px rgba(25, 118, 210, 0.3);
+    margin-bottom: 16px;
 }
 .btn-shub-leave {
     flex: 1;
@@ -1675,7 +1688,7 @@ body {
 }
 .btn-shub-submit:hover { background: #1565c0; transform: translateY(-1px); }
 
-/* BÃ¡ÂºÂ£ng kÃ¡ÂºÂ¿t quÃ¡ÂºÂ£ Sidebar */
+/* Bảng kết quả Sidebar */
 .shub-result-card {
     background: white;
     border-radius: 12px;
@@ -1701,7 +1714,7 @@ body {
     .shub-sidebar {
         width: 100%;
         position: static;
-        order: -1; /* Ã„ÂÃ†Â°a sidebar lÃƒÂªn trÃƒÂªn Ã¡Â»Å¸ Mobile */
+        order: -1; /* Đưa sidebar lên trên ở Mobile */
         margin-bottom: 20px;
     }
     .shub-palette {

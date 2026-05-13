@@ -285,18 +285,14 @@ document.getElementById('btnConfirmStart').onclick = async function () {
     // Cập nhật lại UI sau khi hiển thị
     const timerBox = document.getElementById('shubTimerBox');
     if (timerBox) timerBox.style.display = 'flex';
+    document.getElementById('shubResultSummary').style.display = 'none';
+    document.getElementById('btnSubmitQuiz').style.display = 'block';
+    
+    // Reset nút rời khỏi về trạng thái đang làm bài
     const leaveBtn = document.getElementById('btnLeaveQuiz');
     if (leaveBtn) {
         leaveBtn.textContent = 'Rời khỏi';
-        leaveBtn.onclick = () => {
-            if (confirm("Bạn có chắc chắn muốn rời khỏi bài thi? Tiến trình sẽ không được lưu.")) {
-                stopTimer();
-                showView('list');
-            }
-        };
     }
-    document.getElementById('shubResultSummary').style.display = 'none';
-    document.getElementById('btnSubmitQuiz').style.display = 'block';
 };
 
 // === TIMER FUNCTIONS ===
@@ -673,10 +669,6 @@ function renderResults(correct, incorrect, unanswered) {
     const leaveBtn = document.getElementById('btnLeaveQuiz');
     if (leaveBtn) {
         leaveBtn.textContent = 'Trở về danh sách';
-        leaveBtn.onclick = () => {
-            showView('list');
-            initQuizList();
-        };
     }
 }
 
@@ -853,6 +845,23 @@ document.addEventListener('DOMContentLoaded', () => {
     initQuizList();
 
     // --- ĐIỀU HƯỚNG ---
+    const btnLeaveQuiz = document.getElementById('btnLeaveQuiz');
+    if (btnLeaveQuiz) {
+        btnLeaveQuiz.onclick = () => {
+            // Nếu đang ở trạng thái xem kết quả (nút ghi là "Trở về danh sách")
+            if (btnLeaveQuiz.textContent.includes("Trở về")) {
+                showView('list');
+                initQuizList();
+            } else {
+                // Đang làm bài dở
+                if (confirm("Bạn có chắc chắn muốn rời khỏi bài thi? Tiến trình sẽ không được lưu.")) {
+                    stopTimer();
+                    showView('list');
+                }
+            }
+        };
+    }
+
     const navButtons = {
         'btnBackToMenu': 'list',
         'btnBackFromSetup': 'list',
@@ -878,16 +887,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const btnReview = document.getElementById('btnReview');
     if (btnReview) btnReview.onclick = () => showView('active');
-
-    const btnLeaveQuiz = document.getElementById('btnLeaveQuiz');
-    if (btnLeaveQuiz) {
-        btnLeaveQuiz.onclick = () => {
-            if (confirm("Bạn có chắc chắn muốn rời khỏi bài thi? Tiến trình sẽ không được lưu.")) {
-                stopTimer();
-                showView('list');
-            }
-        };
-    }
 
     // --- QUYỀN ADMIN ẨN ---
     let adminClickCount = 0;
