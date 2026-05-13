@@ -22,6 +22,8 @@ const dbRT = getDatabase(app);
 // === TRẠNG THÁI (STATE) ===
 let currentQuiz = null;
 let userAnswers = {};
+let quizTimerInterval = null;
+let quizStartTime = null;
 
 // === PHẦN TỬ DOM ===
 const views = {
@@ -278,11 +280,48 @@ document.getElementById('btnConfirmStart').onclick = async function () {
     renderQuestions();
     initQuestionPalette(currentQuiz.renderedQuestions || currentQuiz.questions);
     showView('active');
+    startTimer(); // Bắt đầu tính giờ từ đây
 
     // Cập nhật lại UI sau khi hiển thị
+    const timerBox = document.getElementById('shubTimerBox');
+    if (timerBox) timerBox.style.display = 'flex';
+    const leaveBtn = document.getElementById('btnLeaveQuiz');
+    if (leaveBtn) {
+        leaveBtn.textContent = 'Rời khỏi';
+        leaveBtn.onclick = () => {
+            if (confirm("Bạn có chắc chắn muốn rời khỏi bài thi? Tiến trình sẽ không được lưu.")) {
+                stopTimer();
+                showView('list');
+            }
+        };
+    }
     document.getElementById('shubResultSummary').style.display = 'none';
     document.getElementById('btnSubmitQuiz').style.display = 'block';
 };
+
+// === TIMER FUNCTIONS ===
+function startTimer() {
+    stopTimer(); // Đảm bảo không có timer nào đang chạy
+    quizStartTime = Date.now();
+    const timerDisplay = document.getElementById('quizTimer');
+    if (!timerDisplay) return;
+    
+    timerDisplay.textContent = "00:00";
+    
+    quizTimerInterval = setInterval(() => {
+        const elapsed = Math.floor((Date.now() - quizStartTime) / 1000);
+        const minutes = Math.floor(elapsed / 60).toString().padStart(2, '0');
+        const seconds = (elapsed % 60).toString().padStart(2, '0');
+        timerDisplay.textContent = `${minutes}:${seconds}`;
+    }, 1000);
+}
+
+function stopTimer() {
+    if (quizTimerInterval) {
+        clearInterval(quizTimerInterval);
+        quizTimerInterval = null;
+    }
+}
 
 // === INIT QUESTION PALETTE (SHUB) ===
 function initQuestionPalette(questions) {
@@ -613,6 +652,7 @@ function showReviewMode(qs) {
 }
 
 function renderResults(correct, incorrect, unanswered) {
+    stopTimer(); // Dừng tính giờ khi nộp bài
     const total = correct + incorrect + unanswered;
     const score = total > 0 ? ((correct / total) * 10).toFixed(2) : 0;
     
@@ -820,7 +860,10 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     Object.entries(navButtons).forEach(([id, view]) => {
         const btn = document.getElementById(id);
-        if (btn) btn.onclick = () => showView(view);
+        if (btn) btn.onclick = () => {
+            if (id === 'btnBackToMenu') stopTimer(); // Dừng timer nếu đang làm dở mà thoát
+            showView(view);
+        };
     });
 
     const btnRetry = document.getElementById('btnRetry');
@@ -835,6 +878,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const btnReview = document.getElementById('btnReview');
     if (btnReview) btnReview.onclick = () => showView('active');
+
+    const btnLeaveQuiz = document.getElementById('btnLeaveQuiz');
+    if (btnLeaveQuiz) {
+        btnLeaveQuiz.onclick = () => {
+            if (confirm("Bạn có chắc chắn muốn rời khỏi bài thi? Tiến trình sẽ không được lưu.")) {
+                stopTimer();
+                showView('list');
+            }
+        };
+    }
 
     // --- QUYỀN ADMIN ẨN ---
     let adminClickCount = 0;
