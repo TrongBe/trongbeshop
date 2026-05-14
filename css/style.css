@@ -2401,41 +2401,60 @@ body {
     font-size: 0.95rem;
 }
 
-/* Responsive Mobile */
-@media (max-width: 992px) {
-    .shub-layout {
-        flex-direction: column;
+/* ============================================================
+   RESPONSIVE & FINAL FIXES
+   ============================================================ */
+
+/* Mobile (Tablet & Phone) */
+@media (max-width: 1024px) {
+    .shub-main { 
+        padding-right: 0 !important; 
     }
 
-    .shub-main {
-        padding-right: 0 !important;
+    .shub-sidebar { 
+        position: fixed !important;
+        right: 10px !important; 
+        top: auto !important;
+        bottom: 80px !important; /* Floating bubble */
+        width: 280px !important;
+        z-index: 2500 !important;
+        max-height: 60vh !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+        background: white !important;
     }
 
-    .shub-sidebar {
-        width: 280px;
-        position: fixed;
-        right: 10px;
-        top: auto;
-        bottom: 80px; /* Floating above the bottom */
-        z-index: 2000;
-        max-height: 60vh;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-    
     .shub-sidebar.minimized {
-        bottom: 20px;
-        right: 20px;
+        bottom: 20px !important;
+        right: 20px !important;
     }
 
     .shub-palette {
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(5, 1fr) !important;
+    }
+
+    .question-card {
+        padding: 16px !important;
     }
 }
 
-.question-card img {
+/* Image Fix for All Devices */
+.question-card img, 
+#questionsContainer img {
     max-width: 100% !important;
     height: auto !important;
-    display: block;
-    margin: 15px auto;
+    display: block !important;
+    margin: 15px auto !important;
+    object-fit: contain !important;
 }
+
+/* Reset any stray styles that might be breaking the UI */
+.shub-timer-box, .shub-palette-header {
+    background: #1976d2 !important;
+    color: white !important;
+}
+
+.shub-palette-btn {
+    border: 1px solid #d1d5db !important;
+}
+
 
