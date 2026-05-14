@@ -2401,12 +2401,41 @@ body {
     font-size: 0.95rem;
 }
 
+/* Responsive Mobile */
 @media (max-width: 992px) {
-    .shub-layout { flex-direction: column; }
-    .shub-sidebar { 
-        width: 100%; 
-        position: static;
-        order: -1;
-        margin-bottom: 20px;
+    .shub-layout {
+        flex-direction: column;
     }
-}
+
+    .shub-main {
+        padding-right: 0 !important;
+    }
+
+    .shub-sidebar {
+        width: 280px;
+        position: fixed;
+        right: 10px;
+        top: auto;
+        bottom: 80px; /* Floating above the bottom */
+        z-index: 2000;
+        max-height: 60vh;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    
+    .shub-sidebar.minimized {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .shub-palette {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+.question-card img {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block;
+    margin: 15px auto;
+}
+
