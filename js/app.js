@@ -62,6 +62,7 @@ function showView(viewName) {
     views[viewName].classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+window.showView = showView;
 
 // === TẠO GIAO DIỆN DANH SÁCH ĐỀ ===
 function initQuizList() {
@@ -107,6 +108,7 @@ function initQuizList() {
         quizListContainer.appendChild(card);
     });
 }
+window.initQuizList = initQuizList;
 
 function isQuizOwner(id) {
     if (localStorage.getItem("admin_secret_key") === "trongbeshop") return true;
@@ -186,6 +188,23 @@ window.openChangelog = function () {
 };
 window.closeChangelog = function () {
     document.getElementById("changelogModal").style.display = "none";
+};
+window.toggleSidebar = function() {
+    const sidebar = document.getElementById('sidebarMenu');
+    const overlay = document.getElementById('sidebarOverlay');
+    if (sidebar.classList.contains('active')) {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+        setTimeout(() => {
+            overlay.style.display = 'none';
+        }, 300);
+    } else {
+        overlay.style.display = 'block';
+        setTimeout(() => {
+            overlay.classList.add('active');
+            sidebar.classList.add('active');
+        }, 10);
+    }
 };
 
 // === HÀM ĐẢO CÂU HỎI THEO PHẦN ===
@@ -580,6 +599,7 @@ function renderQuestions() {
         });
     }
 }
+window.renderQuestions = renderQuestions;
 
 // === CHẤM ĐIỂM (RESTORED v46) ===
 quizForm.onsubmit = function (e) {

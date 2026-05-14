@@ -2,7 +2,7 @@
  * SHUB-AI: TRỢ LÝ GIẢNG GIẢI & TRÌNH TẠO ĐỀ THI
  * Tích hợp Gemini 2.0 Flash / 3.0 Flash
  */
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
 
 // Lấy API Key từ gemini.js (giả sử được export hoặc dùng chung logic)
 const _K = [
