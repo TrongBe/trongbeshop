@@ -315,8 +315,9 @@ document.getElementById('btnConfirmStart').onclick = async function () {
 
 // === TIMER FUNCTIONS ===
 function startTimer() {
-    stopTimer(); // Đảm bảo không có timer nào đang chạy
+    stopTimer(); 
     quizStartTime = Date.now();
+    sessionStorage.setItem('shub_quiz_start_time', quizStartTime);
     const timerDisplay = document.getElementById('quizTimer');
     if (!timerDisplay) return;
     
@@ -684,9 +685,10 @@ function renderResults(correct, incorrect, unanswered) {
     }
     
     // Hiển thị thời gian làm bài
-    if (quizStartTime) {
+    const savedStartTime = sessionStorage.getItem('shub_quiz_start_time') || quizStartTime;
+    if (savedStartTime) {
         const endTime = Date.now();
-        const diff = Math.floor((endTime - quizStartTime) / 1000);
+        const diff = Math.floor((endTime - parseInt(savedStartTime)) / 1000);
         const mins = Math.floor(diff / 60);
         const secs = diff % 60;
         const timeStr = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
