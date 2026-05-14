@@ -2056,10 +2056,10 @@ body {
 
 
 /* ============================================================
-   SHUB CLASSROOM CLONE STYLES (v50)
+   tronex CLASSROOM CLONE STYLES (v50)
    ============================================================ */
 
-.shub-layout {
+.tronex-layout {
     display: none !important;
     gap: 24px;
     max-width: 1280px;
@@ -2068,18 +2068,18 @@ body {
     padding: 0 20px 40px;
 }
 
-.view-section.shub-layout.active {
+.view-section.tronex-layout.active {
     display: flex !important;
 }
 
-.shub-main {
+.tronex-main {
     flex: 1;
     min-width: 0;
     padding-right: 350px;
     /* Nhường chỗ cho sidebar floating trên Desktop */
 }
 
-.shub-sidebar {
+.tronex-sidebar {
     position: fixed;
     right: 20px;
     top: 80px;
@@ -2097,7 +2097,7 @@ body {
     max-height: 85vh;
 }
 
-.shub-sidebar.minimized {
+.tronex-sidebar.minimized {
     width: 64px;
     height: 64px;
     border-radius: 32px;
@@ -2106,11 +2106,11 @@ body {
     cursor: move;
 }
 
-.shub-sidebar.minimized .shub-sidebar-content {
+.tronex-sidebar.minimized .tronex-sidebar-content {
     display: none;
 }
 
-.shub-sidebar-handle {
+.tronex-sidebar-handle {
     height: 24px;
     background: #f8fafc;
     border-radius: 16px 16px 0 0;
@@ -2121,7 +2121,7 @@ body {
     border-bottom: 1px solid #f1f5f9;
 }
 
-.shub-sidebar-handle::before {
+.tronex-sidebar-handle::before {
     content: "";
     width: 32px;
     height: 4px;
@@ -2129,7 +2129,7 @@ body {
     border-radius: 2px;
 }
 
-.shub-sidebar-content {
+.tronex-sidebar-content {
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -2138,7 +2138,7 @@ body {
     flex: 1;
 }
 
-.shub-sidebar-toggle-btn {
+.tronex-sidebar-toggle-btn {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -2156,11 +2156,11 @@ body {
     cursor: pointer;
 }
 
-.shub-sidebar.minimized .shub-sidebar-toggle-btn {
+.tronex-sidebar.minimized .tronex-sidebar-toggle-btn {
     display: flex;
 }
 
-.shub-sidebar-minimize-trigger {
+.tronex-sidebar-minimize-trigger {
     position: absolute;
     top: 4px;
     right: 12px;
@@ -2171,16 +2171,16 @@ body {
     transition: color 0.2s;
 }
 
-.shub-sidebar-minimize-trigger:hover {
+.tronex-sidebar-minimize-trigger:hover {
     color: #ef4444;
 }
 
 @media (max-width: 1024px) {
-    .shub-main {
+    .tronex-main {
         padding-right: 0;
     }
 
-    .shub-sidebar {
+    .tronex-sidebar {
         position: fixed;
         right: 10px;
         top: 80px;
@@ -2233,7 +2233,7 @@ body {
     gap: 12px;
 }
 
-.shub-option-label {
+.tronex-option-label {
     position: relative;
     display: flex;
     align-items: center;
@@ -2245,11 +2245,11 @@ body {
     background: white;
 }
 
-.shub-option-label input[type="radio"] {
+.tronex-option-label input[type="radio"] {
     display: none;
 }
 
-.shub-opt-letter {
+.tronex-opt-letter {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2262,7 +2262,7 @@ body {
     align-self: stretch;
 }
 
-.shub-opt-text {
+.tronex-opt-text {
     flex: 1;
     padding: 12px 16px;
     font-size: 1rem;
@@ -2270,7 +2270,7 @@ body {
 }
 
 /* Nút xóa lựa chọn - Chỉ hiện khi đã chọn */
-.shub-clear-btn {
+.tronex-clear-btn {
     position: absolute;
     right: 35px;
     /* Để không bị đè bởi góc gấp */
@@ -2292,27 +2292,27 @@ body {
     transition: all 0.2s;
 }
 
-.shub-option-label.selected .shub-clear-btn {
+.tronex-option-label.selected .tronex-clear-btn {
     display: flex;
 }
 
-.shub-clear-btn:hover {
+.tronex-clear-btn:hover {
     background: #fee2e2;
     transform: translateY(-50%) scale(1.1);
 }
 
-.shub-option-label.selected {
+.tronex-option-label.selected {
     border: 2px solid #1976d2;
     background: rgba(25, 118, 210, 0.04);
 }
 
 
-.shub-option-label.selected .shub-opt-letter {
+.tronex-option-label.selected .tronex-opt-letter {
     background: #1976d2;
     color: white;
 }
 
-.shub-option-label.selected::after {
+.tronex-option-label.selected::after {
     content: "✓";
     position: absolute;
     bottom: 0;
@@ -2326,35 +2326,35 @@ body {
 }
 
 /* Results State */
-.shub-option-label.correct {
+.tronex-option-label.correct {
     border: 2px solid #2e7d32 !important;
     background: rgba(46, 125, 50, 0.05) !important;
 }
 
-.shub-option-label.correct .shub-opt-letter {
+.tronex-option-label.correct .tronex-opt-letter {
     background: #2e7d32 !important;
     color: white !important;
 }
 
-.shub-option-label.wrong {
+.tronex-option-label.wrong {
     border: 2px solid #d32f2f !important;
     background: rgba(211, 47, 47, 0.05) !important;
 }
 
-.shub-option-label.wrong .shub-opt-letter {
+.tronex-option-label.wrong .tronex-opt-letter {
     background: #d32f2f !important;
     color: white !important;
 }
 
 /* Palette */
-.shub-palette-container {
+.tronex-palette-container {
     background: white;
     border-radius: 12px;
     border: 1px solid #e5e7eb;
     overflow: hidden;
 }
 
-.shub-palette-header {
+.tronex-palette-header {
     background: #f8fafc;
     padding: 14px;
     font-weight: 700;
@@ -2362,7 +2362,7 @@ body {
     border-bottom: 1px solid #e5e7eb;
 }
 
-.shub-palette {
+.tronex-palette {
     padding: 16px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -2371,7 +2371,7 @@ body {
     overflow-y: auto;
 }
 
-.shub-palette-btn {
+.tronex-palette-btn {
     aspect-ratio: 1;
     display: flex;
     align-items: center;
@@ -2384,29 +2384,29 @@ body {
     cursor: pointer;
 }
 
-.shub-palette-btn.answered {
+.tronex-palette-btn.answered {
     background: #e0f2fe;
     border-color: #38bdf8;
     color: #0369a1;
 }
 
-.shub-palette-btn.active-q {
+.tronex-palette-btn.active-q {
     border: 2px solid #1976d2;
 }
 
-.shub-palette-btn.res-correct {
+.tronex-palette-btn.res-correct {
     background: #dcfce7;
     border-color: #4ade80;
     color: #166534;
 }
 
-.shub-palette-btn.res-wrong {
+.tronex-palette-btn.res-wrong {
     background: #fee2e2;
     border-color: #f87171;
     color: #991b1b;
 }
 
-.shub-timer-box {
+.tronex-timer-box {
     background: #1976d2;
     color: white;
     padding: 16px;
@@ -2417,14 +2417,14 @@ body {
     margin-bottom: 16px;
 }
 
-.shub-sidebar-footer {
+.tronex-sidebar-footer {
     display: flex;
     gap: 12px;
     padding: 0 16px 16px;
 }
 
-.btn-shub-leave,
-.btn-shub-submit {
+.btn-tronex-leave,
+.btn-tronex-submit {
     padding: 14px;
     border-radius: 8px;
     font-weight: 600;
@@ -2432,14 +2432,14 @@ body {
     border: 1px solid #d1d5db;
 }
 
-.btn-shub-submit {
+.btn-tronex-submit {
     flex: 2;
     background: #1976d2;
     color: white;
     border: none;
 }
 
-.shub-result-card {
+.tronex-result-card {
     background: white;
     border-radius: 12px;
     padding: 20px;
@@ -2447,13 +2447,13 @@ body {
     text-align: center;
 }
 
-.shub-score {
+.tronex-score {
     font-size: 2.5rem;
     font-weight: 800;
     color: #1976d2;
 }
 
-.shub-stats {
+.tronex-stats {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -2467,19 +2467,19 @@ body {
     margin-bottom: 4px;
 }
 
-#shubCorrect {
+#tronexCorrect {
     color: #2e7d32;
 }
 
-#shubIncorrect {
+#tronexIncorrect {
     color: #d32f2f;
 }
 
-#shubUnanswered {
+#tronexUnanswered {
     color: #f59e0b;
 }
 
-#shubTimeSpent {
+#tronexTimeSpent {
     color: #6366f1;
 }
 
@@ -2490,11 +2490,11 @@ body {
 
 /* Mobile (Tablet & Phone) */
 @media (max-width: 1024px) {
-    .shub-main {
+    .tronex-main {
         padding-right: 0 !important;
     }
 
-    .shub-sidebar {
+    .tronex-sidebar {
         position: fixed !important;
         right: 10px !important;
         top: auto !important;
@@ -2507,12 +2507,12 @@ body {
         background: white !important;
     }
 
-    .shub-sidebar.minimized {
+    .tronex-sidebar.minimized {
         bottom: 20px !important;
         right: 20px !important;
     }
 
-    .shub-palette {
+    .tronex-palette {
         grid-template-columns: repeat(5, 1fr) !important;
     }
 
@@ -2532,8 +2532,8 @@ body {
 }
 
 /* Reset any stray styles that might be breaking the UI */
-.shub-timer-box,
-.shub-palette-header {
+.tronex-timer-box,
+.tronex-palette-header {
     background: #1976d2 !important;
     color: white !important;
 }
@@ -2906,3 +2906,175 @@ body {
             transform: translateX(-50%) !important;
         }
     }
+/* ============================================================
+   TRONEX PORTAL STYLES (v2 - PREMIUM)
+   ============================================================ */
+.hero-vnu {
+    height: 90vh !important;
+    background: linear-gradient(rgba(0, 74, 153, 0.9), rgba(15, 23, 42, 0.95)), 
+                url('../university_campus_hero_1778785364778.png') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.hero-vnu::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
+    background-size: 30px 30px;
+    pointer-events: none;
+}
+
+.hero-split {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+    height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-left {
+    flex: 1;
+    color: white;
+}
+
+.hero-right {
+    flex: 0 0 420px;
+}
+
+.reg-form-card {
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    color: #1f2937;
+    position: relative;
+    z-index: 10;
+}
+
+.reg-form-card h3 {
+    background: #fbbf24;
+    color: #1e3a8a;
+    text-align: center;
+    padding: 15px;
+    margin: -35px -35px 25px;
+    border-radius: 20px 20px 0 0;
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.btn-reg-now {
+    width: 100%;
+    padding: 18px;
+    background: #0ea5e9;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.4);
+    transition: all 0.3s;
+}
+
+.btn-reg-now:hover {
+    transform: translateY(-2px);
+    background: #0284c7;
+}
+
+.form-note {
+    font-size: 0.8rem;
+    color: #ef4444;
+    margin-top: 15px;
+    font-weight: 500;
+    line-height: 1.4;
+    text-align: center;
+}
+
+/* Strengths Grid */
+.section-strengths {
+    padding: 100px 0;
+    background: white;
+}
+
+.strengths-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.strength-card {
+    background: #f8fafc;
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    transition: all 0.3s;
+    border: 1px solid #f1f5f9;
+}
+
+.strength-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    background: white;
+    border-color: #0ea5e9;
+}
+
+.strength-icon-box {
+    width: 65px;
+    height: 65px;
+    background: #0ea5e9;
+    color: white;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.strength-info h4 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: #1e3a8a;
+}
+
+.strength-info p {
+    font-size: 0.95rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+    .hero-split {
+        flex-direction: column;
+        text-align: center;
+        padding: 120px 0 60px;
+    }
+    .hero-left h1 { font-size: 3.5rem; }
+    .hero-right { width: 100%; max-width: 450px; }
+    .strengths-grid { grid-template-columns: 1fr; }
+}
+

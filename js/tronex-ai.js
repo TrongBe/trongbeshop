@@ -1,5 +1,5 @@
 /**
- * SHUB-AI: TRỢ LÝ GIẢNG GIẢI & TRÌNH TẠO ĐỀ THI
+ * tronex-AI: TRỢ LÝ GIẢNG GIẢI & TRÌNH TẠO ĐỀ THI
  * Tích hợp Gemini 2.0 Flash / 3.0 Flash
  */
 import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
@@ -15,7 +15,7 @@ const _K = [
 let _idx = 0;
 const gK = () => _K[_idx % _K.length];
 
-class ShubAI {
+class tronexAI {
     constructor() {
         this.chatContainer = document.getElementById('aiChatContainer');
         this.chatMessages = document.getElementById('aiChatMessages');
@@ -125,7 +125,7 @@ class ShubAI {
         document.body.style.overflow = 'hidden';
         
         // Đăng ký collector cho Gemini
-        window.__shubAICollector = (questions) => {
+        window.__tronexAICollector = (questions) => {
             questions.forEach(q => {
                 this.manualQuestions.push({
                     id: Date.now() + Math.random(),
@@ -143,7 +143,7 @@ class ShubAI {
     closeCreator() {
         this.creatorOverlay.style.display = 'none';
         document.body.style.overflow = '';
-        window.__shubAICollector = null;
+        window.__tronexAICollector = null;
     }
 
     addQuestion(type) {
@@ -214,9 +214,9 @@ class ShubAI {
         };
 
         // Lưu vào Local Storage (hoặc Firebase nếu đã login)
-        const localQuizzes = JSON.parse(localStorage.getItem('shub_local_quizzes') || '[]');
+        const localQuizzes = JSON.parse(localStorage.getItem('tronex_local_quizzes') || '[]');
         localQuizzes.push(newQuiz);
-        localStorage.setItem('shub_local_quizzes', JSON.stringify(localQuizzes));
+        localStorage.setItem('tronex_local_quizzes', JSON.stringify(localQuizzes));
 
         alert("Đã lưu đề thi thành công!");
         this.closeCreator();
@@ -226,7 +226,7 @@ class ShubAI {
 
 // Khởi tạo
 document.addEventListener('DOMContentLoaded', () => {
-    window.shubAI = new ShubAI();
+    window.tronexAI = new tronexAI();
 });
 
-export default ShubAI;
+export default tronexAI;

@@ -45,7 +45,7 @@
           <line x1="3" y1="18" x2="21" y2="18"></line>
         </svg>
       </button>
-      <h1>V-ACT - Học Tập Trực Tuyến</h1>
+      <h1>TRONEX - AI Learning Platform</h1>
       <p>"Uống nước nhớ nguồn"</p>
       <p>Vào làm bài nhớ đến Trọng Be</p>
     </div>
@@ -117,9 +117,9 @@
       </div>
     </div>
 
-    <!-- View: Đang làm bài / Xem lại bài (Chuẩn SHub) -->
-    <div id="activeQuizView" class="view-section shub-layout">
-      <div class="shub-main">
+    <!-- View: Đang làm bài / Xem lại bài (Chuẩn TRONEX) -->
+    <div id="activeQuizView" class="view-section tronex-layout">
+      <div class="tronex-main">
         <div class="quiz-header">
           <button id="btnBackToMenu" class="btn btn-text">← Quay lại danh sách</button>
           <h2 id="currentQuizTitle" class="section-title quiz-title">Đang tải...</h2>
@@ -131,44 +131,44 @@
         </form>
       </div>
 
-      <div class="shub-sidebar" id="shubSidebar">
-        <div class="shub-sidebar-handle" id="shubSidebarHandle"></div>
-        <div class="shub-sidebar-minimize-trigger" onclick="toggleMinimizeSidebar()">−</div>
-        <div class="shub-sidebar-toggle-btn" onclick="toggleMinimizeSidebar()">📝</div>
+      <div class="tronex-sidebar" id="tronexSidebar">
+        <div class="tronex-sidebar-handle" id="tronexSidebarHandle"></div>
+        <div class="tronex-sidebar-minimize-trigger" onclick="toggleMinimizeSidebar()">−</div>
+        <div class="tronex-sidebar-toggle-btn" onclick="toggleMinimizeSidebar()">📝</div>
 
-        <div class="shub-sidebar-content">
+        <div class="tronex-sidebar-content">
           <!-- Result Card (chỉ hiện khi xem lại bài) -->
-          <div id="shubResultSummary" class="shub-result-card" style="display:none">
-            <h3 class="shub-result-title">Kết quả làm bài</h3>
-            <div class="shub-score"><span id="shubScoreText">0</span> / 10</div>
-            <div class="shub-stats">
-              <div class="stat-item"><span class="stat-dot dot-correct"></span>Đúng: <strong id="shubCorrect">0</strong>
+          <div id="tronexResultSummary" class="tronex-result-card" style="display:none">
+            <h3 class="tronex-result-title">Kết quả làm bài</h3>
+            <div class="tronex-score"><span id="tronexScoreText">0</span> / 10</div>
+            <div class="tronex-stats">
+              <div class="stat-item"><span class="stat-dot dot-correct"></span>Đúng: <strong id="tronexCorrect">0</strong>
               </div>
-              <div class="stat-item"><span class="stat-dot dot-wrong"></span>Sai: <strong id="shubIncorrect">0</strong>
+              <div class="stat-item"><span class="stat-dot dot-wrong"></span>Sai: <strong id="tronexIncorrect">0</strong>
               </div>
-              <div class="stat-item"><span class="stat-dot dot-unanswered"></span>Chưa làm: <strong id="shubUnanswered">0</strong></div>
-              <div class="stat-item"><span class="stat-dot dot-timer" style="background: #6366f1;"></span>Thời gian: <strong id="shubTimeSpent">00:00</strong></div>
+              <div class="stat-item"><span class="stat-dot dot-unanswered"></span>Chưa làm: <strong id="tronexUnanswered">0</strong></div>
+              <div class="stat-item"><span class="stat-dot dot-timer" style="background: #6366f1;"></span>Thời gian: <strong id="tronexTimeSpent">00:00</strong></div>
             </div>
             </div>
             <button onclick="window.__publishPublicQuiz(__mockQuizzes.find(q=>q.id==='de_1_dgnl'))"
               class="btn btn-outline" style="width:100%; margin-top:10px; font-size:12px;">Đồng bộ lại Firebase</button>
           </div>
 
-          <div class="shub-timer-box" id="shubTimerBox">
+          <div class="tronex-timer-box" id="tronexTimerBox">
             <span class="timer-icon">⏱️</span>
             <span id="quizTimer">Thời gian làm bài</span>
           </div>
 
-          <div class="shub-palette-container">
-            <div class="shub-palette-header">Phiếu trả lời</div>
-            <div id="questionPalette" class="shub-palette">
+          <div class="tronex-palette-container">
+            <div class="tronex-palette-header">Phiếu trả lời</div>
+            <div id="questionPalette" class="tronex-palette">
               <!-- Lưới số câu hỏi sẽ được tạo bằng Javascript -->
             </div>
           </div>
 
-          <div class="shub-sidebar-footer">
-            <button type="button" class="btn-shub-leave" id="btnLeaveQuiz">Rời khỏi</button>
-            <button type="submit" form="quizForm" class="btn-shub-submit" id="btnSubmitQuiz">Nộp bài</button>
+          <div class="tronex-sidebar-footer">
+            <button type="button" class="btn-tronex-leave" id="btnLeaveQuiz">Rời khỏi</button>
+            <button type="submit" form="quizForm" class="btn-tronex-submit" id="btnSubmitQuiz">Nộp bài</button>
           </div>
         </div>
       </div>
@@ -473,7 +473,7 @@
     </div>
     <div class="footer-bottom">
       <p>Nguồn: <strong>Nguyễn Thanh Trọng</strong> | Phiên bản: <a href="javascript:void(0)" onclick="openChangelog()"
-          style="color: #6366f1; font-weight: 700; text-decoration: none;">v1.8</a></p>
+          style="color: #6366f1; font-weight: 700; text-decoration: none;">v1.8 - TRONEX</a></p>
     </div>
   </footer>
 
@@ -543,7 +543,7 @@
   </button>
 
   <script type="module" src="js/app.js?v=54"></script>
-  <script type="module" src="js/shub-ai.js?v=1"></script>
+  <script type="module" src="js/tronex-ai.js?v=1"></script>
 
   <!-- CHANGELOG MODAL (New v45) -->
   <div id="changelogModal" class="modal-overlay" style="display:none;">

@@ -322,9 +322,9 @@ document.getElementById('btnConfirmStart').onclick = async function () {
     window.currentQuestionIndex = 0;
 
     // Cập nhật lại UI sau khi hiển thị
-    const timerBox = document.getElementById('shubTimerBox');
+    const timerBox = document.getElementById('tronexTimerBox');
     if (timerBox) timerBox.style.display = 'flex';
-    document.getElementById('shubResultSummary').style.display = 'none';
+    document.getElementById('tronexResultSummary').style.display = 'none';
     document.getElementById('btnSubmitQuiz').style.display = 'block';
     
     // Reset nút rời khỏi về trạng thái đang làm bài
@@ -338,7 +338,7 @@ document.getElementById('btnConfirmStart').onclick = async function () {
 function startTimer() {
     stopTimer(); 
     quizStartTime = Date.now();
-    sessionStorage.setItem('shub_quiz_start_time', quizStartTime);
+    sessionStorage.setItem('tronex_quiz_start_time', quizStartTime);
     const timerDisplay = document.getElementById('quizTimer');
     if (!timerDisplay) return;
     
@@ -359,14 +359,14 @@ function stopTimer() {
     }
 }
 
-// === INIT QUESTION PALETTE (SHUB) ===
+// === INIT QUESTION PALETTE (tronex) ===
 function initQuestionPalette(questions) {
     const palette = document.getElementById('questionPalette');
     if (!palette) return;
     palette.innerHTML = '';
     questions.forEach((q, idx) => {
         const btn = document.createElement('div');
-        btn.className = 'shub-palette-btn';
+        btn.className = 'tronex-palette-btn';
         btn.id = `palette-btn-${q.id}`;
         btn.textContent = idx + 1; // Hiển thị số thứ tự
         
@@ -376,7 +376,7 @@ function initQuestionPalette(questions) {
             if (qEl) {
                 qEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 // Highlight tạm thời
-                document.querySelectorAll('.shub-palette-btn').forEach(b => b.classList.remove('active-q'));
+                document.querySelectorAll('.tronex-palette-btn').forEach(b => b.classList.remove('active-q'));
                 btn.classList.add('active-q');
             }
         };
@@ -487,21 +487,21 @@ function renderQuestions() {
             const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
             opts.forEach((opt, optIndex) => {
                 const label = document.createElement('label');
-                label.className = 'shub-option-label';
+                label.className = 'tronex-option-label';
                 
                 const letter = letters[optIndex] || '';
                 label.innerHTML = `
                     <input type="radio" name="question_${q.id}" value="${optIndex}">
-                    <div class="shub-opt-letter">${letter}</div>
-                    <div class="shub-opt-text">${opt}</div>
-                    <button type="button" class="shub-clear-btn" title="Hủy chọn">✕</button>
+                    <div class="tronex-opt-letter">${letter}</div>
+                    <div class="tronex-opt-text">${opt}</div>
+                    <button type="button" class="tronex-clear-btn" title="Hủy chọn">✕</button>
                 `;
                 
                 const radio = label.querySelector('input');
-                const clearBtn = label.querySelector('.shub-clear-btn');
+                const clearBtn = label.querySelector('.tronex-clear-btn');
                 
                 radio.addEventListener('change', () => {
-                    optionsList.querySelectorAll('.shub-option-label').forEach(l => l.classList.remove('selected'));
+                    optionsList.querySelectorAll('.tronex-option-label').forEach(l => l.classList.remove('selected'));
                     if (radio.checked) {
                         label.classList.add('selected');
                         updatePalette(q.id, letter);
@@ -708,32 +708,32 @@ function renderResults(correct, incorrect, unanswered) {
     if (isVACTPage) {
         // Thang điểm 1200 cho V-ACT (10đ mỗi câu đúng)
         score = correct * 10;
-        document.querySelector('.shub-score').innerHTML = `<span id="shubScoreText">${score}</span> / 1200`;
+        document.querySelector('.tronex-score').innerHTML = `<span id="tronexScoreText">${score}</span> / 1200`;
     } else {
         score = total > 0 ? ((correct / total) * 10).toFixed(2) : 0;
-        document.getElementById('shubScoreText').textContent = score;
+        document.getElementById('tronexScoreText').textContent = score;
     }
     
     // Hiển thị thời gian làm bài
-    const savedStartTime = sessionStorage.getItem('shub_quiz_start_time') || quizStartTime;
+    const savedStartTime = sessionStorage.getItem('tronex_quiz_start_time') || quizStartTime;
     if (savedStartTime) {
         const endTime = Date.now();
         const diff = Math.floor((endTime - parseInt(savedStartTime)) / 1000);
         const mins = Math.floor(diff / 60);
         const secs = diff % 60;
         const timeStr = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-        const timeEl = document.getElementById('shubTimeSpent');
+        const timeEl = document.getElementById('tronexTimeSpent');
         if (timeEl) timeEl.textContent = timeStr;
     }
     
-    // Cập nhật Result Summary (SHub clone)
-    document.getElementById('shubCorrect').textContent = correct;
-    document.getElementById('shubIncorrect').textContent = incorrect;
-    document.getElementById('shubUnanswered').textContent = unanswered;
+    // Cập nhật Result Summary (TRONEX Style)
+    document.getElementById('tronexCorrect').textContent = correct;
+    document.getElementById('tronexIncorrect').textContent = incorrect;
+    document.getElementById('tronexUnanswered').textContent = unanswered;
 
-    document.getElementById('shubResultSummary').style.display = 'block';
+    document.getElementById('tronexResultSummary').style.display = 'block';
     
-    const timerBox = document.getElementById('shubTimerBox');
+    const timerBox = document.getElementById('tronexTimerBox');
     if (timerBox) timerBox.style.display = 'none';
 
     const submitBtn = document.getElementById('btnSubmitQuiz');
@@ -749,7 +749,7 @@ function renderResults(correct, incorrect, unanswered) {
 function highlightAnswer(q, optionsList) {
     const inputs = optionsList.querySelectorAll('input');
     inputs.forEach((input, idx) => {
-        const label = input.closest('label.shub-option-label') || input.closest('label');
+        const label = input.closest('label.tronex-option-label') || input.closest('label');
         if (label) {
             label.classList.remove('correct-answer', 'wrong-answer', 'correct', 'wrong');
             const isCorrectOption = idx === parseInt(q.correctIndex);
@@ -1009,15 +1009,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // === DRAGGABLE & MINIMIZABLE SIDEBAR ===
 window.toggleMinimizeSidebar = function() {
-    const sidebar = document.getElementById('shubSidebar');
+    const sidebar = document.getElementById('tronexSidebar');
     if (sidebar) {
         sidebar.classList.toggle('minimized');
     }
 };
 
 function initDraggableSidebar() {
-    const sidebar = document.getElementById('shubSidebar');
-    const handle = document.getElementById('shubSidebarHandle');
+    const sidebar = document.getElementById('tronexSidebar');
+    const handle = document.getElementById('tronexSidebarHandle');
     if (!sidebar || !handle) return;
 
     let isDragging = false;
@@ -1029,7 +1029,7 @@ function initDraggableSidebar() {
     let yOffset = 0;
 
     // Load saved position
-    const savedPos = localStorage.getItem('shub_sidebar_pos');
+    const savedPos = localStorage.getItem('tronex_sidebar_pos');
     if (savedPos) {
         try {
             const pos = JSON.parse(savedPos);
@@ -1070,7 +1070,7 @@ function initDraggableSidebar() {
         isDragging = false;
         
         try {
-            localStorage.setItem('shub_sidebar_pos', JSON.stringify({ x: xOffset, y: yOffset }));
+            localStorage.setItem('tronex_sidebar_pos', JSON.stringify({ x: xOffset, y: yOffset }));
         } catch(e) {}
         
         document.removeEventListener('mousemove', drag);

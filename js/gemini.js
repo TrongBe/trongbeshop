@@ -1103,8 +1103,8 @@ function importQuizToList() {
     };
 
     // [MOD] Nếu đang ở chế độ "Collector" (Tạo đề thủ công đang mở)
-    if (window.__shubAICollector) {
-        window.__shubAICollector(finalQuestions);
+    if (window.__tronexAICollector) {
+        window.__tronexAICollector(finalQuestions);
         closeGeminiModal();
         return;
     }
