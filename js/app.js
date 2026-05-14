@@ -25,7 +25,7 @@ let userAnswers = {};
 let quizTimerInterval = null;
 let quizStartTime = null;
 
-const isVACTPage = window.location.pathname.toLowerCase().includes('tronex.html');
+const isVACTPage = window.location.pathname.toLowerCase().includes('v-act.html');
 const FIREBASE_ROOT = isVACTPage ? 'VACT' : 'public_quizzes';
 const LOCAL_STORAGE_KEY = isVACTPage ? 'trongbeshop_vact_quizzes' : 'trongbeshop_custom_quizzes';
 const isAdmin = localStorage.getItem("admin_secret_key") === "trongbeshop";

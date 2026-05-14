@@ -1,4 +1,4 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
 
 // ============================================================
 // GEMINI AI - CONFIGURATION AND KEY ROTATION
@@ -14,6 +14,8 @@ const _K = [
 let _idx = parseInt(localStorage.getItem("_g_idx") || "0");
 
 function gK() {
+    const userKey = localStorage.getItem("TRONEX_AI_KEY");
+    if (userKey) return userKey;
     return _K[_idx % _K.length];
 }
 
@@ -1109,7 +1111,7 @@ function importQuizToList() {
         return;
     }
     
-    const isVACTPage = window.location.pathname.toLowerCase().includes('tronex.html');
+    const isVACTPage = window.location.pathname.toLowerCase().includes('v-act.html');
     const LOCAL_STORAGE_KEY = isVACTPage ? 'trongbeshop_vact_quizzes' : 'trongbeshop_custom_quizzes';
 
     // v48 Ultimate: Fix lỗi tạo trùng đề

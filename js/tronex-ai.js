@@ -86,16 +86,37 @@ class tronexAI {
         try {
             const apiKey = gK();
             const genAI = new GoogleGenerativeAI(apiKey);
+            
+            const selectedModel = document.getElementById('aiModelSelector')?.value || "3.1";
+            
+            // v65: Phân cấp độ thông minh và engine tương ứng
+            let systemPrompt = "";
+            let modelId = "gemini-2.0-flash"; // Mặc định
+
+            if (selectedModel === "3.1") {
+                modelId = "gemini-3.1-pro";
+                systemPrompt = `Bạn là TRONEX AI 3.1 Pro (Siêu cấp). Phong cách Google Gemini: Chào hỏi -> Phân tích -> Giải chi tiết BƯỚC -> Kết luận & Tips.`;
+            } else if (selectedModel === "3.0") {
+                modelId = "gemini-3.0-flash";
+                systemPrompt = `Bạn là TRONEX AI 3.0. Giải bài tập chuyên nghiệp, chia các bước rõ ràng và dễ hiểu.`;
+            } else {
+                modelId = "gemini-2.0-flash";
+                systemPrompt = `Bạn là Gia sư TRONEX 2.0. Giải thích ngắn gọn và sư phạm.`;
+            }
+
             const model = genAI.getGenerativeModel({ 
-                model: "gemini-2.0-flash",
-                systemInstruction: "Bạn là Gia sư chuyên nghiệp, thông thái và tận tâm của TRONEX AI Learning. Bạn am hiểu tất cả các môn học. Nhiệm vụ của bạn là giải thích bài tập một cách chi tiết, dễ hiểu và truyền cảm hứng. Luôn phân tích logic, cung cấp kiến thức nền tảng và không chỉ đưa ra đáp án suông. Hãy xưng hô thân thiện như một người thầy/người bạn đồng hành."
+                model: modelId,
+                systemInstruction: systemPrompt
             });
 
             // Lấy ngữ cảnh nếu đang làm bài
             let context = "";
             if (window.currentActiveQuiz && window.currentQuestionIndex !== undefined) {
                 const q = window.currentActiveQuiz.questions[window.currentQuestionIndex];
-                context = `\n[NGỮ CẢNH BÀI THI]:\nCâu hỏi hiện tại: ${q.text}\nCác lựa chọn: ${q.options ? q.options.join(', ') : 'Tự luận'}\n${q.correctAnswer ? `Đáp án đúng: ${q.correctAnswer}` : ''}`;
+                context = `\n[BỐI CẢNH BÀI THI]:
+Câu hỏi hiện tại: ${q.text}
+Các lựa chọn: ${q.options ? q.options.join(', ') : 'Tự luận'}
+${q.correctAnswer ? `Đáp án đúng (nếu có): ${q.correctAnswer}` : ''}`;
             }
 
             const prompt = `${context}\n\n[CÂU HỎI HỌC SINH]: ${text}`;
@@ -104,11 +125,38 @@ class tronexAI {
             const response = await result.response;
             const output = response.text();
             
-            loadingMsg.innerHTML = output.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            // Render kết quả với định dạng chuyên nghiệp
+            this.renderAiResponse(loadingMsg, output);
+
         } catch (err) {
             console.error("Gemini Error:", err);
-            _idx++; // Chuyển sang key dự phòng
-            loadingMsg.innerHTML = "Tôi đang bị quá tải một chút. Bạn hãy thử nhấn gửi lại câu hỏi một lần nữa nhé! (Hệ thống đã tự động chuyển máy chủ dự phòng)";
+            _idx++; 
+            loadingMsg.innerHTML = "Tôi đang bận xử lý một chút. Bạn hãy thử nhấn gửi lại nhé! (Hệ thống đã tự động chuyển sang máy chủ thông minh khác)";
+        }
+    }
+
+    renderAiResponse(container, text) {
+        // Thay thế markdown cơ bản và KaTeX
+        let html = text
+            .replace(/\n/g, '<br>')
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            .replace(/### (.*?)(<br>|$)/g, '<h3 style="color:var(--primary);margin-top:15px;">$1</h3>')
+            .replace(/## (.*?)(<br>|$)/g, '<h2 style="color:var(--primary);margin-top:20px;">$1</h2>');
+        
+        container.innerHTML = html;
+        
+        // Render Math (nếu có thư viện KaTeX)
+        if (window.renderMathInElement) {
+            window.renderMathInElement(container, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true}
+                ],
+                throwOnError: false
+            });
         }
         this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
     }

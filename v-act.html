@@ -45,9 +45,8 @@
           <line x1="3" y1="18" x2="21" y2="18"></line>
         </svg>
       </button>
-      <h1>TRONEX - AI Learning Platform</h1>
-      <p>"Uống nước nhớ nguồn"</p>
-      <p>Vào làm bài nhớ đến Trọng Be</p>
+      <h1>TRONEX: V-ACT</h1>
+      <p>Hệ thống luyện thi thông minh - AI Learning Platform</p>
     </div>
   </header>
 
@@ -62,7 +61,7 @@
     </div>
     <ul class="sidebar-nav">
       <li><a href="index.html">🏠 Trang chủ</a></li>
-      <li><a href="tronex.html" class="active">🚀 TRONEX</a></li>
+      <li><a href="v-act.html" class="active">🚀 TRONEX</a></li>
     </ul>
   </div>
 
@@ -473,16 +472,20 @@
     </div>
     <div class="footer-bottom">
       <p>Nguồn: <strong>Nguyễn Thanh Trọng</strong> | Phiên bản: <a href="javascript:void(0)" onclick="openChangelog()"
-          style="color: #6366f1; font-weight: 700; text-decoration: none;">v1.8 - TRONEX</a></p>
+          style="color: #6366f1; font-weight: 700; text-decoration: none;">v3.0 - TRONEX (Gemini AI)</a></p>
     </div>
   </footer>
 
   <!-- MODERN AI CHAT ASSISTANT (GEMINI) -->
   <div class="ai-chat-container" id="aiChatContainer">
     <div class="ai-chat-header">
-      <div class="ai-chat-title">
+      <div class="ai-chat-title" style="display: flex; align-items: center; gap: 8px;">
         <span class="ai-icon">✨</span>
-        <span>Trợ lý AI Gemini</span>
+        <select id="aiModelSelector" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; font-weight: 700; border-radius: 4px; padding: 2px 5px; cursor: pointer; font-size: 12px; outline: none;">
+          <option value="2.0" style="color: black;">Gemini 2.0</option>
+          <option value="3.0" style="color: black;">Gemini 3.0 Flash</option>
+          <option value="3.1" selected style="color: black;">Gemini 3.1 Pro (Siêu cấp)</option>
+        </select>
       </div>
       <div class="ai-chat-controls">
         <button class="ai-chat-btn" onclick="toggleChatFullscreen()" title="Toàn màn hình">⛶</button>
