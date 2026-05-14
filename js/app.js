@@ -871,6 +871,11 @@ window.loadPublicQuizzes = function () {
                     }
                 }
             }
+        }, (error) => {
+            console.error("❌ Lỗi kết nối Firebase (Có thể do mạng bị chặn):", error);
+            if (isVACTPage) {
+                alert("Không thể kết nối Firebase. Hệ thống sẽ dùng dữ liệu dự phòng (Offline).");
+            }
         });
     } catch (e) { console.error("Load public error:", e); }
 };
@@ -989,19 +994,29 @@ function initDraggableSidebar() {
     let xOffset = 0;
     let yOffset = 0;
 
-    handle.onmousedown = dragStart;
-    // Hỗ trợ touch cho di động
-    handle.ontouchstart = (e) => dragStart(e.touches[0]);
+    // Load saved position
+    const savedPos = localStorage.getItem('shub_sidebar_pos');
+    if (savedPos) {
+        try {
+            const pos = JSON.parse(savedPos);
+            xOffset = pos.x;
+            yOffset = pos.y;
+            sidebar.style.transform = `translate3d(${xOffset}px, ${yOffset}px, 0)`;
+        } catch(e) {}
+    }
+
+    handle.addEventListener('mousedown', dragStart);
+    handle.addEventListener('touchstart', (e) => dragStart(e.touches[0]), { passive: false });
 
     function dragStart(e) {
         initialX = e.clientX - xOffset;
         initialY = e.clientY - yOffset;
         isDragging = true;
         
-        document.onmousemove = drag;
-        document.onmouseup = dragEnd;
-        document.ontouchmove = (ev) => drag(ev.touches[0]);
-        document.ontouchend = dragEnd;
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('mouseup', dragEnd);
+        document.addEventListener('touchmove', (ev) => drag(ev.touches[0]), { passive: false });
+        document.addEventListener('touchend', dragEnd);
     }
 
     function drag(e) {
@@ -1019,9 +1034,11 @@ function initDraggableSidebar() {
         initialX = currentX;
         initialY = currentY;
         isDragging = false;
-        document.onmousemove = null;
-        document.onmouseup = null;
-        document.ontouchmove = null;
-        document.ontouchend = null;
+        
+        localStorage.setItem('shub_sidebar_pos', JSON.stringify({ x: xOffset, y: yOffset }));
+        
+        document.removeEventListener('mousemove', drag);
+        document.removeEventListener('mouseup', dragEnd);
     }
 }
+

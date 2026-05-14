@@ -146,25 +146,26 @@ function cleanAndParseJSON(text) {
     try {
         return JSON.parse(raw);
     } catch (e) {
-        console.warn("[JSON Repair] Thử sửa lỗi JSON bị cắt cụt...");
+        console.warn("[JSON Repair] Thử sửa lỗi JSON...");
         let repaired = raw;
         
-        // Cách 1: Thử đóng các ngoặc cơ bản
-        const quotesCount = (repaired.match(/"/g) || []).length;
-        if (quotesCount % 2 !== 0) repaired += '"';
+        // Cân bằng ngoặc nhọn { }
         const openBraces = (repaired.match(/\{/g) || []).length;
         const closeBraces = (repaired.match(/\}/g) || []).length;
+        if (openBraces > closeBraces) {
+            repaired += "}".repeat(openBraces - closeBraces);
+        }
+        
+        // Cân bằng ngoặc vuông [ ]
         const openBrackets = (repaired.match(/\[/g) || []).length;
         const closeBrackets = (repaired.match(/\]/g) || []).length;
-        
-        let tempRepaired = repaired.trim().replace(/,\s*$/, "");
-        for (let i = 0; i < openBrackets - closeBrackets; i++) tempRepaired += "]";
-        for (let i = 0; i < openBraces - closeBraces; i++) tempRepaired += "}";
-        
+        if (openBrackets > closeBrackets) {
+            repaired += "]".repeat(openBrackets - closeBrackets);
+        }
+
         try {
-            return JSON.parse(tempRepaired);
+            return JSON.parse(repaired);
         } catch (e2) {
-            // Cách 2: Bỏ luôn phần bị đứt gãy ở cuối, tìm object hoàn chỉnh cuối cùng
             console.warn("[JSON Repair] Cách 1 thất bại, thử cắt bỏ phần lỗi...");
             const lastValidBrace = raw.lastIndexOf("}");
             if (lastValidBrace !== -1) {

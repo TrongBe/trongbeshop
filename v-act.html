@@ -23,7 +23,8 @@
   <!-- KaTeX for Math & Science -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body);"></script>
 
   <!-- Mammoth.js for Word (.docx) support -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
@@ -37,7 +38,8 @@
   <header class="header">
     <div class="container" style="position: relative;">
       <button class="menu-btn" onclick="toggleSidebar()" aria-label="Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
           <line x1="3" y1="12" x2="21" y2="12"></line>
           <line x1="3" y1="6" x2="21" y2="6"></line>
           <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -140,13 +142,18 @@
             <h3 class="shub-result-title">Kết quả làm bài</h3>
             <div class="shub-score"><span id="shubScoreText">0</span> / 10</div>
             <div class="shub-stats">
-              <div class="stat-item"><span class="stat-dot dot-correct"></span>Đúng: <strong id="shubCorrect">0</strong></div>
-              <div class="stat-item"><span class="stat-dot dot-wrong"></span>Sai: <strong id="shubIncorrect">0</strong></div>
-              <div class="stat-item"><span class="stat-dot dot-unanswered"></span>Chưa làm: <strong id="shubUnanswered">0</strong></div>
+              <div class="stat-item"><span class="stat-dot dot-correct"></span>Đúng: <strong id="shubCorrect">0</strong>
+              </div>
+              <div class="stat-item"><span class="stat-dot dot-wrong"></span>Sai: <strong id="shubIncorrect">0</strong>
+              </div>
+              <div class="stat-item"><span class="stat-dot dot-unanswered"></span>Chưa làm: <strong
+                  id="shubUnanswered">0</strong></div>
               <div class="stat-item" style="margin-top: 8px; padding-top: 8px; border-top: 1px dashed #eee;">
                 ⏱️ Thời gian: <strong id="shubTimeTaken">00:00</strong>
               </div>
             </div>
+            <button onclick="window.__publishPublicQuiz(__mockQuizzes.find(q=>q.id==='de_1_dgnl'))"
+              class="btn btn-outline" style="width:100%; margin-top:10px; font-size:12px;">Đồng bộ lại Firebase</button>
           </div>
 
           <div class="shub-timer-box" id="shubTimerBox">
@@ -243,8 +250,12 @@
           <div class="drop-sub">hoặc chạm để chọn file</div>
           <div class="drop-formats">Hỗ trợ: JPG, PNG, WebP, DOCX, PDF</div>
         </label>
-        <input type="file" id="imageFileInput" accept="image/*, .docx, application/vnd.openxmlformats-officedocument.wordprocessingml.document, .pdf, application/pdf" multiple style="display:none">
-        <input type="file" id="addMoreFileInput" accept="image/*, .docx, application/vnd.openxmlformats-officedocument.wordprocessingml.document, .pdf, application/pdf" multiple style="display:none">
+        <input type="file" id="imageFileInput"
+          accept="image/*, .docx, application/vnd.openxmlformats-officedocument.wordprocessingml.document, .pdf, application/pdf"
+          multiple style="display:none">
+        <input type="file" id="addMoreFileInput"
+          accept="image/*, .docx, application/vnd.openxmlformats-officedocument.wordprocessingml.document, .pdf, application/pdf"
+          multiple style="display:none">
 
         <div id="imagePreviewContainer" class="image-preview-container"></div>
 
@@ -292,7 +303,9 @@
             <button id="btnReanalyze" class="btn-reanalyze">🔄 Phân tích lại</button>
           </div>
         </div>
-        <input type="file" id="analyzeMoreInput" accept="image/*, .docx, application/vnd.openxmlformats-officedocument.wordprocessingml.document, .pdf, application/pdf" multiple style="display:none">
+        <input type="file" id="analyzeMoreInput"
+          accept="image/*, .docx, application/vnd.openxmlformats-officedocument.wordprocessingml.document, .pdf, application/pdf"
+          multiple style="display:none">
         <div id="questionEditorContainer" class="question-editor-container"></div>
         <div class="gemini-step-footer">
           <button id="btnBackToUpload" class="gemini-btn-secondary">← Quay lại</button>
@@ -393,9 +406,11 @@
         <div class="changelog-item">
           <h4 style="color:var(--primary); margin-bottom: 8px;">🚀 Phiên bản v1.8 (Mới nhất)</h4>
           <ul style="padding-left: 20px; font-size: 14px; line-height: 1.8; margin-bottom: 15px;">
-            <li><b>Chế độ Phân tích sâu (Thinking)</b>: Chỉ kích hoạt khi bạn bấm "Phân tích lại" để đảm bảo tốc độ quét lần đầu nhanh nhất.</li>
+            <li><b>Chế độ Phân tích sâu (Thinking)</b>: Chỉ kích hoạt khi bạn bấm "Phân tích lại" để đảm bảo tốc độ quét
+              lần đầu nhanh nhất.</li>
             <li><b>Nâng cấp Gemini 3.0 Flash</b>: Trái tim AI mới nhất giúp trích xuất đề thi cực kỳ thông minh.</li>
-            <li><b>Tự động thử lại</b>: Hệ thống sẽ tự động kiên trì kết nối nếu máy chủ Google bị quá tải (Lỗi 503).</li>
+            <li><b>Tự động thử lại</b>: Hệ thống sẽ tự động kiên trì kết nối nếu máy chủ Google bị quá tải (Lỗi 503).
+            </li>
           </ul>
 
           <h4 style="color:var(--primary); margin-bottom: 8px;">🚀 Phiên bản v1.7</h4>
@@ -406,7 +421,8 @@
 
           <h4 style="color:var(--primary); margin-bottom: 8px;">🚀 Phiên bản v1.5</h4>
           <ul style="padding-left: 20px; font-size: 14px; line-height: 1.8;">
-            <li><b>Đồng bộ Firebase Realtime</b>: Mở khóa quyền kết nối, đảm bảo đề "Công khai" xuất hiện ngay lập tức trên mọi thiết bị.</li>
+            <li><b>Đồng bộ Firebase Realtime</b>: Mở khóa quyền kết nối, đảm bảo đề "Công khai" xuất hiện ngay lập tức
+              trên mọi thiết bị.</li>
             <li><b>Trí tuệ nhân tạo (AI)</b>: Ép AI tự gộp câu hỏi Đúng/Sai và nhận diện Tiêu đề phần thi.</li>
             <li><b>Chế độ Luyện tập</b>: Hiển thị đáp án tức thời cho cả câu Đúng/Sai và Trả lời ngắn.</li>
             <li><b>Biểu đồ Thống kê</b>: Nâng cấp vòng tròn chấm điểm thành dạng Pie Chart chuẩn xác.</li>
@@ -422,17 +438,17 @@
       const sidebar = document.getElementById('sidebarMenu');
       const overlay = document.getElementById('sidebarOverlay');
       if (sidebar.classList.contains('active')) {
-          sidebar.classList.remove('active');
-          overlay.classList.remove('active');
-          setTimeout(() => {
-              overlay.style.display = 'none';
-          }, 300);
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+        setTimeout(() => {
+          overlay.style.display = 'none';
+        }, 300);
       } else {
-          overlay.style.display = 'block';
-          setTimeout(() => {
-              overlay.classList.add('active');
-              sidebar.classList.add('active');
-          }, 10);
+        overlay.style.display = 'block';
+        setTimeout(() => {
+          overlay.classList.add('active');
+          sidebar.classList.add('active');
+        }, 10);
       }
     }
   </script>
