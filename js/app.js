@@ -560,7 +560,9 @@ function renderQuestions() {
         renderMathInElement(questionsContainer, {
             delimiters: [
                 { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false }
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
             ],
             throwOnError: false
         });
@@ -666,10 +668,29 @@ function showReviewMode(qs) {
 function renderResults(correct, incorrect, unanswered) {
     stopTimer(); // Dừng tính giờ khi nộp bài
     const total = correct + incorrect + unanswered;
-    const score = total > 0 ? ((correct / total) * 10).toFixed(2) : 0;
+    
+    let score;
+    if (isVACTPage) {
+        // Thang điểm 1200 cho V-ACT (10đ mỗi câu đúng)
+        score = correct * 10;
+        document.querySelector('.shub-score').innerHTML = `<span id="shubScoreText">${score}</span> / 1200`;
+    } else {
+        score = total > 0 ? ((correct / total) * 10).toFixed(2) : 0;
+        document.getElementById('shubScoreText').textContent = score;
+    }
+    
+    // Hiển thị thời gian làm bài
+    if (window.quizStartTime) {
+        const endTime = Date.now();
+        const diff = Math.floor((endTime - window.quizStartTime) / 1000);
+        const mins = Math.floor(diff / 60);
+        const secs = diff % 60;
+        const timeStr = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        const timeEl = document.getElementById('shubTimeTaken');
+        if (timeEl) timeEl.textContent = timeStr;
+    }
     
     // Cập nhật Result Summary (SHub clone)
-    document.getElementById('shubScoreText').textContent = score;
     document.getElementById('shubCorrect').textContent = correct;
     document.getElementById('shubIncorrect').textContent = incorrect;
     document.getElementById('shubUnanswered').textContent = unanswered;
@@ -828,8 +849,21 @@ window.loadPublicQuizzes = function () {
                     }
                 });
 
-                if (listChanged) {
-                    initQuizList();
+                // v51: Tự động đồng bộ đề V-ACT lên Firebase nếu chưa có
+                if (isVACTPage && !data['de_1_dgnl']) {
+                    const de1 = mockQuizzes.find(q => q.id === 'de_1_dgnl');
+                    if (de1) {
+                        console.log("🚀 Đề V-ACT chưa có trên Cloud, đang tự động đồng bộ...");
+                        window.__publishPublicQuiz(de1);
+                    }
+                }
+
+                if (listChanged) initQuizList();
+            } else {
+                // v51: Firebase trống hoàn toàn
+                if (isVACTPage) {
+                    const de1 = mockQuizzes.find(q => q.id === 'de_1_dgnl');
+                    if (de1) window.__publishPublicQuiz(de1);
                 }
             }
         });
@@ -925,5 +959,64 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Removed temporary sync script.
+    // --- KHỞI TẠO SIDEBAR KÉO THẢ (v51) ---
+    initDraggableSidebar();
 });
+
+// === DRAGGABLE & MINIMIZABLE SIDEBAR ===
+window.toggleMinimizeSidebar = function() {
+    const sidebar = document.getElementById('shubSidebar');
+    if (sidebar) {
+        sidebar.classList.toggle('minimized');
+    }
+};
+
+function initDraggableSidebar() {
+    const sidebar = document.getElementById('shubSidebar');
+    const handle = document.getElementById('shubSidebarHandle');
+    if (!sidebar || !handle) return;
+
+    let isDragging = false;
+    let currentX = 0;
+    let currentY = 0;
+    let initialX;
+    let initialY;
+    let xOffset = 0;
+    let yOffset = 0;
+
+    handle.onmousedown = dragStart;
+    // Hỗ trợ touch cho di động
+    handle.ontouchstart = (e) => dragStart(e.touches[0]);
+
+    function dragStart(e) {
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+        isDragging = true;
+        
+        document.onmousemove = drag;
+        document.onmouseup = dragEnd;
+        document.ontouchmove = (ev) => drag(ev.touches[0]);
+        document.ontouchend = dragEnd;
+    }
+
+    function drag(e) {
+        if (isDragging) {
+            e.preventDefault();
+            currentX = e.clientX - initialX;
+            currentY = e.clientY - initialY;
+            xOffset = currentX;
+            yOffset = currentY;
+            sidebar.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+        }
+    }
+
+    function dragEnd() {
+        initialX = currentX;
+        initialY = currentY;
+        isDragging = false;
+        document.onmousemove = null;
+        document.onmouseup = null;
+        document.ontouchmove = null;
+        document.ontouchend = null;
+    }
+}

@@ -129,33 +129,42 @@
         </form>
       </div>
 
-      <div class="shub-sidebar">
-        <!-- Result Card (chỉ hiện khi xem lại bài) -->
-        <div id="shubResultSummary" class="shub-result-card" style="display:none">
-          <h3 class="shub-result-title">Lấy điểm</h3>
-          <div class="shub-score"><span id="shubScoreText">0</span> / 10</div>
-          <div class="shub-stats">
-            <div class="stat-item"><span class="stat-dot dot-correct"></span>Đúng: <strong id="shubCorrect">0</strong></div>
-            <div class="stat-item"><span class="stat-dot dot-wrong"></span>Sai: <strong id="shubIncorrect">0</strong></div>
-            <div class="stat-item"><span class="stat-dot dot-unanswered"></span>Chưa làm: <strong id="shubUnanswered">0</strong></div>
+      <div class="shub-sidebar" id="shubSidebar">
+        <div class="shub-sidebar-handle" id="shubSidebarHandle"></div>
+        <div class="shub-sidebar-minimize-trigger" onclick="toggleMinimizeSidebar()">−</div>
+        <div class="shub-sidebar-toggle-btn" onclick="toggleMinimizeSidebar()">📝</div>
+
+        <div class="shub-sidebar-content">
+          <!-- Result Card (chỉ hiện khi xem lại bài) -->
+          <div id="shubResultSummary" class="shub-result-card" style="display:none">
+            <h3 class="shub-result-title">Kết quả làm bài</h3>
+            <div class="shub-score"><span id="shubScoreText">0</span> / 10</div>
+            <div class="shub-stats">
+              <div class="stat-item"><span class="stat-dot dot-correct"></span>Đúng: <strong id="shubCorrect">0</strong></div>
+              <div class="stat-item"><span class="stat-dot dot-wrong"></span>Sai: <strong id="shubIncorrect">0</strong></div>
+              <div class="stat-item"><span class="stat-dot dot-unanswered"></span>Chưa làm: <strong id="shubUnanswered">0</strong></div>
+              <div class="stat-item" style="margin-top: 8px; padding-top: 8px; border-top: 1px dashed #eee;">
+                ⏱️ Thời gian: <strong id="shubTimeTaken">00:00</strong>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="shub-timer-box" id="shubTimerBox">
-          <span class="timer-icon">⏱️</span>
-          <span id="quizTimer">Thời gian làm bài</span>
-        </div>
-
-        <div class="shub-palette-container">
-          <div class="shub-palette-header">Phiếu trả lời</div>
-          <div id="questionPalette" class="shub-palette">
-            <!-- Lưới số câu hỏi sẽ được tạo bằng Javascript -->
+          <div class="shub-timer-box" id="shubTimerBox">
+            <span class="timer-icon">⏱️</span>
+            <span id="quizTimer">Thời gian làm bài</span>
           </div>
-        </div>
 
-        <div class="shub-sidebar-footer">
-          <button type="button" class="btn-shub-leave" id="btnLeaveQuiz">Rời khỏi</button>
-          <button type="submit" form="quizForm" class="btn-shub-submit" id="btnSubmitQuiz">Nộp bài</button>
+          <div class="shub-palette-container">
+            <div class="shub-palette-header">Phiếu trả lời</div>
+            <div id="questionPalette" class="shub-palette">
+              <!-- Lưới số câu hỏi sẽ được tạo bằng Javascript -->
+            </div>
+          </div>
+
+          <div class="shub-sidebar-footer">
+            <button type="button" class="btn-shub-leave" id="btnLeaveQuiz">Rời khỏi</button>
+            <button type="submit" form="quizForm" class="btn-shub-submit" id="btnSubmitQuiz">Nộp bài</button>
+          </div>
         </div>
       </div>
     </div>

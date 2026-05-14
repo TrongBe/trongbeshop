@@ -1531,19 +1531,114 @@ body {
 .view-section.shub-layout.active {
     display: flex !important; /* Ghi đè ẩn khi đã active */
 }
-.shub-main {
-    flex: 7;
-    min-width: 0;
-}
 .shub-sidebar {
-    flex: 3;
-    position: sticky;
-    top: 24px;
+    position: fixed;
+    right: 20px;
+    top: 80px;
+    width: 320px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    flex-shrink: 0;
+    gap: 12px;
+    background: white;
+    padding: 0 0 16px 0;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    max-height: 85vh;
 }
+
+.shub-sidebar.minimized {
+    width: 64px;
+    height: 64px;
+    border-radius: 32px;
+    padding: 0;
+    overflow: hidden;
+    cursor: move;
+}
+
+.shub-sidebar.minimized .shub-sidebar-content {
+    display: none;
+}
+
+.shub-sidebar-handle {
+    height: 24px;
+    background: #f8fafc;
+    border-radius: 16px 16px 0 0;
+    cursor: move;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #f1f5f9;
+}
+.shub-sidebar-handle::before {
+    content: "";
+    width: 32px;
+    height: 4px;
+    background: #cbd5e1;
+    border-radius: 2px;
+}
+
+.shub-sidebar-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 16px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.shub-sidebar-toggle-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    background: var(--primary);
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.shub-sidebar.minimized .shub-sidebar-toggle-btn {
+    display: flex;
+}
+
+.shub-sidebar-minimize-trigger {
+    position: absolute;
+    top: 4px;
+    right: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    color: #94a3b8;
+    z-index: 10;
+    transition: color 0.2s;
+}
+.shub-sidebar-minimize-trigger:hover { color: var(--danger); }
+
+.shub-main {
+    flex: 1;
+    min-width: 0;
+    padding-right: 350px; /* Nhường chỗ cho sidebar floating */
+}
+
+@media (max-width: 1024px) {
+    .shub-main { padding-right: 0; }
+    .shub-sidebar { 
+        right: 10px; 
+        top: auto;
+        bottom: 20px;
+        width: 280px;
+    }
+}
+
 
 /* Header Quiz */
 .quiz-header {
