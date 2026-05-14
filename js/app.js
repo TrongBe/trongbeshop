@@ -299,6 +299,8 @@ document.getElementById('btnConfirmStart').onclick = async function () {
     initQuestionPalette(currentQuiz.renderedQuestions || currentQuiz.questions);
     showView('active');
     startTimer(); // Bắt đầu tính giờ từ đây
+    window.currentActiveQuiz = currentQuiz;
+    window.currentQuestionIndex = 0;
 
     // Cập nhật lại UI sau khi hiển thị
     const timerBox = document.getElementById('shubTimerBox');
@@ -429,7 +431,12 @@ function renderQuestions() {
 
         // Làm sạch text nếu AI lỡ viết đúp "Câu X:"
         const cleanText = (q.text || '').replace(/^Câu\s+\d+[:.]\s*/i, '').trim();
-        qTitle.innerHTML = `Câu ${qNumDisplay}: ${cleanText}`;
+        qTitle.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 15px;">
+                <span>Câu ${qNumDisplay}: ${cleanText}</span>
+                <button type="button" class="btn btn-text" onclick="askAiAboutQuestion(${index})" style="padding: 2px 8px; font-size: 12px; background: #EEF2FF; color: #4F46E5; border-radius: 6px; border: 1px solid #E0E7FF; flex-shrink: 0;">✨ Hỏi AI</button>
+            </div>
+        `;
         qBlock.appendChild(qTitle);
 
         if (q.imageSrc) {

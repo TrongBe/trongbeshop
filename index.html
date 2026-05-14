@@ -34,17 +34,28 @@
 </head>
 
 <body>
-  <header class="header">
-    <div class="container" style="position: relative;">
-      <button class="menu-btn" onclick="toggleSidebar()" aria-label="Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <header class="header-vnu" id="mainHeader">
+    <div class="container">
+      <a href="index.html" class="logo-vnu">
+        <div class="logo-text">
+          <h2>ĐẠI HỌC QUỐC GIA</h2>
+          <p>TP. HỒ CHÍ MINH - VACT</p>
+        </div>
+      </a>
+      <nav class="nav-vnu">
+        <a href="index.html">Trang chủ</a>
+        <a href="v-act.html">Hệ thống V-ACT</a>
+        <a href="#">Tin tức</a>
+        <a href="#">Tuyển sinh</a>
+        <a href="#">Sinh viên</a>
+      </nav>
+      <button class="menu-btn" onclick="toggleSidebar()" style="color: white; border: none; background: none;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="3" y1="12" x2="21" y2="12"></line>
           <line x1="3" y1="6" x2="21" y2="6"></line>
           <line x1="3" y1="18" x2="21" y2="18"></line>
         </svg>
       </button>
-      <h1>Học Tập Trực Tuyến</h1>
-      <p>"Uống nước nhớ nguồn" - VACT Ecosystem</p>
     </div>
   </header>
 
@@ -64,43 +75,67 @@
   </div>
 
   <main>
-    <!-- New Hero Section -->
-    <section class="hero-section">
-      <div class="container">
-        <div class="hero-content">
-          <span class="hero-badge">✨ Hệ sinh thái giáo dục AI 3.0</span>
-          <h1 class="hero-title">Nền tảng luyện thi <span>Thông minh nhất</span></h1>
-          <p class="hero-desc">Trải nghiệm hệ thống tạo đề bằng trí tuệ nhân tạo Gemini, giao diện SHub Classroom tối ưu và khả năng đồng bộ Firebase mạnh mẽ.</p>
-          <div class="cta-group">
-            <a href="v-act.html" class="btn-hero btn-hero-primary">Vào làm bài ngay</a>
-            <a href="mailto:nguyentrong0398787723@gmail.com" class="btn-hero btn-hero-secondary">Liên hệ hỗ trợ</a>
-          </div>
-        </div>
-        
-        <div class="hero-image-container">
-          <img src="landing_page_hero_1778785096105.png" alt="Education AI Hero" class="hero-image">
-        </div>
+    <!-- Hero Section -->
+    <section class="hero-vnu">
+      <div class="hero-vnu-content">
+        <h1>Trang chủ</h1>
+        <p>Hệ thống giáo dục thông minh V-ACT hướng tới trở thành nền tảng luyện thi hàng đầu, nơi hội tụ công nghệ AI đỉnh cao và trải nghiệm người dùng tối ưu.</p>
+        <a href="v-act.html" class="btn btn-primary" style="margin-top: 20px; padding: 12px 30px; border-radius: 4px;">KHÁM PHÁ V-ACT</a>
+      </div>
+    </section>
 
-        <div class="features-grid">
-          <div class="feature-card">
-            <span class="feature-icon">🤖</span>
-            <h3>Nhập đề bằng AI</h3>
-            <p>Chỉ cần tải ảnh đề thi, AI Gemini 3.0 Flash sẽ tự động chuyển đổi thành bộ đề trắc nghiệm trong vài giây.</p>
+    <!-- News Section -->
+    <section class="section-vnu">
+      <div class="container">
+        <h2 class="section-title-vnu">TIN TỨC & SỰ KIỆN</h2>
+        <div class="news-grid">
+          <!-- Card 1 -->
+          <div class="news-card" onclick="location.href='v-act.html'">
+            <div class="news-image-wrapper">
+              <img src="feature_ai_learning_1778785444091.png" alt="AI Learning">
+              <div class="news-banner">Sức mạnh hệ thống - Vượt tầm thế giới</div>
+            </div>
+            <div class="news-content">
+              <h3>V-ACT chính thức ra mắt phiên bản 3.0 với trí tuệ nhân tạo Gemini tích hợp sâu</h3>
+            </div>
           </div>
-          <div class="feature-card">
-            <span class="feature-icon">📱</span>
-            <h3>Giao diện SHub</h3>
-            <p>Thiết kế tinh gọn, chuẩn SHub Classroom giúp học sinh tập trung tối đa vào việc làm bài trên mọi thiết bị.</p>
+          <!-- Card 2 -->
+          <div class="news-card" onclick="location.href='v-act.html'">
+            <div class="news-image-wrapper">
+              <img src="feature_exam_system_1778785470753.png" alt="Exam System">
+              <div class="news-banner">Công nghệ giáo dục hiện đại</div>
+            </div>
+            <div class="news-content">
+              <h3>Tối ưu hóa trải nghiệm làm bài trắc nghiệm với giao diện SHub Classroom chuẩn hóa</h3>
+            </div>
           </div>
-          <div class="feature-card">
-            <span class="feature-icon">☁️</span>
-            <h3>Đồng bộ Firebase</h3>
-            <p>Lưu trữ và đồng bộ hóa kết quả, bộ đề công khai ngay lập tức giữa giáo viên và học sinh qua VACT.</p>
+          <!-- Card 3 -->
+          <div class="news-card" onclick="location.href='v-act.html'">
+            <div class="news-image-wrapper">
+              <img src="landing_page_hero_1778785096105.png" alt="VACT Ecosystem">
+              <div class="news-banner">Hệ sinh thái thông minh</div>
+            </div>
+            <div class="news-content">
+              <h3>Khám phá khả năng đồng bộ Firebase Realtime giúp quản lý đề thi tập trung</h3>
+            </div>
           </div>
         </div>
+        <a href="#" class="btn-vnu-more">XEM TẤT CẢ TIN TỨC →</a>
       </div>
     </section>
   </main>
+
+  <script>
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('mainHeader');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  </script>
 
   <footer class="footer">
     <div class="container footer-content">

@@ -1101,6 +1101,13 @@ function importQuizToList() {
         privacy: privacy,
         viewCount: 0
     };
+
+    // [MOD] Nếu đang ở chế độ "Collector" (Tạo đề thủ công đang mở)
+    if (window.__shubAICollector) {
+        window.__shubAICollector(finalQuestions);
+        closeGeminiModal();
+        return;
+    }
     
     const isVACTPage = window.location.pathname.toLowerCase().includes('v-act.html');
     const LOCAL_STORAGE_KEY = isVACTPage ? 'trongbeshop_vact_quizzes' : 'trongbeshop_custom_quizzes';

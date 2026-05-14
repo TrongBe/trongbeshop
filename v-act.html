@@ -196,10 +196,96 @@
     </div>
   </main>
 
-  <!-- ====== GEMINI FAB BUTTON ====== -->
-  <button class="gemini-fab" onclick="openGeminiModal()" title="Nhập đề bằng AI">
+  <!-- ====== MANUAL QUIZ CREATOR BUTTON ====== -->
+  <button class="btn-create-quiz-fixed" id="btnOpenManualCreator">
+    <span>➕</span> Tạo đề mới
+  </button>
+
+  <!-- ====== AI CHAT ASSISTANT UI ====== -->
+  <div id="aiChatContainer" class="ai-chat-container">
+    <div class="ai-chat-header">
+      <div class="ai-chat-title">
+        <span class="ai-icon">✨</span>
+        Trợ lý AI Gemini
+      </div>
+      <div class="ai-chat-controls">
+        <button class="ai-chat-btn" onclick="toggleChatFullscreen()" title="Toàn màn hình">⛶</button>
+        <button class="ai-chat-btn" onclick="toggleAiChat()" title="Thu nhỏ">−</button>
+        <button class="ai-chat-btn" onclick="toggleAiChat()" title="Đóng">✕</button>
+      </div>
+    </div>
+    <div class="ai-chat-messages" id="aiChatMessages">
+      <div class="msg-bubble msg-ai">
+        Xin chào! Tôi là Gemini. Tôi có thể giúp bạn giải thích các câu hỏi trong đề thi hoặc tạo đề mới. Bạn cần hỗ trợ gì không?
+      </div>
+    </div>
+    <div class="ai-chat-input-area">
+      <input type="text" id="aiChatInput" class="ai-chat-input" placeholder="Hỏi tôi về câu hỏi này...">
+      <button id="btnSendAiChat" class="ai-chat-send">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ====== MANUAL CREATOR OVERLAY ====== -->
+  <div id="manualCreatorOverlay" class="creator-overlay">
+    <div class="creator-header">
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <button class="btn btn-text" id="btnCloseCreator">✕</button>
+        <h2 id="creatorTitleDisplay">Tạo đề mới</h2>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button class="btn btn-outline" onclick="openGeminiModal()">
+          <span>📷</span> Nhập bằng ảnh/AI
+        </button>
+        <button class="btn btn-primary" id="btnSaveManualQuiz">
+          <span>💾</span> Lưu bài quiz
+        </button>
+      </div>
+    </div>
+    <div class="creator-main">
+      <div class="creator-card">
+        <!-- Quiz Basic Info -->
+        <div class="quiz-info-setup" id="quizInfoSetup">
+          <div style="text-align: center; margin-bottom: 30px;">
+            <div style="width: 120px; height: 120px; background: #f3f4f6; border-radius: 20px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 3rem; cursor: pointer;" title="Thêm ảnh bìa">🖼️</div>
+            <input type="text" id="manualQuizTitle" placeholder="Nhập tên đề thi của bạn..." style="width: 100%; font-size: 2rem; font-weight: 800; border: none; text-align: center; outline: none; border-bottom: 2px solid #eee; padding-bottom: 10px;">
+            <p style="color: #6b7280; margin-top: 10px;">V-ACT Ecosystem • Lớp / Trường</p>
+          </div>
+        </div>
+
+        <div id="manualQuestionsContainer" class="creator-question-list">
+          <!-- Câu hỏi sẽ hiện ở đây -->
+        </div>
+
+        <!-- Add Question Section -->
+        <div style="text-align: center; padding: 40px; border: 2px dashed #e5e7eb; border-radius: 20px;">
+          <h3 style="margin-bottom: 20px;">Chọn một loại câu hỏi để bắt đầu</h3>
+          <div class="q-type-selector">
+            <div class="type-card" onclick="addManualQuestion('multiple_choice')">
+              <span class="type-icon">✅</span>
+              <strong>Nhiều lựa chọn</strong>
+            </div>
+            <div class="type-card" onclick="addManualQuestion('short_answer')">
+              <span class="type-icon">⌨️</span>
+              <strong>Điền vào chỗ trống</strong>
+            </div>
+            <div class="type-card" onclick="addManualQuestion('essay')">
+              <span class="type-icon">📝</span>
+              <strong>Mở / Tự luận</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== GEMINI FAB BUTTON (NOW TRIGGERS CHAT) ====== -->
+  <button class="gemini-fab" id="btnOpenAiChat" title="Hỏi trợ lý AI">
     <span class="gemini-fab-icon">🤖</span>
-    <span class="gemini-fab-text">Nhập đề bằng AI</span>
+    <span class="gemini-fab-text">Hỏi trợ lý AI</span>
   </button>
 
   <!-- ====== GEMINI MODAL ====== -->
@@ -392,6 +478,7 @@
   </footer>
 
   <script type="module" src="js/app.js?v=54"></script>
+  <script type="module" src="js/shub-ai.js?v=1"></script>
 
   <!-- CHANGELOG MODAL (New v45) -->
   <div id="changelogModal" class="modal-overlay" style="display:none;">

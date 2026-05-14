@@ -197,6 +197,271 @@ body {
     }
 }
 
+/* ============================================================
+   MODERN AI CHAT ASSISTANT (GEMINI-STYLE)
+   ============================================================ */
+.ai-chat-container {
+    position: fixed;
+    bottom: 90px;
+    right: 25px;
+    width: 380px;
+    height: 550px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    border-radius: 24px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+    display: none;
+    flex-direction: column;
+    z-index: 2000;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.ai-chat-container.fullscreen {
+    width: 100vw;
+    height: 100vh;
+    bottom: 0;
+    right: 0;
+    border-radius: 0;
+}
+
+.ai-chat-header {
+    padding: 16px 20px;
+    background: linear-gradient(90deg, #4f46e5, #7c3aed);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ai-chat-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+}
+
+.ai-chat-controls {
+    display: flex;
+    gap: 12px;
+}
+
+.ai-chat-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 5px;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.ai-chat-btn:hover { opacity: 1; }
+
+.ai-chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: #f9fafb;
+}
+
+.msg-bubble {
+    max-width: 85%;
+    padding: 12px 16px;
+    border-radius: 18px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    position: relative;
+}
+
+.msg-ai {
+    align-self: flex-start;
+    background: white;
+    color: #1f2937;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border-bottom-left-radius: 4px;
+}
+
+.msg-user {
+    align-self: flex-end;
+    background: #4f46e5;
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.ai-chat-input-area {
+    padding: 16px;
+    background: white;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    gap: 10px;
+}
+
+.ai-chat-input {
+    flex: 1;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 10px 15px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.ai-chat-input:focus { border-color: #4f46e5; }
+
+.ai-chat-send {
+    background: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* ============================================================
+   MANUAL QUIZ CREATOR UI
+   ============================================================ */
+.btn-create-quiz-fixed {
+    position: fixed;
+    top: 100px;
+    right: 25px;
+    background: #10b981;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 700;
+    box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+    z-index: 900;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+}
+
+.btn-create-quiz-fixed:hover {
+    transform: scale(1.05);
+    background: #059669;
+}
+
+.creator-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #f3f4f6;
+    z-index: 3000;
+    display: none;
+    flex-direction: column;
+}
+
+.creator-header {
+    padding: 15px 25px;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.creator-main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 40px 20px;
+}
+
+.creator-card {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.creator-question-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.q-creator-item {
+    background: #fff;
+    border: 2px solid #f3f4f6;
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.q-type-selector {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.type-card {
+    padding: 20px;
+    border: 2px solid #f3f4f6;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.type-card:hover {
+    border-color: #4f46e5;
+    background: #f5f3ff;
+}
+
+.type-card.active {
+    border-color: #4f46e5;
+    background: #4f46e5;
+    color: white;
+}
+
+.type-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+
+.option-edit-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.option-color-box {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .ai-chat-container {
+        width: 100%;
+        height: 70%;
+        bottom: 0;
+        right: 0;
+        border-radius: 24px 24px 0 0;
+    }
+    .btn-create-quiz-fixed {
+        bottom: 25px;
+        top: auto;
+        right: 50%;
+        transform: translateX(50%);
+    }
+}
+
 .section-title {
     font-size: 22px;
     font-weight: 600;
@@ -2492,149 +2757,196 @@ body {
 }
 
 /* ============================================================
-   LANDING PAGE (INDEX.HTML) STYLES
+   ACADEMIC PORTAL (INDEX.HTML) - VNU STYLE
    ============================================================ */
-.hero-section {
-    padding: 100px 0 60px;
-    text-align: center;
-    background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%);
-    overflow: hidden;
+:root {
+    --vnu-blue: #004a99;
+    --vnu-light-blue: #00a3e0;
 }
 
-.hero-content {
-    max-width: 800px;
-    margin: 0 auto;
+/* Header VNU Style */
+.header-vnu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    padding: 15px 0;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
 }
 
-.hero-badge {
-    display: inline-block;
-    padding: 8px 16px;
-    background: rgba(99, 102, 241, 0.1);
-    color: #6366f1;
-    border-radius: 50px;
+.header-vnu.scrolled {
+    background: var(--vnu-blue);
+    padding: 10px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.header-vnu .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-vnu {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    text-decoration: none;
+}
+
+.logo-vnu img {
+    height: 50px;
+}
+
+.logo-text h2 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.logo-text p {
+    font-size: 0.7rem;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.nav-vnu {
+    display: flex;
+    gap: 24px;
+}
+
+.nav-vnu a {
+    color: white;
+    text-decoration: none;
     font-weight: 600;
     font-size: 0.9rem;
-    margin-bottom: 24px;
+    text-transform: uppercase;
+    transition: opacity 0.2s;
 }
 
-.hero-title {
-    font-size: 3.5rem;
-    font-weight: 850;
-    color: #1f2937;
-    line-height: 1.1;
-    margin-bottom: 24px;
-    letter-spacing: -0.02em;
+.nav-vnu a:hover {
+    opacity: 0.8;
 }
 
-.hero-title span {
-    background: linear-gradient(90deg, #6366f1, #a855f7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.hero-desc {
-    font-size: 1.25rem;
-    color: #4b5563;
-    margin-bottom: 40px;
-    line-height: 1.6;
-}
-
-.hero-image-container {
-    margin-top: 60px;
+/* Hero Section VNU Style */
+.hero-vnu {
+    height: 85vh;
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('university_campus_hero_1778785364778.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    color: white;
     position: relative;
-    padding: 0 20px;
 }
 
-.hero-image {
-    width: 100%;
-    max-width: 1000px;
-    border-radius: 24px;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+.hero-vnu-content {
+    max-width: 600px;
+    padding-left: 5%;
 }
 
-.features-grid {
+.hero-vnu-content h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    line-height: 1;
+}
+
+.hero-vnu-content p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+/* News Section */
+.section-vnu {
+    padding: 80px 0;
+    background: white;
+}
+
+.section-title-vnu {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    border-left: 5px solid var(--vnu-blue);
+    padding-left: 15px;
+}
+
+.news-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 32px;
-    margin-top: 80px;
-    padding: 0 20px 100px;
+    gap: 30px;
 }
 
-.feature-card {
+.news-card {
     background: white;
-    padding: 40px;
-    border-radius: 24px;
-    border: 1px solid #f3f4f6;
-    transition: all 0.3s ease;
-    text-align: left;
+    overflow: hidden;
+    transition: transform 0.3s;
+    cursor: pointer;
 }
 
-.feature-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-    border-color: #e0e7ff;
+.news-card:hover {
+    transform: translateY(-5px);
 }
 
-.feature-icon {
-    font-size: 2.5rem;
-    margin-bottom: 24px;
-    display: block;
+.news-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
 }
 
-.feature-card h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 16px;
-    color: #111827;
+.news-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.feature-card p {
-    color: #6b7280;
-    line-height: 1.6;
-}
-
-.cta-group {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-}
-
-.btn-hero {
-    padding: 16px 32px;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 1.1rem;
-    text-decoration: none;
-    transition: all 0.2s;
-}
-
-.btn-hero-primary {
-    background: #6366f1;
+.news-banner {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--vnu-light-blue);
     color: white;
-    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+    padding: 8px 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
-.btn-hero-primary:hover {
-    background: #4f46e5;
-    transform: scale(1.05);
+.news-content {
+    padding: 20px 0;
 }
 
-.btn-hero-secondary {
-    background: white;
-    color: #1f2937;
-    border: 1px solid #e5e7eb;
+.news-content h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--vnu-blue);
+    margin: 0;
+    line-height: 1.4;
 }
 
-.btn-hero-secondary:hover {
-    background: #f9fafb;
+.btn-vnu-more {
+    display: inline-block;
+    margin-top: 30px;
+    color: var(--vnu-blue);
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: 2px solid var(--vnu-blue);
+    padding-bottom: 2px;
 }
 
 @media (max-width: 768px) {
-    .hero-title { font-size: 2.5rem; }
-    .hero-desc { font-size: 1.1rem; }
-    .cta-group { flex-direction: column; }
-    .hero-section { padding-top: 60px; }
+    .hero-vnu-content h1 { font-size: 2.5rem; }
+    .nav-vnu { display: none; }
 }
+
 
 
 
