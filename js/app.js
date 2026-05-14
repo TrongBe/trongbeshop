@@ -807,7 +807,7 @@ function loadCustomQuizzes() {
 }
 
 window.loadPublicQuizzes = function () {
-    console.log("🔄 Đang quét dữ liệu từ Cloud...");
+    console.log("🔄 Đang quét dữ liệu từ Cloud... (Trang V-ACT: " + isVACTPage + ")");
     try {
         const publicRef = ref(dbRT, FIREBASE_ROOT);
         onValue(publicRef, (snapshot) => {
@@ -863,7 +863,12 @@ window.loadPublicQuizzes = function () {
                 // v51: Firebase trống hoàn toàn
                 if (isVACTPage) {
                     const de1 = mockQuizzes.find(q => q.id === 'de_1_dgnl');
-                    if (de1) window.__publishPublicQuiz(de1);
+                    if (de1) {
+                        console.log("🚀 Nhánh VACT trống, đang tự động tạo và đồng bộ...");
+                        window.__publishPublicQuiz(de1);
+                    } else {
+                        console.warn("⚠️ Không tìm thấy đề de_1_dgnl trong mockQuizzes để đồng bộ.");
+                    }
                 }
             }
         });
