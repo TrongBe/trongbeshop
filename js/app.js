@@ -419,6 +419,7 @@ function renderQuestions() {
     let sectionQuestionIndex = 1;
 
     const qs = currentQuiz.renderedQuestions || currentQuiz.questions;
+    window.currentActiveQuiz = currentQuiz; // v54: Expose for AI context
 
     qs.forEach((q, index) => {
         if (q.section && q.section !== currentSection) {
@@ -430,6 +431,8 @@ function renderQuestions() {
             currentSection = q.section;
             sectionQuestionIndex = 1;
         }
+
+        window.currentQuestionIndex = index; // v54: Track current for AI
 
         if (q.groupText && q.groupText.trim() !== "" && q.groupText !== lastGroupText) {
             const passageDiv = document.createElement('div');

@@ -477,6 +477,71 @@
     </div>
   </footer>
 
+  <!-- MODERN AI CHAT ASSISTANT (GEMINI) -->
+  <div class="ai-chat-container" id="aiChatContainer">
+    <div class="ai-chat-header">
+      <div class="ai-chat-title">
+        <span class="ai-icon">✨</span>
+        <span>Trợ lý AI Gemini</span>
+      </div>
+      <div class="ai-chat-controls">
+        <button class="ai-chat-btn" onclick="toggleChatFullscreen()" title="Toàn màn hình">⛶</button>
+        <button class="ai-chat-btn" onclick="toggleAiChat()" title="Đóng">×</button>
+      </div>
+    </div>
+    <div class="ai-chat-messages" id="aiChatMessages">
+      <div class="msg-bubble msg-ai">Chào bạn! Mình là Gemini. Bạn cần mình giải thích gì về đề thi này không?</div>
+    </div>
+    <div class="ai-chat-input-area">
+      <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Hỏi Gemini bất cứ điều gì...">
+      <button class="ai-chat-send" id="btnSendAiChat">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- MANUAL QUIZ CREATOR OVERLAY -->
+  <div class="creator-overlay" id="manualCreatorOverlay">
+    <div class="creator-header">
+      <div class="creator-brand">
+        <span style="font-size: 1.5rem;">📝</span>
+        <h2 id="creatorTitleDisplay">Tạo đề mới</h2>
+      </div>
+      <button class="modal-close" id="btnCloseCreator" style="font-size: 2rem;">&times;</button>
+    </div>
+    <div class="creator-main">
+      <div class="creator-card">
+        <div class="creator-form-group">
+          <label>Tên bộ đề</label>
+          <input type="text" id="manualQuizTitle" placeholder="Ví dụ: Đề thi thử THPT Quốc gia">
+        </div>
+        <div id="manualQuestionsContainer" class="creator-question-list">
+          <!-- Câu hỏi sẽ render ở đây -->
+        </div>
+        <div class="creator-actions">
+          <button class="btn-primary" onclick="addManualQuestion('multiple_choice')" style="background: #4f46e5;">+ Thêm câu Trắc nghiệm</button>
+          <button class="btn-primary" onclick="addManualQuestion('short_answer')" style="background: #10b981;">+ Thêm câu Trả lời ngắn</button>
+        </div>
+        <div style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px;">
+          <button id="btnSaveManualQuiz" class="btn-primary" style="width: 100%; padding: 15px; font-size: 1.1rem;">Lưu và Công khai bộ đề</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING BUTTONS -->
+  <button class="btn-create-quiz-fixed" id="btnOpenManualCreator">
+    <span>➕</span> Tạo đề mới
+  </button>
+  
+  <button class="ai-chat-trigger" id="btnOpenAiChat" title="Hỏi AI Gemini">
+    <div class="ai-wave"></div>
+    <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ef629dc6201fd.svg" alt="AI">
+  </button>
+
   <script type="module" src="js/app.js?v=54"></script>
   <script type="module" src="js/shub-ai.js?v=1"></script>
 
