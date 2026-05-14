@@ -684,13 +684,13 @@ function renderResults(correct, incorrect, unanswered) {
     }
     
     // Hiển thị thời gian làm bài
-    if (window.quizStartTime) {
+    if (quizStartTime) {
         const endTime = Date.now();
-        const diff = Math.floor((endTime - window.quizStartTime) / 1000);
+        const diff = Math.floor((endTime - quizStartTime) / 1000);
         const mins = Math.floor(diff / 60);
         const secs = diff % 60;
         const timeStr = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-        const timeEl = document.getElementById('shubTimeTaken');
+        const timeEl = document.getElementById('shubTimeSpent');
         if (timeEl) timeEl.textContent = timeStr;
     }
     
