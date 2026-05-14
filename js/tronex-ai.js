@@ -68,7 +68,7 @@ class tronexAI {
         this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
     }
 
-    async sendMessage(customPrompt = null) {
+    async sendMessage(customPrompt = null, forcedModelId = null) {
         const text = customPrompt || this.chatInput.value.trim();
         if (!text) return;
 
@@ -87,22 +87,30 @@ class tronexAI {
             const apiKey = gK();
             const genAI = new GoogleGenerativeAI(apiKey);
             
-            const selectedModel = document.getElementById('aiModelSelector')?.value || "3.1";
+            const selectedModelValue = document.getElementById('aiModelSelector')?.value || "3.1";
             
-            // v65: Phân cấp độ thông minh và engine tương ứng
+            // v68: Logic phân cấp và Fallback
+            let modelId = forcedModelId;
             let systemPrompt = "";
-            let modelId = "gemini-2.0-flash"; // Mặc định
 
-            if (selectedModel === "3.1") {
-                modelId = "gemini-3.1-pro";
-                systemPrompt = `Bạn là TRONEX AI 3.1 Pro (Siêu cấp). Phong cách Google Gemini: Chào hỏi -> Phân tích -> Giải chi tiết BƯỚC -> Kết luận & Tips.`;
-            } else if (selectedModel === "3.0") {
-                modelId = "gemini-3.0-flash";
-                systemPrompt = `Bạn là TRONEX AI 3.0. Giải bài tập chuyên nghiệp, chia các bước rõ ràng và dễ hiểu.`;
-            } else {
-                modelId = "gemini-2.0-flash";
-                systemPrompt = `Bạn là Gia sư TRONEX 2.0. Giải thích ngắn gọn và sư phạm.`;
+            if (!modelId) {
+                if (selectedModelValue === "3.1") {
+                    modelId = "gemini-1.5-pro"; 
+                } else if (selectedModelValue === "3.0") {
+                    modelId = "gemini-2.0-flash-exp";
+                } else {
+                    modelId = "gemini-1.5-flash";
+                }
             }
+
+            // Cấu hình Instruction theo phong cách Google Gemini App
+            systemPrompt = `Bạn là trợ lý AI thông minh tích hợp trong nền tảng học tập TRONEX.
+PHONG CÁCH TRẢ LỜI (100% giống Google Gemini App):
+1. GREETING: Chào người dùng một cách thân thiện, chuyên nghiệp.
+2. ANALYSIS: Phân tích ngắn gọn yêu cầu hoặc câu hỏi để người dùng thấy bạn hiểu vấn đề.
+3. STEP-BY-STEP: Giải thích từng bước một cách sư phạm, dễ hiểu. Nếu là bài tập, hãy chỉ ra kiến thức trọng tâm.
+4. CONCLUSION: Đưa ra đáp án cuối cùng (in đậm) và lời khuyên hoặc khích lệ.
+LƯU Ý: Giữ câu trả lời có cấu trúc, sử dụng Markdown (bold, list, headers) để tăng tính thẩm mỹ.`;
 
             const model = genAI.getGenerativeModel({ 
                 model: modelId,
@@ -111,27 +119,40 @@ class tronexAI {
 
             // Lấy ngữ cảnh nếu đang làm bài
             let context = "";
-            if (window.currentActiveQuiz && window.currentQuestionIndex !== undefined) {
-                const q = window.currentActiveQuiz.questions[window.currentQuestionIndex];
-                context = `\n[BỐI CẢNH BÀI THI]:
-Câu hỏi hiện tại: ${q.text}
-Các lựa chọn: ${q.options ? q.options.join(', ') : 'Tự luận'}
-${q.correctAnswer ? `Đáp án đúng (nếu có): ${q.correctAnswer}` : ''}`;
+            if (window.currentQuiz && window.currentQuestionIndex !== undefined) {
+                const q = window.currentQuiz.questions[window.currentQuestionIndex];
+                context = `\n[BỐI CẢNH CÂU HỎI HIỆN TẠI]:
+Nội dung: ${q.text}
+Các lựa chọn: ${q.options ? q.options.join(', ') : 'Tự luận/Trả lời ngắn'}
+${q.correctIndex !== undefined ? `Đáp án đúng là lựa chọn số: ${q.correctIndex + 1}` : ''}`;
             }
 
-            const prompt = `${context}\n\n[CÂU HỎI HỌC SINH]: ${text}`;
+            const prompt = `${context}\n\n[YÊU CẦU CỦA NGƯỜI DÙNG]: ${text}`;
             
             const result = await model.generateContent(prompt);
             const response = await result.response;
             const output = response.text();
             
-            // Render kết quả với định dạng chuyên nghiệp
             this.renderAiResponse(loadingMsg, output);
 
         } catch (err) {
             console.error("Gemini Error:", err);
-            _idx++; 
-            loadingMsg.innerHTML = "Tôi đang bận xử lý một chút. Bạn hãy thử nhấn gửi lại nhé! (Hệ thống đã tự động chuyển sang máy chủ thông minh khác)";
+            
+            // FALLBACK LOGIC: Nếu model cao cấp lỗi, tự động thử lại với model Flash ổn định
+            const currentModelId = forcedModelId || (document.getElementById('aiModelSelector')?.value === "3.1" ? "gemini-1.5-pro" : (document.getElementById('aiModelSelector')?.value === "3.0" ? "gemini-2.0-flash-exp" : "gemini-1.5-flash"));
+            
+            if (currentModelId !== "gemini-1.5-flash") {
+                console.warn("Retrying with fallback model: gemini-1.5-flash");
+                loadingMsg.innerHTML = '<span class="dots-loading" style="color:#f59e0b;">Model cao cấp đang bận, tự động chuyển sang Model 2.0 để trả lời ngay...</span>';
+                
+                setTimeout(() => {
+                    loadingMsg.remove();
+                    this.sendMessage(text, "gemini-1.5-flash");
+                }, 800);
+            } else {
+                _idx++; // Đổi API Key
+                loadingMsg.innerHTML = "Tôi đang gặp chút sự cố kết nối. Bạn hãy thử nhấn gửi lại nhé! (Đã đổi máy chủ dự phòng)";
+            }
         }
     }
 

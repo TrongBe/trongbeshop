@@ -32,8 +32,8 @@ const isAdmin = localStorage.getItem("admin_secret_key") === "trongbeshop";
 
 
 if (isVACTPage) {
-    // Chỉ giữ lại các đề của TRONEX
-    const vactQuizzes = mockQuizzes.filter(q => q.id.startsWith('de_1_dgnl') || q.id.startsWith('vact_'));
+    // Chỉ giữ lại DUY NHẤT đề 1 ĐGNL của TRONEX (v68: Strict Mode)
+    const vactQuizzes = mockQuizzes.filter(q => q.id === 'de_1_dgnl');
     mockQuizzes.length = 0;
     mockQuizzes.push(...vactQuizzes);
 } else {
@@ -833,6 +833,8 @@ function resetScoreCircle() {
 }
 
 function loadCustomQuizzes() {
+    // v68: Không load đề tùy chỉnh nếu đang ở trang VACT (Strict Data Integrity)
+    if (isVACTPage) return;
     try {
         const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
         if (saved) {
@@ -850,6 +852,13 @@ window.loadPublicQuizzes = function () {
             const data = snapshot.val();
             if (data) {
                 let listChanged = false;
+
+                // v68: Xóa ghost data - Nếu ở trang VACT, chỉ giữ lại Đề 1 trước khi sync từ Cloud
+                if (isVACTPage) {
+                    const de1 = mockQuizzes.find(q => q.id === 'de_1_dgnl');
+                    mockQuizzes.length = 0;
+                    if (de1) mockQuizzes.push(de1);
+                }
 
                 Object.keys(data).forEach(key => {
                     let pq = data[key];
