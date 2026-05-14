@@ -1101,15 +1101,18 @@ function importQuizToList() {
         viewCount: 0
     };
     
+    const isVACTPage = window.location.pathname.toLowerCase().includes('v-act.html');
+    const LOCAL_STORAGE_KEY = isVACTPage ? 'trongbeshop_vact_quizzes' : 'trongbeshop_custom_quizzes';
+
     // v48 Ultimate: Fix lỗi tạo trùng đề
     // 1. Luôn lưu vào LocalStorage (chỉ các đề gemini_)
-    const saved = localStorage.getItem("trongbeshop_custom_quizzes");
+    const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
     let customQuizzes = [];
     if (saved) {
         try { customQuizzes = JSON.parse(saved); } catch(e) {}
     }
     customQuizzes.unshift(newQuiz);
-    localStorage.setItem("trongbeshop_custom_quizzes", JSON.stringify(customQuizzes));
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(customQuizzes));
 
     // 2. Nếu là Public -> Gửi lên Firebase (Listener onValue sẽ tự cập nhật mockQuizzes)
     if (privacy === "public" && window.__publishPublicQuiz) {

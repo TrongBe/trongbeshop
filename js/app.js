@@ -25,6 +25,22 @@ let userAnswers = {};
 let quizTimerInterval = null;
 let quizStartTime = null;
 
+const isVACTPage = window.location.pathname.toLowerCase().includes('v-act.html');
+const FIREBASE_ROOT = isVACTPage ? 'VACT' : 'public_quizzes';
+const LOCAL_STORAGE_KEY = isVACTPage ? 'trongbeshop_vact_quizzes' : 'trongbeshop_custom_quizzes';
+
+if (isVACTPage) {
+    // Chỉ giữ lại các đề của V-ACT
+    const vactQuizzes = mockQuizzes.filter(q => q.id.startsWith('de_1_dgnl') || q.id.startsWith('vact_'));
+    mockQuizzes.length = 0;
+    mockQuizzes.push(...vactQuizzes);
+} else {
+    // Ở trang chủ, ẩn các đề của V-ACT
+    const homeQuizzes = mockQuizzes.filter(q => !q.id.startsWith('de_1_dgnl') && !q.id.startsWith('vact_'));
+    mockQuizzes.length = 0;
+    mockQuizzes.push(...homeQuizzes);
+}
+
 // === PHẦN TỬ DOM ===
 const views = {
     list: document.getElementById('quizListView'),
@@ -95,7 +111,7 @@ function isQuizOwner(id) {
     const targetId = id.toString().trim();
     if (!targetId.startsWith("gemini_")) return false;
     try {
-        const saved = localStorage.getItem("trongbeshop_custom_quizzes");
+        const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
         if (saved) {
             const parsed = JSON.parse(saved);
             return parsed.some(q => q.id.toString().trim() === targetId);
@@ -142,7 +158,7 @@ window.deleteCustomQuiz = function (id) {
             if (isPublic) {
                 try {
                     // v43: Một lần xóa hết cả Đề + View vì chúng nằm chung 1 thư mục
-                    const publicRef = ref(dbRT, 'public_quizzes/' + id);
+                    const publicRef = ref(dbRT, FIREBASE_ROOT + '/' + id);
                     set(publicRef, null).then(() => {
                         console.log("Đã xóa xong trên Cloud");
                     }).catch(e => {
@@ -255,7 +271,7 @@ document.getElementById('btnConfirmStart').onclick = async function () {
             let viewedList = JSON.parse(localStorage.getItem("viewed_quizzes") || "[]");
             const qIdStr = currentQuiz.id.toString();
             if (!viewedList.includes(qIdStr)) {
-                const quizRef = ref(dbRT, 'public_quizzes/' + currentQuiz.id + '/viewCount');
+                const quizRef = ref(dbRT, FIREBASE_ROOT + '/' + currentQuiz.id + '/viewCount');
                 runTransaction(quizRef, (currentValue) => {
                     return (currentValue || 0) + 1;
                 });
@@ -761,7 +777,7 @@ function resetScoreCircle() {
 
 function loadCustomQuizzes() {
     try {
-        const saved = localStorage.getItem("trongbeshop_custom_quizzes");
+        const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
         if (saved) {
             const parsed = JSON.parse(saved);
             if (Array.isArray(parsed)) mockQuizzes.unshift(...parsed);
@@ -772,7 +788,7 @@ function loadCustomQuizzes() {
 window.loadPublicQuizzes = function () {
     console.log("🔄 Đang quét dữ liệu từ Cloud...");
     try {
-        const publicRef = ref(dbRT, 'public_quizzes');
+        const publicRef = ref(dbRT, FIREBASE_ROOT);
         onValue(publicRef, (snapshot) => {
             const data = snapshot.val();
             if (data) {
@@ -827,12 +843,12 @@ window.__mockQuizzes = mockQuizzes;
 window.__initQuizList = initQuizList;
 window.__saveCustomQuizzes = () => {
     const custom = mockQuizzes.filter(q => q.id.toString().startsWith("gemini_"));
-    localStorage.setItem("trongbeshop_custom_quizzes", JSON.stringify(custom));
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(custom));
 };
 
 window.__publishPublicQuiz = (quizObj) => {
     try {
-        const publicRef = ref(dbRT, 'public_quizzes/' + quizObj.id);
+        const publicRef = ref(dbRT, FIREBASE_ROOT + '/' + quizObj.id);
         set(publicRef, quizObj)
             .then(() => console.log("🚀 Đã đăng đề lên máy chủ THÀNH CÔNG!"))
             .catch(err => console.error("❌ Lỗi khi đăng đề:", err));
