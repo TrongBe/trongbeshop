@@ -2685,7 +2685,6 @@ body {
     .nav-vnu { display: none; }
 }
 
-
 .ai-chat-title {
     display: flex;
     align-items: center;
@@ -2696,6 +2695,7 @@ body {
 .ai-chat-controls {
     display: flex;
     gap: 12px;
+}
 
 /* ============================================================
    MODERN AI CHAT ASSISTANT (GEMINI-STYLE)
