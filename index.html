@@ -44,8 +44,7 @@
         </svg>
       </button>
       <h1>Học Tập Trực Tuyến</h1>
-      <p>"Uống nước nhớ nguồn"</p>
-      <p>Vào làm bài nhớ đến Trọng Be</p>
+      <p>"Uống nước nhớ nguồn" - VACT Ecosystem</p>
     </div>
   </header>
 
@@ -60,305 +59,48 @@
     </div>
     <ul class="sidebar-nav">
       <li><a href="index.html" class="active">🏠 Trang chủ</a></li>
-      <li><a href="v-act.html">🚀 V-ACT</a></li>
+      <li><a href="v-act.html">🚀 V-ACT (Làm bài)</a></li>
     </ul>
   </div>
 
-  <main class="container">
-    <!-- View: Danh sách đề -->
-    <div id="quizListView" class="view-section active">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-        <h2 class="section-title" style="margin: 0;">Danh sách bộ đề hiện có</h2>
-
-      </div>
-      <div id="quizList" class="quiz-grid">
-        <!-- Javascript sẽ tự động thêm các đề vào đây -->
-      </div>
-    </div>
-
-    <!-- View: Cấu hình trước khi làm bài -->
-    <div id="setupView" class="view-section">
-      <div class="setup-card">
-        <button id="btnBackFromSetup" class="btn btn-text">← Quay lại danh sách</button>
-        <h2 id="setupQuizTitle" class="section-title">Cấu hình bài tập</h2>
-
-        <div class="setup-options">
-          <div class="option-item">
-            <label class="checkbox-container">
-              <input type="checkbox" id="chkShuffle" checked>
-              <span class="checkmark"></span>
-              Tráo thứ tự câu hỏi
-            </label>
-            <button class="info-btn" onclick="showHelp('shuffle')">?</button>
-          </div>
-
-          <div class="option-item">
-            <label>Chế độ làm bài:</label>
-            <div class="radio-group">
-              <label class="radio-container">
-                <input type="radio" name="quizMode" value="exam" checked>
-                <span class="radio-mark"></span>
-                Thi cử
-              </label>
-              <label class="radio-container">
-                <input type="radio" name="quizMode" value="practice">
-                <span class="radio-mark"></span>
-                Luyện tập
-              </label>
-            </div>
-            <button class="info-btn" onclick="showHelp('mode')">?</button>
+  <main>
+    <!-- New Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-content">
+          <span class="hero-badge">✨ Hệ sinh thái giáo dục AI 3.0</span>
+          <h1 class="hero-title">Nền tảng luyện thi <span>Thông minh nhất</span></h1>
+          <p class="hero-desc">Trải nghiệm hệ thống tạo đề bằng trí tuệ nhân tạo Gemini, giao diện SHub Classroom tối ưu và khả năng đồng bộ Firebase mạnh mẽ.</p>
+          <div class="cta-group">
+            <a href="v-act.html" class="btn-hero btn-hero-primary">Vào làm bài ngay</a>
+            <a href="mailto:nguyentrong0398787723@gmail.com" class="btn-hero btn-hero-secondary">Liên hệ hỗ trợ</a>
           </div>
         </div>
-
-        <button id="btnConfirmStart" class="btn btn-primary btn-large" style="margin-top: 24px;">Bắt Đầu Làm Bài
-          Ngay</button>
-      </div>
-    </div>
-
-    <!-- View: Đang làm bài / Xem lại bài (Chuẩn SHub) -->
-    <div id="activeQuizView" class="view-section shub-layout">
-      <div class="shub-main">
-        <div class="quiz-header">
-          <button id="btnBackToMenu" class="btn btn-text">← Quay lại danh sách</button>
-          <h2 id="currentQuizTitle" class="section-title quiz-title">Đang tải...</h2>
+        
+        <div class="hero-image-container">
+          <img src="landing_page_hero_1778785096105.png" alt="Education AI Hero" class="hero-image">
         </div>
-        <form id="quizForm">
-          <div id="questionsContainer">
-            <!-- Javascript sẽ tự động thêm câu hỏi vào đây -->
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <span class="feature-icon">🤖</span>
+            <h3>Nhập đề bằng AI</h3>
+            <p>Chỉ cần tải ảnh đề thi, AI Gemini 3.0 Flash sẽ tự động chuyển đổi thành bộ đề trắc nghiệm trong vài giây.</p>
           </div>
-        </form>
-      </div>
-
-      <div class="shub-sidebar" id="shubSidebar">
-        <div class="shub-sidebar-handle" id="shubSidebarHandle"></div>
-        <div class="shub-sidebar-minimize-trigger" onclick="toggleMinimizeSidebar()">−</div>
-        <div class="shub-sidebar-toggle-btn" onclick="toggleMinimizeSidebar()">📝</div>
-
-        <div class="shub-sidebar-content">
-          <!-- Result Card (chỉ hiện khi xem lại bài) -->
-          <div id="shubResultSummary" class="shub-result-card" style="display:none">
-            <h3 class="shub-result-title">Kết quả làm bài</h3>
-            <div class="shub-score"><span id="shubScoreText">0</span> / 10</div>
-            <div class="shub-stats">
-              <div class="stat-item"><span class="stat-dot dot-correct"></span>Đúng: <strong id="shubCorrect">0</strong></div>
-              <div class="stat-item"><span class="stat-dot dot-wrong"></span>Sai: <strong id="shubIncorrect">0</strong></div>
-              <div class="stat-item"><span class="stat-dot dot-unanswered"></span>Chưa làm: <strong id="shubUnanswered">0</strong></div>
-              <div class="stat-item" style="margin-top: 8px; padding-top: 8px; border-top: 1px dashed #eee;">
-                ⏱️ Thời gian: <strong id="shubTimeTaken">00:00</strong>
-              </div>
-            </div>
+          <div class="feature-card">
+            <span class="feature-icon">📱</span>
+            <h3>Giao diện SHub</h3>
+            <p>Thiết kế tinh gọn, chuẩn SHub Classroom giúp học sinh tập trung tối đa vào việc làm bài trên mọi thiết bị.</p>
           </div>
-
-          <div class="shub-timer-box" id="shubTimerBox">
-            <span class="timer-icon">⏱️</span>
-            <span id="quizTimer">Thời gian làm bài</span>
-          </div>
-
-          <div class="shub-palette-container">
-            <div class="shub-palette-header">Phiếu trả lời</div>
-            <div id="questionPalette" class="shub-palette">
-              <!-- Lưới số câu hỏi sẽ được tạo bằng Javascript -->
-            </div>
-          </div>
-
-          <div class="shub-sidebar-footer">
-            <button type="button" class="btn-shub-leave" id="btnLeaveQuiz">Rời khỏi</button>
-            <button type="submit" form="quizForm" class="btn-shub-submit" id="btnSubmitQuiz">Nộp bài</button>
+          <div class="feature-card">
+            <span class="feature-icon">☁️</span>
+            <h3>Đồng bộ Firebase</h3>
+            <p>Lưu trữ và đồng bộ hóa kết quả, bộ đề công khai ngay lập tức giữa giáo viên và học sinh qua VACT.</p>
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- View: Kết quả -->
-    <div id="resultView" class="view-section">
-      <div class="result-card">
-        <h2>Kết quả bài làm</h2>
-        <div class="score-circle">
-          <span id="scoreText">0/0</span>
-        </div>
-        <div class="result-details">
-          <p>Số câu trả lời đúng: <strong id="correctCount" class="text-success">0</strong></p>
-          <p>Số câu trả lời sai: <strong id="incorrectCount" class="text-danger">0</strong></p>
-          <p>Số câu chưa làm: <strong id="unansweredCount" style="color: #f59e0b">0</strong></p>
-        </div>
-        <div class="action-buttons">
-          <button id="btnRetry" class="btn btn-outline">Làm Lại Đề Này</button>
-          <button id="btnReview" class="btn btn-outline"
-            style="border-color: var(--primary); color: var(--primary);">Xem Lại Bài</button>
-          <button id="btnBackToMenuFromResult" class="btn btn-primary">Chọn Đề Khác</button>
-        </div>
-      </div>
-    </div>
+    </section>
   </main>
-
-  <!-- ====== GEMINI FAB BUTTON ====== -->
-  <button class="gemini-fab" onclick="openGeminiModal()" title="Nhập đề bằng AI">
-    <span class="gemini-fab-icon">🤖</span>
-    <span class="gemini-fab-text">Nhập đề bằng AI</span>
-  </button>
-
-  <!-- ====== GEMINI MODAL ====== -->
-  <div id="geminiModalOverlay" class="gemini-modal-overlay">
-    <div class="gemini-modal">
-      <!-- Header -->
-      <div class="gemini-modal-header">
-        <div class="gemini-modal-title">
-          <span class="gemini-logo">✨</span>
-          Nhập đề thi bằng AI Gemini
-        </div>
-        <button id="btnCloseGeminiModal" class="gemini-close-btn" aria-label="Đóng">✕</button>
-      </div>
-
-      <!-- Step Indicator -->
-      <div class="gemini-steps-indicator">
-        <div class="step-item">
-          <div class="step-dot active-dot" data-step="1">1</div>
-          <span>Upload ảnh</span>
-        </div>
-        <div class="step-connector"></div>
-        <div class="step-item">
-          <div class="step-dot" data-step="2">2</div>
-          <span>Phân tích</span>
-        </div>
-        <div class="step-connector"></div>
-        <div class="step-item">
-          <div class="step-dot" data-step="3">3</div>
-          <span>Chỉnh sửa</span>
-        </div>
-        <div class="step-connector"></div>
-        <div class="step-item">
-          <div class="step-dot" data-step="4">4</div>
-          <span>Lưu đề</span>
-        </div>
-      </div>
-
-      <!-- Error Box -->
-      <div id="geminiError" class="gemini-error-box" style="display:none"></div>
-
-      <!-- STEP 1: UPLOAD -->
-      <div id="geminiStep1" class="gemini-step active">
-        <label for="imageFileInput" id="imageDrop" class="gemini-image-drop" style="cursor: pointer; display: flex;">
-          <div class="drop-icon">📷</div>
-          <div class="drop-title">Kéo thả ảnh đề thi vào đây</div>
-          <div class="drop-sub">hoặc chạm để chọn file</div>
-          <div class="drop-formats">Hỗ trợ: JPG, PNG, WebP, DOCX, PDF</div>
-        </label>
-        <input type="file" id="imageFileInput" accept="image/*, .docx, application/vnd.openxmlformats-officedocument.wordprocessingml.document, .pdf, application/pdf" multiple style="display:none">
-        <input type="file" id="addMoreFileInput" accept="image/*, .docx, application/vnd.openxmlformats-officedocument.wordprocessingml.document, .pdf, application/pdf" multiple style="display:none">
-
-        <div id="imagePreviewContainer" class="image-preview-container"></div>
-
-        <label for="addMoreFileInput" id="btnAddMoreImages" class="btn-add-more"
-          style="display:none; cursor: pointer; text-align: center;">
-          + Thêm ảnh
-        </label>
-
-        <div class="gemini-note-section">
-          <label for="geminiExtraNote">Ghi chú thêm cho AI (tuỳ chọn):</label>
-          <textarea id="geminiExtraNote" class="gemini-note-input"
-            placeholder="Ví dụ: Đây là đề Sinh học lớp 11, phần đúng/sai có 4 ý mỗi câu..."></textarea>
-        </div>
-
-        <div class="gemini-step-footer">
-          <button id="btnAnalyze" class="gemini-btn-primary">
-            <span>🔍</span> Phân tích với AI
-          </button>
-        </div>
-      </div>
-
-      <!-- STEP 2: LOADING -->
-      <div id="geminiStep2" class="gemini-step">
-        <div class="gemini-loading-container">
-          <div class="gemini-spinner"></div>
-          <div class="gemini-loading-title">Gemini đang phân tích ảnh...</div>
-          <div class="gemini-loading-sub">Quá trình này có thể mất 30-60 giây</div>
-          <div class="gemini-loading-dots">
-            <span></span><span></span><span></span>
-          </div>
-        </div>
-      </div>
-
-      <!-- STEP 3: EDITOR -->
-      <div id="geminiStep3" class="gemini-step">
-        <div class="editor-toolbar">
-          <div class="editor-info">
-            <span class="editor-icon">✏️</span>
-            Kiểm tra và chỉnh sửa câu hỏi
-            <span id="geminiQuestionCount" class="question-count-badge">0 câu</span>
-          </div>
-          <div class="editor-actions-top">
-            <button id="btnAnalyzeMore" class="btn-analyze-more"
-              title="Chọn thêm ảnh để phân tích và nối vào danh sách hiện tại">➕ Phân tích thêm</button>
-            <button id="btnReanalyze" class="btn-reanalyze">🔄 Phân tích lại</button>
-          </div>
-        </div>
-        <input type="file" id="analyzeMoreInput" accept="image/*, .docx, application/vnd.openxmlformats-officedocument.wordprocessingml.document, .pdf, application/pdf" multiple style="display:none">
-        <div id="questionEditorContainer" class="question-editor-container"></div>
-        <div class="gemini-step-footer">
-          <button id="btnBackToUpload" class="gemini-btn-secondary">← Quay lại</button>
-          <button id="btnGoToSave" class="gemini-btn-primary">Tiếp theo →</button>
-        </div>
-      </div>
-
-      <!-- STEP 4: SAVE -->
-      <div id="geminiStep4" class="gemini-step">
-        <div class="save-form">
-          <div class="save-form-icon">📚</div>
-          <h3 class="save-form-title">Đặt tên cho bộ đề</h3>
-          <div class="save-field">
-            <label for="geminiQuizTitle">Tên đề thi <span class="required">*</span></label>
-            <input type="text" id="geminiQuizTitle" class="save-input" placeholder="Ví dụ: Toán 11 - Giữa Kỳ II"
-              oninput="this.style.borderColor=''">
-          </div>
-          <div class="save-field">
-            <label for="geminiQuizDesc">Mô tả (tuỳ chọn)</label>
-            <textarea id="geminiQuizDesc" class="save-input save-textarea"
-              placeholder="Mô tả ngắn về nội dung đề thi..."></textarea>
-          </div>
-          <div class="save-field privacy-toggle-container">
-            <label class="privacy-label">Quyền riêng tư</label>
-            <div class="privacy-options">
-              <label class="privacy-radio">
-                <input type="radio" name="geminiQuizPrivacy" value="private" checked>
-                <div class="privacy-card">
-                  <div class="p-icon">🔒</div>
-                  <div class="p-info">
-                    <div class="p-title">Riêng tư</div>
-                    <div class="p-desc">Chỉ lưu trên trình duyệt của bạn</div>
-                  </div>
-                </div>
-              </label>
-              <label class="privacy-radio">
-                <input type="radio" name="geminiQuizPrivacy" value="public">
-                <div class="privacy-card">
-                  <div class="p-icon">🌍</div>
-                  <div class="p-info">
-                    <div class="p-title">Công khai</div>
-                    <div class="p-desc">Chia sẻ cho mọi người cùng làm</div>
-                  </div>
-                </div>
-              </label>
-            </div>
-          </div>
-        </div>
-        <div class="gemini-step-footer">
-          <button id="btnBackToEdit" class="gemini-btn-secondary">← Quay lại chỉnh sửa</button>
-          <button id="btnImportQuiz" class="gemini-btn-primary">✅ Thêm vào danh sách</button>
-        </div>
-      </div>
-
-      <!-- STEP 5: SUCCESS -->
-      <div id="geminiStep5" class="gemini-step">
-        <div class="success-container">
-          <div class="success-icon">🎉</div>
-          <h3 class="success-title">Thêm đề thành công!</h3>
-          <p class="success-sub">Bộ đề mới đã được thêm vào danh sách. Bạn có thể bắt đầu làm bài ngay bây giờ.</p>
-          <button id="btnCloseSuccess" class="gemini-btn-primary">Xem danh sách đề →</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
 
   <footer class="footer">
     <div class="container footer-content">
