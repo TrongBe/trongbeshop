@@ -464,9 +464,11 @@ function renderQuestions() {
                     <input type="radio" name="question_${q.id}" value="${optIndex}">
                     <div class="shub-opt-letter">${letter}</div>
                     <div class="shub-opt-text">${opt}</div>
+                    <button type="button" class="shub-clear-btn" title="Hủy chọn">✕</button>
                 `;
                 
                 const radio = label.querySelector('input');
+                const clearBtn = label.querySelector('.shub-clear-btn');
                 
                 radio.addEventListener('change', () => {
                     optionsList.querySelectorAll('.shub-option-label').forEach(l => l.classList.remove('selected'));
@@ -478,6 +480,15 @@ function renderQuestions() {
                         highlightAnswer(q, optionsList);
                     }
                 });
+
+                clearBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    radio.checked = false;
+                    label.classList.remove('selected');
+                    updatePalette(q.id, null);
+                });
+
 
 
                 optionsList.appendChild(label);
