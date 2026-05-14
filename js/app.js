@@ -25,19 +25,19 @@ let userAnswers = {};
 let quizTimerInterval = null;
 let quizStartTime = null;
 
-const isVACTPage = window.location.pathname.toLowerCase().includes('v-act.html');
+const isVACTPage = window.location.pathname.toLowerCase().includes('tronex.html');
 const FIREBASE_ROOT = isVACTPage ? 'VACT' : 'public_quizzes';
 const LOCAL_STORAGE_KEY = isVACTPage ? 'trongbeshop_vact_quizzes' : 'trongbeshop_custom_quizzes';
 const isAdmin = localStorage.getItem("admin_secret_key") === "trongbeshop";
 
 
 if (isVACTPage) {
-    // Chỉ giữ lại các đề của V-ACT
+    // Chỉ giữ lại các đề của TRONEX
     const vactQuizzes = mockQuizzes.filter(q => q.id.startsWith('de_1_dgnl') || q.id.startsWith('vact_'));
     mockQuizzes.length = 0;
     mockQuizzes.push(...vactQuizzes);
 } else {
-    // Ở trang chủ, ẩn các đề của V-ACT
+    // Ở trang chủ, ẩn các đề của TRONEX
     const homeQuizzes = mockQuizzes.filter(q => !q.id.startsWith('de_1_dgnl') && !q.id.startsWith('vact_'));
     mockQuizzes.length = 0;
     mockQuizzes.push(...homeQuizzes);
@@ -706,7 +706,7 @@ function renderResults(correct, incorrect, unanswered) {
     
     let score;
     if (isVACTPage) {
-        // Thang điểm 1200 cho V-ACT (10đ mỗi câu đúng)
+        // Thang điểm 1200 cho TRONEX (10đ mỗi câu đúng)
         score = correct * 10;
         document.querySelector('.tronex-score').innerHTML = `<span id="tronexScoreText">${score}</span> / 1200`;
     } else {
@@ -843,7 +843,7 @@ function loadCustomQuizzes() {
 }
 
 window.loadPublicQuizzes = function () {
-    console.log("🔄 Đang quét dữ liệu từ Cloud... (Trang V-ACT: " + isVACTPage + ")");
+    console.log("🔄 Đang quét dữ liệu từ Cloud... (Trang TRONEX: " + isVACTPage + ")");
     try {
         const publicRef = ref(dbRT, FIREBASE_ROOT);
         onValue(publicRef, (snapshot) => {
@@ -885,11 +885,11 @@ window.loadPublicQuizzes = function () {
                     }
                 });
 
-                // v51: Tự động đồng bộ đề V-ACT lên Firebase nếu chưa có
+                // v51: Tự động đồng bộ đề TRONEX lên Firebase nếu chưa có
                 if (isVACTPage && !data['de_1_dgnl']) {
                     const de1 = mockQuizzes.find(q => q.id === 'de_1_dgnl');
                     if (de1) {
-                        console.log("🚀 Đề V-ACT chưa có trên Cloud, đang tự động đồng bộ...");
+                        console.log("🚀 Đề TRONEX chưa có trên Cloud, đang tự động đồng bộ...");
                         window.__publishPublicQuiz(de1);
                     }
                 }

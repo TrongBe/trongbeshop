@@ -84,24 +84,31 @@ class tronexAI {
         this.chatMessages.appendChild(loadingMsg);
 
         try {
-            const genAI = new GoogleGenerativeAI(gK());
-            const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+            const apiKey = gK();
+            const genAI = new GoogleGenerativeAI(apiKey);
+            const model = genAI.getGenerativeModel({ 
+                model: "gemini-2.0-flash",
+                systemInstruction: "Bạn là Gia sư chuyên nghiệp, thông thái và tận tâm của TRONEX AI Learning. Bạn am hiểu tất cả các môn học. Nhiệm vụ của bạn là giải thích bài tập một cách chi tiết, dễ hiểu và truyền cảm hứng. Luôn phân tích logic, cung cấp kiến thức nền tảng và không chỉ đưa ra đáp án suông. Hãy xưng hô thân thiện như một người thầy/người bạn đồng hành."
+            });
 
             // Lấy ngữ cảnh nếu đang làm bài
             let context = "";
             if (window.currentActiveQuiz && window.currentQuestionIndex !== undefined) {
                 const q = window.currentActiveQuiz.questions[window.currentQuestionIndex];
-                context = `\nNgữ cảnh: Học sinh đang làm Câu ${window.currentQuestionIndex + 1}. \nNội dung: ${q.text}\nĐáp án: ${q.options ? q.options.join(', ') : 'Tự luận'}`;
+                context = `\n[NGỮ CẢNH BÀI THI]:\nCâu hỏi hiện tại: ${q.text}\nCác lựa chọn: ${q.options ? q.options.join(', ') : 'Tự luận'}\n${q.correctAnswer ? `Đáp án đúng: ${q.correctAnswer}` : ''}`;
             }
 
-            const prompt = `Bạn là trợ lý giảng dạy thông minh Gemini. Hãy giải thích ngắn gọn, dễ hiểu và truyền cảm hứng. ${context}\nCâu hỏi của học sinh: ${text}`;
+            const prompt = `${context}\n\n[CÂU HỎI HỌC SINH]: ${text}`;
             
             const result = await model.generateContent(prompt);
             const response = await result.response;
-            loadingMsg.innerHTML = response.text().replace(/\n/g, '<br>');
+            const output = response.text();
+            
+            loadingMsg.innerHTML = output.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
         } catch (err) {
-            loadingMsg.innerHTML = "Xin lỗi, tôi gặp chút sự cố kết nối. Hãy thử lại nhé!";
-            console.error(err);
+            console.error("Gemini Error:", err);
+            _idx++; // Chuyển sang key dự phòng
+            loadingMsg.innerHTML = "Tôi đang bị quá tải một chút. Bạn hãy thử nhấn gửi lại câu hỏi một lần nữa nhé! (Hệ thống đã tự động chuyển máy chủ dự phòng)";
         }
         this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
     }
@@ -115,7 +122,7 @@ class tronexAI {
 
     // --- MANUAL CREATOR LOGIC ---
     openCreator() {
-        const title = prompt("Vui lòng nhập tên đề thi mới:", "Đề thi V-ACT mới");
+        const title = prompt("Vui lòng nhập tên đề thi mới:", "Đề thi TRONEX mới");
         if (!title) return;
         
         document.getElementById('manualQuizTitle').value = title;

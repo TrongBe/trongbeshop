@@ -1109,7 +1109,7 @@ function importQuizToList() {
         return;
     }
     
-    const isVACTPage = window.location.pathname.toLowerCase().includes('v-act.html');
+    const isVACTPage = window.location.pathname.toLowerCase().includes('tronex.html');
     const LOCAL_STORAGE_KEY = isVACTPage ? 'trongbeshop_vact_quizzes' : 'trongbeshop_custom_quizzes';
 
     // v48 Ultimate: Fix lỗi tạo trùng đề
