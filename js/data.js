@@ -1,4 +1,4 @@
-?export const mockQuizzes = [
+export const mockQuizzes = [
     {
         id: "english_review_gk2_11",
         title: "Review GK2 - 11",
