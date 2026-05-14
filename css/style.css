@@ -2177,27 +2177,18 @@ body {
 }
 
 @media (max-width: 1024px) {
-    .shub-main { padding-right: 0; }
-    .shub-sidebar { 
-        position: fixed;
-        right: 10px; 
-        top: 80px;
-        bottom: auto;
-        width: 280px;
-        z-index: 2000;
-        max-height: 70vh;
-        transform: none;
+    .shub-main {
+        padding-right: 0;
     }
-    .shub-sidebar-handle { display: flex; }
-    .shub-sidebar.minimized {
-        width: 64px;
-        height: 64px;
-        border-radius: 32px;
+
+    .shub-sidebar {
+        right: 10px;
         top: auto;
-        bottom: 80px;
-        right: 20px;
+        bottom: 20px;
+        width: 280px;
     }
 }
+
 
 /* Header Quiz */
 .quiz-header {
@@ -2224,15 +2215,6 @@ body {
     font-weight: 700;
     margin-bottom: 16px;
     line-height: 1.6;
-}
-
-.question-card img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 16px auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 /* Hộp đáp án chuẩn SHub */
@@ -2294,6 +2276,7 @@ body {
     border-right-color: #1976d2;
 }
 
+/* Góc gấp tam giác đặc trưng của SHub */
 .shub-option-label.selected::after {
     content: "✓";
     position: absolute;
@@ -2340,7 +2323,7 @@ body {
     border-right-color: #d32f2f !important;
 }
 
-/* Nút xóa lựa chọn */
+/* Nút xóa lựa chọn mờ mờ ở góc */
 .shub-clear-btn {
     position: absolute;
     right: 12px;
@@ -2364,6 +2347,11 @@ body {
     display: flex;
 }
 
+.shub-clear-btn:hover {
+    background: #e5e7eb;
+    color: #1f2937;
+}
+
 .shub-option-label.selected .shub-clear-btn {
     display: flex;
     background: rgba(25, 118, 210, 0.1);
@@ -2372,6 +2360,20 @@ body {
 }
 
 /* Sidebar & Palette */
+.shub-timer-box {
+    background: #1976d2;
+    color: white;
+    padding: 16px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 4px rgba(25, 118, 210, 0.2);
+}
+
 .shub-palette-container {
     background: white;
     border-radius: 12px;
@@ -2420,16 +2422,19 @@ body {
     background: #f3f4f6;
 }
 
+/* Đã chọn đáp án */
 .shub-palette-btn.answered {
     background: #e0f2fe;
     border-color: #38bdf8;
     color: #0369a1;
 }
 
+/* Đang cuộn đến câu này */
 .shub-palette-btn.active-q {
     border: 2px solid #1976d2;
 }
 
+/* Trạng thái đúng sai */
 .shub-palette-btn.res-correct {
     background: #dcfce7;
     border-color: #4ade80;
@@ -2440,6 +2445,11 @@ body {
     background: #fee2e2;
     border-color: #f87171;
     color: #991b1b;
+}
+
+.shub-sidebar-footer {
+    display: flex;
+    gap: 12px;
 }
 
 .shub-timer-box {
@@ -2457,12 +2467,6 @@ body {
     margin-bottom: 16px;
 }
 
-.shub-sidebar-footer {
-    display: flex;
-    gap: 12px;
-    padding: 0 16px 16px;
-}
-
 .btn-shub-leave {
     flex: 1;
     padding: 14px;
@@ -2473,6 +2477,10 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: 0.2s;
+}
+
+.btn-shub-leave:hover {
+    background: #f3f4f6;
 }
 
 .btn-shub-submit {
@@ -2489,6 +2497,12 @@ body {
     font-size: 1rem;
 }
 
+.btn-shub-submit:hover {
+    background: #1565c0;
+    transform: translateY(-1px);
+}
+
+/* Bảng kết quả Sidebar */
 .shub-result-card {
     background: white;
     border-radius: 12px;
@@ -2537,23 +2551,40 @@ body {
     margin-right: 8px;
 }
 
-.dot-correct { background: #2e7d32; }
-.dot-wrong { background: #d32f2f; }
-.dot-unanswered { background: #f59e0b; }
+.dot-correct {
+    background: #2e7d32;
+}
+
+.dot-wrong {
+    background: #d32f2f;
+}
+
+.dot-unanswered {
+    background: #f59e0b;
+}
 
 .stat-item strong {
     margin-left: auto;
     color: #1f2937;
 }
 
-/* Responsive Mobile Override */
+/* Responsive Mobile */
 @media (max-width: 992px) {
-    .shub-layout { flex-direction: column; }
-    .shub-main { padding-right: 0; }
-    .shub-sidebar { 
-        width: 280px; 
-        position: fixed; /* Đảm bảo vẫn floating và di chuyển theo viewport */
+    .shub-layout {
+        flex-direction: column;
+    }
+
+    .shub-sidebar {
+        width: 100%;
+        position: static;
         order: -1;
+        /* Đưa sidebar lên trên ở Mobile */
+        margin-bottom: 20px;
+    }
+
+    .shub-palette {
+        max-height: 250px;
+        grid-template-columns: repeat(7, 1fr);
     }
 }
 
@@ -2561,4 +2592,4 @@ body {
     .shub-palette {
         grid-template-columns: repeat(5, 1fr);
     }
-}
+}
