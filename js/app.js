@@ -28,6 +28,8 @@ let quizStartTime = null;
 const isVACTPage = window.location.pathname.toLowerCase().includes('v-act.html');
 const FIREBASE_ROOT = isVACTPage ? 'VACT' : 'public_quizzes';
 const LOCAL_STORAGE_KEY = isVACTPage ? 'trongbeshop_vact_quizzes' : 'trongbeshop_custom_quizzes';
+const isAdmin = localStorage.getItem("admin_secret_key") === "trongbeshop";
+
 
 if (isVACTPage) {
     // Chỉ giữ lại các đề của V-ACT
@@ -872,10 +874,8 @@ window.loadPublicQuizzes = function () {
                 }
             }
         }, (error) => {
-            console.error("❌ Lỗi kết nối Firebase (Có thể do mạng bị chặn):", error);
-            if (isVACTPage) {
-                alert("Không thể kết nối Firebase. Hệ thống sẽ dùng dữ liệu dự phòng (Offline).");
-            }
+            console.warn("⚠️ Firebase connection blocked or restricted:", error.message);
+            // v52: Silent fail to avoid annoying user if network is restricted
         });
     } catch (e) { console.error("Load public error:", e); }
 };
@@ -1035,10 +1035,13 @@ function initDraggableSidebar() {
         initialY = currentY;
         isDragging = false;
         
-        localStorage.setItem('shub_sidebar_pos', JSON.stringify({ x: xOffset, y: yOffset }));
+        try {
+            localStorage.setItem('shub_sidebar_pos', JSON.stringify({ x: xOffset, y: yOffset }));
+        } catch(e) {}
         
         document.removeEventListener('mousemove', drag);
         document.removeEventListener('mouseup', dragEnd);
     }
 }
+
 
