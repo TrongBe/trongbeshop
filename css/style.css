@@ -2835,7 +2835,7 @@ body {
 /* Hero Section VNU Style */
 .hero-vnu {
     height: 85vh;
-    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('university_campus_hero_1778785364778.png');
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('../university_campus_hero_1778785364778.png');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -2949,4 +2949,4 @@ body {
 
 
 
-
+$cssContent
