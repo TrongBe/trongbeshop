@@ -1,7 +1,6 @@
 /**
  * tronex-AI: TRỢ LÝ GIẢNG GIẢI & TRÌNH TẠO ĐỀ THI
- * Tích hợp Gemini 3.0 Flash / 2.0 Flash (Fallback chain)
- * ✅ Fixed: model names, selector logic, fallback recursion bug
+ * ✅ Fix: conversation history (multi-turn), quiz context chính xác
  */
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
@@ -20,27 +19,36 @@ const rK = () => {
     localStorage.setItem("_tronex_kidx", String(_idx));
 };
 
-// ✅ Nâng cấp: Gemini 3.0 Flash → 2.0 Flash → 2.5 Flash-Lite (dự phòng cuối)
-// Gemini 3 Flash: mạnh nhất, reasoning cao
-// Gemini 2.0 Flash: nhanh, ổn định
-// Gemini 2.5 Flash-Lite: nhẹ nhất, luôn available, free tier
 const MODEL_CHAIN_3 = [
-    "gemini-3-flash-preview",   // Ưu tiên 1: Gemini 3.0 Flash (mới nhất)
-    "gemini-2.5-flash",         // Ưu tiên 2: ổn định
-    "gemini-3.1-flash-lite"     // Ưu tiên 3: nhẹ nhất, free tier
+    "gemini-3-flash-preview",
+    "gemini-2.5-flash",
+    "gemini-3.1-flash-lite"
 ];
-
 const MODEL_CHAIN_2 = [
-    "gemini-2.5-flash",         // Ưu tiên 1: Gemini 2.0/2.5 Flash
-    "gemini-3.1-flash-lite",    // Ưu tiên 2: dự phòng
-    "gemini-3-flash-preview"    // Ưu tiên 3: fallback lên 3.0 nếu cần
+    "gemini-2.5-flash",
+    "gemini-3.1-flash-lite",
+    "gemini-3-flash-preview"
 ];
-
 const MODEL_LABELS = {
     "gemini-3-flash-preview": "Gemini 3.0 Flash",
     "gemini-2.5-flash": "Gemini 2.5 Flash",
     "gemini-3.1-flash-lite": "Gemini 3.1 Flash-Lite (dự phòng)"
 };
+
+const SYSTEM_PROMPT = `Bạn là trợ lý AI thông minh tích hợp trong nền tảng học tập TRONEX.
+Nhiệm vụ: Giải thích câu hỏi, hướng dẫn làm bài và trả lời thắc mắc của học sinh.
+
+PHONG CÁCH TRẢ LỜI:
+1. GREETING: Chào thân thiện (chỉ ở tin nhắn đầu tiên).
+2. ANALYSIS: Phân tích ngắn gọn yêu cầu.
+3. STEP-BY-STEP: Giải thích từng bước, nêu rõ kiến thức trọng tâm.
+4. CONCLUSION: Đáp án cuối cùng in đậm, kèm lời khuyên hoặc khích lệ.
+
+QUY TẮC:
+- Dùng Markdown (bold, list, headers) cho đẹp.
+- Trả lời bằng Tiếng Việt.
+- NHỚ toàn bộ lịch sử hội thoại để trả lời nhất quán.
+- Nếu người dùng hỏi "câu đó", "câu này"... hãy căn cứ vào [BỐI CẢNH ĐỀ THI] trong tin nhắn của họ.`;
 
 class tronexAI {
     constructor() {
@@ -48,16 +56,17 @@ class tronexAI {
         this.chatMessages = document.getElementById('aiChatMessages');
         this.chatInput = document.getElementById('aiChatInput');
         this.sendBtn = document.getElementById('btnSendAiChat');
-
         this.creatorOverlay = document.getElementById('manualCreatorOverlay');
         this.questionsContainer = document.getElementById('manualQuestionsContainer');
         this.manualQuestions = [];
 
-        // Guard: nếu DOM chưa sẵn sàng thì không crash
-        if (!this.chatContainer || !this.chatMessages || !this.chatInput) {
-            console.warn('[tronexAI] Một số phần tử DOM chưa sẵn sàng, kiểm tra lại HTML.');
-        }
+        // ✅ Lịch sử hội thoại theo định dạng Gemini multi-turn
+        // Mỗi phần tử: { role: "user"|"model", parts: [{ text: "..." }] }
+        this.chatHistory = [];
 
+        if (!this.chatContainer || !this.chatMessages || !this.chatInput) {
+            console.warn('[tronexAI] Một số phần tử DOM chưa sẵn sàng.');
+        }
         this.init();
     }
 
@@ -67,19 +76,18 @@ class tronexAI {
         this.chatInput?.addEventListener('keypress', (e) => {
             if (e.key === 'Enter' && !e.shiftKey) this.sendMessage();
         });
-
         document.getElementById('btnOpenManualCreator')?.addEventListener('click', () => this.openCreator());
         document.getElementById('btnCloseCreator')?.addEventListener('click', () => this.closeCreator());
         document.getElementById('btnSaveManualQuiz')?.addEventListener('click', () => this.saveManualQuiz());
 
-        // Expose to global for inline onclick handlers
         window.toggleAiChat = () => this.toggleChat();
         window.toggleChatFullscreen = () => this.toggleFullscreen();
         window.addManualQuestion = (type) => this.addQuestion(type);
         window.askAiAboutQuestion = (qIndex) => this.askAboutQuestion(qIndex);
+        window.clearAiChatHistory = () => this.clearHistory(); // gọi từ nút "Cuộc trò chuyện mới" nếu có
     }
 
-    // ─── CHAT UI ───────────────────────────────────────────────
+    // ─── CHAT UI ────────────────────────────────────────────────
 
     toggleChat() {
         if (!this.chatContainer) return;
@@ -108,90 +116,104 @@ class tronexAI {
         if (this.chatMessages) this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
     }
 
-    // ─── LẤY CONTEXT CÂU HỎI HIỆN TẠI ───────────────────────
+    // ✅ Xoá lịch sử và reset UI chat
+    clearHistory() {
+        this.chatHistory = [];
+        if (this.chatMessages) {
+            this.chatMessages.innerHTML =
+                '<div class="msg-bubble msg-ai">Cuộc trò chuyện mới bắt đầu. Mình là Gemini, bạn cần hỏi gì không? 😊</div>';
+        }
+    }
+
+    // ─── LẤY CONTEXT TOÀN BỘ ĐỀ THI ────────────────────────────
+    // ✅ Fix: trả về TẤT CẢ câu hỏi (tối đa 20) để AI hiểu đúng
+    //    khi người dùng hỏi "câu 5", "câu trên", "câu đó"...
 
     getQuizContext() {
         const quiz = window.currentActiveQuiz;
-        const idx = window.currentQuestionIndex;
         if (!quiz) return "";
-
         const qs = quiz.renderedQuestions || quiz.questions;
-        if (!qs || idx === undefined) return "";
+        if (!qs || qs.length === 0) return "";
 
-        const q = qs[idx];
-        if (!q) return "";
+        const focusIdx = window.currentQuestionIndex; // câu đang hiển thị trên màn hình
+        let context = `[ĐỀ THI: "${quiz.title || 'Không tên'}" — ${qs.length} câu]\n`;
 
-        let context = `\n[BỐI CẢNH CÂU HỎI HIỆN TẠI - Câu ${idx + 1}]:
-Nội dung: ${q.text || ''}`;
+        const maxQ = Math.min(qs.length, 20);
+        for (let i = 0; i < maxQ; i++) {
+            const q = qs[i];
+            const mark = (i === focusIdx) ? ' ← (câu đang xem)' : '';
+            context += `\nCâu ${i + 1}${mark}: ${q.text || ''}`;
 
-        if (q.type === 'multiple_choice' && Array.isArray(q.options)) {
-            context += `\nCác lựa chọn: ${q.options.join(' | ')}`;
-            if (q.correctIndex !== undefined) {
-                context += `\nĐáp án đúng: ${['A', 'B', 'C', 'D'][q.correctIndex]} (vị trí ${q.correctIndex + 1})`;
+            if (q.type === 'multiple_choice' && Array.isArray(q.options)) {
+                context += `\n  Lựa chọn: ${q.options.map((o, j) => `${['A', 'B', 'C', 'D'][j]}. ${o}`).join(' | ')}`;
+                if (q.correctIndex !== undefined)
+                    context += `\n  Đáp án: ${['A', 'B', 'C', 'D'][q.correctIndex]}`;
+            } else if (q.type === 'short_answer' && q.correctAnswer) {
+                context += `\n  Đáp án: ${q.correctAnswer}`;
+            } else if (q.type === 'true_false_group' && Array.isArray(q.subQuestions)) {
+                context += '\n  Các ý: ' + q.subQuestions.map(sq => `${sq.text} → ${sq.correctAnswer}`).join(' | ');
             }
-        } else if (q.type === 'short_answer' && q.correctAnswer) {
-            context += `\nĐáp án: ${q.correctAnswer}`;
-        } else if (q.type === 'true_false_group' && Array.isArray(q.subQuestions)) {
-            context += `\nCác ý:\n` + q.subQuestions.map(sq =>
-                `  - ${sq.text} → ${sq.correctAnswer}`
-            ).join('\n');
         }
-
+        if (qs.length > maxQ) context += `\n...(còn ${qs.length - maxQ} câu nữa không hiển thị)`;
         return context;
     }
 
-    // ─── GỬI TIN NHẮN VỚI FALLBACK CHAIN ────────────────────
-    // ✅ Fix: tách riêng text gốc ra khỏi customPrompt để tránh mất nội dung khi fallback đệ quy
+    // ─── GỬI TIN NHẮN ─────────────────────────────────────────
 
     async sendMessage(customPrompt = null) {
-        const text = customPrompt || this.chatInput?.value.trim();
-        if (!text) return;
+        const userText = customPrompt || this.chatInput?.value.trim();
+        if (!userText) return;
 
-        this.addMessage(text, 'user');
+        // Hiển thị tin nhắn của user lên UI
+        this.addMessage(this._escapeHTML(userText), 'user');
         if (!customPrompt && this.chatInput) this.chatInput.value = '';
 
-        // Loading bubble - tạo 1 lần duy nhất, truyền xuyên suốt fallback
+        // Loading bubble — tạo 1 lần, truyền xuyên suốt fallback
         const loadingMsg = this.addMessage('<span class="dots-loading">Gemini đang suy nghĩ...</span>', 'ai');
 
-        // Chọn model chain theo selector
+        // ✅ Gắn context đề thi vào TIN NHẮN USER (không phải system prompt)
+        //    → mỗi lần hỏi, Gemini đều có đủ thông tin về đề thi hiện tại
+        const quizCtx = this.getQuizContext();
+        const fullUserText = quizCtx
+            ? `[BỐI CẢNH ĐỀ THI]\n${quizCtx}\n\n[CÂU HỎI CỦA HỌC SINH]: ${userText}`
+            : userText;
+
         const selectedVal = document.getElementById('aiModelSelector')?.value || "3.0";
         const modelChain = (selectedVal === "3.0" || selectedVal === "3.1")
-            ? MODEL_CHAIN_3
-            : MODEL_CHAIN_2;
+            ? MODEL_CHAIN_3 : MODEL_CHAIN_2;
 
-        await this._tryWithFallback(text, loadingMsg, modelChain, 0, 0);
+        await this._tryWithFallback(userText, fullUserText, loadingMsg, modelChain, 0, 0);
     }
 
-    // ✅ Fix: fallback không đệ quy qua sendMessage nữa → dùng hàm riêng, giữ loadingMsg
-    async _tryWithFallback(text, loadingMsg, modelChain, modelIdx, keyRotation) {
+    // ─── FALLBACK CHAIN ──────────────────────────────────────────
+
+    async _tryWithFallback(userText, fullUserText, loadingMsg, modelChain, modelIdx, keyRotation) {
         const modelId = modelChain[modelIdx];
         const totalKeys = _K.length;
 
-        const systemPrompt = `Bạn là trợ lý AI thông minh tích hợp trong nền tảng học tập TRONEX.
-PHONG CÁCH TRẢ LỜI (100% giống Google Gemini App):
-1. GREETING: Chào người dùng một cách thân thiện, chuyên nghiệp.
-2. ANALYSIS: Phân tích ngắn gọn yêu cầu để người dùng thấy bạn hiểu vấn đề.
-3. STEP-BY-STEP: Giải thích từng bước sư phạm, dễ hiểu. Nếu là bài tập, chỉ ra kiến thức trọng tâm.
-4. CONCLUSION: Đưa ra đáp án cuối cùng (in đậm) và lời khuyên hoặc khích lệ.
-LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Trả lời bằng Tiếng Việt.`;
-
         try {
-            const apiKey = gK();
-            const genAI = new GoogleGenerativeAI(apiKey);
+            const genAI = new GoogleGenerativeAI(gK());
             const model = genAI.getGenerativeModel({
                 model: modelId,
-                systemInstruction: systemPrompt
+                systemInstruction: SYSTEM_PROMPT
             });
 
-            const context = this.getQuizContext();
-            const prompt = context
-                ? `${context}\n\n[YÊU CẦU CỦA NGƯỜI DÙNG]: ${text}`
-                : text;
+            // ✅ startChat() với history → Gemini nhớ toàn bộ cuộc trò chuyện trước đó
+            const chat = model.startChat({ history: this.chatHistory });
+            const result = await chat.sendMessage(fullUserText);
+            const aiText = result.response.text();
 
-            const result = await model.generateContent(prompt);
-            const output = result.response.text();
+            // ✅ Lưu vào history (dùng userText gốc, không có context đề thi để tránh lặp dài)
+            this.chatHistory.push(
+                { role: 'user', parts: [{ text: userText }] },
+                { role: 'model', parts: [{ text: aiText }] }
+            );
+            // Giới hạn tối đa 20 turn (40 phần tử) để tránh prompt quá dài
+            if (this.chatHistory.length > 40) {
+                this.chatHistory = this.chatHistory.slice(-40);
+            }
 
-            this.renderAiResponse(loadingMsg, output);
+            this.renderAiResponse(loadingMsg, aiText);
 
         } catch (err) {
             console.error(`[tronexAI] Lỗi model=${modelId}, key#${_idx}:`, err.message || err);
@@ -199,47 +221,36 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
             const isQuotaOrBusy = /429|503|quota|overloaded|unavailable/i.test(err.toString());
             const isInvalidModel = /404|not found|invalid model/i.test(err.toString());
             const isAuthError = /400|403|api.?key|invalid/i.test(err.toString());
-
             const canRotateKey = !isInvalidModel && keyRotation < totalKeys - 1;
             const canDowngradeModel = modelIdx < modelChain.length - 1;
 
             if (canRotateKey && isQuotaOrBusy) {
-                // Tầng 1: Xoay key, giữ nguyên model
                 rK();
                 this.setLoadingMsg(loadingMsg,
-                    `Máy chủ bận, đang thử key dự phòng ${keyRotation + 2}/${totalKeys}...`,
-                    '#f59e0b'
-                );
+                    `Máy chủ bận, đang thử key dự phòng ${keyRotation + 2}/${totalKeys}...`, '#f59e0b');
                 await this._delay(800);
-                await this._tryWithFallback(text, loadingMsg, modelChain, modelIdx, keyRotation + 1);
+                await this._tryWithFallback(userText, fullUserText, loadingMsg, modelChain, modelIdx, keyRotation + 1);
 
             } else if (canDowngradeModel) {
-                // Tầng 2: Hết key hoặc lỗi model → xuống model kế tiếp, reset key rotation
                 const nextModel = modelChain[modelIdx + 1];
                 this.setLoadingMsg(loadingMsg,
-                    `Đang chuyển sang ${MODEL_LABELS[nextModel] || nextModel}...`,
-                    '#6366f1'
-                );
+                    `Đang chuyển sang ${MODEL_LABELS[nextModel] || nextModel}...`, '#6366f1');
                 await this._delay(600);
-                await this._tryWithFallback(text, loadingMsg, modelChain, modelIdx + 1, 0);
+                await this._tryWithFallback(userText, fullUserText, loadingMsg, modelChain, modelIdx + 1, 0);
 
             } else {
-                // Tầng 3: Đã thử hết tất cả → thông báo lỗi
-                if (isAuthError) {
+                if (isAuthError)
                     this.setLoadingMsg(loadingMsg, '❌ Lỗi xác thực API Key. Vui lòng liên hệ quản trị viên.', '#ef4444');
-                } else {
+                else
                     this.setLoadingMsg(loadingMsg, '⚠️ Tất cả máy chủ đang bận. Vui lòng thử lại sau ít phút!', '#ef4444');
-                }
                 if (!isAuthError) rK();
             }
         }
     }
 
-    _delay(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
+    _delay(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-    // ─── RENDER MARKDOWN + KATEX ─────────────────────────────
+    // ─── RENDER MARKDOWN + KATEX ─────────────────────────────────
 
     renderAiResponse(container, text) {
         if (!container) return;
@@ -251,11 +262,10 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
             .replace(/^### (.*?)$/gm, '<h3 style="color:var(--primary,#6366f1);margin:12px 0 6px;">$1</h3>')
             .replace(/^## (.*?)$/gm, '<h2 style="color:var(--primary,#6366f1);margin:16px 0 8px;">$1</h2>')
             .replace(/^- (.*?)$/gm, '<li style="margin:3px 0;">$1</li>')
-            .replace(/(<li.*<\/li>)/gs, '<ul style="padding-left:20px;margin:8px 0;">$1</ul>')
+            .replace(/(<li.*?<\/li>)+/gs, m => `<ul style="padding-left:20px;margin:8px 0;">${m}</ul>`)
             .replace(/\n/g, '<br>');
 
         container.innerHTML = html;
-
         if (window.renderMathInElement) {
             window.renderMathInElement(container, {
                 delimiters: [
@@ -270,12 +280,17 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
         if (this.chatMessages) this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
     }
 
-    // ─── HỎI AI VỀ CÂU HỎI CỤ THỂ ──────────────────────────
+    _escapeHTML(str) {
+        return String(str || '')
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    // ─── HỎI AI VỀ CÂU HỎI CỤ THỂ ──────────────────────────────
 
     askAboutQuestion(qIndex) {
         if (!this.chatContainer) return;
-        const isVisible = this.chatContainer.style.display === 'flex';
-        if (!isVisible) this.toggleChat();
+        if (this.chatContainer.style.display !== 'flex') this.toggleChat();
         setTimeout(() => {
             if (this.chatInput) {
                 this.chatInput.value = `Hãy giải thích cách làm câu số ${qIndex + 1} cho mình với!`;
@@ -284,20 +299,17 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
         }, 150);
     }
 
-    // ─── MANUAL CREATOR ──────────────────────────────────────
+    // ─── MANUAL CREATOR ──────────────────────────────────────────
 
     openCreator() {
         const title = prompt("Vui lòng nhập tên đề thi mới:", "Đề thi TRONEX mới");
         if (!title) return;
-
         const titleInput = document.getElementById('manualQuizTitle');
         const titleDisplay = document.getElementById('creatorTitleDisplay');
         if (titleInput) titleInput.value = title;
         if (titleDisplay) titleDisplay.textContent = title;
-
         if (this.creatorOverlay) this.creatorOverlay.style.display = 'flex';
         document.body.style.overflow = 'hidden';
-
         window.__tronexAICollector = (questions) => {
             questions.forEach(q => {
                 this.manualQuestions.push({
@@ -320,19 +332,21 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
     }
 
     addQuestion(type) {
-        const qId = Date.now();
-        this.manualQuestions.push({ id: qId, type, text: '', options: ['', '', '', ''], correctIndex: 0, correctAnswer: '' });
+        this.manualQuestions.push({
+            id: Date.now(), type, text: '',
+            options: ['', '', '', ''], correctIndex: 0, correctAnswer: ''
+        });
         this.renderManualQuestions();
     }
 
     renderManualQuestions() {
         if (!this.questionsContainer) return;
         this.questionsContainer.innerHTML = '';
-
         this.manualQuestions.forEach((q, index) => {
             const card = document.createElement('div');
             card.className = 'q-creator-item';
-            const typeLabel = q.type === 'multiple_choice' ? 'Trắc nghiệm' : q.type === 'short_answer' ? 'Điền khuyết' : 'Tự luận';
+            const typeLabel = q.type === 'multiple_choice' ? 'Trắc nghiệm'
+                : q.type === 'short_answer' ? 'Điền khuyết' : 'Tự luận';
             card.innerHTML = `
                 <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
                     <strong>Câu ${index + 1} (${typeLabel})</strong>
@@ -341,22 +355,12 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
                 <textarea placeholder="Nhập nội dung câu hỏi..."
                     oninput="window.__updateManualQ(${index}, 'text', this.value)"
                     style="width:100%;padding:10px;border-radius:8px;border:1px solid #ddd;min-height:80px;box-sizing:border-box;font-family:inherit;">${this._escape(q.text)}</textarea>
-                ${this.renderOptions(q, index)}
-            `;
+                ${this.renderOptions(q, index)}`;
             this.questionsContainer.appendChild(card);
         });
-
-        window.__updateManualQ = (idx, field, val) => {
-            if (this.manualQuestions[idx]) this.manualQuestions[idx][field] = val;
-        };
-        window.__updateManualOpt = (qIdx, optIdx, val) => {
-            if (this.manualQuestions[qIdx]) this.manualQuestions[qIdx].options[optIdx] = val;
-        };
-        window.__removeManualQ = (idx) => {
-            this.manualQuestions.splice(idx, 1);
-            this.renderManualQuestions();
-        };
-
+        window.__updateManualQ = (idx, field, val) => { if (this.manualQuestions[idx]) this.manualQuestions[idx][field] = val; };
+        window.__updateManualOpt = (qIdx, optIdx, val) => { if (this.manualQuestions[qIdx]) this.manualQuestions[qIdx].options[optIdx] = val; };
+        window.__removeManualQ = (idx) => { this.manualQuestions.splice(idx, 1); this.renderManualQuestions(); };
         window.updateManualQ = window.__updateManualQ;
         window.updateManualOpt = window.__updateManualOpt;
         window.removeManualQ = window.__removeManualQ;
@@ -374,27 +378,26 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
         }
         const colors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'];
         const letters = ['A', 'B', 'C', 'D'];
-        return `
-            <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-                ${q.options.map((opt, i) => `
-                    <div style="display:flex;align-items:center;gap:6px;background:#f8fafc;padding:6px;border-radius:8px;">
-                        <div style="width:22px;height:22px;border-radius:50%;background:${colors[i]};color:white;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">${letters[i]}</div>
-                        <input type="text" placeholder="Đáp án ${letters[i]}"
-                            value="${this._escape(opt)}"
-                            oninput="window.__updateManualOpt(${idx}, ${i}, this.value)"
-                            style="flex:1;padding:6px;border-radius:6px;border:1px solid #ddd;font-size:13px;">
-                        <label style="display:flex;align-items:center;gap:3px;font-size:11px;color:#6b7280;cursor:pointer;">
-                            <input type="radio" name="correct_q${idx}" value="${i}" ${q.correctIndex === i ? 'checked' : ''}
-                                onchange="window.__updateManualQ(${idx}, 'correctIndex', ${i})"> ✓
-                        </label>
-                    </div>
-                `).join('')}
-            </div>
-        `;
+        return `<div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            ${q.options.map((opt, i) => `
+                <div style="display:flex;align-items:center;gap:6px;background:#f8fafc;padding:6px;border-radius:8px;">
+                    <div style="width:22px;height:22px;border-radius:50%;background:${colors[i]};color:white;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">${letters[i]}</div>
+                    <input type="text" placeholder="Đáp án ${letters[i]}"
+                        value="${this._escape(opt)}"
+                        oninput="window.__updateManualOpt(${idx}, ${i}, this.value)"
+                        style="flex:1;padding:6px;border-radius:6px;border:1px solid #ddd;font-size:13px;">
+                    <label style="display:flex;align-items:center;gap:3px;font-size:11px;color:#6b7280;cursor:pointer;">
+                        <input type="radio" name="correct_q${idx}" value="${i}" ${q.correctIndex === i ? 'checked' : ''}
+                            onchange="window.__updateManualQ(${idx}, 'correctIndex', ${i})"> ✓
+                    </label>
+                </div>`).join('')}
+        </div>`;
     }
 
     _escape(str) {
-        return String(str || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        return String(str || '')
+            .replace(/&/g, '&amp;').replace(/"/g, '&quot;')
+            .replace(/</g, '&lt;').replace(/>/g, '&gt;');
     }
 
     async saveManualQuiz() {
@@ -402,35 +405,26 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
         const title = titleEl?.value.trim();
         if (!title) return alert("Vui lòng nhập tên đề thi!");
         if (this.manualQuestions.length === 0) return alert("Vui lòng thêm ít nhất 1 câu hỏi!");
-
         const newQuiz = {
-            id: 'manual_' + Date.now(),
-            title,
+            id: 'manual_' + Date.now(), title,
             description: `Đề thi tạo thủ công - ${this.manualQuestions.length} câu`,
-            privacy: 'private',
-            viewCount: 0,
+            privacy: 'private', viewCount: 0,
             questions: this.manualQuestions.map((q, i) => ({
-                id: `mq_${Date.now()}_${i}`,
-                qNumber: i + 1,
-                type: q.type,
-                text: q.text,
+                id: `mq_${Date.now()}_${i}`, qNumber: i + 1,
+                type: q.type, text: q.text,
                 options: q.type === 'multiple_choice' ? q.options : null,
                 correctIndex: q.type === 'multiple_choice' ? q.correctIndex : undefined,
                 correctAnswer: q.correctAnswer || ""
             }))
         };
-
         try {
             const LOCAL_KEY = window.location.pathname.toLowerCase().includes('v-act')
-                ? 'trongbeshop_vact_quizzes'
-                : 'trongbeshop_custom_quizzes';
+                ? 'trongbeshop_vact_quizzes' : 'trongbeshop_custom_quizzes';
             const saved = JSON.parse(localStorage.getItem(LOCAL_KEY) || '[]');
             saved.unshift(newQuiz);
             localStorage.setItem(LOCAL_KEY, JSON.stringify(saved));
-
             if (window.__mockQuizzes) window.__mockQuizzes.unshift(newQuiz);
             if (window.__initQuizList) window.__initQuizList();
-
             alert("✅ Đã lưu đề thi thành công!");
             this.manualQuestions = [];
             this.closeCreator();
@@ -440,7 +434,6 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
     }
 }
 
-// Khởi tạo sau khi DOM sẵn sàng
 document.addEventListener('DOMContentLoaded', () => {
     window.tronexAI = new tronexAI();
 });

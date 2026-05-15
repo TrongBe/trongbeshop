@@ -150,7 +150,8 @@
               <div class="stat-item"><span class="stat-dot dot-unanswered"></span>Chưa làm: <strong
                   id="tronexUnanswered">0</strong></div>
               <div class="stat-item"><span class="stat-dot dot-timer" style="background: #6366f1;"></span>Thời gian:
-                <strong id="tronexTimeSpent">00:00</strong></div>
+                <strong id="tronexTimeSpent">00:00</strong>
+              </div>
             </div>
           </div>
           <button onclick="window.__publishPublicQuiz(window.__mockQuizzes.find(q=>q.id==='de_1_dgnl'))"
@@ -401,6 +402,8 @@
         </select>
       </div>
       <div class="ai-chat-controls">
+        <button class="ai-chat-btn" onclick="clearAiChatHistory()" title="Cuộc trò chuyện mới"
+          style="font-size:14px;">🗑️</button>
         <button class="ai-chat-btn" onclick="toggleChatFullscreen()" title="Toàn màn hình">⛶</button>
         <button class="ai-chat-btn" onclick="toggleAiChat()" title="Đóng">×</button>
       </div>
