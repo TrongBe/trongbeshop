@@ -1,4 +1,4 @@
-import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // ============================================================
 // GEMINI AI - CONFIGURATION AND KEY ROTATION
@@ -45,7 +45,7 @@ if (typeof window.pdfjsLib !== 'undefined') {
 async function mergeImages(images) {
     if (images.length <= 1) return images;
     console.log("[Gemini] Đang gộp các ảnh lại thành 1 file duy nhất...");
-    
+
     return new Promise((resolve) => {
         const loadedImgs = [];
         let count = 0;
@@ -59,7 +59,7 @@ async function mergeImages(images) {
                     const ctx = canvas.getContext("2d");
                     const width = Math.max(...loadedImgs.map(i => i.width));
                     const totalHeight = loadedImgs.reduce((sum, i) => sum + i.height, 0);
-                    
+
                     canvas.width = width;
                     canvas.height = totalHeight;
                     let currentY = 0;
@@ -67,7 +67,7 @@ async function mergeImages(images) {
                         ctx.drawImage(i, 0, currentY);
                         currentY += i.height;
                     });
-                    
+
                     resolve([{
                         base64: canvas.toDataURL("image/jpeg", 0.8).split(",")[1],
                         mimeType: "image/jpeg",
@@ -90,20 +90,20 @@ async function getAuthorizedModelName(apiKey) {
         const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
         if (!res.ok) throw new Error("Không thể ListModels");
         const data = await res.json();
-        
+
         let validModels = data.models
             .map(m => m.name.replace("models/", ""))
             .filter(name => name.includes("flash") && !name.includes("vision")); // Chỉ lấy model text/vision hiện đại
-            
+
         if (validModels.length === 0) {
-             validModels = data.models.map(m => m.name.replace("models/", "")).filter(n => n.includes("gemini"));
+            validModels = data.models.map(m => m.name.replace("models/", "")).filter(n => n.includes("gemini"));
         }
-        
+
         if (validModels.length > 0) {
             // Tìm model dựa trên _mIdx (để xoay vòng nếu bản hiện tại bận)
             const preferred = _MODELS[_mIdx % _MODELS.length];
             let best = validModels.find(m => m.includes(preferred));
-            
+
             // Nếu không tìm thấy model ưu tiên, tìm model bất kỳ trong danh sách _MODELS
             if (!best) {
                 for (const pref of _MODELS) {
@@ -111,9 +111,9 @@ async function getAuthorizedModelName(apiKey) {
                     if (found) { { best = found; break; } }
                 }
             }
-            
+
             if (!best) best = validModels.find(m => m.includes("8b")) || validModels[0];
-            
+
             console.log("[Gemini] Đã phát hiện Model hỗ trợ:", best);
             _discoveredModel = best;
             return best;
@@ -127,16 +127,16 @@ async function getAuthorizedModelName(apiKey) {
 // Hàm làm sạch và sửa lỗi JSON tự động
 function cleanAndParseJSON(text) {
     if (!text) return { questions: [] };
-    
+
     let raw = text.trim();
     // Loại bỏ markdown code blocks
     if (raw.includes("```json")) raw = raw.split("```json")[1].split("```")[0];
     else if (raw.includes("```")) raw = raw.split("```")[1].split("```")[0];
-    
+
     // Tìm vị trí mở { và đóng } cuối cùng
     const firstBrace = raw.indexOf("{");
     const lastBrace = raw.lastIndexOf("}");
-    
+
     if (firstBrace !== -1) {
         if (lastBrace !== -1 && lastBrace > firstBrace) {
             raw = raw.substring(firstBrace, lastBrace + 1);
@@ -144,20 +144,20 @@ function cleanAndParseJSON(text) {
             raw = raw.substring(firstBrace);
         }
     }
-    
+
     try {
         return JSON.parse(raw);
     } catch (e) {
         console.warn("[JSON Repair] Thử sửa lỗi JSON...");
         let repaired = raw;
-        
+
         // Cân bằng ngoặc nhọn { }
         const openBraces = (repaired.match(/\{/g) || []).length;
         const closeBraces = (repaired.match(/\}/g) || []).length;
         if (openBraces > closeBraces) {
             repaired += "}".repeat(openBraces - closeBraces);
         }
-        
+
         // Cân bằng ngoặc vuông [ ]
         const openBrackets = (repaired.match(/\[/g) || []).length;
         const closeBrackets = (repaired.match(/\]/g) || []).length;
@@ -171,19 +171,19 @@ function cleanAndParseJSON(text) {
             console.warn("[JSON Repair] Cách 1 thất bại, thử cắt bỏ phần lỗi...");
             const lastValidBrace = raw.lastIndexOf("}");
             if (lastValidBrace !== -1) {
-                 // Xóa dấu phẩy thừa ở object cuối cùng (nếu có)
-                 let truncated = raw.substring(0, lastValidBrace + 1);
-                 // Kiểm tra xem phía trước có mảng không
-                 if (!truncated.includes('"questions": [')) {
-                     truncated = '{"questions": [' + truncated;
-                 }
-                 truncated += "]}";
-                 try {
-                     const testParse = JSON.parse(truncated);
-                     if (testParse && testParse.questions) return testParse;
-                 } catch(e3) { }
+                // Xóa dấu phẩy thừa ở object cuối cùng (nếu có)
+                let truncated = raw.substring(0, lastValidBrace + 1);
+                // Kiểm tra xem phía trước có mảng không
+                if (!truncated.includes('"questions": [')) {
+                    truncated = '{"questions": [' + truncated;
+                }
+                truncated += "]}";
+                try {
+                    const testParse = JSON.parse(truncated);
+                    if (testParse && testParse.questions) return testParse;
+                } catch (e3) { }
             }
-            
+
             console.error("[JSON Repair Failed]:", e2);
             throw new Error("Dữ liệu AI trả về bị lỗi định dạng nghiêm trọng. Hãy thử phân tích lại.");
         }
@@ -197,7 +197,7 @@ async function analyzeQuizImage(images, extraNote = "", retryCount = 0, useThink
     // 1. Lọc lấy danh sách ảnh và danh sách file Word
     const onlyImages = images.filter(img => img.type !== "docx");
     // Không gộp ảnh nữa để tăng tốc độ tải và xử lý (Gemini Flash hỗ trợ nhiều ảnh trực tiếp)
-    const finalImages = onlyImages; 
+    const finalImages = onlyImages;
 
 
     const systemInstruction = `Bạn là chuyên gia trích xuất đề thi (OCR) CẤP ĐỘ CAO NHẤT. Hãy phân tích ảnh và trả về JSON chuẩn xác 100%.
@@ -289,7 +289,7 @@ TUYỆT ĐỐI KHÔNG ĐƯỢC LƯỜI BIẾNG. BẮT BUỘC PHẢI QUÉT VÀ TR
     try {
         const currentKey = gK();
         const activeModelName = await getAuthorizedModelName(currentKey);
-        
+
         // Cập nhật tên Model đang chạy lên UI
         const loadingTitle = document.querySelector(".gemini-loading-title");
         if (loadingTitle) {
@@ -297,13 +297,13 @@ TUYỆT ĐỐI KHÔNG ĐƯỢC LƯỜI BIẾNG. BẮT BUỘC PHẢI QUÉT VÀ TR
             if (activeModelName.includes("3")) readableName = "Gemini 3.0 Flash";
             else if (activeModelName.includes("2.0")) readableName = "Gemini 2.0 Flash";
             else if (activeModelName.includes("1.5")) readableName = "Gemini 1.5 Flash";
-            
+
             if (useThinking) readableName += " (Thinking Mode)";
             loadingTitle.textContent = `${readableName} đang phân tích...`;
         }
-        
+
         const genAI = new GoogleGenerativeAI(currentKey);
-        const model = genAI.getGenerativeModel({ 
+        const model = genAI.getGenerativeModel({
             model: activeModelName,
             systemInstruction: systemInstruction,
             safetySettings: safetySettings
@@ -311,7 +311,7 @@ TUYỆT ĐỐI KHÔNG ĐƯỢC LƯỜI BIẾNG. BẮT BUỘC PHẢI QUÉT VÀ TR
 
         const promptParts = [];
         let wordContent = "";
-        
+
         // Thu thập nội dung từ các file Word
         images.forEach(item => {
             if (item.type === "docx") {
@@ -322,7 +322,7 @@ TUYỆT ĐỐI KHÔNG ĐƯỢC LƯỜI BIẾNG. BẮT BUỘC PHẢI QUÉT VÀ TR
         if (extraNote || wordContent) {
             promptParts.push({ text: `Ghi chú và nội dung văn bản: ${extraNote} ${wordContent}` });
         }
-        
+
         finalImages.forEach((img, idx) => {
             // Chỉ gửi ảnh lên AI (finalImages đã lọc bỏ các item không phải ảnh)
             // Gắn thêm Text để AI biết đây là trang thứ mấy, chống loạn trang
@@ -375,7 +375,7 @@ TUYỆT ĐỐI KHÔNG ĐƯỢC LƯỜI BIẾNG. BẮT BUỘC PHẢI QUÉT VÀ TR
                 // Nếu ảnh đã bị gộp thành 1 dải dọc, thì toạ độ AI trả về là ăn theo dải dọc!
                 // Do đó BẮT BUỘC phải cắt từ frame dải dọc (finalImages[0])
                 if (finalImages.length === 1) idx = 0;
-                
+
                 if (finalImages[idx]) {
                     q.imageSrc = await cropImage(finalImages[idx].base64, q.imageBox);
                 }
@@ -386,33 +386,33 @@ TUYỆT ĐỐI KHÔNG ĐƯỢC LƯỜI BIẾNG. BẮT BUỘC PHẢI QUÉT VÀ TR
 
     } catch (err) {
         console.error("[Gemini SDK Error]:", err);
-        
+
         // Thử lại nếu lỗi (403, 429, 404, 400, 503 hoặc quá tải)
         const errStr = err.toString();
         if (errStr.includes("429") || errStr.includes("403") || errStr.includes("404") || errStr.includes("400") || errStr.includes("503") || errStr.includes("high demand")) {
-            if (retryCount < (_K.length + _MODELS.length * 2)) { 
+            if (retryCount < (_K.length + _MODELS.length * 2)) {
                 // Xóa Cache Model để dò lại
                 _discoveredModel = null;
-                
+
                 // Xoay Key mỗi lần lỗi
                 rK();
-                
+
                 // Xoay Model nhanh hơn: Cứ sau 1 lần lỗi thì thử model tiếp theo trong danh sách
                 _mIdx = (_mIdx + 1) % _MODELS.length;
-                
+
                 const loadingSub = document.querySelector(".gemini-loading-sub");
                 if (loadingSub) {
                     loadingSub.textContent = `Máy chủ bận, đang chuyển sang máy chủ dự phòng ${retryCount + 2}...`;
                 }
-                
+
                 // Chờ trước khi thử lại (429 cần chờ lâu hơn)
                 const delay = errStr.includes("429") ? 3000 : 1000;
                 await new Promise(r => setTimeout(r, delay));
-                
+
                 return analyzeQuizImage(images, extraNote, retryCount + 1, useThinking);
             }
         }
-        
+
         throw new Error(err.message || "Không thể kết nối với AI. Vui lòng thử lại sau.");
     }
 }
@@ -429,16 +429,16 @@ async function cropImage(base64, box) {
             try {
                 const canvas = document.createElement("canvas");
                 const ctx = canvas.getContext("2d");
-                
+
                 // Tọa độ Gemini là 0-1000. Dùng Math.round để tránh lỗi nội suy pixel (sub-pixel rendering) gây biến dạng.
                 const ymin = Math.round(box[0] / 1000 * img.height);
                 const xmin = Math.round(box[1] / 1000 * img.width);
                 const ymax = Math.round(box[2] / 1000 * img.height);
                 const xmax = Math.round(box[3] / 1000 * img.width);
-                
+
                 const width = Math.max(1, xmax - xmin);
                 const height = Math.max(1, ymax - ymin);
-                
+
                 // Giới hạn kích thước ảnh cắt ra để giảm tối đa dung lượng Base64 gửi lên Firebase
                 const MAX_WIDTH = 800;
                 let targetWidth = width;
@@ -447,7 +447,7 @@ async function cropImage(base64, box) {
                     targetHeight = Math.round(targetHeight * (MAX_WIDTH / targetWidth));
                     targetWidth = MAX_WIDTH;
                 }
-                
+
                 canvas.width = targetWidth;
                 canvas.height = targetHeight;
                 ctx.drawImage(img, xmin, ymin, width, height, 0, 0, targetWidth, targetHeight);
@@ -478,25 +478,25 @@ function fileToBase64(file) {
 
 async function processFiles(files) {
     if (!files || files.length === 0) return;
-    
+
     // Chuyển FileList sang Array một cách an toàn nhất
     const filesArray = [];
     for (let i = 0; i < files.length; i++) {
         filesArray.push(files[i]);
     }
-    
+
     const validFiles = filesArray.filter(f => f.type.startsWith("image/") || f.name.toLowerCase().endsWith(".docx") || f.type === "application/pdf" || f.name.toLowerCase().endsWith(".pdf"));
     if (validFiles.length === 0) return;
-    
+
     // Hiển thị trạng thái đang xử lý
     const dropIcon = document.querySelector(".drop-icon");
     const dropTitle = document.querySelector(".drop-title");
     const originalIcon = dropIcon ? dropIcon.textContent : "📷";
     const originalTitle = dropTitle ? dropTitle.textContent : "";
-    
+
     if (dropIcon) dropIcon.textContent = "⚙️";
     if (dropTitle) dropTitle.textContent = "Đang xử lý tệp...";
-    
+
     // [FIX iOS Safari] Bắt đầu đọc tệp hoặc tạo URL ngay lập tức một cách đồng bộ
     // để tránh việc hệ điều hành tự động thu hồi Blob/File trong lúc vòng lặp await đang chờ
     const fileTasks = validFiles.map(file => {
@@ -523,7 +523,7 @@ async function processFiles(files) {
                         name: file.name,
                         text: result.value
                     });
-                } catch(e) {
+                } catch (e) {
                     console.error("Mammoth error:", e);
                 }
             } else if (file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf")) {
@@ -538,7 +538,7 @@ async function processFiles(files) {
                         canvas.height = viewport.height;
                         canvas.width = viewport.width;
                         await page.render({ canvasContext: ctx, viewport: viewport }).promise;
-                        
+
                         const base64 = canvas.toDataURL("image/jpeg", 0.7).split(",")[1];
                         newItems.push({
                             base64: base64,
@@ -546,7 +546,7 @@ async function processFiles(files) {
                             name: `${file.name} - Trang ${i}`
                         });
                     }
-                } catch(e) {
+                } catch (e) {
                     console.error("PDF process error:", e);
                     const geminiError = document.getElementById("geminiError");
                     if (geminiError) {
@@ -561,15 +561,15 @@ async function processFiles(files) {
                 const compressed = await compressImage(task.url, task.type, task.name);
                 if (compressed) newItems.push(compressed);
                 URL.revokeObjectURL(task.url); // Giải phóng bộ nhớ
-            } catch(e) {
+            } catch (e) {
                 console.error("Image process error:", e);
             }
         }
     }
-    
+
     if (dropIcon) dropIcon.textContent = originalIcon;
     if (dropTitle) dropTitle.textContent = originalTitle;
-    
+
     uploadedImages.push(...newItems);
     renderImagePreviews();
     updateDropZoneVisibility();
@@ -603,7 +603,7 @@ async function compressImage(url, mimeType, name) {
             canvas.height = height;
             const ctx = canvas.getContext("2d");
             ctx.drawImage(img, 0, 0, width, height);
-            
+
             // Nén vễ JPEG 0.7 để cân bằng dung lượng và chất lượng
             const compressedBase64 = canvas.toDataURL("image/jpeg", 0.7).split(",")[1];
             resolve({ base64: compressedBase64, mimeType: "image/jpeg", name: name });
@@ -678,7 +678,7 @@ function renderImagePreviews() {
     uploadedImages.forEach((item, i) => {
         const wrapper = document.createElement("div");
         wrapper.className = "img-preview-item";
-        
+
         let previewHTML = "";
         if (item.type === "docx") {
             previewHTML = `
@@ -693,7 +693,7 @@ function renderImagePreviews() {
                 <span class="img-name">${item.name}</span>
             `;
         }
-        
+
         wrapper.innerHTML = previewHTML;
         wrapper.querySelector(".img-remove-btn").addEventListener("click", () => {
             uploadedImages.splice(i, 1);
@@ -757,7 +757,7 @@ function renderQuestionEditor() {
             const passageDiv = document.createElement("div");
             passageDiv.style.cssText = 'background: #f8fafc; padding: 20px; border-radius: 12px; margin-bottom: 24px; border-left: 5px solid var(--primary); font-size: 1.05rem; line-height: 1.7; white-space: pre-wrap;';
             passageDiv.innerHTML = q.groupText;
-            
+
             groupHeader.innerHTML = `
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                     <strong style="color: #92400e; font-size: 13px;">Ngữ cảnh / Đoạn văn:</strong>
@@ -765,13 +765,13 @@ function renderQuestionEditor() {
                 </div>
             `;
             groupHeader.appendChild(passageDiv);
-            
+
             const editor = document.createElement("textarea");
             editor.className = "group-code-editor";
             editor.style.cssText = "display: none; width: 100%; height: 100px; font-family: monospace; font-size: 12px; margin-top: 10px; padding: 8px; border-radius: 4px; border: 1px solid #fde68a;";
             editor.value = q.groupText;
             groupHeader.appendChild(editor);
-            
+
             const toggleBtn = groupHeader.querySelector(".toggle-group-edit");
             toggleBtn.addEventListener("click", () => {
                 const isEditing = editor.style.display === "block";
@@ -779,7 +779,7 @@ function renderQuestionEditor() {
                 passageDiv.style.display = isEditing ? "block" : "none";
                 toggleBtn.textContent = isEditing ? "Sửa mã nguồn" : "Xem bản xem trước";
             });
-            
+
             editor.addEventListener("input", () => {
                 const newText = editor.value;
                 q.groupText = newText;
@@ -821,7 +821,7 @@ function renderQuestionEditor() {
                 ` : ''}
             </div>
         `;
-        
+
         let bodyHTML = "";
 
         if (type === "multiple_choice") {
@@ -1005,7 +1005,7 @@ function renderQuestionEditor() {
                     extractedQuestions[qi].imageSrc = `data:${base64Data.mimeType};base64,${base64Data.base64}`;
                     renderQuestionEditor();
                     btn.textContent = "🖼️ Đổi ảnh";
-                } catch(err) {
+                } catch (err) {
                     alert("Lỗi tải ảnh: " + err.message);
                     btn.textContent = "🖼️ Thêm ảnh";
                 }
@@ -1048,13 +1048,13 @@ export function showImageLightbox(src) {
         overlay.className = "lightbox-overlay";
         overlay.innerHTML = `<img src="" class="lightbox-content" alt="Large view">`;
         document.body.appendChild(overlay);
-        
+
         overlay.addEventListener("click", () => {
             overlay.classList.remove("active");
             setTimeout(() => { overlay.style.display = "none"; }, 300);
         });
     }
-    
+
     const content = overlay.querySelector(".lightbox-content");
     content.src = src;
     overlay.style.display = "flex";
@@ -1110,7 +1110,7 @@ function importQuizToList() {
         closeGeminiModal();
         return;
     }
-    
+
     const isVACTPage = window.location.pathname.toLowerCase().includes('v-act.html');
     const LOCAL_STORAGE_KEY = isVACTPage ? 'trongbeshop_vact_quizzes' : 'trongbeshop_custom_quizzes';
 
@@ -1119,7 +1119,7 @@ function importQuizToList() {
     const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
     let customQuizzes = [];
     if (saved) {
-        try { customQuizzes = JSON.parse(saved); } catch(e) {}
+        try { customQuizzes = JSON.parse(saved); } catch (e) { }
     }
     customQuizzes.unshift(newQuiz);
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(customQuizzes));
@@ -1128,10 +1128,10 @@ function importQuizToList() {
     if (privacy === "public" && window.__publishPublicQuiz) {
         window.__publishPublicQuiz(newQuiz);
     }
-    
+
     // LUÔN LUÔN THÊM VÀO MOCKQUIZZES NGAY LẬP TỨC ĐỂ NGƯỜI DÙNG THẤY (TRÁNH LỖI TƯỞNG CHƯA LƯU RỒI TẠO LẠI)
     window.__mockQuizzes.unshift(newQuiz);
-    
+
     window.__initQuizList();
     showGeminiStep(5);
 }
@@ -1168,9 +1168,9 @@ function initGeminiModal() {
     fileInput.addEventListener("change", async () => {
         const files = fileInput.files;
         if (!files || files.length === 0) return;
-        
+
         // Cực kỳ quan trọng cho di động: Chuyển sang Array ngay lập tức trước khi làm bất cứ việc gì khác
-        const filesArray = Array.from(files); 
+        const filesArray = Array.from(files);
         await processFiles(filesArray);
         fileInput.value = "";
     });
@@ -1179,7 +1179,7 @@ function initGeminiModal() {
     addMoreInput.addEventListener("change", async () => {
         const files = addMoreInput.files;
         if (!files || files.length === 0) return;
-        
+
         const filesArray = Array.from(files);
         await processFiles(filesArray);
         addMoreInput.value = "";
@@ -1222,11 +1222,11 @@ function initGeminiModal() {
     document.getElementById("btnReanalyze").addEventListener("click", async () => {
         if (uploadedImages.length === 0) return;
         if (!confirm("Hệ thống sẽ dùng chế độ Suy luận sâu (Thinking) để quét lại các ảnh này. Quá trình này sẽ chính xác hơn nhưng mất nhiều thời gian hơn (khoảng 1-2 phút). Bạn có muốn tiếp tục không?")) return;
-        
+
         const extraNote = document.getElementById("geminiExtraNote").value.trim();
         const loadingSub = document.querySelector(".gemini-loading-sub");
         if (loadingSub) loadingSub.textContent = "Đang kích hoạt chế độ Suy luận sâu (Thinking)...";
-        
+
         showGeminiStep(2);
         try {
             extractedQuestions = await analyzeQuizImage(uploadedImages, extraNote, 0, true); // useThinking = true
@@ -1253,21 +1253,21 @@ function initGeminiModal() {
         analyzeMoreInput.addEventListener("change", async () => {
             const files = analyzeMoreInput.files;
             if (!files || files.length === 0) return;
-            
+
             const filesArray = Array.from(files).filter(f => f.type.startsWith("image/") || f.name.toLowerCase().endsWith(".docx"));
             if (filesArray.length === 0) return;
-            
+
             const extraNote = document.getElementById("geminiExtraNote").value.trim();
             showGeminiStep(2); // Show loading spinner
-            
+
             try {
                 const newImages = await Promise.all(filesArray.map(fileToBase64));
                 const newQuestions = await analyzeQuizImage(newImages, extraNote);
-                
+
                 if (newQuestions && newQuestions.length > 0) {
                     // Cập nhật hoặc thêm mới dựa trên số câu (chống trùng lặp)
                     newQuestions.forEach(newQ => {
-                        const existingIdx = extractedQuestions.findIndex(eq => 
+                        const existingIdx = extractedQuestions.findIndex(eq =>
                             eq.qNumber !== undefined && newQ.qNumber !== undefined && eq.qNumber === newQ.qNumber
                         );
                         if (existingIdx !== -1) {
@@ -1276,7 +1276,7 @@ function initGeminiModal() {
                             extractedQuestions.push(newQ);
                         }
                     });
-                    
+
                     // Sắp xếp lại danh sách theo đúng cấu trúc: Trắc nghiệm -> Đúng/Sai -> Trả lời ngắn -> Tự luận
                     const typeOrder = {
                         "multiple_choice": 1,
@@ -1285,7 +1285,7 @@ function initGeminiModal() {
                         "short_answer": 3,
                         "essay": 4
                     };
-                    
+
                     extractedQuestions.sort((a, b) => {
                         const orderA = typeOrder[a.type] || 5;
                         const orderB = typeOrder[b.type] || 5;
@@ -1293,7 +1293,7 @@ function initGeminiModal() {
                         // Nếu cùng loại, xếp theo số thứ tự câu
                         return parseInt(a.qNumber || 999) - parseInt(b.qNumber || 999);
                     });
-                    
+
                     renderQuestionEditor();
                 } else {
                     alert("Gemini không nhận diện thêm được câu hỏi nào từ ảnh mới.");

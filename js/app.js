@@ -183,13 +183,21 @@ window.closeDeleteModal = function () {
 };
 
 // --- NHẬT KÝ CẬP NHẬT (v41) ---
+window.showHelp = function (type) {
+    const msgs = {
+        shuffle: '🔀 Tráo thứ tự:\nCâu hỏi sẽ được xáo trộn ngẫu nhiên mỗi lần làm bài, giúp bạn luyện tập hiệu quả hơn.',
+        mode: '📋 Chế độ làm bài:\n• Thi cử: Nộp bài mới thấy đáp án và kết quả.\n• Luyện tập: Hiển thị đáp án đúng/sai ngay sau khi bạn chọn.'
+    };
+    alert(msgs[type] || '');
+};
+
 window.openChangelog = function () {
     document.getElementById("changelogModal").style.display = "flex";
 };
 window.closeChangelog = function () {
     document.getElementById("changelogModal").style.display = "none";
 };
-window.toggleSidebar = function() {
+window.toggleSidebar = function () {
     const sidebar = document.getElementById('sidebarMenu');
     const overlay = document.getElementById('sidebarOverlay');
     if (sidebar.classList.contains('active')) {
@@ -326,7 +334,7 @@ document.getElementById('btnConfirmStart').onclick = async function () {
     if (timerBox) timerBox.style.display = 'flex';
     document.getElementById('tronexResultSummary').style.display = 'none';
     document.getElementById('btnSubmitQuiz').style.display = 'block';
-    
+
     // Reset nút rời khỏi về trạng thái đang làm bài
     const leaveBtn = document.getElementById('btnLeaveQuiz');
     if (leaveBtn) {
@@ -336,14 +344,14 @@ document.getElementById('btnConfirmStart').onclick = async function () {
 
 // === TIMER FUNCTIONS ===
 function startTimer() {
-    stopTimer(); 
+    stopTimer();
     quizStartTime = Date.now();
     sessionStorage.setItem('tronex_quiz_start_time', quizStartTime);
     const timerDisplay = document.getElementById('quizTimer');
     if (!timerDisplay) return;
-    
+
     timerDisplay.textContent = "00:00";
-    
+
     quizTimerInterval = setInterval(() => {
         const elapsed = Math.floor((Date.now() - quizStartTime) / 1000);
         const minutes = Math.floor(elapsed / 60).toString().padStart(2, '0');
@@ -369,7 +377,7 @@ function initQuestionPalette(questions) {
         btn.className = 'tronex-palette-btn';
         btn.id = `palette-btn-${q.id}`;
         btn.textContent = idx + 1; // Hiển thị số thứ tự
-        
+
         // Click để scroll tới câu hỏi
         btn.onclick = () => {
             const qEl = document.getElementById(`q-block-${q.id}`);
@@ -387,7 +395,7 @@ function initQuestionPalette(questions) {
 function updatePalette(questionId, letter, isCorrect = null) {
     const btn = document.getElementById(`palette-btn-${questionId}`);
     if (!btn) return;
-    
+
     // Nếu có tham số isCorrect (dành cho chế độ xem kết quả)
     if (isCorrect !== null) {
         btn.classList.remove('answered', 'active-q');
@@ -488,7 +496,7 @@ function renderQuestions() {
             opts.forEach((opt, optIndex) => {
                 const label = document.createElement('label');
                 label.className = 'tronex-option-label';
-                
+
                 const letter = letters[optIndex] || '';
                 label.innerHTML = `
                     <input type="radio" name="question_${q.id}" value="${optIndex}">
@@ -496,10 +504,10 @@ function renderQuestions() {
                     <div class="tronex-opt-text">${opt}</div>
                     <button type="button" class="tronex-clear-btn" title="Hủy chọn">✕</button>
                 `;
-                
+
                 const radio = label.querySelector('input');
                 const clearBtn = label.querySelector('.tronex-clear-btn');
-                
+
                 radio.addEventListener('change', () => {
                     optionsList.querySelectorAll('.tronex-option-label').forEach(l => l.classList.remove('selected'));
                     if (radio.checked) {
@@ -703,7 +711,7 @@ function showReviewMode(qs) {
 function renderResults(correct, incorrect, unanswered) {
     stopTimer(); // Dừng tính giờ khi nộp bài
     const total = correct + incorrect + unanswered;
-    
+
     let score;
     if (isVACTPage) {
         // Thang điểm 1200 cho TRONEX (10đ mỗi câu đúng)
@@ -713,7 +721,7 @@ function renderResults(correct, incorrect, unanswered) {
         score = total > 0 ? ((correct / total) * 10).toFixed(2) : 0;
         document.getElementById('tronexScoreText').textContent = score;
     }
-    
+
     // Hiển thị thời gian làm bài
     const savedStartTime = sessionStorage.getItem('tronex_quiz_start_time') || quizStartTime;
     if (savedStartTime) {
@@ -725,14 +733,14 @@ function renderResults(correct, incorrect, unanswered) {
         const timeEl = document.getElementById('tronexTimeSpent');
         if (timeEl) timeEl.textContent = timeStr;
     }
-    
+
     // Cập nhật Result Summary (TRONEX Style)
     document.getElementById('tronexCorrect').textContent = correct;
     document.getElementById('tronexIncorrect').textContent = incorrect;
     document.getElementById('tronexUnanswered').textContent = unanswered;
 
     document.getElementById('tronexResultSummary').style.display = 'block';
-    
+
     const timerBox = document.getElementById('tronexTimerBox');
     if (timerBox) timerBox.style.display = 'none';
 
@@ -753,13 +761,13 @@ function highlightAnswer(q, optionsList) {
         if (label) {
             label.classList.remove('correct-answer', 'wrong-answer', 'correct', 'wrong');
             const isCorrectOption = idx === parseInt(q.correctIndex);
-            
+
             if (isCorrectOption) {
                 label.classList.add('correct');
             } else if (input.checked) {
                 label.classList.add('wrong');
             }
-            
+
             // Cập nhật luôn cho Palette nếu đang chấm điểm
             if (input.checked) {
                 updatePalette(q.id, null, isCorrectOption);
@@ -1017,7 +1025,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // === DRAGGABLE & MINIMIZABLE SIDEBAR ===
-window.toggleMinimizeSidebar = function() {
+window.toggleMinimizeSidebar = function () {
     const sidebar = document.getElementById('tronexSidebar');
     if (sidebar) {
         sidebar.classList.toggle('minimized');
@@ -1045,7 +1053,7 @@ function initDraggableSidebar() {
             xOffset = pos.x;
             yOffset = pos.y;
             sidebar.style.transform = `translate3d(${xOffset}px, ${yOffset}px, 0)`;
-        } catch(e) {}
+        } catch (e) { }
     }
 
     handle.addEventListener('mousedown', dragStart);
@@ -1055,7 +1063,7 @@ function initDraggableSidebar() {
         initialX = e.clientX - xOffset;
         initialY = e.clientY - yOffset;
         isDragging = true;
-        
+
         document.addEventListener('mousemove', drag);
         document.addEventListener('mouseup', dragEnd);
         document.addEventListener('touchmove', (ev) => drag(ev.touches[0]), { passive: false });
@@ -1077,14 +1085,12 @@ function initDraggableSidebar() {
         initialX = currentX;
         initialY = currentY;
         isDragging = false;
-        
+
         try {
             localStorage.setItem('tronex_sidebar_pos', JSON.stringify({ x: xOffset, y: yOffset }));
-        } catch(e) {}
-        
+        } catch (e) { }
+
         document.removeEventListener('mousemove', drag);
         document.removeEventListener('mouseup', dragEnd);
     }
 }
-
-
