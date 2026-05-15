@@ -1,6 +1,7 @@
 /**
  * tronex-AI: TRỢ LÝ GIẢNG GIẢI & TRÌNH TẠO ĐỀ THI
- * Tích hợp Gemini 2.0 Flash / 1.5 Flash (Fallback chain)
+ * Tích hợp Gemini 3.0 Flash / 2.0 Flash (Fallback chain)
+ * ✅ Fixed: model names, selector logic, fallback recursion bug
  */
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
@@ -16,16 +17,30 @@ let _idx = parseInt(localStorage.getItem("_tronex_kidx") || "0");
 const gK = () => _K[_idx % _K.length];
 const rK = () => {
     _idx = (_idx + 1) % _K.length;
-    localStorage.setItem("_tronex_kidx", _idx);
+    localStorage.setItem("_tronex_kidx", String(_idx));
 };
 
-// Fallback chain: thử lần lượt từ mạnh → ổn định
-// Mỗi model được thử với TẤT CẢ key trước khi xuống model kế tiếp
-const MODEL_CHAIN = [
-    "gemini-2.0-flash",       // Ưu tiên 1: nhanh + thông minh
-    "gemini-1.5-flash-latest", // Ưu tiên 2: ổn định
-    "gemini-1.5-flash-8b"      // Ưu tiên 3: nhẹ nhất, luôn available
+// ✅ Nâng cấp: Gemini 3.0 Flash → 2.0 Flash → 2.5 Flash-Lite (dự phòng cuối)
+// Gemini 3 Flash: mạnh nhất, reasoning cao
+// Gemini 2.0 Flash: nhanh, ổn định
+// Gemini 2.5 Flash-Lite: nhẹ nhất, luôn available, free tier
+const MODEL_CHAIN_3 = [
+    "gemini-3-flash-preview",   // Ưu tiên 1: Gemini 3.0 Flash (mới nhất)
+    "gemini-2.5-flash",         // Ưu tiên 2: ổn định
+    "gemini-3.1-flash-lite"     // Ưu tiên 3: nhẹ nhất, free tier
 ];
+
+const MODEL_CHAIN_2 = [
+    "gemini-2.5-flash",         // Ưu tiên 1: Gemini 2.0/2.5 Flash
+    "gemini-3.1-flash-lite",    // Ưu tiên 2: dự phòng
+    "gemini-3-flash-preview"    // Ưu tiên 3: fallback lên 3.0 nếu cần
+];
+
+const MODEL_LABELS = {
+    "gemini-3-flash-preview": "Gemini 3.0 Flash",
+    "gemini-2.5-flash": "Gemini 2.5 Flash",
+    "gemini-3.1-flash-lite": "Gemini 3.1 Flash-Lite (dự phòng)"
+};
 
 class tronexAI {
     constructor() {
@@ -96,7 +111,6 @@ class tronexAI {
     // ─── LẤY CONTEXT CÂU HỎI HIỆN TẠI ───────────────────────
 
     getQuizContext() {
-        // app.js expose window.currentActiveQuiz và window.currentQuestionIndex
         const quiz = window.currentActiveQuiz;
         const idx = window.currentQuestionIndex;
         if (!quiz) return "";
@@ -127,34 +141,31 @@ Nội dung: ${q.text || ''}`;
     }
 
     // ─── GỬI TIN NHẮN VỚI FALLBACK CHAIN ────────────────────
+    // ✅ Fix: tách riêng text gốc ra khỏi customPrompt để tránh mất nội dung khi fallback đệ quy
 
-    async sendMessage(customPrompt = null, _forcedModel = null, _keyRotation = 0, _modelChainIdx = 0) {
+    async sendMessage(customPrompt = null) {
         const text = customPrompt || this.chatInput?.value.trim();
         if (!text) return;
 
-        // Chỉ hiển thị tin nhắn user ở lần gọi đầu tiên
-        if (!customPrompt) {
-            this.addMessage(text, 'user');
-            if (this.chatInput) this.chatInput.value = '';
-        }
+        this.addMessage(text, 'user');
+        if (!customPrompt && this.chatInput) this.chatInput.value = '';
 
-        // Loading bubble
+        // Loading bubble - tạo 1 lần duy nhất, truyền xuyên suốt fallback
         const loadingMsg = this.addMessage('<span class="dots-loading">Gemini đang suy nghĩ...</span>', 'ai');
 
-        // Xác định model sẽ dùng
+        // Chọn model chain theo selector
         const selectedVal = document.getElementById('aiModelSelector')?.value || "3.0";
-        let modelId;
-        if (_forcedModel) {
-            modelId = _forcedModel;
-        } else {
-            // Map selector value → model, theo ưu tiên người dùng chọn
-            if (selectedVal === "3.1" || selectedVal === "3.0") {
-                modelId = MODEL_CHAIN[_modelChainIdx] || MODEL_CHAIN[0];
-            } else {
-                // Người dùng chọn 2.0 → bắt đầu từ model thứ 2 (bỏ qua flash mới nhất)
-                modelId = MODEL_CHAIN[Math.max(_modelChainIdx, 1)] || MODEL_CHAIN[1];
-            }
-        }
+        const modelChain = (selectedVal === "3.0" || selectedVal === "3.1")
+            ? MODEL_CHAIN_3
+            : MODEL_CHAIN_2;
+
+        await this._tryWithFallback(text, loadingMsg, modelChain, 0, 0);
+    }
+
+    // ✅ Fix: fallback không đệ quy qua sendMessage nữa → dùng hàm riêng, giữ loadingMsg
+    async _tryWithFallback(text, loadingMsg, modelChain, modelIdx, keyRotation) {
+        const modelId = modelChain[modelIdx];
+        const totalKeys = _K.length;
 
         const systemPrompt = `Bạn là trợ lý AI thông minh tích hợp trong nền tảng học tập TRONEX.
 PHONG CÁCH TRẢ LỜI (100% giống Google Gemini App):
@@ -189,55 +200,43 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
             const isInvalidModel = /404|not found|invalid model/i.test(err.toString());
             const isAuthError = /400|403|api.?key|invalid/i.test(err.toString());
 
-            // Chiến lược fallback theo 3 tầng:
-            // Tầng 1: Xoay key (tối đa số key lần) cùng model hiện tại
-            // Tầng 2: Xuống model kế tiếp trong chain
-            // Tầng 3: Báo lỗi rõ ràng
-
-            const totalKeys = _K.length;
-            const canRotateKey = !isInvalidModel && _keyRotation < totalKeys - 1;
-            const canDowngradeModel = _modelChainIdx < MODEL_CHAIN.length - 1;
+            const canRotateKey = !isInvalidModel && keyRotation < totalKeys - 1;
+            const canDowngradeModel = modelIdx < modelChain.length - 1;
 
             if (canRotateKey && isQuotaOrBusy) {
-                // Xoay key, giữ nguyên model
+                // Tầng 1: Xoay key, giữ nguyên model
                 rK();
                 this.setLoadingMsg(loadingMsg,
-                    `Máy chủ bận, đang thử key dự phòng ${_keyRotation + 2}/${totalKeys}...`,
+                    `Máy chủ bận, đang thử key dự phòng ${keyRotation + 2}/${totalKeys}...`,
                     '#f59e0b'
                 );
-                setTimeout(() => {
-                    loadingMsg.remove();
-                    this.sendMessage(text, null, _keyRotation + 1, _modelChainIdx);
-                }, 800);
+                await this._delay(800);
+                await this._tryWithFallback(text, loadingMsg, modelChain, modelIdx, keyRotation + 1);
 
             } else if (canDowngradeModel) {
-                // Hết key hoặc lỗi model → xuống model kế tiếp, reset key rotation
-                const nextModel = MODEL_CHAIN[_modelChainIdx + 1];
-                const modelLabels = {
-                    "gemini-2.0-flash": "Gemini 2.0 Flash",
-                    "gemini-1.5-flash-latest": "Gemini 1.5 Flash",
-                    "gemini-1.5-flash-8b": "Gemini Flash 8B (dự phòng)"
-                };
+                // Tầng 2: Hết key hoặc lỗi model → xuống model kế tiếp, reset key rotation
+                const nextModel = modelChain[modelIdx + 1];
                 this.setLoadingMsg(loadingMsg,
-                    `Đang chuyển sang ${modelLabels[nextModel] || nextModel}...`,
+                    `Đang chuyển sang ${MODEL_LABELS[nextModel] || nextModel}...`,
                     '#6366f1'
                 );
-                setTimeout(() => {
-                    loadingMsg.remove();
-                    this.sendMessage(text, null, 0, _modelChainIdx + 1);
-                }, 600);
+                await this._delay(600);
+                await this._tryWithFallback(text, loadingMsg, modelChain, modelIdx + 1, 0);
 
             } else {
-                // Đã thử hết tất cả → thông báo lỗi thân thiện
+                // Tầng 3: Đã thử hết tất cả → thông báo lỗi
                 if (isAuthError) {
                     this.setLoadingMsg(loadingMsg, '❌ Lỗi xác thực API Key. Vui lòng liên hệ quản trị viên.', '#ef4444');
                 } else {
                     this.setLoadingMsg(loadingMsg, '⚠️ Tất cả máy chủ đang bận. Vui lòng thử lại sau ít phút!', '#ef4444');
                 }
-                // Nếu không phải lỗi auth, thử đổi key để lần sau dùng key khác
                 if (!isAuthError) rK();
             }
         }
+    }
+
+    _delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 
     // ─── RENDER MARKDOWN + KATEX ─────────────────────────────
@@ -245,7 +244,7 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
     renderAiResponse(container, text) {
         if (!container) return;
         let html = text
-            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') // escape HTML trước
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
             .replace(/\*(.*?)\*/g, '<em>$1</em>')
             .replace(/`(.*?)`/g, '<code style="background:#f1f5f9;padding:1px 5px;border-radius:4px;">$1</code>')
@@ -347,7 +346,6 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
             this.questionsContainer.appendChild(card);
         });
 
-        // Helper functions
         window.__updateManualQ = (idx, field, val) => {
             if (this.manualQuestions[idx]) this.manualQuestions[idx][field] = val;
         };
@@ -359,7 +357,6 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
             this.renderManualQuestions();
         };
 
-        // Backward compat aliases
         window.updateManualQ = window.__updateManualQ;
         window.updateManualOpt = window.__updateManualOpt;
         window.removeManualQ = window.__removeManualQ;
@@ -431,7 +428,6 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
             saved.unshift(newQuiz);
             localStorage.setItem(LOCAL_KEY, JSON.stringify(saved));
 
-            // Thêm vào danh sách hiện tại ngay lập tức
             if (window.__mockQuizzes) window.__mockQuizzes.unshift(newQuiz);
             if (window.__initQuizList) window.__initQuizList();
 
