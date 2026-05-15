@@ -271,7 +271,7 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
     }
 
     // ─── HỎI AI VỀ CÂU HỎI CỤ THỂ ──────────────────────────
-    // ✅ Fix: tự động lấy nội dung câu hỏi + gửi luôn, không cần bấm gửi thêm
+    // ✅ Fix: tự động gửi + kèm passage nhóm nếu là dạng reading_group
 
     askAboutQuestion(qIndex) {
         if (!this.chatContainer) return;
@@ -279,18 +279,39 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
         // Mở chat nếu chưa mở
         if (this.chatContainer.style.display !== 'flex') this.toggleChat();
 
-        // Lấy nội dung câu hỏi cụ thể theo qIndex
         const quiz = window.currentActiveQuiz;
         const qs = quiz ? (quiz.renderedQuestions || quiz.questions) : null;
         const q = qs ? qs[qIndex] : null;
 
-        // Build prompt đầy đủ kèm nội dung câu hỏi
+        // ✅ Tìm passage của nhóm câu hỏi (reading_group) chứa câu này
+        // Logic: duyệt questions gốc, tìm reading_group mà subQuestions chứa id trùng với q.id
+        let groupPassage = '';
+        if (q && quiz) {
+            const rawQs = quiz.questions || [];
+            for (const rg of rawQs) {
+                if (rg.type === 'reading_group' && Array.isArray(rg.subQuestions)) {
+                    const found = rg.subQuestions.find(sq => sq.id === q.id);
+                    if (found) {
+                        // Lấy text thuần từ HTML passage (bỏ tag HTML)
+                        groupPassage = rg.passage
+                            ? rg.passage.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
+                            : '';
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Build prompt đầy đủ
         let prompt = `Hãy giải thích cách làm **Câu ${qIndex + 1}** cho mình nhé!`;
+        if (groupPassage) {
+            prompt += `\n\n[DỮ LIỆU ĐỀ BÀI]\n${groupPassage}`;
+        }
         if (q) {
-            prompt += `\n\nNội dung câu hỏi: ${q.text || ''}`;
-            if (q.type === 'multiple_choice' && Array.isArray(q.options)) {
+            prompt += `\n\n[NỘI DUNG CÂU HỎI]: ${q.text || ''}`;
+            if (Array.isArray(q.options) && q.options.length > 0) {
                 prompt += `\nCác đáp án: ` + q.options.map((o, i) => `${['A', 'B', 'C', 'D'][i]}. ${o}`).join(' | ');
-            } else if (q.type === 'short_answer' && q.correctAnswer) {
+            } else if (q.correctAnswer) {
                 prompt += `\nĐáp án đúng: ${q.correctAnswer}`;
             } else if (q.type === 'true_false_group' && Array.isArray(q.subQuestions)) {
                 prompt += `\nCác ý: ` + q.subQuestions.map(sq => `${sq.text} → ${sq.correctAnswer}`).join(' | ');
