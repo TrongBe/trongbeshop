@@ -1,6 +1,5 @@
 import { mockQuizzes } from './data.js';
-import { showImageLightbox } from './gemini.js';
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
 import { getDatabase, ref, onValue, runTransaction, set, get } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
@@ -12,11 +11,10 @@ const firebaseConfig = {
     storageBucket: "hoctaptructuyen-7c09a.firebasestorage.app",
     messagingSenderId: "329551572068",
     appId: "1:329551572068:web:41b7b3174ef45a77008371",
-    measurementId: "G-F0DTTKEBHC",
-    databaseURL: "https://hoctaptructuyen-7c09a-default-rtdb.firebaseio.com"
+    measurementId: "G-F0DTTKEBHC"
 };
 
-const app = initializeApp(firebaseConfig);
+const app = getApps().length > 0 ? getApps()[0] : initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const dbRT = getDatabase(app);
 
@@ -50,8 +48,9 @@ function loadCustomQuizzesFromStorage() {
         const saved = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]');
         const currentUser = window.__tronexCurrentUser;
         saved.forEach(quiz => {
+            if (!quiz || !quiz.id) return;
             // Không thêm nếu đã có trong mảng
-            if (!mockQuizzes.find(q => q.id === quiz.id)) {
+            if (!mockQuizzes.find(q => q && (q.id || '').toString() === (quiz.id || '').toString())) {
                 // Nếu quiz riêng tư, chỉ hiện khi đúng chủ sở hữu
                 if (quiz.privacy === 'private') {
                     const uid = currentUser?.uid || localStorage.getItem('tronex_uid');
@@ -100,8 +99,8 @@ function initQuizList() {
 
     // Sắp xếp: ID gemini_ và manual_ mới tạo lên đầu
     const sortedQuizzes = [...mockQuizzes].sort((a, b) => {
-        const aId = a.id.toString();
-        const bId = b.id.toString();
+        const aId = (a && a.id) ? a.id.toString() : '';
+        const bId = (b && b.id) ? b.id.toString() : '';
         const aCustom = aId.startsWith('gemini_') || aId.startsWith('manual_');
         const bCustom = bId.startsWith('gemini_') || bId.startsWith('manual_');
         if (aCustom && !bCustom) return -1;
@@ -110,6 +109,7 @@ function initQuizList() {
     });
 
     sortedQuizzes.forEach(quiz => {
+        if (!quiz || !quiz.id) return;
         const qId = quiz.id.toString().trim();
         if (!seenIds.has(qId)) {
             seenIds.add(qId);
@@ -133,7 +133,7 @@ function initQuizList() {
                 </div>` : ''}
             <div class="tags-container" style="margin-bottom: 24px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px;">
                 ${(quiz.privacy === 'public' || !quiz.privacy) ? '<span style="background:#10B981; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🌍 Công Khai</span>' : '<span style="background:#6366f1; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🔒 Riêng tư</span>'}
-                <span class="quiz-meta">📚 Số câu: ${quiz.questions.length}</span>
+                <span class="quiz-meta">📚 Số câu: ${(quiz.questions || []).length}</span>
                 <span class="quiz-views" id="views-${quiz.id}">Lượt truy cập: ${quiz.viewCount || 0}</span>
             </div>
             <div style="display: flex; gap: 10px;">
@@ -154,6 +154,7 @@ window.initQuizList = initQuizList;
 window.__initQuizList = initQuizList; // alias for tronex-ai.js
 
 function isQuizOwner(id) {
+    if (!id) return false;
     if (localStorage.getItem("admin_secret_key") === "trongbeshop") return true;
     const targetId = id.toString().trim();
     // Kiểm tra cả gemini_ và manual_ prefix
@@ -162,14 +163,14 @@ function isQuizOwner(id) {
         // Kiểm tra theo UID nếu đã đăng nhập
         const uid = localStorage.getItem('tronex_uid');
         if (uid) {
-            const quiz = mockQuizzes.find(q => q.id === targetId);
+            const quiz = mockQuizzes.find(q => q && (q.id || '').toString().trim() === targetId);
             if (quiz && quiz.createdBy?.uid === uid) return true;
         }
         // Fallback: kiểm tra localStorage key
         const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
         if (saved) {
             const parsed = JSON.parse(saved);
-            return parsed.some(q => q.id.toString().trim() === targetId);
+            return parsed.some(q => q && (q.id || '').toString().trim() === targetId);
         }
     } catch (e) { }
     return false;
@@ -177,7 +178,7 @@ function isQuizOwner(id) {
 
 window.deleteCustomQuiz = function (id) {
     const isAdmin = localStorage.getItem("admin_secret_key") === "trongbeshop";
-    const idx = mockQuizzes.findIndex(q => q.id === id);
+    const idx = mockQuizzes.findIndex(q => q && (q.id || '').toString().trim() === (id || '').toString().trim());
     if (idx === -1) return;
 
     const quiz = mockQuizzes[idx];
@@ -309,7 +310,7 @@ function shuffleQuestionsBySection(questions) {
 
 // === BẮT ĐẦU LÀM BÀI ===
 window.startQuiz = async function (quizId) {
-    currentQuiz = mockQuizzes.find(q => q.id.toString() === quizId.toString());
+    currentQuiz = mockQuizzes.find(q => q && (q.id || '').toString().trim() === (quizId || '').toString().trim());
     if (!currentQuiz || !currentQuiz.questions) return;
     document.getElementById('setupQuizTitle').textContent = `Cấu hình: ${currentQuiz.title}`;
     showView('setup');
@@ -524,7 +525,9 @@ function renderQuestions() {
             imgDiv.className = 'question-image';
             imgDiv.innerHTML = `<img src="${q.imageSrc}" alt="Hình minh họa">`;
             const imgEl = imgDiv.querySelector('img');
-            imgEl.onclick = () => showImageLightbox(q.imageSrc);
+            imgEl.onclick = () => {
+                if (window.showImageLightbox) window.showImageLightbox(q.imageSrc);
+            };
             qBlock.appendChild(imgDiv);
         } else if (q.diagramCode) {
             // v48: Hiển thị sơ đồ được vẽ bằng code (HTML/SVG/Table)
@@ -938,7 +941,7 @@ window.loadPublicQuizzes = function () {
 
                 // v68: Xóa ghost data - Chỉ xóa các đề công khai khác, giữ lại Đề 1 và các đề do chính user sở hữu
                 if (isVACTPage) {
-                    const keepQuizzes = mockQuizzes.filter(q => q.id === 'de_1_dgnl' || isQuizOwner(q.id));
+                    const keepQuizzes = mockQuizzes.filter(q => q && ((q.id || '').toString().trim() === 'de_1_dgnl' || isQuizOwner(q.id)));
                     mockQuizzes.length = 0;
                     mockQuizzes.push(...keepQuizzes);
                 }
@@ -946,7 +949,7 @@ window.loadPublicQuizzes = function () {
                 Object.keys(data).forEach(key => {
                     let pq = data[key];
                     const pqId = key.toString().trim();
-                    const existingIdx = mockQuizzes.findIndex(q => q.id.toString().trim() === pqId);
+                    const existingIdx = mockQuizzes.findIndex(q => q && (q.id || '').toString().trim() === pqId);
 
                     // 1. Cập nhật lượt xem trực tiếp trên DOM và Memory
                     if (pq.viewCount !== undefined) {
@@ -1017,7 +1020,7 @@ window.syncPrivateQuizzesFromFirebase = async function (user) {
             let changed = false;
             Object.keys(data).forEach(key => {
                 const quiz = data[key];
-                const existingIdx = mockQuizzes.findIndex(q => q.id.toString().trim() === key.toString().trim());
+                const existingIdx = mockQuizzes.findIndex(q => q && (q.id || '').toString().trim() === key.toString().trim());
                 if (existingIdx === -1) {
                     mockQuizzes.unshift(quiz);
                     changed = true;

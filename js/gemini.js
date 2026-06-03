@@ -1153,99 +1153,124 @@ function initGeminiModal() {
     const fileInput = document.getElementById("imageFileInput");
     const addMoreInput = document.getElementById("addMoreFileInput");
 
-    // Note: Click events are now handled by <label for="..."> in index.html for better mobile support
-
     // Drag & drop
-    dropZone.addEventListener("dragover", (e) => { e.preventDefault(); dropZone.classList.add("drag-over"); });
-    dropZone.addEventListener("dragleave", () => dropZone.classList.remove("drag-over"));
-    dropZone.addEventListener("drop", async (e) => {
-        e.preventDefault();
-        dropZone.classList.remove("drag-over");
-        await processFiles(Array.from(e.dataTransfer.files));
-    });
+    if (dropZone) {
+        dropZone.addEventListener("dragover", (e) => { e.preventDefault(); dropZone.classList.add("drag-over"); });
+        dropZone.addEventListener("dragleave", () => dropZone.classList.remove("drag-over"));
+        dropZone.addEventListener("drop", async (e) => {
+            e.preventDefault();
+            dropZone.classList.remove("drag-over");
+            await processFiles(Array.from(e.dataTransfer.files));
+        });
+    }
 
     // File input change
-    fileInput.addEventListener("change", async () => {
-        const files = fileInput.files;
-        if (!files || files.length === 0) return;
+    if (fileInput) {
+        fileInput.addEventListener("change", async () => {
+            const files = fileInput.files;
+            if (!files || files.length === 0) return;
 
-        // Cực kỳ quan trọng cho di động: Chuyển sang Array ngay lập tức trước khi làm bất cứ việc gì khác
-        const filesArray = Array.from(files);
-        await processFiles(filesArray);
-        fileInput.value = "";
-    });
+            // Cực kỳ quan trọng cho di động: Chuyển sang Array ngay lập tức trước khi làm bất cứ việc gì khác
+            const filesArray = Array.from(files);
+            await processFiles(filesArray);
+            fileInput.value = "";
+        });
+    }
 
     // Note: Click events are now handled by <label for="..."> in index.html for better mobile support
-    addMoreInput.addEventListener("change", async () => {
-        const files = addMoreInput.files;
-        if (!files || files.length === 0) return;
+    if (addMoreInput) {
+        addMoreInput.addEventListener("change", async () => {
+            const files = addMoreInput.files;
+            if (!files || files.length === 0) return;
 
-        const filesArray = Array.from(files);
-        await processFiles(filesArray);
-        addMoreInput.value = "";
-    });
+            const filesArray = Array.from(files);
+            await processFiles(filesArray);
+            addMoreInput.value = "";
+        });
+    }
 
     // --- NÚT PHÂN TÍCH ---
-    document.getElementById("btnAnalyze").addEventListener("click", async () => {
-        if (uploadedImages.length === 0) {
-            dropZone.style.display = "flex";
-            dropZone.classList.add("shake");
-            setTimeout(() => dropZone.classList.remove("shake"), 600);
-            return;
-        }
-        const extraNote = document.getElementById("geminiExtraNote").value.trim();
-        showGeminiStep(2);
-        try {
-            extractedQuestions = await analyzeQuizImage(uploadedImages, extraNote);
-            renderQuestionEditor();
-            showGeminiStep(3);
-        } catch (err) {
-            console.error("Gemini error:", err);
-            showGeminiStep(1);
-            const errBox = document.getElementById("geminiError");
-            errBox.textContent = "❌ Lỗi: " + err.message;
-            errBox.style.display = "block";
-            setTimeout(() => errBox.style.display = "none", 8000);
-        }
-    });
+    const btnAnalyze = document.getElementById("btnAnalyze");
+    if (btnAnalyze) {
+        btnAnalyze.addEventListener("click", async () => {
+            if (uploadedImages.length === 0) {
+                if (dropZone) {
+                    dropZone.style.display = "flex";
+                    dropZone.classList.add("shake");
+                    setTimeout(() => dropZone.classList.remove("shake"), 600);
+                }
+                return;
+            }
+            const extraNoteEl = document.getElementById("geminiExtraNote");
+            const extraNote = extraNoteEl ? extraNoteEl.value.trim() : "";
+            showGeminiStep(2);
+            try {
+                extractedQuestions = await analyzeQuizImage(uploadedImages, extraNote);
+                renderQuestionEditor();
+                showGeminiStep(3);
+            } catch (err) {
+                console.error("Gemini error:", err);
+                showGeminiStep(1);
+                const errBox = document.getElementById("geminiError");
+                if (errBox) {
+                    errBox.textContent = "❌ Lỗi: " + err.message;
+                    errBox.style.display = "block";
+                    setTimeout(() => errBox.style.display = "none", 8000);
+                }
+            }
+        });
+    }
 
     // --- BƯỚC 3 → 4 ---
-    document.getElementById("btnGoToSave").addEventListener("click", () => {
-        if (extractedQuestions.length === 0) { alert("Không có câu hỏi nào!"); return; }
-        showGeminiStep(4);
-    });
+    const btnGoToSave = document.getElementById("btnGoToSave");
+    if (btnGoToSave) {
+        btnGoToSave.addEventListener("click", () => {
+            if (extractedQuestions.length === 0) { alert("Không có câu hỏi nào!"); return; }
+            showGeminiStep(4);
+        });
+    }
 
     // --- BƯỚC 4 → IMPORT ---
-    document.getElementById("btnImportQuiz").addEventListener("click", importQuizToList);
+    const btnImportQuiz = document.getElementById("btnImportQuiz");
+    if (btnImportQuiz) {
+        btnImportQuiz.addEventListener("click", importQuizToList);
+    }
 
     // --- PHÂN TÍCH LẠI (SỬ DỤNG THINKING MODE) ---
-    document.getElementById("btnReanalyze").addEventListener("click", async () => {
-        if (uploadedImages.length === 0) return;
-        if (!confirm("Hệ thống sẽ dùng chế độ Suy luận sâu (Thinking) để quét lại các ảnh này. Quá trình này sẽ chính xác hơn nhưng mất nhiều thời gian hơn (khoảng 1-2 phút). Bạn có muốn tiếp tục không?")) return;
+    const btnReanalyze = document.getElementById("btnReanalyze");
+    if (btnReanalyze) {
+        btnReanalyze.addEventListener("click", async () => {
+            if (uploadedImages.length === 0) return;
+            if (!confirm("Hệ thống sẽ dùng chế độ Suy luận sâu (Thinking) để quét lại các ảnh này. Quá trình này sẽ chính xác hơn nhưng mất nhiều thời gian hơn (khoảng 1-2 phút). Bạn có muốn tiếp tục không?")) return;
 
-        const extraNote = document.getElementById("geminiExtraNote").value.trim();
-        const loadingSub = document.querySelector(".gemini-loading-sub");
-        if (loadingSub) loadingSub.textContent = "Đang kích hoạt chế độ Suy luận sâu (Thinking)...";
+            const extraNoteEl = document.getElementById("geminiExtraNote");
+            const extraNote = extraNoteEl ? extraNoteEl.value.trim() : "";
+            const loadingSub = document.querySelector(".gemini-loading-sub");
+            if (loadingSub) loadingSub.textContent = "Đang kích hoạt chế độ Suy luận sâu (Thinking)...";
 
-        showGeminiStep(2);
-        try {
-            extractedQuestions = await analyzeQuizImage(uploadedImages, extraNote, 0, true); // useThinking = true
-            renderQuestionEditor();
-            showGeminiStep(3);
-        } catch (err) {
-            console.error("Gemini Reanalyze error:", err);
-            showGeminiStep(3); // Quay lại editor nếu lỗi để không mất dữ liệu đang sửa
-            alert("Lỗi khi phân tích lại: " + err.message);
-        }
-    });
+            showGeminiStep(2);
+            try {
+                extractedQuestions = await analyzeQuizImage(uploadedImages, extraNote, 0, true); // useThinking = true
+                renderQuestionEditor();
+                showGeminiStep(3);
+            } catch (err) {
+                console.error("Gemini Reanalyze error:", err);
+                showGeminiStep(3); // Quay lại editor nếu lỗi để không mất dữ liệu đang sửa
+                alert("Lỗi khi phân tích lại: " + err.message);
+            }
+        });
+    }
 
     // --- QUAY LẠI BƯỚC 1 (Để chọn lại ảnh) ---
-    document.getElementById("btnBackToUpload").addEventListener("click", () => {
-        if (confirm("Quay lại sẽ giữ nguyên các ảnh đã chọn nhưng xóa dữ liệu quét hiện tại. Bạn có muốn tiếp tục?")) {
-            extractedQuestions = [];
-            showGeminiStep(1);
-        }
-    });
+    const btnBackToUpload = document.getElementById("btnBackToUpload");
+    if (btnBackToUpload) {
+        btnBackToUpload.addEventListener("click", () => {
+            if (confirm("Quay lại sẽ giữ nguyên các ảnh đã chọn nhưng xóa dữ liệu quét hiện tại. Bạn có muốn tiếp tục?")) {
+                extractedQuestions = [];
+                showGeminiStep(1);
+            }
+        });
+    }
     const btnAnalyzeMore = document.getElementById("btnAnalyzeMore");
     const analyzeMoreInput = document.getElementById("analyzeMoreInput");
     if (btnAnalyzeMore && analyzeMoreInput) {
@@ -1257,7 +1282,8 @@ function initGeminiModal() {
             const filesArray = Array.from(files).filter(f => f.type.startsWith("image/") || f.name.toLowerCase().endsWith(".docx"));
             if (filesArray.length === 0) return;
 
-            const extraNote = document.getElementById("geminiExtraNote").value.trim();
+            const extraNoteEl = document.getElementById("geminiExtraNote");
+            const extraNote = extraNoteEl ? extraNoteEl.value.trim() : "";
             showGeminiStep(2); // Show loading spinner
 
             try {
@@ -1309,24 +1335,38 @@ function initGeminiModal() {
     }
 
     // --- BƯỚC 5 → ĐÓNG ---
-    document.getElementById("btnCloseSuccess").addEventListener("click", closeGeminiModal);
+    const btnCloseSuccess = document.getElementById("btnCloseSuccess");
+    if (btnCloseSuccess) {
+        btnCloseSuccess.addEventListener("click", closeGeminiModal);
+    }
 
     // --- PHOTO EDITOR CONTROLS (Delegation handled @ bottom of file) ---
 
     // --- CÁC NÚT BACK ---
-    document.getElementById("btnBackToUpload").addEventListener("click", () => showGeminiStep(1));
-    document.getElementById("btnBackToEdit").addEventListener("click", () => showGeminiStep(3));
+    const btnBackToEdit = document.getElementById("btnBackToEdit");
+    if (btnBackToEdit) {
+        btnBackToEdit.addEventListener("click", () => showGeminiStep(3));
+    }
 
     // --- ĐÓNG MODAL ---
-    document.getElementById("geminiModalOverlay").addEventListener("click", (e) => {
-        if (e.target === e.currentTarget) closeGeminiModal();
-    });
-    document.getElementById("btnCloseGeminiModal").addEventListener("click", closeGeminiModal);
+    const geminiModalOverlay = document.getElementById("geminiModalOverlay");
+    if (geminiModalOverlay) {
+        geminiModalOverlay.addEventListener("click", (e) => {
+            if (e.target === e.currentTarget) closeGeminiModal();
+        });
+    }
+    const btnCloseGeminiModal = document.getElementById("btnCloseGeminiModal");
+    if (btnCloseGeminiModal) {
+        btnCloseGeminiModal.addEventListener("click", closeGeminiModal);
+    }
 
     // --- PHÍM ESC ---
     document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && document.getElementById("geminiModalOverlay").classList.contains("active")) {
-            closeGeminiModal();
+        if (e.key === "Escape") {
+            const overlay = document.getElementById("geminiModalOverlay");
+            if (overlay && overlay.classList.contains("active")) {
+                closeGeminiModal();
+            }
         }
     });
 }
