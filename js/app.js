@@ -12,7 +12,8 @@ const firebaseConfig = {
     storageBucket: "hoctaptructuyen-7c09a.firebasestorage.app",
     messagingSenderId: "329551572068",
     appId: "1:329551572068:web:41b7b3174ef45a77008371",
-    measurementId: "G-F0DTTKEBHC"
+    measurementId: "G-F0DTTKEBHC",
+    databaseURL: "https://hoctaptructuyen-7c09a-default-rtdb.firebaseio.com"
 };
 
 const app = initializeApp(firebaseConfig);
