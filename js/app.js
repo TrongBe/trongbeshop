@@ -92,6 +92,7 @@ function initQuizList() {
     uniqueQuizzes.forEach(quiz => {
         const card = document.createElement('div');
         card.className = 'quiz-card';
+        card.dataset.quizId = quiz.id; // for filter
         card.innerHTML = `
             <h3>${quiz.title}</h3>
             <p>${quiz.description}</p>
@@ -107,6 +108,9 @@ function initQuizList() {
         `;
         quizListContainer.appendChild(card);
     });
+
+    // Re-apply search/filter after list renders
+    if (typeof window.filterQuizList === 'function') window.filterQuizList();
 }
 window.initQuizList = initQuizList;
 
@@ -724,11 +728,12 @@ function renderResults(correct, incorrect, unanswered) {
 
     // Hiển thị thời gian làm bài
     const savedStartTime = sessionStorage.getItem('tronex_quiz_start_time') || quizStartTime;
+    let elapsedSeconds = 0;
     if (savedStartTime) {
         const endTime = Date.now();
-        const diff = Math.floor((endTime - parseInt(savedStartTime)) / 1000);
-        const mins = Math.floor(diff / 60);
-        const secs = diff % 60;
+        elapsedSeconds = Math.floor((endTime - parseInt(savedStartTime)) / 1000);
+        const mins = Math.floor(elapsedSeconds / 60);
+        const secs = elapsedSeconds % 60;
         const timeStr = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
         const timeEl = document.getElementById('tronexTimeSpent');
         if (timeEl) timeEl.textContent = timeStr;
@@ -750,6 +755,29 @@ function renderResults(correct, incorrect, unanswered) {
     const leaveBtn = document.getElementById('btnLeaveQuiz');
     if (leaveBtn) {
         leaveBtn.textContent = 'Trở về danh sách';
+    }
+
+    // === LƯU LỊCH SỬ LÀM BÀI ===
+    try {
+        const attempts = JSON.parse(localStorage.getItem('tronex_attempts') || '[]');
+        attempts.push({
+            quizId: currentQuiz?.id || 'unknown',
+            quizTitle: currentQuiz?.title || '',
+            score: parseFloat(score),
+            correct,
+            total,
+            seconds: elapsedSeconds,
+            date: new Date().toISOString()
+        });
+        // Giữ tối đa 200 lần gần nhất
+        if (attempts.length > 200) attempts.splice(0, attempts.length - 200);
+        localStorage.setItem('tronex_attempts', JSON.stringify(attempts));
+    } catch(e) { console.warn('Không thể lưu lịch sử:', e); }
+
+    // === CONFETTI KHI ĐIỂM CAO ===
+    const scoreRatio = total > 0 ? correct / total : 0;
+    if (scoreRatio >= 0.8) {
+        fireConfetti();
     }
 }
 
@@ -1094,3 +1122,30 @@ function initDraggableSidebar() {
         document.removeEventListener('mouseup', dragEnd);
     }
 }
+
+// ============================================================
+//  CONFETTI — Hiệu ứng pháo hoa khi điểm cao (≥80%)
+// ============================================================
+function fireConfetti() {
+    const colors = ['#4F46E5', '#7C3AED', '#10B981', '#F59E0B', '#EF4444', '#3B82F6', '#EC4899'];
+    const count = 80;
+
+    for (let i = 0; i < count; i++) {
+        const el = document.createElement('div');
+        el.className = 'confetti-piece';
+        el.style.cssText = `
+            left: ${Math.random() * 100}vw;
+            background: ${colors[Math.floor(Math.random() * colors.length)]};
+            width: ${6 + Math.random() * 8}px;
+            height: ${10 + Math.random() * 10}px;
+            border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+            animation-duration: ${1.5 + Math.random() * 2}s;
+            animation-delay: ${Math.random() * 0.8}s;
+            opacity: ${0.7 + Math.random() * 0.3};
+        `;
+        document.body.appendChild(el);
+        // Tự xóa sau khi animation xong
+        el.addEventListener('animationend', () => el.remove());
+    }
+}
+window.fireConfetti = fireConfetti;

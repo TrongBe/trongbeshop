@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=12">
+  <link rel="stylesheet" href="css/style.css?v=20">
 
   <!-- Import Map cho thư viện AI -->
   <script type="importmap">
@@ -35,7 +35,7 @@
 
 <body>
   <header class="header-vnu" id="mainHeader">
-    <div class="container">
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between;">
       <a href="index.html" class="logo-vnu">
         <div class="logo-text">
           <h2>TRONEX</h2>
@@ -49,13 +49,16 @@
         <a href="#">Tuyển sinh</a>
         <a href="#">Sinh viên</a>
       </nav>
-      <button class="menu-btn" onclick="toggleSidebar()" style="color: white; border: none; background: none;">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
-      </button>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <button class="theme-toggle-btn" id="themeToggleBtn" title="Chế độ sáng/tối">🌙</button>
+        <button class="menu-btn" onclick="toggleSidebar()" style="color: white; border: none; background: none; position: static; transform: none;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -78,14 +81,60 @@
     <!-- Hero Section -->
     <section class="hero-vnu">
       <div class="hero-vnu-content">
-        <h1>Trang chủ</h1>
-        <p>Hệ thống giáo dục thông minh TRONEX hướng tới trở thành nền tảng luyện thi hàng đầu, nơi hội tụ công nghệ AI đỉnh cao và trải nghiệm người dùng tối ưu.</p>
-        <a href="v-act.html" class="btn btn-primary" style="margin-top: 20px; padding: 12px 30px; border-radius: 4px;">KHÁM PHÁ TRONEX</a>
+        <div class="hero-badge">✨ AI-Powered • TRONEX v3.0</div>
+        <h1>Nền tảng<br>luyện thi thông minh</h1>
+        <p>Hệ thống TRONEX hướng tới trở thành nền tảng luyện thi hàng đầu, nơi hội tụ công nghệ AI đỉnh cao và trải nghiệm người dùng tối ưu.</p>
+        <div class="hero-btn-group">
+          <a href="v-act.html" class="hero-btn-primary">🚀 Khám phá TRONEX</a>
+          <a href="#news-section" class="hero-btn-secondary">📰 Tin tức</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-value" id="heroTotalTests">0</div>
+            <div class="hero-stat-label">Lượt làm bài</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value" id="heroAvgScore">—</div>
+            <div class="hero-stat-label">Điểm TB</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value" id="heroTotalTime">0</div>
+            <div class="hero-stat-label">Phút luyện tập</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Dashboard -->
+    <section style="padding: 40px 0 0; background: var(--bg-page);">
+      <div class="container" style="max-width: 1100px;">
+        <div class="stats-dashboard">
+          <div class="stat-card">
+            <span class="stat-icon">📚</span>
+            <div class="stat-value" id="statTotalTests">0</div>
+            <div class="stat-label">Lần làm bài</div>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon">🎯</span>
+            <div class="stat-value" id="statAvgScore">—</div>
+            <div class="stat-label">Điểm trung bình</div>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon">🔥</span>
+            <div class="stat-value" id="statBestScore">—</div>
+            <div class="stat-label">Điểm cao nhất</div>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon">⏱️</span>
+            <div class="stat-value" id="statTotalTime">0</div>
+            <div class="stat-label">Phút luyện tập</div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- News Section -->
-    <section class="section-vnu">
+    <section class="section-vnu" id="news-section">
       <div class="container">
         <h2 class="section-title-vnu">TIN TỨC & SỰ KIỆN</h2>
         <div class="news-grid">
@@ -126,7 +175,44 @@
   </main>
 
   <script>
-    // Header scroll effect
+    // === DARK MODE TOGGLE ===
+    (function() {
+      const saved = localStorage.getItem('tronex_theme') || 'light';
+      if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    })();
+
+    function initThemeToggle() {
+      const btn = document.getElementById('themeToggleBtn');
+      if (!btn) return;
+      const isDark = () => document.documentElement.getAttribute('data-theme') === 'dark';
+      btn.textContent = isDark() ? '☀️' : '🌙';
+      btn.addEventListener('click', () => {
+        const nextTheme = isDark() ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', nextTheme);
+        localStorage.setItem('tronex_theme', nextTheme);
+        btn.textContent = nextTheme === 'dark' ? '☀️' : '🌙';
+      });
+    }
+
+    // === LOAD STATS FROM localStorage ===
+    function loadStats() {
+      try {
+        const attempts = JSON.parse(localStorage.getItem('tronex_attempts') || '[]');
+        const total = attempts.length;
+        const totalTimeMins = Math.round(attempts.reduce((s, a) => s + (a.seconds || 0), 0) / 60);
+        const scores = attempts.map(a => a.score).filter(s => s !== undefined);
+        const avg = scores.length > 0 ? (scores.reduce((a,b) => a+b, 0) / scores.length).toFixed(0) : null;
+        const best = scores.length > 0 ? Math.max(...scores) : null;
+
+        const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val !== null ? val : '—'; };
+        set('statTotalTests', total); set('heroTotalTests', total);
+        set('statAvgScore', avg); set('heroAvgScore', avg);
+        set('statBestScore', best);
+        set('statTotalTime', totalTimeMins); set('heroTotalTime', totalTimeMins);
+      } catch(e) {}
+    }
+
+    // === HEADER SCROLL EFFECT ===
     window.addEventListener('scroll', () => {
       const header = document.getElementById('mainHeader');
       if (window.scrollY > 50) {
@@ -134,6 +220,11 @@
       } else {
         header.classList.remove('scrolled');
       }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initThemeToggle();
+      loadStats();
     });
   </script>
 

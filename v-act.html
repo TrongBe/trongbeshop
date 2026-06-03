@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=12">
+  <link rel="stylesheet" href="css/style.css?v=20">
 
   <!-- Import Map cho thư viện AI -->
   <script type="importmap">
@@ -36,8 +36,8 @@
 
 <body>
   <header class="header">
-    <div class="container" style="position: relative;">
-      <button class="menu-btn" onclick="toggleSidebar()" aria-label="Menu">
+    <div class="container" style="position: relative; display:flex; align-items:center; justify-content:center;">
+      <button class="menu-btn" onclick="toggleSidebar()" aria-label="Menu" style="position:absolute; left:0;">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
           stroke-linecap="round" stroke-linejoin="round">
           <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -45,8 +45,11 @@
           <line x1="3" y1="18" x2="21" y2="18"></line>
         </svg>
       </button>
-      <h1>TRONEX: V-ACT</h1>
-      <p>Hệ thống luyện thi thông minh - AI Learning Platform</p>
+      <div>
+        <h1>TRONEX: V-ACT</h1>
+        <p>Hệ thống luyện thi thông minh - AI Learning Platform</p>
+      </div>
+      <button class="theme-toggle-btn" id="themeToggleBtn" title="Chế độ sáng/tối" style="position:absolute; right:0;">🌙</button>
     </div>
   </header>
 
@@ -68,9 +71,24 @@
   <main>
     <!-- View: Danh sách đề -->
     <div id="quizListView" class="view-section container active">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-        <h2 class="section-title" style="margin: 0;">Danh sách bộ đề hiện có</h2>
-
+      <div class="quiz-list-header">
+        <h2>Danh sách bộ đề</h2>
+        <p>Chọn đề phù hợp và bắt đầu luyện thi ngay!</p>
+      </div>
+      <!-- Search Bar -->
+      <div class="quiz-search-bar">
+        <div class="quiz-search-wrapper">
+          <span class="quiz-search-icon">🔍</span>
+          <input type="text" id="quizSearchInput" class="quiz-search-input" placeholder="Tìm kiếm đề thi..." oninput="filterQuizList()">
+        </div>
+      </div>
+      <!-- Filter Tabs -->
+      <div class="quiz-filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="setFilterTab(this, 'all')">Tất cả</button>
+        <button class="filter-tab" data-filter="vnu" onclick="setFilterTab(this, 'vnu')">VNU-ĐGNL</button>
+        <button class="filter-tab" data-filter="toan" onclick="setFilterTab(this, 'toan')">📐 Toán</button>
+        <button class="filter-tab" data-filter="anh" onclick="setFilterTab(this, 'anh')">🇬🇧 Tiếng Anh</button>
+        <button class="filter-tab" data-filter="custom" onclick="setFilterTab(this, 'custom')">✏️ Tự tạo</button>
       </div>
       <div id="quizList" class="quiz-grid">
         <!-- Javascript sẽ tự động thêm các đề vào đây -->
@@ -408,6 +426,12 @@
         <button class="ai-chat-btn" onclick="toggleAiChat()" title="Đóng">×</button>
       </div>
     </div>
+    <div class="ai-quick-chips" id="aiQuickChips">
+      <button class="ai-chip" onclick="sendAiChip('Giải thích đáp án câu này cho tôi')">💡 Giải thích đáp án</button>
+      <button class="ai-chip" onclick="sendAiChip('Mẹo giải nhanh câu này là gì?')">⚡ Mẹo giải nhanh</button>
+      <button class="ai-chip" onclick="sendAiChip('Công thức liên quan đến câu này?')">📐 Công thức</button>
+      <button class="ai-chip" onclick="sendAiChip('Kiến thức cần nhớ cho dạng bài này?')">📚 Kiến thức</button>
+    </div>
     <div class="ai-chat-messages" id="aiChatMessages">
       <div class="msg-bubble msg-ai">Chào bạn! Mình là Gemini. Bạn cần mình giải thích gì về đề thi này không?</div>
     </div>
@@ -542,6 +566,93 @@
       }
     }
   </script>
+
+  <script>
+    // === DARK MODE (runs immediately to prevent flash) ===
+    (function() {
+      const saved = localStorage.getItem('tronex_theme') || 'light';
+      if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    })();
+
+    // === THEME TOGGLE ===
+    document.addEventListener('DOMContentLoaded', function() {
+      const btn = document.getElementById('themeToggleBtn');
+      if (!btn) return;
+      const isDark = () => document.documentElement.getAttribute('data-theme') === 'dark';
+      btn.textContent = isDark() ? '☀️' : '🌙';
+      btn.addEventListener('click', () => {
+        const nextTheme = isDark() ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', nextTheme);
+        localStorage.setItem('tronex_theme', nextTheme);
+        btn.textContent = nextTheme === 'dark' ? '☀️' : '🌙';
+      });
+    });
+
+    // === FILTER & SEARCH ===
+    window._currentFilter = 'all';
+
+    window.setFilterTab = function(el, filter) {
+      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+      window._currentFilter = filter;
+      filterQuizList();
+    };
+
+    window.filterQuizList = function() {
+      const query = (document.getElementById('quizSearchInput')?.value || '').toLowerCase();
+      const filter = window._currentFilter || 'all';
+      const cards = document.querySelectorAll('#quizList .quiz-card');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+        const desc = card.querySelector('p')?.textContent.toLowerCase() || '';
+        const isCustom = card.dataset.quizId?.startsWith('gemini_');
+        const isVnu = title.includes('đgnl') || title.includes('vnu') || title.includes('đánh giá năng lực');
+        const isToan = title.includes('toán') || desc.includes('toán');
+        const isAnh = title.includes('anh') || desc.includes('tiếng anh');
+
+        const matchesSearch = !query || title.includes(query) || desc.includes(query);
+        let matchesFilter = filter === 'all';
+        if (filter === 'custom') matchesFilter = isCustom;
+        else if (filter === 'vnu') matchesFilter = isVnu;
+        else if (filter === 'toan') matchesFilter = isToan;
+        else if (filter === 'anh') matchesFilter = isAnh;
+
+        if (matchesSearch && matchesFilter) {
+          card.style.display = '';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Show empty state
+      let emptyEl = document.getElementById('quizEmptyState');
+      if (visibleCount === 0) {
+        if (!emptyEl) {
+          emptyEl = document.createElement('div');
+          emptyEl.id = 'quizEmptyState';
+          emptyEl.className = 'empty-search-state';
+          emptyEl.innerHTML = '<span class="empty-icon">🔍</span><h3>Không tìm thấy đề thi</h3><p>Thử thay đổi từ khoá tìm kiếm hoặc bộ lọc khác</p>';
+          document.getElementById('quizList').after(emptyEl);
+        }
+        emptyEl.style.display = '';
+      } else if (emptyEl) {
+        emptyEl.style.display = 'none';
+      }
+    };
+
+    // === AI QUICK CHIP SENDER ===
+    window.sendAiChip = function(prompt) {
+      const input = document.getElementById('aiChatInput');
+      if (input) {
+        input.value = prompt;
+        input.dispatchEvent(new Event('input'));
+        document.getElementById('btnSendAiChat')?.click();
+      }
+    };
+  </script>
 </body>
 
-</html>
+</html>
