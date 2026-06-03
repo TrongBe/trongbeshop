@@ -51,6 +51,9 @@
       </nav>
       <div style="display:flex; align-items:center; gap:10px;">
         <button class="theme-toggle-btn" id="themeToggleBtn" title="Chế độ sáng/tối">🌙</button>
+        <button class="auth-btn" id="authBtn" title="Đăng nhập">
+          <span>🔑</span><span>Đăng nhập</span>
+        </button>
         <button class="menu-btn" onclick="toggleSidebar()" style="color: white; border: none; background: none; position: static; transform: none;">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -74,6 +77,7 @@
     <ul class="sidebar-nav">
       <li><a href="index.html" class="active">🏠 Trang chủ</a></li>
       <li><a href="v-act.html">🚀 TRONEX (Làm bài)</a></li>
+      <li><a href="profile.html">👤 Tài khoản</a></li>
     </ul>
   </div>
 
@@ -248,7 +252,8 @@
     </div>
   </footer>
 
-  <script type="module" src="js/app.js?v=54"></script>
+  <script type="module" src="js/app.js?v=60"></script>
+  <script type="module" src="js/auth.js?v=1"></script>
 
   <!-- CHANGELOG MODAL (New v45) -->
   <div id="changelogModal" class="modal-overlay" style="display:none;">

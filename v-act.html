@@ -49,7 +49,12 @@
         <h1>TRONEX: V-ACT</h1>
         <p>Hệ thống luyện thi thông minh - AI Learning Platform</p>
       </div>
-      <button class="theme-toggle-btn" id="themeToggleBtn" title="Chế độ sáng/tối" style="position:absolute; right:0;">🌙</button>
+      <div style="position:absolute; right:0; display:flex; align-items:center; gap:8px;">
+        <button class="theme-toggle-btn" id="themeToggleBtn" title="Chế độ sáng/tối">🌙</button>
+        <button class="auth-btn" id="authBtn" title="Đăng nhập">
+          <span>🔑</span><span>Đăng nhập</span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -65,6 +70,7 @@
     <ul class="sidebar-nav">
       <li><a href="index.html">🏠 Trang chủ</a></li>
       <li><a href="v-act.html" class="active">🚀 TRONEX</a></li>
+      <li><a href="profile.html">👤 Tài khoản</a></li>
     </ul>
   </div>
 
@@ -461,18 +467,43 @@
           <label>Tên bộ đề</label>
           <input type="text" id="manualQuizTitle" placeholder="Ví dụ: Đề thi thử THPT Quốc gia">
         </div>
+        <div class="creator-form-group">
+          <label>Mô tả (tuỳ chọn)</label>
+          <input type="text" id="manualQuizDesc" placeholder="VD: Đề ôn tập chương 3...">
+        </div>
+
+        <!-- Privacy selector -->
+        <div class="creator-privacy">
+          <label><input type="radio" name="quizPrivacy" value="public" checked> 🌍 Công khai</label>
+          <label><input type="radio" name="quizPrivacy" value="private"> 🔒 Riêng tư</label>
+        </div>
+
+        <!-- 4 Nút thêm câu hỏi -->
+        <div class="creator-type-buttons">
+          <button class="creator-type-btn" onclick="addManualQuestion('multiple_choice')">
+            <span class="type-icon">📝</span> Trắc nghiệm
+          </button>
+          <button class="creator-type-btn" onclick="addManualQuestion('short_answer')">
+            <span class="type-icon">✍️</span> Trả lời ngắn
+          </button>
+          <button class="creator-type-btn" onclick="addManualQuestion('true_false')">
+            <span class="type-icon">✅</span> Đúng / Sai
+          </button>
+          <button class="creator-type-btn" onclick="triggerAiImageImport()">
+            <span class="type-icon">📷</span> Nhập bằng ảnh AI
+          </button>
+        </div>
+
+        <!-- Input file ẩn cho AI image import -->
+        <input type="file" id="aiImageImportInput" accept="image/*" multiple style="display:none;" onchange="handleAiImageImport(event)">
+
         <div id="manualQuestionsContainer" class="creator-question-list">
           <!-- Câu hỏi sẽ render ở đây -->
         </div>
-        <div class="creator-actions">
-          <button class="btn-primary" onclick="addManualQuestion('multiple_choice')" style="background: #4f46e5;">+ Thêm
-            câu Trắc nghiệm</button>
-          <button class="btn-primary" onclick="addManualQuestion('short_answer')" style="background: #10b981;">+ Thêm
-            câu Trả lời ngắn</button>
-        </div>
+
         <div style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px;">
-          <button id="btnSaveManualQuiz" class="btn-primary" style="width: 100%; padding: 15px; font-size: 1.1rem;">Lưu
-            và Công khai bộ đề</button>
+          <button id="btnSaveManualQuiz" class="btn-primary" style="width: 100%; padding: 15px; font-size: 1.1rem;">💾 Lưu
+            bộ đề</button>
         </div>
       </div>
     </div>
@@ -488,9 +519,10 @@
     <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ef629dc6201fd.svg" alt="AI">
   </button>
 
-  <script type="module" src="js/app.js?v=54"></script>
+  <script type="module" src="js/app.js?v=60"></script>
   <script type="module" src="js/gemini.js?v=12"></script>
-  <script type="module" src="js/tronex-ai.js?v=1"></script>
+  <script type="module" src="js/tronex-ai.js?v=5"></script>
+  <script type="module" src="js/auth.js?v=1"></script>
 
   <!-- DELETE CONFIRM MODAL -->
   <div id="deleteConfirmModal"

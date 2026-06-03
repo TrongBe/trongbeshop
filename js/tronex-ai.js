@@ -1,7 +1,7 @@
 /**
  * tronex-AI: TRỢ LÝ GIẢNG GIẢI & TRÌNH TẠO ĐỀ THI
  * Tích hợp Gemini 3.0 Flash / 2.0 Flash (Fallback chain)
- * ✅ Fixed: model names, selector logic, fallback recursion bug
+ * ✅ v3.1: Auth integration, true_false type, AI image import, ownership
  */
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
@@ -20,20 +20,17 @@ const rK = () => {
     localStorage.setItem("_tronex_kidx", String(_idx));
 };
 
-// ✅ Nâng cấp: Gemini 3.0 Flash → 2.0 Flash → 2.5 Flash-Lite (dự phòng cuối)
-// Gemini 3 Flash: mạnh nhất, reasoning cao
-// Gemini 2.0 Flash: nhanh, ổn định
-// Gemini 2.5 Flash-Lite: nhẹ nhất, luôn available, free tier
+// ✅ Model chains
 const MODEL_CHAIN_3 = [
-    "gemini-3-flash-preview",   // Ưu tiên 1: Gemini 3.0 Flash (mới nhất)
-    "gemini-2.5-flash",         // Ưu tiên 2: ổn định
-    "gemini-3.1-flash-lite"     // Ưu tiên 3: nhẹ nhất, free tier
+    "gemini-3-flash-preview",
+    "gemini-2.5-flash",
+    "gemini-3.1-flash-lite"
 ];
 
 const MODEL_CHAIN_2 = [
-    "gemini-2.5-flash",         // Ưu tiên 1: Gemini 2.0/2.5 Flash
-    "gemini-3.1-flash-lite",    // Ưu tiên 2: dự phòng
-    "gemini-3-flash-preview"    // Ưu tiên 3: fallback lên 3.0 nếu cần
+    "gemini-2.5-flash",
+    "gemini-3.1-flash-lite",
+    "gemini-3-flash-preview"
 ];
 
 const MODEL_LABELS = {
@@ -53,9 +50,8 @@ class tronexAI {
         this.questionsContainer = document.getElementById('manualQuestionsContainer');
         this.manualQuestions = [];
 
-        // Guard: nếu DOM chưa sẵn sàng thì không crash
         if (!this.chatContainer || !this.chatMessages || !this.chatInput) {
-            console.warn('[tronexAI] Một số phần tử DOM chưa sẵn sàng, kiểm tra lại HTML.');
+            console.warn('[tronexAI] Một số phần tử DOM chưa sẵn sàng.');
         }
 
         this.init();
@@ -72,11 +68,14 @@ class tronexAI {
         document.getElementById('btnCloseCreator')?.addEventListener('click', () => this.closeCreator());
         document.getElementById('btnSaveManualQuiz')?.addEventListener('click', () => this.saveManualQuiz());
 
-        // Expose to global for inline onclick handlers
+        // Expose to global
         window.toggleAiChat = () => this.toggleChat();
         window.toggleChatFullscreen = () => this.toggleFullscreen();
         window.addManualQuestion = (type) => this.addQuestion(type);
         window.askAiAboutQuestion = (qIndex) => this.askAboutQuestion(qIndex);
+        window.triggerAiImageImport = () => this.triggerImageImport();
+        window.handleAiImageImport = (e) => this.handleImageImport(e);
+        window.clearAiChatHistory = () => this.clearHistory();
     }
 
     // ─── CHAT UI ───────────────────────────────────────────────
@@ -90,6 +89,12 @@ class tronexAI {
 
     toggleFullscreen() {
         this.chatContainer?.classList.toggle('fullscreen');
+    }
+
+    clearHistory() {
+        if (this.chatMessages) {
+            this.chatMessages.innerHTML = '<div class="msg-bubble msg-ai">Chào bạn! Mình là Gemini. Bạn cần mình giải thích gì về đề thi này không?</div>';
+        }
     }
 
     addMessage(text, sender = 'ai') {
@@ -108,7 +113,7 @@ class tronexAI {
         if (this.chatMessages) this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
     }
 
-    // ─── LẤY CONTEXT CÂU HỎI HIỆN TẠI ───────────────────────
+    // ─── CONTEXT CÂU HỎI ───────────────────────────────────
 
     getQuizContext() {
         const quiz = window.currentActiveQuiz;
@@ -141,7 +146,6 @@ Nội dung: ${q.text || ''}`;
     }
 
     // ─── GỬI TIN NHẮN VỚI FALLBACK CHAIN ────────────────────
-    // ✅ Fix: tách riêng text gốc ra khỏi customPrompt để tránh mất nội dung khi fallback đệ quy
 
     async sendMessage(customPrompt = null) {
         const text = customPrompt || this.chatInput?.value.trim();
@@ -150,10 +154,8 @@ Nội dung: ${q.text || ''}`;
         this.addMessage(text, 'user');
         if (!customPrompt && this.chatInput) this.chatInput.value = '';
 
-        // Loading bubble - tạo 1 lần duy nhất, truyền xuyên suốt fallback
         const loadingMsg = this.addMessage('<span class="dots-loading">Gemini đang suy nghĩ...</span>', 'ai');
 
-        // Chọn model chain theo selector
         const selectedVal = document.getElementById('aiModelSelector')?.value || "3.0";
         const modelChain = (selectedVal === "3.0" || selectedVal === "3.1")
             ? MODEL_CHAIN_3
@@ -162,7 +164,6 @@ Nội dung: ${q.text || ''}`;
         await this._tryWithFallback(text, loadingMsg, modelChain, 0, 0);
     }
 
-    // ✅ Fix: fallback không đệ quy qua sendMessage nữa → dùng hàm riêng, giữ loadingMsg
     async _tryWithFallback(text, loadingMsg, modelChain, modelIdx, keyRotation) {
         const modelId = modelChain[modelIdx];
         const totalKeys = _K.length;
@@ -204,7 +205,6 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
             const canDowngradeModel = modelIdx < modelChain.length - 1;
 
             if (canRotateKey && isQuotaOrBusy) {
-                // Tầng 1: Xoay key, giữ nguyên model
                 rK();
                 this.setLoadingMsg(loadingMsg,
                     `Máy chủ bận, đang thử key dự phòng ${keyRotation + 2}/${totalKeys}...`,
@@ -214,7 +214,6 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
                 await this._tryWithFallback(text, loadingMsg, modelChain, modelIdx, keyRotation + 1);
 
             } else if (canDowngradeModel) {
-                // Tầng 2: Hết key hoặc lỗi model → xuống model kế tiếp, reset key rotation
                 const nextModel = modelChain[modelIdx + 1];
                 this.setLoadingMsg(loadingMsg,
                     `Đang chuyển sang ${MODEL_LABELS[nextModel] || nextModel}...`,
@@ -224,11 +223,10 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
                 await this._tryWithFallback(text, loadingMsg, modelChain, modelIdx + 1, 0);
 
             } else {
-                // Tầng 3: Đã thử hết tất cả → thông báo lỗi
                 if (isAuthError) {
-                    this.setLoadingMsg(loadingMsg, '❌ Lỗi xác thực API Key. Vui lòng liên hệ quản trị viên.', '#ef4444');
+                    this.setLoadingMsg(loadingMsg, '❌ Lỗi xác thực API Key.', '#ef4444');
                 } else {
-                    this.setLoadingMsg(loadingMsg, '⚠️ Tất cả máy chủ đang bận. Vui lòng thử lại sau ít phút!', '#ef4444');
+                    this.setLoadingMsg(loadingMsg, '⚠️ Tất cả máy chủ đang bận. Vui lòng thử lại sau!', '#ef4444');
                 }
                 if (!isAuthError) rK();
             }
@@ -239,7 +237,7 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    // ─── RENDER MARKDOWN + KATEX ─────────────────────────────
+    // ─── RENDER MARKDOWN ─────────────────────────────────────
 
     renderAiResponse(container, text) {
         if (!container) return;
@@ -270,21 +268,16 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
         if (this.chatMessages) this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
     }
 
-    // ─── HỎI AI VỀ CÂU HỎI CỤ THỂ ──────────────────────────
-    // ✅ Fix: tự động gửi + kèm passage nhóm nếu là dạng reading_group
+    // ─── HỎI AI VỀ CÂU HỎI ──────────────────────────────────
 
     askAboutQuestion(qIndex) {
         if (!this.chatContainer) return;
-
-        // Mở chat nếu chưa mở
         if (this.chatContainer.style.display !== 'flex') this.toggleChat();
 
         const quiz = window.currentActiveQuiz;
         const qs = quiz ? (quiz.renderedQuestions || quiz.questions) : null;
         const q = qs ? qs[qIndex] : null;
 
-        // ✅ Tìm passage của nhóm câu hỏi (reading_group) chứa câu này
-        // Logic: duyệt questions gốc, tìm reading_group mà subQuestions chứa id trùng với q.id
         let groupPassage = '';
         if (q && quiz) {
             const rawQs = quiz.questions || [];
@@ -292,7 +285,6 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
                 if (rg.type === 'reading_group' && Array.isArray(rg.subQuestions)) {
                     const found = rg.subQuestions.find(sq => sq.id === q.id);
                     if (found) {
-                        // Lấy text thuần từ HTML passage (bỏ tag HTML)
                         groupPassage = rg.passage
                             ? rg.passage.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
                             : '';
@@ -302,7 +294,6 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
             }
         }
 
-        // Build prompt đầy đủ
         let prompt = `Hãy giải thích cách làm **Câu ${qIndex + 1}** cho mình nhé!`;
         if (groupPassage) {
             prompt += `\n\n[DỮ LIỆU ĐỀ BÀI]\n${groupPassage}`;
@@ -318,13 +309,20 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
             }
         }
 
-        // Gửi tự động sau một chút để chat kịp mở
         setTimeout(() => this.sendMessage(prompt), 200);
     }
 
     // ─── MANUAL CREATOR ──────────────────────────────────────
 
     openCreator() {
+        // Kiểm tra đăng nhập
+        const user = window.__tronexCurrentUser;
+        if (!user) {
+            alert('⚠️ Bạn cần đăng nhập để tạo đề thi!');
+            if (typeof window.signInWithGoogle === 'function') window.signInWithGoogle();
+            return;
+        }
+
         const title = prompt("Vui lòng nhập tên đề thi mới:", "Đề thi TRONEX mới");
         if (!title) return;
 
@@ -344,7 +342,9 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
                     text: q.text || '',
                     options: q.options || ['', '', '', ''],
                     correctIndex: q.correctIndex ?? 0,
-                    correctAnswer: q.correctAnswer || ""
+                    correctAnswer: q.correctAnswer || "",
+                    subQuestions: q.subQuestions || null,
+                    imageData: q.imageData || null
                 });
             });
             this.renderManualQuestions();
@@ -359,7 +359,16 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
 
     addQuestion(type) {
         const qId = Date.now();
-        this.manualQuestions.push({ id: qId, type, text: '', options: ['', '', '', ''], correctIndex: 0, correctAnswer: '' });
+        const q = { id: qId, type, text: '', options: ['', '', '', ''], correctIndex: 0, correctAnswer: '', imageData: null };
+        if (type === 'true_false') {
+            q.subQuestions = [
+                { text: '', correctAnswer: 'Đúng' },
+                { text: '', correctAnswer: 'Đúng' },
+                { text: '', correctAnswer: 'Đúng' },
+                { text: '', correctAnswer: 'Đúng' }
+            ];
+        }
+        this.manualQuestions.push(q);
         this.renderManualQuestions();
     }
 
@@ -370,20 +379,30 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
         this.manualQuestions.forEach((q, index) => {
             const card = document.createElement('div');
             card.className = 'q-creator-item';
-            const typeLabel = q.type === 'multiple_choice' ? 'Trắc nghiệm' : q.type === 'short_answer' ? 'Điền khuyết' : 'Tự luận';
+            const typeLabel = q.type === 'multiple_choice' ? '📝 Trắc nghiệm'
+                : q.type === 'short_answer' ? '✍️ Trả lời ngắn'
+                : q.type === 'true_false' ? '✅ Đúng/Sai'
+                : '📝 Khác';
+
             card.innerHTML = `
                 <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
                     <strong>Câu ${index + 1} (${typeLabel})</strong>
-                    <button onclick="window.__removeManualQ(${index})" style="color:#ef4444;border:none;background:none;cursor:pointer;font-size:13px;">✕ Xóa</button>
+                    <div style="display:flex;gap:8px;">
+                        <button class="q-attach-btn" onclick="window.__attachImage(${index})" title="Đính kèm ảnh">📎 Ảnh</button>
+                        <button onclick="window.__removeManualQ(${index})" style="color:#ef4444;border:none;background:none;cursor:pointer;font-size:13px;">✕ Xóa</button>
+                    </div>
                 </div>
                 <textarea placeholder="Nhập nội dung câu hỏi..."
                     oninput="window.__updateManualQ(${index}, 'text', this.value)"
                     style="width:100%;padding:10px;border-radius:8px;border:1px solid #ddd;min-height:80px;box-sizing:border-box;font-family:inherit;">${this._escape(q.text)}</textarea>
+                ${q.imageData ? `<img src="${q.imageData}" class="q-attached-img" alt="Ảnh đính kèm">` : ''}
+                <input type="file" id="imgInput_${index}" accept="image/*" style="display:none;" onchange="window.__handleImageAttach(${index}, event)">
                 ${this.renderOptions(q, index)}
             `;
             this.questionsContainer.appendChild(card);
         });
 
+        // Global handlers
         window.__updateManualQ = (idx, field, val) => {
             if (this.manualQuestions[idx]) this.manualQuestions[idx][field] = val;
         };
@@ -394,6 +413,25 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
             this.manualQuestions.splice(idx, 1);
             this.renderManualQuestions();
         };
+        window.__updateTFSub = (qIdx, subIdx, field, val) => {
+            if (this.manualQuestions[qIdx]?.subQuestions?.[subIdx]) {
+                this.manualQuestions[qIdx].subQuestions[subIdx][field] = val;
+            }
+        };
+        window.__attachImage = (idx) => {
+            document.getElementById(`imgInput_${idx}`)?.click();
+        };
+        window.__handleImageAttach = (idx, event) => {
+            const file = event.target.files[0];
+            if (!file) return;
+            if (file.size > 500 * 1024) { alert('Ảnh quá lớn! Dưới 500KB.'); return; }
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                this.manualQuestions[idx].imageData = e.target.result;
+                this.renderManualQuestions();
+            };
+            reader.readAsDataURL(file);
+        };
 
         window.updateManualQ = window.__updateManualQ;
         window.updateManualOpt = window.__updateManualOpt;
@@ -401,6 +439,25 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
     }
 
     renderOptions(q, idx) {
+        if (q.type === 'true_false') {
+            const subs = q.subQuestions || [];
+            const labels = ['a', 'b', 'c', 'd'];
+            return `<div class="tf-group-container">
+                ${subs.map((sub, si) => `
+                    <div class="tf-item">
+                        <strong>${labels[si]})</strong>
+                        <input type="text" placeholder="Nội dung ý ${labels[si]}..."
+                            value="${this._escape(sub.text)}"
+                            oninput="window.__updateTFSub(${idx}, ${si}, 'text', this.value)">
+                        <select onchange="window.__updateTFSub(${idx}, ${si}, 'correctAnswer', this.value)">
+                            <option value="Đúng" ${sub.correctAnswer === 'Đúng' ? 'selected' : ''}>Đúng</option>
+                            <option value="Sai" ${sub.correctAnswer === 'Sai' ? 'selected' : ''}>Sai</option>
+                        </select>
+                    </div>
+                `).join('')}
+            </div>`;
+        }
+
         if (q.type !== 'multiple_choice') {
             if (q.type === 'short_answer') {
                 return `<input type="text" placeholder="Đáp án đúng..."
@@ -410,6 +467,7 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
             }
             return '';
         }
+
         const colors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'];
         const letters = ['A', 'B', 'C', 'D'];
         return `
@@ -435,18 +493,145 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
         return String(str || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     }
 
+    // ─── AI IMAGE IMPORT ─────────────────────────────────────
+
+    triggerImageImport() {
+        const user = window.__tronexCurrentUser;
+        if (!user) {
+            alert('⚠️ Bạn cần đăng nhập để dùng tính năng này!');
+            return;
+        }
+        document.getElementById('aiImageImportInput')?.click();
+    }
+
+    async handleImageImport(event) {
+        const files = event.target.files;
+        if (!files || files.length === 0) return;
+
+        const statusEl = this.questionsContainer;
+        const originalContent = statusEl?.innerHTML || '';
+        if (statusEl) {
+            statusEl.innerHTML = `<div style="text-align:center;padding:40px;">
+                <div class="dots-loading" style="font-size:18px;">📷 AI đang phân tích ${files.length} ảnh...</div>
+                <p style="color:#6b7280;margin-top:8px;">Vui lòng chờ trong giây lát</p>
+            </div>`;
+        }
+
+        try {
+            // Convert all images to base64
+            const imageParts = [];
+            for (const file of files) {
+                const base64 = await this._fileToBase64(file);
+                imageParts.push({
+                    inlineData: {
+                        data: base64.split(',')[1],
+                        mimeType: file.type
+                    }
+                });
+            }
+
+            const apiKey = gK();
+            const genAI = new GoogleGenerativeAI(apiKey);
+            const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+
+            const prompt = `Hãy phân tích các ảnh đề thi này và trích xuất tất cả câu hỏi thành JSON array.
+
+MỖI CÂU HỎI là một object với format:
+- Trắc nghiệm: {"type":"multiple_choice","text":"nội dung câu hỏi","options":["A","B","C","D"],"correctIndex":0}
+- Trả lời ngắn: {"type":"short_answer","text":"nội dung câu hỏi","correctAnswer":"đáp án"}
+- Đúng/Sai: {"type":"true_false","text":"nội dung câu hỏi chung","subQuestions":[{"text":"ý a","correctAnswer":"Đúng"},{"text":"ý b","correctAnswer":"Sai"},...]}
+
+QUAN TRỌNG:
+1. Tự động nhận diện loại câu hỏi dựa trên format đề.
+2. Nếu có đáp án in đậm hoặc đánh dấu, đặt làm correctIndex/correctAnswer.
+3. Nếu không chắc đáp án, đặt correctIndex: 0 hoặc correctAnswer: "".
+4. Giữ nguyên nội dung tiếng Việt, bao gồm dấu.
+5. CHỈ trả về JSON array thuần tuý, KHÔNG kèm markdown hay text khác.`;
+
+            const result = await model.generateContent([prompt, ...imageParts]);
+            const responseText = result.response.text().trim();
+
+            // Parse JSON from response
+            let questions = [];
+            try {
+                const jsonMatch = responseText.match(/\[[\s\S]*\]/);
+                if (jsonMatch) {
+                    questions = JSON.parse(jsonMatch[0]);
+                }
+            } catch (parseErr) {
+                console.error('[AI Import] Parse error:', parseErr);
+                alert('❌ AI không thể phân tích ảnh. Vui lòng thử lại!');
+                if (statusEl) statusEl.innerHTML = originalContent;
+                return;
+            }
+
+            if (questions.length === 0) {
+                alert('⚠️ Không tìm thấy câu hỏi nào trong ảnh.');
+                if (statusEl) statusEl.innerHTML = originalContent;
+                return;
+            }
+
+            // Add to manual questions
+            questions.forEach(q => {
+                this.manualQuestions.push({
+                    id: Date.now() + Math.random(),
+                    type: q.type || 'multiple_choice',
+                    text: q.text || '',
+                    options: q.options || ['', '', '', ''],
+                    correctIndex: q.correctIndex ?? 0,
+                    correctAnswer: q.correctAnswer || '',
+                    subQuestions: q.subQuestions || null,
+                    imageData: null
+                });
+            });
+
+            this.renderManualQuestions();
+            alert(`✅ Đã nhập thành công ${questions.length} câu hỏi từ ảnh!`);
+
+        } catch (err) {
+            console.error('[AI Import] Error:', err);
+            alert('❌ Lỗi khi phân tích ảnh: ' + (err.message || err));
+            if (statusEl) statusEl.innerHTML = originalContent;
+        }
+
+        // Reset input
+        event.target.value = '';
+    }
+
+    _fileToBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
+    }
+
+    // ─── SAVE QUIZ ───────────────────────────────────────────
+
     async saveManualQuiz() {
         const titleEl = document.getElementById('manualQuizTitle');
+        const descEl = document.getElementById('manualQuizDesc');
         const title = titleEl?.value.trim();
         if (!title) return alert("Vui lòng nhập tên đề thi!");
         if (this.manualQuestions.length === 0) return alert("Vui lòng thêm ít nhất 1 câu hỏi!");
 
+        const user = window.__tronexCurrentUser;
+        if (!user) return alert("⚠️ Bạn cần đăng nhập để lưu đề thi!");
+
+        const privacy = document.querySelector('input[name="quizPrivacy"]:checked')?.value || 'public';
+
         const newQuiz = {
             id: 'manual_' + Date.now(),
             title,
-            description: `Đề thi tạo thủ công - ${this.manualQuestions.length} câu`,
-            privacy: 'private',
+            description: descEl?.value.trim() || `Đề thi - ${this.manualQuestions.length} câu`,
+            privacy,
             viewCount: 0,
+            createdBy: {
+                uid: user.uid,
+                displayName: user.displayName || user.email?.split('@')[0] || '',
+                photoURL: user.photoURL || ''
+            },
             questions: this.manualQuestions.map((q, i) => ({
                 id: `mq_${Date.now()}_${i}`,
                 qNumber: i + 1,
@@ -454,7 +639,9 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
                 text: q.text,
                 options: q.type === 'multiple_choice' ? q.options : null,
                 correctIndex: q.type === 'multiple_choice' ? q.correctIndex : undefined,
-                correctAnswer: q.correctAnswer || ""
+                correctAnswer: q.correctAnswer || "",
+                subQuestions: q.type === 'true_false' ? q.subQuestions : undefined,
+                imageData: q.imageData || undefined
             }))
         };
 
@@ -468,6 +655,11 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
 
             if (window.__mockQuizzes) window.__mockQuizzes.unshift(newQuiz);
             if (window.__initQuizList) window.__initQuizList();
+
+            // Nếu công khai → đẩy lên Firebase
+            if (privacy === 'public' && window.__publishPublicQuiz) {
+                window.__publishPublicQuiz(newQuiz);
+            }
 
             alert("✅ Đã lưu đề thi thành công!");
             this.manualQuestions = [];

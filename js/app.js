@@ -43,6 +43,30 @@ if (isVACTPage) {
     mockQuizzes.push(...homeQuizzes);
 }
 
+// === LOAD ĐỀ TỰ TẠO TỪ localStorage (Fix Bug 2) ===
+function loadCustomQuizzesFromStorage() {
+    try {
+        const saved = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]');
+        const currentUser = window.__tronexCurrentUser;
+        saved.forEach(quiz => {
+            // Không thêm nếu đã có trong mảng
+            if (!mockQuizzes.find(q => q.id === quiz.id)) {
+                // Nếu quiz riêng tư, chỉ hiện khi đúng chủ sở hữu
+                if (quiz.privacy === 'private') {
+                    const uid = currentUser?.uid || localStorage.getItem('tronex_uid');
+                    if (!uid || quiz.createdBy?.uid !== uid) return;
+                }
+                mockQuizzes.unshift(quiz);
+            }
+        });
+    } catch (e) { console.warn('[TRONEX] Không thể load đề từ localStorage:', e); }
+}
+window.loadCustomQuizzesFromStorage = loadCustomQuizzesFromStorage;
+
+// Export ra window để tronex-ai.js truy cập (Fix Bug 1)
+window.__mockQuizzes = mockQuizzes;
+
+
 // === PHẦN TỬ DOM ===
 const views = {
     list: document.getElementById('quizListView'),
@@ -72,12 +96,14 @@ function initQuizList() {
     const uniqueQuizzes = [];
     const seenIds = new Set();
 
-    // Sắp xếp: ID gemini_ mới tạo lên đầu
+    // Sắp xếp: ID gemini_ và manual_ mới tạo lên đầu
     const sortedQuizzes = [...mockQuizzes].sort((a, b) => {
         const aId = a.id.toString();
         const bId = b.id.toString();
-        if (aId.startsWith("gemini_") && !bId.startsWith("gemini_")) return -1;
-        if (!aId.startsWith("gemini_") && bId.startsWith("gemini_")) return 1;
+        const aCustom = aId.startsWith('gemini_') || aId.startsWith('manual_');
+        const bCustom = bId.startsWith('gemini_') || bId.startsWith('manual_');
+        if (aCustom && !bCustom) return -1;
+        if (!aCustom && bCustom) return 1;
         return 0;
     });
 
@@ -96,8 +122,15 @@ function initQuizList() {
         card.innerHTML = `
             <h3>${quiz.title}</h3>
             <p>${quiz.description}</p>
+            ${quiz.createdBy ? `
+                <div class="quiz-card-author">
+                    <img src="${quiz.createdBy.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(quiz.createdBy.displayName || 'U')}&background=6366f1&color=fff&size=48`}" 
+                         alt="${quiz.createdBy.displayName || ''}"
+                         onerror="this.src='https://ui-avatars.com/api/?name=U&background=6366f1&color=fff&size=48'">
+                    <span>${quiz.createdBy.displayName || 'Ẩn danh'}</span>
+                </div>` : ''}
             <div class="tags-container" style="margin-bottom: 24px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px;">
-                ${quiz.privacy === 'public' ? '<span style="background:#10B981; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🌍 Công Khai</span>' : ''}
+                ${quiz.privacy === 'public' ? '<span style="background:#10B981; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🌍 Công Khai</span>' : '<span style="background:#6366f1; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🔒 Riêng tư</span>'}
                 <span class="quiz-meta">📚 Số câu: ${quiz.questions.length}</span>
                 <span class="quiz-views" id="views-${quiz.id}">Lượt truy cập: ${quiz.viewCount || 0}</span>
             </div>
@@ -113,12 +146,21 @@ function initQuizList() {
     if (typeof window.filterQuizList === 'function') window.filterQuizList();
 }
 window.initQuizList = initQuizList;
+window.__initQuizList = initQuizList; // alias for tronex-ai.js
 
 function isQuizOwner(id) {
     if (localStorage.getItem("admin_secret_key") === "trongbeshop") return true;
     const targetId = id.toString().trim();
-    if (!targetId.startsWith("gemini_")) return false;
+    // Kiểm tra cả gemini_ và manual_ prefix
+    if (!targetId.startsWith('gemini_') && !targetId.startsWith('manual_')) return false;
     try {
+        // Kiểm tra theo UID nếu đã đăng nhập
+        const uid = localStorage.getItem('tronex_uid');
+        if (uid) {
+            const quiz = mockQuizzes.find(q => q.id === targetId);
+            if (quiz && quiz.createdBy?.uid === uid) return true;
+        }
+        // Fallback: kiểm tra localStorage key
         const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
         if (saved) {
             const parsed = JSON.parse(saved);
@@ -772,7 +814,7 @@ function renderResults(correct, incorrect, unanswered) {
         // Giữ tối đa 200 lần gần nhất
         if (attempts.length > 200) attempts.splice(0, attempts.length - 200);
         localStorage.setItem('tronex_attempts', JSON.stringify(attempts));
-    } catch(e) { console.warn('Không thể lưu lịch sử:', e); }
+    } catch (e) { console.warn('Không thể lưu lịch sử:', e); }
 
     // === CONFETTI KHI ĐIỂM CAO ===
     const scoreRatio = total > 0 ? correct / total : 0;
@@ -965,7 +1007,10 @@ window.firebaseSDK = { ref, runTransaction, set };
 window.__mockQuizzes = mockQuizzes;
 window.__initQuizList = initQuizList;
 window.__saveCustomQuizzes = () => {
-    const custom = mockQuizzes.filter(q => q.id.toString().startsWith("gemini_"));
+    const custom = mockQuizzes.filter(q => {
+        const id = q.id.toString();
+        return id.startsWith('gemini_') || id.startsWith('manual_');
+    });
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(custom));
 };
 
@@ -980,6 +1025,7 @@ window.__publishPublicQuiz = (quizObj) => {
 
 document.addEventListener('DOMContentLoaded', () => {
     loadCustomQuizzes();
+    loadCustomQuizzesFromStorage(); // Fix Bug 2: reload đề tự tạo từ localStorage
     loadPublicQuizzes();
     initQuizList();
 
@@ -1148,4 +1194,4 @@ function fireConfetti() {
         el.addEventListener('animationend', () => el.remove());
     }
 }
-window.fireConfetti = fireConfetti;
+window.fireConfetti = fireConfetti;

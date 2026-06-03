@@ -3460,3 +3460,395 @@ body {
         gap: 20px;
     }
 }
+
+/* ============================================================
+   AUTH BUTTON — Header
+   ============================================================ */
+.auth-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border: 1.5px solid rgba(255,255,255,0.35);
+    border-radius: 20px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    backdrop-filter: blur(4px);
+}
+
+.auth-btn:hover {
+    background: rgba(255,255,255,0.2);
+    border-color: rgba(255,255,255,0.5);
+    transform: translateY(-1px);
+}
+
+.auth-btn--logged {
+    padding: 3px 12px 3px 3px;
+    gap: 8px;
+}
+
+.header-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255,255,255,0.5);
+}
+
+.header-username {
+    font-size: 13px;
+    font-weight: 600;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ============================================================
+   PROFILE PAGE
+   ============================================================ */
+.profile-page {
+    min-height: calc(100vh - 200px);
+    background: var(--bg-page, #f0f2f5);
+}
+
+.profile-not-logged {
+    text-align: center;
+    padding: 80px 24px;
+}
+
+.profile-not-logged-icon {
+    font-size: 64px;
+    margin-bottom: 16px;
+}
+
+.profile-not-logged h2 {
+    font-size: 1.6rem;
+    color: var(--text-primary, #1a1a2e);
+    margin-bottom: 8px;
+}
+
+.profile-not-logged p {
+    color: var(--text-secondary, #6b7280);
+    font-size: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.profile-card {
+    background: var(--bg-card, white);
+    border-radius: var(--radius-xl, 16px);
+    box-shadow: var(--shadow-md, 0 4px 16px rgba(0,0,0,0.08));
+    overflow: hidden;
+}
+
+.profile-avatar-section {
+    text-align: center;
+    padding: 40px 24px 24px;
+    background: linear-gradient(135deg, #4F46E5, #7C3AED);
+    color: white;
+}
+
+.profile-avatar-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 16px;
+}
+
+.profile-avatar-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(255,255,255,0.4);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.profile-avatar-edit {
+    position: absolute;
+    bottom: 0;
+    right: -4px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: transform 0.2s;
+}
+
+.profile-avatar-edit:hover {
+    transform: scale(1.1);
+}
+
+.profile-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.profile-email {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.profile-form {
+    padding: 24px;
+}
+
+.profile-field {
+    margin-bottom: 20px;
+}
+
+.profile-field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary, #6b7280);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.profile-field input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid var(--border-color, #e5e7eb);
+    border-radius: var(--radius-md, 10px);
+    font-size: 15px;
+    font-family: inherit;
+    background: var(--bg-page, #f8fafc);
+    color: var(--text-primary, #1a1a2e);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+}
+
+.profile-field input:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+}
+
+.profile-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
+.profile-stats-section {
+    margin-top: 32px;
+}
+
+.profile-stats-section h3 {
+    font-size: 1.1rem;
+    color: var(--text-primary, #1a1a2e);
+    margin-bottom: 16px;
+}
+
+/* ============================================================
+   QUIZ CARD AUTHOR
+   ============================================================ */
+.quiz-card-author {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border-color, #e5e7eb);
+}
+
+.quiz-card-author img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.quiz-card-author span {
+    font-size: 12px;
+    color: var(--text-secondary, #6b7280);
+    font-weight: 500;
+}
+
+/* ============================================================
+   CREATOR OVERLAY — Nâng cấp
+   ============================================================ */
+.creator-type-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.creator-type-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 16px;
+    border: 2px solid var(--border-color, #e0e0e0);
+    border-radius: var(--radius-md, 10px);
+    background: var(--bg-card, white);
+    color: var(--text-primary, #1a1a2e);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.creator-type-btn:hover {
+    border-color: #6366f1;
+    background: rgba(99,102,241,0.06);
+    color: #6366f1;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(99,102,241,0.15);
+}
+
+.creator-privacy {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    background: var(--bg-page, #f8fafc);
+    border-radius: var(--radius-md, 10px);
+}
+
+.creator-privacy label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary, #1a1a2e);
+}
+
+.q-attach-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: transparent;
+    cursor: pointer;
+    font-size: 12px;
+    color: var(--text-secondary, #6b7280);
+    transition: all 0.2s;
+    margin-top: 8px;
+}
+
+.q-attach-btn:hover {
+    border-color: #6366f1;
+    color: #6366f1;
+}
+
+.q-attached-img {
+    max-width: 200px;
+    max-height: 120px;
+    border-radius: 8px;
+    margin-top: 8px;
+    object-fit: contain;
+    border: 1px solid #e5e7eb;
+}
+
+.tf-group-container {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.tf-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: var(--bg-page, #f8fafc);
+    border-radius: 8px;
+}
+
+.tf-item input[type="text"] {
+    flex: 1;
+    padding: 6px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 13px;
+    background: var(--bg-card, white);
+    color: var(--text-primary);
+}
+
+.tf-item select {
+    padding: 6px 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 13px;
+    background: var(--bg-card, white);
+    cursor: pointer;
+}
+
+/* ============================================================
+   EMPTY SEARCH STATE
+   ============================================================ */
+.empty-search-state {
+    text-align: center;
+    padding: 60px 24px;
+    color: var(--text-secondary, #6b7280);
+}
+
+.empty-search-state .empty-icon {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.empty-search-state h3 {
+    font-size: 1.1rem;
+    color: var(--text-primary, #1a1a2e);
+    margin-bottom: 6px;
+}
+
+.empty-search-state p {
+    font-size: 14px;
+}
+
+/* ============================================================
+   DARK MODE — Auth & Profile overrides
+   ============================================================ */
+[data-theme="dark"] .auth-btn {
+    border-color: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.05);
+}
+
+[data-theme="dark"] .profile-page {
+    background: var(--bg-page);
+}
+
+[data-theme="dark"] .profile-card {
+    background: var(--bg-card);
+}
+
+[data-theme="dark"] .profile-field input {
+    background: var(--bg-page);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .creator-type-btn {
+    background: var(--bg-card);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .quiz-card-author {
+    border-top-color: var(--border-color);
+}

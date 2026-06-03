@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tài khoản - TRONEX</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=20">
+
+  <script type="importmap">
+    {
+      "imports": {
+        "@google/generative-ai": "https://cdn.jsdelivr.net/npm/@google/generative-ai/+esm"
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <header class="header-vnu" id="mainHeader">
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between;">
+      <a href="index.html" class="logo-vnu">
+        <div class="logo-text">
+          <h2>TRONEX</h2>
+          <p>AI Learning Platform</p>
+        </div>
+      </a>
+      <nav class="nav-vnu">
+        <a href="index.html">Trang chủ</a>
+        <a href="v-act.html">Hệ thống TRONEX</a>
+      </nav>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <button class="theme-toggle-btn" id="themeToggleBtn" title="Chế độ sáng/tối">🌙</button>
+        <button class="auth-btn" id="authBtn" title="Đăng nhập">
+          <span>🔑</span><span>Đăng nhập</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="profile-page">
+    <div class="container" style="max-width: 700px; padding-top: 40px; padding-bottom: 60px;">
+
+      <!-- Trạng thái chưa đăng nhập -->
+      <div id="profileNotLoggedIn" class="profile-not-logged">
+        <div class="profile-not-logged-icon">🔒</div>
+        <h2>Chưa đăng nhập</h2>
+        <p>Vui lòng đăng nhập bằng Google để xem và chỉnh sửa thông tin tài khoản của bạn.</p>
+        <button class="hero-btn-primary" onclick="signInWithGoogle()" style="margin-top: 20px;">
+          🔑 Đăng nhập bằng Google
+        </button>
+      </div>
+
+      <!-- Form thông tin tài khoản -->
+      <div id="profileLoggedIn" style="display: none;">
+        <div class="profile-card">
+          <div class="profile-avatar-section">
+            <div class="profile-avatar-wrapper">
+              <img id="profileAvatar" src="" alt="Avatar" class="profile-avatar-img">
+              <label class="profile-avatar-edit" for="avatarInput" title="Đổi ảnh đại diện">📷</label>
+              <input type="file" id="avatarInput" accept="image/*" style="display:none;" onchange="handleAvatarChange(event)">
+            </div>
+            <h2 id="profileDisplayName" class="profile-name">—</h2>
+            <p id="profileEmail" class="profile-email">—</p>
+          </div>
+
+          <div class="profile-form">
+            <div class="profile-field">
+              <label for="inputDisplayName">Tên hiển thị</label>
+              <input type="text" id="inputDisplayName" placeholder="Nhập tên hiển thị...">
+            </div>
+
+            <div class="profile-field">
+              <label for="inputBirthday">Ngày sinh</label>
+              <input type="date" id="inputBirthday">
+            </div>
+
+            <div class="profile-field">
+              <label for="inputPhone">Số điện thoại</label>
+              <input type="tel" id="inputPhone" placeholder="VD: 0912345678">
+            </div>
+
+            <div class="profile-actions">
+              <button class="hero-btn-primary" onclick="saveProfile()">💾 Lưu thay đổi</button>
+              <button class="hero-btn-secondary" onclick="signOutUser()" style="color: #EF4444; border-color: #EF4444;">🚪 Đăng xuất</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Thống kê cá nhân -->
+        <div class="profile-stats-section">
+          <h3>📊 Thống kê luyện tập</h3>
+          <div class="stats-dashboard">
+            <div class="stat-card">
+              <span class="stat-icon">📚</span>
+              <div class="stat-value" id="pStatTotal">0</div>
+              <div class="stat-label">Lần làm bài</div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-icon">🎯</span>
+              <div class="stat-value" id="pStatAvg">—</div>
+              <div class="stat-label">Điểm trung bình</div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-icon">🔥</span>
+              <div class="stat-value" id="pStatBest">—</div>
+              <div class="stat-label">Điểm cao nhất</div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-icon">⏱️</span>
+              <div class="stat-value" id="pStatTime">0</div>
+              <div class="stat-label">Phút luyện tập</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>Nguồn: <strong>Nguyễn Thanh Trọng</strong> | <a href="index.html" style="color: #6366f1;">← Về trang chủ</a></p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/auth.js?v=1"></script>
+
+  <script>
+    // === DARK MODE ===
+    (function() {
+      const saved = localStorage.getItem('tronex_theme') || 'light';
+      if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    })();
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Theme toggle
+      const btn = document.getElementById('themeToggleBtn');
+      if (btn) {
+        const isDark = () => document.documentElement.getAttribute('data-theme') === 'dark';
+        btn.textContent = isDark() ? '☀️' : '🌙';
+        btn.addEventListener('click', () => {
+          const next = isDark() ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', next);
+          localStorage.setItem('tronex_theme', next);
+          btn.textContent = next === 'dark' ? '☀️' : '🌙';
+        });
+      }
+
+      // Kiểm tra trạng thái đăng nhập
+      checkAuthForProfile();
+      loadProfileStats();
+    });
+
+    function checkAuthForProfile() {
+      // Lặp lại kiểm tra vì auth.js chạy bất đồng bộ
+      const check = () => {
+        const user = window.__tronexCurrentUser;
+        if (user) {
+          showProfileForm(user);
+        } else if (!localStorage.getItem('tronex_uid')) {
+          document.getElementById('profileNotLoggedIn').style.display = '';
+          document.getElementById('profileLoggedIn').style.display = 'none';
+        } else {
+          // Có UID nhưng chưa load xong auth → chờ thêm
+          setTimeout(check, 500);
+        }
+      };
+      setTimeout(check, 600);
+    }
+
+    function showProfileForm(user) {
+      document.getElementById('profileNotLoggedIn').style.display = 'none';
+      document.getElementById('profileLoggedIn').style.display = '';
+
+      const avatarDefault = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName || 'U')}&background=6366f1&color=fff&size=200`;
+      document.getElementById('profileAvatar').src = user.photoURL || avatarDefault;
+      document.getElementById('profileDisplayName').textContent = user.displayName || user.email;
+      document.getElementById('profileEmail').textContent = user.email || '';
+
+      // Fill form
+      document.getElementById('inputDisplayName').value = user.displayName || '';
+      document.getElementById('inputBirthday').value = user.birthday || '';
+      document.getElementById('inputPhone').value = user.phone || '';
+    }
+
+    // Lắng nghe auth thay đổi (từ auth.js)
+    const _origUpdateFn = window.__onAuthUpdated;
+    window.__onAuthUpdated = (user) => {
+      if (_origUpdateFn) _origUpdateFn(user);
+      if (user) showProfileForm(user);
+      else {
+        document.getElementById('profileNotLoggedIn').style.display = '';
+        document.getElementById('profileLoggedIn').style.display = 'none';
+      }
+    };
+
+    async function saveProfile() {
+      const user = window.__tronexCurrentUser;
+      if (!user?.uid) return alert('Vui lòng đăng nhập trước!');
+
+      const profileData = {
+        displayName: document.getElementById('inputDisplayName').value.trim() || user.displayName,
+        photoURL: document.getElementById('profileAvatar').src || user.photoURL,
+        email: user.email,
+        birthday: document.getElementById('inputBirthday').value || '',
+        phone: document.getElementById('inputPhone').value.trim() || ''
+      };
+
+      // Gọi hàm lưu từ auth.js
+      if (typeof window.saveUserProfile === 'function') {
+        // Import dynamically
+        const authModule = await import('./js/auth.js?v=1');
+        await authModule.saveUserProfile(user.uid, profileData);
+      } else {
+        // Fallback localStorage
+        localStorage.setItem('tronex_user', JSON.stringify({ uid: user.uid, ...profileData }));
+      }
+
+      alert('✅ Đã lưu thông tin thành công!');
+      // Update header tên
+      document.getElementById('profileDisplayName').textContent = profileData.displayName;
+    }
+    window.saveProfile = saveProfile;
+
+    function handleAvatarChange(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      if (file.size > 500 * 1024) {
+        alert('Ảnh quá lớn! Vui lòng chọn ảnh dưới 500KB.');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        document.getElementById('profileAvatar').src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+    window.handleAvatarChange = handleAvatarChange;
+
+    function loadProfileStats() {
+      try {
+        const attempts = JSON.parse(localStorage.getItem('tronex_attempts') || '[]');
+        const total = attempts.length;
+        const totalTime = Math.round(attempts.reduce((s, a) => s + (a.seconds || 0), 0) / 60);
+        const scores = attempts.map(a => a.score).filter(s => s !== undefined);
+        const avg = scores.length > 0 ? (scores.reduce((a,b) => a+b, 0) / scores.length).toFixed(0) : null;
+        const best = scores.length > 0 ? Math.max(...scores) : null;
+
+        const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val !== null ? val : '—'; };
+        set('pStatTotal', total);
+        set('pStatAvg', avg);
+        set('pStatBest', best);
+        set('pStatTime', totalTime);
+      } catch(e) {}
+    }
+  </script>
+</body>
+
+</html>
