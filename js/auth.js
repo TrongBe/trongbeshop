@@ -150,12 +150,22 @@ onAuthStateChanged(auth, async (user) => {
         };
         window.__tronexCurrentUser = { ...user, ...merged };
         localStorage.setItem('tronex_user', JSON.stringify(merged));
+
+        // Tự động đồng bộ đề riêng tư từ Firebase RTDB sau khi đăng nhập
+        if (typeof window.syncPrivateQuizzesFromFirebase === 'function') {
+            window.syncPrivateQuizzesFromFirebase(user);
+        }
     } else {
         localStorage.removeItem('tronex_uid');
         window.__tronexCurrentUser = null;
     }
 
     updateHeaderUI(window.__tronexCurrentUser);
+
+    // Kích hoạt callback thông báo cập nhật Auth cho các màn hình (ví dụ profile.html)
+    if (typeof window.__onAuthUpdated === 'function') {
+        window.__onAuthUpdated(window.__tronexCurrentUser);
+    }
 
     // Reload quiz list khi auth thay đổi (ảnh hưởng đề riêng tư)
     if (typeof window.__initQuizList === 'function') {
@@ -170,5 +180,7 @@ onAuthStateChanged(auth, async (user) => {
 window.signInWithGoogle = signInWithGoogle;
 window.signOutUser = signOutUser;
 window.getCurrentUser = getCurrentUser;
+window.saveUserProfile = saveUserProfile;
+window.loadUserProfile = loadUserProfile;
 
 export { auth };

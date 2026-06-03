@@ -49,6 +49,7 @@ class tronexAI {
         this.creatorOverlay = document.getElementById('manualCreatorOverlay');
         this.questionsContainer = document.getElementById('manualQuestionsContainer');
         this.manualQuestions = [];
+        this.editingQuizId = null; // Lưu ID của đề thi đang sửa đổi (nếu có)
 
         if (!this.chatContainer || !this.chatMessages || !this.chatInput) {
             console.warn('[tronexAI] Một số phần tử DOM chưa sẵn sàng.');
@@ -67,6 +68,7 @@ class tronexAI {
         document.getElementById('btnOpenManualCreator')?.addEventListener('click', () => this.openCreator());
         document.getElementById('btnCloseCreator')?.addEventListener('click', () => this.closeCreator());
         document.getElementById('btnSaveManualQuiz')?.addEventListener('click', () => this.saveManualQuiz());
+        document.getElementById('btnSaveManualQuizBottom')?.addEventListener('click', () => this.saveManualQuiz());
 
         // Expose to global
         window.toggleAiChat = () => this.toggleChat();
@@ -323,28 +325,97 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
             return;
         }
 
-        const title = prompt("Vui lòng nhập tên đề thi mới:", "Đề thi TRONEX mới");
-        if (!title) return;
+        // Reset trạng thái tạo mới
+        this.editingQuizId = null;
+        this.manualQuestions = [];
 
         const titleInput = document.getElementById('manualQuizTitle');
+        const descInput = document.getElementById('manualQuizDesc');
         const titleDisplay = document.getElementById('creatorTitleDisplay');
-        if (titleInput) titleInput.value = title;
-        if (titleDisplay) titleDisplay.textContent = title;
+
+        if (titleInput) titleInput.value = "";
+        if (descInput) descInput.value = "";
+        if (titleDisplay) titleDisplay.textContent = "Tạo đề mới";
+
+        // Chọn mặc định Công khai
+        const radPub = document.querySelector('input[name="quizPrivacy"][value="public"]');
+        if (radPub) radPub.checked = true;
 
         if (this.creatorOverlay) this.creatorOverlay.style.display = 'flex';
         document.body.style.overflow = 'hidden';
 
+        this.renderManualQuestions();
+
         window.__tronexAICollector = (questions) => {
             questions.forEach(q => {
                 this.manualQuestions.push({
-                    id: Date.now() + Math.random(),
+                    id: q.id || `mq_${Date.now()}_${Math.random()}`,
                     type: q.type || 'multiple_choice',
                     text: q.text || '',
                     options: q.options || ['', '', '', ''],
                     correctIndex: q.correctIndex ?? 0,
                     correctAnswer: q.correctAnswer || "",
                     subQuestions: q.subQuestions || null,
-                    imageData: q.imageData || null
+                    imageData: q.imageData || q.imageSrc || null
+                });
+            });
+            this.renderManualQuestions();
+        };
+    }
+
+    editQuiz(quizId) {
+        const user = window.__tronexCurrentUser;
+        if (!user) {
+            alert('⚠️ Bạn cần đăng nhập để chỉnh sửa đề thi!');
+            if (typeof window.signInWithGoogle === 'function') window.signInWithGoogle();
+            return;
+        }
+
+        const quiz = window.__mockQuizzes ? window.__mockQuizzes.find(q => q.id.toString() === quizId.toString()) : null;
+        if (!quiz) return alert("❌ Không tìm thấy đề thi cần chỉnh sửa!");
+
+        this.editingQuizId = quizId;
+
+        // Clone sâu danh sách câu hỏi để chỉnh sửa độc lập
+        this.manualQuestions = (quiz.questions || []).map(q => ({
+            id: q.id,
+            type: q.type || 'multiple_choice',
+            text: q.text || '',
+            options: q.options || ['', '', '', ''],
+            correctIndex: q.correctIndex ?? 0,
+            correctAnswer: q.correctAnswer || "",
+            subQuestions: q.subQuestions || null,
+            imageData: q.imageData || q.imageSrc || null
+        }));
+
+        const titleInput = document.getElementById('manualQuizTitle');
+        const descInput = document.getElementById('manualQuizDesc');
+        const titleDisplay = document.getElementById('creatorTitleDisplay');
+
+        if (titleInput) titleInput.value = quiz.title || "";
+        if (descInput) descInput.value = quiz.description || "";
+        if (titleDisplay) titleDisplay.textContent = "Chỉnh sửa: " + (quiz.title || "");
+
+        // Đặt radio privacy tương ứng
+        const rad = document.querySelector(`input[name="quizPrivacy"][value="${quiz.privacy || 'public'}"]`);
+        if (rad) rad.checked = true;
+
+        if (this.creatorOverlay) this.creatorOverlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+
+        this.renderManualQuestions();
+
+        window.__tronexAICollector = (questions) => {
+            questions.forEach(q => {
+                this.manualQuestions.push({
+                    id: q.id || `mq_${Date.now()}_${Math.random()}`,
+                    type: q.type || 'multiple_choice',
+                    text: q.text || '',
+                    options: q.options || ['', '', '', ''],
+                    correctIndex: q.correctIndex ?? 0,
+                    correctAnswer: q.correctAnswer || "",
+                    subQuestions: q.subQuestions || null,
+                    imageData: q.imageData || q.imageSrc || null
                 });
             });
             this.renderManualQuestions();
@@ -354,6 +425,8 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
     closeCreator() {
         if (this.creatorOverlay) this.creatorOverlay.style.display = 'none';
         document.body.style.overflow = '';
+        this.editingQuizId = null;
+        this.manualQuestions = [];
         window.__tronexAICollector = null;
     }
 
@@ -620,20 +693,31 @@ QUAN TRỌNG:
         if (!user) return alert("⚠️ Bạn cần đăng nhập để lưu đề thi!");
 
         const privacy = document.querySelector('input[name="quizPrivacy"]:checked')?.value || 'public';
+        const isEditing = !!this.editingQuizId;
+        const quizId = isEditing ? this.editingQuizId : 'manual_' + Date.now();
+
+        // Lấy thông tin đề thi cũ nếu đang edit
+        let oldQuiz = null;
+        if (isEditing && window.__mockQuizzes) {
+            oldQuiz = window.__mockQuizzes.find(q => q.id.toString() === quizId.toString());
+        }
+
+        const createdBy = oldQuiz ? oldQuiz.createdBy : {
+            uid: user.uid,
+            displayName: user.displayName || user.email?.split('@')[0] || '',
+            photoURL: user.photoURL || ''
+        };
+        const viewCount = oldQuiz ? (oldQuiz.viewCount || 0) : 0;
 
         const newQuiz = {
-            id: 'manual_' + Date.now(),
+            id: quizId,
             title,
             description: descEl?.value.trim() || `Đề thi - ${this.manualQuestions.length} câu`,
             privacy,
-            viewCount: 0,
-            createdBy: {
-                uid: user.uid,
-                displayName: user.displayName || user.email?.split('@')[0] || '',
-                photoURL: user.photoURL || ''
-            },
+            viewCount,
+            createdBy,
             questions: this.manualQuestions.map((q, i) => ({
-                id: `mq_${Date.now()}_${i}`,
+                id: q.id || `mq_${Date.now()}_${i}`,
                 qNumber: i + 1,
                 type: q.type,
                 text: q.text,
@@ -649,19 +733,48 @@ QUAN TRỌNG:
             const LOCAL_KEY = window.location.pathname.toLowerCase().includes('v-act')
                 ? 'trongbeshop_vact_quizzes'
                 : 'trongbeshop_custom_quizzes';
+            
+            // 1. Cập nhật localStorage
             const saved = JSON.parse(localStorage.getItem(LOCAL_KEY) || '[]');
-            saved.unshift(newQuiz);
+            const localIdx = saved.findIndex(q => q.id.toString() === quizId.toString());
+            
+            if (localIdx !== -1) {
+                saved[localIdx] = newQuiz;
+            } else {
+                saved.unshift(newQuiz);
+            }
             localStorage.setItem(LOCAL_KEY, JSON.stringify(saved));
 
-            if (window.__mockQuizzes) window.__mockQuizzes.unshift(newQuiz);
-            if (window.__initQuizList) window.__initQuizList();
-
-            // Nếu công khai → đẩy lên Firebase
-            if (privacy === 'public' && window.__publishPublicQuiz) {
-                window.__publishPublicQuiz(newQuiz);
+            // 2. Cập nhật window.__mockQuizzes
+            if (window.__mockQuizzes) {
+                const memIdx = window.__mockQuizzes.findIndex(q => q.id.toString() === quizId.toString());
+                if (memIdx !== -1) {
+                    window.__mockQuizzes[memIdx] = newQuiz;
+                } else {
+                    window.__mockQuizzes.unshift(newQuiz);
+                }
             }
 
-            alert("✅ Đã lưu đề thi thành công!");
+            // 3. Đồng bộ Firebase Cloud
+            if (privacy === 'public') {
+                if (window.__publishPublicQuiz) {
+                    window.__publishPublicQuiz(newQuiz);
+                }
+                if (window.__deletePrivateQuiz) {
+                    window.__deletePrivateQuiz(user.uid, quizId);
+                }
+            } else {
+                if (window.__publishPrivateQuiz) {
+                    window.__publishPrivateQuiz(user.uid, newQuiz);
+                }
+                if (window.__deletePublicQuiz) {
+                    window.__deletePublicQuiz(quizId);
+                }
+            }
+
+            if (window.__initQuizList) window.__initQuizList();
+
+            alert(isEditing ? "✅ Đã cập nhật đề thi thành công!" : "✅ Đã lưu đề thi mới thành công!");
             this.manualQuestions = [];
             this.closeCreator();
         } catch (e) {

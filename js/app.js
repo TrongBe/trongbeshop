@@ -90,6 +90,7 @@ window.showView = showView;
 
 // === TẠO GIAO DIỆN DANH SÁCH ĐỀ ===
 function initQuizList() {
+    if (!quizListContainer) return;
     quizListContainer.innerHTML = '';
 
     // v46 Final: Tuyệt chiêu chống trùng đề - Lọc danh sách mockQuizzes theo ID duy nhất trước khi render
@@ -130,13 +131,16 @@ function initQuizList() {
                     <span>${quiz.createdBy.displayName || 'Ẩn danh'}</span>
                 </div>` : ''}
             <div class="tags-container" style="margin-bottom: 24px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px;">
-                ${quiz.privacy === 'public' ? '<span style="background:#10B981; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🌍 Công Khai</span>' : '<span style="background:#6366f1; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🔒 Riêng tư</span>'}
+                ${(quiz.privacy === 'public' || !quiz.privacy) ? '<span style="background:#10B981; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🌍 Công Khai</span>' : '<span style="background:#6366f1; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🔒 Riêng tư</span>'}
                 <span class="quiz-meta">📚 Số câu: ${quiz.questions.length}</span>
                 <span class="quiz-views" id="views-${quiz.id}">Lượt truy cập: ${quiz.viewCount || 0}</span>
             </div>
             <div style="display: flex; gap: 10px;">
                 <button class="btn btn-primary" style="flex: 1;" onclick="startQuiz('${quiz.id}')">Bắt Đầu Làm Bài</button>
-                ${isQuizOwner(quiz.id) ? `<button class="btn btn-outline" style="padding: 12px; color: #EF4444; border-color: #EF4444;" onclick="deleteCustomQuiz('${quiz.id}')" title="Xóa đề này">🗑️</button>` : ""}
+                ${isQuizOwner(quiz.id) ? `
+                    <button class="btn btn-outline" style="padding: 12px; color: #3B82F6; border-color: #3B82F6;" onclick="editCustomQuiz('${quiz.id}')" title="Chỉnh sửa đề này">✏️</button>
+                    <button class="btn btn-outline" style="padding: 12px; color: #EF4444; border-color: #EF4444;" onclick="deleteCustomQuiz('${quiz.id}')" title="Xóa đề này">🗑️</button>
+                ` : ""}
             </div>
         `;
         quizListContainer.appendChild(card);
@@ -205,16 +209,15 @@ window.deleteCustomQuiz = function (id) {
             mockQuizzes.splice(idx, 1);
             if (window.__saveCustomQuizzes) window.__saveCustomQuizzes();
 
+            const uid = localStorage.getItem('tronex_uid');
             if (isPublic) {
-                try {
-                    // v43: Một lần xóa hết cả Đề + View vì chúng nằm chung 1 thư mục
-                    const publicRef = ref(dbRT, FIREBASE_ROOT + '/' + id);
-                    set(publicRef, null).then(() => {
-                        console.log("Đã xóa xong trên Cloud");
-                    }).catch(e => {
-                        alert("Lỗi xóa trên Cloud: " + e.message);
-                    });
-                } catch (e) { console.error("Firebase delete error:", e); }
+                if (typeof window.__deletePublicQuiz === 'function') {
+                    window.__deletePublicQuiz(id);
+                }
+            } else {
+                if (uid && typeof window.__deletePrivateQuiz === 'function') {
+                    window.__deletePrivateQuiz(uid, id);
+                }
             }
 
             initQuizList();
@@ -923,6 +926,7 @@ function loadCustomQuizzes() {
 }
 
 window.loadPublicQuizzes = function () {
+    if (!quizListContainer && !isVACTPage) return; // Bảo vệ trang index.html
     console.log("🔄 Đang quét dữ liệu từ Cloud... (Trang TRONEX: " + isVACTPage + ")");
     try {
         const publicRef = ref(dbRT, FIREBASE_ROOT);
@@ -931,11 +935,11 @@ window.loadPublicQuizzes = function () {
             if (data) {
                 let listChanged = false;
 
-                // v68: Xóa ghost data - Nếu ở trang VACT, chỉ giữ lại Đề 1 trước khi sync từ Cloud
+                // v68: Xóa ghost data - Chỉ xóa các đề công khai khác, giữ lại Đề 1 và các đề do chính user sở hữu
                 if (isVACTPage) {
-                    const de1 = mockQuizzes.find(q => q.id === 'de_1_dgnl');
+                    const keepQuizzes = mockQuizzes.filter(q => q.id === 'de_1_dgnl' || isQuizOwner(q.id));
                     mockQuizzes.length = 0;
-                    if (de1) mockQuizzes.push(de1);
+                    mockQuizzes.push(...keepQuizzes);
                 }
 
                 Object.keys(data).forEach(key => {
@@ -996,9 +1000,91 @@ window.loadPublicQuizzes = function () {
             }
         }, (error) => {
             console.warn("⚠️ Firebase connection blocked or restricted:", error.message);
-            // v52: Silent fail to avoid annoying user if network is restricted
         });
     } catch (e) { console.error("Load public error:", e); }
+};
+
+// --- HÀM ĐỒNG BỘ ĐỀ RIÊNG TƯ TỪ CLOUD THEO UID ---
+window.syncPrivateQuizzesFromFirebase = async function (user) {
+    if (!user) return;
+    try {
+        console.log("🔄 Đang đồng bộ các đề thi riêng tư của bạn từ Cloud...");
+        const userQuizzesRef = ref(dbRT, `users/${user.uid}/quizzes`);
+        const snapshot = await get(userQuizzesRef);
+        if (snapshot.exists()) {
+            const data = snapshot.val();
+            let changed = false;
+            Object.keys(data).forEach(key => {
+                const quiz = data[key];
+                const existingIdx = mockQuizzes.findIndex(q => q.id.toString().trim() === key.toString().trim());
+                if (existingIdx === -1) {
+                    mockQuizzes.unshift(quiz);
+                    changed = true;
+                } else {
+                    const localCopy = { ...mockQuizzes[existingIdx] };
+                    const remoteCopy = { ...quiz };
+                    delete localCopy.viewCount;
+                    delete remoteCopy.viewCount;
+                    if (JSON.stringify(localCopy) !== JSON.stringify(remoteCopy)) {
+                        mockQuizzes[existingIdx] = quiz;
+                        changed = true;
+                    }
+                }
+            });
+            if (changed) {
+                window.__saveCustomQuizzes();
+                initQuizList();
+            }
+        }
+    } catch (e) {
+        console.warn("⚠️ Lỗi đồng bộ đề riêng tư từ Firebase:", e.message);
+    }
+};
+
+// --- ĐĂNG/XÓA ĐỀ TRÊN CLOUD (Công khai & Riêng tư) ---
+window.__publishPublicQuiz = (quizObj) => {
+    try {
+        const publicRef = ref(dbRT, FIREBASE_ROOT + '/' + quizObj.id);
+        set(publicRef, quizObj)
+            .then(() => console.log("🚀 Đã đăng đề CÔNG KHAI lên máy chủ THÀNH CÔNG!"))
+            .catch(err => console.error("❌ Lỗi khi đăng đề công khai:", err));
+    } catch (e) { console.error("❌ Lỗi hệ thống:", e); }
+};
+
+window.__publishPrivateQuiz = (userUid, quizObj) => {
+    try {
+        const privateRef = ref(dbRT, `users/${userUid}/quizzes/${quizObj.id}`);
+        set(privateRef, quizObj)
+            .then(() => console.log("🚀 Đã đăng đề RIÊNG TƯ lên máy chủ THÀNH CÔNG!"))
+            .catch(err => console.error("❌ Lỗi khi lưu đề riêng tư:", err));
+    } catch (e) { console.error("❌ Lỗi hệ thống:", e); }
+};
+
+window.__deletePublicQuiz = (quizId) => {
+    try {
+        const publicRef = ref(dbRT, FIREBASE_ROOT + '/' + quizId);
+        set(publicRef, null)
+            .then(() => console.log("🗑️ Đã xóa đề CÔNG KHAI trên Cloud."))
+            .catch(err => console.error("❌ Lỗi khi xóa đề công khai trên Cloud:", err));
+    } catch (e) { console.error("❌ Lỗi hệ thống:", e); }
+};
+
+window.__deletePrivateQuiz = (userUid, quizId) => {
+    try {
+        const privateRef = ref(dbRT, `users/${userUid}/quizzes/${quizId}`);
+        set(privateRef, null)
+            .then(() => console.log("🗑️ Đã xóa đề RIÊNG TƯ trên Cloud."))
+            .catch(err => console.error("❌ Lỗi khi xóa đề riêng tư trên Cloud:", err));
+    } catch (e) { console.error("❌ Lỗi hệ thống:", e); }
+};
+
+// --- CHỈNH SỬA ĐỀ THI TỰ TẠO ---
+window.editCustomQuiz = function (id) {
+    if (window.tronexAI && typeof window.tronexAI.editQuiz === 'function') {
+        window.tronexAI.editQuiz(id);
+    } else {
+        alert("⚠️ Trình quản lý đề chưa sẵn sàng hoặc không khả dụng trên trang này.");
+    }
 };
 
 // Khởi động
@@ -1012,15 +1098,6 @@ window.__saveCustomQuizzes = () => {
         return id.startsWith('gemini_') || id.startsWith('manual_');
     });
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(custom));
-};
-
-window.__publishPublicQuiz = (quizObj) => {
-    try {
-        const publicRef = ref(dbRT, FIREBASE_ROOT + '/' + quizObj.id);
-        set(publicRef, quizObj)
-            .then(() => console.log("🚀 Đã đăng đề lên máy chủ THÀNH CÔNG!"))
-            .catch(err => console.error("❌ Lỗi khi đăng đề:", err));
-    } catch (e) { console.error("❌ Lỗi hệ thống:", e); }
 };
 
 document.addEventListener('DOMContentLoaded', () => {

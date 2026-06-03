@@ -210,19 +210,22 @@
         phone: document.getElementById('inputPhone').value.trim() || ''
       };
 
-      // Gọi hàm lưu từ auth.js
-      if (typeof window.saveUserProfile === 'function') {
-        // Import dynamically
-        const authModule = await import('./js/auth.js?v=1');
-        await authModule.saveUserProfile(user.uid, profileData);
-      } else {
-        // Fallback localStorage
-        localStorage.setItem('tronex_user', JSON.stringify({ uid: user.uid, ...profileData }));
-      }
+      try {
+        if (typeof window.saveUserProfile === 'function') {
+          await window.saveUserProfile(user.uid, profileData);
+        } else {
+          localStorage.setItem('tronex_user', JSON.stringify({ uid: user.uid, ...profileData }));
+        }
+        
+        // Cập nhật ngay lập tức đối tượng đang hiển thị trong session hiện tại để không bị đè lại
+        window.__tronexCurrentUser = { ...user, ...profileData };
 
-      alert('✅ Đã lưu thông tin thành công!');
-      // Update header tên
-      document.getElementById('profileDisplayName').textContent = profileData.displayName;
+        alert('✅ Đã lưu thông tin thành công!');
+        document.getElementById('profileDisplayName').textContent = profileData.displayName;
+      } catch (e) {
+        console.error("Lỗi khi lưu profile:", e);
+        alert('❌ Đã xảy ra lỗi khi lưu thông tin!');
+      }
     }
     window.saveProfile = saveProfile;
 

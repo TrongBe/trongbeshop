@@ -456,56 +456,104 @@
   <div class="creator-overlay" id="manualCreatorOverlay">
     <div class="creator-header">
       <div class="creator-brand">
-        <span style="font-size: 1.5rem;">📝</span>
+        <span class="creator-brand-icon">📝</span>
         <h2 id="creatorTitleDisplay">Tạo đề mới</h2>
       </div>
-      <button class="modal-close" id="btnCloseCreator" style="font-size: 2rem;">&times;</button>
+      <div class="creator-header-actions">
+        <button id="btnSaveManualQuiz" class="btn-save-quiz-top">💾 Lưu bộ đề</button>
+        <button class="modal-close" id="btnCloseCreator">&times;</button>
+      </div>
     </div>
-    <div class="creator-main">
-      <div class="creator-card">
+    
+    <div class="creator-container-two-col">
+      <!-- Cột trái: Cấu hình đề & Các loại câu hỏi -->
+      <aside class="creator-sidebar-panel">
+        <div class="sidebar-section-title">⚙️ Cấu hình đề thi</div>
+        
         <div class="creator-form-group">
-          <label>Tên bộ đề</label>
-          <input type="text" id="manualQuizTitle" placeholder="Ví dụ: Đề thi thử THPT Quốc gia">
+          <label for="manualQuizTitle">Tên bộ đề</label>
+          <input type="text" id="manualQuizTitle" placeholder="Ví dụ: Đề ôn tập cuối kỳ I">
         </div>
+        
         <div class="creator-form-group">
-          <label>Mô tả (tuỳ chọn)</label>
-          <input type="text" id="manualQuizDesc" placeholder="VD: Đề ôn tập chương 3...">
+          <label for="manualQuizDesc">Mô tả (tùy chọn)</label>
+          <textarea id="manualQuizDesc" rows="3" placeholder="Nhập mô tả đề thi..."></textarea>
+        </div>
+        
+        <div class="creator-form-group">
+          <label>Chế độ hiển thị</label>
+          <div class="creator-privacy-cards">
+            <label class="privacy-card">
+              <input type="radio" name="quizPrivacy" value="public" checked>
+              <div class="privacy-card-content">
+                <span class="privacy-icon">🌍</span>
+                <div class="privacy-info">
+                  <span class="privacy-title">Công khai</span>
+                  <span class="privacy-desc">Mọi người đều có thể làm bài</span>
+                </div>
+              </div>
+            </label>
+            <label class="privacy-card">
+              <input type="radio" name="quizPrivacy" value="private">
+              <div class="privacy-card-content">
+                <span class="privacy-icon">🔒</span>
+                <div class="privacy-info">
+                  <span class="privacy-title">Riêng tư</span>
+                  <span class="privacy-desc">Chỉ tài khoản của bạn thấy đề</span>
+                </div>
+              </div>
+            </label>
+          </div>
         </div>
 
-        <!-- Privacy selector -->
-        <div class="creator-privacy">
-          <label><input type="radio" name="quizPrivacy" value="public" checked> 🌍 Công khai</label>
-          <label><input type="radio" name="quizPrivacy" value="private"> 🔒 Riêng tư</label>
-        </div>
+        <div class="sidebar-separator"></div>
 
-        <!-- 4 Nút thêm câu hỏi -->
-        <div class="creator-type-buttons">
-          <button class="creator-type-btn" onclick="addManualQuestion('multiple_choice')">
-            <span class="type-icon">📝</span> Trắc nghiệm
+        <div class="sidebar-section-title">➕ Thêm câu hỏi</div>
+        <div class="creator-add-buttons-vertical">
+          <button class="creator-add-btn mc-btn" onclick="addManualQuestion('multiple_choice')">
+            <span class="btn-icon">📝</span>
+            <div class="btn-text-wrapper">
+              <span class="btn-main-text">Trắc nghiệm</span>
+              <span class="btn-sub-text">Nhiều lựa chọn A, B, C, D</span>
+            </div>
           </button>
-          <button class="creator-type-btn" onclick="addManualQuestion('short_answer')">
-            <span class="type-icon">✍️</span> Trả lời ngắn
+          <button class="creator-add-btn sa-btn" onclick="addManualQuestion('short_answer')">
+            <span class="btn-icon">✍️</span>
+            <div class="btn-text-wrapper">
+              <span class="btn-main-text">Trả lời ngắn</span>
+              <span class="btn-sub-text">Tự điền đáp án ngắn</span>
+            </div>
           </button>
-          <button class="creator-type-btn" onclick="addManualQuestion('true_false')">
-            <span class="type-icon">✅</span> Đúng / Sai
+          <button class="creator-add-btn tf-btn" onclick="addManualQuestion('true_false')">
+            <span class="btn-icon">✅</span>
+            <div class="btn-text-wrapper">
+              <span class="btn-main-text">Đúng / Sai</span>
+              <span class="btn-sub-text">Chọn Đúng hoặc Sai</span>
+            </div>
           </button>
-          <button class="creator-type-btn" onclick="triggerAiImageImport()">
-            <span class="type-icon">📷</span> Nhập bằng ảnh AI
+          <button class="creator-add-btn ai-btn" onclick="triggerAiImageImport()">
+            <span class="btn-icon">📷</span>
+            <div class="btn-text-wrapper">
+              <span class="btn-main-text">Nhập bằng ảnh AI</span>
+              <span class="btn-sub-text">Trích xuất tự động qua Gemini</span>
+            </div>
           </button>
         </div>
+      </aside>
 
+      <!-- Cột phải: Danh sách câu hỏi đang soạn thảo -->
+      <main class="creator-content-panel">
         <!-- Input file ẩn cho AI image import -->
         <input type="file" id="aiImageImportInput" accept="image/*" multiple style="display:none;" onchange="handleAiImageImport(event)">
 
         <div id="manualQuestionsContainer" class="creator-question-list">
-          <!-- Câu hỏi sẽ render ở đây -->
+          <!-- Các câu hỏi được thêm sẽ hiện ở đây -->
         </div>
 
-        <div style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px;">
-          <button id="btnSaveManualQuiz" class="btn-primary" style="width: 100%; padding: 15px; font-size: 1.1rem;">💾 Lưu
-            bộ đề</button>
+        <div class="creator-bottom-actions">
+          <button id="btnSaveManualQuizBottom" class="btn-save-quiz-bottom">💾 Lưu bộ đề thi</button>
         </div>
-      </div>
+      </main>
     </div>
   </div>
 

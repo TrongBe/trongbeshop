@@ -3851,4 +3851,424 @@ body {
 
 [data-theme="dark"] .quiz-card-author {
     border-top-color: var(--border-color);
+}
+
+/* ============================================================
+   CREATOR OVERLAY — Nâng cấp giao diện 2 cột cao cấp
+   ============================================================ */
+.creator-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: var(--bg-page, #f3f4f6) !important;
+    z-index: 10000 !important;
+    display: none;
+    flex-direction: column !important;
+}
+
+.creator-header {
+    padding: 12px 24px !important;
+    background: var(--bg-card, white) !important;
+    border-bottom: 1px solid var(--border, #e5e7eb) !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
+}
+
+.creator-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.creator-brand-icon {
+    font-size: 1.6rem;
+    padding: 6px;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 10px;
+}
+
+.creator-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-save-quiz-top {
+    background: linear-gradient(135deg, #4F46E5, #6366F1) !important;
+    color: white !important;
+    border: none !important;
+    padding: 10px 20px !important;
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    cursor: pointer !important;
+    transition: all 0.25s ease !important;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2) !important;
+}
+
+.btn-save-quiz-top:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(79, 70, 229, 0.3) !important;
+}
+
+.modal-close {
+    background: var(--bg-page, #f1f5f9) !important;
+    color: var(--text-muted, #64748b) !important;
+    border: none !important;
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 50% !important;
+    font-size: 1.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.modal-close:hover {
+    background: #fee2e2 !important;
+    color: #ef4444 !important;
+}
+
+/* Container 2 cột */
+.creator-container-two-col {
+    display: flex;
+    flex: 1;
+    height: calc(100vh - 63px);
+    overflow: hidden;
+}
+
+/* Cột trái: Panel điều khiển */
+.creator-sidebar-panel {
+    width: 350px;
+    background: var(--bg-card, white);
+    border-right: 1px solid var(--border, #e5e7eb);
+    padding: 24px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.02);
+    z-index: 10;
+    flex-shrink: 0;
+}
+
+.sidebar-section-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-muted, #64748b);
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+    border-bottom: 2px solid var(--border, #f1f5f9);
+    padding-bottom: 6px;
+}
+
+.sidebar-separator {
+    height: 1px;
+    background: var(--border, #e2e8f0);
+    margin: 10px 0;
+}
+
+/* Cột phải: Panel soạn thảo */
+.creator-content-panel {
+    flex: 1;
+    background: var(--bg-page, #f8fafc);
+    padding: 30px 40px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Cards cấu hình riêng tư */
+.creator-privacy-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.privacy-card {
+    display: block;
+    border: 2px solid var(--border, #e2e8f0);
+    border-radius: 12px;
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: var(--bg-card, white);
+}
+
+.privacy-card:hover {
+    border-color: #6366f1;
+    background: rgba(99, 102, 241, 0.02);
+}
+
+.privacy-card input[type="radio"] {
+    display: none;
+}
+
+.privacy-card input[type="radio"]:checked + .privacy-card-content {
+    color: #4f46e5;
+}
+
+.privacy-card input[type="radio"]:checked ~ .privacy-card-content .privacy-title {
+    color: #4f46e5;
+}
+
+.privacy-card:has(input[type="radio"]:checked) {
+    border-color: #4f46e5;
+    background: rgba(79, 70, 229, 0.05);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.08);
+}
+
+.privacy-card-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.privacy-icon {
+    font-size: 1.5rem;
+}
+
+.privacy-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.privacy-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-main, #1e293b);
+}
+
+.privacy-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted, #64748b);
+    margin-top: 2px;
+}
+
+/* Các nút thêm câu hỏi xếp dọc */
+.creator-add-buttons-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.creator-add-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    border: 1px dashed var(--border, #cbd5e1);
+    border-radius: 12px;
+    background: var(--bg-card, white);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: left;
+    width: 100%;
+}
+
+.creator-add-btn .btn-icon {
+    font-size: 1.5rem;
+    padding: 8px;
+    border-radius: 10px;
+    transition: all 0.25s;
+    background: var(--bg-page, #f8fafc);
+}
+
+.creator-add-btn .btn-text-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.creator-add-btn .btn-main-text {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-main, #1e293b);
+}
+
+.creator-add-btn .btn-sub-text {
+    font-size: 0.75rem;
+    color: var(--text-muted, #64748b);
+    margin-top: 2px;
+}
+
+/* Hover effects theo từng loại câu hỏi */
+.creator-add-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.mc-btn:hover {
+    border-color: #3b82f6;
+    background: rgba(59, 130, 246, 0.03);
+}
+.mc-btn:hover .btn-icon {
+    background: rgba(59, 130, 246, 0.1);
+}
+
+.sa-btn:hover {
+    border-color: #f59e0b;
+    background: rgba(245, 158, 11, 0.03);
+}
+.sa-btn:hover .btn-icon {
+    background: rgba(245, 158, 11, 0.1);
+}
+
+.tf-btn:hover {
+    border-color: #10b981;
+    background: rgba(16, 185, 129, 0.03);
+}
+.tf-btn:hover .btn-icon {
+    background: rgba(16, 185, 129, 0.1);
+}
+
+.ai-btn:hover {
+    border-color: #8b5cf6;
+    background: rgba(139, 92, 246, 0.03);
+}
+.ai-btn:hover .btn-icon {
+    background: rgba(139, 92, 246, 0.1);
+}
+
+/* Danh sách câu hỏi và Actions dưới */
+.creator-question-list {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.creator-bottom-actions {
+    max-width: 900px;
+    width: 100%;
+    margin: 30px auto 10px;
+    border-top: 1px solid var(--border, #e2e8f0);
+    padding-top: 24px;
+}
+
+.btn-save-quiz-bottom {
+    width: 100%;
+    background: linear-gradient(135deg, #10B981, #059669) !important;
+    color: white !important;
+    border: none !important;
+    padding: 14px !important;
+    border-radius: 12px !important;
+    font-size: 1.05rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.25s ease !important;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.2) !important;
+}
+
+.btn-save-quiz-bottom:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3) !important;
+}
+
+/* Các câu hỏi soạn thảo bên cột phải */
+.q-creator-item {
+    background: var(--bg-card, white) !important;
+    border: 1px solid var(--border, #e2e8f0) !important;
+    border-radius: 16px !important;
+    padding: 24px !important;
+    margin-bottom: 24px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01) !important;
+    transition: all 0.25s ease;
+}
+
+.q-creator-item:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03) !important;
+    border-color: var(--primary, #4f46e5) !important;
+}
+
+.q-attach-btn {
+    background: rgba(99, 102, 241, 0.05) !important;
+    color: #4f46e5 !important;
+    border: 1px solid rgba(99, 102, 241, 0.2) !important;
+    padding: 6px 12px !important;
+    border-radius: 8px !important;
+    font-weight: 500 !important;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.q-attach-btn:hover {
+    background: rgba(99, 102, 241, 0.1) !important;
+}
+
+/* Dark Mode Overrides */
+[data-theme="dark"] .creator-sidebar-panel {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+}
+
+[data-theme="dark"] .creator-header {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+}
+
+[data-theme="dark"] .privacy-card {
+    background: #0f172a !important;
+    border-color: #334155 !important;
+}
+
+[data-theme="dark"] .privacy-card:hover {
+    border-color: #6366f1 !important;
+}
+
+[data-theme="dark"] .privacy-card:has(input[type="radio"]:checked) {
+    background: rgba(99, 102, 241, 0.08) !important;
+    border-color: #6366f1 !important;
+}
+
+[data-theme="dark"] .creator-add-btn {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+}
+
+[data-theme="dark"] .creator-add-btn .btn-icon {
+    background: #0f172a !important;
+}
+
+[data-theme="dark"] .q-creator-item {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+}
+
+[data-theme="dark"] .modal-close {
+    background: #334155 !important;
+    color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .modal-close:hover {
+    background: #ef4444 !important;
+    color: white !important;
+}
+
+[data-theme="dark"] .creator-add-btn .btn-main-text {
+    color: #e2e8f0 !important;
+}
+
+/* Tương thích giao diện trên Mobile */
+@media (max-width: 992px) {
+    .creator-container-two-col {
+        flex-direction: column;
+        overflow-y: auto;
+        height: auto;
+    }
+    .creator-sidebar-panel {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border, #e5e7eb);
+        box-shadow: none;
+    }
+    .creator-content-panel {
+        padding: 20px 15px;
+    }
 }
