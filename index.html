@@ -23,7 +23,8 @@
   <!-- KaTeX for Math & Science -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body);"></script>
 
   <!-- Mammoth.js for Word (.docx) support -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
@@ -54,7 +55,8 @@
         <button class="auth-btn" id="authBtn" title="Đăng nhập">
           <span>🔑</span><span>Đăng nhập</span>
         </button>
-        <button class="menu-btn" onclick="toggleSidebar()" style="color: white; border: none; background: none; position: static; transform: none;">
+        <button class="menu-btn" onclick="toggleSidebar()"
+          style="color: white; border: none; background: none; position: static; transform: none;">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="3" y1="12" x2="21" y2="12"></line>
             <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -87,7 +89,8 @@
       <div class="hero-vnu-content">
         <div class="hero-badge">✨ AI-Powered • TRONEX v3.0</div>
         <h1>Nền tảng<br>luyện thi thông minh</h1>
-        <p>Hệ thống TRONEX hướng tới trở thành nền tảng luyện thi hàng đầu, nơi hội tụ công nghệ AI đỉnh cao và trải nghiệm người dùng tối ưu.</p>
+        <p>Hệ thống TRONEX xây dựng hệ sinh thái luyện tập cùng AI, nơi hội tụ công nghệ AI và trải nghiệm người dùng
+          tối ưu.</p>
         <div class="hero-btn-group">
           <a href="v-act.html" class="hero-btn-primary">🚀 Khám phá TRONEX</a>
           <a href="#news-section" class="hero-btn-secondary">📰 Tin tức</a>
@@ -180,7 +183,7 @@
 
   <script>
     // === DARK MODE TOGGLE ===
-    (function() {
+    (function () {
       const saved = localStorage.getItem('tronex_theme') || 'light';
       if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
     })();
@@ -205,7 +208,7 @@
         const total = attempts.length;
         const totalTimeMins = Math.round(attempts.reduce((s, a) => s + (a.seconds || 0), 0) / 60);
         const scores = attempts.map(a => a.score).filter(s => s !== undefined);
-        const avg = scores.length > 0 ? (scores.reduce((a,b) => a+b, 0) / scores.length).toFixed(0) : null;
+        const avg = scores.length > 0 ? (scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(0) : null;
         const best = scores.length > 0 ? Math.max(...scores) : null;
 
         const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val !== null ? val : '—'; };
@@ -213,7 +216,7 @@
         set('statAvgScore', avg); set('heroAvgScore', avg);
         set('statBestScore', best);
         set('statTotalTime', totalTimeMins); set('heroTotalTime', totalTimeMins);
-      } catch(e) {}
+      } catch (e) { }
     }
 
     // === HEADER SCROLL EFFECT ===
@@ -266,9 +269,11 @@
         <div class="changelog-item">
           <h4 style="color:var(--primary); margin-bottom: 8px;">🚀 Phiên bản v1.8 (Mới nhất)</h4>
           <ul style="padding-left: 20px; font-size: 14px; line-height: 1.8; margin-bottom: 15px;">
-            <li><b>Chế độ Phân tích sâu (Thinking)</b>: Chỉ kích hoạt khi bạn bấm "Phân tích lại" để đảm bảo tốc độ quét lần đầu nhanh nhất.</li>
+            <li><b>Chế độ Phân tích sâu (Thinking)</b>: Chỉ kích hoạt khi bạn bấm "Phân tích lại" để đảm bảo tốc độ quét
+              lần đầu nhanh nhất.</li>
             <li><b>Nâng cấp Gemini 3.0 Flash</b>: Trái tim AI mới nhất giúp trích xuất đề thi cực kỳ thông minh.</li>
-            <li><b>Tự động thử lại</b>: Hệ thống sẽ tự động kiên trì kết nối nếu máy chủ Google bị quá tải (Lỗi 503).</li>
+            <li><b>Tự động thử lại</b>: Hệ thống sẽ tự động kiên trì kết nối nếu máy chủ Google bị quá tải (Lỗi 503).
+            </li>
           </ul>
 
           <h4 style="color:var(--primary); margin-bottom: 8px;">🚀 Phiên bản v1.7</h4>
@@ -279,7 +284,8 @@
 
           <h4 style="color:var(--primary); margin-bottom: 8px;">🚀 Phiên bản v1.5</h4>
           <ul style="padding-left: 20px; font-size: 14px; line-height: 1.8;">
-            <li><b>Đồng bộ Firebase Realtime</b>: Mở khóa quyền kết nối, đảm bảo đề "Công khai" xuất hiện ngay lập tức trên mọi thiết bị.</li>
+            <li><b>Đồng bộ Firebase Realtime</b>: Mở khóa quyền kết nối, đảm bảo đề "Công khai" xuất hiện ngay lập tức
+              trên mọi thiết bị.</li>
             <li><b>Trí tuệ nhân tạo (AI)</b>: Ép AI tự gộp câu hỏi Đúng/Sai và nhận diện Tiêu đề phần thi.</li>
             <li><b>Chế độ Luyện tập</b>: Hiển thị đáp án tức thời cho cả câu Đúng/Sai và Trả lời ngắn.</li>
             <li><b>Biểu đồ Thống kê</b>: Nâng cấp vòng tròn chấm điểm thành dạng Pie Chart chuẩn xác.</li>
@@ -295,17 +301,17 @@
       const sidebar = document.getElementById('sidebarMenu');
       const overlay = document.getElementById('sidebarOverlay');
       if (sidebar.classList.contains('active')) {
-          sidebar.classList.remove('active');
-          overlay.classList.remove('active');
-          setTimeout(() => {
-              overlay.style.display = 'none';
-          }, 300);
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+        setTimeout(() => {
+          overlay.style.display = 'none';
+        }, 300);
       } else {
-          overlay.style.display = 'block';
-          setTimeout(() => {
-              overlay.classList.add('active');
-              sidebar.classList.add('active');
-          }, 10);
+        overlay.style.display = 'block';
+        setTimeout(() => {
+          overlay.classList.add('active');
+          sidebar.classList.add('active');
+        }, 10);
       }
     }
   </script>

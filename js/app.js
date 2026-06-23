@@ -11,11 +11,17 @@ const firebaseConfig = {
     storageBucket: "hoctaptructuyen-7c09a.firebasestorage.app",
     messagingSenderId: "329551572068",
     appId: "1:329551572068:web:41b7b3174ef45a77008371",
-    measurementId: "G-F0DTTKEBHC"
+    measurementId: "G-F0DTTKEBHC",
+    databaseURL: "https://hoctaptructuyen-7c09a-default-rtdb.firebaseio.com"
 };
 
 const app = getApps().length > 0 ? getApps()[0] : initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+let analytics = null;
+try {
+    analytics = getAnalytics(app);
+} catch (e) {
+    console.warn("[TRONEX] Firebase Analytics không hỗ trợ hoặc bị chặn trong môi trường này:", e.message);
+}
 const dbRT = getDatabase(app);
 
 // === TRẠNG THÁI (STATE) ===
@@ -317,81 +323,84 @@ window.startQuiz = async function (quizId) {
 };
 
 // === XÁC NHẬN BẮT ĐẦU LÀM BÀI SAU KHI CẤU HÌNH ===
-document.getElementById('btnConfirmStart').onclick = async function () {
-    const isShuffle = document.getElementById('chkShuffle').checked;
-    const quizMode = document.querySelector('input[name="quizMode"]:checked').value;
-    quizForm.dataset.quizMode = quizMode;
-    quizForm.dataset.isShuffle = isShuffle;
+const btnConfirmStart = document.getElementById('btnConfirmStart');
+if (btnConfirmStart) {
+    btnConfirmStart.onclick = async function () {
+        const isShuffle = document.getElementById('chkShuffle').checked;
+        const quizMode = document.querySelector('input[name="quizMode"]:checked').value;
+        quizForm.dataset.quizMode = quizMode;
+        quizForm.dataset.isShuffle = isShuffle;
 
-    let flattenedQs = [];
-    JSON.parse(JSON.stringify(currentQuiz.questions)).forEach(q => {
-        if (q.type === 'reading_group') {
-            (q.subQuestions || []).forEach(sq => {
-                flattenedQs.push({
-                    ...sq,
-                    section: q.section,
-                    groupText: q.passage,
-                    type: sq.type || 'multiple_choice'
+        let flattenedQs = [];
+        JSON.parse(JSON.stringify(currentQuiz.questions)).forEach(q => {
+            if (q.type === 'reading_group') {
+                (q.subQuestions || []).forEach(sq => {
+                    flattenedQs.push({
+                        ...sq,
+                        section: q.section,
+                        groupText: q.passage,
+                        type: sq.type || 'multiple_choice'
+                    });
                 });
-            });
-        } else {
-            flattenedQs.push(q);
-        }
-    });
-
-    if (isShuffle) {
-        currentQuiz.renderedQuestions = shuffleQuestionsBySection(flattenedQs);
-    } else {
-        currentQuiz.renderedQuestions = flattenedQs;
-    }
-
-    // Tăng lượt xem (Áp dụng cho mọi đề không phải local, kể cả đề trong data.js)
-    if (currentQuiz.privacy !== "local") {
-        try {
-            let viewedList = JSON.parse(localStorage.getItem("viewed_quizzes") || "[]");
-            const qIdStr = currentQuiz.id.toString();
-            if (!viewedList.includes(qIdStr)) {
-                const quizRef = ref(dbRT, FIREBASE_ROOT + '/' + currentQuiz.id + '/viewCount');
-                runTransaction(quizRef, (currentValue) => {
-                    return (currentValue || 0) + 1;
-                });
-                viewedList.push(qIdStr);
-                localStorage.setItem("viewed_quizzes", JSON.stringify(viewedList));
+            } else {
+                flattenedQs.push(q);
             }
-        } catch (e) { console.error("Increment view error:", e); }
-    }
+        });
 
-    quizForm.reset();
-    quizForm.dataset.mode = 'exam';
-    const submitBtn = quizForm.querySelector('button[type="submit"]');
-    if (submitBtn) {
-        submitBtn.textContent = 'Nộp Bài Ngay';
-        submitBtn.classList.remove('btn-outline');
-        submitBtn.classList.add('btn-primary');
-        submitBtn.style.display = 'block';
-    }
+        if (isShuffle) {
+            currentQuiz.renderedQuestions = shuffleQuestionsBySection(flattenedQs);
+        } else {
+            currentQuiz.renderedQuestions = flattenedQs;
+        }
 
-    currentQuizTitle.textContent = currentQuiz.title;
-    resetScoreCircle();
-    renderQuestions();
-    initQuestionPalette(currentQuiz.renderedQuestions || currentQuiz.questions);
-    showView('active');
-    startTimer(); // Bắt đầu tính giờ từ đây
-    window.currentActiveQuiz = currentQuiz;
-    window.currentQuestionIndex = 0;
+        // Tăng lượt xem (Áp dụng cho mọi đề không phải local, kể cả đề trong data.js)
+        if (currentQuiz.privacy !== "local") {
+            try {
+                let viewedList = JSON.parse(localStorage.getItem("viewed_quizzes") || "[]");
+                const qIdStr = currentQuiz.id.toString();
+                if (!viewedList.includes(qIdStr)) {
+                    const quizRef = ref(dbRT, FIREBASE_ROOT + '/' + currentQuiz.id + '/viewCount');
+                    runTransaction(quizRef, (currentValue) => {
+                        return (currentValue || 0) + 1;
+                    });
+                    viewedList.push(qIdStr);
+                    localStorage.setItem("viewed_quizzes", JSON.stringify(viewedList));
+                }
+            } catch (e) { console.error("Increment view error:", e); }
+        }
 
-    // Cập nhật lại UI sau khi hiển thị
-    const timerBox = document.getElementById('tronexTimerBox');
-    if (timerBox) timerBox.style.display = 'flex';
-    document.getElementById('tronexResultSummary').style.display = 'none';
-    document.getElementById('btnSubmitQuiz').style.display = 'block';
+        quizForm.reset();
+        quizForm.dataset.mode = 'exam';
+        const submitBtn = quizForm.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            submitBtn.textContent = 'Nộp Bài Ngay';
+            submitBtn.classList.remove('btn-outline');
+            submitBtn.classList.add('btn-primary');
+            submitBtn.style.display = 'block';
+        }
 
-    // Reset nút rời khỏi về trạng thái đang làm bài
-    const leaveBtn = document.getElementById('btnLeaveQuiz');
-    if (leaveBtn) {
-        leaveBtn.textContent = 'Rời khỏi';
-    }
-};
+        currentQuizTitle.textContent = currentQuiz.title;
+        resetScoreCircle();
+        renderQuestions();
+        initQuestionPalette(currentQuiz.renderedQuestions || currentQuiz.questions);
+        showView('active');
+        startTimer(); // Bắt đầu tính giờ từ đây
+        window.currentActiveQuiz = currentQuiz;
+        window.currentQuestionIndex = 0;
+
+        // Cập nhật lại UI sau khi hiển thị
+        const timerBox = document.getElementById('tronexTimerBox');
+        if (timerBox) timerBox.style.display = 'flex';
+        document.getElementById('tronexResultSummary').style.display = 'none';
+        document.getElementById('btnSubmitQuiz').style.display = 'block';
+
+        // Reset nút rời khỏi về trạng thái đang làm bài
+        const leaveBtn = document.getElementById('btnLeaveQuiz');
+        if (leaveBtn) {
+            leaveBtn.textContent = 'Rời khỏi';
+        }
+    };
+}
 
 // === TIMER FUNCTIONS ===
 function startTimer() {
@@ -424,6 +433,7 @@ function initQuestionPalette(questions) {
     if (!palette) return;
     palette.innerHTML = '';
     questions.forEach((q, idx) => {
+        if (!q) return;
         const btn = document.createElement('div');
         btn.className = 'tronex-palette-btn';
         btn.id = `palette-btn-${q.id}`;
@@ -481,6 +491,7 @@ function renderQuestions() {
     window.currentActiveQuiz = currentQuiz; // v54: Expose for AI context
 
     qs.forEach((q, index) => {
+        if (!q) return;
         if (q.section && q.section !== currentSection) {
             const secHeader = document.createElement('h3');
             secHeader.className = 'section-title';
@@ -666,60 +677,64 @@ function renderQuestions() {
 window.renderQuestions = renderQuestions;
 
 // === CHẤM ĐIỂM (RESTORED v46) ===
-quizForm.onsubmit = function (e) {
-    try {
-        e.preventDefault();
-        if (quizForm.dataset.mode === 'practice') {
-            alert("Bạn đã hoàn thành chế độ luyện tập. Chế độ luyện tập không chấm điểm tổng.");
-            return;
-        }
-
-        const formData = new FormData(quizForm);
-        let correct = 0;
-        let incorrect = 0;
-        let unanswered = 0;
-
-        const qs = currentQuiz.renderedQuestions || currentQuiz.questions;
-
-        qs.forEach(q => {
-            const qId = q.id;
-            const qType = q.type || 'multiple_choice';
-
-            if (qType === 'multiple_choice' || qType === 'true_false') {
-                const userVal = formData.get(`question_${qId}`);
-                if (userVal === null) unanswered++;
-                else if (parseInt(userVal) === parseInt(q.correctIndex)) correct++;
-                else incorrect++;
-            } else if (qType === 'short_answer') {
-                const userVal = (formData.get(`question_${qId}`) || "").toString().trim().toLowerCase();
-                const correctVal = (q.correctAnswer || "").toString().toLowerCase();
-                if (userVal === "") unanswered++;
-                else if (userVal === correctVal) correct++;
-                else incorrect++;
-            } else if (qType === 'true_false_group') {
-                let isAllCorrect = true;
-                let isAnyUnanswered = false;
-                (q.subQuestions || []).forEach(sq => {
-                    const val = formData.get(`question_${qId}_${sq.id}`);
-                    if (val === null) isAnyUnanswered = true;
-                    else if (val !== sq.correctAnswer) isAllCorrect = false;
-                });
-                if (isAnyUnanswered) unanswered++;
-                else if (isAllCorrect) correct++;
-                else incorrect++;
+if (quizForm) {
+    quizForm.onsubmit = function (e) {
+        try {
+            e.preventDefault();
+            if (quizForm.dataset.mode === 'practice') {
+                alert("Bạn đã hoàn thành chế độ luyện tập. Chế độ luyện tập không chấm điểm tổng.");
+                return;
             }
-        });
 
-        showReviewMode(qs);
-        renderResults(correct, incorrect, unanswered);
-    } catch (err) {
-        alert("LỖI KHI NỘP BÀI: " + err.message + "\n\nVui lòng chụp màn hình lỗi này gửi cho tôi để tôi sửa nhé!");
-        console.error(err);
-    }
-};
+            const formData = new FormData(quizForm);
+            let correct = 0;
+            let incorrect = 0;
+            let unanswered = 0;
+
+            const qs = currentQuiz.renderedQuestions || currentQuiz.questions;
+
+            qs.forEach(q => {
+                if (!q) return;
+                const qId = q.id;
+                const qType = q.type || 'multiple_choice';
+
+                if (qType === 'multiple_choice' || qType === 'true_false') {
+                    const userVal = formData.get(`question_${qId}`);
+                    if (userVal === null) unanswered++;
+                    else if (parseInt(userVal) === parseInt(q.correctIndex)) correct++;
+                    else incorrect++;
+                } else if (qType === 'short_answer') {
+                    const userVal = (formData.get(`question_${qId}`) || "").toString().trim().toLowerCase();
+                    const correctVal = (q.correctAnswer || "").toString().toLowerCase();
+                    if (userVal === "") unanswered++;
+                    else if (userVal === correctVal) correct++;
+                    else incorrect++;
+                } else if (qType === 'true_false_group') {
+                    let isAllCorrect = true;
+                    let isAnyUnanswered = false;
+                    (q.subQuestions || []).forEach(sq => {
+                        const val = formData.get(`question_${qId}_${sq.id}`);
+                        if (val === null) isAnyUnanswered = true;
+                        else if (val !== sq.correctAnswer) isAllCorrect = false;
+                    });
+                    if (isAnyUnanswered) unanswered++;
+                    else if (isAllCorrect) correct++;
+                    else incorrect++;
+                }
+            });
+
+            showReviewMode(qs);
+            renderResults(correct, incorrect, unanswered);
+        } catch (err) {
+            alert("LỖI KHI NỘP BÀI: " + err.message + "\n\nVui lòng chụp màn hình lỗi này gửi cho tôi để tôi sửa nhé!");
+            console.error(err);
+        }
+    };
+}
 
 function showReviewMode(qs) {
     qs.forEach(q => {
+        if (!q) return;
         const qId = q.id;
         const qType = q.type || 'multiple_choice';
 
