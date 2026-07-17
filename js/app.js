@@ -383,6 +383,13 @@ if (btnConfirmStart) {
         resetScoreCircle();
         renderQuestions();
         initQuestionPalette(currentQuiz.renderedQuestions || currentQuiz.questions);
+
+        // === RE-ENABLE tất cả inputs (phòng trường hợp session trước đã disabled sau khi nộp bài) ===
+        quizForm.querySelectorAll('input').forEach(input => {
+            input.disabled = false;
+            input.readOnly = false;
+        });
+
         showView('active');
         startTimer(); // Bắt đầu tính giờ từ đây
         window.currentActiveQuiz = currentQuiz;
@@ -976,14 +983,24 @@ window.loadPublicQuizzes = function () {
                     }
 
                     // 2. Xử lý nội dung đề thi (Đồng bộ toàn bộ đề từ Firebase)
+                    // QUAN TRỌNG: Nếu Firebase data thiếu questions, KHÔNG override đề gốc (bảo vệ de_1_dgnl)
                     if (!pq.title || !pq.questions) return;
                     if (pq.questions && !Array.isArray(pq.questions)) pq.questions = Object.values(pq.questions);
+                    // Không override nếu Firebase trả về đề bị rỗng questions
+                    if (!pq.questions || pq.questions.length === 0) return;
 
                     if (existingIdx === -1) {
                         mockQuizzes.push(pq);
                         listChanged = true;
                     } else {
-                        const localCopy = { ...mockQuizzes[existingIdx] };
+                        // Bảo vệ đề gốc: chỉ override nếu Firebase có đầy đủ dữ liệu hơn hoặc bằng
+                        const localQ = mockQuizzes[existingIdx];
+                        const localQCount = (localQ.questions || []).length;
+                        const remoteQCount = pq.questions.length;
+                        // Nếu đề gốc từ data.js có nhiều câu hơn và Firebase thiếu câu, ưu tiên đề gốc
+                        if (localQCount > 0 && remoteQCount < localQCount * 0.5) return;
+
+                        const localCopy = { ...localQ };
                         const remoteCopy = { ...pq };
                         delete localCopy.viewCount;
                         delete remoteCopy.viewCount;
@@ -1160,9 +1177,20 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnRetry) btnRetry.onclick = () => {
         resetScoreCircle();
         quizForm.reset();
+        quizForm.dataset.mode = 'exam';
         renderQuestions();
-        const submitBtn = quizForm.querySelector('button[type="submit"]');
-        if (submitBtn) submitBtn.style.display = 'block';
+        // Re-enable tất cả inputs sau khi render lại
+        quizForm.querySelectorAll('input').forEach(input => {
+            input.disabled = false;
+            input.readOnly = false;
+        });
+        document.getElementById('btnSubmitQuiz').style.display = 'block';
+        const timerBox = document.getElementById('tronexTimerBox');
+        if (timerBox) timerBox.style.display = 'flex';
+        document.getElementById('tronexResultSummary').style.display = 'none';
+        const leaveBtn = document.getElementById('btnLeaveQuiz');
+        if (leaveBtn) leaveBtn.textContent = 'Rời khỏi';
+        startTimer();
         showView('active');
     };
 
