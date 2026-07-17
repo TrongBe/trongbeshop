@@ -41,6 +41,12 @@ if (isVACTPage) {
     const vactQuizzes = mockQuizzes.filter(q => q.id === 'de_1_dgnl');
     mockQuizzes.length = 0;
     mockQuizzes.push(...vactQuizzes);
+
+    // v69: Backup de_1_dgnl từ data.js vào window để khôi phục nếu Firebase sync gây lỗi
+    const originalDe1 = vactQuizzes.find(q => q.id === 'de_1_dgnl');
+    if (originalDe1) {
+        window.__de1Backup = JSON.parse(JSON.stringify(originalDe1)); // deep copy
+    }
 } else {
     // Ở trang chủ, ẩn các đề của TRONEX
     const homeQuizzes = mockQuizzes.filter(q => !q.id.startsWith('de_1_dgnl') && !q.id.startsWith('vact_'));
@@ -317,7 +323,18 @@ function shuffleQuestionsBySection(questions) {
 // === BẮT ĐẦU LÀM BÀI ===
 window.startQuiz = async function (quizId) {
     currentQuiz = mockQuizzes.find(q => q && (q.id || '').toString().trim() === (quizId || '').toString().trim());
-    if (!currentQuiz || !currentQuiz.questions) return;
+
+    // v69: Nếu không tìm thấy de_1_dgnl trong mockQuizzes, khôi phục từ backup
+    if (!currentQuiz && quizId === 'de_1_dgnl' && window.__de1Backup) {
+        console.warn('[TRONEX] de_1_dgnl bị mất khỏi mockQuizzes! Đang khôi phục từ backup...');
+        mockQuizzes.unshift(window.__de1Backup);
+        currentQuiz = window.__de1Backup;
+    }
+
+    if (!currentQuiz || !currentQuiz.questions) {
+        console.error('[TRONEX] startQuiz thất bại! quizId:', quizId, '| mockQuizzes count:', mockQuizzes.length);
+        return;
+    }
     document.getElementById('setupQuizTitle').textContent = `Cấu hình: ${currentQuiz.title}`;
     showView('setup');
 };
@@ -961,11 +978,20 @@ window.loadPublicQuizzes = function () {
             if (data) {
                 let listChanged = false;
 
-                // v68: Xóa ghost data - Chỉ xóa các đề công khai khác, giữ lại Đề 1 và các đề do chính user sở hữu
+                // v69 FIX: Trên trang VACT, chỉ xóa các đề KHÔNG phải de_1_dgnl và KHÔNG phải của user
+                // NHƯNG đảm bảo de_1_dgnl từ data.js GỐC luôn được giữ lại
                 if (isVACTPage) {
-                    const keepQuizzes = mockQuizzes.filter(q => q && ((q.id || '').toString().trim() === 'de_1_dgnl' || isQuizOwner(q.id)));
+                    // Giữ lại de_1_dgnl từ data.js (originalDe1) và đề của user
+                    const keepQuizzes = mockQuizzes.filter(q => q && (
+                        (q.id || '').toString().trim() === 'de_1_dgnl' ||
+                        isQuizOwner(q.id)
+                    ));
                     mockQuizzes.length = 0;
                     mockQuizzes.push(...keepQuizzes);
+                    // Nếu de_1_dgnl bị mất (lỗi), khôi phục từ window backup
+                    if (!mockQuizzes.find(q => (q.id || '') === 'de_1_dgnl') && window.__de1Backup) {
+                        mockQuizzes.unshift(window.__de1Backup);
+                    }
                 }
 
                 Object.keys(data).forEach(key => {
@@ -983,24 +1009,21 @@ window.loadPublicQuizzes = function () {
                     }
 
                     // 2. Xử lý nội dung đề thi (Đồng bộ toàn bộ đề từ Firebase)
-                    // QUAN TRỌNG: Nếu Firebase data thiếu questions, KHÔNG override đề gốc (bảo vệ de_1_dgnl)
                     if (!pq.title || !pq.questions) return;
                     if (pq.questions && !Array.isArray(pq.questions)) pq.questions = Object.values(pq.questions);
-                    // Không override nếu Firebase trả về đề bị rỗng questions
                     if (!pq.questions || pq.questions.length === 0) return;
+
+                    // KHÔNG BAO GIỜ override de_1_dgnl bằng data từ Firebase (đề gốc luôn từ data.js)
+                    if (pqId === 'de_1_dgnl') {
+                        // Chỉ cập nhật viewCount, không thay thế nội dung đề gốc
+                        return;
+                    }
 
                     if (existingIdx === -1) {
                         mockQuizzes.push(pq);
                         listChanged = true;
                     } else {
-                        // Bảo vệ đề gốc: chỉ override nếu Firebase có đầy đủ dữ liệu hơn hoặc bằng
-                        const localQ = mockQuizzes[existingIdx];
-                        const localQCount = (localQ.questions || []).length;
-                        const remoteQCount = pq.questions.length;
-                        // Nếu đề gốc từ data.js có nhiều câu hơn và Firebase thiếu câu, ưu tiên đề gốc
-                        if (localQCount > 0 && remoteQCount < localQCount * 0.5) return;
-
-                        const localCopy = { ...localQ };
+                        const localCopy = { ...mockQuizzes[existingIdx] };
                         const remoteCopy = { ...pq };
                         delete localCopy.viewCount;
                         delete remoteCopy.viewCount;
