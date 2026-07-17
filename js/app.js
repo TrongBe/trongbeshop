@@ -54,6 +54,31 @@ if (isVACTPage) {
     mockQuizzes.push(...homeQuizzes);
 }
 
+// === HELPER: Đệ quy chuyển Firebase Object-Array về Array thực (v70) ===
+// Firebase Realtime DB không hỗ trợ Array, lưu thành {"0":{...},"1":{...},...}
+// Hàm này tự phát hiện và convert ngược lại, kể cả nested (subQuestions, options...)
+function convertFirebaseData(val) {
+    if (val === null || val === undefined) return val;
+    if (typeof val !== 'object') return val;
+    if (Array.isArray(val)) return val.map(convertFirebaseData);
+
+    const keys = Object.keys(val);
+    // Phát hiện array giả: tất cả keys đều là số nguyên
+    const isArrayLike = keys.length > 0 && keys.every(k => /^\d+$/.test(k));
+    if (isArrayLike) {
+        const maxIdx = Math.max(...keys.map(Number));
+        const arr = new Array(maxIdx + 1).fill(null);
+        for (const k of keys) arr[parseInt(k)] = convertFirebaseData(val[k]);
+        return arr;
+    }
+
+    // Object thông thường - đệ quy từng field
+    const result = {};
+    for (const key of keys) result[key] = convertFirebaseData(val[key]);
+    return result;
+}
+window.convertFirebaseData = convertFirebaseData;
+
 // === LOAD ĐỀ TỰ TẠO TỪ localStorage (Fix Bug 2) ===
 function loadCustomQuizzesFromStorage() {
     try {
@@ -978,24 +1003,12 @@ window.loadPublicQuizzes = function () {
             if (data) {
                 let listChanged = false;
 
-                // v69 FIX: Trên trang VACT, chỉ xóa các đề KHÔNG phải de_1_dgnl và KHÔNG phải của user
-                // NHƯNG đảm bảo de_1_dgnl từ data.js GỐC luôn được giữ lại
-                if (isVACTPage) {
-                    // Giữ lại de_1_dgnl từ data.js (originalDe1) và đề của user
-                    const keepQuizzes = mockQuizzes.filter(q => q && (
-                        (q.id || '').toString().trim() === 'de_1_dgnl' ||
-                        isQuizOwner(q.id)
-                    ));
-                    mockQuizzes.length = 0;
-                    mockQuizzes.push(...keepQuizzes);
-                    // Nếu de_1_dgnl bị mất (lỗi), khôi phục từ window backup
-                    if (!mockQuizzes.find(q => (q.id || '') === 'de_1_dgnl') && window.__de1Backup) {
-                        mockQuizzes.unshift(window.__de1Backup);
-                    }
-                }
+                // v70: Không xóa mockQuizzes nữa - chỉ merge từ Firebase vào
+                // de_1_dgnl từ data.js là seed ban đầu, Firebase là nguồn chân lý sau khi đã có data
 
                 Object.keys(data).forEach(key => {
-                    let pq = data[key];
+                    // v70: Dùng convertFirebaseData để đệ quy convert toàn bộ nested arrays
+                    let pq = convertFirebaseData(data[key]);
                     const pqId = key.toString().trim();
                     const existingIdx = mockQuizzes.findIndex(q => q && (q.id || '').toString().trim() === pqId);
 
@@ -1008,15 +1021,18 @@ window.loadPublicQuizzes = function () {
                         }
                     }
 
-                    // 2. Xử lý nội dung đề thi (Đồng bộ toàn bộ đề từ Firebase)
+                    // 2. Xử lý nội dung đề thi - Firebase là nguồn chân lý
                     if (!pq.title || !pq.questions) return;
-                    if (pq.questions && !Array.isArray(pq.questions)) pq.questions = Object.values(pq.questions);
-                    if (!pq.questions || pq.questions.length === 0) return;
+                    if (!Array.isArray(pq.questions) || pq.questions.length === 0) return;
 
-                    // KHÔNG BAO GIỜ override de_1_dgnl bằng data từ Firebase (đề gốc luôn từ data.js)
-                    if (pqId === 'de_1_dgnl') {
-                        // Chỉ cập nhật viewCount, không thay thế nội dung đề gốc
-                        return;
+                    // Với de_1_dgnl: Firebase được phép override NHƯNG phải có đủ câu hỏi
+                    // Nếu Firebase trả về ít hơn 50% so với backup → dùng backup (data bị corrupt)
+                    if (pqId === 'de_1_dgnl' && window.__de1Backup) {
+                        const backupCount = (window.__de1Backup.questions || []).length;
+                        if (backupCount > 0 && pq.questions.length < backupCount * 0.5) {
+                            console.warn('[TRONEX] Firebase data cho de_1_dgnl bị thiếu câu hỏi, dùng backup từ data.js');
+                            return; // Giữ nguyên version từ data.js
+                        }
                     }
 
                     if (existingIdx === -1) {
@@ -1035,11 +1051,11 @@ window.loadPublicQuizzes = function () {
                     }
                 });
 
-                // v51: Tự động đồng bộ đề TRONEX lên Firebase nếu chưa có
+                // v51: Tự động seed đề TRONEX lên Firebase nếu chưa có
                 if (isVACTPage && !data['de_1_dgnl']) {
                     const de1 = mockQuizzes.find(q => q.id === 'de_1_dgnl');
                     if (de1) {
-                        console.log("🚀 Đề TRONEX chưa có trên Cloud, đang tự động đồng bộ...");
+                        console.log("🚀 Seeding de_1_dgnl lên Firebase lần đầu...");
                         window.__publishPublicQuiz(de1);
                     }
                 }
