@@ -3250,6 +3250,7 @@ body {
     background: linear-gradient(135deg, rgba(79,70,229,0.04), transparent 60%);
     opacity: 0;
     transition: opacity var(--transition);
+    pointer-events: none; /* FIX: Không chặn click lên button bên trong */
 }
 
 .quiz-card:hover::after {
