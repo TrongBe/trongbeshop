@@ -35,6 +35,25 @@
 </head>
 
 <body>
+  <!-- 🛠️ DEBUG TRAP: Bắt mọi JS lỗi và hiện toast (xóa sau khi fix xong) -->
+  <script>
+    window.__errCount = 0;
+    window.onerror = function(msg, src, line, col, err) {
+      window.__errCount++;
+      console.error('[GLOBAL ERROR]', msg, src + ':' + line);
+      if (window.__errCount <= 3) {
+        const d = document.createElement('div');
+        d.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#ef4444;color:#fff;padding:10px 16px;z-index:99999;font-size:13px;font-family:monospace;white-space:pre-wrap;cursor:pointer;';
+        d.textContent = '❌ JS ERROR: ' + msg + '\n📄 ' + src + ':' + line;
+        d.onclick = () => d.remove();
+        document.body.appendChild(d);
+        setTimeout(() => d.remove && d.remove(), 8000);
+      }
+    };
+    window.addEventListener('unhandledrejection', function(e) {
+      window.onerror('Unhandled Promise: ' + (e.reason?.message || e.reason), 'async', 0);
+    });
+  </script>
   <header class="header">
     <div class="container" style="position: relative; display:flex; align-items:center; justify-content:center;">
       <button class="menu-btn" onclick="toggleSidebar()" aria-label="Menu" style="position:absolute; left:0;">

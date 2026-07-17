@@ -42,10 +42,10 @@ if (isVACTPage) {
     mockQuizzes.length = 0;
     mockQuizzes.push(...vactQuizzes);
 
-    // v69: Backup de_1_dgnl từ data.js vào window để khôi phục nếu Firebase sync gây lỗi
+    // v71: Backup nhẹ - chỉ lưu tham chiếu trực tiếp (không deep copy 87KB object dễ bị crash)
     const originalDe1 = vactQuizzes.find(q => q.id === 'de_1_dgnl');
     if (originalDe1) {
-        window.__de1Backup = JSON.parse(JSON.stringify(originalDe1)); // deep copy
+        window.__de1Backup = originalDe1; // Chỉ giữ tham chiếu, không deep copy
     }
 } else {
     // Ở trang chủ, ẩn các đề của TRONEX
@@ -356,6 +356,7 @@ function shuffleQuestionsBySection(questions) {
 
 // === BẮT ĐẦU LÀM BÀI ===
 window.startQuiz = async function (quizId) {
+    console.log('[TRONEX] startQuiz called:', quizId, '| mockQuizzes count:', mockQuizzes.length);
     currentQuiz = mockQuizzes.find(q => q && (q.id || '').toString().trim() === (quizId || '').toString().trim());
 
     // v69: Nếu không tìm thấy de_1_dgnl trong mockQuizzes, khôi phục từ backup
@@ -366,7 +367,8 @@ window.startQuiz = async function (quizId) {
     }
 
     if (!currentQuiz || !currentQuiz.questions) {
-        console.error('[TRONEX] startQuiz thất bại! quizId:', quizId, '| mockQuizzes count:', mockQuizzes.length);
+        console.error('[TRONEX] startQuiz thất bại! quizId:', quizId, '| mockQuizzes:', mockQuizzes.map(q => q?.id));
+        alert('⚠️ Lỗi: Không tìm thấy bộ đề "' + quizId + '". Vui lòng reload trang và thử lại.');
         return;
     }
     document.getElementById('setupQuizTitle').textContent = `Cấu hình: ${currentQuiz.title}`;
