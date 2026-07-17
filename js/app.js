@@ -185,7 +185,8 @@ function initQuizList() {
                 <span class="quiz-views" id="views-${quiz.id}">Lượt truy cập: ${quiz.viewCount || 0}</span>
             </div>
             <div class="card-btn-row" style="display: flex; gap: 10px;">
-                <button class="btn btn-primary card-start-btn" style="flex: 1;" type="button">Bắt Đầu Làm Bài</button>
+                <button class="btn btn-primary card-start-btn" style="flex: 1;" type="button"
+                    onclick="window.__sq('${quiz.id}')">Bắt Đầu Làm Bài</button>
                 ${isQuizOwner(quiz.id) ? `
                     <button class="btn btn-outline card-edit-btn" style="padding: 12px; color: #3B82F6; border-color: #3B82F6;" type="button" title="Chỉnh sửa đề này">✏️</button>
                     <button class="btn btn-outline card-del-btn" style="padding: 12px; color: #EF4444; border-color: #EF4444;" type="button" title="Xóa đề này">🗑️</button>

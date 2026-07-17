@@ -38,8 +38,9 @@
 </head>
 
 <body>
-  <!-- 🛠️ DEBUG TRAP: Bắt mọi JS lỗi và hiện toast (xóa sau khi fix xong) -->
+  <!-- 🛠️ DEBUG + GLOBAL HELPER: Chạy trong regular script, không phải module -->
   <script>
+    // === Error trap ===
     window.__errCount = 0;
     window.onerror = function(msg, src, line, col, err) {
       window.__errCount++;
@@ -48,14 +49,32 @@
         const d = document.createElement('div');
         d.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#ef4444;color:#fff;padding:10px 16px;z-index:99999;font-size:13px;font-family:monospace;white-space:pre-wrap;cursor:pointer;';
         d.textContent = '❌ JS ERROR: ' + msg + '\n📄 ' + src + ':' + line;
-        d.onclick = () => d.remove();
+        d.onclick = function() { d.remove(); };
         document.body.appendChild(d);
-        setTimeout(() => d.remove && d.remove(), 8000);
+        setTimeout(function() { if(d.remove) d.remove(); }, 8000);
       }
     };
     window.addEventListener('unhandledrejection', function(e) {
-      window.onerror('Unhandled Promise: ' + (e.reason?.message || e.reason), 'async', 0);
+      window.onerror('Unhandled Promise: ' + (e.reason && e.reason.message ? e.reason.message : e.reason), 'async', 0);
     });
+
+    // === v74: Global wrapper - chạy trong window scope, LUÔN hoạt động ===
+    // Gọi startQuiz an toàn: nếu module chưa load xong thì retry
+    window.__sq = function(quizId) {
+      console.log('[TRONEX] __sq called:', quizId);
+      if (typeof window.startQuiz === 'function') {
+        window.startQuiz(quizId);
+      } else {
+        console.warn('[TRONEX] startQuiz chưa sẵn sàng, retry sau 200ms...');
+        setTimeout(function() {
+          if (typeof window.startQuiz === 'function') {
+            window.startQuiz(quizId);
+          } else {
+            alert('⚠️ Trang chưa tải xong. Vui lòng F5 và thử lại.');
+          }
+        }, 200);
+      }
+    };
   </script>
   <header class="header">
     <div class="container" style="position: relative; display:flex; align-items:center; justify-content:center;">
@@ -588,7 +607,7 @@
     <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ef629dc6201fd.svg" alt="AI">
   </button>
 
-  <script type="module" src="js/app.js?v=74"></script>
+  <script type="module" src="js/app.js?v=75"></script>
   <script type="module" src="js/gemini.js?v=12"></script>
   <script type="module" src="js/tronex-ai.js?v=5"></script>
   <script type="module" src="js/auth.js?v=1"></script>
