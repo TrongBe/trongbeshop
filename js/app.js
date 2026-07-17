@@ -207,7 +207,7 @@ function initQuizList() {
         // Đây là cách đáng tin cậy 100%, không phụ thuộc onclick attribute hay event delegation
         const startBtn = card.querySelector('.card-start-btn');
         if (startBtn) {
-            startBtn.addEventListener('click', function(e) {
+            startBtn.addEventListener('click', function (e) {
                 e.stopPropagation();
                 console.log('[TRONEX] ✅ Click nút:', quiz.id);
                 if (typeof window.startQuiz === 'function') {
@@ -219,14 +219,14 @@ function initQuizList() {
         }
         const editBtn = card.querySelector('.card-edit-btn');
         if (editBtn) {
-            editBtn.addEventListener('click', function(e) {
+            editBtn.addEventListener('click', function (e) {
                 e.stopPropagation();
                 editCustomQuiz(quiz.id);
             });
         }
         const delBtn = card.querySelector('.card-del-btn');
         if (delBtn) {
-            delBtn.addEventListener('click', function(e) {
+            delBtn.addEventListener('click', function (e) {
                 e.stopPropagation();
                 deleteCustomQuiz(quiz.id);
             });
@@ -234,7 +234,7 @@ function initQuizList() {
         // Nút xem bài nộp
         const subsBtn = card.querySelector('.card-submissions-btn');
         if (subsBtn) {
-            subsBtn.addEventListener('click', function(e) {
+            subsBtn.addEventListener('click', function (e) {
                 e.stopPropagation();
                 window.viewSubmissions(quiz.id);
             });
@@ -242,7 +242,7 @@ function initQuizList() {
         // Nút sao chép link chia sẻ
         const shareBtn = card.querySelector('.card-share-btn');
         if (shareBtn) {
-            shareBtn.addEventListener('click', function(e) {
+            shareBtn.addEventListener('click', function (e) {
                 e.stopPropagation();
                 const base = window.location.origin + window.location.pathname.replace(/[^/]*$/, '');
                 const shareUrl = base + 'v-act.html?quiz=' + encodeURIComponent(quiz.id);
@@ -472,7 +472,7 @@ window.startQuiz = async function (quizId) {
 };
 
 // === XÁC NHẬN PARTICIPANT VÀ VÀO SETUP ===
-window.__confirmParticipant = function() {
+window.__confirmParticipant = function () {
     const modal = document.getElementById('participantModal');
     const nameInput = document.getElementById('participantNameInput');
     const user = window.__currentUser || null;
@@ -850,7 +850,7 @@ window.renderQuestions = renderQuestions;
 
 // === CHẤM ĐIỂM (RESTORED v46) ===
 if (quizForm) {
-    quizForm.onsubmit = function (e) {
+    quizForm.onsubmit = async function (e) {
         try {
             e.preventDefault();
             if (quizForm.dataset.mode === 'practice') {
@@ -1387,7 +1387,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // === v72: GLOBAL EVENT DELEGATION cho quiz card buttons ===
     // Dùng event delegation thay vì onclick inline — an toàn hơn, luôn hoạt động
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
         const startBtn = e.target.closest('[data-start-quiz]');
         if (startBtn) {
             const quizId = startBtn.dataset.startQuiz;
@@ -1533,7 +1533,7 @@ window.fireConfetti = fireConfetti;
 // ============================================================
 
 // --- Xem danh sách bài nộp của một đề (dành cho A - người tạo) ---
-window.viewSubmissions = function(quizId) {
+window.viewSubmissions = function (quizId) {
     const quiz = mockQuizzes.find(q => q && q.id === quizId);
     const title = quiz ? quiz.title : quizId;
     const titleEl = document.getElementById('submissionsViewTitle');
@@ -1590,7 +1590,7 @@ window.viewSubmissions = function(quizId) {
 };
 
 // --- Xem chi tiết 1 bài làm + chấm điểm (A chấm B) ---
-window.viewSubmissionDetail = function(quizId, submissionId, submissionData) {
+window.viewSubmissionDetail = function (quizId, submissionId, submissionData) {
     currentViewingSubmission = { quizId, submissionId, data: submissionData };
     const quiz = mockQuizzes.find(q => q && q.id === quizId);
     const p = submissionData.participant || {};
@@ -1707,7 +1707,7 @@ window.viewSubmissionDetail = function(quizId, submissionId, submissionData) {
 };
 
 // --- A chấm câu mở (đúng/sai) ---
-window.__gradeOpen = function(questionId, isGood) {
+window.__gradeOpen = function (questionId, isGood) {
     if (!currentViewingSubmission) return;
     const { quizId, submissionId } = currentViewingSubmission;
     const gradeRef = ref(dbRT, `submissions/${quizId}/${submissionId}/manualGrades/${questionId}`);
@@ -1720,7 +1720,7 @@ window.__gradeOpen = function(questionId, isGood) {
 };
 
 // --- A lưu điểm tổng cuối cùng ---
-window.__saveFinalScore = function() {
+window.__saveFinalScore = function () {
     if (!currentViewingSubmission) return;
     const { quizId, submissionId } = currentViewingSubmission;
     const input = document.getElementById('finalScoreInput');
