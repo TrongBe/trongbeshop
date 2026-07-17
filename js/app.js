@@ -199,8 +199,12 @@ function initQuizList() {
         if (startBtn) {
             startBtn.addEventListener('click', function(e) {
                 e.stopPropagation();
-                console.log('[TRONEX] ✅ startQuiz direct click:', quiz.id);
-                startQuiz(quiz.id);
+                console.log('[TRONEX] ✅ Click nút:', quiz.id);
+                if (typeof window.startQuiz === 'function') {
+                    window.startQuiz(quiz.id);
+                } else {
+                    alert('[DEBUG] window.startQuiz chưa được định nghĩa!');
+                }
             });
         }
         const editBtn = card.querySelector('.card-edit-btn');
