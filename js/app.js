@@ -119,8 +119,17 @@ const quizForm = document.getElementById('quizForm');
 
 // === HÀM CHUYỂN ĐỔI MÀN HÌNH ===
 function showView(viewName) {
-    Object.values(views).forEach(v => v.classList.remove('active'));
-    views[viewName].classList.add('active');
+    console.log('[TRONEX] showView:', viewName);
+    Object.entries(views).forEach(([name, v]) => {
+        if (v) v.classList.remove('active');
+        else console.warn('[TRONEX] views.' + name + ' là null! Kiểm tra HTML.');
+    });
+    if (views[viewName]) {
+        views[viewName].classList.add('active');
+    } else {
+        console.error('[TRONEX] Không tìm thấy view:', viewName);
+        return;
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 window.showView = showView;
