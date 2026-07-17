@@ -264,7 +264,62 @@
         </div>
       </div>
     </div>
+
+    <!-- View: Danh sách bài nộp (A xem bài của B) -->
+    <div id="submissionsView" class="view-section container">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:24px; flex-wrap:wrap;">
+        <button class="btn btn-text" onclick="showView('list')">← Quay lại danh sách</button>
+        <h2 id="submissionsViewTitle" style="margin:0; font-size:1.4rem; font-weight:700;">📋 Bài nộp</h2>
+        <span id="submissionsCount" style="background:#6366f1; color:white; padding:2px 10px; border-radius:20px; font-size:0.85rem; font-weight:600; min-width:20px; text-align:center;">0</span>
+      </div>
+      <div id="submissionsList" style="display:flex; flex-direction:column; gap:12px;">
+        <div style="color:#6b7280; text-align:center; padding:40px;">⏳ Đang tải...</div>
+      </div>
+    </div>
+
+    <!-- View: Chi tiết bài làm của B -->
+    <div id="submissionDetailView" class="view-section container">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px; flex-wrap:wrap;">
+        <button class="btn btn-text" id="btnBackToSubmissions">← Danh sách bài nộp</button>
+        <h2 id="submissionDetailTitle" style="margin:0; font-size:1.3rem; font-weight:700;">Bài làm của...</h2>
+      </div>
+      <div id="submissionDetailContent" style="display:flex; flex-direction:column; gap:16px;"></div>
+      <!-- Grade Box: A chấm điểm cuối -->
+      <div id="submissionGradeBox" style="display:none; margin-top:24px; padding:24px; background:#f0fdf4; border-radius:16px; border:2px solid #bbf7d0;">
+        <h3 style="margin:0 0 12px; color:#15803d; font-size:1.1rem;">📊 Kết quả &amp; Chấm điểm</h3>
+        <p style="color:#166534; margin-bottom:12px;">Điểm tự động (câu có đáp án đúng): <strong id="autoScoreDisplay">0</strong></p>
+        <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+          <label style="color:#166534; font-weight:600;">Điểm tổng cuối cùng:</label>
+          <input type="number" id="finalScoreInput" min="0" placeholder="Nhập điểm..." style="padding:10px; border:2px solid #86efac; border-radius:10px; font-size:1rem; width:100px; outline:none; text-align:center;">
+          <button onclick="window.__saveFinalScore()" style="padding:10px 20px; background:linear-gradient(135deg,#22c55e,#16a34a); color:white; border:none; border-radius:10px; font-weight:600; cursor:pointer; font-size:0.95rem;">💾 Lưu điểm</button>
+        </div>
+        <div id="savedScoreMsg" style="display:none; margin-top:10px; color:#16a34a; font-weight:600;">✅ Đã lưu điểm thành công!</div>
+      </div>
+    </div>
+
   </main>
+
+  <!-- Participant Identity Modal: Nhập tên trước khi làm bài -->
+  <div id="participantModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:8500; backdrop-filter:blur(5px); align-items:center; justify-content:center;">
+    <div style="background:white; padding:36px 32px; border-radius:24px; max-width:420px; width:90%; box-shadow:0 25px 70px rgba(0,0,0,0.3); text-align:center;">
+      <div id="participantAvatarArea" style="margin-bottom:16px; display:flex; justify-content:center;"></div>
+      <h3 id="participantGreeting" style="margin:0 0 6px; font-size:1.3rem; font-weight:700; color:#1e293b;">Xác nhận thông tin</h3>
+      <p id="participantSubtitle" style="color:#64748b; margin:0 0 20px; font-size:0.9rem; line-height:1.5;">Nhập tên của bạn để bắt đầu làm bài</p>
+      <div id="participantNameField">
+        <input id="participantNameInput" type="text" placeholder="Họ và tên của bạn..."
+          style="width:100%; padding:13px 16px; border:2px solid #e2e8f0; border-radius:12px; font-size:1rem; outline:none; box-sizing:border-box; transition:border-color 0.2s; color:#1e293b;"
+          onfocus="this.style.borderColor='#6366f1'"
+          onblur="this.style.borderColor='#e2e8f0'"
+          onkeydown="if(event.key==='Enter') window.__confirmParticipant()">
+      </div>
+      <button onclick="window.__confirmParticipant()" style="width:100%; margin-top:14px; padding:14px; background:linear-gradient(135deg,#6366f1,#8b5cf6); color:white; border:none; border-radius:12px; font-size:1rem; font-weight:600; cursor:pointer; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+        Bắt Đầu Làm Bài →
+      </button>
+      <button onclick="document.getElementById('participantModal').style.display='none'; showView('list');" style="width:100%; margin-top:8px; padding:10px; background:transparent; color:#94a3b8; border:none; cursor:pointer; font-size:0.9rem;">
+        ← Quay lại danh sách
+      </button>
+    </div>
+  </div>
 
   <!-- ====== GEMINI MODAL ====== -->
   <div id="geminiModalOverlay" class="gemini-modal-overlay">
@@ -609,7 +664,7 @@
     <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ef629dc6201fd.svg" alt="AI">
   </button>
 
-  <script type="module" src="js/app.js?v=75"></script>
+  <script type="module" src="js/app.js?v=76"></script>
   <script type="module" src="js/gemini.js?v=12"></script>
   <script type="module" src="js/tronex-ai.js?v=5"></script>
   <script type="module" src="js/auth.js?v=1"></script>
