@@ -166,7 +166,9 @@ function initQuizList() {
     uniqueQuizzes.forEach(quiz => {
         const card = document.createElement('div');
         card.className = 'quiz-card';
-        card.dataset.quizId = quiz.id; // for filter
+        card.dataset.quizId = quiz.id;
+
+        // Build card HTML (không dùng onclick attribute)
         card.innerHTML = `
             <h3>${quiz.title}</h3>
             <p>${quiz.description}</p>
@@ -175,22 +177,47 @@ function initQuizList() {
                     <img src="${quiz.createdBy.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(quiz.createdBy.displayName || 'U')}&background=6366f1&color=fff&size=48`}" 
                          alt="${quiz.createdBy.displayName || ''}"
                          onerror="this.src='https://ui-avatars.com/api/?name=U&background=6366f1&color=fff&size=48'">
-                    <span>${quiz.createdBy.displayName || 'An danh'}</span>
+                    <span>${quiz.createdBy.displayName || 'Ẩn danh'}</span>
                 </div>` : ''}
             <div class="tags-container" style="margin-bottom: 24px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px;">
                 ${(quiz.privacy === 'public' || !quiz.privacy) ? '<span style="background:#10B981; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🌍 Công Khai</span>' : '<span style="background:#6366f1; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🔒 Riêng tư</span>'}
                 <span class="quiz-meta">📚 Số câu: ${(quiz.questions || []).length}</span>
                 <span class="quiz-views" id="views-${quiz.id}">Lượt truy cập: ${quiz.viewCount || 0}</span>
             </div>
-            <div style="display: flex; gap: 10px;">
-                <!-- v72: Dùng data-attribute thay vì onclick inline để đảm bảo event luôn được gọi -->
-                <button class="btn btn-primary" style="flex: 1;" data-start-quiz="${quiz.id}">Bắt Đầu Làm Bài</button>
+            <div class="card-btn-row" style="display: flex; gap: 10px;">
+                <button class="btn btn-primary card-start-btn" style="flex: 1;" type="button">Bắt Đầu Làm Bài</button>
                 ${isQuizOwner(quiz.id) ? `
-                    <button class="btn btn-outline" style="padding: 12px; color: #3B82F6; border-color: #3B82F6;" data-edit-quiz="${quiz.id}" title="Chỉnh sửa đề này">✏️</button>
-                    <button class="btn btn-outline" style="padding: 12px; color: #EF4444; border-color: #EF4444;" data-delete-quiz="${quiz.id}" title="Xóa đề này">🗑️</button>
+                    <button class="btn btn-outline card-edit-btn" style="padding: 12px; color: #3B82F6; border-color: #3B82F6;" type="button" title="Chỉnh sửa đề này">✏️</button>
+                    <button class="btn btn-outline card-del-btn" style="padding: 12px; color: #EF4444; border-color: #EF4444;" type="button" title="Xóa đề này">🗑️</button>
                 ` : ""}
             </div>
         `;
+
+        // === v73: Gắn listener TRỰC TIẾP vào button ngay sau render ===
+        // Đây là cách đáng tin cậy 100%, không phụ thuộc onclick attribute hay event delegation
+        const startBtn = card.querySelector('.card-start-btn');
+        if (startBtn) {
+            startBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                console.log('[TRONEX] ✅ startQuiz direct click:', quiz.id);
+                startQuiz(quiz.id);
+            });
+        }
+        const editBtn = card.querySelector('.card-edit-btn');
+        if (editBtn) {
+            editBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                editCustomQuiz(quiz.id);
+            });
+        }
+        const delBtn = card.querySelector('.card-del-btn');
+        if (delBtn) {
+            delBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                deleteCustomQuiz(quiz.id);
+            });
+        }
+
         quizListContainer.appendChild(card);
     });
 
