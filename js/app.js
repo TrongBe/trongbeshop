@@ -175,7 +175,7 @@ function initQuizList() {
                     <img src="${quiz.createdBy.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(quiz.createdBy.displayName || 'U')}&background=6366f1&color=fff&size=48`}" 
                          alt="${quiz.createdBy.displayName || ''}"
                          onerror="this.src='https://ui-avatars.com/api/?name=U&background=6366f1&color=fff&size=48'">
-                    <span>${quiz.createdBy.displayName || 'Ẩn danh'}</span>
+                    <span>${quiz.createdBy.displayName || 'An danh'}</span>
                 </div>` : ''}
             <div class="tags-container" style="margin-bottom: 24px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px;">
                 ${(quiz.privacy === 'public' || !quiz.privacy) ? '<span style="background:#10B981; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🌍 Công Khai</span>' : '<span style="background:#6366f1; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🔒 Riêng tư</span>'}
@@ -183,10 +183,11 @@ function initQuizList() {
                 <span class="quiz-views" id="views-${quiz.id}">Lượt truy cập: ${quiz.viewCount || 0}</span>
             </div>
             <div style="display: flex; gap: 10px;">
-                <button class="btn btn-primary" style="flex: 1;" onclick="startQuiz('${quiz.id}')">Bắt Đầu Làm Bài</button>
+                <!-- v72: Dùng data-attribute thay vì onclick inline để đảm bảo event luôn được gọi -->
+                <button class="btn btn-primary" style="flex: 1;" data-start-quiz="${quiz.id}">Bắt Đầu Làm Bài</button>
                 ${isQuizOwner(quiz.id) ? `
-                    <button class="btn btn-outline" style="padding: 12px; color: #3B82F6; border-color: #3B82F6;" onclick="editCustomQuiz('${quiz.id}')" title="Chỉnh sửa đề này">✏️</button>
-                    <button class="btn btn-outline" style="padding: 12px; color: #EF4444; border-color: #EF4444;" onclick="deleteCustomQuiz('${quiz.id}')" title="Xóa đề này">🗑️</button>
+                    <button class="btn btn-outline" style="padding: 12px; color: #3B82F6; border-color: #3B82F6;" data-edit-quiz="${quiz.id}" title="Chỉnh sửa đề này">✏️</button>
+                    <button class="btn btn-outline" style="padding: 12px; color: #EF4444; border-color: #EF4444;" data-delete-quiz="${quiz.id}" title="Xóa đề này">🗑️</button>
                 ` : ""}
             </div>
         `;
@@ -1247,7 +1248,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnReview = document.getElementById('btnReview');
     if (btnReview) btnReview.onclick = () => showView('active');
 
-    // --- QUYỀN ADMIN ẨN ---
+    // === v72: GLOBAL EVENT DELEGATION cho quiz card buttons ===
+    // Dùng event delegation thay vì onclick inline — an toàn hơn, luôn hoạt động
+    document.addEventListener('click', function(e) {
+        const startBtn = e.target.closest('[data-start-quiz]');
+        if (startBtn) {
+            const quizId = startBtn.dataset.startQuiz;
+            console.log('[TRONEX] 👊 Click bắt đầu:', quizId);
+            startQuiz(quizId);
+            return;
+        }
+        const editBtn = e.target.closest('[data-edit-quiz]');
+        if (editBtn) {
+            editCustomQuiz(editBtn.dataset.editQuiz);
+            return;
+        }
+        const delBtn = e.target.closest('[data-delete-quiz]');
+        if (delBtn) {
+            deleteCustomQuiz(delBtn.dataset.deleteQuiz);
+            return;
+        }
+    });
     let adminClickCount = 0;
     const adminTriggerRow = document.querySelector('.header h1');
     if (adminTriggerRow) {
