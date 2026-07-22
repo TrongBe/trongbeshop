@@ -221,7 +221,7 @@
               </div>
             </div>
           </div>
-          <button onclick="window.__publishPublicQuiz(window.__mockQuizzes.find(q=>q.id==='de_1_dgnl'))"
+          <button onclick="if(window.__vactSeedBackup) window.__vactSeedBackup.forEach(q=>window.__publishPublicQuiz(q)); else window.__mockQuizzes.forEach(q=>window.__publishPublicQuiz(q));"
             class="btn btn-outline" style="width:100%; margin-top:10px; font-size:12px;">Đồng bộ lại Firebase</button>
         </div>
 
@@ -664,7 +664,7 @@
     <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ef629dc6201fd.svg" alt="AI">
   </button>
 
-  <script type="module" src="js/app.js?v=78"></script>
+  <script type="module" src="js/app.js?v=79"></script>
   <script type="module" src="js/gemini.js?v=12"></script>
   <script type="module" src="js/tronex-ai.js?v=5"></script>
   <script type="module" src="js/auth.js?v=1"></script>

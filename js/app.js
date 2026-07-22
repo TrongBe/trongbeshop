@@ -37,19 +37,16 @@ const isAdmin = localStorage.getItem("admin_secret_key") === "trongbeshop";
 
 
 if (isVACTPage) {
-    // Chỉ giữ lại DUY NHẤT đề 1 ĐGNL của TRONEX (v68: Strict Mode)
-    const vactQuizzes = mockQuizzes.filter(q => q.id === 'de_1_dgnl');
+    // Giữ lại tất cả đề V-ACT / ĐGNL từ data.js
+    const vactQuizzes = mockQuizzes.filter(q => q && q.id && (q.id.endsWith('_dgnl') || q.id.startsWith('de_') || q.id.startsWith('vact_')));
     mockQuizzes.length = 0;
     mockQuizzes.push(...vactQuizzes);
 
-    // v71: Backup nhẹ - chỉ lưu tham chiếu trực tiếp (không deep copy 87KB object dễ bị crash)
-    const originalDe1 = vactQuizzes.find(q => q.id === 'de_1_dgnl');
-    if (originalDe1) {
-        window.__de1Backup = originalDe1; // Chỉ giữ tham chiếu, không deep copy
-    }
+    // Backup các đề seed V-ACT từ data.js
+    window.__vactSeedBackup = [...vactQuizzes];
 } else {
-    // Ở trang chủ, ẩn các đề của TRONEX
-    const homeQuizzes = mockQuizzes.filter(q => !q.id.startsWith('de_1_dgnl') && !q.id.startsWith('vact_'));
+    // Ở trang chủ, ẩn các đề V-ACT / ĐGNL
+    const homeQuizzes = mockQuizzes.filter(q => q && q.id && (!q.id.endsWith('_dgnl') && !q.id.startsWith('de_') && !q.id.startsWith('vact_')));
     mockQuizzes.length = 0;
     mockQuizzes.push(...homeQuizzes);
 }
@@ -426,11 +423,14 @@ window.startQuiz = async function (quizId) {
     console.log('[TRONEX] startQuiz called:', quizId, '| mockQuizzes count:', mockQuizzes.length);
     currentQuiz = mockQuizzes.find(q => q && (q.id || '').toString().trim() === (quizId || '').toString().trim());
 
-    // v69: Nếu không tìm thấy de_1_dgnl trong mockQuizzes, khôi phục từ backup
-    if (!currentQuiz && quizId === 'de_1_dgnl' && window.__de1Backup) {
-        console.warn('[TRONEX] de_1_dgnl bị mất khỏi mockQuizzes! Đang khôi phục từ backup...');
-        mockQuizzes.unshift(window.__de1Backup);
-        currentQuiz = window.__de1Backup;
+    // v69: Nếu không tìm thấy quiz trong mockQuizzes, khôi phục từ backup
+    if (!currentQuiz && window.__vactSeedBackup) {
+        const backupQuiz = window.__vactSeedBackup.find(q => q && (q.id || '').toString().trim() === (quizId || '').toString().trim());
+        if (backupQuiz) {
+            console.warn(`[TRONEX] ${quizId} bị mất khỏi mockQuizzes! Đang khôi phục từ backup...`);
+            mockQuizzes.unshift(backupQuiz);
+            currentQuiz = backupQuiz;
+        }
     }
 
     if (!currentQuiz || !currentQuiz.questions) {
@@ -1174,13 +1174,16 @@ window.loadPublicQuizzes = function () {
                     if (!pq.title || !pq.questions) return;
                     if (!Array.isArray(pq.questions) || pq.questions.length === 0) return;
 
-                    // Với de_1_dgnl: Firebase được phép override NHƯNG phải có đủ câu hỏi
+                    // Với các đề seed từ data.js: Firebase được phép override NHƯNG phải có đủ câu hỏi
                     // Nếu Firebase trả về ít hơn 50% so với backup → dùng backup (data bị corrupt)
-                    if (pqId === 'de_1_dgnl' && window.__de1Backup) {
-                        const backupCount = (window.__de1Backup.questions || []).length;
-                        if (backupCount > 0 && pq.questions.length < backupCount * 0.5) {
-                            console.warn('[TRONEX] Firebase data cho de_1_dgnl bị thiếu câu hỏi, dùng backup từ data.js');
-                            return; // Giữ nguyên version từ data.js
+                    if (window.__vactSeedBackup) {
+                        const backupObj = window.__vactSeedBackup.find(q => q && q.id === pqId);
+                        if (backupObj) {
+                            const backupCount = (backupObj.questions || []).length;
+                            if (backupCount > 0 && pq.questions.length < backupCount * 0.5) {
+                                console.warn(`[TRONEX] Firebase data cho ${pqId} bị thiếu câu hỏi, dùng backup từ data.js`);
+                                return; // Giữ nguyên version từ data.js
+                            }
                         }
                     }
 
@@ -1201,24 +1204,26 @@ window.loadPublicQuizzes = function () {
                 });
 
                 // v51: Tự động seed đề TRONEX lên Firebase nếu chưa có
-                if (isVACTPage && !data['de_1_dgnl']) {
-                    const de1 = mockQuizzes.find(q => q.id === 'de_1_dgnl');
-                    if (de1) {
-                        console.log("🚀 Seeding de_1_dgnl lên Firebase lần đầu...");
-                        window.__publishPublicQuiz(de1);
-                    }
+                if (isVACTPage) {
+                    const seedList = window.__vactSeedBackup || mockQuizzes;
+                    seedList.forEach(seed => {
+                        if (seed && seed.id && (!data || !data[seed.id])) {
+                            console.log(`🚀 Seeding ${seed.id} lên Firebase lần đầu...`);
+                            window.__publishPublicQuiz(seed);
+                        }
+                    });
                 }
 
                 if (listChanged) initQuizList();
             } else {
                 // v51: Firebase trống hoàn toàn
                 if (isVACTPage) {
-                    const de1 = mockQuizzes.find(q => q.id === 'de_1_dgnl');
-                    if (de1) {
-                        console.log("🚀 Nhánh VACT trống, đang tự động tạo và đồng bộ...");
-                        window.__publishPublicQuiz(de1);
+                    const seedList = window.__vactSeedBackup || mockQuizzes;
+                    if (seedList.length > 0) {
+                        console.log("🚀 Nhánh VACT trống, đang tự động tạo và đồng bộ các đề seed...");
+                        seedList.forEach(seed => window.__publishPublicQuiz(seed));
                     } else {
-                        console.warn("⚠️ Không tìm thấy đề de_1_dgnl trong mockQuizzes để đồng bộ.");
+                        console.warn("⚠️ Không tìm thấy đề seed trong mockQuizzes để đồng bộ.");
                     }
                 }
             }
