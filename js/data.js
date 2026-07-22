@@ -1,4 +1,4 @@
-﻿export const mockQuizzes = [
+export const mockQuizzes = [
     {
         id: "de_1_dgnl",
         title: "Đề 1 (120/120 câu)",
@@ -305,7 +305,7 @@
 ,
     {
     id: "de_2_dgnl",
-    title: "Đề 2: Đề chính thức Đợt 1 - 2026 (Phục dựng)",
+    title: "Đề 2: Đề chính thức Đợt 1 - 2026 (120/120 câu)",
     description: "Phần 1: Ngôn ngữ (60 câu) & Phần 2: Toán học (30 câu) & Phần 3: Tư duy khoa học (30 câu)",
     questions: [
         // 1 - 20 (Tiếng Việt)

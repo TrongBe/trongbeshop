@@ -76,6 +76,21 @@ function convertFirebaseData(val) {
 }
 window.convertFirebaseData = convertFirebaseData;
 
+// === HELPER: Đếm chính xác tổng số câu hỏi (bao gồm cả subQuestions trong bài đọc) ===
+function getQuizQuestionCount(quiz) {
+    if (!quiz || !quiz.questions || !Array.isArray(quiz.questions)) return 0;
+    let count = 0;
+    quiz.questions.forEach(q => {
+        if (q && q.type === 'reading_group' && Array.isArray(q.subQuestions)) {
+            count += q.subQuestions.length;
+        } else {
+            count += 1;
+        }
+    });
+    return count;
+}
+window.getQuizQuestionCount = getQuizQuestionCount;
+
 // === LOAD ĐỀ TỰ TẠO TỪ localStorage (Fix Bug 2) ===
 function loadCustomQuizzesFromStorage() {
     try {
@@ -185,7 +200,7 @@ function initQuizList() {
                 </div>` : ''}
             <div class="tags-container" style="margin-bottom: 24px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px;">
                 ${(quiz.privacy === 'public' || !quiz.privacy) ? '<span style="background:#10B981; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🌍 Công Khai</span>' : '<span style="background:#6366f1; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🔒 Riêng tư</span>'}
-                <span class="quiz-meta">📚 Số câu: ${(quiz.questions || []).length}</span>
+                <span class="quiz-meta">📚 Số câu: ${getQuizQuestionCount(quiz)}</span>
                 <span class="quiz-views" id="views-${quiz.id}">Lượt truy cập: ${quiz.viewCount || 0}</span>
             </div>
             <div class="card-btn-row" style="display: flex; gap: 10px;">
