@@ -4504,136 +4504,149 @@ body {
     }
 
     /* ============================================================
-       EXAM MODE MOBILE OVERHAUL (Bottom Sheet Drawer & Touch Cards)
+       EXAM MODE MOBILE OVERHAUL (Split Screen 8/2 & Right Palette Bar)
        ============================================================ */
     .tronex-layout.active {
-        display: block !important;
-        padding-bottom: 100px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+        padding: 8px 4px 60px 4px !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
     }
 
+    /* Left Column (80%): Main Question Content */
     .tronex-main {
-        width: 100% !important;
-        padding: 0 0 80px 0 !important;
-    }
-
-    /* Slide-Up Bottom Drawer for Quiz Navigation & Timer */
-    .tronex-sidebar {
-        position: fixed !important;
-        bottom: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        top: auto !important;
-        width: 100% !important;
-        max-height: 55vh !important;
-        border-radius: 24px 24px 0 0 !important;
-        box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2) !important;
-        background: var(--bg-surface, #ffffff) !important;
-        z-index: 3000 !important;
-        overflow-y: auto !important;
-        margin: 0 !important;
+        flex: 1 1 76% !important;
+        width: 76% !important;
+        min-width: 0 !important;
         padding: 0 !important;
-        transform: translateY(0) !important;
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        border-top: 1px solid var(--border, #e5e7eb) !important;
     }
 
-    /* Minimized state turns into a sleek bottom dock header bar */
+    /* Right Column (20%): Compact Side Navigation Panel */
+    .tronex-sidebar {
+        position: sticky !important;
+        top: 65px !important;
+        flex: 0 0 24% !important;
+        width: 24% !important;
+        min-width: 60px !important;
+        max-width: 95px !important;
+        height: auto !important;
+        max-height: calc(100vh - 75px) !important;
+        overflow-y: auto !important;
+        background: var(--bg-surface, #ffffff) !important;
+        border-radius: 12px !important;
+        padding: 6px 4px !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08) !important;
+        border: 1px solid var(--border, #e5e7eb) !important;
+        transform: none !important;
+        z-index: 100 !important;
+    }
+
     .tronex-sidebar.minimized {
-        transform: translateY(calc(100% - 62px)) !important;
-        overflow: hidden !important;
-        box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.15) !important;
+        transform: none !important;
+        overflow-y: auto !important;
     }
 
-    /* Drag Handle Bar at top of drawer */
-    .tronex-sidebar-handle {
-        display: block !important;
-        width: 44px !important;
-        height: 5px !important;
-        background: var(--border, #cbd5e1) !important;
-        border-radius: 10px !important;
-        margin: 10px auto 6px auto !important;
-        cursor: pointer !important;
-    }
-
-    .tronex-sidebar-minimize-trigger {
-        top: 10px !important;
-        right: 16px !important;
-        font-size: 20px !important;
-        padding: 4px 10px !important;
-    }
-
+    .tronex-sidebar-handle,
+    .tronex-sidebar-minimize-trigger,
     .tronex-sidebar-toggle-btn {
-        display: none !important; /* Managed directly by bottom dock header click */
+        display: none !important;
     }
 
     .tronex-timer-box {
-        margin: 6px 16px 10px 16px !important;
-        padding: 10px 16px !important;
-        border-radius: 14px !important;
-        font-size: 15px !important;
+        margin: 0 0 6px 0 !important;
+        padding: 4px 2px !important;
+        border-radius: 8px !important;
+        font-size: 11px !important;
         font-weight: 700 !important;
-        cursor: pointer !important;
-        user-select: none !important;
+        justify-content: center !important;
+        gap: 2px !important;
     }
 
     .tronex-palette-container {
-        padding: 0 16px 10px 16px !important;
+        padding: 0 !important;
     }
 
     .tronex-palette-header {
-        font-size: 14px !important;
+        font-size: 10px !important;
         font-weight: 700 !important;
-        margin-bottom: 8px !important;
+        margin-bottom: 4px !important;
+        text-align: center !important;
     }
 
-    /* Question number grid on mobile */
+    /* Question Palette 2-Column Compact Grid in Right Panel */
     .tronex-palette {
         display: grid !important;
-        grid-template-columns: repeat(6, 1fr) !important;
-        gap: 8px !important;
-        max-height: 32vh !important;
-        overflow-y: auto !important;
-        padding-right: 4px !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 3px !important;
+        max-height: none !important;
+        overflow-y: visible !important;
+        padding: 0 !important;
     }
 
-    .q-btn, .question-palette button {
-        min-height: 40px !important;
-        min-width: 40px !important;
-        font-size: 14px !important;
-        border-radius: 10px !important;
+    .tronex-palette-btn, .q-btn, .question-palette button {
+        min-height: 28px !important;
+        min-width: 24px !important;
+        font-size: 10px !important;
+        padding: 2px 0 !important;
+        border-radius: 6px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
     }
 
     .tronex-sidebar-footer {
-        padding: 12px 16px 24px 16px !important;
+        padding: 6px 0 2px 0 !important;
         display: flex !important;
-        gap: 10px !important;
-        background: var(--bg-surface, #ffffff) !important;
-        position: sticky !important;
-        bottom: 0 !important;
+        flex-direction: column !important;
+        gap: 4px !important;
+        background: transparent !important;
         border-top: 1px solid var(--border, #e5e7eb) !important;
+        margin-top: 6px !important;
+        position: static !important;
     }
 
     .btn-tronex-submit, .btn-tronex-leave {
-        flex: 1 !important;
-        min-height: 48px !important;
-        font-size: 15px !important;
+        width: 100% !important;
+        min-height: 30px !important;
+        padding: 4px 2px !important;
+        font-size: 10px !important;
         font-weight: 600 !important;
+        border-radius: 6px !important;
+    }
+
+    /* Question Cards & Text Font Sizes (Reduced 1-2 units for high readability) */
+    .question-card {
+        padding: 12px 10px !important;
+        margin-bottom: 12px !important;
         border-radius: 12px !important;
     }
 
-    /* Touch-Friendly Question Cards */
-    .question-card {
-        padding: 18px 14px !important;
-        margin-bottom: 16px !important;
-        border-radius: 16px !important;
+    .q-card-header {
+        margin-bottom: 10px !important;
+        padding-bottom: 6px !important;
+    }
+
+    .q-card-title {
+        font-size: 0.95rem !important; /* 15px */
+    }
+
+    .btn-ask-ai {
+        padding: 4px 10px !important;
+        font-size: 11px !important;
     }
 
     .question-title, .question-text {
-        font-size: 15px !important;
-        line-height: 1.6 !important;
+        font-size: 0.9rem !important; /* 14px */
+        line-height: 1.55 !important;
+    }
+
+    .reading-passage {
+        font-size: 0.9rem !important;
+        padding: 12px 10px !important;
+        margin-bottom: 14px !important;
     }
 
     /* Options: Touch friendly 44px+ height rows */

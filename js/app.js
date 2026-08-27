@@ -638,11 +638,6 @@ function initQuestionPalette(questions) {
                 // Highlight tạm thời
                 document.querySelectorAll('.tronex-palette-btn').forEach(b => b.classList.remove('active-q'));
                 btn.classList.add('active-q');
-                // Tự động thu gọn drawer trên mobile để không che nội dung đề thi
-                if (window.innerWidth <= 768) {
-                    const sidebar = document.getElementById('tronexSidebar');
-                    if (sidebar) sidebar.classList.add('minimized');
-                }
             }
         };
         palette.appendChild(btn);
