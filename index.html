@@ -261,7 +261,7 @@
   <script type="module" src="js/auth.js?v=1"></script>
 
   <!-- CHANGELOG MODAL (New v45) -->
-  <div id="changelogModal" class="modal-overlay" style="display:none;">
+  <div id="changelogModal" class="modal-overlay" style="display:none;" onclick="if(event.target===this) closeChangelog()">
     <div class="modal-content" style="max-width: 500px;">
       <div class="modal-header">
         <h3>Nhật ký cập nhật hệ thống</h3>

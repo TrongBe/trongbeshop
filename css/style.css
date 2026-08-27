@@ -4632,8 +4632,12 @@ body {
     /* Mobile Sheet Modals */
     .modal-overlay {
         padding: 0 !important;
-        display: flex !important;
         align-items: flex-end !important;
+    }
+
+    .modal-overlay[style*="display: none"],
+    .modal-overlay[style*="display:none"] {
+        display: none !important;
     }
 
     .modal-content {
