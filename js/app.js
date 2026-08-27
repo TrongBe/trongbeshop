@@ -759,10 +759,11 @@ function renderQuestions() {
                 label.className = 'tronex-option-label';
 
                 const letter = letters[optIndex] || '';
+                const cleanOptText = typeof opt === 'string' ? opt.replace(/^[A-F][.:)\s]+\s*/i, '').trim() : opt;
                 label.innerHTML = `
                     <input type="radio" name="question_${q.id}" value="${optIndex}">
                     <div class="tronex-opt-letter">${letter}</div>
-                    <div class="tronex-opt-text">${opt}</div>
+                    <div class="tronex-opt-text">${cleanOptText}</div>
                     <button type="button" class="tronex-clear-btn" title="Hủy chọn">✕</button>
                 `;
 
@@ -835,7 +836,7 @@ function renderQuestions() {
             input.className = 'form-control short-answer-input';
             input.name = `question_${q.id}`;
             input.placeholder = 'Nhập câu trả lời của bạn...';
-            input.style.cssText = 'max-width: 300px; margin-top: 10px; font-size: 1.1rem; padding: 10px; border: 2px solid #E5E7EB; border-radius: 8px; transition: all 0.3s ease;';
+            input.style.cssText = 'max-width: 300px; margin-top: 10px; font-size: 0.9rem; padding: 8px 12px; border: 2px solid #E5E7EB; border-radius: 8px; transition: all 0.3s ease;';
 
             input.addEventListener('change', () => {
                 if (quizForm.dataset.quizMode === 'practice') {
