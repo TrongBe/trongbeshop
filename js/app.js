@@ -1463,6 +1463,12 @@ function initDraggableSidebar() {
     const handle = document.getElementById('tronexSidebarHandle');
     if (!sidebar || !handle) return;
 
+    // Trên thiết bị di động, để CSS Bottom Sheet tự quản lý vị trí
+    if (window.innerWidth <= 768) {
+        sidebar.style.transform = '';
+        return;
+    }
+
     let isDragging = false;
     let currentX = 0;
     let currentY = 0;
@@ -1471,9 +1477,9 @@ function initDraggableSidebar() {
     let xOffset = 0;
     let yOffset = 0;
 
-    // Load saved position
+    // Load saved position (chỉ áp dụng cho màn hình lớn)
     const savedPos = localStorage.getItem('tronex_sidebar_pos');
-    if (savedPos) {
+    if (savedPos && window.innerWidth > 768) {
         try {
             const pos = JSON.parse(savedPos);
             xOffset = pos.x;
@@ -1483,9 +1489,12 @@ function initDraggableSidebar() {
     }
 
     handle.addEventListener('mousedown', dragStart);
-    handle.addEventListener('touchstart', (e) => dragStart(e.touches[0]), { passive: false });
+    handle.addEventListener('touchstart', (e) => {
+        if (window.innerWidth > 768) dragStart(e.touches[0]);
+    }, { passive: false });
 
     function dragStart(e) {
+        if (window.innerWidth <= 768) return;
         initialX = e.clientX - xOffset;
         initialY = e.clientY - yOffset;
         isDragging = true;
@@ -1497,7 +1506,7 @@ function initDraggableSidebar() {
     }
 
     function drag(e) {
-        if (isDragging) {
+        if (isDragging && window.innerWidth > 768) {
             e.preventDefault();
             currentX = e.clientX - initialX;
             currentY = e.clientY - initialY;

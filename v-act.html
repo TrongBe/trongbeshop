@@ -79,8 +79,8 @@
     };
   </script>
   <header class="header">
-    <div class="container" style="position: relative; display:flex; align-items:center; justify-content:center;">
-      <button class="menu-btn" onclick="toggleSidebar()" aria-label="Menu" style="position:absolute; left:0;">
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap: 8px;">
+      <button class="menu-btn" onclick="toggleSidebar()" aria-label="Menu" style="position:static; transform:none; flex-shrink: 0;">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
           stroke-linecap="round" stroke-linejoin="round">
           <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -88,11 +88,11 @@
           <line x1="3" y1="18" x2="21" y2="18"></line>
         </svg>
       </button>
-      <div>
+      <div style="text-align: center; flex: 1;">
         <h1>TRONEX: V-ACT</h1>
         <p>Hệ thống luyện thi thông minh - AI Learning Platform</p>
       </div>
-      <div style="position:absolute; right:0; display:flex; align-items:center; gap:8px;">
+      <div style="display:flex; align-items:center; gap:8px; flex-shrink: 0;">
         <button class="theme-toggle-btn" id="themeToggleBtn" title="Chế độ sáng/tối">🌙</button>
         <button class="auth-btn" id="authBtn" title="Đăng nhập">
           <span>🔑</span><span>Đăng nhập</span>
@@ -198,7 +198,7 @@
       </div>
 
       <div class="tronex-sidebar" id="tronexSidebar">
-        <div class="tronex-sidebar-handle" id="tronexSidebarHandle"></div>
+        <div class="tronex-sidebar-handle" id="tronexSidebarHandle" onclick="toggleMinimizeSidebar()"></div>
         <div class="tronex-sidebar-minimize-trigger" onclick="toggleMinimizeSidebar()">−</div>
         <div class="tronex-sidebar-toggle-btn" onclick="toggleMinimizeSidebar()">📝</div>
 
@@ -225,7 +225,7 @@
             class="btn btn-outline" style="width:100%; margin-top:10px; font-size:12px;">Đồng bộ lại Firebase</button>
         </div>
 
-        <div class="tronex-timer-box" id="tronexTimerBox">
+        <div class="tronex-timer-box" id="tronexTimerBox" onclick="toggleMinimizeSidebar()">
           <span class="timer-icon">⏱️</span>
           <span id="quizTimer">Thời gian làm bài</span>
         </div>
