@@ -4504,44 +4504,42 @@ body {
     }
 
     /* ============================================================
-       EXAM MODE MOBILE OVERHAUL (Split Screen 8/2 & Right Palette Bar)
+       EXAM MODE MOBILE OVERHAUL (Fixed Right Sidebar 3-Col Palette & Auto-Scroll)
        ============================================================ */
     .tronex-layout.active {
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: flex-start !important;
-        gap: 8px !important;
-        padding: 8px 4px 60px 4px !important;
-        max-width: 100% !important;
-        overflow-x: hidden !important;
+        display: block !important;
+        position: relative !important;
+        width: 100% !important;
+        padding: 4px 0 60px 0 !important;
     }
 
-    /* Left Column (80%): Main Question Content */
+    /* Left Main Content (Takes remaining space) */
     .tronex-main {
-        flex: 1 1 76% !important;
-        width: 76% !important;
+        margin-right: 125px !important;
+        width: auto !important;
         min-width: 0 !important;
-        padding: 0 !important;
+        padding: 0 4px 0 0 !important;
     }
 
-    /* Right Column (20%): Compact Side Navigation Panel */
+    /* Right Sidebar Panel (Position Fixed: Always stays on screen when scrolling down) */
     .tronex-sidebar {
-        position: sticky !important;
-        top: 65px !important;
-        flex: 0 0 24% !important;
-        width: 24% !important;
-        min-width: 60px !important;
-        max-width: 95px !important;
-        height: auto !important;
-        max-height: calc(100vh - 75px) !important;
-        overflow-y: auto !important;
+        position: fixed !important;
+        right: 4px !important;
+        top: 68px !important;
+        width: 118px !important;
+        height: calc(100vh - 78px) !important;
+        max-height: calc(100vh - 78px) !important;
         background: var(--bg-surface, #ffffff) !important;
         border-radius: 12px !important;
-        padding: 6px 4px !important;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08) !important;
+        padding: 6px 5px !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
         border: 1px solid var(--border, #e5e7eb) !important;
+        z-index: 2500 !important;
+        overflow-y: auto !important;
         transform: none !important;
-        z-index: 100 !important;
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
     }
 
     .tronex-sidebar.minimized {
@@ -4557,40 +4555,49 @@ body {
 
     .tronex-timer-box {
         margin: 0 0 6px 0 !important;
-        padding: 4px 2px !important;
+        padding: 6px 4px !important;
         border-radius: 8px !important;
-        font-size: 11px !important;
+        font-size: 12px !important;
         font-weight: 700 !important;
         justify-content: center !important;
-        gap: 2px !important;
+        gap: 4px !important;
+        flex-shrink: 0 !important;
     }
 
     .tronex-palette-container {
         padding: 0 !important;
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        overflow: hidden !important;
     }
 
     .tronex-palette-header {
-        font-size: 10px !important;
+        font-size: 11px !important;
         font-weight: 700 !important;
-        margin-bottom: 4px !important;
+        margin-bottom: 6px !important;
         text-align: center !important;
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
     }
 
-    /* Question Palette 2-Column Compact Grid in Right Panel */
+    /* Question Palette 3-Column Grid in Fixed Right Panel */
     .tronex-palette {
         display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 3px !important;
-        max-height: none !important;
-        overflow-y: visible !important;
-        padding: 0 !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 4px !important;
+        flex: 1 !important;
+        overflow-y: auto !important;
+        padding: 2px !important;
     }
 
     .tronex-palette-btn, .q-btn, .question-palette button {
-        min-height: 28px !important;
-        min-width: 24px !important;
-        font-size: 10px !important;
-        padding: 2px 0 !important;
+        height: 30px !important;
+        min-height: 30px !important;
+        width: 100% !important;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        padding: 0 !important;
         border-radius: 6px !important;
         display: flex !important;
         align-items: center !important;
@@ -4601,20 +4608,26 @@ body {
         padding: 6px 0 2px 0 !important;
         display: flex !important;
         flex-direction: column !important;
-        gap: 4px !important;
+        gap: 5px !important;
         background: transparent !important;
         border-top: 1px solid var(--border, #e5e7eb) !important;
         margin-top: 6px !important;
         position: static !important;
+        flex-shrink: 0 !important;
     }
 
     .btn-tronex-submit, .btn-tronex-leave {
         width: 100% !important;
-        min-height: 30px !important;
-        padding: 4px 2px !important;
-        font-size: 10px !important;
-        font-weight: 600 !important;
+        min-height: 34px !important;
+        padding: 6px 2px !important;
+        font-size: 11px !important;
+        font-weight: 700 !important;
         border-radius: 6px !important;
+    }
+
+    /* Hide floating add quiz button during active exam */
+    body:has(.tronex-layout.active) .btn-create-quiz-fixed {
+        display: none !important;
     }
 
     /* Question Cards & Text Font Sizes (Reduced 1-2 units for high readability) */
