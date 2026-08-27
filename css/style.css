@@ -4468,7 +4468,7 @@ body {
     /* ============================================================
        EXAM MODE MOBILE OVERHAUL (Bottom Sheet Drawer & Touch Cards)
        ============================================================ */
-    .tronex-layout {
+    .tronex-layout.active {
         display: block !important;
         padding-bottom: 100px !important;
     }
