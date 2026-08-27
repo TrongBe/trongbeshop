@@ -2208,6 +2208,44 @@ body {
     margin-bottom: 20px;
 }
 
+.q-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border, #f1f5f9);
+}
+
+.q-card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--primary, #4f46e5);
+}
+
+.btn-ask-ai {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    color: white !important;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.25);
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.btn-ask-ai:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
 .question-card h4 {
     color: #1976d2;
     font-size: 1.05rem;
@@ -4486,7 +4524,7 @@ body {
         right: 0 !important;
         top: auto !important;
         width: 100% !important;
-        max-height: 82vh !important;
+        max-height: 55vh !important;
         border-radius: 24px 24px 0 0 !important;
         box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2) !important;
         background: var(--bg-surface, #ffffff) !important;
@@ -4501,7 +4539,7 @@ body {
 
     /* Minimized state turns into a sleek bottom dock header bar */
     .tronex-sidebar.minimized {
-        transform: translateY(calc(100% - 68px)) !important;
+        transform: translateY(calc(100% - 62px)) !important;
         overflow: hidden !important;
         box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.15) !important;
     }
