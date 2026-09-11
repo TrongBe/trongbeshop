@@ -637,6 +637,8 @@ export const mockQuizzes = [
         id: "de_thi_thu_thptqg_anh",
         title: "Đề thi thử THPTQG môn Tiếng Anh",
         description: "Đề thi thử THPT Quốc Gia môn Tiếng Anh - gồm các dạng: điền vào đoạn văn, sắp xếp hội thoại/đoạn văn, đọc hiểu đoạn văn",
+        scoreScale: 10,
+        scorePerQuestion: 0.25,
         questions: [
             // Reading Group 1-6: Admissions Open (Alley University)
             {

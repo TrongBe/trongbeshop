@@ -201,6 +201,7 @@ function initQuizList() {
             <div class="tags-container" style="margin-bottom: 24px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px;">
                 ${(quiz.privacy === 'public' || !quiz.privacy) ? '<span style="background:#10B981; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🌍 Công Khai</span>' : '<span style="background:#6366f1; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🔒 Riêng tư</span>'}
                 <span class="quiz-meta">📚 Số câu: ${getQuizQuestionCount(quiz)}</span>
+                ${(quiz.id === 'de_thi_thu_thptqg_anh' || quiz.scoreScale === 10) ? '<span style="background:#f59e0b; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🎯 Thang điểm 10 (0.25đ/câu)</span>' : ''}
                 <span class="quiz-views" id="views-${quiz.id}">Lượt truy cập: ${quiz.viewCount || 0}</span>
             </div>
             <div class="card-btn-row" style="display: flex; gap: 10px;">
@@ -935,10 +936,14 @@ if (quizForm) {
                     });
                     const subId = Date.now() + '_' + Math.random().toString(36).slice(2, 6);
                     const subRef = ref(dbRT, `submissions/${currentQuiz.id}/${subId}`);
+                    const isEnglishTHPTQG = currentQuiz.id === 'de_thi_thu_thptqg_anh' || currentQuiz.scoreScale === 10;
+                    const calculatedAutoScore = isEnglishTHPTQG 
+                        ? Number((correct * 0.25).toFixed(2)) 
+                        : correct;
                     await set(subRef, {
                         participant: currentParticipant,
                         answers,
-                        autoScore: correct,
+                        autoScore: calculatedAutoScore,
                         totalQuestions: correct + incorrect + unanswered,
                         submittedAt: Date.now(),
                         finalScore: null,
@@ -1005,13 +1010,26 @@ function renderResults(correct, incorrect, unanswered) {
     const total = correct + incorrect + unanswered;
 
     let score;
-    if (isVACTPage) {
+    const isEnglishTHPTQG = currentQuiz && (currentQuiz.id === 'de_thi_thu_thptqg_anh' || currentQuiz.scoreScale === 10);
+    const scoreContainer = document.querySelector('.tronex-score');
+
+    if (isEnglishTHPTQG) {
+        // Thang điểm 10 cho đề THPTQG Tiếng Anh (40 câu, mỗi câu 0.25đ)
+        const rawScore = correct * 0.25;
+        score = Number.isInteger(rawScore) ? rawScore.toString() : rawScore.toFixed(2).replace(/\.?0+$/, '');
+        if (scoreContainer) {
+            scoreContainer.innerHTML = `<span id="tronexScoreText">${score}</span> / 10`;
+        }
+    } else if (isVACTPage) {
         // Thang điểm 1200 cho TRONEX (10đ mỗi câu đúng)
         score = correct * 10;
-        document.querySelector('.tronex-score').innerHTML = `<span id="tronexScoreText">${score}</span> / 1200`;
+        if (scoreContainer) {
+            scoreContainer.innerHTML = `<span id="tronexScoreText">${score}</span> / 1200`;
+        }
     } else {
         score = total > 0 ? ((correct / total) * 10).toFixed(2) : 0;
-        document.getElementById('tronexScoreText').textContent = score;
+        const scoreText = document.getElementById('tronexScoreText');
+        if (scoreText) scoreText.textContent = score;
     }
 
     // Hiển thị thời gian làm bài
@@ -1603,10 +1621,13 @@ window.viewSubmissions = function (quizId) {
             const p = sub.participant || {};
             const avatarUrl = p.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(p.displayName || 'A')}&background=6366f1&color=fff&size=48&bold=true`;
             const time = sub.submittedAt ? new Date(sub.submittedAt).toLocaleString('vi-VN') : 'Không rõ';
-            const hasFinalScore = sub.finalScore !== null && sub.finalScore !== undefined;
+            const isEnglishTHPTQG = quizId === 'de_thi_thu_thptqg_anh';
+            const autoScoreDisplay = isEnglishTHPTQG && typeof sub.autoScore === 'number'
+                ? `${sub.autoScore}/10đ`
+                : `${sub.autoScore || 0}`;
             const scoreBadge = hasFinalScore
                 ? `<span style="color:#16a34a;font-weight:700;font-size:1rem;">🏅 ${sub.finalScore} điểm</span>`
-                : `<span style="color:#6366f1;font-size:0.9rem;">Tự động: ${sub.autoScore || 0}</span>`;
+                : `<span style="color:#6366f1;font-size:0.9rem;">Tự động: ${autoScoreDisplay}</span>`;
 
             const card = document.createElement('div');
             card.style.cssText = 'background:var(--bg-card,white);border:1px solid var(--border,#e2e8f0);border-radius:16px;padding:16px 20px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:all 0.2s;';
@@ -1739,8 +1760,12 @@ window.viewSubmissionDetail = function (quizId, submissionId, submissionData) {
     const gradeBox = document.getElementById('submissionGradeBox');
     if (gradeBox) {
         gradeBox.style.display = 'block';
+        const isEnglishTHPTQG = quiz && (quiz.id === 'de_thi_thu_thptqg_anh' || quiz.scoreScale === 10);
+        const displayScore = isEnglishTHPTQG 
+            ? `${(autoScore * 0.25).toFixed(2).replace(/\.?0+$/, '')} / 10 (${autoScore}/${flatQs.length} câu đúng)`
+            : `${autoScore} (${autoScore}/${flatQs.length} câu đúng)`;
         const autoEl = document.getElementById('autoScoreDisplay');
-        if (autoEl) autoEl.textContent = autoScore;
+        if (autoEl) autoEl.textContent = displayScore;
         const finalInput = document.getElementById('finalScoreInput');
         if (finalInput) finalInput.value = (submissionData.finalScore !== null && submissionData.finalScore !== undefined) ? submissionData.finalScore : '';
     }
