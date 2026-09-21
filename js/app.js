@@ -853,6 +853,34 @@ function renderQuestions() {
             });
 
             optionsList.appendChild(input);
+        } else if (qType === 'essay') {
+            const textarea = document.createElement('textarea');
+            textarea.className = 'form-control essay-input';
+            textarea.name = `question_${q.id}`;
+            textarea.rows = 4;
+            textarea.placeholder = 'Nhập câu trả lời tự luận của bạn vào đây...';
+            textarea.style.cssText = 'width: 100%; max-width: 650px; margin-top: 10px; font-size: 0.95rem; padding: 10px 14px; border: 2px solid #E5E7EB; border-radius: 8px; transition: all 0.3s ease; resize: vertical;';
+            optionsList.appendChild(textarea);
+        } else if (qType === 'essay_group') {
+            const groupDiv = document.createElement('div');
+            groupDiv.className = 'essay-group-container';
+            (q.subQuestions || []).forEach(sq => {
+                const itemDiv = document.createElement('div');
+                itemDiv.style.cssText = 'margin-bottom: 14px;';
+                const label = document.createElement('label');
+                label.innerHTML = `<strong>${sq.text}</strong>`;
+                label.style.cssText = 'display: block; margin-bottom: 6px; font-size: 0.95rem;';
+                const textarea = document.createElement('textarea');
+                textarea.className = 'form-control essay-input';
+                textarea.name = `question_${q.id}_${sq.id}`;
+                textarea.rows = 2;
+                textarea.placeholder = 'Nhập câu trả lời...';
+                textarea.style.cssText = 'width: 100%; max-width: 650px; font-size: 0.9rem; padding: 8px 12px; border: 2px solid #E5E7EB; border-radius: 8px; resize: vertical;';
+                itemDiv.appendChild(label);
+                itemDiv.appendChild(textarea);
+                groupDiv.appendChild(itemDiv);
+            });
+            optionsList.appendChild(groupDiv);
         }
 
         qBlock.appendChild(optionsList);
@@ -918,6 +946,29 @@ if (quizForm) {
                     });
                     if (isAnyUnanswered) unanswered++;
                     else if (isAllCorrect) correct++;
+                    else incorrect++;
+                } else if (qType === 'essay') {
+                    const userVal = (formData.get(`question_${qId}`) || "").toString().trim();
+                    if (userVal === "") {
+                        unanswered++;
+                    } else {
+                        const diff = computeTextDiff(userVal, q.correctAnswer || "");
+                        if (diff.isPass) correct++;
+                        else incorrect++;
+                    }
+                } else if (qType === 'essay_group') {
+                    let isAllPass = true;
+                    let isAnyUnanswered = false;
+                    (q.subQuestions || []).forEach(sq => {
+                        const userVal = (formData.get(`question_${qId}_${sq.id}`) || "").toString().trim();
+                        if (userVal === "") isAnyUnanswered = true;
+                        else {
+                            const diff = computeTextDiff(userVal, sq.correctAnswer || "");
+                            if (!diff.isPass) isAllPass = false;
+                        }
+                    });
+                    if (isAnyUnanswered) unanswered++;
+                    else if (isAllPass) correct++;
                     else incorrect++;
                 }
             });
@@ -985,6 +1036,18 @@ function showReviewMode(qs) {
                 if (inputs.length > 0) {
                     const table = inputs[0].closest('.tf-table');
                     if (table) highlightTFGroupAnswer(q, table, radioName);
+                }
+            });
+        } else if (qType === 'essay') {
+            const inputs = document.getElementsByName(`question_${qId}`);
+            if (inputs.length > 0) {
+                highlightEssay(q, inputs[0]);
+            }
+        } else if (qType === 'essay_group') {
+            (q.subQuestions || []).forEach(sq => {
+                const inputs = document.getElementsByName(`question_${qId}_${sq.id}`);
+                if (inputs.length > 0) {
+                    highlightEssaySub(sq, inputs[0]);
                 }
             });
         }
@@ -1163,10 +1226,126 @@ function highlightShortAnswer(q, inputElement, isReview = false) {
         inputElement.style.borderColor = '#EF4444'; // Đỏ
         inputElement.style.backgroundColor = '#FEE2E2';
         inputElement.style.color = '#991B1B';
-        if (isReview && !inputElement.value.includes("Đáp án:")) {
-            inputElement.value = inputElement.value + " (Đáp án: " + q.correctAnswer + ")";
+    }
+}
+
+function computeTextDiff(userText, targetText) {
+    const cleanStr = str => (str || '').toString().toLowerCase()
+        .replace(/[.,;:!?()"'“”=\-+→]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+    
+    const userWords = (userText || '').toString().trim().split(/\s+/).filter(Boolean);
+    const targetWords = (targetText || '').toString().trim().split(/\s+/).filter(Boolean);
+
+    if (userWords.length === 0) {
+        return { similarity: 0, isPass: false, html: '<span style="color: #EF4444; font-style: italic;">Chưa trả lời</span>', percent: 0 };
+    }
+
+    const normUser = userWords.map(cleanStr);
+    const normTarget = targetWords.map(cleanStr);
+
+    const m = normUser.length;
+    const n = normTarget.length;
+
+    // LCS Matrix
+    const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
+    for (let i = 1; i <= m; i++) {
+        for (let j = 1; j <= n; j++) {
+            if (normUser[i - 1] === normTarget[j - 1] && normUser[i - 1] !== '') {
+                dp[i][j] = dp[i - 1][j - 1] + 1;
+            } else {
+                dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+            }
         }
     }
+
+    const lcsLen = dp[m][n];
+    const similarity = n > 0 ? (lcsLen / n) : (m > 0 ? 1 : 0);
+    const isPass = similarity >= 0.70;
+
+    // Backtrack to find matched words in user text
+    let i = m, j = n;
+    const matchedUser = new Array(m).fill(false);
+    while (i > 0 && j > 0) {
+        if (normUser[i - 1] === normTarget[j - 1] && normUser[i - 1] !== '') {
+            matchedUser[i - 1] = true;
+            i--;
+            j--;
+        } else if (dp[i - 1][j] >= dp[i][j - 1]) {
+            i--;
+        } else {
+            j--;
+        }
+    }
+
+    const html = userWords.map((word, idx) => {
+        if (matchedUser[idx]) {
+            return `<span style="background-color: #D1FAE5; color: #065F46; padding: 2px 6px; border-radius: 4px; font-weight: 600; margin: 0 1px; display: inline-block;">${escapeHTML(word)}</span>`;
+        } else {
+            return `<span style="background-color: #FEE2E2; color: #991B1B; padding: 2px 6px; border-radius: 4px; text-decoration: line-through; margin: 0 1px; display: inline-block;">${escapeHTML(word)}</span>`;
+        }
+    }).join(' ');
+
+    return { similarity, isPass, html, percent: Math.round(similarity * 100) };
+}
+
+function escapeHTML(str) {
+    return (str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function highlightEssay(q, textarea) {
+    const parent = textarea.parentElement;
+    const userText = textarea.value.trim();
+    const diff = computeTextDiff(userText, q.correctAnswer || "");
+
+    textarea.style.display = 'none';
+
+    const resDiv = document.createElement('div');
+    resDiv.className = 'essay-review-result';
+    resDiv.style.cssText = 'margin-top: 10px; padding: 12px 16px; border-radius: 8px; background: #F9FAFB; border: 2px solid ' + (diff.isPass ? '#10B981' : '#EF4444') + ';';
+
+    const statusBadge = diff.isPass
+        ? `<span style="background: #10B981; color: #FFF; padding: 3px 8px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; margin-left: 8px;">ĐÚNG (${diff.percent}%)</span>`
+        : `<span style="background: #EF4444; color: #FFF; padding: 3px 8px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; margin-left: 8px;">SAI (${diff.percent}%)</span>`;
+
+    resDiv.innerHTML = `
+        <div style="font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; color: #374151;">
+            Bài làm của bạn: ${statusBadge}
+        </div>
+        <div style="line-height: 1.8; margin-bottom: 12px; font-size: 0.95rem;">${diff.html}</div>
+        <div style="background: #EFF6FF; border-left: 4px solid #3B82F6; padding: 10px 14px; border-radius: 6px; font-size: 0.9rem; color: #1E40AF;">
+            <strong>📌 Đáp án gốc:</strong><br>${escapeHTML(q.correctAnswer || "")}
+        </div>
+    `;
+    parent.appendChild(resDiv);
+}
+
+function highlightEssaySub(sq, textarea) {
+    const parent = textarea.parentElement;
+    const userText = textarea.value.trim();
+    const diff = computeTextDiff(userText, sq.correctAnswer || "");
+
+    textarea.style.display = 'none';
+
+    const resDiv = document.createElement('div');
+    resDiv.className = 'essay-review-result';
+    resDiv.style.cssText = 'margin-top: 6px; padding: 10px 14px; border-radius: 8px; background: #F9FAFB; border: 2px solid ' + (diff.isPass ? '#10B981' : '#EF4444') + ';';
+
+    const statusBadge = diff.isPass
+        ? `<span style="background: #10B981; color: #FFF; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-left: 6px;">ĐÚNG (${diff.percent}%)</span>`
+        : `<span style="background: #EF4444; color: #FFF; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-left: 6px;">SAI (${diff.percent}%)</span>`;
+
+    resDiv.innerHTML = `
+        <div style="font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; color: #374151;">
+            Kết quả: ${statusBadge}
+        </div>
+        <div style="line-height: 1.6; margin-bottom: 8px; font-size: 0.9rem;">${diff.html}</div>
+        <div style="background: #EFF6FF; border-left: 4px solid #3B82F6; padding: 8px 12px; border-radius: 6px; font-size: 0.85rem; color: #1E40AF;">
+            <strong>📌 Đáp án gốc:</strong> ${escapeHTML(sq.correctAnswer || "")}
+        </div>
+    `;
+    parent.appendChild(resDiv);
 }
 
 function resetScoreCircle() {

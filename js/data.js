@@ -732,5 +732,176 @@ export const mockQuizzes = [
                 ]
             }
         ]
+    },
+    {
+        id: "chuong_1_ester_lipid",
+        title: "Chương 1: Ester - Lipid",
+        description: "Hệ thống bài tập Chương 1: Ester - Lipid (Phần I. Lựa chọn: 24 câu | Phần II. Đúng/Sai: 6 câu | Phần III. Trả lời ngắn)",
+        questions: [
+            { id: "q1_chuong1_el", text: "Câu 1: Ester nào sau đây có công thức phân tử C₂H₄O₂?", options: ["A. Methyl acetate.", "B. Ethyl formate.", "C. Methyl formate.", "D. Ethyl acetate."], correctIndex: 2 },
+            { id: "q2_chuong1_el", text: "Câu 2: Chất nào sau đây thuộc loại ester?", options: ["A. CH₃COOH.", "B. CH₃COOCH₃.", "C. C₂H₅OH.", "D. CH₃CHO."], correctIndex: 1 },
+            { id: "q3_chuong1_el", text: "Câu 3: Ester CH₃COOC₂H₅ có tên gọi là", options: ["A. methyl acetate.", "B. ethyl acetate.", "C. ethyl formate.", "D. methyl formate."], correctIndex: 1 },
+            { id: "q4_chuong1_el", text: "Câu 4: Tên gọi của ester HCOOCH₃ là", options: ["A. methyl formate.", "B. ethyl formate.", "C. methyl acetate.", "D. propyl formate."], correctIndex: 0 },
+            { id: "q5_chuong1_el", text: "Câu 5: Thủy phân ester CH₃COOCH₃ trong dung dịch NaOH đun nóng, thu được muối có công thức là", options: ["A. HCOONa.", "B. CH₃COONa.", "C. C₂H₅COONa.", "D. CH₃COOK."], correctIndex: 1 },
+            { id: "q6_chuong1_el", text: "Câu 6: Đun nóng ester HCOOC₂H₅ với dung dịch NaOH vừa đủ, sản phẩm thu được gồm", options: ["A. HCOONa và CH₃OH.", "B. CH₃COONa và C₂H₅OH.", "C. HCOONa và C₂H₅OH.", "D. CH₃COONa và CH₃OH."], correctIndex: 2 },
+            { id: "q7_chuong1_el", text: "Câu 7: Phản ứng thủy phân ester trong môi trường acid là phản ứng", options: ["A. một chiều.", "B. không thuận nghịch.", "C. thuận nghịch.", "D. Oxi hóa - khử."], correctIndex: 2 },
+            { id: "q8_chuong1_el", text: "Câu 8: Đun nóng ester RCOOR' trong dung dịch NaOH thu được sản phẩm là", options: ["A. RCOOH và R'OH.", "B. RCOONa và R'OH.", "C. RCOONa và R'COOH.", "D. RCOOH và R'Na."], correctIndex: 1 },
+            { id: "q9_chuong1_el", text: "Câu 9: Phản ứng giữa alcohol và acid carboxylic tạo thành ester được gọi là phản ứng", options: ["A. xà phòng hóa.", "B. tráng bạc.", "C. ester hóa.", "D. trùng hợp."], correctIndex: 2 },
+            { id: "q10_chuong1_el", text: "Câu 10: Chất béo là triester của glycerol với", options: ["A. acid mineral.", "B. acid béo.", "C. alcohol đơn chức.", "D. acid acetic."], correctIndex: 1 },
+            { id: "q11_chuong1_el", text: "Câu 11: Công thức của tripalmitin là", options: ["A. (C₁₇H₃₅COO)₃C₃H₅.", "B. (C₁₅H₃₁COO)₃C₃H₅.", "C. (C₁₇H₃₃COO)₃C₃H₅.", "D. (C₂H₅COO)₃C₃H₅."], correctIndex: 1 },
+            { id: "q12_chuong1_el", text: "Câu 12: Công thức của tristearin là", options: ["A. (C₁₇H₃₅COO)₃C₃H₅.", "B. (C₁₅H₃₁COO)₃C₃H₅.", "C. (C₁₇H₃₃COO)₃C₃H₅.", "D. (C₁₇H₃₁COO)₃C₃H₅."], correctIndex: 0 },
+            { id: "q13_chuong1_el", text: "Câu 13: Ở nhiệt độ thường, chất béo nào sau đây ở trạng thái lỏng?", options: ["A. Tristearin.", "B. Tripalmitin.", "C. Triolein.", "D. Mỡ lợn."], correctIndex: 2 },
+            { id: "q14_chuong1_el", text: "Câu 14: Ở nhiệt độ thường, chất béo nào sau đây ở trạng thái rắn?", options: ["A. Triolein.", "B. Tristearin.", "C. Dầu đậu nành.", "D. Dầu mè."], correctIndex: 1 },
+            { id: "q15_chuong1_el", text: "Câu 15: Thủy phân hoàn toàn chất béo trong dung dịch NaOH luôn thu được", options: ["A. ethanol.", "B. glycerol.", "C. ethylene glycol.", "D. methanol."], correctIndex: 1 },
+            { id: "q16_chuong1_el", text: "Câu 16: Cho chất béo triolein phản ứng với dung dịch NaOH đun nóng, muối thu được là", options: ["A. C₁₇H₃₅COONa.", "B. C₁₅H₃₁COONa.", "C. C₁₇H₃₃COONa.", "D. CH₃COONa."], correctIndex: 2 },
+            { id: "q17_chuong1_el", text: "Câu 17: Ester nào sau đây có mùi thơm của chuối chín?", options: ["A. Isoamyl acetate.", "B. Benzyl acetate.", "C. Ethyl butyrate.", "D. Geranyl acetate."], correctIndex: 0 },
+            { id: "q18_chuong1_el", text: "Câu 18: Phát biểu nào sau đây là SAI?", options: ["A. Ester ít tan trong nước.", "B. Nhiệt độ sôi của ester thấp hơn acid carboxylic có cùng số nguyên tử C.", "C. Phản ứng xà phòng hóa ester là phản ứng thuận nghịch.", "D. Chất béo không tan trong nước nhưng tan nhiều trong dầu hỏa."], correctIndex: 2 },
+            { id: "q19_chuong1_el", text: "Câu 19: Đốt cháy hoàn toàn một ester no, đơn chức, mạch hở thu được CO₂ và H₂O theo tỉ lệ mol là", options: ["A. 1 : 2.", "B. 2 : 1.", "C. 1 : 1.", "D. 1 : 3."], correctIndex: 2 },
+            { id: "q20_chuong1_el", text: "Câu 20: Cho 4,4 gram ester CH₃COOC₂H₅ tác dụng vừa đủ với dung dịch NaOH. Khối lượng NaOH đã phản ứng là (Biết M_CH₃COOC₂H₅ = 88, M_NaOH = 40)", options: ["A. 4,0 gram.", "B. 2,0 gram.", "C. 8,0 gram.", "D. 1,6 gram."], correctIndex: 1 },
+            { id: "q21_chuong1_el", text: "Câu 21: Xà phòng hóa hoàn toàn 8,9 gram tristearin (C₁₇H₃₅COO)₃C₃H₅ (M = 890) bằng dung dịch NaOH vừa đủ. Khối lượng glycerol (M = 92) thu được là", options: ["A. 0,92 gram.", "B. 1,84 gram.", "C. 0,46 gram.", "D. 9,20 gram."], correctIndex: 0 },
+            { id: "q22_chuong1_el", text: "Câu 22: Để chuyển hóa chất béo lỏng (như dầu thực vật) thành chất béo rắn (như bơ nhân tạo), người ta tiến hành phản ứng", options: ["A. xà phòng hóa.", "B. hydrogen hóa (Cộng H₂).", "C. thủy phân trong môi trường acid.", "D. dehalogen hóa."], correctIndex: 1 },
+            { id: "q23_chuong1_el", text: "Câu 23: Phát biểu nào sau đây đúng về ứng dụng của chất béo?", options: ["A. Chất béo là nguồn cung cấp năng lượng cho cơ thể con người.", "B. Chất béo dùng để sản xuất dung dịch tráng bạc.", "C. Chất béo được dùng để điều chế chất plastic.", "D. Chất béo không có vai trò gì trong ngành công nghiệp thực phẩm."], correctIndex: 0 },
+            { id: "q24_chuong1_el", text: "Câu 24: Dung dịch nào sau đây làm đổi màu quỳ tím sang đỏ?", options: ["A. CH₃COOCH₃.", "B. CH₃COOH.", "C. C₂H₅OH.", "D. C₃H₅(OH)₃."], correctIndex: 1 },
+
+            // PHẦN II: CÂU TRẮC NGHIỆM ĐÚNG/SAI (6 câu)
+            {
+                id: "q25_chuong1_el",
+                type: "true_false_group",
+                text: "<strong>PHẦN II. CÂU TRẮC NGHIỆM ĐÚNG/SAI</strong><br>Câu 25: Cho công thức cấu tạo của ester X: CH₃COOC₂H₅.",
+                subQuestions: [
+                    { id: "a", text: "a) X là ester no, đơn chức, mạch hở.", correctAnswer: "Đúng" },
+                    { id: "b", text: "b) Tên gọi của X là methyl acetate.", correctAnswer: "Sai" },
+                    { id: "c", text: "c) Thủy phân X trong môi trường acid là phản ứng một chiều.", correctAnswer: "Sai" },
+                    { id: "d", text: "d) Đốt cháy hoàn toàn 1 mol X thu được số mol CO₂ bằng số mol H₂O.", correctAnswer: "Đúng" }
+                ]
+            },
+            {
+                id: "q26_chuong1_el",
+                type: "true_false_group",
+                text: "Câu 26: Tiến hành thí nghiệm thủy phân triolein (C₁₇H₃₃COO)₃C₃H₅ trong dung dịch NaOH, đun nóng.",
+                subQuestions: [
+                    { id: "a", text: "a) Phản ứng xảy ra là phản ứng xà phòng hóa.", correctAnswer: "Đúng" },
+                    { id: "b", text: "b) Sản phẩm thu được gồm glycerol và muối sodium oleate.", correctAnswer: "Đúng" },
+                    { id: "c", text: "c) Sau phản ứng thu được hỗn hợp đồng nhất.", correctAnswer: "Đúng" },
+                    { id: "d", text: "d) Triolein là chất béo rắn ở nhiệt độ thường.", correctAnswer: "Sai" }
+                ]
+            },
+            {
+                id: "q27_chuong1_el",
+                type: "true_false_group",
+                text: "Câu 27: Xét các tính chất vật lí của ester và chất béo:",
+                subQuestions: [
+                    { id: "a", text: "a) Ester và chất béo đều nhẹ hơn nước và rất ít tan trong nước.", correctAnswer: "Đúng" },
+                    { id: "b", text: "b) Các ester thường có mùi thơm đặc trưng của các loại hoa quả.", correctAnswer: "Đúng" },
+                    { id: "c", text: "c) Nhiệt độ sôi của ester cao hơn nhiệt độ sôi của alcohol có cùng số nguyên tử carbon.", correctAnswer: "Sai" },
+                    { id: "d", text: "d) Mỡ lợn, mỡ bò có thành phần chính là các chất béo chứa gốc acid béo không no.", correctAnswer: "Sai" }
+                ]
+            },
+            {
+                id: "q28_chuong1_el",
+                type: "true_false_group",
+                text: "Câu 28: Cho các chất có công thức sau: (1) HCOOCH₃; (2) CH₃COOH; (3) C₂H₅OH; (4) (C₁₅H₃₁COO)₃C₃H₅.",
+                subQuestions: [
+                    { id: "a", text: "a) Chất (1) và chất (4) đều thuộc loại ester.", correctAnswer: "Đúng" },
+                    { id: "b", text: "b) Thủy phân chất (1) và chất (4) trong dung dịch NaOH đun nóng đều thu được C₃H₅(OH)₃.", correctAnswer: "Sai" },
+                    { id: "c", text: "c) Chất (2) có phản ứng tráng bạc.", correctAnswer: "Sai" },
+                    { id: "d", text: "d) Nhiệt độ sôi của chất (2) cao hơn chất (3).", correctAnswer: "Đúng" }
+                ]
+            },
+            {
+                id: "q29_chuong1_el",
+                type: "true_false_group",
+                text: "Câu 29: Tiến hành thí nghiệm điều chế ethyl acetate trong phòng thí nghiệm từ CH₃COOH, C₂H₅OH và H₂SO₄ đặc.",
+                subQuestions: [
+                    { id: "a", text: "a) H₂SO₄ đặc đóng vai trò là chất xúc tác và hút nước để chuyển dịch cân bằng.", correctAnswer: "Đúng" },
+                    { id: "b", text: "b) Phản ứng xảy ra là phản ứng một chiều.", correctAnswer: "Sai" },
+                    { id: "c", text: "c) Sản phẩm ethyl acetate thu được là chất lỏng, nhẹ hơn nước và nổi lên trên.", correctAnswer: "Đúng" },
+                    { id: "d", text: "d) Có thể thay H₂SO₄ đặc bằng HCl đặc mà hiệu suất phản ứng không thay đổi.", correctAnswer: "Sai" }
+                ]
+            },
+            {
+                id: "q30_chuong1_el",
+                type: "true_false_group",
+                text: "Câu 30: Về ứng dụng của xà phòng và chất béo:",
+                subQuestions: [
+                    { id: "a", text: "a) Xà phòng được sản xuất bằng cách đun chất béo với dung dịch kiềm (NaOH hoặc KOH).", correctAnswer: "Đúng" },
+                    { id: "b", text: "b) Dầu mỡ động thực vật bị ôi thiu là do các liên kết đôi C = C ở gốc acid béo bị oxi hóa bởi không khí.", correctAnswer: "Đúng" },
+                    { id: "c", text: "c) Thức ăn chứa chất béo giúp cơ thể hấp thụ các vitamin tan trong chất béo như A, D, E, K.", correctAnswer: "Đúng" },
+                    { id: "d", text: "d) Dầu mỡ bôi trơn máy móc có cùng thành phần hóa học với dầu ăn.", correctAnswer: "Sai" }
+                ]
+            },
+
+            // PHẦN III: CÂU TRẮC NGHIỆM TRẢ LỜI NGẮN
+            {
+                id: "q31_chuong1_el",
+                type: "short_answer",
+                text: "<strong>PHẦN III. CÂU TRẮC NGHIỆM TRẢ LỜI NGẮN</strong><br>Câu 31: Cho các chất sau: CH₃COOCH₃, C₂H₅OH, HCOOCH₃, CH₃COOH. Số chất thuộc loại ester là ____.",
+                correctAnswer: "2"
+            },
+            {
+                id: "q32_chuong1_el",
+                type: "short_answer",
+                text: "Câu 32: Ester được tạo thành từ acid CH₃COOH và alcohol C₂H₅OH có công thức phân tử là C_xH_yO₂. Giá trị của x là ____.",
+                correctAnswer: "4"
+            },
+            {
+                id: "q33_chuong1_el",
+                type: "short_answer",
+                text: "Câu 33: Phân tử khối của tripalmitin (C₁₅H₃₁COO)₃C₃H₅ là ____ amu.",
+                correctAnswer: "806"
+            },
+            {
+                id: "q34_chuong1_el",
+                type: "short_answer",
+                text: "Câu 34: Để xà phòng hóa hoàn toàn 0,1 mol methyl acetate CH₃COOCH₃ cần dùng vừa đủ V mL dung dịch NaOH 1M. Giá trị của V là ____ mL.",
+                correctAnswer: "100"
+            },
+            {
+                id: "q35_chuong1_el",
+                type: "short_answer",
+                text: "Câu 35: Đốt cháy hoàn toàn 0,1 mol một ester no, đơn chức, mạch hở X thu được 0,3 mol CO₂. Số nguyên tử carbon trong phân tử X là ____.",
+                correctAnswer: "3"
+            },
+            {
+                id: "q36_chuong1_el",
+                type: "short_answer",
+                text: "Câu 36: Cho 6,0 gram acetic acid CH₃COOH tác dụng với lượng dư ethanol C₂H₅OH (xúc tác H₂SO₄ đặc, đun nóng). Thu được 6,6 gram ethyl acetate. Hiệu suất của phản ứng ester hóa là ____ % (Làm tròn đến hàng đơn vị).",
+                correctAnswer: "75"
+            },
+
+            // PHẦN IV: CÂU HỎI TỰ LUẬN NGHĨA HẸP (4 câu)
+            {
+                id: "q37_chuong1_el",
+                type: "essay_group",
+                text: "<strong>PHẦN IV. CÂU HỎI TỰ LUẬN NGHĨA HẸP</strong><br>Câu 37: Viết phương trình hóa học của các phản ứng sau (ghi rõ điều kiện nếu có):",
+                subQuestions: [
+                    { id: "a", text: "a) Thủy phân CH₃COOC₂H₅ trong dung dịch NaOH, đun nóng.", correctAnswer: "CH3COOC2H5 + NaOH -t°-> CH3COONa + C2H5OH" },
+                    { id: "b", text: "b) Thủy phân tristearin (C₁₇H₃₅COO)₃C₃H₅ trong dung dịch NaOH, đun nóng.", correctAnswer: "(C17H35COO)3C3H5 + 3NaOH -t°-> 3C17H35COONa + C3H5(OH)3" }
+                ]
+            },
+            {
+                id: "q38_chuong1_el",
+                type: "essay",
+                text: "Câu 38: Hãy phân biệt hai khái niệm: Dầu ăn (dầu thực vật) và Dầu mỡ bôi trơn máy móc về thành phần hóa học.",
+                correctAnswer: "Dầu ăn có thành phần chính là chất béo (triester của glycerol và acid béo). Dầu mỡ bôi trơn máy móc có thành phần là hỗn hợp các hydrocarbon (dầu mỡ mỏ)."
+            },
+            {
+                id: "q39_chuong1_el",
+                type: "essay_group",
+                text: "Câu 39: Đun nóng 8,8 gram ethyl acetate (CH₃COOC₂H₅) với 150 mL dung dịch NaOH 1M đến khi phản ứng xảy ra hoàn toàn.",
+                subQuestions: [
+                    { id: "a", text: "a) Tính số mol ethyl acetate và số mol NaOH ban đầu.", correctAnswer: "n_ester = 8.8 / 88 = 0.1 mol; n_NaOH = 0.15 x 1 = 0.15 mol." },
+                    { id: "b", text: "b) Cho biết chất nào còn dư sau phản ứng?", correctAnswer: "NaOH dư (0.15 mol > 0.1 mol)." },
+                    { id: "c", text: "c) Cô cạn dung dịch sau phản ứng, thu được bao nhiêu gram chất rắn khô?", correctAnswer: "m_rắn = m_CH3COONa + m_NaOH_dư = (0.1 x 82) + (0.05 x 40) = 8.2 + 2 = 10.2 gram." }
+                ]
+            },
+            {
+                id: "q40_chuong1_el",
+                type: "essay",
+                text: "Câu 40: Tại sao khi rán (chiên) thức ăn bằng dầu ăn, nếu dùng lại dầu ăn đã chiên đi chiên lại nhiều lần ở nhiệt độ cao thì không tốt cho sức khỏe?",
+                correctAnswer: "Khi đun nóng ở nhiệt độ cao nhiều lần, liên kết đôi trong chất béo bị oxi hóa tạo thành các aldehyde, peroxide độc hại, đồng thời phân hủy tạo ra các chất có nguy cơ gây ung thư."
+            }
+        ]
     }
 ];
+
