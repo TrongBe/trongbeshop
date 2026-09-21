@@ -37,16 +37,16 @@ const isAdmin = localStorage.getItem("admin_secret_key") === "trongbeshop";
 
 
 if (isVACTPage) {
-    // Giữ lại tất cả đề V-ACT / ĐGNL từ data.js
-    const vactQuizzes = mockQuizzes.filter(q => q && q.id && (q.id.endsWith('_dgnl') || q.id.startsWith('de_') || q.id.startsWith('vact_')));
+    // Giữ lại tất cả đề V-ACT / ĐGNL / Chương từ data.js
+    const vactQuizzes = mockQuizzes.filter(q => q && q.id && (q.id.endsWith('_dgnl') || q.id.startsWith('de_') || q.id.startsWith('vact_') || q.id.includes('chuong_')));
     mockQuizzes.length = 0;
     mockQuizzes.push(...vactQuizzes);
 
     // Backup các đề seed V-ACT từ data.js
     window.__vactSeedBackup = [...vactQuizzes];
 } else {
-    // Ở trang chủ, ẩn các đề V-ACT / ĐGNL
-    const homeQuizzes = mockQuizzes.filter(q => q && q.id && (!q.id.endsWith('_dgnl') && !q.id.startsWith('de_') && !q.id.startsWith('vact_')));
+    // Ở trang chủ, giữ lại tất cả các đề từ data.js
+    const homeQuizzes = mockQuizzes.filter(q => q && q.id);
     mockQuizzes.length = 0;
     mockQuizzes.push(...homeQuizzes);
 }

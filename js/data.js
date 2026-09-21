@@ -734,7 +734,7 @@ export const mockQuizzes = [
         ]
     },
     {
-        id: "chuong_1_ester_lipid",
+        id: "de_chuong_1_ester_lipid",
         title: "Chương 1: Ester - Lipid",
         description: "Hệ thống bài tập Chương 1: Ester - Lipid (Phần I. Lựa chọn: 24 câu | Phần II. Đúng/Sai: 6 câu | Phần III. Trả lời ngắn)",
         questions: [
