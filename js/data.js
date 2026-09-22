@@ -904,6 +904,78 @@ export const mockQuizzes = [
                 correctAnswer: "Khi đun nóng ở nhiệt độ cao nhiều lần, liên kết đôi trong chất béo bị oxi hóa tạo thành các aldehyde, peroxide độc hại, đồng thời phân hủy tạo ra các chất có nguy cơ gây ung thư."
             }
         ]
+    },
+    {
+        id: "de_4_advertisement",
+        title: "4 advertisement",
+        description: "4 bài đọc quảng cáo Tiếng Anh (Điền từ vào chỗ trống - 24 câu hỏi)",
+        scoreScale: 10,
+        scorePerQuestion: 0.42,
+        questions: [
+            // Advertisement 1
+            {
+                id: "reading_adv_1",
+                section: "TIẾNG ANH",
+                type: "reading_group",
+                passage: "<strong>ADVERTISEMENT 1</strong><br><br><h3 style=\"margin:6px 0;\">🌐 The Boom of Online Media 📰</h3><br>✨ In today's fast-paced world, media is changing more rapidly than ever before!<br><br>📊 Media within the country is evolving fast because of the growth of digital platforms.<br><br><strong>From Traditional to Digital</strong><br>💻 (1) _____, such as newspapers and TV, are increasingly being replaced by online channels where information can be accessed instantly.<br><br>💡 This shift in format allows for more interactive and (2) _____ content.<br><br>🎯 People expect (3) _____ news that aligns with their interests and preferences.<br><br><strong>Real-Time Updates, Real Impact</strong><br>⏰ Thanks to the availability of real-time updates through digital media, many users, (4) _____ accustomed to immediate access, no longer rely on conventional sources.<br><br><strong>Faster News, Greater Influence</strong><br>🚀 As a result, online platforms are (5) _____ the news faster than ever before, providing instant reactions to global events.<br><br>📈 The rise in demand for timely and relevant content has a significant impact on the future of media (6) _____ the digital age.<br><br><em>(Adapted from: Pew Research Center and Reuters Institute reports on digital media trends.)</em>",
+                subQuestions: [
+                    { id: "q1_adv1", text: "Question 1 (Blank 1):", options: ["A. Traditional media outlets", "B. Media outlets traditional", "C. Traditional outlets media", "D. Media traditional outlets"], correctIndex: 0 },
+                    { id: "q2_adv1", text: "Question 2 (Blank 2):", options: ["A. person", "B. personalization", "C. personalized", "D. personal"], correctIndex: 2 },
+                    { id: "q3_adv1", text: "Question 3 (Blank 3):", options: ["A. to receiving", "B. to receive", "C. receive", "D. to be received"], correctIndex: 1 },
+                    { id: "q4_adv1", text: "Question 4 (Blank 4):", options: ["A. who became", "B. become", "C. was become", "D. having become"], correctIndex: 3 },
+                    { id: "q5_adv1", text: "Question 5 (Blank 5):", options: ["A. exacerbating", "B. breaking", "C. amplifying", "D. dominating"], correctIndex: 1 },
+                    { id: "q6_adv1", text: "Question 6 (Blank 6):", options: ["A. with", "B. on", "C. in", "D. without"], correctIndex: 2 }
+                ]
+            },
+
+            // Advertisement 2
+            {
+                id: "reading_adv_2",
+                section: "TIẾNG ANH",
+                type: "reading_group",
+                passage: "<strong>ADVERTISEMENT 2</strong><br><br><h3 style=\"margin:6px 0;\">🎓 Education for Tomorrow's Generation 🌍</h3><br>✨ In today's ever-changing world, the future of education offers young people an exciting range of opportunities.<br><br>🚀 Students can choose (1) _____ or step into innovative fields such as artificial intelligence or environmental science—opening doors to limitless potential.<br><br><strong>Explore Global Opportunities</strong><br>🌍 With these diverse options, more and more students are choosing to study abroad, (2) _____ valuable international experiences that enrich their perspectives and prepare them for a global future.<br><br><strong>Flexible & Modern Learning</strong><br>💻 Today's education system is more flexible than ever, combining online and in-person learning to better support individual needs.<br><br>🎯 This approach is especially beneficial (3) _____ those who (4) _____ flexible schedules.<br><br><strong>Plan for Success</strong><br>🎨 Looking ahead, young people are strongly encouraged to (5) _____ ahead and plan carefully for their academic journey.<br><br>📊 Notably, recent research shows that students who pursue STEM majors tend (6) _____ higher-paying jobs, making them a smart choice for future success.<br><br><em>(Adapted from: UNESCO reports on global education trends; OECD (2023), Education at a Glance.)</em>",
+                subQuestions: [
+                    { id: "q7_adv2", text: "Question 7 (Blank 1):", options: ["A. conventional academic paths", "B. conventional paths academic", "C. academic paths conventional", "D. paths conventional academic"], correctIndex: 0 },
+                    { id: "q8_adv2", text: "Question 8 (Blank 2):", options: ["A. gained", "B. having gained", "C. that gained", "D. gaining"], correctIndex: 3 },
+                    { id: "q9_adv2", text: "Question 9 (Blank 3):", options: ["A. at", "B. on", "C. for", "D. into"], correctIndex: 2 },
+                    { id: "q10_adv2", text: "Question 10 (Blank 4):", options: ["A. required", "B. require", "C. requiring", "D. requirement"], correctIndex: 1 },
+                    { id: "q11_adv2", text: "Question 11 (Blank 5):", options: ["A. plan", "B. reinforce", "C. sustain", "D. allocate"], correctIndex: 0 },
+                    { id: "q12_adv2", text: "Question 12 (Blank 6):", options: ["A. found", "B. to find", "C. find", "D. to be founded"], correctIndex: 1 }
+                ]
+            },
+
+            // Advertisement 3
+            {
+                id: "reading_adv_3",
+                section: "TIẾNG ANH",
+                type: "reading_group",
+                passage: "<strong>ADVERTISEMENT 3</strong><br><br><h3 style=\"margin:6px 0;\">📢 Unleash the Excitement of Live Concerts! 🎶</h3><br>💥 Some moments stay with us forever—and last weekend was truly one of them.<br><br>🎸 I had the chance (1) _____ a live concert of my favorite band, and it was nothing short of amazing.<br><br><strong>Feel the Energy</strong><br>🔥 From the (2) _____ energy of the crowd to the (3) _____ filled with dazzling lights and powerful music, every second was unforgettable.<br><br>🌟 The performance (4) _____ by the lead singer was deeply moving, leaving the entire audience completely captivated.<br><br><strong>Live the Moment</strong><br>🎶 Throughout the night, everyone was dancing and singing along, creating an incredible atmosphere.<br><br>💖 I felt truly part of something special, connected (5) _____ everyone around me.<br><br><strong>Recharge & Celebrate</strong><br>🌈 It was the perfect way to (6) _____ an end to a stressful week—an experience that refreshed my spirit and lifted my mood.<br><br><em>(Adapted from: general descriptions of live music experiences and concert reviews.)</em>",
+                subQuestions: [
+                    { id: "q13_adv3", text: "Question 13 (Blank 1):", options: ["A. attended", "B. attending", "C. to attend", "D. attend"], correctIndex: 2 },
+                    { id: "q14_adv3", text: "Question 14 (Blank 2):", options: ["A. electrifying", "B. electrify", "C. electrified", "D. electricity"], correctIndex: 0 },
+                    { id: "q15_adv3", text: "Question 15 (Blank 3):", options: ["A. incredible stage design", "B. incredible design stage", "C. stage incredible design", "D. design incredible stage"], correctIndex: 0 },
+                    { id: "q16_adv3", text: "Question 16 (Blank 4):", options: ["A. given", "B. which give", "C. giving", "D. that given"], correctIndex: 0 },
+                    { id: "q17_adv3", text: "Question 17 (Blank 5):", options: ["A. from", "B. to", "C. at", "D. for"], correctIndex: 1 },
+                    { id: "q18_adv3", text: "Question 18 (Blank 6):", options: ["A. refute", "B. enhance", "C. put", "D. consolidate"], correctIndex: 2 }
+                ]
+            },
+
+            // Advertisement 4
+            {
+                id: "reading_adv_4",
+                section: "TIẾNG ANH",
+                type: "reading_group",
+                passage: "<strong>ADVERTISEMENT 4</strong><br><br><h3 style=\"margin:6px 0;\">⏰ Why Your Break Time Is Essential</h3><br>🍱 Boost Your Day with a Better Lunch Break!<br><br>⚡ Take a moment to recharge during your busy workday!<br><br>💼 (1) _____ is very important—it's your chance to relax and enjoy some food.<br><br>🕒 My break, (2) _____ at 12:30, allows me to step away from my tasks for a while and refresh my mind.<br><br><strong>Quick and Easy Meal Choices</strong><br>🍲 Looking for something simple and satisfying?<br><br>🥪 I am often fond of sandwiches or salads because they are easy to eat—perfect (3) _____ a fast yet enjoyable meal.<br><br><strong>Make the Most of Your Time</strong><br>⏳ Time is limited, so make every minute count!<br><br>🏃 Sometimes, I need to hurry (4) _____ where to go for lunch.<br><br>⏱️ In about 15 minutes, I have to (5) _____ quickly.<br><br>☕ Whether I eat at my desk or go to a nearby café, this short break helps me feel (6) _____ and more focused for the rest of the day.<br><br><strong>Small Break, Big Impact</strong><br>💡 Make the most of your lunch break—it's a small moment that can make a big difference in your day!<br><br><em>(Adapted from: general lifestyle tips and articles on workplace productivity and healthy habits.)</em>",
+                subQuestions: [
+                    { id: "q19_adv4", text: "Question 19 (Blank 1):", options: ["A. A lunch quick break", "B. A break quick lunch", "C. A quick lunch break", "D. A quick break lunch"], correctIndex: 2 },
+                    { id: "q20_adv4", text: "Question 20 (Blank 2):", options: ["A. starting", "B. which started", "C. started", "D. that starts"], correctIndex: 0 },
+                    { id: "q21_adv4", text: "Question 21 (Blank 3):", options: ["A. in", "B. at", "C. for", "D. on"], correctIndex: 2 },
+                    { id: "q22_adv4", text: "Question 22 (Blank 4):", options: ["A. choosing", "B. to choose", "C. to choosing", "D. choose"], correctIndex: 1 },
+                    { id: "q23_adv4", text: "Question 23 (Blank 5):", options: ["A. get things done", "B. meet a deadline", "C. gain hands-on experience", "D. weigh my options"], correctIndex: 3 },
+                    { id: "q24_adv4", text: "Question 24 (Blank 6):", options: ["A. refreshed", "B. refresh", "C. refreshing", "D. refreshment"], correctIndex: 0 }
+                ]
+            }
+        ]
     }
 ];
 

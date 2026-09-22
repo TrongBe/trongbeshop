@@ -37,8 +37,8 @@ const isAdmin = localStorage.getItem("admin_secret_key") === "trongbeshop";
 
 
 if (isVACTPage) {
-    // Giữ lại tất cả đề V-ACT / ĐGNL / Chương từ data.js
-    const vactQuizzes = mockQuizzes.filter(q => q && q.id && (q.id.endsWith('_dgnl') || q.id.startsWith('de_') || q.id.startsWith('vact_') || q.id.includes('chuong_')));
+    // Giữ lại tất cả đề V-ACT / ĐGNL / Chương / Advertisement từ data.js
+    const vactQuizzes = mockQuizzes.filter(q => q && q.id && (q.id.endsWith('_dgnl') || q.id.startsWith('de_') || q.id.startsWith('vact_') || q.id.includes('chuong_') || q.id.includes('advertisement')));
     mockQuizzes.length = 0;
     mockQuizzes.push(...vactQuizzes);
 
