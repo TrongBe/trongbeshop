@@ -664,7 +664,7 @@
     <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ef629dc6201fd.svg" alt="AI">
   </button>
 
-  <script type="module" src="js/app.js?v=80"></script>
+  <script type="module" src="js/app.js?v=81"></script>
   <script type="module" src="js/gemini.js?v=12"></script>
   <script type="module" src="js/tronex-ai.js?v=5"></script>
   <script type="module" src="js/auth.js?v=1"></script>
@@ -787,7 +787,7 @@
         const isCustom = card.dataset.quizId?.startsWith('gemini_');
         const isVnu = title.includes('đgnl') || title.includes('vnu') || title.includes('đánh giá năng lực');
         const isToan = title.includes('toán') || desc.includes('toán');
-        const isAnh = title.includes('anh') || desc.includes('tiếng anh');
+        const isAnh = title.includes('anh') || desc.includes('tiếng anh') || (card.dataset.quizId || '').includes('adv');
 
         const matchesSearch = !query || title.includes(query) || desc.includes(query);
         let matchesFilter = filter === 'all';

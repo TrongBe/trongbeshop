@@ -971,7 +971,7 @@ export const mockQuizzes = [
                     { id: "q20_adv4", text: "Question 20 (Blank 2):", options: ["A. starting", "B. which started", "C. started", "D. that starts"], correctIndex: 0 },
                     { id: "q21_adv4", text: "Question 21 (Blank 3):", options: ["A. in", "B. at", "C. for", "D. on"], correctIndex: 2 },
                     { id: "q22_adv4", text: "Question 22 (Blank 4):", options: ["A. choosing", "B. to choose", "C. to choosing", "D. choose"], correctIndex: 1 },
-                    { id: "q23_adv4", text: "Question 23 (Blank 5):", options: ["A. get things done", "B. meet a deadline", "C. gain hands-on experience", "D. weigh my options"], correctIndex: 3 },
+                    { id: "q23_adv4", text: "Question 23 (Blank 5):", options: ["A. get things done", "B. meet a deadline", "C. gain hands-on experience", "D. weigh my options"], correctIndex: 0 },
                     { id: "q24_adv4", text: "Question 24 (Blank 6):", options: ["A. refreshed", "B. refresh", "C. refreshing", "D. refreshment"], correctIndex: 0 }
                 ]
             }
