@@ -736,7 +736,9 @@ export const mockQuizzes = [
     {
         id: "de_chuong_1_ester_lipid",
         title: "Chương 1: Ester - Lipid",
-        description: "Hệ thống bài tập Chương 1: Ester - Lipid (Phần I. Lựa chọn: 24 câu | Phần II. Đúng/Sai: 6 câu | Phần III. Trả lời ngắn)",
+        description: "Hệ thống bài tập Chương 1: Ester - Lipid (Phần I. Lựa chọn: 24 câu | Phần II. Đúng/Sai: 6 câu | Phần III. Trả lời ngắn: 6 câu | Phần IV. Tự luận: 4 câu)",
+        scoreScale: 10,
+        scorePerQuestion: 0.25,
         questions: [
             { id: "q1_chuong1_el", text: "Câu 1: Ester nào sau đây có công thức phân tử C₂H₄O₂?", options: ["A. Methyl acetate.", "B. Ethyl formate.", "C. Methyl formate.", "D. Ethyl acetate."], correctIndex: 2 },
             { id: "q2_chuong1_el", text: "Câu 2: Chất nào sau đây thuộc loại ester?", options: ["A. CH₃COOH.", "B. CH₃COOCH₃.", "C. C₂H₅OH.", "D. CH₃CHO."], correctIndex: 1 },
