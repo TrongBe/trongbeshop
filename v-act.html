@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20">
+  <link rel="stylesheet" href="css/style.css?v=21">
 
   <!-- Import Map cho thư viện AI -->
   <script type="importmap">
@@ -186,9 +186,12 @@
     <!-- View: Đang làm bài / Xem lại bài (Chuẩn TRONEX) -->
     <div id="activeQuizView" class="view-section tronex-layout">
       <div class="tronex-main">
-        <div class="quiz-header">
-          <button id="btnBackToMenu" class="btn btn-text">← Quay lại danh sách</button>
-          <h2 id="currentQuizTitle" class="section-title quiz-title">Đang tải...</h2>
+        <div class="quiz-header" style="display:flex; justify-content:space-between; align-items:center;">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <button id="btnBackToMenu" class="btn btn-text">← Quay lại danh sách</button>
+            <h2 id="currentQuizTitle" class="section-title quiz-title" style="margin:0;">Đang tải...</h2>
+          </div>
+          <button type="button" id="btnZenToggle" class="btn-zen-toggle" onclick="toggleZenMode()" title="Bật/Tắt chế độ tập trung (ẩn mọi thành phần gây xao nhãng)">🧘 Chế độ tập trung</button>
         </div>
         <form id="quizForm">
           <div id="questionsContainer">
@@ -664,9 +667,9 @@
     <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ef629dc6201fd.svg" alt="AI">
   </button>
 
-  <script type="module" src="js/app.js?v=81"></script>
+  <script type="module" src="js/app.js?v=83"></script>
   <script type="module" src="js/gemini.js?v=12"></script>
-  <script type="module" src="js/tronex-ai.js?v=5"></script>
+  <script type="module" src="js/tronex-ai.js?v=6"></script>
   <script type="module" src="js/auth.js?v=1"></script>
 
   <!-- DELETE CONFIRM MODAL -->

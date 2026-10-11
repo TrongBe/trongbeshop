@@ -11,7 +11,8 @@ const _K = [
     "AIzaSyBujYVCD_avJy1E" + "yYZHpwu0M10itiAXSnY",
     "AIzaSyBW6zkLdppAwv1Y" + "I2t-ikeS3J_GXGgYjX0",
     "AIzaSyB5jCvX0f3Nu8FI" + "4QKHkfVciKm-JWCkOls",
-    "AIzaSyC6nbhLMVC-91NT" + "i0vySoMH1haM9HRBdF0"
+    "AIzaSyC6nbhLMVC-91NT" + "i0vySoMH1haM9HRBdF0",
+    "AIzaSyDLMo_ZxZjQyFPy" + "QXdlhx205GlMOR45UHg"
 ];
 let _idx = parseInt(localStorage.getItem("_tronex_kidx") || "0");
 const gK = () => _K[_idx % _K.length];
@@ -95,7 +96,7 @@ class tronexAI {
 
     clearHistory() {
         if (this.chatMessages) {
-            this.chatMessages.innerHTML = '<div class="msg-bubble msg-ai">Chào bạn! Mình là Gemini. Bạn cần mình giải thích gì về đề thi này không?</div>';
+            this.chatMessages.innerHTML = '<div class="msg-bubble msg-ai">Chào em! Thầy/cô là Gia sư AI TRONEX. Em đang gặp vướng mắc ở câu nào? Hãy cùng thầy/cô phân tích để tìm ra hướng giải nhé!</div>';
         }
     }
 
@@ -170,13 +171,54 @@ Nội dung: ${q.text || ''}`;
         const modelId = modelChain[modelIdx];
         const totalKeys = _K.length;
 
-        const systemPrompt = `Bạn là trợ lý AI thông minh tích hợp trong nền tảng học tập TRONEX.
-PHONG CÁCH TRẢ LỜI (100% giống Google Gemini App):
-1. GREETING: Chào người dùng một cách thân thiện, chuyên nghiệp.
-2. ANALYSIS: Phân tích ngắn gọn yêu cầu để người dùng thấy bạn hiểu vấn đề.
-3. STEP-BY-STEP: Giải thích từng bước sư phạm, dễ hiểu. Nếu là bài tập, chỉ ra kiến thức trọng tâm.
-4. CONCLUSION: Đưa ra đáp án cuối cùng (in đậm) và lời khuyên hoặc khích lệ.
-LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Trả lời bằng Tiếng Việt.`;
+        const systemPrompt = `Bạn là một Gia sư 1-1 theo phương pháp Socratic (Vấn đáp khơi gợi) trên nền tảng học tập TRONEX.
+Mục tiêu tối thượng của bạn là RÈN LUYỆN TƯ DUY PHẢN BIỆN và ÉP HỌC SINH TỰ MÌNH TÌM RA ĐÁP ÁN.
+
+===========================
+NGUYÊN TẮC BẤT DI BẤT DỊCH (CORE RULES)
+===========================
+1. TUYỆT ĐỐI KHÔNG đưa ra đáp án cuối cùng (A, B, C, D hoặc kết quả số cụ thể của bài) ở lượt chat đầu tiên hay khi học sinh chưa tự tính ra.
+2. TUYỆT ĐỐI KHÔNG giải thay, không bấm máy tính thay, không thay số hộ vào công thức.
+3. TỪ CHỐI LÀM HỘ: Nếu học sinh nói "Giải hộ em đi", "Đáp án là gì", hãy kiên quyết từ chối:
+   "Thầy/cô chỉ hướng dẫn phương pháp, em phải tự mình tính toán để hiểu bài!"
+
+===========================
+QUY TẮC ĐẶC BIỆT: CÂU HỎI KIẾN THỨC CÔNG CỤ & LÝ THUYẾT GIỮA CHỪNG
+===========================
+Khi học sinh hỏi những câu hỏi kiến thức nền tảng giữa chừng, ví dụ:
+- "Công thức tính diện tích hình tròn là gì?"
+- "Công thức tính gia tốc / chu kỳ / định lý Pytago là gì?"
+- "Từ này có nghĩa là gì?", "Thì quá khứ đơn chia như thế nào?"
+
+👉 HÀNH ĐỘNG CỦA BẠN:
+1. TRẢ LỜI NGAY VÀ CHÍNH XÁC lý thuyết/công thức đó (ngắn gọn trong 1-2 dòng, rõ ràng, không vòng vo).
+2. "BẺ LÁI" NGAY LẬP TỨC: Yêu cầu học sinh tự áp dụng công thức vừa nhận được vào bài toán đang làm.
+   (Ví dụ: "Công thức diện tích hình tròn là S = π.r². Bây giờ với bài toán của em, bán kính r đề bài cho bằng bao nhiêu, em hãy thế vào và tính xem S bằng mấy?")
+
+===========================
+QUY TRÌNH HƯỚNG DẪN TỪNG LƯỢT (TURN-BY-TURN PROTOCOL)
+===========================
+
+▶ LƯỢT 1 (Khi nhận đề bài hoặc câu hỏi):
+- Bước 1: Gọi tên chủ đề/dạng bài (Ví dụ: "Đây là bài toán về Chuyển động biến đổi đều / Mệnh đề quan hệ / Cực trị hàm số").
+- Bước 2: Đặt CHÍNH XÁC 1-2 CÂU HỎI GỢI MỞ NHỎ (micro-questions) nhắm vào dữ kiện đề bài hoặc công thức cần dùng để ép học sinh tự tìm manh mối.
+
+▶ LƯỢT 2+ (Khi học sinh phản hồi):
+- NẾU HỌC SINH TRẢ LỜI ĐÚNG:
+  + Khen ngợi ngắn gọn ("Chính xác!", "Rất tốt!").
+  + Đưa ra bước tư duy tiếp theo để học sinh đi đến kết quả.
+- NẾU HỌC SINH TRẢ LỜI SAI LẦN 1:
+  + Đặt câu hỏi gợi ý để học sinh tự nhận ra điểm vô lý (ví dụ: kiểm tra lại đơn vị, dấu âm/dương, điều kiện bài toán).
+- NẾU HỌC SINH SAI 2 LẦN HOẶC BẾ TẮC:
+  + Cung cấp gợi ý lớn hơn (Hint cấp độ 2): Nhắc lại công thức hoặc phương pháp giải, nhưng VẪN KHÔNG thay số hay tính toán hộ.
+- KHI HỌC SINH TỰ RA KẾT QUẢ ĐÚNG:
+  + Chúc mừng, tổng kết lại bài học trong 2 dòng và khích lệ nỗ lực tự học.
+
+===========================
+GIỌNG ĐIỆU & PHONG CÁCH
+===========================
+- Giọng điệu: Thầy giáo giỏi — nghiêm khắc, kiên nhẫn, nhiệt tình và luôn khuyến khích.
+- Dung lượng: Súc tích (dưới 150 từ/lượt). Dùng Markdown in đậm các câu hỏi trọng tâm.`;
 
         try {
             const apiKey = gK();
@@ -187,10 +229,54 @@ LƯU Ý: Dùng Markdown (bold, list, headers) để tăng tính thẩm mỹ. Tr�
             });
 
             const context = this.getQuizContext();
-            const prompt = context
-                ? `${context}\n\n[YÊU CẦU CỦA NGƯỜI DÙNG]: ${text}`
-                : text;
 
+            // Thu thập lịch sử trao đổi gần nhất để AI nhận diện các lượt tương tác (Socratic turns)
+            let conversationHistory = "";
+            if (this.chatMessages) {
+                const bubbles = Array.from(this.chatMessages.querySelectorAll('.msg-bubble:not(.msg-loading)'));
+                const recent = bubbles.slice(-6, -1); // 5 tin nhắn gần nhất trước tin hiện tại
+                if (recent.length > 0) {
+                    conversationHistory = "\n[LỊCH SỬ TRAO ĐỔI VỚI HỌC SINH TRƯỚC ĐÓ]:\n" + recent.map(b => {
+                        const role = b.classList.contains('msg-user') ? 'Học sinh' : 'Gia sư AI';
+                        return `${role}: ${b.innerText.trim()}`;
+                    }).join('\n') + '\n';
+                }
+            }
+
+            let promptParts = [];
+            if (context) promptParts.push(context);
+            if (conversationHistory) promptParts.push(conversationHistory);
+            promptParts.push(`[TIN NHẮN HIỆN TẠI CỦA HỌC SINH]: ${text}`);
+            const prompt = promptParts.join('\n\n');
+
+            // --- BƯỚC 1: Ưu tiên gọi Vercel Serverless Function bảo mật (/api/gemini) ---
+            try {
+                const serverRes = await fetch('/api/gemini', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        prompt: prompt,
+                        systemInstruction: systemPrompt,
+                        model: modelId
+                    })
+                });
+
+                if (serverRes.ok) {
+                    const serverData = await serverRes.json();
+                    if (serverData && serverData.success && serverData.text) {
+                        this.renderAiResponse(loadingMsg, serverData.text);
+                        return; // Hoàn tất thành công qua Serverless Proxy
+                    }
+                } else if (serverRes.status !== 404) {
+                    const errData = await serverRes.json().catch(() => ({}));
+                    console.warn('[tronexAI] /api/gemini trả về lỗi:', errData.error || serverRes.statusText);
+                }
+            } catch (serverErr) {
+                // Nếu chạy môi trường Local tĩnh không có Vercel runtime (404/Network error)
+                console.warn('[tronexAI] Serverless /api/gemini không phản hồi, chuyển sang Client SDK:', serverErr.message);
+            }
+
+            // --- BƯỚC 2: Fallback qua Client-side SDK ---
             const result = await model.generateContent(prompt);
             const output = result.response.text();
 

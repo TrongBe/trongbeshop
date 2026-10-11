@@ -145,6 +145,10 @@ function showView(viewName) {
     });
     if (views[viewName]) {
         views[viewName].classList.add('active');
+        // Tự động kích hoạt Zen Mode khi vào làm bài thi, tắt khi rời khỏi
+        if (typeof toggleZenMode === 'function') {
+            toggleZenMode(viewName === 'active');
+        }
     } else {
         console.error('[TRONEX] Không tìm thấy view:', viewName);
         return;
@@ -641,6 +645,13 @@ function initQuestionPalette(questions) {
                 btn.classList.add('active-q');
             }
         };
+
+        // Click chuột phải để Đánh dấu xem lại (Flag for Review)
+        btn.oncontextmenu = (e) => {
+            e.preventDefault();
+            toggleFlagQuestion(q.id);
+        };
+
         palette.appendChild(btn);
     });
 }
@@ -717,7 +728,10 @@ function renderQuestions() {
         const cleanText = (q.text || '').replace(/^Câu\s+\d+[:.]\s*/i, '').trim();
         qHeader.innerHTML = `
             <span class="q-card-title">Câu ${qNumDisplay}</span>
-            <button type="button" class="btn-ask-ai" onclick="askAiAboutQuestion(${index})">🤖 Hỏi AI</button>
+            <div style="display:flex; gap:8px; align-items:center;">
+                <button type="button" class="btn-flag-review" onclick="toggleFlagQuestion('${q.id}')" title="Đánh dấu câu hỏi để xem lại sau">🚩 Đánh dấu</button>
+                <button type="button" class="btn-ask-ai" onclick="askAiAboutQuestion(${index})">🤖 Hỏi AI</button>
+            </div>
         `;
         qBlock.appendChild(qHeader);
 
@@ -900,6 +914,11 @@ function renderQuestions() {
             throwOnError: false
         });
     }
+
+    // Tự động khôi phục tiến trình làm bài đã lưu (nếu có)
+    if (typeof loadProgress === 'function') {
+        loadProgress();
+    }
 }
 window.renderQuestions = renderQuestions;
 
@@ -975,6 +994,9 @@ if (quizForm) {
 
             showReviewMode(qs);
             renderResults(correct, incorrect, unanswered);
+            if (typeof clearProgress === 'function') {
+                clearProgress(); // Nộp bài thành công -> Dọn dẹp bản lưu nháp
+            }
 
             // === LƯU SUBMISSION LÊN FIREBASE (nếu có participant) ===
             if (currentParticipant && currentQuiz && isVACTPage) {
@@ -1570,6 +1592,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Đang làm bài dở
                 if (confirm("Bạn có chắc chắn muốn rời khỏi bài thi? Tiến trình sẽ không được lưu.")) {
                     stopTimer();
+                    if (typeof clearProgress === 'function') clearProgress();
                     showView('list');
                 }
             }
@@ -1594,6 +1617,7 @@ document.addEventListener('DOMContentLoaded', () => {
         resetScoreCircle();
         quizForm.reset();
         quizForm.dataset.mode = 'exam';
+        if (typeof clearProgress === 'function') clearProgress();
         renderQuestions();
         // Re-enable tất cả inputs sau khi render lại
         quizForm.querySelectorAll('input').forEach(input => {
@@ -2000,3 +2024,253 @@ window.__saveFinalScore = function () {
         setTimeout(() => tryStart(0), 600);
     } catch (e) { console.warn('[TRONEX] Deep link error:', e); }
 })();
+
+// ============================================================================
+// HỆ THỐNG TỰ ĐỘNG LƯU VÀ PHỤC HỒI TIẾN TRÌNH THI (AUTOSAVE & RECOVERY)
+// ============================================================================
+
+const STORAGE_PREFIX = 'tronex_quiz_progress_';
+
+/**
+ * Lấy storage key theo ID đề thi hiện tại để tránh xung đột giữa các đề
+ */
+function getProgressStorageKey() {
+    const quizId = (window.currentActiveQuiz && window.currentActiveQuiz.id) 
+                || (typeof currentQuiz !== 'undefined' && currentQuiz?.id) 
+                || 'default';
+    return `${STORAGE_PREFIX}${quizId}`;
+}
+
+/**
+ * 1. BẮT SỰ KIỆN 'beforeunload' CỦA TRÌNH DUYỆT
+ * Hiển thị popup cảnh báo mặc định nếu học sinh cố gắng đóng hoặc tải lại tab khi đang làm bài.
+ */
+window.addEventListener('beforeunload', (event) => {
+    const activeQuizView = document.getElementById('activeQuizView');
+    const qForm = document.getElementById('quizForm');
+
+    const isDoingQuiz = activeQuizView && activeQuizView.classList.contains('active');
+    const isSubmitted = qForm?.dataset?.mode === 'review' || 
+                        document.getElementById('tronexResultSummary')?.style?.display === 'block';
+
+    // Chỉ cảnh báo khi đang làm bài thi và chưa nộp bài
+    if (isDoingQuiz && !isSubmitted) {
+        event.preventDefault();
+        event.returnValue = ''; // Chuẩn W3C kích hoạt popup xác nhận của trình duyệt
+        return '';
+    }
+});
+
+/**
+ * 2. HÀM TỰ ĐỘNG LƯU TIẾN TRÌNH VÀO LOCALSTORAGE
+ * Tự động thu thập đáp án (Radio, Checkbox, Text/Essay) và lưu dạng JSON.
+ */
+function saveProgress() {
+    const form = document.getElementById('quizForm');
+    if (!form) return;
+
+    const progress = {
+        timestamp: Date.now(),
+        answers: {}
+    };
+
+    // Lưu các input Radio đang được chọn
+    const checkedRadios = form.querySelectorAll('input[type="radio"]:checked');
+    checkedRadios.forEach(radio => {
+        progress.answers[radio.name] = radio.value;
+    });
+
+    // Lưu các input Checkbox đang được chọn
+    const checkedBoxes = form.querySelectorAll('input[type="checkbox"]:checked');
+    checkedBoxes.forEach(cb => {
+        if (!progress.answers[cb.name]) {
+            progress.answers[cb.name] = [];
+        }
+        if (Array.isArray(progress.answers[cb.name])) {
+            progress.answers[cb.name].push(cb.value);
+        }
+    });
+
+    // Lưu câu hỏi điền từ hoặc tự luận (nếu có)
+    const textInputs = form.querySelectorAll('input[type="text"].short-answer-input, textarea.essay-input');
+    textInputs.forEach(input => {
+        if (input.name && input.value.trim() !== '') {
+            progress.answers[input.name] = input.value;
+        }
+    });
+
+    try {
+        localStorage.setItem(getProgressStorageKey(), JSON.stringify(progress));
+    } catch (e) {
+        console.warn('[AUTOSAVE] Không thể lưu vào localStorage:', e);
+    }
+}
+window.saveProgress = saveProgress;
+
+/**
+ * 3. HÀM TẢI TIẾN TRÌNH TỪ LOCALSTORAGE VÀ TICK LẠI CÁC ĐÁP ÁN ĐÃ CHỌN
+ */
+function loadProgress() {
+    const key = getProgressStorageKey();
+    const savedRaw = localStorage.getItem(key);
+    if (!savedRaw) return;
+
+    try {
+        const parsed = JSON.parse(savedRaw);
+        const answers = parsed.answers || parsed;
+        if (!answers || typeof answers !== 'object') return;
+
+        const form = document.getElementById('quizForm');
+        if (!form) return;
+
+        window.__isRestoringProgress = true;
+
+        const safeEscape = (val) => window.CSS && CSS.escape ? CSS.escape(val) : String(val).replace(/"/g, '\\"');
+
+        Object.entries(answers).forEach(([name, value]) => {
+            if (Array.isArray(value)) {
+                // Checkbox
+                value.forEach(val => {
+                    const cb = form.querySelector(`input[type="checkbox"][name="${safeEscape(name)}"][value="${safeEscape(val)}"]`);
+                    if (cb) {
+                        cb.checked = true;
+                        cb.dispatchEvent(new Event('change', { bubbles: true }));
+                    }
+                });
+            } else {
+                // Radio
+                const radio = form.querySelector(`input[type="radio"][name="${safeEscape(name)}"][value="${safeEscape(value)}"]`);
+                if (radio) {
+                    radio.checked = true;
+                    // Kích hoạt sự kiện change để cập nhật giao diện (class .selected & Question Palette)
+                    radio.dispatchEvent(new Event('change', { bubbles: true }));
+                } else {
+                    // Text / Textarea
+                    const textEl = form.querySelector(`input[name="${safeEscape(name)}"], textarea[name="${safeEscape(name)}"]`);
+                    if (textEl) {
+                        textEl.value = value;
+                        textEl.dispatchEvent(new Event('input', { bubbles: true }));
+                    }
+                }
+            }
+        });
+
+        console.log('[AUTOSAVE] Đã khôi phục tiến trình làm bài từ localStorage.');
+    } catch (e) {
+        console.error('[AUTOSAVE] Lỗi khi đọc tiến trình từ localStorage:', e);
+    } finally {
+        window.__isRestoringProgress = false;
+    }
+}
+window.loadProgress = loadProgress;
+
+/**
+ * 4. XÓA BẢN LƯU TIẾN TRÌNH
+ */
+function clearProgress() {
+    try {
+        localStorage.removeItem(getProgressStorageKey());
+        console.log('[AUTOSAVE] Đã xóa bản lưu tiến trình.');
+    } catch (e) {
+        console.warn('[AUTOSAVE] Lỗi khi xóa localStorage:', e);
+    }
+}
+window.clearProgress = clearProgress;
+
+// --- GẮN EVENT LISTENERS CHO FORM ---
+if (quizForm) {
+    // Bắt sự kiện change qua Event Delegation
+    quizForm.addEventListener('change', (e) => {
+        if (window.__isRestoringProgress) return;
+        if (e.target.matches('input[type="radio"], input[type="checkbox"], input[type="text"], textarea')) {
+            saveProgress();
+        }
+    });
+
+    // Bắt sự kiện gõ text/textarea
+    quizForm.addEventListener('input', (e) => {
+        if (window.__isRestoringProgress) return;
+        if (e.target.matches('input[type="text"], textarea')) {
+            saveProgress();
+        }
+    });
+}
+
+// Tự động gọi khi DOM Content Loaded
+document.addEventListener('DOMContentLoaded', () => {
+    loadProgress();
+});
+
+// ============================================================
+// CHẾ ĐỘ TẬP TRUNG (ZEN MODE) & QUẢN LÝ TRẠNG THÁI PHIẾU TRẢ LỜI
+// ============================================================
+
+/**
+ * 1. Hàm bật/tắt Chế độ Tập trung (Zen Mode)
+ * @param {boolean} [isActive] - true để bật, false để tắt, không truyền để toggle
+ */
+function toggleZenMode(isActive) {
+    const body = document.body;
+    const shouldActivate = (typeof isActive === 'boolean') ? isActive : !body.classList.contains('zen-mode');
+
+    if (shouldActivate) {
+        body.classList.add('zen-mode');
+    } else {
+        body.classList.remove('zen-mode');
+    }
+
+    const zenBtn = document.getElementById('btnZenToggle');
+    if (zenBtn) {
+        zenBtn.innerHTML = shouldActivate ? '✕ Thoát tập trung' : '🧘 Chế độ tập trung';
+        zenBtn.classList.toggle('active', shouldActivate);
+    }
+}
+window.toggleZenMode = toggleZenMode;
+
+/**
+ * 2. Đánh dấu câu hỏi cần xem lại (Flag for Review)
+ * Thay đổi viền vàng cam và bo tròn 50% hình khối trên Phiếu trả lời
+ * @param {string|number} questionId - ID của câu hỏi
+ */
+function toggleFlagQuestion(questionId) {
+    const paletteBtn = document.getElementById(`palette-btn-${questionId}`);
+    let isFlagged = false;
+    if (paletteBtn) {
+        isFlagged = paletteBtn.classList.toggle('flagged');
+        paletteBtn.classList.toggle('status-review', isFlagged);
+    }
+
+    const qBlock = document.getElementById(`q-block-${questionId}`);
+    if (qBlock) {
+        const flagBtn = qBlock.querySelector('.btn-flag-review');
+        if (flagBtn) {
+            flagBtn.classList.toggle('active', isFlagged);
+            flagBtn.innerHTML = isFlagged ? '🚩 Đã đánh dấu' : '🚩 Đánh dấu';
+        }
+    }
+}
+window.toggleFlagQuestion = toggleFlagQuestion;
+
+/**
+ * 3. Event Listener: Lắng nghe sự kiện change trên form để cập nhật trạng thái "Đã làm"
+ */
+if (quizForm) {
+    quizForm.addEventListener('change', (e) => {
+        const target = e.target;
+        if (!target.name) return;
+
+        // Trích xuất ID câu hỏi từ name (dạng "question_123" hoặc "question_123_456")
+        const match = target.name.match(/^question_([^_]+)/);
+        if (match && match[1]) {
+            const qId = match[1];
+            const paletteBtn = document.getElementById(`palette-btn-${qId}`);
+            if (paletteBtn) {
+                // Kiểm tra xem câu này có input nào được check hay không
+                const inputs = quizForm.querySelectorAll(`input[name^="question_${qId}"]:checked`);
+                const isAnswered = inputs.length > 0;
+                paletteBtn.classList.toggle('answered', isAnswered);
+                paletteBtn.classList.toggle('status-answered', isAnswered);
+            }
+        }
+    });
+}
