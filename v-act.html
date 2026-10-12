@@ -136,6 +136,7 @@
         <button class="filter-tab active" data-filter="all" onclick="setFilterTab(this, 'all')">Tất cả</button>
         <button class="filter-tab" data-filter="vnu" onclick="setFilterTab(this, 'vnu')">VNU-ĐGNL</button>
         <button class="filter-tab" data-filter="toan" onclick="setFilterTab(this, 'toan')">📐 Toán</button>
+        <button class="filter-tab" data-filter="hoa" onclick="setFilterTab(this, 'hoa')">🧪 Hóa học</button>
         <button class="filter-tab" data-filter="anh" onclick="setFilterTab(this, 'anh')">🇬🇧 Tiếng Anh</button>
         <button class="filter-tab" data-filter="custom" onclick="setFilterTab(this, 'custom')">✏️ Tự tạo</button>
       </div>
@@ -667,7 +668,7 @@
     <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ef629dc6201fd.svg" alt="AI">
   </button>
 
-  <script type="module" src="js/app.js?v=83"></script>
+  <script type="module" src="js/app.js?v=84"></script>
   <script type="module" src="js/gemini.js?v=12"></script>
   <script type="module" src="js/tronex-ai.js?v=6"></script>
   <script type="module" src="js/auth.js?v=1"></script>
@@ -791,12 +792,14 @@
         const isVnu = title.includes('đgnl') || title.includes('vnu') || title.includes('đánh giá năng lực');
         const isToan = title.includes('toán') || desc.includes('toán');
         const isAnh = title.includes('anh') || desc.includes('tiếng anh') || (card.dataset.quizId || '').includes('adv');
+        const isHoa = title.includes('hóa') || desc.includes('hóa') || title.includes('ester') || title.includes('lipid') || title.includes('carbohydrate') || (card.dataset.quizId || '').includes('chuong_');
 
         const matchesSearch = !query || title.includes(query) || desc.includes(query);
         let matchesFilter = filter === 'all';
         if (filter === 'custom') matchesFilter = isCustom;
         else if (filter === 'vnu') matchesFilter = isVnu;
         else if (filter === 'toan') matchesFilter = isToan;
+        else if (filter === 'hoa') matchesFilter = isHoa;
         else if (filter === 'anh') matchesFilter = isAnh;
 
         if (matchesSearch && matchesFilter) {

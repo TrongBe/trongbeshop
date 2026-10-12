@@ -1,4 +1,4 @@
-import { mockQuizzes } from './data.js';
+import { mockQuizzes } from './data.js?v=84';
 import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
@@ -30,7 +30,7 @@ let userAnswers = {};
 let quizTimerInterval = null;
 let quizStartTime = null;
 
-const isVACTPage = window.location.pathname.toLowerCase().includes('v-act.html');
+const isVACTPage = window.location.pathname.toLowerCase().includes('v-act') || !!document.getElementById('quizListView');
 const FIREBASE_ROOT = isVACTPage ? 'VACT' : 'public_quizzes';
 const LOCAL_STORAGE_KEY = isVACTPage ? 'trongbeshop_vact_quizzes' : 'trongbeshop_custom_quizzes';
 const isAdmin = localStorage.getItem("admin_secret_key") === "trongbeshop";
