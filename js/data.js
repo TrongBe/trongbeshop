@@ -906,6 +906,225 @@ export const mockQuizzes = [
         ]
     },
     {
+        id: "de_chuong_2_carbohydrate",
+        title: "Chương 2: Carbohydrate",
+        description: "Hệ thống bài tập Ôn tập Chương 2: Carbohydrate (Phần I. Trắc nghiệm: 18 câu | Phần II. Đúng/Sai: 5 câu | Phần III. Trả lời ngắn: 7 câu)",
+        scoreScale: 10,
+        scorePerQuestion: 0.33,
+        questions: [
+            // PHẦN I. CÂU HỎI TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN (18 câu)
+            { 
+                id: "q1_chuong2_carb", 
+                text: "<strong>PHẦN I. CÂU HỎI TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN</strong><br>Câu 1: Chất nào sau đây thuộc loại monosaccharide?", 
+                options: ["A. Tinh bột.", "B. Cellulose.", "C. Fructose.", "D. Saccharose."], 
+                correctIndex: 2 
+            },
+            { 
+                id: "q2_chuong2_carb", 
+                text: "Câu 2: Glucose là một loại monosaccharide có nhiều trong quả nho chín. Công thức phân tử của glucose là", 
+                options: ["A. C₂H₄O₂.", "B. (C₆H₁₀O₅)ₙ.", "C. C₁₂H₂₂O₁₁.", "D. C₆H₁₂O₆."], 
+                correctIndex: 3 
+            },
+            { 
+                id: "q3_chuong2_carb", 
+                text: "Câu 3: Cellulose thuộc loại polysaccharide, là thành phần chính tạo nên màng tế bào thực vật, có nhiều trong gỗ, bông gòn. Công thức của cellulose là", 
+                options: ["A. (C₆H₁₀O₅)ₙ.", "B. C₁₂H₂₂O₁₁.", "C. C₆H₁₂O₆.", "D. C₂H₄O₂."], 
+                correctIndex: 0 
+            },
+            { 
+                id: "q4_chuong2_carb", 
+                text: "Câu 4: Tinh thể chất rắn X vị ngọt, dễ tan trong nước. X có nhiều trong các bộ phận của cây đặc biệt là quả chín. Oxi hóa chất X bằng nước bromine thu được chất hữu cơ Y. Tên gọi của X và Y lần lượt là", 
+                options: ["A. fructose và gluconic acid.", "B. glucose và gluconic acid.", "C. glucose và ammonium gluconate.", "D. saccharose và glucose."], 
+                correctIndex: 1 
+            },
+            { 
+                id: "q5_chuong2_carb", 
+                text: "Câu 5: Carbohydrate có hàm lượng nhiều nhất (chiếm tới 40%) và làm cho mật ong có vị ngọt sắc là", 
+                options: ["A. glucose.", "B. fructose.", "C. cellulose.", "D. saccharose."], 
+                correctIndex: 1 
+            },
+            { 
+                id: "q6_chuong2_carb", 
+                text: "Câu 6: Glucose tham gia phản ứng với Cu(OH)₂/OH⁻, đun nóng tạo kết tủa đỏ gạch Cu₂O. Trong phản ứng này chứng minh tính chất của nhóm chức nào trong phân tử glucose?", 
+                options: ["A. Tính chất của polyalcohol.", "B. Tính chất của aldehyde.", "C. Tính chất ketone.", "D. Tính chất nhóm -OH hemiacetal."], 
+                correctIndex: 1 
+            },
+            { 
+                id: "q7_chuong2_carb", 
+                text: "Câu 7: Saccharose là một loại disaccharide có nhiều trong cây mía, hoa thốt nốt, củ cải đường. Công thức phân tử của saccharose là", 
+                options: ["A. C₆H₁₂O₆.", "B. (C₆H₁₀O₅)ₙ.", "C. C₁₂H₂₂O₁₁.", "D. C₂H₄O₂."], 
+                correctIndex: 2 
+            },
+            { 
+                id: "q8_chuong2_carb", 
+                text: "Câu 8: Một phân tử maltose có", 
+                options: ["A. một đơn vị β-glucose và một đơn vị β-fructose.", "B. một đơn vị β-glucose và một đơn vị α-fructose.", "C. hai đơn vị α-glucose.", "D. một đơn vị α-glucose và một đơn vị β-fructose."], 
+                correctIndex: 2 
+            },
+            { 
+                id: "q9_chuong2_carb", 
+                text: "Câu 9: Carbohydrate nào dưới đây không có nhóm -OH hemiacetal (hoặc hemiketal)?", 
+                options: ["A. Glucose.", "B. Fructose.", "C. Saccharose.", "D. Maltose."], 
+                correctIndex: 2 
+            },
+            { 
+                id: "q10_chuong2_carb", 
+                text: "Câu 10: Phát biểu nào sau đây đúng?", 
+                options: ["A. Dung dịch saccharose hòa tan được Cu(OH)₂.", "B. Dung dịch saccharose có phản ứng tráng bạc.", "C. Glucose bị thủy phân trong môi trường acid.", "D. Fructose có phản ứng với nước Br₂."], 
+                correctIndex: 0 
+            },
+            { 
+                id: "q11_chuong2_carb", 
+                text: "Câu 11: Phát biểu nào sau đây sai?", 
+                options: ["A. Glucose và saccharose đều là carbohydrate.", "B. Glucose và fructose đều hòa tan được Cu(OH)₂.", "C. Glucose và saccharose đều có phản ứng tráng bạc.", "D. Glucose và fructose là đồng phân của nhau."], 
+                correctIndex: 2 
+            },
+            { 
+                id: "q12_chuong2_carb", 
+                text: "Câu 12: Phát biểu nào sau đây đúng?", 
+                options: ["A. Maltose không có nhóm -OH hemiacetal.", "B. Một phân tử saccharose gồm hai đơn vị α-glucose.", "C. Hai đơn vị α-glucose trong maltose liên kết với nhau bằng liên kết α-1,2-glycoside.", "D. Saccharose và maltose có cùng công thức phân tử."], 
+                correctIndex: 3 
+            },
+            { 
+                id: "q13_chuong2_carb", 
+                text: "Câu 13: Polime nào sau đây có cấu trúc mạch phân nhánh?", 
+                options: ["A. Amylose.", "B. Cellulose.", "C. Amylopectin.", "D. Polyethylene."], 
+                correctIndex: 2 
+            },
+            { 
+                id: "q14_chuong2_carb", 
+                text: "Câu 14: Cặp chất nào sau đây đều có khả năng thủy phân trong môi trường acid, đun nóng?", 
+                options: ["A. Fructose và tinh bột.", "B. Saccharose và cellulose.", "C. Glucose và saccharose.", "D. Glucose và fructose."], 
+                correctIndex: 1 
+            },
+            { 
+                id: "q15_chuong2_carb", 
+                text: "Câu 15: Phát biểu nào sau đây sai?", 
+                options: ["A. Thủy phân hoàn toàn cellulose thu được glucose.", "B. Amylopectin có cấu trúc mạch phân nhánh.", "C. Fructose và glucose là đồng phân của nhau.", "D. Fructose là sản phẩm của phản ứng thủy phân tinh bột."], 
+                correctIndex: 3 
+            },
+            { 
+                id: "q16_chuong2_carb", 
+                text: "Câu 16: Chất rắn X dạng sợi, màu trắng, không tan trong nước ngay cả khi đun nóng. Thủy phân hoàn toàn X nhờ xúc tác acid hoặc enzyme thu được chất Y. Hai chất X và Y lần lượt là", 
+                options: ["A. cellulose và glucose.", "B. cellulose và saccharose.", "C. tinh bột và saccharose.", "D. tinh bột và glucose."], 
+                correctIndex: 0 
+            },
+            { 
+                id: "q17_chuong2_carb", 
+                text: "Câu 17: Các gốc β-glucose trong phân tử cellulose tạo dạng mạch không phân nhánh, xoắn liên kết với nhau bởi liên kết", 
+                options: ["A. β-1,4-glycoside.", "B. α-1,3-glycoside.", "C. α-1,6-glycoside.", "D. β-1,2-glycoside."], 
+                correctIndex: 0 
+            },
+            { 
+                id: "q18_chuong2_carb", 
+                text: "Câu 18: Chất nào sau đây bị thủy phân khi đun nóng trong môi trường acid?", 
+                options: ["A. Glycerol.", "B. Fructose.", "C. Glucose.", "D. Cellulose."], 
+                correctIndex: 3 
+            },
+
+            // PHẦN II. CÂU TRẮC NGHIỆM ĐÚNG/SAI (5 câu)
+            {
+                id: "q19_chuong2_carb",
+                type: "true_false_group",
+                text: "<strong>PHẦN II. CÂU TRẮC NGHIỆM ĐÚNG/SAI</strong><br>Câu 1: Tiến hành thí nghiệm theo các bước sau:<br>— Bước 1: Cho 1 mL dung dịch AgNO₃ 1% vào ống nghiệm sạch.<br>— Bước 2: Thêm từ từ từng giọt dung dịch NH₃, lắc đều cho đến khi kết tủa tan hết.<br>— Bước 3: Thêm tiếp khoảng 1 mL dung dịch glucose 1% vào ống nghiệm, đun nóng nhẹ.",
+                subQuestions: [
+                    { id: "a", text: "a) Trong phản ứng trên glucose đóng vai trò là chất oxi hóa.", correctAnswer: "Sai" },
+                    { id: "b", text: "b) Thí nghiệm trên chứng minh glucose có tính chất của polyalcohol.", correctAnswer: "Sai" },
+                    { id: "c", text: "c) Sau bước 3, có lớp bạc kim loại bám trên thành ống nghiệm.", correctAnswer: "Đúng" },
+                    { id: "d", text: "d) Ở bước 3, có thể thay việc đun nóng nhẹ bằng cách ngâm ống nghiệm trong nước nóng.", correctAnswer: "Đúng" }
+                ]
+            },
+            {
+                id: "q20_chuong2_carb",
+                type: "true_false_group",
+                text: "Câu 2: Maltose là thành phần chính của đường mạch nha. Trong dung dịch nước, maltose tồn tại chủ yếu ở hai dạng cấu tạo (I) và (II). Các dạng này tồn tại trong cân bằng sau:<br><div style=\"text-align:center; margin:14px 0;\"><svg viewBox=\"0 0 540 130\" style=\"max-width:100%; height:auto; background:#ffffff; border:1px solid #cbd5e1; border-radius:8px; padding:10px; box-shadow:0 2px 4px rgba(0,0,0,0.04);\"><text x=\"110\" y=\"22\" font-size=\"12\" fill=\"#1e293b\" text-anchor=\"middle\" font-weight=\"bold\">Dạng vòng (I)</text><path d=\"M 40,55 L 75,35 L 135,35 L 165,55 L 135,75 L 75,75 Z\" fill=\"none\" stroke=\"#2563eb\" stroke-width=\"2\"/><text x=\"135\" y=\"50\" font-size=\"12\" fill=\"#ef4444\" font-weight=\"bold\">O</text><text x=\"75\" y=\"30\" font-size=\"10\" fill=\"#475569\">CH₂OH</text><text x=\"75\" y=\"90\" font-size=\"10\" fill=\"#475569\">OH</text><text x=\"105\" y=\"90\" font-size=\"10\" fill=\"#475569\">OH</text><text x=\"145\" y=\"70\" font-size=\"11\" fill=\"#059669\" font-weight=\"bold\">O</text><path d=\"M 152,65 L 180,65\" stroke=\"#059669\" stroke-width=\"2\"/><path d=\"M 180,55 L 215,35 L 275,35 L 305,55 L 275,75 L 215,75 Z\" fill=\"none\" stroke=\"#2563eb\" stroke-width=\"2\"/><text x=\"275\" y=\"50\" font-size=\"12\" fill=\"#ef4444\" font-weight=\"bold\">O</text><text x=\"215\" y=\"30\" font-size=\"10\" fill=\"#475569\">CH₂OH</text><text x=\"310\" y=\"60\" font-size=\"11\" fill=\"#d97706\" font-weight=\"bold\">-OH (hemiacetal)</text><text x=\"245\" y=\"90\" font-size=\"10\" fill=\"#475569\">OH</text><text x=\"340\" y=\"60\" font-size=\"18\" fill=\"#334155\" font-weight=\"bold\">⇌</text><text x=\"440\" y=\"22\" font-size=\"12\" fill=\"#1e293b\" text-anchor=\"middle\" font-weight=\"bold\">Dạng mở vòng (II)</text><path d=\"M 370,55 L 395,40 L 435,40 L 455,55 L 435,70 L 395,70 Z\" fill=\"none\" stroke=\"#2563eb\" stroke-width=\"1.8\"/><text x=\"435\" y=\"50\" font-size=\"11\" fill=\"#ef4444\">O</text><path d=\"M 445,63 L 465,63\" stroke=\"#059669\" stroke-width=\"1.8\"/><path d=\"M 465,63 L 485,55 L 505,65 L 525,55\" fill=\"none\" stroke=\"#64748b\" stroke-width=\"1.8\"/><text x=\"505\" y=\"80\" font-size=\"11\" fill=\"#dc2626\" font-weight=\"bold\">-CH=O</text></svg></div>Maltose thủy phân trong môi trường acid hoặc enzyme tạo thành glucose.",
+                subQuestions: [
+                    { id: "a", text: "a) Liên kết giữa hai đơn vị monosaccharide trong phân tử maltose là liên kết β-1,4-glycoside.", correctAnswer: "Sai" },
+                    { id: "b", text: "b) Maltose và saccharose là đồng phân cấu tạo của nhau.", correctAnswer: "Đúng" },
+                    { id: "c", text: "c) Maltose có phản ứng tráng gương và phản ứng với nước bromine.", correctAnswer: "Đúng" },
+                    { id: "d", text: "d) Dạng (I) có một nhóm -OH hemiacetal.", correctAnswer: "Đúng" }
+                ]
+            },
+            {
+                id: "q21_chuong2_carb",
+                type: "true_false_group",
+                text: "Câu 3: Cho các phát biểu về cellulose:",
+                subQuestions: [
+                    { id: "a", text: "a) Cellulose có thể tạo thành cellulose nitrate khi phản ứng với HNO₃.", correctAnswer: "Đúng" },
+                    { id: "b", text: "b) Phản ứng thuỷ phân của cellulose tạo ra fructose.", correctAnswer: "Sai" },
+                    { id: "c", text: "c) Thuỷ phân hoàn toàn tinh bột và cellulose đều tạo thành glucose.", correctAnswer: "Đúng" },
+                    { id: "d", text: "d) Cellulose tạo ra màu xanh lam khi phản ứng với nước Schweizer.", correctAnswer: "Đúng" }
+                ]
+            },
+            {
+                id: "q22_chuong2_carb",
+                type: "true_false_group",
+                text: "Câu 4: Cho các phát biểu sau:",
+                subQuestions: [
+                    { id: "a", text: "a) Saccharose là một monosaccharide.", correctAnswer: "Sai" },
+                    { id: "b", text: "b) Saccharose là chất rắn, vị ngọt, tan tốt trong nước ở điều kiện thường.", correctAnswer: "Đúng" },
+                    { id: "c", text: "c) Maltose là đồng phân của saccharose.", correctAnswer: "Đúng" },
+                    { id: "d", text: "d) Saccharose và maltose đều có cấu tạo dạng mạch hở và mạch vòng.", correctAnswer: "Sai" }
+                ]
+            },
+            {
+                id: "q23_chuong2_carb",
+                type: "true_false_group",
+                text: "Câu 5: Cho các phát biểu sau:",
+                subQuestions: [
+                    { id: "a", text: "a) Tinh bột được sử dụng làm chất kết dính trong công nghiệp giấy.", correctAnswer: "Đúng" },
+                    { id: "b", text: "b) Tinh bột là nguồn lương thực chính của con người.", correctAnswer: "Đúng" },
+                    { id: "c", text: "c) Cellulose có thể được sử dụng làm nguyên liệu trong sản xuất ethanol.", correctAnswer: "Đúng" },
+                    { id: "d", text: "d) Tinh bột được tiêu hoá bởi enzyme α-amylase trong nước bọt.", correctAnswer: "Đúng" }
+                ]
+            },
+
+            // PHẦN III. CÂU TRẮC NGHIỆM TRẢ LỜI NGẮN (7 câu)
+            {
+                id: "q24_chuong2_carb",
+                type: "short_answer",
+                text: "<strong>PHẦN III. CÂU TRẮC NGHIỆM TRẢ LỜI NGẮN</strong><br>Câu 1: Cho phương trình hóa học của các phản ứng được đánh số thứ tự từ 1 tới 4 dưới đây:<br>(1) (C₆H₁₀O₅)ₙ (tinh bột) + nH₂O —(H⁺, t°)→ nC₆H₁₂O₆ (glucose)<br>(2) C₆H₁₂O₆ (glucose) —(enzyme)→ 2C₂H₅OH + 2CO₂<br>(3) C₆H₁₂O₆ (glucose) —(enzyme)→ 2CH₃CH(OH)COOH<br>(4) C₆H₁₂O₆ (glucose) + 2[Ag(NH₃)₂]OH —(t°)→ CH₂OH(CHOH)₄COONH₄ + 2Ag + 3NH₃ + H₂O<br>Gán số thứ tự phương trình hoá học của các phản ứng theo tên gọi: <i>lên men rượu, thủy phân, lên men lactic, tráng gương</i> và sắp xếp theo trình tự thành dãy bốn số (ví dụ: 1234, 4321,... ).",
+                correctAnswer: "2134"
+            },
+            {
+                id: "q25_chuong2_carb",
+                type: "short_answer",
+                text: "Câu 2: Cho 4 carbohydrate: (1) glucose, (2) fructose, (3) saccharose, (4) maltose. Hãy sắp xếp những carbohydrate có nhóm -OH hemiacetal trong phân tử theo số thứ tự tăng dần (ví dụ: 12, 134, ...).",
+                correctAnswer: "14"
+            },
+            {
+                id: "q26_chuong2_carb",
+                type: "short_answer",
+                text: "Câu 3: Thuỷ phân 100 gam saccharose thu được 104,5 gam hỗn hợp gồm glucose, fructose và saccharose còn dư. Hiệu suất của phản ứng thuỷ phân saccharose bằng bao nhiêu %? (Kết quả làm tròn đến phần chục).",
+                correctAnswer: "85.5|85,5"
+            },
+            {
+                id: "q27_chuong2_carb",
+                type: "short_answer",
+                text: "Câu 4: Trong số 6 carbohydrate sau: glucose, fructose, saccharose, maltose, tinh bột và cellulose, số carbohydrate cho được phản ứng thuỷ phân là ____.",
+                correctAnswer: "4"
+            },
+            {
+                id: "q28_chuong2_carb",
+                type: "short_answer",
+                text: "Câu 5: Cho 13,00 gam glucose tác dụng với lượng dư dung dịch AgNO₃ trong NH₃, đun nóng (hiệu suất phản ứng tráng bạc (silver) đạt 80%), khối lượng kết tủa silver (gam) thu được là ____ gam.",
+                correctAnswer: "12.48|12,48"
+            },
+            {
+                id: "q29_chuong2_carb",
+                type: "short_answer",
+                text: "Câu 6: Cho các phát biểu sau:<br>(1) Saccharose, tinh bột và cellulose đều tham gia phản ứng thủy phân trong môi trường acid đun nóng.<br>(2) Tinh bột và cellulose đều có công thức là (C₆H₁₀O₅)ₙ và là đồng phân của nhau.<br>(3) Cellulose được tạo bởi các gốc β-glucose liên kết với nhau bởi liên kết β-1,4-glycoside.<br>(4) Có thể phân biệt glucose và fructose bằng thuốc thử Tollens.<br>(5) Các dung dịch glucose, maltose, saccharose, fructose đều hoà tan được Cu(OH)₂ tạo dung dịch xanh lam.<br>Liệt kê các phát biểu đúng theo số thứ tự tăng dần.",
+                correctAnswer: "135"
+            },
+            {
+                id: "q30_chuong2_carb",
+                type: "short_answer",
+                text: "Câu 7: Cho một số tính chất: có dạng sợi (1); tan trong nước (2); tan trong nước Schweizer (3); phản ứng với nitric acid đặc (xúc tác Sulfuric acid đặc) (4); bị oxi hóa bởi thuốc thử Tollens (5); bị thuỷ phân trong dung dịch acid đun nóng (6). Liệt kê các tính chất của cellulose theo số thứ tự tăng dần.",
+                correctAnswer: "1346"
+            }
+        ]
+    },
+    {
         id: "de_4_advertisement",
         title: "4 advertisement",
         description: "4 bài đọc quảng cáo Tiếng Anh (Điền từ vào chỗ trống - 24 câu hỏi)",

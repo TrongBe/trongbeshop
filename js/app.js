@@ -950,10 +950,9 @@ if (quizForm) {
                     else if (parseInt(userVal) === parseInt(q.correctIndex)) correct++;
                     else incorrect++;
                 } else if (qType === 'short_answer') {
-                    const userVal = (formData.get(`question_${qId}`) || "").toString().trim().toLowerCase();
-                    const correctVal = (q.correctAnswer || "").toString().toLowerCase();
+                    const userVal = (formData.get(`question_${qId}`) || "").toString().trim();
                     if (userVal === "") unanswered++;
-                    else if (userVal === correctVal) correct++;
+                    else if (checkShortAnswerMatch(userVal, q.correctAnswer)) correct++;
                     else incorrect++;
                 } else if (qType === 'true_false_group') {
                     let isAllCorrect = true;
@@ -1099,8 +1098,10 @@ function renderResults(correct, incorrect, unanswered) {
     const scoreContainer = document.querySelector('.tronex-score');
 
     if (isEnglishTHPTQG) {
-        // Thang điểm 10 cho đề THPTQG Tiếng Anh (40 câu, mỗi câu 0.25đ)
-        const rawScore = correct * 0.25;
+        // Thang điểm 10 cho đề có scoreScale === 10
+        const rawScore = currentQuiz.scorePerQuestion 
+            ? (correct * currentQuiz.scorePerQuestion) 
+            : (total > 0 ? ((correct / total) * 10) : 0);
         score = Number.isInteger(rawScore) ? rawScore.toString() : rawScore.toFixed(2).replace(/\.?0+$/, '');
         if (scoreContainer) {
             scoreContainer.innerHTML = `<span id="tronexScoreText">${score}</span> / 10`;
@@ -1221,9 +1222,25 @@ function highlightTFGroupAnswer(q, table, radioName) {
     }
 }
 
+function checkShortAnswerMatch(userVal, correctVal) {
+    if (!userVal) return false;
+    const u = userVal.toString().trim().toLowerCase();
+    const c = (correctVal || "").toString().trim().toLowerCase();
+    if (!c) return false;
+    if (u === c) return true;
+    const acceptable = c.split(/[|\/]/).map(s => s.trim().toLowerCase());
+    if (acceptable.includes(u)) return true;
+    const norm = str => str.replace(/%/g, '').replace(/,/g, '.').trim();
+    if (norm(u) === norm(c)) return true;
+    for (const opt of acceptable) {
+        if (norm(u) === norm(opt)) return true;
+    }
+    return false;
+}
+
 function highlightShortAnswer(q, inputElement, isReview = false) {
-    const userVal = inputElement.value.trim().toLowerCase();
-    const correctVal = (q.correctAnswer || "").toString().trim().toLowerCase();
+    const userVal = inputElement.value.trim();
+    const isCorrect = checkShortAnswerMatch(userVal, q.correctAnswer);
 
     inputElement.style.borderColor = '#E5E7EB';
     inputElement.style.backgroundColor = 'transparent';
@@ -1234,13 +1251,13 @@ function highlightShortAnswer(q, inputElement, isReview = false) {
         if (isReview) {
             inputElement.style.borderColor = '#EF4444';
             inputElement.style.backgroundColor = '#FEE2E2';
-            inputElement.value = "Chưa làm. Đáp án: " + q.correctAnswer;
+            inputElement.value = "Chưa làm. Đáp án: " + (q.correctAnswer && q.correctAnswer.includes('|') ? q.correctAnswer.split('|')[0] : q.correctAnswer);
             inputElement.style.color = '#991B1B';
         }
         return;
     }
 
-    if (userVal === correctVal) {
+    if (isCorrect) {
         inputElement.style.borderColor = '#10B981'; // Xanh lá
         inputElement.style.backgroundColor = '#D1FAE5';
         inputElement.style.color = '#065F46';
@@ -1248,6 +1265,9 @@ function highlightShortAnswer(q, inputElement, isReview = false) {
         inputElement.style.borderColor = '#EF4444'; // Đỏ
         inputElement.style.backgroundColor = '#FEE2E2';
         inputElement.style.color = '#991B1B';
+        if (isReview) {
+            inputElement.title = "Đáp án đúng: " + (q.correctAnswer && q.correctAnswer.includes('|') ? q.correctAnswer.split('|')[0] : q.correctAnswer);
+        }
     }
 }
 
