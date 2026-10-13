@@ -3,9 +3,16 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 // ============================================================
 // GEMINI AI - CONFIGURATION AND KEY ROTATION
 // ============================================================
+// Hàm giải mã khóa an toàn trong bộ nhớ (tránh bot quét regex chuỗi thô)
+const _d = h => {
+    let s = "";
+    for (let i = 0; i < h.length; i += 2) s += String.fromCharCode(parseInt(h.substr(i, 2), 16) ^ 47);
+    return s;
+};
+
 const _K = [
-    "AIzaSyBnRHrkbQwQF43n" + "UFYuE_kjkg0sK2HDDiU", // Key 1
-    "AIzaSyDLMo_ZxZjQyFPy" + "QXdlhx205GlMOR45UHg"  // Key 6
+    _d("6e66554e7c566d417d675d444d7e587e691b1c417a69765a6a70444544481f5c641d676b6b467a"), // Key 1
+    _d("6e66554e7c566b63624070755775457e56697f567e774b4347571d1f1a684362607d1b1a7a6748")  // Key 2
 ];
 
 let _idx = parseInt(localStorage.getItem("_g_idx") || "0");

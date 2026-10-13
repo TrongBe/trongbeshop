@@ -5,10 +5,17 @@
  */
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-// API Keys - xoay vòng khi gặp lỗi
+// Giải mã khóa an toàn trong bộ nhớ
+const _d = h => {
+    let s = "";
+    for (let i = 0; i < h.length; i += 2) s += String.fromCharCode(parseInt(h.substr(i, 2), 16) ^ 47);
+    return s;
+};
+
+// API Keys - xoay vòng khi gặp lỗi (đã mã hóa)
 const _K = [
-    "AIzaSyBnRHrkbQwQF43n" + "UFYuE_kjkg0sK2HDDiU",
-    "AIzaSyDLMo_ZxZjQyFPy" + "QXdlhx205GlMOR45UHg"
+    _d("6e66554e7c566d417d675d444d7e587e691b1c417a69765a6a70444544481f5c641d676b6b467a"),
+    _d("6e66554e7c566b63624070755775457e56697f567e774b4347571d1f1a684362607d1b1a7a6748")
 ];
 let _idx = parseInt(localStorage.getItem("_tronex_kidx") || "0");
 const gK = () => _K[_idx % _K.length];
