@@ -5,10 +5,6 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 // ============================================================
 const _K = [
     "AIzaSyBnRHrkbQwQF43n" + "UFYuE_kjkg0sK2HDDiU", // Key 1
-    "AIzaSyBujYVCD_avJy1E" + "yYZHpwu0M10itiAXSnY", // Key 2
-    "AIzaSyBW6zkLdppAwv1Y" + "I2t-ikeS3J_GXGgYjX0", // Key 3
-    "AIzaSyB5jCvX0f3Nu8FI" + "4QKHkfVciKm-JWCkOls", // Key 4
-    "AIzaSyC6nbhLMVC-91NT" + "i0vySoMH1haM9HRBdF0", // Key 5
     "AIzaSyDLMo_ZxZjQyFPy" + "QXdlhx205GlMOR45UHg"  // Key 6
 ];
 
