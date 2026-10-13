@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TRONEX Data Analyst Simulation - Môi trường mô phỏng thực chiến phân tích dữ liệu cùng AI Mentor.">
+  <meta name="keywords" content="Data Analyst, SQL, Python, Pandas, Business Case, TRONEX, Gemini AI">
+  <title>Data Analyst Simulation - TRONEX</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Core Theme & Simulation CSS -->
+  <link rel="stylesheet" href="css/style.css?v=25">
+  <link rel="stylesheet" href="css/simulation.css?v=1">
+
+  <!-- Chart.js for Interactive Data Visualization -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+
+  <!-- Dark Mode Script (Prevent flash) -->
+  <script>
+    (function() {
+      const saved = localStorage.getItem('tronex_theme') || 'light';
+      if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    })();
+  </script>
+</head>
+
+<body>
+  <!-- UNIFIED HEADER -->
+  <header class="header-vnu" id="mainHeader">
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between;">
+      <a href="index.html" class="logo-vnu">
+        <div class="logo-text">
+          <h2>TRONEX</h2>
+          <p>Data & AI Lab</p>
+        </div>
+      </a>
+      <nav class="nav-vnu">
+        <a href="index.html">Trang chủ</a>
+        <a href="v-act.html">Luyện thi V-ACT</a>
+        <a href="simulation.html" style="color:#6366f1; font-weight:800; border-bottom:2px solid #6366f1;">DA Simulation</a>
+        <a href="profile.html">Tài khoản</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle-btn" id="themeToggleBtn" title="Chế độ sáng/tối">🌙</button>
+        <button class="auth-btn" id="authBtn" title="Đăng nhập">
+          <span>🔑</span><span>Đăng nhập</span>
+        </button>
+        <button class="menu-btn" onclick="toggleSidebar()" aria-label="Menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sidebar Overlay & Menu -->
+  <div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+  <div id="sidebarMenu" class="sidebar-menu">
+    <div class="sidebar-header">
+      <h2>Danh mục</h2>
+      <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="index.html">🏠 Trang chủ</a></li>
+      <li><a href="v-act.html">🚀 TRONEX (Luyện đề)</a></li>
+      <li><a href="simulation.html" class="active">📊 Data Analyst Simulation</a></li>
+      <li><a href="profile.html">👤 Tài khoản</a></li>
+    </ul>
+  </div>
+
+  <main style="padding-top: 24px;">
+
+    <!-- ============================================================
+         VIEW 1: THE LOBBY (SẢNH NHIỆM VỤ)
+         ============================================================ -->
+    <section id="simLobbyView" class="sim-view active">
+      <div class="container" style="max-width: 1140px;">
+
+        <!-- Hero Section -->
+        <div class="lobby-hero">
+          <div class="lobby-hero-badge">💼 Sandbox Thực Chiến Doanh Nghiệp</div>
+          <h1>Data Analyst Simulation</h1>
+          <p>Trực tiếp phân tích và tháo gỡ các bài toán kinh doanh hóc búa từ Shopee, Tiki, Fintech. Trải nghiệm luồng làm việc thực tế với Code Editor, Bảng đối soát dữ liệu và cố vấn đồng hành cùng AI Mentor.</p>
+          
+          <div class="lobby-stats-row">
+            <div class="lobby-stat-item">
+              <span class="stat-icon">📚</span>
+              <span>Case Studies Độc Quyền</span>
+            </div>
+            <div class="lobby-stat-item">
+              <span class="stat-icon">⚡</span>
+              <span>Truy Vấn SQL &amp; Python</span>
+            </div>
+            <div class="lobby-stat-item">
+              <span class="stat-icon">✨</span>
+              <span>Gemini AI Mentor (Logic-Only)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter & Search Bar -->
+        <div class="lobby-filter-bar">
+          <div class="lobby-search-box">
+            <span class="lobby-search-icon">🔍</span>
+            <input type="text" id="lobbySearchInput" class="lobby-search-input" placeholder="Tìm kiếm Case Study (VD: Freeship, GMV, Churn, Fraud)...">
+          </div>
+
+          <div class="lobby-filter-tabs">
+            <button class="sim-filter-btn active" data-filter="all">Tất cả</button>
+            <button class="sim-filter-btn" data-filter="easy">🟢 Mới bắt đầu</button>
+            <button class="sim-filter-btn" data-filter="medium">🟡 Trung cấp</button>
+            <button class="sim-filter-btn" data-filter="hard">🔴 Nâng cao</button>
+          </div>
+        </div>
+
+        <!-- Mission Cards Grid -->
+        <div id="missionsGrid" class="missions-grid">
+          <!-- Rendered dynamically by simulation.js -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         VIEW 2: THE WORKSPACE (PHÒNG THỰC CHIẾN 3 CỘT)
+         ============================================================ -->
+    <section id="simWorkspaceView" class="sim-view">
+      <div class="workspace-wrapper">
+
+        <!-- Top Navigation -->
+        <div class="workspace-topbar">
+          <div class="workspace-topbar-left">
+            <button class="btn-back-lobby" onclick="window.showSimView('lobby')">
+              ← Quay lại Sảnh
+            </button>
+            <div class="workspace-mission-info">
+              <span id="workspaceBadge" class="difficulty-badge medium">Trung bình</span>
+              <h2 id="workspaceTitle">Nhiệm vụ phân tích</h2>
+            </div>
+          </div>
+
+          <div class="workspace-topbar-actions">
+            <button class="btn-reset-code" onclick="window.sendMentorChip('Gợi ý cho tôi tư duy tiếp cận bước đầu tiên')">
+              💡 Cần gợi ý?
+            </button>
+          </div>
+        </div>
+
+        <!-- 3-Column Studio -->
+        <div class="workspace-studio">
+
+          <!-- CỘT 1: MISSION BRIEFING (TRÁI) -->
+          <aside class="col-briefing" id="briefingContainer">
+            <!-- Nội dung tóm tắt đề bài, schema, objectives được render động -->
+          </aside>
+
+          <!-- CỘT 2: EXECUTION CONSOLE & DATA VIZ (GIỮA) -->
+          <section class="col-console">
+
+            <!-- Nửa trên: Terminal & Code Editor -->
+            <div class="terminal-pane">
+              <div class="terminal-header">
+                <div class="terminal-lang-tabs">
+                  <button class="terminal-tab active" id="tabSql">SQL Query</button>
+                  <button class="terminal-tab" id="tabPython">Python (Pandas)</button>
+                </div>
+                <div class="terminal-actions">
+                  <button class="btn-reset-code" id="btnResetCode" title="Đặt lại code ban đầu">🔄 Khôi phục</button>
+                  <button class="btn-run-code" id="btnRunCode">▶ Chạy mã (Run)</button>
+                </div>
+              </div>
+
+              <div class="terminal-editor-body">
+                <textarea id="terminalEditor" class="terminal-code-textarea" spellcheck="false" placeholder="Nhập câu truy vấn SQL hoặc mã Python tại đây..."></textarea>
+              </div>
+
+              <div class="terminal-status-bar">
+                <span id="terminalStatusText">Sẵn sàng thực thi truy vấn...</span>
+                <span>Console v2.4</span>
+              </div>
+            </div>
+
+            <!-- Nửa dưới: Data Table & Interactive Chart -->
+            <div class="output-pane">
+              <div class="output-header">
+                <div class="output-tabs">
+                  <button class="output-tab-btn active" id="outputTabTable">📋 Bảng Dữ Liệu</button>
+                  <button class="output-tab-btn" id="outputTabChart">📊 Biểu Đồ Trực Quan</button>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">
+                  Interactive Output
+                </div>
+              </div>
+
+              <div class="output-content-area">
+                <!-- Bảng kết quả -->
+                <div id="outputTablePane" style="display: block;">
+                  <div id="outputTableContainer"></div>
+                </div>
+
+                <!-- Biểu đồ Chart.js -->
+                <div id="outputChartPane" style="display: none; height: 100%;">
+                  <div class="chart-container-box">
+                    <canvas id="simChartCanvas"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </section>
+
+          <!-- CỘT 3: GEMINI AI MENTOR (PHẢI) -->
+          <aside class="col-mentor">
+            <div class="mentor-header">
+              <div class="mentor-brand">
+                <div class="mentor-avatar">✨</div>
+                <div>
+                  <div class="mentor-title">Gemini AI Mentor</div>
+                  <div class="mentor-status">Trực tuyến</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Guardrail Disclaimer -->
+            <div class="mentor-guardrail-banner">
+              <span>🔒</span>
+              <span>Mentor chỉ dẫn dắt tư duy logic - Không đưa sẵn đáp án mã code.</span>
+            </div>
+
+            <!-- Message Stream -->
+            <div class="mentor-chat-stream" id="mentorChatStream">
+              <!-- Chat bubbles rendered dynamically -->
+            </div>
+
+            <!-- Quick Action Chips -->
+            <div class="mentor-chips-bar">
+              <button class="mentor-chip-btn" onclick="window.sendMentorChip('Chỉ số nào cần quan sát trong bài này?')">🔍 Chỉ số cốt lõi?</button>
+              <button class="mentor-chip-btn" onclick="window.sendMentorChip('Gợi ý cho tôi logic gom nhóm (Group By)')">🧩 Gợi ý gom nhóm</button>
+              <button class="mentor-chip-btn" onclick="window.sendMentorChip('Giải thích hiện tượng bất thường trong dữ liệu')">⚡ Hiện tượng bất thường?</button>
+            </div>
+
+            <!-- Input Bar -->
+            <div class="mentor-input-wrapper">
+              <input type="text" id="mentorInput" class="mentor-text-input" placeholder="Hỏi AI Mentor về tư duy phân tích...">
+              <button id="btnSendMentor" class="btn-send-mentor" title="Gửi câu hỏi">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SCRIPTS -->
+  <script type="module" src="js/auth.js?v=1"></script>
+  <script type="module" src="js/simulation.js?v=1"></script>
+
+  <!-- Sidebar & Theme Handlers -->
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebarMenu');
+      const overlay = document.getElementById('sidebarOverlay');
+      if (!sidebar || !overlay) return;
+      if (sidebar.classList.contains('active')) {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+        setTimeout(() => { overlay.style.display = 'none'; }, 300);
+      } else {
+        overlay.style.display = 'block';
+        setTimeout(() => {
+          overlay.classList.add('active');
+          sidebar.classList.add('active');
+        }, 10);
+      }
+    }
+    window.toggleSidebar = toggleSidebar;
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const btn = document.getElementById('themeToggleBtn');
+      if (!btn) return;
+      const isDark = () => document.documentElement.getAttribute('data-theme') === 'dark';
+      btn.textContent = isDark() ? '☀️' : '🌙';
+      btn.addEventListener('click', () => {
+        const nextTheme = isDark() ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', nextTheme);
+        localStorage.setItem('tronex_theme', nextTheme);
+        btn.textContent = nextTheme === 'dark' ? '☀️' : '🌙';
+      });
+    });
+  </script>
+</body>
+
+</html>
