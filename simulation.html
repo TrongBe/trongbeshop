@@ -198,6 +198,7 @@
                 <div class="output-tabs">
                   <button class="output-tab-btn active" id="outputTabTable">📋 Bảng Dữ Liệu</button>
                   <button class="output-tab-btn" id="outputTabChart">📊 Biểu Đồ Trực Quan</button>
+                  <button class="output-tab-btn" id="outputTabReport">📝 Nộp Báo Cáo</button>
                 </div>
                 <div style="font-size: 0.8rem; color: var(--text-muted);">
                   Interactive Output
@@ -214,6 +215,48 @@
                 <div id="outputChartPane" style="display: none; height: 100%;">
                   <div class="chart-container-box">
                     <canvas id="simChartCanvas"></canvas>
+                  </div>
+                </div>
+
+                <!-- Thẻ Nộp Báo Cáo & AI Chấm Điểm -->
+                <div id="outputReportPane" style="display: none;">
+                  <div class="report-box-container">
+                    <div class="report-instruction-banner">
+                      <div class="report-banner-icon">💼</div>
+                      <div class="report-banner-text">
+                        <div class="report-banner-title">Data Storytelling — Nộp Báo Cáo Kinh Doanh</div>
+                        <div class="report-banner-desc">
+                          Hãy viết báo cáo phân tích theo 3 tiêu chí: <b>Bám sát số liệu (30đ)</b> • <b>Insight & Logic kinh doanh (40đ)</b> • <b>Đề xuất hành động (30đ)</b>. <b>Head of Data Analytics (AI)</b> sẽ đối soát trực tiếp với kết quả SQL và chấm điểm theo thang 100!
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="report-form-group">
+                      <div class="report-label-row">
+                        <label for="reportTextarea" class="report-input-label">Nội dung báo cáo của bạn:</label>
+                        <button type="button" id="btnFillSampleReport" class="btn-sample-report" title="Điền khung dàn ý chuẩn để bạn triển khai">
+                          📑 Điền dàn ý mẫu
+                        </button>
+                      </div>
+                      <textarea id="reportTextarea" class="report-textarea" rows="8" placeholder="Nhập nội dung báo cáo kinh doanh của bạn tại đây...
+
+Gợi ý cấu trúc:
+1. Phát hiện dữ liệu (Fact-based): Nêu rõ các số liệu cụ thể vừa truy vấn được từ SQL (tỷ lệ %, số tiền, số lượng đơn...).
+2. Phân tích nguyên nhân (Business Sense): Đâu là bản chất ngầm hiểu? Phát hiện hành vi gì (chẻ đơn, trục lợi voucher...)?
+3. Đề xuất hành động (Actionable Recommendation): Các giải pháp cụ thể, khả thi để giải quyết dứt điểm vấn đề..."></textarea>
+                    </div>
+
+                    <div class="report-actions-bar">
+                      <button id="btnSubmitReport" class="btn-submit-report">
+                        <span class="btn-icon">🎯</span> Nộp bài & Yêu cầu AI chấm điểm
+                      </button>
+                      <span class="report-status-note" id="reportStatusNote">Chấm khắt khe trên thang điểm 100 bởi Head of Data Analytics</span>
+                    </div>
+
+                    <!-- Vùng kết quả chấm điểm của AI (ban đầu ẩn đi) -->
+                    <div id="ai-feedback" class="ai-feedback-container" style="display: none;">
+                      <!-- Render động kết quả chấm điểm tại đây -->
+                    </div>
                   </div>
                 </div>
               </div>

@@ -9,6 +9,8 @@ let currentCase = null;
 let currentLanguage = 'sql';
 let currentChartInstance = null;
 let mentorChatHistory = [];
+let latestSQLResults = null;
+let latestSQLQuery = '';
 
 // ============================================================
 // KHỞI TẠO KHI TẢI TRANG
@@ -141,6 +143,20 @@ export function startMission(caseId) {
 
     currentCase = mission;
     currentLanguage = 'sql';
+    latestSQLResults = null;
+    latestSQLQuery = '';
+
+    // Reset Báo Cáo & AI Feedback
+    const reportInput = document.getElementById('reportTextarea');
+    if (reportInput) reportInput.value = '';
+    const feedbackDiv = document.getElementById('ai-feedback');
+    if (feedbackDiv) {
+        feedbackDiv.style.display = 'none';
+        feedbackDiv.innerHTML = '';
+    }
+    const statusNote = document.getElementById('reportStatusNote');
+    if (statusNote) statusNote.textContent = 'Chấm khắt khe trên thang điểm 100 bởi Head of Data Analytics';
+    window.switchOutputTab?.('table');
 
     // 1. Đăng ký dữ liệu JSON vào AlaSQL để chạy SQL thật
     registerCaseDatabaseInAlaSQL(mission);
@@ -303,6 +319,8 @@ function runSQLWithAlaSQL(sqlQuery) {
     }
 
     const rows = Array.isArray(results) ? results : [results];
+    latestSQLResults = rows;
+    latestSQLQuery = sqlQuery;
 
     if (rows.length === 0) {
         if (tableContainer) tableContainer.innerHTML = `<div class="sql-empty-box">🔍 Truy vấn thực thi thành công nhưng không có dòng nào được trả về.</div>`;
@@ -382,27 +400,293 @@ function setupTerminalEvents() {
         editor.value = currentLanguage === 'sql' ? currentCase.defaultSql : currentCase.defaultPython;
     });
 
-    // Output View Tabs (Table vs Chart)
+    // Output View Tabs (Table vs Chart vs Report)
     const tabTable = document.getElementById('outputTabTable');
     const tabChart = document.getElementById('outputTabChart');
+    const tabReport = document.getElementById('outputTabReport');
     const paneTable = document.getElementById('outputTablePane');
     const paneChart = document.getElementById('outputChartPane');
+    const paneReport = document.getElementById('outputReportPane');
 
-    tabTable?.addEventListener('click', () => {
-        tabTable.classList.add('active');
-        tabChart?.classList.remove('active');
-        if (paneTable) paneTable.style.display = 'block';
-        if (paneChart) paneChart.style.display = 'none';
-    });
+    function switchOutputTab(activeTab) {
+        [tabTable, tabChart, tabReport].forEach(t => t?.classList.remove('active'));
+        [paneTable, paneChart, paneReport].forEach(p => { if (p) p.style.display = 'none'; });
 
-    tabChart?.addEventListener('click', () => {
-        tabChart.classList.add('active');
-        tabTable?.classList.remove('active');
-        if (paneTable) paneTable.style.display = 'none';
-        if (paneChart) paneChart.style.display = 'block';
-        if (currentCase) renderChart(currentCase.mockData.chart);
-    });
+        if (activeTab === 'table') {
+            tabTable?.classList.add('active');
+            if (paneTable) paneTable.style.display = 'block';
+        } else if (activeTab === 'chart') {
+            tabChart?.classList.add('active');
+            if (paneChart) {
+                paneChart.style.display = 'block';
+                if (currentCase) renderChart(currentCase.mockData.chart);
+            }
+        } else if (activeTab === 'report') {
+            tabReport?.classList.add('active');
+            if (paneReport) paneReport.style.display = 'block';
+        }
+    }
+    window.switchOutputTab = switchOutputTab;
+
+    tabTable?.addEventListener('click', () => switchOutputTab('table'));
+    tabChart?.addEventListener('click', () => switchOutputTab('chart'));
+    tabReport?.addEventListener('click', () => switchOutputTab('report'));
+
+    // Lắng nghe sự kiện Nộp Báo Cáo & AI Chấm Điểm
+    const btnSubmitReport = document.getElementById('btnSubmitReport');
+    btnSubmitReport?.addEventListener('click', submitBusinessReport);
+
+    const btnFillSample = document.getElementById('btnFillSampleReport');
+    btnFillSample?.addEventListener('click', fillSampleReport);
 }
+
+// ============================================================
+// SYSTEM PROMPT CHẤM BÁO CÁO KINH DOANH (HEAD OF DATA ANALYTICS)
+// ============================================================
+const GRADING_SYSTEM_PROMPT = `Bạn là một Head of Data Analytics đang chấm báo cáo (Data Storytelling) của thực tập sinh. Người dùng sẽ gửi cho bạn một đoạn báo cáo kinh doanh. Hãy chấm điểm khắt khe dựa trên thang điểm 100, chia làm 3 tiêu chí:
+
+1. Bám sát Dữ liệu (Fact-based) - 30 điểm: Báo cáo có trích dẫn đúng con số từ kết quả SQL không? (Nếu nói chung chung không có số, trừ điểm nặng).
+2. Insight & Logic (Business Sense) - 40 điểm: Có chỉ ra được 'sự thật ngầm hiểu' đằng sau con số không? Có phát hiện ra nguyên nhân gốc rễ (như hành vi chẻ đơn, bom hàng) không?
+3. Đề xuất hành động (Actionable Recommendation) - 30 điểm: Giải pháp đưa ra có thực tế, hợp lý và giải quyết được bài toán kinh doanh không? (Nếu chỉ đưa ra số liệu mà không có giải pháp, trừ điểm).
+
+ĐỊNH DẠNG TRẢ VỀ (Bắt buộc theo format này):
+🎯 TỔNG ĐIỂM: [Số điểm]/100
+✅ Điểm sáng: [Khen ngợi 1-2 ý tốt]
+❌ Lỗ hổng cần sửa: [Chỉ ra lỗi sai logic hoặc thiếu sót trong tư duy]
+💡 Cách viết chuẩn (Gợi ý ngắn): [Sửa lại 1 câu trong báo cáo cho sắc bén hơn theo phong cách Executive Summary]`;
+
+async function submitBusinessReport() {
+    const reportInput = document.getElementById('reportTextarea');
+    const submitBtn = document.getElementById('btnSubmitReport');
+    const feedbackDiv = document.getElementById('ai-feedback');
+    const statusNote = document.getElementById('reportStatusNote');
+
+    const reportText = reportInput?.value?.trim();
+    if (!reportText) {
+        alert('Vui lòng nhập nội dung báo cáo kinh doanh của bạn trước khi nộp bài!');
+        reportInput?.focus();
+        return;
+    }
+
+    if (feedbackDiv) {
+        feedbackDiv.style.display = 'flex';
+        feedbackDiv.innerHTML = `
+            <div class="ai-evaluating-loading">
+                <div class="spinner-eval"></div>
+                <div><b>Head of Data Analytics</b> đang đọc báo cáo, đối soát số liệu SQL và chấm điểm... Vui lòng đợi trong giây lát!</div>
+            </div>
+        `;
+        feedbackDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    if (submitBtn) submitBtn.disabled = true;
+    if (statusNote) statusNote.textContent = '⏳ Đang chấm bài...';
+
+    // Xây dựng số liệu thực tế để AI đối soát tính chính xác (Fact-based)
+    let dataSummary = '';
+    if (latestSQLResults && latestSQLResults.length > 0) {
+        dataSummary = `Dữ liệu thực tế người dùng vừa truy vấn từ SQL (${latestSQLResults.length} dòng):\n` +
+            JSON.stringify(latestSQLResults.slice(0, 10), null, 2);
+    } else if (currentCase && currentCase.mockData && currentCase.mockData.rows) {
+        dataSummary = `Dữ liệu đối soát tiêu chuẩn của bài toán:\nHeaders: ${currentCase.mockData.headers.join(', ')}\nRows: ` +
+            JSON.stringify(currentCase.mockData.rows.slice(0, 8));
+    }
+
+    const gradingPrompt = `[BỐI CẢNH BÀI TOÁN DOANH NGHIỆP]:
+Nhiệm vụ: ${currentCase ? currentCase.title : 'Phân tích dữ liệu kinh doanh'}
+Bối cảnh: ${currentCase ? currentCase.fullContext || currentCase.shortDesc : ''}
+Mục tiêu phân tích: ${currentCase && currentCase.objectives ? currentCase.objectives.join('; ') : ''}
+
+[SỐ LIỆU ĐỐI SOÁT TỪ TRUY VẤN SQL CỦA HỆ THỐNG]:
+${dataSummary || 'Tham chiếu theo dữ liệu mock chuẩn của case study.'}
+
+[BÁO CÁO CỦA THỰC TẬP SINH]:
+"""
+${reportText}
+"""
+
+Hãy chấm điểm thật khắt khe và trả về đúng định dạng yêu cầu.`;
+
+    let aiFeedbackText = null;
+
+    // 1. Thử gọi qua Vercel Serverless Function /api/gemini
+    try {
+        const res = await fetch('/api/gemini', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                prompt: gradingPrompt,
+                systemInstruction: GRADING_SYSTEM_PROMPT,
+                model: 'gemini-3.1-flash-lite'
+            })
+        });
+
+        const contentType = res.headers.get('content-type') || '';
+        if (contentType.includes('application/json')) {
+            const data = await res.json();
+            if (res.ok && data && data.text) {
+                aiFeedbackText = data.text;
+            }
+        }
+    } catch (err) {
+        console.warn('[AI Grading] /api/gemini gặp lỗi, chuyển sang gọi trực tiếp:', err.message);
+    }
+
+    // 2. Dự phòng: gọi trực tiếp Google Gemini API Client-side
+    if (!aiFeedbackText) {
+        try {
+            aiFeedbackText = await callGoogleGeminiDirect(gradingPrompt, [], GRADING_SYSTEM_PROMPT);
+        } catch (directErr) {
+            console.error('[AI Grading Direct Error]:', directErr);
+            if (feedbackDiv) {
+                feedbackDiv.innerHTML = `
+                    <div class="sql-error-box">
+                        <div style="font-weight:700; margin-bottom:6px;">⚠️ Lỗi kết nối AI chấm bài</div>
+                        <div>${directErr.message}</div>
+                        <div style="margin-top:8px;">Vui lòng thử bấm nút "Nộp bài & Yêu cầu AI chấm điểm" lại.</div>
+                    </div>
+                `;
+            }
+            if (submitBtn) submitBtn.disabled = false;
+            if (statusNote) statusNote.textContent = 'Lỗi kết nối';
+            return;
+        }
+    }
+
+    if (submitBtn) submitBtn.disabled = false;
+    if (statusNote) statusNote.textContent = '✅ Đã hoàn tất chấm điểm';
+
+    if (aiFeedbackText) {
+        renderAiFeedback(aiFeedbackText);
+    }
+}
+window.submitBusinessReport = submitBusinessReport;
+
+function renderAiFeedback(rawText) {
+    const feedbackDiv = document.getElementById('ai-feedback');
+    if (!feedbackDiv) return;
+
+    // Phân tích điểm: 🎯 TỔNG ĐIỂM: [Số điểm]/100
+    const scoreMatch = rawText.match(/🎯\s*TỔNG\s*ĐIỂM:\s*(\d+)\/100/i);
+    const score = scoreMatch ? parseInt(scoreMatch[1], 10) : null;
+
+    let scoreBadgeClass = 'score-badge-medium';
+    let verdictText = 'Cần cải thiện thêm';
+    if (score !== null) {
+        if (score >= 80) {
+            scoreBadgeClass = 'score-badge-high';
+            verdictText = 'Xuất sắc — Đạt chuẩn Senior/Lead';
+        } else if (score < 50) {
+            scoreBadgeClass = 'score-badge-low';
+            verdictText = 'Chưa đạt — Cần bám sát số liệu hơn';
+        }
+    }
+
+    // Trích xuất các tiêu mục
+    const goodMatch = rawText.match(/✅\s*Điểm sáng:\s*([\s\S]*?)(?=❌|💡|$)/i);
+    const badMatch = rawText.match(/❌\s*Lỗ hổng cần sửa:\s*([\s\S]*?)(?=💡|$)/i);
+    const tipMatch = rawText.match(/💡\s*Cách viết chuẩn\s*(?:\(Gợi ý ngắn\))?:\s*([\s\S]*?)$/i);
+
+    const goodText = goodMatch ? goodMatch[1].trim() : '';
+    const badText = badMatch ? badMatch[1].trim() : '';
+    const tipText = tipMatch ? tipMatch[1].trim() : '';
+
+    feedbackDiv.style.display = 'flex';
+
+    if (goodText || badText || tipText) {
+        feedbackDiv.innerHTML = `
+            <div class="feedback-score-header">
+                <div>
+                    <div class="feedback-score-badge ${scoreBadgeClass}">
+                        <span>🎯 TỔNG ĐIỂM:</span>
+                        <span>${score !== null ? score : '--'}/100</span>
+                    </div>
+                    <div style="font-size:0.82rem; margin-top:6px; font-weight:600; color:var(--text-muted);">
+                        Đánh giá: <b>${verdictText}</b>
+                    </div>
+                </div>
+                <div class="feedback-examiner-tag">
+                    🧑‍💼 Head of Data Analytics
+                </div>
+            </div>
+
+            ${goodText ? `
+            <div class="feedback-card feedback-card-good">
+                <div class="feedback-card-title">✅ Điểm sáng</div>
+                <div>${formatMarkdown(goodText)}</div>
+            </div>
+            ` : ''}
+
+            ${badText ? `
+            <div class="feedback-card feedback-card-bad">
+                <div class="feedback-card-title">❌ Lỗ hổng cần sửa</div>
+                <div>${formatMarkdown(badText)}</div>
+            </div>
+            ` : ''}
+
+            ${tipText ? `
+            <div class="feedback-card feedback-card-tip">
+                <div class="feedback-card-title">💡 Cách viết chuẩn (Executive Summary)</div>
+                <div class="feedback-quote-box">${formatMarkdown(tipText)}</div>
+            </div>
+            ` : ''}
+
+            <div class="feedback-actions">
+                <button class="btn-secondary-feedback" onclick="document.getElementById('reportTextarea')?.focus()">
+                    ✏️ Sửa báo cáo
+                </button>
+                <button class="btn-secondary-feedback" onclick="window.submitBusinessReport()">
+                    🔄 Yêu cầu chấm lại
+                </button>
+            </div>
+        `;
+    } else {
+        feedbackDiv.innerHTML = `
+            <div class="feedback-score-header">
+                <div class="feedback-score-badge score-badge-high">
+                    <span>🎯 KẾT QUẢ ĐÁNH GIÁ</span>
+                </div>
+                <div class="feedback-examiner-tag">🧑‍💼 Head of Data Analytics</div>
+            </div>
+            <div style="font-size:0.9rem; line-height:1.6; color:var(--text-main);">
+                ${formatMarkdown(rawText)}
+            </div>
+        `;
+    }
+
+    feedbackDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function fillSampleReport() {
+    const reportInput = document.getElementById('reportTextarea');
+    if (!reportInput) return;
+
+    if (currentCase && currentCase.id === 'case-freeship-fraud') {
+        reportInput.value = `BÁO CÁO PHÂN TÍCH HIỆN TƯỢNG VƯỢT NGÂN SÁCH TRỢ GIÁ VẬN CHUYỂN
+1. Dữ liệu thực tế:
+- Trong chiến dịch Mega Sale, phân khúc đơn hàng cận ngưỡng 99k - 105k chiếm tỷ lệ áp đảo 58.4% tổng lượng đơn (148,520 đơn), tiêu tốn 4,455,600,000 VNĐ tiền trợ giá.
+- Tỷ lệ này cao gấp gần 5 lần so với nhóm đơn hàng trên 200k (chỉ chiếm 12.7% và 965 triệu VNĐ).
+
+2. Insight & Phân tích nguyên nhân:
+- Xuất hiện hành vi chẻ đơn hàng loạt (order splitting) từ nhóm các Shop và IP người mua nhằm trục lợi mức voucher hỗ trợ 30.000đ/đơn từ sàn.
+- Chính sách Freeship 0đ hiện tại đang có kẽ hở khi không giới hạn lượt hưởng voucher theo cụm IP/thiết bị, và ngưỡng áp dụng quá phẳng khiến người mua chia nhỏ giỏ hàng thay vì mua nhiều sản phẩm.
+
+3. Đề xuất hành động:
+- Ngay lập tức: Chặn dải IP và tạm giữ thanh toán của các Shop có tỷ lệ đơn cận 99k bất thường để đối soát.
+- Trung hạn: Chuyển đổi chính sách Freeship bậc thang (Đơn 150k giảm 15k, đơn 250k giảm 30k) để kích thích tăng AOV (giá trị trung bình đơn hàng).
+- Kỹ thuật: Bổ sung luật phát hiện gian lận tự động (Fraud Rules) dựa trên Device Fingerprinting.`;
+    } else {
+        reportInput.value = `BÁO CÁO PHÂN TÍCH KINH DOANH
+1. Bám sát Dữ liệu (Fact-based):
+- Dựa trên kết quả truy vấn SQL, các chỉ số ghi nhận thực tế là: ...
+2. Insight & Phân tích nguyên nhân (Business Sense):
+- Bản chất ngầm hiểu đằng sau sự biến động của dữ liệu là: ...
+3. Đề xuất hành động (Actionable Recommendation):
+- Đề xuất các giải pháp khả thi để giải quyết bài toán: ...`;
+    }
+    reportInput.focus();
+}
+window.fillSampleReport = fillSampleReport;
 
 function renderOutputData(mission) {
     // 1. Render Table
