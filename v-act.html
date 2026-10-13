@@ -79,8 +79,8 @@
     };
   </script>
   <header class="header">
-    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap: 8px;">
-      <button class="menu-btn" onclick="toggleSidebar()" aria-label="Menu" style="position:static; transform:none; flex-shrink: 0;">
+    <div class="container header-inner">
+      <button class="menu-btn" onclick="toggleSidebar()" aria-label="Menu">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
           stroke-linecap="round" stroke-linejoin="round">
           <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -88,11 +88,11 @@
           <line x1="3" y1="18" x2="21" y2="18"></line>
         </svg>
       </button>
-      <div style="text-align: center; flex: 1;">
+      <div class="header-brand">
         <h1>TRONEX: V-ACT</h1>
-        <p>Hệ thống luyện thi thông minh - AI Learning Platform</p>
+        <p class="header-subtitle">Hệ thống luyện thi thông minh - AI Learning Platform</p>
       </div>
-      <div style="display:flex; align-items:center; gap:8px; flex-shrink: 0;">
+      <div class="header-actions">
         <button class="theme-toggle-btn" id="themeToggleBtn" title="Chế độ sáng/tối">🌙</button>
         <button class="auth-btn" id="authBtn" title="Đăng nhập">
           <span>🔑</span><span>Đăng nhập</span>
@@ -289,37 +289,35 @@
       </div>
       <div id="submissionDetailContent" style="display:flex; flex-direction:column; gap:16px;"></div>
       <!-- Grade Box: A chấm điểm cuối -->
-      <div id="submissionGradeBox" style="display:none; margin-top:24px; padding:24px; background:#f0fdf4; border-radius:16px; border:2px solid #bbf7d0;">
-        <h3 style="margin:0 0 12px; color:#15803d; font-size:1.1rem;">📊 Kết quả &amp; Chấm điểm</h3>
-        <p style="color:#166534; margin-bottom:12px;">Điểm tự động (câu có đáp án đúng): <strong id="autoScoreDisplay">0</strong></p>
+      <div id="submissionGradeBox" class="submissions-grade-box" style="display:none;">
+        <h3>📊 Kết quả &amp; Chấm điểm</h3>
+        <p>Điểm tự động (câu có đáp án đúng): <strong id="autoScoreDisplay">0</strong></p>
         <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
-          <label style="color:#166534; font-weight:600;">Điểm tổng cuối cùng:</label>
-          <input type="number" id="finalScoreInput" min="0" placeholder="Nhập điểm..." style="padding:10px; border:2px solid #86efac; border-radius:10px; font-size:1rem; width:100px; outline:none; text-align:center;">
-          <button onclick="window.__saveFinalScore()" style="padding:10px 20px; background:linear-gradient(135deg,#22c55e,#16a34a); color:white; border:none; border-radius:10px; font-weight:600; cursor:pointer; font-size:0.95rem;">💾 Lưu điểm</button>
+          <label style="font-weight:600;">Điểm tổng cuối cùng:</label>
+          <input type="number" id="finalScoreInput" min="0" placeholder="Nhập điểm...">
+          <button onclick="window.__saveFinalScore()" class="btn btn-primary" style="padding:10px 20px;">💾 Lưu điểm</button>
         </div>
-        <div id="savedScoreMsg" style="display:none; margin-top:10px; color:#16a34a; font-weight:600;">✅ Đã lưu điểm thành công!</div>
+        <div id="savedScoreMsg" style="display:none; margin-top:10px; color:var(--secondary); font-weight:600;">✅ Đã lưu điểm thành công!</div>
       </div>
     </div>
 
   </main>
 
   <!-- Participant Identity Modal: Nhập tên trước khi làm bài -->
-  <div id="participantModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:8500; backdrop-filter:blur(5px); align-items:center; justify-content:center;">
-    <div style="background:white; padding:36px 32px; border-radius:24px; max-width:420px; width:90%; box-shadow:0 25px 70px rgba(0,0,0,0.3); text-align:center;">
+  <div id="participantModal" class="modal-overlay" style="display:none; z-index:8500;">
+    <div class="participant-card">
       <div id="participantAvatarArea" style="margin-bottom:16px; display:flex; justify-content:center;"></div>
-      <h3 id="participantGreeting" style="margin:0 0 6px; font-size:1.3rem; font-weight:700; color:#1e293b;">Xác nhận thông tin</h3>
-      <p id="participantSubtitle" style="color:#64748b; margin:0 0 20px; font-size:0.9rem; line-height:1.5;">Nhập tên của bạn để bắt đầu làm bài</p>
+      <h3 id="participantGreeting" class="participant-greeting">Xác nhận thông tin</h3>
+      <p id="participantSubtitle" class="participant-subtitle">Nhập tên của bạn để bắt đầu làm bài</p>
       <div id="participantNameField">
         <input id="participantNameInput" type="text" placeholder="Họ và tên của bạn..."
-          style="width:100%; padding:13px 16px; border:2px solid #e2e8f0; border-radius:12px; font-size:1rem; outline:none; box-sizing:border-box; transition:border-color 0.2s; color:#1e293b;"
-          onfocus="this.style.borderColor='#6366f1'"
-          onblur="this.style.borderColor='#e2e8f0'"
+          class="participant-input"
           onkeydown="if(event.key==='Enter') window.__confirmParticipant()">
       </div>
-      <button onclick="window.__confirmParticipant()" style="width:100%; margin-top:14px; padding:14px; background:linear-gradient(135deg,#6366f1,#8b5cf6); color:white; border:none; border-radius:12px; font-size:1rem; font-weight:600; cursor:pointer; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+      <button onclick="window.__confirmParticipant()" class="btn btn-primary btn-large" style="margin-top:14px;">
         Bắt Đầu Làm Bài →
       </button>
-      <button onclick="document.getElementById('participantModal').style.display='none'; showView('list');" style="width:100%; margin-top:8px; padding:10px; background:transparent; color:#94a3b8; border:none; cursor:pointer; font-size:0.9rem;">
+      <button onclick="document.getElementById('participantModal').style.display='none'; showView('list');" class="btn btn-text" style="width:100%; margin-top:8px;">
         ← Quay lại danh sách
       </button>
     </div>
@@ -674,19 +672,15 @@
   <script type="module" src="js/auth.js?v=1"></script>
 
   <!-- DELETE CONFIRM MODAL -->
-  <div id="deleteConfirmModal"
-    style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:9999; align-items:center; justify-content:center;">
-    <div
-      style="background:white; padding:30px; border-radius:16px; max-width:400px; width:90%; box-shadow:0 20px 60px rgba(0,0,0,0.3);">
-      <h3 style="margin:0 0 10px; font-size:1.2rem;">Xóa đề thi</h3>
-      <p style="color:#6b7280; margin-bottom:20px;">Bạn muốn xóa đề này như thế nào?</p>
-      <button id="btnHideLocal" class="btn btn-outline" style="width:100%; margin-bottom:10px;">🙈 Ẩn trên máy
-        này</button>
-      <button id="btnDeleteFirebase" class="btn"
-        style="width:100%; background:#ef4444; color:white; border:none; padding:12px; border-radius:8px; cursor:pointer; font-weight:600;">🗑️
-        Xóa vĩnh viễn (Cloud)</button>
-      <button onclick="closeDeleteModal()" class="btn btn-text" style="width:100%; margin-top:10px; color:#6b7280;">Hủy
-        bỏ</button>
+  <div id="deleteConfirmModal" class="modal-overlay" style="display:none; z-index:9999;">
+    <div class="delete-confirm-card">
+      <h3>Xóa đề thi</h3>
+      <p>Bạn muốn xóa đề này như thế nào?</p>
+      <div class="delete-options">
+        <button id="btnHideLocal" class="btn btn-outline" style="width:100%;">🙈 Ẩn trên máy này</button>
+        <button id="btnDeleteFirebase" class="btn btn-danger" style="width:100%; padding:12px; font-weight:600;">🗑️ Xóa vĩnh viễn (Cloud)</button>
+        <button onclick="closeDeleteModal()" class="btn btn-text" style="width:100%;">Hủy bỏ</button>
+      </div>
     </div>
   </div>
 

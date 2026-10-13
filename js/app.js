@@ -1848,6 +1848,7 @@ window.viewSubmissions = function (quizId) {
             const autoScoreDisplay = isEnglishTHPTQG && typeof sub.autoScore === 'number'
                 ? `${sub.autoScore}/10đ`
                 : `${sub.autoScore || 0}`;
+            const hasFinalScore = sub.finalScore !== undefined && sub.finalScore !== null && sub.finalScore !== '';
             const scoreBadge = hasFinalScore
                 ? `<span style="color:#16a34a;font-weight:700;font-size:1rem;">🏅 ${sub.finalScore} điểm</span>`
                 : `<span style="color:#6366f1;font-size:0.9rem;">Tự động: ${autoScoreDisplay}</span>`;
