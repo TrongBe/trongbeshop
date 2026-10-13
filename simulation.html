@@ -15,7 +15,7 @@
 
   <!-- Core Theme & Simulation CSS -->
   <link rel="stylesheet" href="css/style.css?v=25">
-  <link rel="stylesheet" href="css/simulation.css?v=20261013_fullrender">
+  <link rel="stylesheet" href="css/simulation.css?v=20261013_mentor_review">
 
   <!-- Chart.js for Interactive Data Visualization -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
@@ -177,6 +177,7 @@
                   <button class="terminal-tab" id="tabPython">Python (Pandas)</button>
                 </div>
                 <div class="terminal-actions">
+                  <button class="btn-review-code" id="btnReviewCode" title="Nhờ AI Mentor kiểm tra cú pháp và logic mã trước khi chạy">🔍 Nhờ Mentor Review</button>
                   <button class="btn-reset-code" id="btnResetCode" title="Đặt lại code ban đầu">🔄 Khôi phục</button>
                   <button class="btn-run-code" id="btnRunCode" title="Thực thi truy vấn SQL (Phím tắt: Ctrl + Enter)">▶ Chạy mã (Run)</button>
                 </div>
@@ -294,6 +295,7 @@ Gợi ý cấu trúc:
 
             <!-- Quick Action Chips -->
             <div class="mentor-chips-bar">
+              <button class="mentor-chip-btn" onclick="window.askMentorToReviewCurrentCode()">🔍 Review code hiện tại</button>
               <button class="mentor-chip-btn" onclick="window.sendMentorChip('Viết cho tôi câu SQL hoàn chỉnh để giải bài toán này')">🔑 Viết SQL giải bài</button>
               <button class="mentor-chip-btn" onclick="window.sendMentorChip('Giải thích kết quả dữ liệu vừa chạy cho tôi')">📊 Giải thích kết quả</button>
               <button class="mentor-chip-btn" onclick="window.sendMentorChip('Tôi cần làm gì tiếp theo để hoàn thành phân tích?')">🎯 Bước tiếp theo</button>
@@ -319,7 +321,7 @@ Gợi ý cấu trúc:
 
   <!-- SCRIPTS -->
   <script type="module" src="js/auth.js?v=1"></script>
-  <script type="module" src="js/simulation.js?v=20261013_fullrender"></script>
+  <script type="module" src="js/simulation.js?v=20261013_mentor_review"></script>
 
   <!-- Sidebar & Theme Handlers -->
   <script>

@@ -607,9 +607,14 @@ function renderMultiQueryResults(queryResults, totalElapsed, totalQueries, succe
         if (q.error) {
             html += `
                 <div class="sql-error-box" style="margin: 12px 16px;">
-                    <div style="font-weight:700; margin-bottom:6px;">⚠️ Lỗi SQL cú pháp (Truy vấn #${q.index})</div>
-                    <code style="font-size:0.84rem;">${escapeHtml(q.error)}</code>
-                    <div style="margin-top:8px; font-size:0.8rem; opacity:0.8;">Kiểm tra lại tên bảng, tên cột và cấu trúc câu lệnh.</div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
+                        <div style="font-weight:700;">⚠️ Lỗi SQL cú pháp (Truy vấn #${q.index})</div>
+                        <button type="button" class="btn-send-error-mentor" onclick="window.sendErrorToMentor(${q.index})" title="Gửi lỗi này cho AI Mentor hỗ trợ gỡ rối và sửa trực tiếp">
+                            🚨 Gửi lỗi cho Mentor sửa giúp
+                        </button>
+                    </div>
+                    <code style="font-size:0.84rem; display:block; margin-bottom:6px;">${escapeHtml(q.error)}</code>
+                    <div style="font-size:0.8rem; opacity:0.85;">Kiểm tra lại tên bảng, tên cột và cấu trúc câu lệnh — hoặc nhấn nút <b>"Gửi lỗi cho Mentor sửa giúp"</b> ở trên.</div>
                 </div>
             `;
         } else if (q.rows.length === 0) {
@@ -670,6 +675,12 @@ function setupTerminalEvents() {
         if (currentCase && editor) editor.value = currentCase.defaultPython;
     });
 
+    // Review Code Button — Nhờ Mentor AI kiểm tra cú pháp và logic mã trước khi chạy
+    const btnReview = document.getElementById('btnReviewCode');
+    btnReview?.addEventListener('click', () => {
+        window.askMentorToReviewCurrentCode();
+    });
+
     // Run Code Button — tích hợp AlaSQL
     const btnRun = document.getElementById('btnRunCode');
     const statusText = document.getElementById('terminalStatusText');
@@ -687,9 +698,11 @@ function setupTerminalEvents() {
             if (currentLanguage === 'sql') {
                 runSQLWithAlaSQL(code);
             } else {
-                // Python: hiển thị mock data như cũ (không thể chạy Python ở browser)
+                // Python: hiển thị mock data kèm nút review cùng mentor
                 renderOutputData(currentCase);
-                if (statusText) statusText.textContent = `Python (Pandas) — Hiển thị kết quả mô phỏng | ${currentCase.mockData.rows.length} dòng`;
+                if (statusText) {
+                    statusText.innerHTML = `Python (Pandas) — Kết quả mô phỏng | <button type="button" class="btn-micro-mentor-link" onclick="window.askMentorToReviewCurrentCode()">🔍 Review code Python cùng Mentor</button>`;
+                }
             }
             btnRun.innerHTML = '▶ Chạy mã (Run)';
             btnRun.disabled = false;
@@ -1149,6 +1162,105 @@ function setupMentorChat() {
             handleSend();
         }
     };
+
+    // Hỗ trợ Cuộn & Focus vào Cột Mentor
+    function focusMentorPanel() {
+        const colMentor = document.querySelector('.col-mentor');
+        if (colMentor && window.innerWidth <= 1024) {
+            colMentor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        scrollMentorToBottom(true);
+    }
+    window.focusMentorPanel = focusMentorPanel;
+
+    // 1. Tính năng: Nhờ Mentor Review Code trước khi chạy
+    window.askMentorToReviewCurrentCode = function() {
+        const editor = document.getElementById('terminalEditor');
+        const code = editor?.value?.trim();
+        if (!code) {
+            alert('Vui lòng nhập câu lệnh SQL hoặc mã Python vào Editor trước khi nhờ Mentor review!');
+            editor?.focus();
+            return;
+        }
+
+        const isPython = (currentLanguage === 'python');
+        const langName = isPython ? 'Python (Pandas)' : 'SQL';
+        const langSyntax = isPython ? 'python' : 'sql';
+
+        const objectivesText = (currentCase && Array.isArray(currentCase.objectives))
+            ? currentCase.objectives.map((o, i) => `${i + 1}. ${o}`).join('\n')
+            : 'Mục tiêu phân tích dữ liệu';
+
+        const promptText = `🔍 **Yêu cầu Review mã ${langName} trước khi chạy:**\n\n` +
+            `\`\`\`${langSyntax}\n${code}\n\`\`\`\n\n` +
+            `Mục tiêu bài toán cần đạt:\n${objectivesText}\n\n` +
+            `Mentor hãy giúp tôi kiểm tra:\n` +
+            `1. Cú pháp có lỗi gì không (tên bảng, tên cột, dấu câu, logic GROUP BY / aggregation...)?\n` +
+            `2. Logic truy vấn có đáp ứng đúng mục tiêu bài toán không?\n` +
+            `3. Đánh giá: Mã này đã chuẩn để chạy chưa hay cần lưu ý/sửa đổi gì trước khi chạy?`;
+
+        appendMentorMessage('user', `
+            <div style="font-weight:700; margin-bottom:4px; display:flex; align-items:center; gap:6px;">
+                <span>🔍 Yêu cầu Review mã ${escapeHtml(langName)}</span>
+            </div>
+            <pre style="background:rgba(0,0,0,0.25); padding:8px 10px; border-radius:6px; font-size:0.8rem; overflow-x:auto; margin:4px 0;"><code>${escapeHtml(code)}</code></pre>
+            <div style="font-size:0.8rem; opacity:0.85;">Nhờ Mentor kiểm tra cú pháp và logic nghiệp vụ trước khi chạy.</div>
+        `);
+
+        sendToGeminiMentor(promptText);
+
+        const statusText = document.getElementById('terminalStatusText');
+        if (statusText) {
+            statusText.innerHTML = `🔍 Đang nhờ AI Mentor review mã ${escapeHtml(langName)}... Xem kết quả ở Cột Cố Vấn bên phải 👉`;
+        }
+
+        focusMentorPanel();
+    };
+
+    // 2. Tính năng: Gửi lỗi khi chạy SQL/Python cho Mentor hỗ trợ sửa
+    window.sendErrorToMentor = function(queryIndex) {
+        let targetQuery = null;
+        if (latestSQLResults && Array.isArray(latestSQLResults)) {
+            if (typeof queryIndex === 'number') {
+                targetQuery = latestSQLResults.find(q => q.index === queryIndex);
+            }
+            if (!targetQuery) {
+                targetQuery = latestSQLResults.find(q => q.error) || latestSQLResults[0];
+            }
+        }
+
+        const editor = document.getElementById('terminalEditor');
+        const fullCode = editor?.value?.trim() || '';
+        const stmt = targetQuery?.statement || fullCode;
+        const errMsg = targetQuery?.error || 'Lỗi cú pháp khi thực thi câu lệnh SQL';
+        const qIdx = targetQuery?.index || (typeof queryIndex === 'number' ? queryIndex : 1);
+
+        const promptText = `🚨 **Gặp lỗi khi chạy truy vấn SQL (Truy vấn #${qIdx}):**\n\n` +
+            `**Câu lệnh SQL bị lỗi:**\n\`\`\`sql\n${stmt}\n\`\`\`\n\n` +
+            `**Thông báo lỗi từ hệ thống:**\n\`${errMsg}\`\n\n` +
+            `Mentor hãy phân tích và hướng dẫn tôi:\n` +
+            `1. Nguyên nhân vì sao câu lệnh này bị lỗi (chỉ rõ vị trí sai cú pháp, tên cột hoặc tên bảng)?\n` +
+            `2. Hãy hướng dẫn tôi cách sửa lại câu lệnh chuẩn xác nhất theo đúng cấu trúc CSDL để thực thi thành công.`;
+
+        appendMentorMessage('user', `
+            <div style="font-weight:700; margin-bottom:4px; display:flex; align-items:center; gap:6px; color:#EF4444;">
+                <span>🚨 Yêu cầu sửa lỗi SQL (Truy vấn #${qIdx})</span>
+            </div>
+            <pre style="background:rgba(0,0,0,0.25); padding:8px 10px; border-radius:6px; font-size:0.8rem; overflow-x:auto; margin:4px 0;"><code>${escapeHtml(stmt)}</code></pre>
+            <div style="color:#EF4444; font-size:0.8rem; font-family:monospace; margin-top:4px; background:rgba(239,68,68,0.1); padding:5px 8px; border-radius:4px;">
+                ${escapeHtml(errMsg)}
+            </div>
+        `);
+
+        sendToGeminiMentor(promptText);
+
+        const statusText = document.getElementById('terminalStatusText');
+        if (statusText) {
+            statusText.innerHTML = `🚨 Đã gửi thông tin lỗi sang AI Mentor! Xem hướng dẫn khắc phục ở Cột Cố Vấn bên phải 👉`;
+        }
+
+        focusMentorPanel();
+    };
 }
 
 function appendMentorMessage(sender, htmlText) {
@@ -1183,11 +1295,21 @@ CƠ CHẾ THỰC THI SQL CỦA HỆ THỐNG:
 - CSDL HIỆN CHỈ CÓ CÁC BẢNG SAU:
 ${currentCase ? currentCase.schema.map(t => `- Bảng "${t.tableName}": (${t.columns.map(c => c.name).join(', ')})`).join('\n') : ''}
 
-QUY TẮC BẮT BUỘC KHI VIẾT SQL:
+QUY TẮC BẮT BUỘC KHI PHẢN HỒI:
 1. CHỈ ĐƯỢC PHÉP TRUY VẤN từ các bảng có thật ở trên. TUYỆT ĐỐI KHÔNG tự bịa ra bảng ảo không có trong CSDL (như OrderMetrics, AggregatedData...).
 2. KHÔNG DÙNG cú pháp CTE (WITH ... AS ...). Hãy viết các câu lệnh SELECT độc lập, hoặc dùng subquery lồng nhau FROM (SELECT ...).
 3. LUÔN LUÔN viết COUNT(*) hoặc COUNT(tên_cột). TUYỆT ĐỐI KHÔNG viết COUNT() rỗng.
-4. Khi người học yêu cầu "Viết cho tôi câu SQL hoàn chỉnh để giải bài toán này" hoặc xin code giải bài, HÃY CUNG CẤP CHÍNH XÁC bộ câu lệnh SQL chuẩn sau đây:
+4. KHI NGƯỜI DÙNG YÊU CẦU REVIEW CODE (SQL hoặc Python):
+   - Đọc kỹ mã người dùng gửi và đối chiếu với Schema các bảng có thật.
+   - Kiểm tra kỹ: Cú pháp, tên bảng, tên cột, logic gom nhóm (GROUP BY), điều kiện WHERE, và kiểu dữ liệu.
+   - Trình bày phản hồi có cấu trúc:
+     ✅ Điểm viết đúng / hợp lý
+     ⚠️ Điểm sai hoặc nguy cơ lỗi (nếu có, chỉ rõ dòng & tên cột)
+     🚀 Đánh giá: Có thể chạy ngay hay cần điều chỉnh gì trước khi chạy?
+5. KHI NGƯỜI DÙNG BÁO LỖI (Gửi lỗi SQL/Python khi chạy):
+   - Phân tích nguyên nhân cốt lõi gây ra lỗi (Parse error, sai chính tả tên cột, quên dấu chấm phẩy, hàm không hỗ trợ...).
+   - Chỉ rõ vị trí sai và cung cấp câu lệnh SQL/Python chuẩn đã sửa để người dùng copy chạy lại thành công.
+6. Khi người học yêu cầu "Viết cho tôi câu SQL hoàn chỉnh để giải bài toán này" hoặc xin code giải bài, HÃY CUNG CẤP CHÍNH XÁC bộ câu lệnh SQL chuẩn sau đây:
 \`\`\`sql
 ${solutionReference}
 \`\`\`
