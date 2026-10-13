@@ -15,7 +15,7 @@
 
   <!-- Core Theme & Simulation CSS -->
   <link rel="stylesheet" href="css/style.css?v=25">
-  <link rel="stylesheet" href="css/simulation.css?v=1">
+  <link rel="stylesheet" href="css/simulation.css?v=20261013_run">
 
   <!-- Chart.js for Interactive Data Visualization -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
@@ -80,7 +80,7 @@
     </ul>
   </div>
 
-  <main style="padding-top: 24px;">
+  <main class="sim-main">
 
     <!-- ============================================================
          VIEW 1: THE LOBBY (SẢNH NHIỆM VỤ)
@@ -178,7 +178,7 @@
                 </div>
                 <div class="terminal-actions">
                   <button class="btn-reset-code" id="btnResetCode" title="Đặt lại code ban đầu">🔄 Khôi phục</button>
-                  <button class="btn-run-code" id="btnRunCode">▶ Chạy mã (Run)</button>
+                  <button class="btn-run-code" id="btnRunCode" title="Thực thi truy vấn SQL (Phím tắt: Ctrl + Enter)">▶ Chạy mã (Run)</button>
                 </div>
               </div>
 
@@ -187,7 +187,7 @@
               </div>
 
               <div class="terminal-status-bar">
-                <span id="terminalStatusText">Sẵn sàng thực thi truy vấn...</span>
+                <span id="terminalStatusText">Sẵn sàng thực thi truy vấn (nhấn Chạy mã hoặc Ctrl + Enter)...</span>
                 <span>Console v2.4</span>
               </div>
             </div>
@@ -319,7 +319,7 @@ Gợi ý cấu trúc:
 
   <!-- SCRIPTS -->
   <script type="module" src="js/auth.js?v=1"></script>
-  <script type="module" src="js/simulation.js?v=1"></script>
+  <script type="module" src="js/simulation.js?v=20261013_run"></script>
 
   <!-- Sidebar & Theme Handlers -->
   <script>

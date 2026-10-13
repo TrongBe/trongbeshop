@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setupLobbyFilters();
     setupTerminalEvents();
     setupMentorChat();
+    if (document.getElementById('simWorkspaceView')?.classList.contains('active')) {
+        document.body.classList.add('sim-workspace-active');
+    }
 });
 
 // ============================================================
@@ -122,11 +125,13 @@ export function showSimView(viewName) {
     if (viewName === 'workspace') {
         lobby?.classList.remove('active');
         workspace?.classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        document.body.classList.add('sim-workspace-active');
+        window.scrollTo(0, 0);
     } else {
         workspace?.classList.remove('active');
         lobby?.classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        document.body.classList.remove('sim-workspace-active');
+        window.scrollTo(0, 0);
     }
 }
 window.showSimView = showSimView;
@@ -391,6 +396,14 @@ function setupTerminalEvents() {
             btnRun.innerHTML = '▶ Chạy mã (Run)';
             btnRun.disabled = false;
         }, 80);
+    });
+
+    // Phím tắt Ctrl + Enter hoặc Cmd + Enter để chạy mã ngay trong Editor
+    editor?.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+            e.preventDefault();
+            btnRun?.click();
+        }
     });
 
     // Reset Code Button
