@@ -779,17 +779,43 @@ function setupTerminalEvents() {
 // ============================================================
 // SYSTEM PROMPT CHẤM BÁO CÁO KINH DOANH (HEAD OF DATA ANALYTICS)
 // ============================================================
-const GRADING_SYSTEM_PROMPT = `Bạn là một Head of Data Analytics đang chấm báo cáo (Data Storytelling) của thực tập sinh. Người dùng sẽ gửi cho bạn một đoạn báo cáo kinh doanh. Hãy chấm điểm khắt khe dựa trên thang điểm 100, chia làm 3 tiêu chí:
+const GRADING_SYSTEM_PROMPT = `Bạn là Giám đốc Dữ liệu (Head of Data Analytics) kiêm Trưởng ban Đào tạo Data Analyst chuyên nghiệp.
+Bạn chấm điểm bản báo cáo kinh doanh (Executive Data Storytelling & Recommendations) của học viên với tinh thần CÔNG TÂM, KHÍCH LỆ và CHUẨN MỰC NGHỀ NGHIỆP THỰC TẾ.
 
-1. Bám sát Dữ liệu (Fact-based) - 30 điểm: Báo cáo có trích dẫn đúng con số từ kết quả SQL không? (Nếu nói chung chung không có số, trừ điểm nặng).
-2. Insight & Logic (Business Sense) - 40 điểm: Có chỉ ra được 'sự thật ngầm hiểu' đằng sau con số không? Có phát hiện ra nguyên nhân gốc rễ (như hành vi chẻ đơn, bom hàng) không?
-3. Đề xuất hành động (Actionable Recommendation) - 30 điểm: Giải pháp đưa ra có thực tế, hợp lý và giải quyết được bài toán kinh doanh không? (Nếu chỉ đưa ra số liệu mà không có giải pháp, trừ điểm).
+THANG ĐIỂM CHUẨN 100 DỰA TRÊN 3 TRỤ CỘT:
+1. Bám sát Dữ liệu (Fact-based - 30 điểm):
+   - Có số liệu minh chứng cụ thể (số lượng đơn, doanh thu, %, đơn giá, ngày tháng...).
+   - NGUYÊN TẮC QUAN TRỌNG: Học viên có thể trích dẫn số liệu từ kết quả truy vấn SQL họ đã thực thi HOẶC từ bảng dữ liệu tổng hợp/bối cảnh kinh doanh của Case Study. Cả hai nguồn số liệu đều HOÀN TOÀN CHÍNH XÁC VÀ HỢP LỆ. Tuyệt đối KHÔNG trừ điểm nếu có sự chênh lệch quy mô giữa bảng mẫu demo nhỏ và số liệu vĩ mô của case study.
+   - Nếu có số liệu minh chứng rõ ràng: Cho 28 - 30 điểm.
 
-ĐỊNH DẠNG TRẢ VỀ (Bắt buộc theo format này):
+2. Insight & Phân tích Bản chất (Business Insight - 40 điểm):
+   - Chỉ ra được bản chất và nguyên nhân gốc rễ (Root Cause) đằng sau dữ liệu (như: chẻ đơn trục lợi trợ giá freeship, nguy cơ đứt gãy tồn kho các sản phẩm chủ lực, đơn vị vận chuyển giao chậm dẫn đến boom hàng, đại lý tự đặt đơn ảo để chạy KPI gọi vốn, tài khoản ảo khai sinh nhật trùng tháng...).
+   - Lập luận logic, thể hiện tư duy kinh doanh nhạy bén.
+   - Nếu chỉ ra đúng nguyên nhân gốc rễ: Cho 37 - 40 điểm.
+
+3. Đề xuất Hành động Thực tế (Actionable Recommendations - 30 điểm):
+   - Giải pháp có tính khả thi cao, trực tiếp tháo gỡ điểm nghẽn kinh doanh.
+   - Ưu tiên các giải pháp có phân tầng thời gian (Ngay lập tức / Trung hạn / Dài hạn) hoặc phân tầng chuyên môn (Chính sách / Kỹ thuật hệ thống / Vận hành).
+   - Nếu giải pháp rõ ràng, phân tầng và thực tế: Cho 27 - 30 điểm.
+
+QUY TẮC HIỆU CHUẨN ĐIỂM SỐ (BẮT BUỘC TUÂN THỦ NGHIÊM NGẶT):
+🌟 90 - 100 ĐIỂM (Xuất sắc / Chuẩn Executive Senior Lead):
+   - Đạt đầy đủ 3 tiêu chí: Có số liệu minh chứng cụ thể, phân tích đúng nguyên nhân gốc rễ và có đề xuất giải pháp 3 tầng rõ ràng.
+   - QUY TẮC BẮT BUỘC: Nếu bài viết của học viên có cấu trúc chuẩn mực, mạch lạc và đầy đủ thông tin (tương đương với các bài mẫu chuẩn của hệ thống), BẮT BUỘC CHẤM TỪ 92 ĐẾN 100 ĐIỂM. Tuyệt đối không được trừ điểm tùy tiện hoặc tự nghĩ ra lỗi vô cớ làm nản lòng người học!
+👍 80 - 89 ĐIỂM (Rất tốt / Đạt chuẩn Data Analyst):
+   - Đạt tốt cả 3 tiêu chí, số liệu đúng, giải pháp khả thi. Có thể mở rộng thêm một chút chi tiết nhưng nhìn chung bài làm rất chất lượng.
+👌 70 - 79 ĐIỂM (Khá / Đạt yêu cầu cơ bản):
+   - Có số liệu nhưng phân tích còn hơi mỏng, hoặc giải pháp còn hơi chung chung.
+⚠️ 50 - 69 ĐIỂM (Cần cải thiện):
+   - Chỉ tóm tắt sơ sài, thiếu số liệu dẫn chứng cụ thể hoặc không có giải pháp khả thi.
+❌ Dưới 50 ĐIỂM (Chưa đạt):
+   - Báo cáo quá ngắn (dưới 2 câu), hoàn toàn không có dữ liệu, hoặc lạc đề.
+
+ĐỊNH DẠNG TRẢ VỀ (Bắt buộc theo chuẩn Markdown sau):
 🎯 TỔNG ĐIỂM: [Số điểm]/100
-✅ Điểm sáng: [Khen ngợi 1-2 ý tốt]
-❌ Lỗ hổng cần sửa: [Chỉ ra lỗi sai logic hoặc thiếu sót trong tư duy]
-💡 Cách viết chuẩn (Gợi ý ngắn): [Sửa lại 1 câu trong báo cáo cho sắc bén hơn theo phong cách Executive Summary]`;
+✅ Điểm sáng: [Khen ngợi cụ thể 2-3 ý tốt về số liệu, tư duy phân tích hoặc giải pháp phân tầng]
+❌ Lỗ hổng cần sửa: [Nếu bài đạt >= 90 điểm: Ghi nhận bài đã xuất sắc đạt chuẩn Executive, gợi ý 1 điểm nhỏ nếu muốn mở rộng góc nhìn C-level. Nếu bài dưới 90 điểm: Chỉ ra điểm cần bổ sung thêm]
+💡 Cách viết chuẩn (Gợi ý ngắn): [Sửa lại 1-2 câu theo phong cách Executive Summary súc tích, chuyên nghiệp]`;
 
 async function submitBusinessReport() {
     const reportInput = document.getElementById('reportTextarea');
@@ -818,35 +844,53 @@ async function submitBusinessReport() {
     if (submitBtn) submitBtn.disabled = true;
     if (statusNote) statusNote.textContent = '⏳ Đang chấm bài...';
 
-    // Xây dựng số liệu thực tế để AI đối soát tính chính xác (Fact-based)
+    // Xây dựng bối cảnh dữ liệu toàn diện để AI đối soát tính chính xác (Fact-based)
     let dataSummary = '';
-    if (latestSQLResults && latestSQLResults.length > 0) {
-        dataSummary = latestSQLResults.map(q => {
-            const rowCount = q.rows ? q.rows.length : 0;
-            const previewRows = q.rows ? q.rows.slice(0, 8) : [];
-            return `[KẾT QUẢ TRUY VẤN #${q.index} (${rowCount} dòng)]:
-Câu lệnh: ${q.statement.substring(0, 150)}
-Dữ liệu mẫu: ${JSON.stringify(previewRows, null, 2)}`;
-        }).join('\n\n');
-    } else if (currentCase && currentCase.mockData && currentCase.mockData.rows) {
-        dataSummary = `Dữ liệu đối soát tiêu chuẩn của bài toán:\nHeaders: ${currentCase.mockData.headers.join(', ')}\nRows: ` +
-            JSON.stringify(currentCase.mockData.rows.slice(0, 8));
+    
+    // 1. Dữ liệu chuẩn từ bảng tổng hợp của Case Study (để AI nắm toàn cảnh vĩ mô)
+    if (currentCase && currentCase.mockData) {
+        dataSummary += `[BẢNG DỮ LIỆU TỔNG HỢP TOÀN BỘ CASE STUDY]:\n`;
+        if (currentCase.mockData.headers) {
+            dataSummary += `Tiêu đề: ${currentCase.mockData.headers.join(' | ')}\n`;
+        }
+        if (currentCase.mockData.rows) {
+            dataSummary += `Các dòng dữ liệu tổng quan:\n` + 
+                currentCase.mockData.rows.map(r => '  * ' + (Array.isArray(r) ? r.join(' | ') : JSON.stringify(r))).join('\n') + '\n\n';
+        }
     }
 
-    const gradingPrompt = `[BỐI CẢNH BÀI TOÁN DOANH NGHIỆP]:
-Nhiệm vụ: ${currentCase ? currentCase.title : 'Phân tích dữ liệu kinh doanh'}
-Bối cảnh: ${currentCase ? currentCase.fullContext || currentCase.shortDesc : ''}
-Mục tiêu phân tích: ${currentCase && currentCase.objectives ? currentCase.objectives.join('; ') : ''}
+    // 2. Kết quả từ các câu lệnh SQL thực tế mà học viên đã chạy (nếu có)
+    if (latestSQLResults && latestSQLResults.length > 0) {
+        dataSummary += `[KẾT QUẢ CÁC TRUY VẤN SQL HỌC VIÊN ĐÃ CHẠY]:\n`;
+        dataSummary += latestSQLResults.map(q => {
+            const rowCount = q.rows ? q.rows.length : 0;
+            const previewRows = q.rows ? q.rows.slice(0, 10) : [];
+            return `- Truy vấn #${q.index}: "${q.statement.substring(0, 150)}"\n  Số dòng: ${rowCount}\n  Dữ liệu mẫu: ${JSON.stringify(previewRows)}`;
+        }).join('\n\n') + '\n\n';
+    }
 
-[SỐ LIỆU ĐỐI SOÁT TỪ TRUY VẤN SQL CỦA HỆ THỐNG]:
+    const objectivesText = currentCase && currentCase.objectives 
+        ? currentCase.objectives.map((o, idx) => `${idx + 1}. ${o}`).join('\n') 
+        : 'Phân tích các chỉ số chính và đề xuất giải pháp kinh doanh.';
+
+    const gradingPrompt = `[BỐI CẢNH DOANH NGHIỆP]:
+Nhiệm vụ: ${currentCase ? currentCase.title : 'Phân tích dữ liệu kinh doanh'}
+Bối cảnh: ${currentCase ? (currentCase.fullContext || currentCase.shortDesc).replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim() : ''}
+
+[MỤC TIÊU PHÂN TÍCH ĐƯỢC GIAO]:
+${objectivesText}
+
+[NGUỒN DỮ LIỆU THỰC TẾ]:
 ${dataSummary || 'Tham chiếu theo dữ liệu mock chuẩn của case study.'}
 
-[BÁO CÁO CỦA THỰC TẬP SINH]:
+[BÁO CÁO CỦA HỌC VIÊN]:
 """
 ${reportText}
 """
 
-Hãy chấm điểm thật khắt khe và trả về đúng định dạng yêu cầu.`;
+HÃY ĐÁNH GIÁ CÔNG TÂM DỰA TRÊN THANG ĐIỂM VÀ NGUYÊN TẮC ĐÃ QUY ĐỊNH.
+LƯU Ý ĐẶC BIỆT: Học viên có quyền trích dẫn số liệu từ kết quả SQL hoặc bảng dữ liệu tổng hợp của Case Study (cả hai nguồn đều hoàn toàn chính xác).
+NẾU BÁO CÁO ĐẠT ĐẦY ĐỦ 3 PHẦN (DẪN CHỨNG SỐ LIỆU RÕ RÀNG, CHỈ RA NGUYÊN NHÂN GỐC RỄ VÀ CÓ GIẢI PHÁP HÀNH ĐỘNG PHÂN TẦNG KHẢ THI - TƯƠNG ĐƯƠNG BÀI MẪU), BẮT BUỘC CHẤM TỪ 90 - 100 ĐIỂM (XUẤT SẮC)!`;
 
     let aiFeedbackText = null;
 
@@ -907,19 +951,22 @@ function renderAiFeedback(rawText) {
     const feedbackDiv = document.getElementById('ai-feedback');
     if (!feedbackDiv) return;
 
-    // Phân tích điểm: 🎯 TỔNG ĐIỂM: [Số điểm]/100
-    const scoreMatch = rawText.match(/🎯\s*TỔNG\s*ĐIỂM:\s*(\d+)\/100/i);
+    // Phân tích điểm: 🎯 TỔNG ĐIỂM: [Số điểm]/100 hoặc [Số điểm] điểm
+    const scoreMatch = rawText.match(/🎯\s*TỔNG\s*ĐIỂM:\s*(\d+)(?:\s*\/\s*100|\s*điểm)?/i);
     const score = scoreMatch ? parseInt(scoreMatch[1], 10) : null;
 
     let scoreBadgeClass = 'score-badge-medium';
-    let verdictText = 'Cần cải thiện thêm';
+    let verdictText = 'Đạt yêu cầu cơ bản — Cần hoàn thiện thêm';
     if (score !== null) {
-        if (score >= 80) {
+        if (score >= 85) {
             scoreBadgeClass = 'score-badge-high';
-            verdictText = 'Xuất sắc — Đạt chuẩn Senior/Lead';
-        } else if (score < 50) {
+            verdictText = 'Xuất sắc — Đạt chuẩn Senior/Lead Data Analyst';
+        } else if (score >= 70) {
+            scoreBadgeClass = 'score-badge-medium';
+            verdictText = 'Tốt — Đạt chuẩn báo cáo phân tích thực tế';
+        } else {
             scoreBadgeClass = 'score-badge-low';
-            verdictText = 'Chưa đạt — Cần bám sát số liệu hơn';
+            verdictText = 'Chưa đạt — Cần bám sát số liệu & bổ sung giải pháp';
         }
     }
 
@@ -1061,6 +1108,36 @@ function fillSampleReport() {
 - Ngay lập tức: Chặn dải IP và tạm giữ thanh toán của các Shop có tỷ lệ đơn cận 99k bất thường để đối soát.
 - Trung hạn: Chuyển đổi chính sách Freeship bậc thang (Đơn 150k giảm 15k, đơn 250k giảm 30k) để kích thích tăng AOV (giá trị trung bình đơn hàng).
 - Kỹ thuật: Bổ sung luật phát hiện gian lận tự động (Fraud Rules) dựa trên Device Fingerprinting.`;
+    } else if (currentCase && currentCase.id === 'case_fake_orders_spike') {
+        reportInput.value = `BÁO CÁO ĐIỀU TRA: HIỆN TƯỢNG NỔ ĐƠN ẢO & BẪY TĂNG TRƯỞNG GMV
+1. Bám sát Dữ liệu (Fact-based - 30 điểm):
+- Tổng đơn hàng đặt (Gross Orders) tăng đột biến 338% từ 3,400 đơn (01/10) lên đỉnh điểm 14,920 đơn (12/10).
+- Tuy nhiên, số đơn thực tế hoàn tất (Net Completed Orders) chỉ tăng nhẹ từ 2,980 lên 4,120 đơn (+38%). Tỷ lệ hủy đơn (Cancellation Rate) tăng vọt từ 12.4% lên mức báo động 72.4% (ghi nhận 10,800 đơn hủy riêng ngày 12/10).
+- Nguyên nhân hủy tập trung vào 2 nhóm chính: Gian lận đại lý (agent_fraud chiếm 58%) và tự đặt đơn ảo (self_order chiếm 27%).
+
+2. Insight & Phân tích nguyên nhân (Business Insight - 40 điểm):
+- Đội ngũ đại lý và nhân sự kinh doanh có dấu hiệu tạo "vòng lặp đặt đơn ảo" (Self-ordering loops) nhằm chạy chỉ tiêu KPI trước thềm chốt báo cáo gọi vốn Series A.
+- Đơn hàng bị hủy hàng loạt trong vòng dưới 120 giây sau khi đặt để tránh phải thanh toán thực tế, nhưng vẫn được ghi nhận vào Gross GMV của chiến dịch.
+
+3. Đề xuất hành động (Actionable Recommendations - 30 điểm):
+- Ngay lập tức: Tách bạch dứt khoát chỉ số Net Delivered GMV khỏi Gross GMV trong toàn bộ báo cáo tài chính gửi Quỹ đầu tư; tạm dừng chi trả hoa hồng cho các đại lý có tỷ lệ hủy > 50%.
+- Trung hạn: Thiết lập quy tắc kiểm soát luồng thanh toán (Payment Escrow) và thời gian chờ tối thiểu 24h trước khi tính điểm thành tích cho đại lý.
+- Kỹ thuật: Cài đặt hệ thống Fraud Alert tự động kích hoạt khi tỷ lệ hủy theo giờ của bất kỳ chi nhánh/đại lý nào vượt quá 25%.`;
+    } else if (currentCase && currentCase.id === 'case_voucher_abuse') {
+        reportInput.value = `BÁO CÁO PHÁT HIỆN GIAN LẬN: LỖ HỔNG VOUCHER SINH NHẬT THÁNG 10
+1. Bám sát Dữ liệu (Fact-based - 30 điểm):
+- Phân bổ tháng sinh nhật bị lệch nghiêm trọng: Tài khoản khai sinh nhật tháng 10 chiếm tới 41.0% tổng cơ sở khách hàng (trong khi mức trung bình tự nhiên chỉ dao động từ 8.0% - 8.5%/tháng).
+- Lượng voucher sinh nhật 50.000đ được kích hoạt trong tháng 10 tăng đột biến 340% so với tháng trước.
+- Phát hiện 72% tài khoản khai sinh nhật tháng 10 được tạo mới ngay trong tháng 10/2026 và lập tức áp dụng mã giảm giá; trong đó nhiều cụm IP đăng ký từ 5 đến 15 tài khoản cùng thiết bị.
+
+2. Insight & Phân tích nguyên nhân (Business Insight - 40 điểm):
+- Chính sách tặng quà sinh nhật có kẽ hở chí mạng: Không có điều kiện "thời gian tối thiểu tạo tài khoản" (Account Age Threshold) và cho phép người dùng tự khai ngày sinh không cần xác thực CCCD/SĐT.
+- Các nhóm "Thợ săn Voucher" sử dụng công cụ tạo hàng loạt tài khoản ảo với sinh nhật tháng 10 để gom mã 50K mua hàng giá rẻ hoặc bán lại mã.
+
+3. Đề xuất hành động (Actionable Recommendations - 30 điểm):
+- Ngay lập tức: Tạm dừng áp dụng voucher sinh nhật cho các tài khoản mới tạo dưới 30 ngày; thu hồi các mã giảm giá chưa sử dụng từ các dải IP có trên 3 tài khoản trùng lặp.
+- Trung hạn: Sửa đổi chính sách nhận quà sinh nhật — tài khoản phải phát sinh ít nhất 01 đơn hàng thành công trước tháng sinh nhật và khai báo ngày sinh trước ít nhất 60 ngày.
+- Kỹ thuật: Tích hợp định danh eKYC/xác thực SĐT qua OTP và kích hoạt Device Fingerprinting để chặn việc tạo nhiều tài khoản trên cùng 1 trình duyệt/điện thoại.`;
     } else {
         reportInput.value = `BÁO CÁO PHÂN TÍCH KINH DOANH
 1. Bám sát Dữ liệu (Fact-based):
