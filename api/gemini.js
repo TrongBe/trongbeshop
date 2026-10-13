@@ -12,29 +12,21 @@ export default async function handler(req, res) {
     }
 
     // 2. Lấy API Key từ biến môi trường máy chủ Vercel
-    // 2. Lấy danh sách API Keys (Hỗ trợ từ Vercel Env hoặc backup keys)
+    // 2. Tự động lấy tất cả các biến môi trường có tiền tố GEMINI
+    // Hỗ trợ mọi định dạng: GEMINI_API_1, GEMINI_API_2, GEMINI_API_KEY, GEMINI_KEY_1, GEMINI_API_KEYS...
     let keys = [];
 
-    // 1. Kiểm tra nếu có các biến đánh số: GEMINI_KEY_1, GEMINI_KEY_2, ... GEMINI_KEY_6
-    const numberedKeys = Object.keys(process.env)
-        .filter(k => /^GEMINI_(API_)?KEY_\d+$/i.test(k))
-        .sort((a, b) => {
-            const numA = parseInt(a.match(/\d+/)?.[0] || '0', 10);
-            const numB = parseInt(b.match(/\d+/)?.[0] || '0', 10);
-            return numA - numB;
-        })
-        .map(k => process.env[k]?.trim())
-        .filter(Boolean);
-
-    if (numberedKeys.length > 0) {
-        keys = numberedKeys;
-    } else {
-        // 2. Nếu không có đánh số, lấy từ GEMINI_API_KEYS hoặc GEMINI_API_KEY (phân cách bằng dấu phẩy)
-        keys = (process.env.GEMINI_API_KEYS || process.env.GEMINI_API_KEY || '')
-            .split(',')
-            .map(k => k.trim())
-            .filter(Boolean);
-    }
+    Object.keys(process.env)
+        .filter(k => /^GEMINI/i.test(k))
+        .sort()
+        .forEach(k => {
+            const val = process.env[k]?.trim();
+            if (val) {
+                val.split(',').map(s => s.trim()).filter(Boolean).forEach(keyStr => {
+                    if (!keys.includes(keyStr)) keys.push(keyStr);
+                });
+            }
+        });
 
     // 3. Nếu chưa cấu hình trên Vercel Dashboard, trả về thông báo hướng dẫn rõ ràng
     if (keys.length === 0) {
