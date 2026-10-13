@@ -275,81 +275,268 @@ function registerCaseDatabaseInAlaSQL(caseData) {
     }
 }
 
-function runSQLWithAlaSQL(sqlQuery) {
+// ============================================================
+// HỖ TRỢ TRUY VẤN NHIỀU CÂU LỆNH CÙNG LÚC & LÀM SẠCH CÚ PHÁP
+// ============================================================
+function splitSqlStatements(sqlText) {
+    if (!sqlText) return [];
+
+    const statements = [];
+    let current = '';
+    let inSingleQuote = false;
+    let inDoubleQuote = false;
+
+    for (let i = 0; i < sqlText.length; i++) {
+        const char = sqlText[i];
+        const prevChar = i > 0 ? sqlText[i - 1] : '';
+
+        if (char === "'" && !inDoubleQuote && prevChar !== '\\') {
+            inSingleQuote = !inSingleQuote;
+            current += char;
+        } else if (char === '"' && !inSingleQuote && prevChar !== '\\') {
+            inDoubleQuote = !inDoubleQuote;
+            current += char;
+        } else if (char === ';' && !inSingleQuote && !inDoubleQuote) {
+            const cleaned = sanitizeSqlStatement(current);
+            if (cleaned) statements.push(cleaned);
+            current = '';
+        } else {
+            current += char;
+        }
+    }
+
+    const lastCleaned = sanitizeSqlStatement(current);
+    if (lastCleaned) statements.push(lastCleaned);
+
+    return statements;
+}
+
+function sanitizeSqlStatement(stmt) {
+    if (!stmt) return '';
+    let cleaned = stmt.trim();
+
+    // Bỏ qua nếu toàn bộ câu lệnh chỉ là comment
+    const codeWithoutComments = cleaned
+        .replace(/--.*$/gm, '')
+        .replace(/\/\*[\s\S]*?\*\//g, '')
+        .trim();
+    if (!codeWithoutComments) return '';
+
+    // Tự động gỡ bỏ tiền tố 'QL' hoặc 'SQL' nếu người dùng lỡ copy dính nhãn badge
+    cleaned = cleaned.replace(/^(?:S?QL\s*|S?QL)(?=SELECT|WITH|SHOW|INSERT|UPDATE|DELETE|CREATE|DROP|ALTER)/i, '');
+    return cleaned.trim();
+}
+
+function getPreviewQuery(stmt) {
+    if (!stmt) return 'SQL Query';
+    const lines = stmt.split('\n')
+        .map(l => l.trim())
+        .filter(l => l && !l.startsWith('--') && !l.startsWith('/*'));
+    const firstLine = lines[0] || stmt.trim();
+    return firstLine.length > 70 ? firstLine.substring(0, 70) + '...' : firstLine;
+}
+
+function escapeHtml(str) {
+    if (str === null || str === undefined) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function runSQLWithAlaSQL(rawSql) {
     const tableContainer = document.getElementById('outputTableContainer');
     const statusText = document.getElementById('terminalStatusText');
     const paneTable = document.getElementById('outputTablePane');
     const paneChart = document.getElementById('outputChartPane');
+    const paneReport = document.getElementById('outputReportPane');
 
     if (typeof alasql === 'undefined') {
         if (tableContainer) tableContainer.innerHTML = `<div class="sql-error-box">⚠️ AlaSQL chưa được tải. Kiểm tra kết nối mạng và thử lại.</div>`;
         return;
     }
 
-    const t0 = performance.now();
-    let results, errMsg = null;
-
-    try {
-        results = alasql(sqlQuery);
-    } catch (err) {
-        errMsg = err.message;
-    }
-
-    const elapsed = Math.round(performance.now() - t0);
-
-    // Chuyển sang tab Table
+    // Tự động chuyển về tab Table khi chạy mã
     if (paneTable) paneTable.style.display = 'block';
     if (paneChart) paneChart.style.display = 'none';
+    if (paneReport) paneReport.style.display = 'none';
     document.getElementById('outputTabTable')?.classList.add('active');
     document.getElementById('outputTabChart')?.classList.remove('active');
+    document.getElementById('outputTabReport')?.classList.remove('active');
 
-    if (errMsg) {
-        if (statusText) statusText.textContent = `Lỗi SQL | ${errMsg.substring(0, 80)}`;
-        if (tableContainer) {
-            tableContainer.innerHTML = `
-                <div class="sql-error-box">
-                    <div style="font-weight:700; margin-bottom:6px;">⚠️ Lỗi SQL cú pháp</div>
-                    <code style="font-size:0.82rem;">${errMsg}</code>
-                    <div style="margin-top:8px; font-size:0.8rem; opacity:0.7;">Kiểm tra lại tên bảng, tên cột và cú pháp truy vấn.</div>
-                </div>`;
+    // 1. Tách các câu lệnh SQL (phân tách bởi dấu chấm phẩy ;)
+    const statements = splitSqlStatements(rawSql);
+
+    if (statements.length === 0) {
+        if (tableContainer) tableContainer.innerHTML = `<div class="sql-empty-box">🔍 Không có câu lệnh SQL hợp lệ nào được tìm thấy để thực thi.</div>`;
+        if (statusText) statusText.textContent = `0 câu lệnh thực thi`;
+        return;
+    }
+
+    const tTotalStart = performance.now();
+    const queryResults = [];
+    let successCount = 0;
+    let errorCount = 0;
+    let totalRows = 0;
+
+    // 2. Chạy lần lượt từng câu lệnh trên AlaSQL
+    for (let i = 0; i < statements.length; i++) {
+        const stmt = statements[i];
+        const t0 = performance.now();
+        let res = null;
+        let errMsg = null;
+
+        try {
+            res = alasql(stmt);
+        } catch (err) {
+            errMsg = err.message;
         }
-        return;
+
+        const elapsed = Math.round(performance.now() - t0);
+
+        if (errMsg) {
+            errorCount++;
+            queryResults.push({
+                index: i + 1,
+                statement: stmt,
+                error: errMsg,
+                elapsed: elapsed,
+                rows: []
+            });
+        } else {
+            successCount++;
+            let rows = [];
+            if (Array.isArray(res)) {
+                rows = res;
+            } else if (typeof res === 'object' && res !== null) {
+                rows = [res];
+            } else if (typeof res === 'number') {
+                rows = [{ 'Kết quả': res }];
+            }
+            totalRows += rows.length;
+            queryResults.push({
+                index: i + 1,
+                statement: stmt,
+                error: null,
+                elapsed: elapsed,
+                rows: rows
+            });
+        }
     }
 
-    // Nếu kết quả là số (INSERT, UPDATE...)
-    if (typeof results !== 'object' || results === null) {
-        if (tableContainer) tableContainer.innerHTML = `<div class="sql-success-box">✅ Thực thi thành công. Kết quả: <b>${results}</b></div>`;
-        if (statusText) statusText.textContent = `Hoàn tất trong ${elapsed}ms`;
-        return;
+    const totalElapsed = Math.round(performance.now() - tTotalStart);
+
+    // Lưu kết quả cho báo cáo
+    latestSQLResults = queryResults;
+    latestSQLQuery = rawSql;
+
+    // 3. Render giao diện các bảng kết quả
+    renderMultiQueryResults(queryResults, totalElapsed, statements.length, successCount, errorCount, totalRows);
+
+    // 4. Cập nhật thanh trạng thái
+    if (statusText) {
+        if (errorCount === 0) {
+            statusText.textContent = `✅ Đã thực thi ${statements.length} truy vấn thành công (${totalRows} dòng kết quả · ${totalElapsed}ms)`;
+        } else if (successCount > 0) {
+            statusText.textContent = `⚠️ Thực thi ${statements.length} truy vấn: ${successCount} thành công, ${errorCount} lỗi (${totalElapsed}ms)`;
+        } else {
+            statusText.textContent = `❌ ${errorCount} truy vấn đều gặp lỗi cú pháp`;
+        }
     }
+}
 
-    const rows = Array.isArray(results) ? results : [results];
-    latestSQLResults = rows;
-    latestSQLQuery = sqlQuery;
+function renderMultiQueryResults(queryResults, totalElapsed, totalQueries, successCount, errorCount, totalRows) {
+    const tableContainer = document.getElementById('outputTableContainer');
+    if (!tableContainer) return;
 
-    if (rows.length === 0) {
-        if (tableContainer) tableContainer.innerHTML = `<div class="sql-empty-box">🔍 Truy vấn thực thi thành công nhưng không có dòng nào được trả về.</div>`;
-        if (statusText) statusText.textContent = `Hoàn tất trong ${elapsed}ms | 0 dòng kết quả`;
-        return;
-    }
+    let html = `<div class="multi-query-container">`;
 
-    // Lấy headers từ keys của object đầu tiên
-    const headers = Object.keys(rows[0]);
-    const thHtml = headers.map(h => `<th>${h}</th>`).join('');
-    const rowsHtml = rows.map(row => `<tr>${headers.map(h => `<td>${row[h] ?? ''}</td>`).join('')}</tr>`).join('');
-
-    if (tableContainer) {
-        tableContainer.innerHTML = `
-            <div style="padding: 8px 12px; font-size:0.78rem; color:var(--text-muted); border-bottom: 1px solid var(--border-color); display:flex; justify-content:space-between;">
-                <span>⚡ AlaSQL Engine — Kết quả thật từ dữ liệu mock</span>
-                <span><b>${rows.length}</b> dòng · ${elapsed}ms</span>
+    // Nếu có từ 2 câu lệnh trở lên, hiển thị thanh summary bar
+    if (totalQueries > 1) {
+        html += `
+            <div class="multi-query-summary-bar">
+                <div class="summary-left">
+                    <span class="summary-badge-count">⚡ Đã thực thi <b>${totalQueries}</b> truy vấn</span>
+                    <span class="summary-stat-pill success">✅ ${successCount} thành công</span>
+                    ${errorCount > 0 ? `<span class="summary-stat-pill error">⚠️ ${errorCount} lỗi</span>` : ''}
+                </div>
+                <div class="summary-right">
+                    <span>Tổng: <b>${totalRows}</b> dòng · <b>${totalElapsed}ms</b></span>
+                </div>
             </div>
-            <table class="sim-data-table">
-                <thead><tr>${thHtml}</tr></thead>
-                <tbody>${rowsHtml}</tbody>
-            </table>`;
+        `;
     }
-    if (statusText) statusText.textContent = `✅ Thực thi thành công trong ${elapsed}ms | Trả về ${rows.length} dòng kết quả`;
+
+    html += `<div class="query-cards-list">`;
+
+    for (const q of queryResults) {
+        const preview = getPreviewQuery(q.statement);
+        const cardClass = q.error ? 'has-error' : 'is-success';
+
+        html += `
+            <div class="query-result-card ${cardClass}">
+                <div class="query-card-header">
+                    <div class="query-card-title-group">
+                        <span class="query-index-badge">Bảng #${q.index}</span>
+                        <code class="query-preview-code" title="${escapeHtml(q.statement)}">${escapeHtml(preview)}</code>
+                    </div>
+                    <div class="query-card-meta">
+                        ${q.error 
+                            ? `<span class="query-status-badge error">⚠️ Lỗi SQL</span>`
+                            : `<span class="query-status-badge success">⚡ <b>${q.rows.length}</b> dòng · ${q.elapsed}ms</span>`
+                        }
+                    </div>
+                </div>
+
+                <div class="query-card-content">
+        `;
+
+        if (q.error) {
+            html += `
+                <div class="sql-error-box" style="margin: 12px 16px;">
+                    <div style="font-weight:700; margin-bottom:6px;">⚠️ Lỗi SQL cú pháp (Truy vấn #${q.index})</div>
+                    <code style="font-size:0.84rem;">${escapeHtml(q.error)}</code>
+                    <div style="margin-top:8px; font-size:0.8rem; opacity:0.8;">Kiểm tra lại tên bảng, tên cột và cấu trúc câu lệnh.</div>
+                </div>
+            `;
+        } else if (q.rows.length === 0) {
+            html += `
+                <div class="sql-empty-box" style="margin: 12px 16px;">
+                    🔍 Truy vấn #${q.index} thực thi thành công nhưng không có dòng nào được trả về.
+                </div>
+            `;
+        } else {
+            const headers = Object.keys(q.rows[0]);
+            const thHtml = headers.map(h => `<th>${escapeHtml(h)}</th>`).join('');
+            const rowsHtml = q.rows.map(row => {
+                const cells = headers.map(h => {
+                    const val = row[h];
+                    const displayVal = (typeof val === 'number') ? val.toLocaleString('vi-VN') : (val ?? '');
+                    return `<td>${escapeHtml(String(displayVal))}</td>`;
+                }).join('');
+                return `<tr>${cells}</tr>`;
+            }).join('');
+
+            html += `
+                <div class="sim-table-scroll-container">
+                    <table class="sim-data-table">
+                        <thead><tr>${thHtml}</tr></thead>
+                        <tbody>${rowsHtml}</tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        html += `
+                </div>
+            </div>
+        `;
+    }
+
+    html += `</div></div>`;
+    tableContainer.innerHTML = html;
 }
 
 function setupTerminalEvents() {
@@ -498,8 +685,13 @@ async function submitBusinessReport() {
     // Xây dựng số liệu thực tế để AI đối soát tính chính xác (Fact-based)
     let dataSummary = '';
     if (latestSQLResults && latestSQLResults.length > 0) {
-        dataSummary = `Dữ liệu thực tế người dùng vừa truy vấn từ SQL (${latestSQLResults.length} dòng):\n` +
-            JSON.stringify(latestSQLResults.slice(0, 10), null, 2);
+        dataSummary = latestSQLResults.map(q => {
+            const rowCount = q.rows ? q.rows.length : 0;
+            const previewRows = q.rows ? q.rows.slice(0, 8) : [];
+            return `[KẾT QUẢ TRUY VẤN #${q.index} (${rowCount} dòng)]:
+Câu lệnh: ${q.statement.substring(0, 150)}
+Dữ liệu mẫu: ${JSON.stringify(previewRows, null, 2)}`;
+        }).join('\n\n');
     } else if (currentCase && currentCase.mockData && currentCase.mockData.rows) {
         dataSummary = `Dữ liệu đối soát tiêu chuẩn của bài toán:\nHeaders: ${currentCase.mockData.headers.join(', ')}\nRows: ` +
             JSON.stringify(currentCase.mockData.rows.slice(0, 8));
@@ -1002,13 +1194,40 @@ async function callGoogleGeminiDirect(prompt, history, systemInstruction) {
 
 // generateFallbackMentorReply removed — AI Mentor now uses live Gemini API
 
+let mentorCodeBlockCounter = 0;
+
 function formatMarkdown(text) {
-    // 1. Xử lý fenced code blocks (```lang\n...\n```) trước — đặt trong <pre><code>
+    if (!text) return '';
+
+    // 1. Xử lý fenced code blocks (```lang\n...\n```) với thanh công cụ Sao chép & Chèn vào Editor
     text = text.replace(/```(\w*)\n([\s\S]*?)```/g, (_, lang, code) => {
-        const langLabel = lang ? `<span class="code-lang-label">${lang.toUpperCase()}</span>` : '';
-        const escapedCode = code.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        return `<div class="mentor-code-block">${langLabel}<pre><code>${escapedCode}</code></pre></div>`;
+        const blockId = `mentor_code_${++mentorCodeBlockCounter}`;
+        const cleanLang = (lang || 'sql').toLowerCase();
+        const langLabel = `<span class="code-lang-label">${cleanLang.toUpperCase()}</span>`;
+        const escapedCode = escapeHtml(code);
+
+        const canApply = cleanLang === 'sql' || cleanLang === 'python';
+        const applyBtn = canApply
+            ? `<button type="button" class="btn-code-action btn-apply-code" onclick="window.applyMentorCode('${blockId}', '${cleanLang}')" title="Chèn trực tiếp mã này vào Editor">⚡ Chèn vào Editor</button>`
+            : '';
+
+        const copyBtn = `<button type="button" class="btn-code-action btn-copy-code" onclick="window.copyMentorCode('${blockId}', this)" title="Sao chép đoạn mã">📋 Sao chép</button>`;
+
+        return `
+            <div class="mentor-code-block" id="${blockId}">
+                <div class="mentor-code-header">
+                    ${langLabel}
+                    <div class="mentor-code-actions">
+                        ${copyBtn}
+                        ${applyBtn}
+                    </div>
+                </div>
+                <pre><code>${escapedCode}</code></pre>
+                <textarea class="raw-code-store" style="display:none;">${code}</textarea>
+            </div>
+        `;
     });
+
     // 2. Inline code `...`
     text = text.replace(/`([^`]+)`/g, '<code class="mentor-inline-code">$1</code>');
     // 3. Bold và Italic
@@ -1018,3 +1237,45 @@ function formatMarkdown(text) {
     text = text.replace(/\n/g, '<br>');
     return text;
 }
+
+window.copyMentorCode = function(blockId, btnElement) {
+    const block = document.getElementById(blockId);
+    if (!block) return;
+    const raw = block.querySelector('.raw-code-store')?.value || block.querySelector('code')?.textContent || '';
+    if (!raw) return;
+
+    navigator.clipboard.writeText(raw.trim()).then(() => {
+        if (btnElement) {
+            const oldText = btnElement.innerHTML;
+            btnElement.innerHTML = '✅ Đã chép!';
+            setTimeout(() => { btnElement.innerHTML = oldText; }, 2000);
+        }
+    }).catch(err => {
+        console.warn('Clipboard copy error:', err);
+    });
+};
+
+window.applyMentorCode = function(blockId, lang) {
+    const block = document.getElementById(blockId);
+    if (!block) return;
+    const raw = block.querySelector('.raw-code-store')?.value || block.querySelector('code')?.textContent || '';
+    if (!raw) return;
+
+    const editor = document.getElementById('terminalEditor');
+    if (!editor) return;
+
+    // Chuyển tab tương ứng nếu cần
+    if (lang === 'sql') {
+        document.getElementById('tabSql')?.click();
+    } else if (lang === 'python') {
+        document.getElementById('tabPython')?.click();
+    }
+
+    editor.value = raw.trim();
+    editor.focus();
+
+    const statusText = document.getElementById('terminalStatusText');
+    if (statusText) {
+        statusText.textContent = `⚡ Đã chèn mã từ AI Mentor vào Editor! Nhấn "▶ Chạy mã (Run)" hoặc Ctrl + Enter để thực thi.`;
+    }
+};
