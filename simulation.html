@@ -20,6 +20,9 @@
   <!-- Chart.js for Interactive Data Visualization -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 
+  <!-- AlaSQL: In-browser SQL engine for real query execution on JSON data -->
+  <script src="https://cdn.jsdelivr.net/npm/alasql@4.4.0/dist/alasql.min.js"></script>
+
   <!-- Dark Mode Script (Prevent flash) -->
   <script>
     (function() {
@@ -230,10 +233,10 @@
               </div>
             </div>
 
-            <!-- Guardrail Disclaimer -->
-            <div class="mentor-guardrail-banner">
-              <span>🔒</span>
-              <span>Mentor chỉ dẫn dắt tư duy logic - Không đưa sẵn đáp án mã code.</span>
+            <!-- Powered-by note -->
+            <div class="mentor-guardrail-banner" style="background: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(139,92,246,0.12)); border-color: rgba(99,102,241,0.3);">
+              <span>✨</span>
+              <span>Được cung cấp bởi <b>Gemini AI</b> — hỏi bất kỳ câu hỏi nào về dữ liệu, SQL, Python!</span>
             </div>
 
             <!-- Message Stream -->
@@ -243,14 +246,14 @@
 
             <!-- Quick Action Chips -->
             <div class="mentor-chips-bar">
-              <button class="mentor-chip-btn" onclick="window.sendMentorChip('Chỉ số nào cần quan sát trong bài này?')">🔍 Chỉ số cốt lõi?</button>
-              <button class="mentor-chip-btn" onclick="window.sendMentorChip('Gợi ý cho tôi logic gom nhóm (Group By)')">🧩 Gợi ý gom nhóm</button>
-              <button class="mentor-chip-btn" onclick="window.sendMentorChip('Giải thích hiện tượng bất thường trong dữ liệu')">⚡ Hiện tượng bất thường?</button>
+              <button class="mentor-chip-btn" onclick="window.sendMentorChip('Viết cho tôi câu SQL hoàn chỉnh để giải bài toán này')">🔑 Viết SQL giải bài</button>
+              <button class="mentor-chip-btn" onclick="window.sendMentorChip('Giải thích kết quả dữ liệu vừa chạy cho tôi')">📊 Giải thích kết quả</button>
+              <button class="mentor-chip-btn" onclick="window.sendMentorChip('Tôi cần làm gì tiếp theo để hoàn thành phân tích?')">🎯 Bước tiếp theo</button>
             </div>
 
             <!-- Input Bar -->
             <div class="mentor-input-wrapper">
-              <input type="text" id="mentorInput" class="mentor-text-input" placeholder="Hỏi AI Mentor về tư duy phân tích...">
+              <input type="text" id="mentorInput" class="mentor-text-input" placeholder="Hỏi bất cứ điều gì: SQL, Python, giải thích dữ liệu...">
               <button id="btnSendMentor" class="btn-send-mentor" title="Gửi câu hỏi">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <line x1="22" y1="2" x2="11" y2="13"></line>

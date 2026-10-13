@@ -142,7 +142,10 @@ export function startMission(caseId) {
     currentCase = mission;
     currentLanguage = 'sql';
 
-    // 1. Cập nhật Topbar
+    // 1. Đăng ký dữ liệu JSON vào AlaSQL để chạy SQL thật
+    registerCaseDatabaseInAlaSQL(mission);
+
+    // 2. Cập nhật Topbar
     const titleEl = document.getElementById('workspaceTitle');
     const badgeEl = document.getElementById('workspaceBadge');
     if (titleEl) titleEl.textContent = mission.title;
@@ -151,17 +154,17 @@ export function startMission(caseId) {
         badgeEl.textContent = mission.difficultyLabel;
     }
 
-    // 2. Render Cột Trái (Mission Briefing)
+    // 3. Render Cột Trái (Mission Briefing)
     renderBriefing(mission);
 
-    // 3. Render Cột Giữa (Terminal & Mock Data)
+    // 4. Render Cột Giữa (Terminal & Mock Data preview)
     renderTerminal(mission);
     renderOutputData(mission);
 
-    // 4. Khởi tạo Cột Phải (Gemini AI Mentor)
+    // 5. Khởi tạo Cột Phải (Gemini AI Mentor)
     resetMentorChat(mission);
 
-    // 5. Chuyển sang Workspace View
+    // 6. Chuyển sang Workspace View
     showSimView('workspace');
 }
 window.startMission = startMission;
@@ -232,6 +235,100 @@ function renderTerminal(mission) {
     }
 }
 
+// ============================================================
+// ALASQL ENGINE: Đăng ký bảng dữ liệu JSON cho case hiện tại
+// ============================================================
+function registerCaseDatabaseInAlaSQL(caseData) {
+    if (typeof alasql === 'undefined') {
+        console.warn('[AlaSQL] Chưa tải xong, bỏ qua đăng ký DB.');
+        return;
+    }
+    // Xoá các bảng cũ trước khi tạo mới
+    if (caseData.mockDb) {
+        for (const [tableName, rows] of Object.entries(caseData.mockDb)) {
+            try { alasql(`DROP TABLE IF EXISTS ${tableName}`); } catch(e) {}
+            alasql(`CREATE TABLE ${tableName}`);
+            alasql.tables[tableName].data = rows;
+            console.log(`[AlaSQL] Đã đăng ký bảng "${tableName}" với ${rows.length} dòng.`);
+        }
+    }
+}
+
+function runSQLWithAlaSQL(sqlQuery) {
+    const tableContainer = document.getElementById('outputTableContainer');
+    const statusText = document.getElementById('terminalStatusText');
+    const paneTable = document.getElementById('outputTablePane');
+    const paneChart = document.getElementById('outputChartPane');
+
+    if (typeof alasql === 'undefined') {
+        if (tableContainer) tableContainer.innerHTML = `<div class="sql-error-box">⚠️ AlaSQL chưa được tải. Kiểm tra kết nối mạng và thử lại.</div>`;
+        return;
+    }
+
+    const t0 = performance.now();
+    let results, errMsg = null;
+
+    try {
+        results = alasql(sqlQuery);
+    } catch (err) {
+        errMsg = err.message;
+    }
+
+    const elapsed = Math.round(performance.now() - t0);
+
+    // Chuyển sang tab Table
+    if (paneTable) paneTable.style.display = 'block';
+    if (paneChart) paneChart.style.display = 'none';
+    document.getElementById('outputTabTable')?.classList.add('active');
+    document.getElementById('outputTabChart')?.classList.remove('active');
+
+    if (errMsg) {
+        if (statusText) statusText.textContent = `Lỗi SQL | ${errMsg.substring(0, 80)}`;
+        if (tableContainer) {
+            tableContainer.innerHTML = `
+                <div class="sql-error-box">
+                    <div style="font-weight:700; margin-bottom:6px;">⚠️ Lỗi SQL cú pháp</div>
+                    <code style="font-size:0.82rem;">${errMsg}</code>
+                    <div style="margin-top:8px; font-size:0.8rem; opacity:0.7;">Kiểm tra lại tên bảng, tên cột và cú pháp truy vấn.</div>
+                </div>`;
+        }
+        return;
+    }
+
+    // Nếu kết quả là số (INSERT, UPDATE...)
+    if (typeof results !== 'object' || results === null) {
+        if (tableContainer) tableContainer.innerHTML = `<div class="sql-success-box">✅ Thực thi thành công. Kết quả: <b>${results}</b></div>`;
+        if (statusText) statusText.textContent = `Hoàn tất trong ${elapsed}ms`;
+        return;
+    }
+
+    const rows = Array.isArray(results) ? results : [results];
+
+    if (rows.length === 0) {
+        if (tableContainer) tableContainer.innerHTML = `<div class="sql-empty-box">🔍 Truy vấn thực thi thành công nhưng không có dòng nào được trả về.</div>`;
+        if (statusText) statusText.textContent = `Hoàn tất trong ${elapsed}ms | 0 dòng kết quả`;
+        return;
+    }
+
+    // Lấy headers từ keys của object đầu tiên
+    const headers = Object.keys(rows[0]);
+    const thHtml = headers.map(h => `<th>${h}</th>`).join('');
+    const rowsHtml = rows.map(row => `<tr>${headers.map(h => `<td>${row[h] ?? ''}</td>`).join('')}</tr>`).join('');
+
+    if (tableContainer) {
+        tableContainer.innerHTML = `
+            <div style="padding: 8px 12px; font-size:0.78rem; color:var(--text-muted); border-bottom: 1px solid var(--border-color); display:flex; justify-content:space-between;">
+                <span>⚡ AlaSQL Engine — Kết quả thật từ dữ liệu mock</span>
+                <span><b>${rows.length}</b> dòng · ${elapsed}ms</span>
+            </div>
+            <table class="sim-data-table">
+                <thead><tr>${thHtml}</tr></thead>
+                <tbody>${rowsHtml}</tbody>
+            </table>`;
+    }
+    if (statusText) statusText.textContent = `✅ Thực thi thành công trong ${elapsed}ms | Trả về ${rows.length} dòng kết quả`;
+}
+
 function setupTerminalEvents() {
     // Language Tab Switching
     const tabSql = document.getElementById('tabSql');
@@ -252,24 +349,30 @@ function setupTerminalEvents() {
         if (currentCase && editor) editor.value = currentCase.defaultPython;
     });
 
-    // Run Code Button
+    // Run Code Button — tích hợp AlaSQL
     const btnRun = document.getElementById('btnRunCode');
     const statusText = document.getElementById('terminalStatusText');
 
     btnRun?.addEventListener('click', () => {
         if (!currentCase) return;
+        const code = editor?.value?.trim();
+        if (!code) return;
 
         btnRun.innerHTML = '⏳ Đang thực thi...';
         btnRun.disabled = true;
 
+        // Dùng setTimeout để UI kịp cập nhật trước khi chạy
         setTimeout(() => {
+            if (currentLanguage === 'sql') {
+                runSQLWithAlaSQL(code);
+            } else {
+                // Python: hiển thị mock data như cũ (không thể chạy Python ở browser)
+                renderOutputData(currentCase);
+                if (statusText) statusText.textContent = `Python (Pandas) — Hiển thị kết quả mô phỏng | ${currentCase.mockData.rows.length} dòng`;
+            }
             btnRun.innerHTML = '▶ Chạy mã (Run)';
             btnRun.disabled = false;
-            if (statusText) {
-                statusText.textContent = `Thực thi thành công trong 38ms | Trả về ${currentCase.mockData.rows.length} dòng kết quả`;
-            }
-            renderOutputData(currentCase);
-        }, 350);
+        }, 80);
     });
 
     // Reset Code Button
@@ -559,27 +662,21 @@ async function callGoogleGeminiDirect(prompt, history, systemInstruction) {
     throw new Error(lastError || "Không thể kết nối máy chủ Google Gemini");
 }
 
-function generateFallbackMentorReply(query) {
-    const q = query.toLowerCase();
-    if (q.includes('code') || q.includes('đáp án') || q.includes('viết')) {
-        return `💡 <b>Gợi ý tư duy từ Mentor:</b><br>Mình không thể cung cấp mã code sẵn cho bạn. Nhưng để giải quyết bài toán này, bạn hãy tự hỏi:<br>
-        1. Chỉ số nào đại diện cho hành vi bất thường?<br>
-        2. Ta cần nhóm dữ liệu theo chiều nào (Dimension nào: theo Shop, theo IP, hay theo Phân khúc giá)?<br>
-        3. Hãy thử dùng mệnh đề <code>CASE WHEN</code> kết hợp <code>GROUP BY</code> để phân đoạn dữ liệu trước nhé!`;
-    }
-    if (q.includes('bước') || q.includes('gợi ý') || q.includes('làm sao')) {
-        return `🎯 <b>Phương pháp tiếp cận:</b><br>
-        - <b>Bước 1:</b> Phân tích thống kê mô tả (Distribution of Order Amounts) xem có đỉnh nhọn bất thường quanh mức 99.000đ hay không.<br>
-        - <b>Bước 2:</b> Lọc các tài khoản có hành vi đặt hàng lặp lại trong khoảng thời gian ngắn.<br>
-        - <b>Bước 3:</b> Tổng hợp tổng số tiền thất thoát và đề xuất chính sách chặn (Cap limit per user).`;
-    }
-    return `✨ <b>Góc nhìn Data Analyst:</b><br>Dữ liệu kinh doanh luôn phản ánh hành vi con người. Khi chính sách có khe hở, người dùng sẽ hành động để tối ưu lợi ích. Hãy bắt đầu bằng việc kiểm tra các giả thuyết của bạn trên tập dữ liệu mẫu và quan sát biểu đồ phân bổ!`;
-}
+// generateFallbackMentorReply removed — AI Mentor now uses live Gemini API
 
 function formatMarkdown(text) {
-    return text
-        .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
-        .replace(/\*(.*?)\*/g, '<i>$1</i>')
-        .replace(/`([^`]+)`/g, '<code style="background:var(--primary-light);color:var(--primary);padding:2px 4px;border-radius:4px;">$1</code>')
-        .replace(/\n/g, '<br>');
+    // 1. Xử lý fenced code blocks (```lang\n...\n```) trước — đặt trong <pre><code>
+    text = text.replace(/```(\w*)\n([\s\S]*?)```/g, (_, lang, code) => {
+        const langLabel = lang ? `<span class="code-lang-label">${lang.toUpperCase()}</span>` : '';
+        const escapedCode = code.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        return `<div class="mentor-code-block">${langLabel}<pre><code>${escapedCode}</code></pre></div>`;
+    });
+    // 2. Inline code `...`
+    text = text.replace(/`([^`]+)`/g, '<code class="mentor-inline-code">$1</code>');
+    // 3. Bold và Italic
+    text = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+    text = text.replace(/\*(.*?)\*/g, '<i>$1</i>');
+    // 4. Dòng mới
+    text = text.replace(/\n/g, '<br>');
+    return text;
 }

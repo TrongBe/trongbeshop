@@ -3,6 +3,90 @@
    Compatible with TRONEX Theme & Design Tokens
    ============================================================ */
 
+/* ============================================================
+   ALASQL RESULT FEEDBACK BOXES
+   ============================================================ */
+.sql-error-box {
+    padding: 16px 20px;
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 10px;
+    color: #EF4444;
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin: 12px 0;
+}
+.sql-success-box {
+    padding: 16px 20px;
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 10px;
+    color: #10B981;
+    font-size: 0.9rem;
+}
+.sql-empty-box {
+    padding: 16px 20px;
+    background: rgba(99, 102, 241, 0.06);
+    border: 1px solid var(--border-color, rgba(99,102,241,0.2));
+    border-radius: 10px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* ============================================================
+   MENTOR CODE BLOCK (fenced ```sql / ```python blocks)
+   ============================================================ */
+.mentor-code-block {
+    position: relative;
+    background: #0F172A;
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    border-radius: 10px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+[data-theme="light"] .mentor-code-block {
+    background: #1E293B;
+}
+.mentor-code-block pre {
+    margin: 0;
+    padding: 14px 16px;
+    overflow-x: auto;
+}
+.mentor-code-block pre code {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: #E2E8F0;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+}
+.code-lang-label {
+    display: inline-block;
+    background: rgba(99, 102, 241, 0.5);
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: 0 0 6px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.mentor-inline-code {
+    background: rgba(99, 102, 241, 0.12);
+    color: var(--primary, #6366f1);
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85em;
+}
+
+
 /* --- LAYOUT SWITCHING (SPA VIEWS) --- */
 .sim-view {
     display: none;

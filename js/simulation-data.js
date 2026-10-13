@@ -105,6 +105,38 @@ print(summary)`,
                     }
                 ]
             }
+        },
+        mockDb: {
+            orders: [
+                { order_id: "ORD001", shop_id: "SH01", buyer_id: "B001", order_amount: 99500,  shipping_subsidy: 30000, created_at: "2026-10-01", status: "COMPLETED" },
+                { order_id: "ORD002", shop_id: "SH01", buyer_id: "B002", order_amount: 101000, shipping_subsidy: 30000, created_at: "2026-10-01", status: "COMPLETED" },
+                { order_id: "ORD003", shop_id: "SH02", buyer_id: "B003", order_amount: 250000, shipping_subsidy: 30000, created_at: "2026-10-01", status: "COMPLETED" },
+                { order_id: "ORD004", shop_id: "SH03", buyer_id: "B004", order_amount: 75000,  shipping_subsidy: 0,     created_at: "2026-10-01", status: "COMPLETED" },
+                { order_id: "ORD005", shop_id: "SH01", buyer_id: "B005", order_amount: 100000, shipping_subsidy: 30000, created_at: "2026-10-02", status: "COMPLETED" },
+                { order_id: "ORD006", shop_id: "SH04", buyer_id: "B006", order_amount: 102500, shipping_subsidy: 30000, created_at: "2026-10-02", status: "COMPLETED" },
+                { order_id: "ORD007", shop_id: "SH02", buyer_id: "B001", order_amount: 99800,  shipping_subsidy: 30000, created_at: "2026-10-02", status: "COMPLETED" },
+                { order_id: "ORD008", shop_id: "SH01", buyer_id: "B007", order_amount: 150000, shipping_subsidy: 30000, created_at: "2026-10-03", status: "CANCELLED" },
+                { order_id: "ORD009", shop_id: "SH03", buyer_id: "B008", order_amount: 99900,  shipping_subsidy: 30000, created_at: "2026-10-03", status: "COMPLETED" },
+                { order_id: "ORD010", shop_id: "SH05", buyer_id: "B009", order_amount: 350000, shipping_subsidy: 30000, created_at: "2026-10-03", status: "COMPLETED" },
+                { order_id: "ORD011", shop_id: "SH01", buyer_id: "B010", order_amount: 99200,  shipping_subsidy: 30000, created_at: "2026-10-04", status: "COMPLETED" },
+                { order_id: "ORD012", shop_id: "SH06", buyer_id: "B002", order_amount: 99600,  shipping_subsidy: 30000, created_at: "2026-10-04", status: "COMPLETED" },
+                { order_id: "ORD013", shop_id: "SH04", buyer_id: "B011", order_amount: 50000,  shipping_subsidy: 0,     created_at: "2026-10-05", status: "COMPLETED" },
+                { order_id: "ORD014", shop_id: "SH02", buyer_id: "B003", order_amount: 200000, shipping_subsidy: 30000, created_at: "2026-10-05", status: "COMPLETED" },
+                { order_id: "ORD015", shop_id: "SH01", buyer_id: "B004", order_amount: 100500, shipping_subsidy: 30000, created_at: "2026-10-05", status: "COMPLETED" }
+            ],
+            buyer_profiles: [
+                { buyer_id: "B001", ip_address: "192.168.1.10", device_id: "DEV_A", account_created_days: 1 },
+                { buyer_id: "B002", ip_address: "192.168.1.10", device_id: "DEV_A", account_created_days: 2 },
+                { buyer_id: "B003", ip_address: "10.0.0.5",     device_id: "DEV_B", account_created_days: 120 },
+                { buyer_id: "B004", ip_address: "10.0.0.5",     device_id: "DEV_C", account_created_days: 365 },
+                { buyer_id: "B005", ip_address: "192.168.1.10", device_id: "DEV_A", account_created_days: 1 },
+                { buyer_id: "B006", ip_address: "172.16.0.1",   device_id: "DEV_D", account_created_days: 90 },
+                { buyer_id: "B007", ip_address: "172.16.0.2",   device_id: "DEV_E", account_created_days: 200 },
+                { buyer_id: "B008", ip_address: "192.168.1.10", device_id: "DEV_A", account_created_days: 1 },
+                { buyer_id: "B009", ip_address: "10.0.0.9",     device_id: "DEV_F", account_created_days: 500 },
+                { buyer_id: "B010", ip_address: "192.168.1.10", device_id: "DEV_A", account_created_days: 2 },
+                { buyer_id: "B011", ip_address: "192.168.2.50", device_id: "DEV_G", account_created_days: 45 }
+            ]
         }
     },
     {
@@ -198,6 +230,25 @@ print(cohort[['COMPLETED', 'CANCELLED']])`,
                     }
                 ]
             }
+        },
+        mockDb: {
+            sales_pipeline: [
+                { session_id: "S001", order_id: "O001", created_at: "2026-10-01", status: "COMPLETED",  cancel_reason: null },
+                { session_id: "S002", order_id: "O002", created_at: "2026-10-01", status: "COMPLETED",  cancel_reason: null },
+                { session_id: "S003", order_id: "O003", created_at: "2026-10-01", status: "CANCELLED",  cancel_reason: "buyer_cancel" },
+                { session_id: "S004", order_id: "O004", created_at: "2026-10-05", status: "COMPLETED",  cancel_reason: null },
+                { session_id: "S005", order_id: "O005", created_at: "2026-10-05", status: "CANCELLED",  cancel_reason: "agent_fraud" },
+                { session_id: "S006", order_id: "O006", created_at: "2026-10-05", status: "CANCELLED",  cancel_reason: "agent_fraud" },
+                { session_id: "S007", order_id: "O007", created_at: "2026-10-10", status: "CANCELLED",  cancel_reason: "agent_fraud" },
+                { session_id: "S008", order_id: "O008", created_at: "2026-10-10", status: "CANCELLED",  cancel_reason: "agent_fraud" },
+                { session_id: "S009", order_id: "O009", created_at: "2026-10-10", status: "COMPLETED",  cancel_reason: null },
+                { session_id: "S010", order_id: "O010", created_at: "2026-10-10", status: "CANCELLED",  cancel_reason: "self_order" },
+                { session_id: "S011", order_id: "O011", created_at: "2026-10-12", status: "CANCELLED",  cancel_reason: "agent_fraud" },
+                { session_id: "S012", order_id: "O012", created_at: "2026-10-12", status: "CANCELLED",  cancel_reason: "self_order" },
+                { session_id: "S013", order_id: "O013", created_at: "2026-10-12", status: "COMPLETED",  cancel_reason: null },
+                { session_id: "S014", order_id: "O014", created_at: "2026-10-12", status: "CANCELLED",  cancel_reason: "agent_fraud" },
+                { session_id: "S015", order_id: "O015", created_at: "2026-10-12", status: "COMPLETED",  cancel_reason: null }
+            ]
         }
     },
     {
@@ -318,6 +369,39 @@ print(suspicious_months)`,
             "Bạn đã nhìn thấy dữ liệu rồi. Câu hỏi tiếp theo là: Trong số 41K tài khoản sinh nhật tháng 10, bao nhiêu tài khoản CŨNG được tạo trong tháng 10?",
             "IP là chìa khoá vàng để gom cụm. Một người thật có thể có nhiều tài khoản không? Về lý thuyết – không nên. Vậy ngưỡng bao nhiêu tài khoản/IP là bất thường?",
             "Sau khi có danh sách nghi ngờ, đừng quên kiểm tra: Họ có thực sự dùng voucher không? Và đơn hàng đó có COMPLETED hay bị CANCELLED ngay sau đó?"
-        ]
+        ],
+        mockDb: {
+            customers: [
+                { Ma_KH: "KH001", Ngay_Tao_TK: "2026-10-01", Thang_Sinh_Nhat: 10, So_Dien_Thoai: "hash_001", Email_Domain: "gmail.com",   IP_Dang_Ky: "192.168.5.10" },
+                { Ma_KH: "KH002", Ngay_Tao_TK: "2026-10-01", Thang_Sinh_Nhat: 10, So_Dien_Thoai: "hash_002", Email_Domain: "gmail.com",   IP_Dang_Ky: "192.168.5.10" },
+                { Ma_KH: "KH003", Ngay_Tao_TK: "2026-10-02", Thang_Sinh_Nhat: 10, So_Dien_Thoai: "hash_003", Email_Domain: "yahoo.com",   IP_Dang_Ky: "192.168.5.10" },
+                { Ma_KH: "KH004", Ngay_Tao_TK: "2026-10-02", Thang_Sinh_Nhat: 10, So_Dien_Thoai: "hash_004", Email_Domain: "gmail.com",   IP_Dang_Ky: "192.168.5.10" },
+                { Ma_KH: "KH005", Ngay_Tao_TK: "2025-03-15", Thang_Sinh_Nhat: 3,  So_Dien_Thoai: "hash_005", Email_Domain: "gmail.com",   IP_Dang_Ky: "10.0.0.20" },
+                { Ma_KH: "KH006", Ngay_Tao_TK: "2025-06-20", Thang_Sinh_Nhat: 6,  So_Dien_Thoai: "hash_006", Email_Domain: "outlook.com", IP_Dang_Ky: "10.0.0.21" },
+                { Ma_KH: "KH007", Ngay_Tao_TK: "2026-10-03", Thang_Sinh_Nhat: 10, So_Dien_Thoai: "hash_007", Email_Domain: "gmail.com",   IP_Dang_Ky: "192.168.5.10" },
+                { Ma_KH: "KH008", Ngay_Tao_TK: "2024-01-10", Thang_Sinh_Nhat: 1,  So_Dien_Thoai: "hash_008", Email_Domain: "gmail.com",   IP_Dang_Ky: "172.16.1.5" },
+                { Ma_KH: "KH009", Ngay_Tao_TK: "2026-10-04", Thang_Sinh_Nhat: 10, So_Dien_Thoai: "hash_009", Email_Domain: "tempmail.com",IP_Dang_Ky: "192.168.5.10" },
+                { Ma_KH: "KH010", Ngay_Tao_TK: "2025-12-25", Thang_Sinh_Nhat: 12, So_Dien_Thoai: "hash_010", Email_Domain: "gmail.com",   IP_Dang_Ky: "10.0.0.50" }
+            ],
+            voucher_usage: [
+                { Ma_Voucher: "VC001", Ma_KH: "KH001", Ngay_Su_Dung: "2026-10-01", Gia_Tri_Giam: 50000, Ma_Don_Hang: "DH001" },
+                { Ma_Voucher: "VC002", Ma_KH: "KH002", Ngay_Su_Dung: "2026-10-01", Gia_Tri_Giam: 50000, Ma_Don_Hang: "DH002" },
+                { Ma_Voucher: "VC003", Ma_KH: "KH003", Ngay_Su_Dung: "2026-10-02", Gia_Tri_Giam: 50000, Ma_Don_Hang: "DH003" },
+                { Ma_Voucher: "VC004", Ma_KH: "KH004", Ngay_Su_Dung: "2026-10-02", Gia_Tri_Giam: 50000, Ma_Don_Hang: "DH004" },
+                { Ma_Voucher: "VC005", Ma_KH: "KH005", Ngay_Su_Dung: "2026-03-15", Gia_Tri_Giam: 50000, Ma_Don_Hang: "DH005" },
+                { Ma_Voucher: "VC006", Ma_KH: "KH007", Ngay_Su_Dung: "2026-10-03", Gia_Tri_Giam: 50000, Ma_Don_Hang: "DH007" },
+                { Ma_Voucher: "VC007", Ma_KH: "KH009", Ngay_Su_Dung: "2026-10-04", Gia_Tri_Giam: 50000, Ma_Don_Hang: "DH009" }
+            ],
+            orders: [
+                { Ma_Don_Hang: "DH001", Ma_KH: "KH001", Tong_Tien_Hang: 220000, Trang_Thai: "COMPLETED", Ngay_Dat_Hang: "2026-10-01" },
+                { Ma_Don_Hang: "DH002", Ma_KH: "KH002", Tong_Tien_Hang: 250000, Trang_Thai: "COMPLETED", Ngay_Dat_Hang: "2026-10-01" },
+                { Ma_Don_Hang: "DH003", Ma_KH: "KH003", Tong_Tien_Hang: 210000, Trang_Thai: "CANCELLED", Ngay_Dat_Hang: "2026-10-02" },
+                { Ma_Don_Hang: "DH004", Ma_KH: "KH004", Tong_Tien_Hang: 300000, Trang_Thai: "COMPLETED", Ngay_Dat_Hang: "2026-10-02" },
+                { Ma_Don_Hang: "DH005", Ma_KH: "KH005", Tong_Tien_Hang: 500000, Trang_Thai: "COMPLETED", Ngay_Dat_Hang: "2026-03-15" },
+                { Ma_Don_Hang: "DH006", Ma_KH: "KH006", Tong_Tien_Hang: 150000, Trang_Thai: "COMPLETED", Ngay_Dat_Hang: "2026-06-20" },
+                { Ma_Don_Hang: "DH007", Ma_KH: "KH007", Tong_Tien_Hang: 200000, Trang_Thai: "COMPLETED", Ngay_Dat_Hang: "2026-10-03" },
+                { Ma_Don_Hang: "DH009", Ma_KH: "KH009", Tong_Tien_Hang: 220000, Trang_Thai: "CANCELLED", Ngay_Dat_Hang: "2026-10-04" }
+            ]
+        }
     }
 ];
