@@ -490,11 +490,41 @@ function resetMentorChat(mission) {
             ${welcomeMsg}
         </div>
     `;
+    scrollMentorToBottom(false);
 }
+
+function scrollMentorToBottom(smooth = true) {
+    const chatStream = document.getElementById('mentorChatStream');
+    if (!chatStream) return;
+    chatStream.scrollTo({
+        top: chatStream.scrollHeight,
+        behavior: smooth ? 'smooth' : 'auto'
+    });
+    const scrollBtn = document.getElementById('mentorScrollBottomBtn');
+    if (scrollBtn) scrollBtn.style.display = 'none';
+    setTimeout(() => {
+        chatStream.scrollTop = chatStream.scrollHeight;
+    }, 60);
+}
+window.scrollMentorToBottom = scrollMentorToBottom;
 
 function setupMentorChat() {
     const input = document.getElementById('mentorInput');
     const sendBtn = document.getElementById('btnSendMentor');
+    const chatStream = document.getElementById('mentorChatStream');
+    const scrollBtn = document.getElementById('mentorScrollBottomBtn');
+
+    // Theo dõi cuộn chuột để hiển thị nút nhảy xuống tin nhắn mới nhất
+    if (chatStream && scrollBtn) {
+        chatStream.addEventListener('scroll', () => {
+            const distanceFromBottom = chatStream.scrollHeight - chatStream.scrollTop - chatStream.clientHeight;
+            if (distanceFromBottom > 100) {
+                scrollBtn.style.display = 'flex';
+            } else {
+                scrollBtn.style.display = 'none';
+            }
+        });
+    }
 
     function handleSend() {
         const text = input?.value?.trim();
@@ -529,7 +559,7 @@ function appendMentorMessage(sender, htmlText) {
     bubble.className = `mentor-bubble ${sender}`;
     bubble.innerHTML = htmlText;
     chatStream.appendChild(bubble);
-    chatStream.scrollTop = chatStream.scrollHeight;
+    scrollMentorToBottom(true);
 }
 
 async function sendToGeminiMentor(userQuery) {
@@ -594,6 +624,7 @@ Phong cách trả lời:
             mentorChatHistory.pop(); // Xóa tin nhắn chưa được phản hồi
             if (thinkingBubble) {
                 thinkingBubble.innerHTML = `⚠️ <b>Lỗi kết nối AI Mentor:</b> <code style="font-size:0.8rem;">${directErr.message}</code><br><small style="opacity:0.7;">Vui lòng thử lại sau giây lát hoặc nhập API Key cá nhân trong cài đặt.</small>`;
+                scrollMentorToBottom(true);
             }
             return;
         }
@@ -602,7 +633,10 @@ Phong cách trả lời:
     // Hiển thị phản hồi từ AI
     if (aiResponseText) {
         const formattedReply = formatMarkdown(aiResponseText);
-        if (thinkingBubble) thinkingBubble.innerHTML = formattedReply;
+        if (thinkingBubble) {
+            thinkingBubble.innerHTML = formattedReply;
+            scrollMentorToBottom(true);
+        }
         // Lưu phản hồi AI vào lịch sử để duy trì ngữ cảnh
         mentorChatHistory.push({ role: 'model', parts: [{ text: aiResponseText }] });
     }
