@@ -50,6 +50,7 @@ export default async function handler(req, res) {
     const { 
         prompt, 
         systemInstruction, 
+        history = [], // Lịch sử hội thoại multi-turn [{ role, parts }]
         model = 'gemini-2.0-flash',
         images = [] // Hỗ trợ upload ảnh/OCR nếu có [{ mimeType, data: base64 }]
     } = req.body || {};
@@ -65,39 +66,35 @@ export default async function handler(req, res) {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 25000);
 
-    // Xây dựng payload một lần
-    const parts = [];
+    // Xây dựng mảng parts cho tin nhắn hiện tại
+    const currentParts = [];
     if (prompt) {
-        parts.push({ text: prompt });
+        currentParts.push({ text: prompt });
     }
-
     if (Array.isArray(images) && images.length > 0) {
         images.forEach(img => {
             if (img.data && img.mimeType) {
-                parts.push({
-                    inline_data: {
-                        mime_type: img.mimeType,
-                        data: img.data
-                    }
+                currentParts.push({
+                    inline_data: { mime_type: img.mimeType, data: img.data }
                 });
             }
         });
     }
 
-    const payload = {
-        contents: [
-            {
-                role: 'user',
-                parts: parts
-            }
-        ]
-    };
+    // Xây dựng contents: lịch sử hội thoại + tin nhắn hiện tại
+    const contents = [
+        ...(Array.isArray(history) ? history : []),
+        { role: 'user', parts: currentParts }
+    ];
+
+    const payload = { contents };
 
     if (systemInstruction) {
         payload.systemInstruction = {
             parts: [{ text: systemInstruction }]
         };
     }
+
 
     try {
         // 5. TỰ ĐỘNG XOAY VÒNG KEY NẾU GẶP LỖI HẾT QUOTA (429) HOẶC BẬN (503)

@@ -377,8 +377,10 @@ function resetMentorChat(mission) {
     const chatStream = document.getElementById('mentorChatStream');
     if (!chatStream) return;
 
+    // Reset lịch sử hội thoại hoàn toàn khi bắt đầu mission mới
     mentorChatHistory = [];
-    const welcomeMsg = `Chào bạn! Mình là **Gemini AI Mentor**. Nhiệm vụ của mình là đồng hành cùng bạn bóc tách bài toán **"${mission.title}"**.<br><br>💡 *Lưu ý: Mình sẽ chỉ định hướng tư duy logic, phân tích nghiệp vụ và giải thích chỉ số chứ không viết sẵn mã code.* Hãy đặt câu hỏi nếu bạn cần làm rõ bước phân tích tiếp theo!`;
+
+    const welcomeMsg = `Xin chào! Mình là <b>Gemini AI Mentor</b> 🤖 — trợ lý phân tích dữ liệu của bạn cho nhiệm vụ <b>"${mission.title}"</b>.<br><br>Bạn có thể hỏi mình bất cứ điều gì: giải thích dữ liệu, gợi ý hướng phân tích, viết SQL/Python mẫu, hay giải thích kết quả. Mình ở đây để giúp bạn thật sự! 🚀`;
 
     chatStream.innerHTML = `
         <div class="mentor-bubble ai">
@@ -428,23 +430,29 @@ function appendMentorMessage(sender, htmlText) {
 }
 
 async function sendToGeminiMentor(userQuery) {
-    appendMentorMessage('ai', '<em>Thinking & Analyzing...</em>');
+    appendMentorMessage('ai', '<em style="opacity:0.6;">&#9203; Đang phân tích...</em>');
     const chatStream = document.getElementById('mentorChatStream');
     const thinkingBubble = chatStream?.lastElementChild;
 
-    const missionContext = currentCase 
-        ? `Nhiệm vụ hiện tại: "${currentCase.title}". Bối cảnh: "${currentCase.shortDesc}". Mục tiêu: ${currentCase.objectives.join('; ')}`
-        : 'Chung về Data Analysis';
+    // Xây dựng System Instruction với ngữ cảnh nhiệm vụ
+    const missionContext = currentCase
+        ? `Nhiệm vu: "${currentCase.title}"\nBoi canh: ${currentCase.shortDesc}\nMuc tieu phan tich:\n${currentCase.objectives.map((o, i) => `${i + 1}. ${o}`).join('\n')}\nCau truc bang du lieu: ${currentCase.schema.map(t => t.tableName + '(' + t.columns.map(c => c.name).join(', ') + ')').join('; ')}`
+        : 'Tro ly Data Analysis tong quat';
 
-    const systemInstruction = `
-        Bạn là Senior Data Analyst Mentor cho sinh viên và người đi làm.
-        Bối cảnh: ${missionContext}
-        QUY TẮC CỐT LÕI (GUARDRAIL):
-        1. BẠN TUYỆT ĐỐI KHÔNG ĐƯỢC VIẾT SẴN CÂU LỆNH SQL HOẶC MÃ PYTHON HOÀN CHỈNH CHO NGƯỜI HỌC.
-        2. Nếu người dùng yêu cầu "cho xin code", "viết SQL cho tôi", hãy từ chối khéo léo và giải thích: "Để bạn rèn luyện tư duy thực chiến, mình sẽ gợi ý cấu trúc phân tích thay vì đưa sẵn code."
-        3. Hãy dẫn dắt bằng các câu hỏi gợi mở, giải thích ý nghĩa nghiệp vụ (Business Metrics), gợi ý các hàm cần tìm hiểu (ví dụ: GROUP BY, CASE WHEN, Window Function) và các bước bóc tách logic từng bước.
-        4. Trả lời bằng tiếng Việt, ngắn gọn, súc tích, văn phong chuyên nghiệp và khích lệ người học.
-    `;
+    const systemInstruction = `Ban la Gemini AI Mentor — mot Senior Data Analyst giau kinh nghiem dang ho tro nguoi hoc trong moi truong thuc hanh phan tich du lieu.
+
+Ngu canh bai toan hien tai:
+${missionContext}
+
+Phong cach tra loi:
+- Tra loi bang tieng Viet, chuyen nghiep, than thien va khich le.
+- Khi duoc hoi ve SQL hoac Python, hay cung cap vi du code cu the, ro rang va giai thich tung buoc.
+- Khi giai thich ket qua du lieu, hay gan voi boi canh nghiep vu thuc te.
+- Su dung markdown (**, *, dau gach dau dong) de cau tra loi de doc.
+- Co the dat them cau hoi goi mo de nguoi hoc tu suy nghi sau hon sau khi da tra loi.`;
+
+    // Thêm tin nhắn người dùng vào lịch sử
+    mentorChatHistory.push({ role: 'user', parts: [{ text: userQuery }] });
 
     try {
         const res = await fetch('/api/gemini', {
@@ -452,22 +460,30 @@ async function sendToGeminiMentor(userQuery) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 prompt: userQuery,
+                history: mentorChatHistory.slice(0, -1), // Lịch sử trừ tin nhắn hiện tại
                 systemInstruction: systemInstruction,
                 model: 'gemini-2.0-flash'
             })
         });
 
         const data = await res.json();
+
         if (data && data.text) {
-            if (thinkingBubble) thinkingBubble.innerHTML = formatMarkdown(data.text);
+            const formattedReply = formatMarkdown(data.text);
+            if (thinkingBubble) thinkingBubble.innerHTML = formattedReply;
+            // Lưu phản hồi AI vào lịch sử để duy trì ngữ cảnh
+            mentorChatHistory.push({ role: 'model', parts: [{ text: data.text }] });
         } else {
-            throw new Error(data.error || 'Không nhận được phản hồi');
+            const errMsg = data?.error || 'API khong tra ve noi dung';
+            throw new Error(errMsg);
         }
     } catch (err) {
-        console.warn('[AI Mentor Offline/Fallback]:', err.message);
-        // Fallback Mentor Response nếu serverless API chưa kết nối key
-        const fallbackReply = generateFallbackMentorReply(userQuery);
-        if (thinkingBubble) thinkingBubble.innerHTML = fallbackReply;
+        console.error('[AI Mentor Error]:', err);
+        // Xoá tin nhắn người dùng khỏi history nếu gọi thất bại
+        mentorChatHistory.pop();
+        if (thinkingBubble) {
+            thinkingBubble.innerHTML = `&#9888;&#65039; <b>Loi ket noi AI Mentor:</b> <code style="font-size:0.8rem;">${err.message}</code><br><small style="opacity:0.7;">Kiem tra Vercel Environment Variables (GEMINI_API_KEY) va thu lai.</small>`;
+        }
     }
 }
 
