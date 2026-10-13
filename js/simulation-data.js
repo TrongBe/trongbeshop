@@ -199,5 +199,125 @@ print(cohort[['COMPLETED', 'CANCELLED']])`,
                 ]
             }
         }
+    },
+    {
+        id: "case_voucher_abuse",
+        title: "Lỗ hổng Khuyến mãi – Bắt quả tang \"Thợ săn Voucher\"",
+        category: "Fraud Detection",
+        categoryLabel: "Chống Gian Lận",
+        difficulty: "medium",
+        difficultyLabel: "Trung bình",
+        estimatedTime: "30 phút",
+        techStack: ["SQL", "Pandas", "EDA"],
+        badgeIcon: "🎁",
+        shortDesc: "Công ty tặng mã giảm giá 50K cho khách hàng có sinh nhật trong tháng. Doanh thu tháng 10 tăng vọt, nhưng số tài khoản khai sinh nhật tháng 10 cao bất thường. Nhiệm vụ: bắt quả tang kẻ tạo tài khoản ảo để trục lợi.",
+        fullContext: `
+            <h3>Bối cảnh doanh nghiệp</h3>
+            <p>Để tri ân khách hàng, công ty áp dụng chính sách <b>"Quà sinh nhật – Voucher 50.000đ"</b>: mỗi tài khoản có ngày sinh trong tháng hiện tại sẽ tự động nhận một mã giảm giá 50K, áp dụng cho đơn hàng từ 200.000đ trở lên.</p>
+            <p>Đến tháng 10/2026, nhóm Finance phát hiện <b>số lượng voucher sinh nhật được kích hoạt tăng đột biến 340%</b> so với tháng trước, gây thâm hụt ngân sách khuyến mãi nặng nề. Đặc biệt, tỷ lệ tài khoản có tháng sinh nhật là tháng 10 chiếm tới <b>41%</b> tổng cơ sở người dùng – một tỷ lệ phi thực tế.</p>
+            <p>Bạn vào vai <b>Senior Fraud Analyst</b>, được giao toàn quyền truy cập dữ liệu tài khoản và giao dịch để xây dựng bộ tiêu chí nhận diện và danh sách đen các "Thợ săn Voucher".</p>
+        `,
+        objectives: [
+            "Phân tích phân bổ tháng sinh nhật của toàn bộ người dùng – tìm tháng nào có tỷ lệ bất thường nhất.",
+            "Lọc các tài khoản được tạo trong tháng 10/2026 và có sinh nhật khai báo cũng là tháng 10 (tạo tài khoản & nhận voucher ngay lập tức).",
+            "Nhóm theo địa chỉ IP, số điện thoại, email domain để phát hiện các cụm tài khoản liên quan.",
+            "Xác định tổng giá trị thiệt hại tài chính (số voucher 50K được dùng bởi tài khoản nghi ngờ gian lận).",
+            "Đề xuất tiêu chí cứng để hệ thống tự động từ chối cấp voucher sinh nhật trong tương lai."
+        ],
+        schema: [
+            {
+                tableName: "customers",
+                description: "Bảng hồ sơ khách hàng",
+                columns: [
+                    { name: "Ma_KH", type: "VARCHAR", desc: "Mã khách hàng duy nhất (PK)" },
+                    { name: "Ngay_Tao_TK", type: "DATE", desc: "Ngày đăng ký tài khoản" },
+                    { name: "Thang_Sinh_Nhat", type: "INT", desc: "Tháng sinh nhật đã khai báo (1–12)" },
+                    { name: "So_Dien_Thoai", type: "VARCHAR", desc: "SĐT đăng ký (đã mã hoá 1 chiều)" },
+                    { name: "Email_Domain", type: "VARCHAR", desc: "Tên miền email (gmail.com, ...)" },
+                    { name: "IP_Dang_Ky", type: "VARCHAR", desc: "IP tại thời điểm đăng ký" }
+                ]
+            },
+            {
+                tableName: "voucher_usage",
+                description: "Lịch sử sử dụng voucher sinh nhật",
+                columns: [
+                    { name: "Ma_Voucher", type: "VARCHAR", desc: "Mã voucher (PK)" },
+                    { name: "Ma_KH", type: "VARCHAR", desc: "Khách hàng sử dụng (FK → customers)" },
+                    { name: "Ngay_Su_Dung", type: "DATE", desc: "Ngày áp dụng voucher" },
+                    { name: "Gia_Tri_Giam", type: "DECIMAL", desc: "Giá trị giảm giá thực tế (VNĐ)" },
+                    { name: "Ma_Don_Hang", type: "VARCHAR", desc: "Đơn hàng được áp dụng" }
+                ]
+            },
+            {
+                tableName: "orders",
+                description: "Bảng giao dịch đơn hàng",
+                columns: [
+                    { name: "Ma_Don_Hang", type: "VARCHAR", desc: "Mã đơn hàng (PK)" },
+                    { name: "Ma_KH", type: "VARCHAR", desc: "Mã khách hàng (FK → customers)" },
+                    { name: "Tong_Tien_Hang", type: "DECIMAL", desc: "Tổng giá trị hàng (VNĐ)" },
+                    { name: "Trang_Thai", type: "VARCHAR", desc: "COMPLETED | CANCELLED | RETURNED" },
+                    { name: "Ngay_Dat_Hang", type: "DATE", desc: "Ngày đặt hàng" }
+                ]
+            }
+        ],
+        hints: [
+            "Bắt đầu bằng câu hỏi đơn giản: Phân bổ tháng sinh nhật có đều không? Nếu tháng 10 chiếm >10% thì đó là dấu hiệu đáng ngờ.",
+            "Điều kiện đủ để nghi ngờ gian lận: Tài khoản tạo trong tháng 10 VÀ khai sinh nhật tháng 10 VÀ dùng voucher ngay trong tháng 10.",
+            "Gom nhóm theo IP_Dang_Ky: Nếu một IP có >3 tài khoản khác nhau, đó gần như chắc chắn là tài khoản ảo.",
+            "Cuối cùng, nhân số voucher gian lận với 50.000đ để ra con số thiệt hại tài chính ước tính."
+        ],
+        defaultSql: `-- Bước 1: Phân bổ tháng sinh nhật để phát hiện bất thường
+SELECT
+    Thang_Sinh_Nhat,
+    COUNT(Ma_KH) AS so_tai_khoan,
+    ROUND(COUNT(Ma_KH) * 100.0 / (SELECT COUNT(*) FROM customers), 2) AS ty_le_phan_tram
+FROM customers
+GROUP BY Thang_Sinh_Nhat
+ORDER BY ty_le_phan_tram DESC;`,
+        defaultPython: `# Bước 1: Phân bổ tháng sinh nhật
+import pandas as pd
+import matplotlib.pyplot as plt
+
+birthday_dist = df_customers['Thang_Sinh_Nhat'].value_counts(normalize=True).sort_index() * 100
+print("Phân bổ tháng sinh nhật (%):")
+print(birthday_dist.round(2))
+
+# Cờ đỏ: Tháng nào có tỷ lệ > 12% là bất thường
+suspicious_months = birthday_dist[birthday_dist > 12]
+print("\\n--- Tháng bất thường ---")
+print(suspicious_months)`,
+        mockData: {
+            headers: ["Tháng Sinh Nhật", "Số Tài Khoản", "Tỷ Lệ (%)"],
+            rows: [
+                ["Tháng 10 🚨", "41,230", "41.0%"],
+                ["Tháng 1",  "3,820", "3.8%"],
+                ["Tháng 3",  "3,710", "3.7%"],
+                ["Tháng 6",  "3,650", "3.6%"],
+                ["Tháng 7",  "3,590", "3.6%"],
+                ["Tháng 12", "3,540", "3.5%"],
+                ["(Các tháng còn lại)", "39,460", "39.8%"]
+            ],
+            chart: {
+                type: "bar",
+                title: "Phân bổ tháng sinh nhật khách hàng – Tháng 10 bất thường",
+                labels: ["T1","T2","T3","T4","T5","T6","T7","T8","T9","T10","T11","T12"],
+                datasets: [
+                    {
+                        label: "Số tài khoản theo tháng sinh nhật",
+                        data: [3820, 3480, 3710, 3420, 3380, 3650, 3590, 3470, 3510, 41230, 3450, 3540],
+                        backgroundColor: [
+                            "#4F46E5","#4F46E5","#4F46E5","#4F46E5","#4F46E5","#4F46E5",
+                            "#4F46E5","#4F46E5","#4F46E5","#EF4444","#4F46E5","#4F46E5"
+                        ]
+                    }
+                ]
+            }
+        },
+        mentorFallbackHints: [
+            "Hãy suy nghĩ về phân bổ xác suất: Nếu sinh nhật là ngẫu nhiên, mỗi tháng sẽ chiếm khoảng bao nhiêu % tổng số người dùng?",
+            "Bạn đã nhìn thấy dữ liệu rồi. Câu hỏi tiếp theo là: Trong số 41K tài khoản sinh nhật tháng 10, bao nhiêu tài khoản CŨNG được tạo trong tháng 10?",
+            "IP là chìa khoá vàng để gom cụm. Một người thật có thể có nhiều tài khoản không? Về lý thuyết – không nên. Vậy ngưỡng bao nhiêu tài khoản/IP là bất thường?",
+            "Sau khi có danh sách nghi ngờ, đừng quên kiểm tra: Họ có thực sự dùng voucher không? Và đơn hàng đó có COMPLETED hay bị CANCELLED ngay sau đó?"
+        ]
     }
 ];
