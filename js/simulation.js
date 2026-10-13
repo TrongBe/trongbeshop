@@ -1673,3 +1673,110 @@ window.applyMentorCode = function(blockId, lang) {
         statusText.textContent = `⚡ Đã chèn mã từ AI Mentor vào Editor! Nhấn "▶ Chạy mã (Run)" hoặc Ctrl + Enter để thực thi.`;
     }
 };
+
+// ============================================================
+// SQL HANDBOOK CONTROLLERS (CẨM NANG SQL THỰC CHIẾN)
+// ============================================================
+window.openSqlHandbook = function(tabId = 'tab-intro') {
+    const modal = document.getElementById('sqlHandbookModal');
+    if (!modal) return;
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    window.switchHandbookTab(tabId);
+};
+
+window.closeSqlHandbook = function() {
+    const modal = document.getElementById('sqlHandbookModal');
+    if (!modal) return;
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+};
+
+window.handleHandbookOverlayClick = function(e) {
+    if (e.target && e.target.id === 'sqlHandbookModal') {
+        window.closeSqlHandbook();
+    }
+};
+
+window.switchHandbookTab = function(tabId) {
+    // 1. Cập nhật Sidebar tabs
+    const navItems = document.querySelectorAll('.handbook-nav-item');
+    navItems.forEach(item => {
+        if (item.getAttribute('data-tab') === tabId) {
+            item.classList.add('active');
+        } else {
+            item.classList.remove('active');
+        }
+    });
+
+    // 2. Cập nhật Chapter Panes
+    const panes = document.querySelectorAll('.handbook-chapter-pane');
+    panes.forEach(pane => {
+        if (pane.id === tabId) {
+            pane.style.display = 'block';
+        } else {
+            pane.style.display = 'none';
+        }
+    });
+
+    // Cuộn pane lên đầu trang
+    const mainContent = document.getElementById('handbookContentContainer');
+    if (mainContent) mainContent.scrollTop = 0;
+};
+
+window.copyHandbookCode = function(btnElement) {
+    const card = btnElement.closest('.handbook-code-card');
+    if (!card) return;
+    const code = card.querySelector('code')?.innerText || '';
+    if (!code) return;
+
+    navigator.clipboard.writeText(code.trim()).then(() => {
+        const oldHtml = btnElement.innerHTML;
+        btnElement.innerHTML = '✅ Đã chép!';
+        setTimeout(() => { btnElement.innerHTML = oldHtml; }, 2000);
+    }).catch(err => {
+        console.warn('Copy handbook error:', err);
+    });
+};
+
+window.applyHandbookCode = function(btnElement) {
+    const card = btnElement.closest('.handbook-code-card');
+    if (!card) return;
+    const code = card.querySelector('code')?.innerText || '';
+    if (!code) return;
+
+    // Đóng handbook
+    window.closeSqlHandbook();
+
+    // Nếu đang ở Lobby, tự động vào Case đầu tiên
+    if (!currentCase) {
+        if (simulationCases && simulationCases.length > 0) {
+            startMission(simulationCases[0].id);
+        }
+    } else {
+        showSimView('workspace');
+    }
+
+    // Chuyển sang Tab SQL và điền mã
+    document.getElementById('tabSql')?.click();
+    const editor = document.getElementById('terminalEditor');
+    if (editor) {
+        editor.value = code.trim();
+        editor.focus();
+    }
+
+    const statusText = document.getElementById('terminalStatusText');
+    if (statusText) {
+        statusText.innerHTML = `⚡ Đã chèn mã từ Cẩm Nang SQL vào Editor! Nhấn "▶ Chạy mã (Run)" để thực thi.`;
+    }
+};
+
+// Đóng cẩm nang khi nhấn phím Escape
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const modal = document.getElementById('sqlHandbookModal');
+        if (modal && modal.style.display === 'flex') {
+            window.closeSqlHandbook();
+        }
+    }
+});

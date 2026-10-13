@@ -15,7 +15,7 @@
 
   <!-- Core Theme & Simulation CSS -->
   <link rel="stylesheet" href="css/style.css?v=25">
-  <link rel="stylesheet" href="css/simulation.css?v=20261013_mentor_selfverify">
+  <link rel="stylesheet" href="css/simulation.css?v=20261013_sql_handbook">
 
   <!-- Chart.js for Interactive Data Visualization -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
@@ -108,6 +108,23 @@
               <span>Gemini AI Mentor (Logic-Only)</span>
             </div>
           </div>
+
+          <!-- Nút Cẩm Nang SQL Thực Chiến -->
+          <div class="lobby-cta-row">
+            <button class="btn-lobby-handbook" id="btnOpenSqlHandbook" onclick="window.openSqlHandbook()">
+              <div class="btn-handbook-left">
+                <span class="btn-handbook-icon">📖</span>
+                <div class="btn-handbook-text">
+                  <div class="btn-handbook-title">Cẩm Nang SQL Thực Chiến — Cho Người Mới Bắt Đầu</div>
+                  <div class="btn-handbook-desc">Hiểu từ con số 0 trong 10 phút • Bí kíp 6 từ khóa thần thánh • Tuyệt chiêu phân khúc CASE WHEN &amp; JOIN</div>
+                </div>
+              </div>
+              <div class="btn-handbook-action">
+                <span>Mở cẩm nang</span>
+                <span class="btn-handbook-arrow">➔</span>
+              </div>
+            </button>
+          </div>
         </div>
 
         <!-- Filter & Search Bar -->
@@ -152,6 +169,9 @@
           </div>
 
           <div class="workspace-topbar-actions">
+            <button class="btn-handbook-topbar" onclick="window.openSqlHandbook()" title="Tra cứu nhanh cẩm nang cú pháp SQL">
+              📖 Cẩm Nang SQL
+            </button>
             <button class="btn-reset-code" onclick="window.sendMentorChip('Gợi ý cho tôi tư duy tiếp cận bước đầu tiên')">
               💡 Cần gợi ý?
             </button>
@@ -319,9 +339,525 @@ Gợi ý cấu trúc:
 
   </main>
 
+  <!-- ============================================================
+       MODAL: CẨM NANG SQL THỰC CHIẾN (DÀNH CHO NGƯỜI MỚI BẮT ĐẦU)
+       ============================================================ -->
+  <div id="sqlHandbookModal" class="handbook-modal-overlay" style="display: none;" onclick="window.handleHandbookOverlayClick(event)">
+    <div class="handbook-modal-dialog">
+      <!-- Modal Header -->
+      <div class="handbook-modal-header">
+        <div class="handbook-header-left">
+          <div class="handbook-header-badge">🚀 Dành Cho Người Số 0 • Dễ Hiểu Như Excel</div>
+          <h2>📖 Cẩm Nang SQL Thực Chiến — Từ Mất Gốc Đến Làm Chủ Sandbox</h2>
+        </div>
+        <button class="handbook-close-btn" onclick="window.closeSqlHandbook()" title="Đóng cẩm nang">&times;</button>
+      </div>
+
+      <!-- Modal Body (2 Columns: Navigation & Content) -->
+      <div class="handbook-modal-body">
+        <!-- Sidebar Navigation (Tabs) -->
+        <nav class="handbook-nav-sidebar">
+          <button class="handbook-nav-item active" data-tab="tab-intro" onclick="window.switchHandbookTab('tab-intro')">
+            <span class="nav-icon">💡</span>
+            <div class="nav-text">
+              <span class="nav-title">Chương 1: SQL là gì?</span>
+              <span class="nav-sub">Tư duy gốc rễ từ Excel sang SQL</span>
+            </div>
+          </button>
+          <button class="handbook-nav-item" data-tab="tab-keywords" onclick="window.switchHandbookTab('tab-keywords')">
+            <span class="nav-icon">🔑</span>
+            <div class="nav-text">
+              <span class="nav-title">Chương 2: 6 Từ Khóa Thần Thánh</span>
+              <span class="nav-sub">SELECT, FROM, WHERE, GROUP BY...</span>
+            </div>
+          </button>
+          <button class="handbook-nav-item" data-tab="tab-functions" onclick="window.switchHandbookTab('tab-functions')">
+            <span class="nav-icon">📊</span>
+            <div class="nav-text">
+              <span class="nav-title">Chương 3: 5 Hàm Thống Kê</span>
+              <span class="nav-sub">COUNT, SUM, AVG, ROUND, MIN/MAX</span>
+            </div>
+          </button>
+          <button class="handbook-nav-item" data-tab="tab-casewhen" onclick="window.switchHandbookTab('tab-casewhen')">
+            <span class="nav-icon">🏷️</span>
+            <div class="nav-text">
+              <span class="nav-title">Chương 4: Tuyệt Chiêu CASE WHEN</span>
+              <span class="nav-sub">Phân khúc đơn hàng &amp; khách hàng</span>
+            </div>
+          </button>
+          <button class="handbook-nav-item" data-tab="tab-join" onclick="window.switchHandbookTab('tab-join')">
+            <span class="nav-icon">🔗</span>
+            <div class="nav-text">
+              <span class="nav-title">Chương 5: Ghép Bảng Với JOIN</span>
+              <span class="nav-sub">Nối Đơn hàng &amp; Người mua bằng ID</span>
+            </div>
+          </button>
+          <button class="handbook-nav-item" data-tab="tab-mistakes" onclick="window.switchHandbookTab('tab-mistakes')">
+            <span class="nav-icon">⚠️</span>
+            <div class="nav-text">
+              <span class="nav-title">Chương 6: 5 Lỗi Thường Gặp</span>
+              <span class="nav-sub">Cách sửa lỗi cú pháp trong 3 giây</span>
+            </div>
+          </button>
+          <button class="handbook-nav-item" data-tab="tab-framework" onclick="window.switchHandbookTab('tab-framework')">
+            <span class="nav-icon">🎯</span>
+            <div class="nav-text">
+              <span class="nav-title">Chương 7: Công Thức Làm Bài</span>
+              <span class="nav-sub">5 bước ăn trọn điểm mọi Case Study</span>
+            </div>
+          </button>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="handbook-content-main" id="handbookContentContainer">
+          
+          <!-- CHƯƠNG 1 -->
+          <div class="handbook-chapter-pane" id="tab-intro" style="display: block;">
+            <div class="chapter-badge">Chương 1</div>
+            <h3 class="chapter-title">💡 SQL là gì? Tư duy gốc rễ từ Excel sang SQL</h3>
+            
+            <p class="handbook-lead">
+              Đừng lo lắng nếu bạn chưa từng viết bất kỳ dòng code nào! SQL không phải là toán cao cấp hay lập trình phức tạp. Bạn có thể coi SQL là <b>ngôn ngữ giao tiếp bằng tiếng Anh đơn giản để yêu cầu máy tính lấy đúng số liệu bạn cần</b>.
+            </p>
+
+            <div class="handbook-callout info">
+              <div class="callout-icon">🛒</div>
+              <div class="callout-body">
+                <b>Hình tượng dễ hiểu nhất:</b> Hãy tưởng tượng sàn Shopee có <b>10 triệu đơn hàng</b> nằm trong một nhà kho dữ liệu khổng lồ.<br>
+                • <b>Nếu dùng Excel:</b> Bạn giống như người tự chạy vào kho bê từng xấp giấy ra ngồi đếm tay. File quá 100,000 dòng là máy tính đơ cứng, quay vòng tròn.<br>
+                • <b>Nếu dùng SQL:</b> Bạn đóng vai người quản lý viết mẩu giấy lệnh: <i>"Lấy cho tôi những đơn hoàn tất từ 99k trở lên"</i>. Người thủ kho siêu tốc (SQL) sẽ chạy vào tìm và bê đúng kết quả ra đĩa trong <b>0.05 giây</b>!
+              </div>
+            </div>
+
+            <h4 class="handbook-h4">Bảng Đối Chiếu Tư Duy: Excel vs SQL</h4>
+            <div class="handbook-table-wrap">
+              <table class="handbook-table">
+                <thead>
+                  <tr>
+                    <th>Thao tác trong Excel</th>
+                    <th>Tên gọi trong SQL</th>
+                    <th>Ý nghĩa thực tế trên Sandbox</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>Trang tính (Sheet)</b></td>
+                    <td><code>Table</code> (Bảng dữ liệu)</td>
+                    <td>Bảng <code>orders</code> (đơn hàng), bảng <code>buyer_profiles</code> (người mua)</td>
+                  </tr>
+                  <tr>
+                    <td><b>Cột (Cột A, B, C...)</b></td>
+                    <td><code>Column / Field</code></td>
+                    <td>Cột <code>order_amount</code> (tiền đơn), <code>status</code> (trạng thái)</td>
+                  </tr>
+                  <tr>
+                    <td><b>Hàng (Hàng 1, 2, 3...)</b></td>
+                    <td><code>Row / Record</code></td>
+                    <td>Mỗi dòng là một giao dịch đơn hàng cụ thể của khách</td>
+                  </tr>
+                  <tr>
+                    <td><b>Bộ lọc Filter (Ctrl + Shift + L)</b></td>
+                    <td><code>WHERE</code></td>
+                    <td>Lọc các dòng thoả mãn điều kiện (Ví dụ: <code>WHERE status = 'COMPLETED'</code>)</td>
+                  </tr>
+                  <tr>
+                    <td><b>Bảng tổng hợp Pivot Table</b></td>
+                    <td><code>GROUP BY</code></td>
+                    <td>Gom nhóm dữ liệu theo từng Shop, từng phân khúc để tính tổng, đếm số</td>
+                  </tr>
+                  <tr>
+                    <td><b>Hàm VLOOKUP / XLOOKUP</b></td>
+                    <td><code>JOIN</code></td>
+                    <td>Nối 2 bảng với nhau thông qua cột chung (như <code>buyer_id</code>)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="handbook-callout tip">
+              <div class="callout-icon">✨</div>
+              <div class="callout-body">
+                <b>Quy tắc vàng:</b> Trong phòng thực chiến Sandbox TRONEX, bạn chỉ cần nhớ 3 việc: <b>Lấy cột nào (`SELECT`)</b>, <b>ở bảng nào (`FROM`)</b>, và <b>điều kiện gì (`WHERE`)</b> là đã hoàn thành 70% bài toán!
+              </div>
+            </div>
+          </div>
+
+          <!-- CHƯƠNG 2 -->
+          <div class="handbook-chapter-pane" id="tab-keywords" style="display: none;">
+            <div class="chapter-badge">Chương 2</div>
+            <h3 class="chapter-title">🔑 Bộ Khung 6 Từ Khóa Thần Thánh Trong Mọi Câu SQL</h3>
+
+            <p class="handbook-lead">
+              Mọi câu lệnh truy vấn của một Data Analyst (từ người mới học cho tới cấp Senior Lead) đều xoay quanh một bộ khung thứ tự cố định. Hãy ghi nhớ quy tắc này:
+            </p>
+
+            <div class="handbook-syntax-banner">
+              <code>SELECT ... FROM ... WHERE ... GROUP BY ... HAVING ... ORDER BY ... LIMIT ...</code>
+            </div>
+
+            <div class="handbook-cards-grid">
+              <div class="handbook-card">
+                <div class="card-tag">1. SELECT</div>
+                <div class="card-title">Lấy cái gì ra đĩa?</div>
+                <div class="card-desc">Chỉ định các cột bạn muốn nhìn thấy trên bảng kết quả. Muốn lấy tất cả thì gõ <code>SELECT *</code>.</div>
+              </div>
+              <div class="handbook-card">
+                <div class="card-tag">2. FROM</div>
+                <div class="card-title">Vào nhà kho nào?</div>
+                <div class="card-desc">Tên bảng dữ liệu chứa thông tin (Ví dụ: <code>FROM orders</code>).</div>
+              </div>
+              <div class="handbook-card">
+                <div class="card-tag">3. WHERE</div>
+                <div class="card-title">Lọc từng dòng như thế nào?</div>
+                <div class="card-desc">Điều kiện lọc trước khi tính toán. Ví dụ: <code>WHERE order_amount >= 99000 AND status = 'COMPLETED'</code>.</div>
+              </div>
+              <div class="handbook-card">
+                <div class="card-tag">4. GROUP BY</div>
+                <div class="card-title">Gom nhóm theo tiêu chí nào?</div>
+                <div class="card-desc">Giống Pivot Table. Gom theo Shop để xem mỗi Shop bán được bao nhiêu: <code>GROUP BY shop_id</code>.</div>
+              </div>
+              <div class="handbook-card">
+                <div class="card-tag">5. ORDER BY</div>
+                <div class="card-title">Sắp xếp thứ tự ra sao?</div>
+                <div class="card-desc"><code>DESC</code>: Giảm dần (Lớn nhất lên đầu). <code>ASC</code>: Tăng dần (Bé nhất lên đầu).</div>
+              </div>
+              <div class="handbook-card">
+                <div class="card-tag">6. LIMIT</div>
+                <div class="card-title">Lấy bao nhiêu dòng đầu?</div>
+                <div class="card-desc">Chỉ xem Top 5 hoặc Top 10 đối tượng nổi bật nhất: <code>LIMIT 5</code>.</div>
+              </div>
+            </div>
+
+            <h4 class="handbook-h4">Ví Dụ Thực Chiến: Tìm Top 5 Shop Có Nhiều Đơn Hoàn Tất Nhất</h4>
+            <div class="handbook-code-card">
+              <div class="code-card-header">
+                <span class="code-lang-tag">SQL QUERY</span>
+                <div class="code-card-actions">
+                  <button type="button" class="btn-handbook-action" onclick="window.copyHandbookCode(this)">📋 Sao chép</button>
+                  <button type="button" class="btn-handbook-action apply" onclick="window.applyHandbookCode(this)">⚡ Chèn vào Editor</button>
+                </div>
+              </div>
+              <pre><code>SELECT 
+    shop_id, 
+    COUNT(order_id) AS total_orders,
+    SUM(shipping_subsidy) AS total_subsidy_loss
+FROM orders
+WHERE status = 'COMPLETED'
+GROUP BY shop_id
+ORDER BY total_orders DESC
+LIMIT 5;</code></pre>
+            </div>
+            <div class="code-explain-box">
+              <b>Giải thích từng dòng:</b><br>
+              • Dòng 1-3: Lấy mã shop, đếm tổng số đơn và tính tổng tiền sàn đã trợ giá ship.<br>
+              • Dòng 4: Lấy từ bảng giao dịch đơn hàng <code>orders</code>.<br>
+              • Dòng 5: Chỉ tính các đơn đã giao thành công (<code>COMPLETED</code>).<br>
+              • Dòng 6: Gom nhóm theo từng Shop.<br>
+              • Dòng 7-8: Xếp người nhiều đơn nhất lên đầu và lấy đúng Top 5 Shop đáng ngờ.
+            </div>
+          </div>
+
+          <!-- CHƯƠNG 3 -->
+          <div class="handbook-chapter-pane" id="tab-functions" style="display: none;">
+            <div class="chapter-badge">Chương 3</div>
+            <h3 class="chapter-title">📊 5 Hàm Thống Kê Tối Thượng Cho Mọi Báo Cáo Kinh Doanh</h3>
+
+            <p class="handbook-lead">
+              Lãnh đạo doanh nghiệp không muốn đọc hàng triệu dòng dữ liệu chi tiết. Họ muốn nhìn thấy <b>chỉ số tổng hợp (Metrics / KPIs)</b>. Dưới đây là 5 hàm bạn sẽ dùng liên tục trong mọi bài toán:
+            </p>
+
+            <div class="handbook-func-list">
+              <div class="func-item">
+                <div class="func-badge">1. COUNT(cột)</div>
+                <div class="func-desc">
+                  <b>Đếm số lượng giao dịch:</b> Ví dụ <code>COUNT(order_id)</code> đếm xem có bao nhiêu đơn hàng được tạo ra.<br>
+                  <span class="func-note">⚠️ Nhắc nhở: Luôn viết <code>COUNT(*)</code> hoặc <code>COUNT(tên_cột)</code>. Tuyệt đối không viết <code>COUNT()</code> rỗng!</span>
+                </div>
+              </div>
+
+              <div class="func-item">
+                <div class="func-badge">2. SUM(cột)</div>
+                <div class="func-desc">
+                  <b>Tính tổng tiền (Doanh thu / Chi phí):</b> Ví dụ <code>SUM(order_amount)</code> ra tổng GMV doanh số, hoặc <code>SUM(shipping_subsidy)</code> ra tổng ngân sách trợ giá sàn bị tiêu tốn.
+                </div>
+              </div>
+
+              <div class="func-item">
+                <div class="func-badge">3. AVG(cột)</div>
+                <div class="func-desc">
+                  <b>Tính giá trị trung bình đơn (AOV - Average Order Value):</b> <code>AVG(order_amount)</code> trả lời câu hỏi: <i>"Trung bình mỗi khách hàng mua bao nhiêu tiền cho 1 đơn hàng?"</i>.
+                </div>
+              </div>
+
+              <div class="func-item">
+                <div class="func-badge">4. ROUND(số, n)</div>
+                <div class="func-desc">
+                  <b>Làm tròn số thập phân:</b> Khi tính trung bình hoặc tỷ lệ %, số thường bị dài (vd: <code>102345.6789...</code>). Hãy dùng <code>ROUND(AVG(order_amount), 0)</code> để làm tròn số nguyên, hoặc <code>ROUND(tỷ_lệ, 2)</code> để lấy 2 chữ số thập phân cho báo cáo đẹp mắt.
+                </div>
+              </div>
+
+              <div class="func-item">
+                <div class="func-badge">5. MIN() &amp; MAX()</div>
+                <div class="func-desc">
+                  <b>Tìm đơn hàng rẻ nhất &amp; khủng nhất:</b> <code>MIN(order_amount)</code> và <code>MAX(order_amount)</code> giúp xác định biên độ dao động giá trị mua sắm.
+                </div>
+              </div>
+            </div>
+
+            <h4 class="handbook-h4">Ví Dụ Thực Chiến: Đo Lường Tổng Quan Thiệt Hại Chiến Dịch</h4>
+            <div class="handbook-code-card">
+              <div class="code-card-header">
+                <span class="code-lang-tag">SQL QUERY</span>
+                <div class="code-card-actions">
+                  <button type="button" class="btn-handbook-action" onclick="window.copyHandbookCode(this)">📋 Sao chép</button>
+                  <button type="button" class="btn-handbook-action apply" onclick="window.applyHandbookCode(this)">⚡ Chèn vào Editor</button>
+                </div>
+              </div>
+              <pre><code>SELECT 
+    COUNT(order_id) AS total_suspicious_orders,
+    SUM(shipping_subsidy) AS total_financial_loss_vnd,
+    ROUND(AVG(order_amount), 0) AS avg_order_amount_vnd,
+    MIN(order_amount) AS min_amount_vnd,
+    MAX(order_amount) AS max_amount_vnd
+FROM orders
+WHERE order_amount BETWEEN 99000 AND 105000
+  AND status = 'COMPLETED';</code></pre>
+            </div>
+          </div>
+
+          <!-- CHƯƠNG 4 -->
+          <div class="handbook-chapter-pane" id="tab-casewhen" style="display: none;">
+            <div class="chapter-badge">Chương 4</div>
+            <h3 class="chapter-title">🏷️ Tuyệt Chiêu Phân Khúc Dữ Liệu Với CASE WHEN</h3>
+
+            <p class="handbook-lead">
+              Nếu bạn biết dùng hàm <code>=IF()</code> trong Excel thì bạn đã nắm được 90% sức mạnh của <code>CASE WHEN</code> trong SQL!
+            </p>
+
+            <div class="handbook-callout info">
+              <div class="callout-icon">💡</div>
+              <div class="callout-body">
+                <b>Tại sao Data Analyst lại cực kỳ thích CASE WHEN?</b><br>
+                Vì dữ liệu thô trong máy chỉ là những con số (ví dụ: 50,000đ, 102,000đ, 500,000đ). Nhờ <code>CASE WHEN</code>, bạn có thể tự động gắn nhãn phân loại theo từng phân khúc kinh doanh (Khách VIP, Khách Tiềm Năng, Đơn Bất Thường...).
+              </div>
+            </div>
+
+            <h4 class="handbook-h4">Cấu Trúc Câu Lệnh Chuẩn</h4>
+            <pre class="handbook-mini-code"><code>CASE 
+    WHEN điều_kiện_1 THEN 'Nhãn phân loại 1'
+    WHEN điều_kiện_2 THEN 'Nhãn phân loại 2'
+    ELSE 'Nhãn mặc định'
+END AS tên_cột_mới</code></pre>
+
+            <h4 class="handbook-h4">Ví Dụ Bắt Lỗ Hổng: Phân Khúc Đơn Hàng Vận Chuyển</h4>
+            <div class="handbook-code-card">
+              <div class="code-card-header">
+                <span class="code-lang-tag">SQL QUERY</span>
+                <div class="code-card-actions">
+                  <button type="button" class="btn-handbook-action" onclick="window.copyHandbookCode(this)">📋 Sao chép</button>
+                  <button type="button" class="btn-handbook-action apply" onclick="window.applyHandbookCode(this)">⚡ Chèn vào Editor</button>
+                </div>
+              </div>
+              <pre><code>SELECT 
+    CASE 
+        WHEN order_amount &lt; 99000 THEN 'Dưới 99k (Không Freeship)'
+        WHEN order_amount BETWEEN 99000 AND 105000 THEN '99k - 105k (Cận ngưỡng Freeship)'
+        WHEN order_amount BETWEEN 105001 AND 200000 THEN '105k - 200k'
+        ELSE 'Trên 200k'
+    END AS price_segment,
+    COUNT(order_id) AS total_orders,
+    SUM(shipping_subsidy) AS total_subsidy_vnd
+FROM orders
+WHERE status = 'COMPLETED'
+GROUP BY price_segment
+ORDER BY total_orders DESC;</code></pre>
+            </div>
+            <div class="code-explain-box">
+              <b>Phát hiện chấn động khi chạy câu này:</b><br>
+              Bạn sẽ thấy phân khúc <b>99k - 105k chiếm tới 58.4% tổng lượng đơn</b> và ngốn hơn <b>4.4 tỷ VNĐ</b> tiền trợ giá! Đây chính là bằng chứng xác thực chứng minh có hành vi chia nhỏ đơn hàng để trục lợi chính sách freeship của sàn.
+            </div>
+          </div>
+
+          <!-- CHƯƠNG 5 -->
+          <div class="handbook-chapter-pane" id="tab-join" style="display: none;">
+            <div class="chapter-badge">Chương 5</div>
+            <h3 class="chapter-title">🔗 Ghép 2 Bảng Lại Với Nhau Bằng JOIN</h3>
+
+            <p class="handbook-lead">
+              Trong doanh nghiệp thực tế, người ta không bao giờ nhét tất cả thông tin vào 1 bảng duy nhất (vì sẽ khiến hệ thống bị nặng và trùng lặp). Thay vào đó, dữ liệu được chia ra thành nhiều bảng chuyên biệt.
+            </p>
+
+            <div class="handbook-callout info">
+              <div class="callout-icon">🧩</div>
+              <div class="callout-body">
+                <b>Ví dụ trong bài toán Sandbox của bạn:</b><br>
+                • Bảng <code>orders</code>: Chứa thông tin tiền bạc, mã đơn, mã người bán (<code>shop_id</code>), mã người mua (<code>buyer_id</code>).<br>
+                • Bảng <code>buyer_profiles</code>: Chứa thông tin thiết bị, địa chỉ IP (<code>ip_address</code>), tuổi tài khoản của người mua.<br>
+                ➔ <b>Nhiệm vụ:</b> Để biết người mua nào dùng chung dải IP để đặt hàng bất thường, bạn phải <b>nối 2 bảng này lại qua cột chung `buyer_id`</b>!
+              </div>
+            </div>
+
+            <h4 class="handbook-h4">Ví Dụ Thực Chiến: Tìm Top 5 Cụm Shop &amp; IP Người Mua Trục Lợi</h4>
+            <div class="handbook-code-card">
+              <div class="code-card-header">
+                <span class="code-lang-tag">SQL QUERY</span>
+                <div class="code-card-actions">
+                  <button type="button" class="btn-handbook-action" onclick="window.copyHandbookCode(this)">📋 Sao chép</button>
+                  <button type="button" class="btn-handbook-action apply" onclick="window.applyHandbookCode(this)">⚡ Chèn vào Editor</button>
+                </div>
+              </div>
+              <pre><code>SELECT 
+    o.shop_id,
+    b.ip_address,
+    COUNT(o.order_id) AS suspicious_orders,
+    SUM(o.shipping_subsidy) AS total_subsidy_loss
+FROM orders o
+JOIN buyer_profiles b ON o.buyer_id = b.buyer_id
+WHERE o.order_amount BETWEEN 99000 AND 105000
+  AND o.status = 'COMPLETED'
+GROUP BY o.shop_id, b.ip_address
+ORDER BY suspicious_orders DESC
+LIMIT 5;</code></pre>
+            </div>
+            <div class="code-explain-box">
+              <b>Giải thích ký tự viết tắt:</b><br>
+              • <code>orders o</code>: Đặt biệt danh (Alias) cho bảng orders là <code>o</code> để viết cho ngắn.<br>
+              • <code>buyer_profiles b</code>: Đặt biệt danh cho bảng buyer_profiles là <code>b</code>.<br>
+              • <code>ON o.buyer_id = b.buyer_id</code>: Sợi dây liên kết để ghép từng đơn hàng với hồ sơ của chính người mua đó.
+            </div>
+          </div>
+
+          <!-- CHƯƠNG 6 -->
+          <div class="handbook-chapter-pane" id="tab-mistakes" style="display: none;">
+            <div class="chapter-badge">Chương 6</div>
+            <h3 class="chapter-title">⚠️ 5 Lỗi Cú Pháp Ngớ Ngẩn Người Mới Hay Gặp Nhất</h3>
+
+            <p class="handbook-lead">
+              Đừng nản lòng khi thấy màn hình báo <i>⚠️ Lỗi SQL cú pháp</i>! Đến 95% nguyên nhân chỉ là do bạn gõ sót 1 dấu phẩy hoặc nhầm 1 chữ cái. Dưới đây là cách bắt bệnh và sửa ngay trong 3 giây:
+            </p>
+
+            <div class="mistake-list">
+              <div class="mistake-item">
+                <div class="mistake-title">❌ Lỗi 1: Quên dấu phẩy `,` giữa các cột</div>
+                <div class="mistake-body">
+                  <div class="code-bad">SAI: SELECT order_id shop_id order_amount FROM orders</div>
+                  <div class="code-good">ĐÚNG: SELECT order_id, shop_id, order_amount FROM orders</div>
+                  <small>💡 <i>Lưu ý: Cột cuối cùng ngay trước chữ `FROM` thì TUYỆT ĐỐI KHÔNG để dấu phẩy thừa!</i></small>
+                </div>
+              </div>
+
+              <div class="mistake-item">
+                <div class="mistake-title">❌ Lỗi 2: Quên dấu nháy đơn `'...'` khi so sánh chữ (Text)</div>
+                <div class="mistake-body">
+                  <div class="code-bad">SAI: WHERE status = COMPLETED</div>
+                  <div class="code-good">ĐÚNG: WHERE status = 'COMPLETED'</div>
+                  <small>💡 <i>Quy tắc: Chữ cái bắt buộc phải có `'...'`. Số thì viết bình thường (ví dụ: `order_amount >= 99000`).</i></small>
+                </div>
+              </div>
+
+              <div class="mistake-item">
+                <div class="mistake-title">❌ Lỗi 3: Dùng hàm tính toán mà quên GROUP BY</div>
+                <div class="mistake-body">
+                  <div class="code-bad">SAI: SELECT shop_id, COUNT(order_id) FROM orders;</div>
+                  <div class="code-good">ĐÚNG: SELECT shop_id, COUNT(order_id) FROM orders GROUP BY shop_id;</div>
+                  <small>💡 <i>Quy tắc vàng: Bất kỳ cột nào đứng trong SELECT mà không nằm trong hàm tính toán (`SUM`, `COUNT`) thì BẮT BUỘC phải xuất hiện trong `GROUP BY`.</i></small>
+                </div>
+              </div>
+
+              <div class="mistake-item">
+                <div class="mistake-title">❌ Lỗi 4: Viết COUNT() rỗng không có tham số</div>
+                <div class="mistake-body">
+                  <div class="code-bad">SAI: SELECT COUNT() FROM orders;</div>
+                  <div class="code-good">ĐÚNG: SELECT COUNT(*) FROM orders; hoặc COUNT(order_id)</div>
+                </div>
+              </div>
+
+              <div class="mistake-item">
+                <div class="mistake-title">❌ Lỗi 5: Gõ sai chính tả tên bảng hoặc tên cột</div>
+                <div class="mistake-body">
+                  <small>💡 <i>Mẹo trị dứt điểm: Ở Cột 1 (Mission Briefing) bên trái, toàn bộ tên bảng và tên cột đều được in đậm. Bạn chỉ cần copy paste trực tiếp tên cột (ví dụ: `shipping_subsidy`, `order_amount`) vào Editor là không bao giờ sai!</i></small>
+                </div>
+              </div>
+            </div>
+
+            <div class="handbook-callout tip" style="margin-top: 18px;">
+              <div class="callout-icon">🚨</div>
+              <div class="callout-body">
+                <b>Tính năng hỗ trợ độc quyền:</b> Khi chạy mã bị lỗi, hãy nhấn ngay nút <b>"🚨 Gửi lỗi cho Mentor sửa giúp"</b> xuất hiện trong khung lỗi màu đỏ. AI Mentor sẽ chỉ rõ chỗ sai và gửi lại đoạn code chuẩn cho bạn!
+              </div>
+            </div>
+          </div>
+
+          <!-- CHƯƠNG 7 -->
+          <div class="handbook-chapter-pane" id="tab-framework" style="display: none;">
+            <div class="chapter-badge">Chương 7</div>
+            <h3 class="chapter-title">🎯 Công Thức 5 Bước "Ăn Trọn Điểm" Mọi Case Study</h3>
+
+            <p class="handbook-lead">
+              Làm thế nào để đạt <b>100/100 điểm</b> khi nộp báo cáo cho Giám đốc Dữ liệu (Head of Data Analytics AI)? Hãy áp dụng quy trình chuẩn 5 bước sau:
+            </p>
+
+            <div class="framework-step-list">
+              <div class="framework-step">
+                <div class="step-num">BƯỚC 1</div>
+                <div class="step-content">
+                  <b>Đọc kỹ Bối cảnh &amp; Soi Schema:</b>
+                  Nhìn sang Cột 1 để xem các mục tiêu cần chứng minh (Ví dụ: tỷ lệ đơn 99k-105k, Top 5 Shop trục lợi). Nhấn nút <code>👁️ Xem mẫu</code> ở từng bảng để nắm rõ giá trị thực tế của dữ liệu.
+                </div>
+              </div>
+
+              <div class="framework-step">
+                <div class="step-num">BƯỚC 2</div>
+                <div class="step-content">
+                  <b>Viết truy vấn SELECT thăm dò đơn giản:</b>
+                  Chạy thử <code>SELECT * FROM orders LIMIT 5;</code> để làm quen với cấu trúc hiển thị trên bảng dữ liệu kết quả.
+                </div>
+              </div>
+
+              <div class="framework-step">
+                <div class="step-num">BƯỚC 3</div>
+                <div class="step-content">
+                  <b>Thực hiện từng câu hỏi nghiệp vụ:</b>
+                  Áp dụng <code>CASE WHEN</code> để phân khúc giá, dùng <code>JOIN</code> để ghép nối dữ liệu thiết bị, và dùng <code>GROUP BY</code> cùng các hàm <code>COUNT</code>, <code>SUM</code> để trích xuất số liệu.
+                </div>
+              </div>
+
+              <div class="framework-step">
+                <div class="step-num">BƯỚC 4</div>
+                <div class="step-content">
+                  <b>Nhờ Mentor Review trước khi chạy:</b>
+                  Nhấn nút <code>🔍 Nhờ Mentor Review</code> trên Editor. AI Mentor sẽ quét toàn bộ cú pháp và logic nghiệp vụ để bảo đảm câu lệnh của bạn hoàn hảo 100%.
+                </div>
+              </div>
+
+              <div class="framework-step">
+                <div class="step-num">BƯỚC 5</div>
+                <div class="step-content">
+                  <b>Nộp Báo Cáo Kinh Doanh (Data Storytelling):</b>
+                  Chuyển sang tab <b>📝 Nộp Báo Cáo</b>. Bấm <i>📑 Điền dàn ý mẫu</i> và điền các con số thực tế vừa tìm được theo 3 phần: <b>Bám sát số liệu (30đ)</b>, <b>Insight nghiệp vụ (40đ)</b>, và <b>Đề xuất giải pháp (30đ)</b> để rinh trọn điểm cao!
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </main>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="handbook-modal-footer">
+        <div class="handbook-footer-hint">
+          💡 <i>Mẹo: Mọi khối mã SQL trong cẩm nang đều có nút "Chèn vào Editor" để bạn áp dụng trực tiếp!</i>
+        </div>
+        <button class="btn-handbook-primary" onclick="window.closeSqlHandbook()">
+          🚀 Đã hiểu, bắt đầu thực chiến ngay!
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- SCRIPTS -->
   <script type="module" src="js/auth.js?v=1"></script>
-  <script type="module" src="js/simulation.js?v=20261013_mentor_selfverify"></script>
+  <script type="module" src="js/simulation.js?v=20261013_sql_handbook"></script>
 
   <!-- Sidebar & Theme Handlers -->
   <script>
