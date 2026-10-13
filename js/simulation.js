@@ -191,63 +191,158 @@ export function startMission(caseId) {
 window.startMission = startMission;
 
 function renderBriefing(mission) {
-    const container = document.getElementById('briefingContainer');
-    if (!container) return;
+    const container = document.getElementById('briefingContainer') || document.getElementById('briefingContent');
+    if (!container || !mission) return;
 
-    const objectivesHtml = mission.objectives.map((obj, i) => `
+    // 1. Phân tích Objectives (Mục tiêu phân tích) an toàn
+    const objectives = Array.isArray(mission.objectives) ? mission.objectives : [];
+    const objectivesHtml = objectives.map((obj, i) => `
         <li class="objective-item">
             <input type="checkbox" id="obj_${i}">
-            <label for="obj_${i}">${obj}</label>
+            <label for="obj_${i}">${escapeHtml(obj)}</label>
         </li>
     `).join('');
 
-    const schemaHtml = mission.schema.map(table => `
-        <div class="schema-block">
-            <div class="schema-header">
-                <span>📁 ${table.tableName}</span>
-                <span style="font-size:0.75rem;opacity:0.8;">${table.description}</span>
+    // 2. Phân tích Schema (Cấu trúc bảng) hiển thị đầy đủ col.name, col.type VÀ col.desc, kèm preview dòng mẫu từ mockDb
+    const schema = Array.isArray(mission.schema) ? mission.schema : [];
+    const schemaHtml = schema.map((table, tIdx) => {
+        const columns = Array.isArray(table.columns) ? table.columns : [];
+        const colsHtml = columns.map(col => `
+            <div class="schema-field-item">
+                <div class="field-name-group">
+                    <span class="field-name"><b>${escapeHtml(col.name)}</b></span>
+                    ${col.desc ? `<span class="field-desc-text">${escapeHtml(col.desc)}</span>` : ''}
+                </div>
+                <span class="field-type">${escapeHtml(col.type || 'TEXT')}</span>
             </div>
-            <div class="schema-table-fields">
-                ${table.columns.map(col => `
-                    <div class="schema-field-item">
-                        <span>${col.name}</span>
-                        <span class="field-type">${col.type}</span>
-                    </div>
-                `).join('')}
-            </div>
-        </div>
-    `).join('');
+        `).join('');
 
-    const hintsHtml = mission.hints.map(h => `<li>${h}</li>`).join('');
+        // Lấy 3 dòng mẫu từ mockDb nếu có
+        const sampleRows = (mission.mockDb && mission.mockDb[table.tableName]) ? mission.mockDb[table.tableName].slice(0, 3) : [];
+        let sampleTableHtml = '';
+        if (sampleRows.length > 0) {
+            const sampleHeaders = Object.keys(sampleRows[0]);
+            const sTh = sampleHeaders.map(h => `<th>${escapeHtml(h)}</th>`).join('');
+            const sRows = sampleRows.map(r => `<tr>${sampleHeaders.map(h => `<td>${escapeHtml(String(r[h] ?? ''))}</td>`).join('')}</tr>`).join('');
+            sampleTableHtml = `
+                <div class="schema-sample-preview" id="sample_table_${tIdx}" style="display:none;">
+                    <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:6px; font-weight:600;">Dữ liệu thực tế mẫu (3 dòng đầu):</div>
+                    <div class="table-micro-scroll">
+                        <table class="sim-data-table micro-table">
+                            <thead><tr>${sTh}</tr></thead>
+                            <tbody>${sRows}</tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+        }
+
+        return `
+            <div class="schema-block">
+                <div class="schema-header" onclick="window.toggleSchemaSample('sample_table_${tIdx}', this)" title="Click để xem dữ liệu mẫu">
+                    <div class="schema-title-text">
+                        <span>📁 <b>${escapeHtml(table.tableName)}</b></span>
+                        <span class="schema-desc-sub">${escapeHtml(table.description || '')}</span>
+                    </div>
+                    ${sampleRows.length > 0 ? `<button type="button" class="btn-toggle-sample">👁️ Xem mẫu</button>` : ''}
+                </div>
+                <div class="schema-table-fields">
+                    ${colsHtml}
+                </div>
+                ${sampleTableHtml}
+            </div>
+        `;
+    }).join('');
+
+    // 3. Phân tích Dữ liệu đối soát tiêu chuẩn (mockData Ground Truth Benchmark)
+    let benchmarkHtml = '';
+    if (mission.mockData && Array.isArray(mission.mockData.headers) && Array.isArray(mission.mockData.rows)) {
+        const bTh = mission.mockData.headers.map(h => `<th>${escapeHtml(h)}</th>`).join('');
+        const bRows = mission.mockData.rows.map(r => `<tr>${r.map(c => `<td>${escapeHtml(String(c))}</td>`).join('')}</tr>`).join('');
+        benchmarkHtml = `
+            <div class="briefing-card-section">
+                <div class="briefing-section-title">📊 Số Liệu Đối Soát Tiêu Chuẩn</div>
+                <div class="benchmark-preview-box">
+                    <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:8px; line-height:1.4;">
+                        Số liệu mục tiêu mà bạn cần đối soát để chứng minh giả thuyết:
+                    </div>
+                    <div class="table-micro-scroll">
+                        <table class="sim-data-table micro-table">
+                            <thead><tr>${bTh}</tr></thead>
+                            <tbody>${bRows}</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    // 4. Phân tích Gợi ý tư duy logic (hints hoặc mentorFallbackHints) an toàn
+    const hints = Array.isArray(mission.hints) ? mission.hints : (Array.isArray(mission.mentorFallbackHints) ? mission.mentorFallbackHints : []);
+    const hintsHtml = hints.map(h => `<li>${escapeHtml(h)}</li>`).join('');
+
+    // 5. Tech Stack & Metadata Tags
+    const techStack = Array.isArray(mission.techStack) ? mission.techStack : [];
+    const techBadges = techStack.map(t => `<span class="tech-tag">${escapeHtml(t)}</span>`).join('');
 
     container.innerHTML = `
-        <div>
+        <!-- Metadata Overview -->
+        <div class="briefing-meta-header">
+            <div class="briefing-badge-row">
+                <span class="mission-category-badge">${mission.badgeIcon || '💼'} ${escapeHtml(mission.categoryLabel || 'Business Case')}</span>
+                <span class="difficulty-badge ${mission.difficulty || 'medium'}">${escapeHtml(mission.difficultyLabel || 'Trung bình')}</span>
+                ${mission.estimatedTime ? `<span class="duration-badge">⏱️ ${escapeHtml(mission.estimatedTime)}</span>` : ''}
+            </div>
+            ${techBadges ? `<div class="briefing-tech-pills">${techBadges}</div>` : ''}
+        </div>
+
+        <!-- Bối cảnh bài toán -->
+        <div class="briefing-card-section">
             <div class="briefing-section-title">📋 Bối Cảnh Bài Toán</div>
             <div class="briefing-context-box">
-                ${mission.fullContext}
+                ${mission.fullContext || `<p>${escapeHtml(mission.shortDesc || '')}</p>`}
             </div>
         </div>
 
-        <div>
-            <div class="briefing-section-title">🎯 Mục Tiêu Phân Tích</div>
+        <!-- Mục tiêu phân tích -->
+        <div class="briefing-card-section">
+            <div class="briefing-section-title">🎯 Mục Tiêu Phân Tích (${objectives.length})</div>
             <ul class="objectives-list">
                 ${objectivesHtml}
             </ul>
         </div>
 
-        <div>
-            <div class="briefing-section-title">🗄️ Cấu Trúc Bảng Dữ Liệu</div>
+        <!-- Cấu trúc bảng dữ liệu & Dữ liệu mẫu -->
+        <div class="briefing-card-section">
+            <div class="briefing-section-title">🗄️ Cấu Trúc Bảng CSDL (${schema.length} bảng)</div>
             ${schemaHtml}
         </div>
 
-        <div>
-            <div class="briefing-section-title">💡 Gợi Ý Tư Duy Logic</div>
-            <ul style="padding-left: 20px; font-size: 0.88rem; line-height: 1.6; color: var(--text-muted);">
-                ${hintsHtml}
-            </ul>
-        </div>
+        <!-- Số liệu đối soát tiêu chuẩn (mockData) -->
+        ${benchmarkHtml}
+
+        <!-- Gợi ý tư duy logic -->
+        ${hints.length > 0 ? `
+            <div class="briefing-card-section">
+                <div class="briefing-section-title">💡 Gợi Ý Tư Duy Logic</div>
+                <ul class="briefing-hints-list">
+                    ${hintsHtml}
+                </ul>
+            </div>
+        ` : ''}
     `;
 }
+
+window.toggleSchemaSample = function(tableId, headerEl) {
+    const el = document.getElementById(tableId);
+    if (!el) return;
+    const isHidden = el.style.display === 'none';
+    el.style.display = isHidden ? 'block' : 'none';
+    const btn = headerEl ? headerEl.querySelector('.btn-toggle-sample') : null;
+    if (btn) {
+        btn.textContent = isHidden ? 'Ẩn mẫu' : '👁️ Xem mẫu';
+    }
+};
 
 function renderTerminal(mission) {
     const editor = document.getElementById('terminalEditor');
@@ -882,7 +977,7 @@ function fillSampleReport() {
     const reportInput = document.getElementById('reportTextarea');
     if (!reportInput) return;
 
-    if (currentCase && currentCase.id === 'case-freeship-fraud') {
+    if (currentCase && (currentCase.id === 'case_freeship_leak' || currentCase.id === 'case-freeship-fraud')) {
         reportInput.value = `BÁO CÁO PHÂN TÍCH HIỆN TƯỢNG VƯỢT NGÂN SÁCH TRỢ GIÁ VẬN CHUYỂN
 1. Dữ liệu thực tế:
 - Trong chiến dịch Mega Sale, phân khúc đơn hàng cận ngưỡng 99k - 105k chiếm tỷ lệ áp đảo 58.4% tổng lượng đơn (148,520 đơn), tiêu tốn 4,455,600,000 VNĐ tiền trợ giá.
@@ -912,10 +1007,10 @@ window.fillSampleReport = fillSampleReport;
 function renderOutputData(mission) {
     // 1. Render Table
     const tableContainer = document.getElementById('outputTableContainer');
-    if (tableContainer && mission.mockData) {
-        const thHtml = mission.mockData.headers.map(h => `<th>${h}</th>`).join('');
+    if (tableContainer && mission?.mockData?.headers && mission?.mockData?.rows) {
+        const thHtml = mission.mockData.headers.map(h => `<th>${escapeHtml(h)}</th>`).join('');
         const rowsHtml = mission.mockData.rows.map(r => `
-            <tr>${r.map(cell => `<td>${cell}</td>`).join('')}</tr>
+            <tr>${r.map(cell => `<td>${escapeHtml(String(cell))}</td>`).join('')}</tr>
         `).join('');
 
         tableContainer.innerHTML = `
@@ -927,7 +1022,7 @@ function renderOutputData(mission) {
     }
 
     // 2. Render Chart
-    if (mission.mockData?.chart) {
+    if (mission?.mockData?.chart) {
         renderChart(mission.mockData.chart);
     }
 }

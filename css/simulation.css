@@ -641,42 +641,212 @@ main.sim-main {
     cursor: pointer;
 }
 
-/* Schema Accordion */
+/* Briefing Meta Header */
+.briefing-meta-header {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.briefing-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.duration-badge {
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+
+.briefing-tech-pills {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.briefing-card-section {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Schema Accordion & Column Descriptions */
 .schema-block {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     overflow: hidden;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .schema-header {
-    padding: 8px 12px;
+    padding: 9px 12px;
     background: var(--primary-light);
     font-weight: 700;
     font-size: 0.82rem;
     color: var(--primary);
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s ease;
+}
+
+.schema-header:hover {
+    background: rgba(79, 70, 229, 0.18);
+}
+
+.schema-title-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.schema-desc-sub {
+    font-size: 0.74rem;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+.btn-toggle-sample {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    background: rgba(79, 70, 229, 0.12);
+    border: 1px solid rgba(79, 70, 229, 0.3);
+    border-radius: 4px;
+    color: var(--primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-toggle-sample:hover {
+    background: var(--primary);
+    color: #FFFFFF;
 }
 
 .schema-table-fields {
     padding: 8px 12px;
-    font-size: 0.78rem;
-    font-family: monospace;
+    font-size: 0.8rem;
     color: var(--text-muted);
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
 }
 
 .schema-field-item {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
+    padding: 5px 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.06);
+    gap: 12px;
+}
+
+.schema-field-item:last-child {
+    border-bottom: none;
+}
+
+.field-name-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+
+.field-name {
+    font-family: monospace;
+    font-size: 0.82rem;
+    color: var(--text-main);
+}
+
+.field-desc-text {
+    font-size: 0.74rem;
+    color: var(--text-muted);
+    line-height: 1.35;
 }
 
 .schema-field-item span.field-type {
-    color: #6366F1;
+    font-family: monospace;
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: #818CF8;
+    background: rgba(99, 102, 241, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+/* Sample Data & Benchmark Previews */
+.schema-sample-preview {
+    padding: 10px 12px;
+    background: rgba(15, 23, 42, 0.35);
+    border-top: 1px solid var(--border);
+}
+
+.table-micro-scroll {
+    overflow-x: auto;
+    max-width: 100%;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: var(--bg-surface);
+}
+
+.micro-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.73rem;
+    white-space: nowrap;
+}
+
+.micro-table th {
+    background: var(--bg-card);
+    padding: 6px 10px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.micro-table td {
+    padding: 5px 10px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-main);
+    font-family: monospace;
+}
+
+.micro-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.benchmark-preview-box {
+    background: var(--bg-card);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+}
+
+.briefing-hints-list {
+    padding-left: 20px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 0;
 }
 
 /* --- CỘT 2: EXECUTION CONSOLE & DATA VIZ (Giữa) --- */
