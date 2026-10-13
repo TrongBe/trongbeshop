@@ -5,6 +5,370 @@
 
 export const simulationCases = [
     {
+        id: "case_best_sellers_eda",
+        title: "Khám Phá Sức Mua – Top 5 Sản Phẩm Bán Chạy Nhất",
+        category: "Retail & Sales Analytics",
+        categoryLabel: "Phân Tích Bán Lẻ",
+        difficulty: "easy",
+        difficultyLabel: "Mới bắt đầu",
+        estimatedTime: "10 - 15 phút",
+        techStack: ["SQL Cơ Bản", "SELECT", "ORDER BY", "LIMIT"],
+        badgeIcon: "🛍️",
+        shortDesc: "Làm quen với kho dữ liệu bán lẻ: Trích xuất danh sách sản phẩm, xếp hạng Top 5 mặt hàng bán chạy nhất và phát hiện sản phẩm sắp hết hàng cần nhập gấp.",
+        fullContext: `
+            <h3>Bối cảnh doanh nghiệp</h3>
+            <p>Chào mừng bạn gia nhập đội ngũ Data Analyst của chuỗi bán lẻ công nghệ và gia dụng thông minh! Trước thềm chiến dịch mua sắm cuối năm, Trưởng phòng Kinh doanh cần một bản phân tích nhanh về tình hình tiêu thụ sản phẩm trong quý vừa qua.</p>
+            <p>Bạn được cung cấp bảng dữ liệu sản phẩm <code>products</code> chứa thông tin về đơn giá, số lượng đã bán, và số lượng hàng còn trong kho. Nhiệm vụ của bạn là trích xuất các thông tin bán chạy và gửi cảnh báo hàng sắp hết cho bộ phận Kho vận.</p>
+        `,
+        objectives: [
+            "Xem thử 5 dòng đầu tiên của bảng products để làm quen với cấu trúc các cột.",
+            "Tìm Top 5 sản phẩm có số lượng bán ra (units_sold) cao nhất toàn sàn.",
+            "Thống kê tổng doanh thu (units_sold * unit_price) theo từng ngành hàng (category).",
+            "Lọc danh sách các sản phẩm đang có nguy cơ cháy hàng (tồn kho stock_quantity dưới 20 món nhưng đã bán trên 1,000 món)."
+        ],
+        schema: [
+            {
+                tableName: "products",
+                description: "Danh mục sản phẩm và tình trạng tồn kho",
+                columns: [
+                    { name: "product_id", type: "VARCHAR", desc: "Mã sản phẩm (PK)" },
+                    { name: "product_name", type: "VARCHAR", desc: "Tên sản phẩm" },
+                    { name: "category", type: "VARCHAR", desc: "Ngành hàng (Phụ Kiện Điện Thoại, Gia Dụng, Thiết Bị Số...)" },
+                    { name: "unit_price", type: "DECIMAL", desc: "Đơn giá niêm yết (VNĐ)" },
+                    { name: "units_sold", type: "INT", desc: "Số lượng sản phẩm đã bán" },
+                    { name: "stock_quantity", type: "INT", desc: "Số lượng tồn kho hiện tại" },
+                    { name: "rating", type: "DECIMAL", desc: "Điểm đánh giá trung bình (1.0 - 5.0)" }
+                ]
+            }
+        ],
+        hints: [
+            "Để xem 5 sản phẩm đầu tiên: Dùng SELECT * FROM products LIMIT 5;",
+            "Để xếp sản phẩm bán chạy nhất lên đầu: Dùng ORDER BY units_sold DESC LIMIT 5;",
+            "Để tính doanh thu theo ngành hàng: Dùng GROUP BY category và SUM(units_sold * unit_price) AS total_revenue.",
+            "Để lọc hàng sắp hết: Dùng WHERE stock_quantity < 20 AND units_sold > 1000;"
+        ],
+        defaultSql: `-- Nhiệm vụ 1: Xem thử 5 sản phẩm đầu tiên
+SELECT 
+    product_name, 
+    category, 
+    unit_price, 
+    units_sold, 
+    stock_quantity 
+FROM products 
+LIMIT 5;`,
+        solutionSql: `-- 1. Top 5 sản phẩm có số lượng bán cao nhất
+SELECT 
+    product_name, 
+    category, 
+    units_sold, 
+    stock_quantity, 
+    unit_price 
+FROM products 
+ORDER BY units_sold DESC 
+LIMIT 5;
+
+-- 2. Tổng doanh thu theo từng ngành hàng
+SELECT 
+    category, 
+    COUNT(product_id) AS total_products, 
+    SUM(units_sold) AS total_units_sold, 
+    SUM(units_sold * unit_price) AS total_revenue_vnd 
+FROM products 
+GROUP BY category 
+ORDER BY total_revenue_vnd DESC;
+
+-- 3. Cảnh báo các sản phẩm sắp cháy hàng (Tồn kho < 20 và Đã bán > 1000)
+SELECT 
+    product_name, 
+    category, 
+    stock_quantity, 
+    units_sold, 
+    unit_price 
+FROM products 
+WHERE stock_quantity < 20 
+  AND units_sold > 1000 
+ORDER BY stock_quantity ASC;`,
+        defaultPython: `# Đọc dữ liệu sản phẩm và xem top 5 bán chạy
+import pandas as pd
+
+df = pd.DataFrame(data)
+top_sellers = df.sort_values(by='units_sold', ascending=False).head(5)
+print(top_sellers[['product_name', 'category', 'units_sold', 'stock_quantity']])`,
+        mockData: {
+            headers: ["Tên sản phẩm", "Ngành hàng", "Đã bán (cái)", "Tồn kho (cái)", "Đơn giá (VNĐ)"],
+            rows: [
+                ["Cáp sạc bọc dù Type-C 1.2m", "Phụ Kiện Điện Thoại", "4,500", "25", "45,000"],
+                ["Củ sạc nhanh GaN 65W Pro", "Phụ Kiện Điện Thoại", "3,100", "8 ⚠️", "220,000"],
+                ["Áo thun thể thao Dry-Fit", "Thời Trang & Thể Thao", "2,800", "50", "150,000"],
+                ["Tai nghe Bluetooth True Wireless", "Thiết Bị Số", "2,400", "15 ⚠️", "350,000"],
+                ["Bình giữ nhiệt Inox 800ml", "Gia Dụng Thông Minh", "2,100", "18 ⚠️", "290,000"]
+            ],
+            chart: {
+                type: "bar",
+                title: "Top 5 Sản Phẩm Bán Chạy Nhất (Số lượng bán)",
+                labels: ["Cáp sạc Type-C", "Củ sạc GaN 65W", "Áo thun Dry-Fit", "Tai nghe True Wireless", "Bình giữ nhiệt 800ml"],
+                datasets: [
+                    {
+                        label: "Số lượng đã bán (Chiếc)",
+                        data: [4500, 3100, 2800, 2400, 2100],
+                        backgroundColor: ["#6366F1", "#10B981", "#3B82F6", "#F59E0B", "#EC4899"]
+                    }
+                ]
+            }
+        },
+        mockDb: {
+            products: [
+                { product_id: "P001", product_name: "Cáp sạc bọc dù Type-C 1.2m", category: "Phụ Kiện Điện Thoại", unit_price: 45000, units_sold: 4500, stock_quantity: 25, rating: 4.6 },
+                { product_id: "P002", product_name: "Củ sạc nhanh GaN 65W Pro", category: "Phụ Kiện Điện Thoại", unit_price: 220000, units_sold: 3100, stock_quantity: 8, rating: 4.9 },
+                { product_id: "P003", product_name: "Áo thun thể thao Dry-Fit", category: "Thời Trang & Thể Thao", unit_price: 150000, units_sold: 2800, stock_quantity: 50, rating: 4.7 },
+                { product_id: "P004", product_name: "Tai nghe Bluetooth True Wireless", category: "Thiết Bị Số", unit_price: 350000, units_sold: 2400, stock_quantity: 15, rating: 4.8 },
+                { product_id: "P005", product_name: "Bình giữ nhiệt Inox 800ml", category: "Gia Dụng Thông Minh", unit_price: 290000, units_sold: 2100, stock_quantity: 18, rating: 4.9 },
+                { product_id: "P006", product_name: "Chuột không dây Silent Click", category: "Thiết Bị Số", unit_price: 180000, units_sold: 1950, stock_quantity: 12, rating: 4.6 },
+                { product_id: "P007", product_name: "Máy xay sinh tố cầm tay", category: "Gia Dụng Thông Minh", unit_price: 420000, units_sold: 1600, stock_quantity: 5, rating: 4.5 },
+                { product_id: "P008", product_name: "Bàn phím cơ Tenkeyless RGB", category: "Thiết Bị Số", unit_price: 650000, units_sold: 1200, stock_quantity: 30, rating: 4.8 },
+                { product_id: "P009", product_name: "Đèn học chống cận thông minh", category: "Gia Dụng Thông Minh", unit_price: 310000, units_sold: 920, stock_quantity: 60, rating: 4.6 },
+                { product_id: "P010", product_name: "Nồi chiên không dầu 6L", category: "Gia Dụng Thông Minh", unit_price: 1200000, units_sold: 850, stock_quantity: 45, rating: 4.7 }
+            ]
+        }
+    },
+    {
+        id: "case_vip_customer_retention",
+        title: "Phân Hạng Khách Hàng VIP & Doanh Thu Theo Tỉnh Thành",
+        category: "CRM & Growth",
+        categoryLabel: "Khách Hàng & CRM",
+        difficulty: "easy",
+        difficultyLabel: "Mới bắt đầu",
+        estimatedTime: "10 - 15 phút",
+        techStack: ["SQL Cơ Bản", "WHERE", "GROUP BY", "AVG"],
+        badgeIcon: "👑",
+        shortDesc: "Lọc danh sách khách hàng VIP chi tiêu trên 5 triệu VNĐ để gửi quà tri ân cuối năm, đồng thời tìm ra thành phố có sức chi tiêu bình quân cao nhất.",
+        fullContext: `
+            <h3>Bối cảnh doanh nghiệp</h3>
+            <p>Đội ngũ Marketing chuẩn bị triển khai chương trình tri ân khách hàng thân thiết nhân dịp kỷ niệm 5 năm thành lập. Ban Giám Đốc muốn gửi hộp quà đặc biệt cho tất cả khách hàng đạt hạng VIP (tổng chi tiêu tích lũy từ 5,000,000 VNĐ trở lên).</p>
+            <p>Là một Data Analyst, bạn được giao nhiệm vụ trích xuất danh sách khách hàng VIP, thống kê tỷ lệ khách hàng theo từng thành phố (Hà Nội, TP.HCM, Đà Nẵng...) và tính toán mức chi tiêu trung bình để phân bổ ngân sách quà tặng hợp lý.</p>
+        `,
+        objectives: [
+            "Thống kê tổng số khách hàng và chi tiêu trung bình (AOV) của toàn bộ hệ thống.",
+            "Lọc danh sách khách hàng VIP có tổng chi tiêu (total_spent) từ 5,000,000 VNĐ trở lên.",
+            "Thống kê số lượng khách hàng và tổng doanh thu mang lại theo từng Tỉnh/Thành phố (city).",
+            "Gom nhóm theo hạng thành viên (membership_tier) để xem số lượng khách hàng ở mỗi hạng."
+        ],
+        schema: [
+            {
+                tableName: "customers",
+                description: "Hồ sơ khách hàng và lịch sử chi tiêu tích lũy",
+                columns: [
+                    { name: "customer_id", type: "VARCHAR", desc: "Mã định danh khách hàng (PK)" },
+                    { name: "full_name", type: "VARCHAR", desc: "Họ và tên khách hàng" },
+                    { name: "city", type: "VARCHAR", desc: "Tỉnh / Thành phố sinh sống" },
+                    { name: "total_spent", type: "DECIMAL", desc: "Tổng tiền đã chi tiêu tích lũy (VNĐ)" },
+                    { name: "total_orders", type: "INT", desc: "Tổng số đơn hàng đã đặt" },
+                    { name: "membership_tier", type: "VARCHAR", desc: "Hạng thành viên (Standard, Silver, Gold, Diamond)" },
+                    { name: "join_year", type: "INT", desc: "Năm tạo tài khoản" }
+                ]
+            }
+        ],
+        hints: [
+            "Dùng WHERE total_spent >= 5000000 ORDER BY total_spent DESC để lấy danh sách khách VIP.",
+            "Dùng GROUP BY city và SUM(total_spent) để tính doanh thu theo từng thành phố.",
+            "Dùng ROUND(AVG(total_spent), 0) để tính mức chi tiêu trung bình không bị số lẻ."
+        ],
+        defaultSql: `-- Nhiệm vụ 1: Lấy danh sách khách hàng VIP chi tiêu từ 5 triệu trở lên
+SELECT 
+    full_name, 
+    city, 
+    total_spent, 
+    membership_tier 
+FROM customers 
+WHERE total_spent >= 5000000 
+ORDER BY total_spent DESC;`,
+        solutionSql: `-- 1. Danh sách khách hàng VIP chi tiêu nhiều nhất
+SELECT 
+    full_name, 
+    city, 
+    total_spent, 
+    total_orders, 
+    membership_tier 
+FROM customers 
+WHERE total_spent >= 5000000 
+ORDER BY total_spent DESC;
+
+-- 2. Thống kê khách hàng và tổng doanh thu theo Tỉnh/Thành phố
+SELECT 
+    city, 
+    COUNT(customer_id) AS total_customers, 
+    SUM(total_spent) AS total_revenue_vnd, 
+    ROUND(AVG(total_spent), 0) AS avg_spent_per_customer 
+FROM customers 
+GROUP BY city 
+ORDER BY total_revenue_vnd DESC;
+
+-- 3. Phân bổ số lượng khách hàng theo hạng thành viên
+SELECT 
+    membership_tier, 
+    COUNT(customer_id) AS customer_count, 
+    SUM(total_spent) AS tier_revenue_vnd, 
+    ROUND(AVG(total_spent), 0) AS avg_spent_vnd 
+FROM customers 
+GROUP BY membership_tier 
+ORDER BY avg_spent_vnd DESC;`,
+        defaultPython: `# Phân tích chi tiêu khách hàng theo thành phố
+import pandas as pd
+
+df = pd.DataFrame(data)
+city_summary = df.groupby('city')['total_spent'].agg(['count', 'sum', 'mean']).round(0)
+print(city_summary)`,
+        mockData: {
+            headers: ["Họ tên", "Tỉnh / Thành phố", "Tổng chi tiêu (VNĐ)", "Số đơn", "Hạng thành viên"],
+            rows: [
+                ["Nguyễn Văn An", "TP. Hồ Chí Minh", "9,800,000", "24", "Diamond 💎"],
+                ["Trần Thị Mai", "Hà Nội", "7,500,000", "18", "Diamond 💎"],
+                ["Lê Hoàng Phúc", "Hà Nội", "5,900,000", "14", "Gold 🥇"],
+                ["Phạm Hồng Ngọc", "TP. Hồ Chí Minh", "5,200,000", "12", "Gold 🥇"],
+                ["Võ Minh Khôi", "Đà Nẵng", "5,100,000", "11", "Gold 🥇"]
+            ],
+            chart: {
+                type: "pie",
+                title: "Tỷ Trọng Doanh Thu Khách VIP Theo Tỉnh Thành",
+                labels: ["TP. Hồ Chí Minh", "Hà Nội", "Đà Nẵng", "Hải Phòng", "Cần Thơ"],
+                datasets: [
+                    {
+                        label: "Doanh thu (VNĐ)",
+                        data: [16800000, 17200000, 8500000, 2900000, 2600000],
+                        backgroundColor: ["#4F46E5", "#10B981", "#F59E0B", "#EC4899", "#8B5CF6"]
+                    }
+                ]
+            }
+        },
+        mockDb: {
+            customers: [
+                { customer_id: "C001", full_name: "Nguyễn Văn An", city: "TP. Hồ Chí Minh", total_spent: 9800000, total_orders: 24, membership_tier: "Diamond", join_year: 2024 },
+                { customer_id: "C002", full_name: "Trần Thị Mai", city: "Hà Nội", total_spent: 7500000, total_orders: 18, membership_tier: "Diamond", join_year: 2024 },
+                { customer_id: "C003", full_name: "Lê Hoàng Phúc", city: "Hà Nội", total_spent: 5900000, total_orders: 14, membership_tier: "Gold", join_year: 2025 },
+                { customer_id: "C004", full_name: "Phạm Hồng Ngọc", city: "TP. Hồ Chí Minh", total_spent: 5200000, total_orders: 12, membership_tier: "Gold", join_year: 2025 },
+                { customer_id: "C005", full_name: "Võ Minh Khôi", city: "Đà Nẵng", total_spent: 5100000, total_orders: 11, membership_tier: "Gold", join_year: 2024 },
+                { customer_id: "C006", full_name: "Đỗ Gia Huy", city: "Hà Nội", total_spent: 3800000, total_orders: 8, membership_tier: "Silver", join_year: 2025 },
+                { customer_id: "C007", full_name: "Bùi Thị Lan", city: "Đà Nẵng", total_spent: 3400000, total_orders: 7, membership_tier: "Silver", join_year: 2026 },
+                { customer_id: "C008", full_name: "Hoàng Đức Anh", city: "Hải Phòng", total_spent: 2900000, total_orders: 5, membership_tier: "Silver", join_year: 2025 },
+                { customer_id: "C009", full_name: "Đặng Thu Thảo", city: "Cần Thơ", total_spent: 2600000, total_orders: 6, membership_tier: "Silver", join_year: 2026 },
+                { customer_id: "C010", full_name: "Lý Quốc Bảo", city: "TP. Hồ Chí Minh", total_spent: 1800000, total_orders: 3, membership_tier: "Standard", join_year: 2026 }
+            ]
+        }
+    },
+    {
+        id: "case_order_delivery_qa",
+        title: "Kiểm Toán Đơn Hàng & Tỷ Lệ Hoàn Tất Giao Nhận",
+        category: "Operations & Delivery",
+        categoryLabel: "Vận Hành & Giao Nhận",
+        difficulty: "easy",
+        difficultyLabel: "Mới bắt đầu",
+        estimatedTime: "10 - 15 phút",
+        techStack: ["SQL Cơ Bản", "COUNT", "SUM", "Tỷ lệ %"],
+        badgeIcon: "📦",
+        shortDesc: "Kiểm tra chất lượng dịch vụ giao hàng: Đo lường tỷ lệ giao thành công (Fulfillment Rate), và so sánh tốc độ giao của các đơn vị vận chuyển.",
+        fullContext: `
+            <h3>Bối cảnh doanh nghiệp</h3>
+            <p>Khâu vận chuyển và giao nhận là huyết mạch quyết định sự hài lòng của khách hàng trên sàn TMĐT. Trong tuần lễ kích cầu mua sắm, Giám đốc Vận hành (COO) yêu cầu bộ phận Dữ liệu kiểm toán hiệu suất giao hàng của 4 đối tác vận chuyển lớn: SPX Express, Giao Hàng Nhanh (GHN), Viettel Post và J&T Express.</p>
+            <p>Bạn cần tính toán tỷ lệ đơn hoàn tất giao thành công (Fulfillment Rate), số đơn bị huỷ/hoàn hàng, và thời gian giao hàng trung bình của từng đối tác để đề xuất phương án điều phối đơn hàng tối ưu.</p>
+        `,
+        objectives: [
+            "Đếm tổng số đơn hàng vận chuyển và số đơn giao thành công (COMPLETED).",
+            "Tính tỷ lệ hoàn tất giao hàng (Fulfillment Rate %) trên toàn sàn.",
+            "Thống kê số lượng đơn giao thành công theo từng đơn vị vận chuyển (carrier_name).",
+            "Tính số ngày giao hàng trung bình (delivery_days) của từng đơn vị vận chuyển."
+        ],
+        schema: [
+            {
+                tableName: "shipments",
+                description: "Nhật ký vận đơn và hiệu suất giao nhận",
+                columns: [
+                    { name: "tracking_id", type: "VARCHAR", desc: "Mã vận đơn bưu kiện (PK)" },
+                    { name: "order_id", type: "VARCHAR", desc: "Mã đơn hàng liên kết" },
+                    { name: "carrier_name", type: "VARCHAR", desc: "Đơn vị vận chuyển (SPX Express, GHN, Viettel Post, J&T)" },
+                    { name: "shipping_fee", type: "DECIMAL", desc: "Cước phí vận chuyển (VNĐ)" },
+                    { name: "delivery_days", type: "INT", desc: "Thời gian giao hàng thực tế (ngày)" },
+                    { name: "status", type: "VARCHAR", desc: "Trạng thái giao hàng (COMPLETED, CANCELLED, RETURNED)" }
+                ]
+            }
+        ],
+        hints: [
+            "Đếm số đơn theo trạng thái: Dùng GROUP BY status và COUNT(tracking_id).",
+            "Tính thời gian giao trung bình: Dùng ROUND(AVG(delivery_days), 1) GROUP BY carrier_name.",
+            "Lọc chỉ các đơn hoàn tất: WHERE status = 'COMPLETED'."
+        ],
+        defaultSql: `-- Nhiệm vụ 1: Đếm số đơn theo từng trạng thái giao nhận
+SELECT 
+    status, 
+    COUNT(tracking_id) AS total_orders 
+FROM shipments 
+GROUP BY status;`,
+        solutionSql: `-- 1. Tỷ lệ hoàn tất giao nhận (Fulfillment Rate)
+SELECT 
+    COUNT(tracking_id) AS total_shipments,
+    SUM(CASE WHEN status = 'COMPLETED' THEN 1 ELSE 0 END) AS completed_orders,
+    SUM(CASE WHEN status = 'CANCELLED' THEN 1 ELSE 0 END) AS cancelled_orders,
+    SUM(CASE WHEN status = 'RETURNED' THEN 1 ELSE 0 END) AS returned_orders,
+    ROUND(SUM(CASE WHEN status = 'COMPLETED' THEN 1 ELSE 0 END) * 100.0 / COUNT(tracking_id), 1) AS fulfillment_rate_pct
+FROM shipments;
+
+-- 2. So sánh hiệu suất và thời gian giao trung bình của từng đối tác vận chuyển
+SELECT 
+    carrier_name, 
+    COUNT(tracking_id) AS total_orders, 
+    SUM(CASE WHEN status = 'COMPLETED' THEN 1 ELSE 0 END) AS completed_orders, 
+    ROUND(AVG(delivery_days), 1) AS avg_delivery_days, 
+    SUM(shipping_fee) AS total_shipping_fee_vnd 
+FROM shipments 
+GROUP BY carrier_name 
+ORDER BY completed_orders DESC;`,
+        defaultPython: `# Tính tỷ lệ hoàn tất giao nhận
+import pandas as pd
+
+df = pd.DataFrame(data)
+fulfillment = df['status'].value_counts(normalize=True) * 100
+print(fulfillment.round(1))`,
+        mockData: {
+            headers: ["Đơn vị vận chuyển", "Tổng đơn", "Giao thành công", "Thời gian TB (ngày)", "Tổng cước (VNĐ)"],
+            rows: [
+                ["SPX Express", "5", "5 (100%)", "1.6 ngày ⚡", "113,000"],
+                ["GHN (Giao Hàng Nhanh)", "4", "4 (100%)", "1.8 ngày ⚡", "116,000"],
+                ["Viettel Post", "4", "3 (75%)", "3.7 ngày", "104,000"],
+                ["J&T Express", "2", "1 (50%)", "4.3 ngày", "48,000"]
+            ],
+            chart: {
+                type: "bar",
+                title: "Thời Gian Giao Hàng Trung Bình Theo Đơn Vị (Ngày)",
+                labels: ["SPX Express", "GHN", "Viettel Post", "J&T Express"],
+                datasets: [
+                    {
+                        label: "Số ngày giao trung bình",
+                        data: [1.6, 1.8, 3.7, 4.3],
+                        backgroundColor: ["#10B981", "#10B981", "#F59E0B", "#EF4444"]
+                    }
+                ]
+            }
+        },
+        mockDb: {
+            shipments: [
+                { tracking_id: "TRK_001", order_id: "ORD_101", carrier_name: "SPX Express", shipping_fee: 22000, delivery_days: 1, status: "COMPLETED" },
+                { tracking_id: "TRK_002", order_id: "ORD_102", carrier_name: "SPX Express", shipping_fee: 25000, delivery_days: 2, status: "COMPLETED" },
+                { tracking_id: "TRK_003", order_id: "ORD_103", carrier_name: "GHN", shipping_fee: 28000, delivery_days: 2, status: "COMPLETED" },
+                { tracking_id: "TRK_004", order_id: "ORD_104", carrier_name: "GHN", shipping_fee: 30000, delivery_days: 2, status: "COMPLETED" },
+                { tracking_id: "TRK_005", order_id: "ORD_105", carrier_name: "Viettel Post", shipping_fee: 26000, delivery_days: 3, status: "COMPLETED" },
+                { tracking_id: "TRK_006", order_id: "ORD_106", carrier_name: "SPX Express", shipping_fee: 22000, delivery_days: 1, status: "COMPLETED" },
+                { tracking_id: "TRK_007", order_id: "ORD_107", carrier_name: "J&T Express", shipping_fee: 24000, delivery_days: 4, status: "RETURNED" },
+                { tracking_id: "TRK_008", order_id: "ORD_108", carrier_name: "Viettel Post", shipping_fee: 26000, delivery_days: 4, status: "COMPLETED" },
+                { tracking_id: "TRK_009", order_id: "ORD_109", carrier_name: "GHN", shipping_fee: 28000, delivery_days: 1, status: "COMPLETED" },
+                { tracking_id: "TRK_010", order_id: "ORD_110", carrier_name: "J&T Express", shipping_fee: 24000, delivery_days: 5, status: "CANCELLED" },
+                { tracking_id: "TRK_011", order_id: "ORD_111", carrier_name: "SPX Express", shipping_fee: 22000, delivery_days: 2, status: "COMPLETED" },
+                { tracking_id: "TRK_012", order_id: "ORD_112", carrier_name: "GHN", shipping_fee: 30000, delivery_days: 2, status: "COMPLETED" },
+                { tracking_id: "TRK_013", order_id: "ORD_113", carrier_name: "Viettel Post", shipping_fee: 26000, delivery_days: 3, status: "COMPLETED" },
+                { tracking_id: "TRK_014", order_id: "ORD_114", carrier_name: "J&T Express", shipping_fee: 24000, delivery_days: 4, status: "COMPLETED" },
+                { tracking_id: "TRK_015", order_id: "ORD_115", carrier_name: "Viettel Post", shipping_fee: 26000, delivery_days: 4, status: "CANCELLED" }
+            ]
+        }
+    },
+    {
         id: "case_freeship_leak",
         title: "Lỗ hổng Freeship - Trục lợi Voucher vận chuyển",
         category: "E-Commerce Fraud",

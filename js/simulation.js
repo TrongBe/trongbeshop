@@ -990,7 +990,52 @@ function fillSampleReport() {
     const reportInput = document.getElementById('reportTextarea');
     if (!reportInput) return;
 
-    if (currentCase && (currentCase.id === 'case_freeship_leak' || currentCase.id === 'case-freeship-fraud')) {
+    if (currentCase && currentCase.id === 'case_best_sellers_eda') {
+        reportInput.value = `BÁO CÁO PHÂN TÍCH: TOP SẢN PHẨM BÁN CHẠY VÀ KẾ HOẠCH TỒN KHO
+1. Bám sát Dữ liệu (Fact-based - 30 điểm):
+- Top 3 sản phẩm có số lượng bán cao nhất toàn sàn: Cáp sạc bọc dù Type-C (4,500 chiếc), Củ sạc nhanh GaN 65W Pro (3,100 chiếc), và Áo thun thể thao Dry-Fit (2,800 chiếc).
+- Ngành hàng Phụ Kiện Điện Thoại và Thiết Bị Số đóng góp doanh thu lớn nhất, chiếm hơn 65% tổng sản lượng bán ra.
+- Cảnh báo tồn kho nguy cấp: 3 sản phẩm bán chạy nhất hiện có tồn kho dưới 20 món (Củ sạc nhanh 65W còn đúng 8 chiếc, Máy xay sinh tố còn 5 chiếc, Chuột không dây còn 12 chiếc).
+
+2. Insight & Phân tích nguyên nhân (Business Insight - 40 điểm):
+- Các sản phẩm phụ kiện công nghệ giá mềm (dưới 250,000đ) có tốc độ quay vòng vốn cực nhanh vì người mua thường xuyên chọn mua kèm để đạt ngưỡng miễn phí ship.
+- Bộ phận Kho vận chưa kịp đặt hàng bổ sung dẫn đến nguy cơ đứt gãy nguồn cung (Stock-out) trong các đợt Siêu Sale cuối năm sắp tới.
+
+3. Đề xuất hành động (Actionable Recommendations - 30 điểm):
+- Ngay lập tức (24h - 48h): Thủ kho liên hệ nhà cung cấp đặt gấp 5,000 chiếc Sạc nhanh 65W và 3,000 Tai nghe True Wireless.
+- Trung hạn: Cài đặt hệ sinh thái cảnh báo tự động (Re-order Point) khi tồn kho bất kỳ mặt hàng bán chạy nào giảm xuống dưới 30 món.
+- Chiến lược giá: Đóng gói combo "Củ sạc GaN + Cáp Type-C" giá ưu đãi 249,000đ để kích thích tăng giá trị trung bình đơn (AOV).`;
+    } else if (currentCase && currentCase.id === 'case_vip_customer_retention') {
+        reportInput.value = `BÁO CÁO CHIẾN DỊCH KHÁCH HÀNG THÂN THIẾT & PHÂN HẠNG VIP
+1. Bám sát Dữ liệu (Fact-based - 30 điểm):
+- Hệ thống ghi nhận 10 khách hàng khảo sát với tổng chi tiêu đạt 48.0 triệu VNĐ, mức chi tiêu bình quân đạt 4.8 triệu VNĐ/khách hàng.
+- Có 5 khách hàng đạt chuẩn hạng VIP (chi tiêu >= 5,000,000 VNĐ), trong đó khách hàng dẫn đầu (Nguyễn Văn An) đạt 9.8 triệu VNĐ với 24 đơn hàng.
+- Hai đô thị lớn là TP.HCM và Hà Nội đóng góp tới 82% tổng doanh thu khách VIP, với mức chi tiêu bình quân vượt trội (5.8 triệu VNĐ/khách).
+
+2. Insight & Phân tích nguyên nhân (Business Insight - 40 điểm):
+- Nhóm khách hàng VIP chỉ chiếm 50% số lượng khách nhưng mang lại hơn 70% tổng doanh thu của kỳ khảo sát (Hiệu ứng Pareto 80/20).
+- Khách hàng hạng Diamond và Gold có mức độ gắn kết cao, đặt trung bình từ 12 đến 24 đơn hàng/năm.
+
+3. Đề xuất hành động (Actionable Recommendations - 30 điểm):
+- Ngay lập tức: Gửi hộp quà tri ân kỷ niệm 5 năm kèm voucher giảm giá 200,000đ cho 5 khách hàng VIP trước ngày 20 hàng tháng.
+- Trung hạn: Xây dựng chính sách ưu đãi tích lũy điểm hạng Diamond (hoàn xu 5%, đặc quyền freeship không giới hạn) để tăng tỷ lệ giữ chân khách (Retention Rate).
+- Tiếp thị: Phân bổ 70% ngân sách quảng cáo tập trung vào 2 khu vực trọng điểm là TP.HCM và Hà Nội.`;
+    } else if (currentCase && currentCase.id === 'case_order_delivery_qa') {
+        reportInput.value = `BÁO CÁO ĐÁNH GIÁ CHẤT LƯỢNG GIAO HÀNG & HIỆU SUẤT ĐƠN VỊ VẬN CHUYỂN
+1. Bám sát Dữ liệu (Fact-based - 30 điểm):
+- Toàn sàn ghi nhận 15 đơn hàng vận chuyển trong tuần khảo sát, với 12 đơn giao thành công, 2 đơn huỷ và 1 đơn hoàn trả (Tỷ lệ hoàn tất Fulfillment Rate đạt 80.0%).
+- Đơn vị SPX Express và GHN có hiệu suất giao hàng xuất sắc nhất, thời gian giao trung bình chỉ từ 1.6 đến 1.8 ngày, tỷ lệ hoàn tất đạt 100%.
+- Viettel Post và J&T Express có thời gian giao hàng kéo dài từ 3.7 đến 4.3 ngày, đồng thời phát sinh 2 đơn bị huỷ và 1 đơn hoàn trả.
+
+2. Insight & Phân tích nguyên nhân (Business Insight - 40 điểm):
+- Tốc độ giao hàng tỷ lệ thuận với sự hài lòng của người mua: Đơn hàng giao trong vòng 48h có tỷ lệ nhận hàng thành công 100%.
+- Các đơn hàng giao chậm trên 3 ngày có tỷ lệ từ chối nhận (Boom hàng) tăng đột biến do khách hàng không còn nhu cầu chờ đợi.
+
+3. Đề xuất hành động (Actionable Recommendations - 30 điểm):
+- Ngay lập tức: Ưu tiên định tuyến 70% lượng đơn hàng nội thành và liên tỉnh trọng điểm cho SPX Express và GHN.
+- Đối tác: Làm việc lại với Viettel Post và J&T Express để cam kết SLA giao hàng dưới 72 giờ đối với các tuyến giao xa.
+- Công nghệ: Bổ sung tính năng thông báo theo dõi hành trình đơn hàng qua Zalo/SMS để người mua chủ động nhận hàng.`;
+    } else if (currentCase && (currentCase.id === 'case_freeship_leak' || currentCase.id === 'case-freeship-fraud')) {
         reportInput.value = `BÁO CÁO PHÂN TÍCH HIỆN TƯỢNG VƯỢT NGÂN SÁCH TRỢ GIÁ VẬN CHUYỂN
 1. Dữ liệu thực tế:
 - Trong chiến dịch Mega Sale, phân khúc đơn hàng cận ngưỡng 99k - 105k chiếm tỷ lệ áp đảo 58.4% tổng lượng đơn (148,520 đơn), tiêu tốn 4,455,600,000 VNĐ tiền trợ giá.
