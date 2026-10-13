@@ -322,8 +322,24 @@ function sanitizeSqlStatement(stmt) {
         .trim();
     if (!codeWithoutComments) return '';
 
-    // Tự động gỡ bỏ tiền tố 'QL' hoặc 'SQL' nếu người dùng lỡ copy dính nhãn badge
+    // 1. Tự động gỡ bỏ tiền tố 'QL' hoặc 'SQL' nếu người dùng lỡ copy dính nhãn badge
     cleaned = cleaned.replace(/^(?:S?QL\s*|S?QL)(?=SELECT|WITH|SHOW|INSERT|UPDATE|DELETE|CREATE|DROP|ALTER)/i, '');
+
+    // 2. Tự động sửa lỗi COUNT() rỗng thành COUNT(*) chuẩn SQL
+    cleaned = cleaned.replace(/\bCOUNT\s*\(\s*\)/gi, 'COUNT(*)');
+
+    // 3. Tự động chuyển đổi CTE WITH x AS (...) SELECT ... FROM x thành derived subquery
+    const withMatch = cleaned.match(/^WITH\s+([a-zA-Z0-9_]+)\s+AS\s*\(([\s\S]+?)\)\s*(SELECT[\s\S]+)$/i);
+    if (withMatch) {
+        const cteName = withMatch[1];
+        const cteQuery = withMatch[2].trim();
+        const mainQuery = withMatch[3].trim();
+        const fromRegex = new RegExp(`\\b(FROM|JOIN)\\s+${cteName}\\b`, 'gi');
+        if (fromRegex.test(mainQuery)) {
+            cleaned = mainQuery.replace(fromRegex, `$1 (${cteQuery}) AS ${cteName}`);
+        }
+    }
+
     return cleaned.trim();
 }
 
@@ -1056,22 +1072,31 @@ async function sendToGeminiMentor(userQuery) {
     const chatStream = document.getElementById('mentorChatStream');
     const thinkingBubble = chatStream?.lastElementChild;
 
-    // Xây dựng System Instruction với ngữ cảnh nhiệm vụ
     const missionContext = currentCase
         ? `Nhiệm vụ: "${currentCase.title}"\nBối cảnh: ${currentCase.shortDesc}\nMục tiêu phân tích:\n${currentCase.objectives.map((o, i) => `${i + 1}. ${o}`).join('\n')}\nCấu trúc bảng dữ liệu: ${currentCase.schema.map(t => t.tableName + '(' + t.columns.map(c => c.name).join(', ') + ')').join('; ')}`
         : 'Trợ lý Data Analysis tổng quát';
 
-    const systemInstruction = `Bạn là Gemini AI Mentor — một Senior Data Analyst giàu kinh nghiệm đang hỗ trợ người học trong môi trường thực hành phân tích dữ liệu.
+    const solutionReference = currentCase?.solutionSql || currentCase?.defaultSql || '';
+
+    const systemInstruction = `Bạn là Gemini AI Mentor — một Senior Data Analyst đang hướng dẫn thực hành trong Sandbox phân tích dữ liệu TRONEX.
 
 Ngữ cảnh bài toán hiện tại:
 ${missionContext}
 
-Phong cách trả lời:
-- Trả lời bằng tiếng Việt, chuyên nghiệp, thân thiện và khích lệ.
-- Khi được hỏi về SQL hoặc Python, hãy cung cấp ví dụ code cụ thể, rõ ràng và giải thích từng bước.
-- Khi giải thích kết quả dữ liệu, hãy gắn với bối cảnh nghiệp vụ thực tế.
-- Sử dụng markdown (**, *, dấu gạch đầu dòng) để câu trả lời dễ đọc.
-- Có thể đặt thêm câu hỏi gợi mở để người học tự suy nghĩ sâu hơn sau khi đã trả lời.`;
+CƠ CHẾ THỰC THI SQL CỦA HỆ THỐNG:
+- Trình duyệt đang chạy engine AlaSQL để thực thi câu lệnh SQL trực tiếp trên bộ dữ liệu mock.
+- CSDL HIỆN CHỈ CÓ CÁC BẢNG SAU:
+${currentCase ? currentCase.schema.map(t => `- Bảng "${t.tableName}": (${t.columns.map(c => c.name).join(', ')})`).join('\n') : ''}
+
+QUY TẮC BẮT BUỘC KHI VIẾT SQL:
+1. CHỈ ĐƯỢC PHÉP TRUY VẤN từ các bảng có thật ở trên. TUYỆT ĐỐI KHÔNG tự bịa ra bảng ảo không có trong CSDL (như OrderMetrics, AggregatedData...).
+2. KHÔNG DÙNG cú pháp CTE (WITH ... AS ...). Hãy viết các câu lệnh SELECT độc lập, hoặc dùng subquery lồng nhau FROM (SELECT ...).
+3. LUÔN LUÔN viết COUNT(*) hoặc COUNT(tên_cột). TUYỆT ĐỐI KHÔNG viết COUNT() rỗng.
+4. Khi người học yêu cầu "Viết cho tôi câu SQL hoàn chỉnh để giải bài toán này" hoặc xin code giải bài, HÃY CUNG CẤP CHÍNH XÁC bộ câu lệnh SQL chuẩn sau đây:
+\`\`\`sql
+${solutionReference}
+\`\`\`
+(Kèm theo giải thích ngắn gọn, súc tích từng bước phân tích nghiệp vụ).`;
 
     const chatHistory = mentorChatHistory.slice();
     // Thêm tin nhắn người dùng vào lịch sử

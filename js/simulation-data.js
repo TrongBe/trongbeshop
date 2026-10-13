@@ -70,6 +70,44 @@ FROM orders
 WHERE status = 'COMPLETED'
 GROUP BY price_segment
 ORDER BY total_orders DESC;`,
+        solutionSql: `-- 1. Phân bổ AOV và tỷ lệ đơn hàng tập trung sát ngưỡng 99k - 105k
+SELECT 
+    CASE 
+        WHEN order_amount < 99000 THEN 'Dưới 99k (Không Freeship)'
+        WHEN order_amount BETWEEN 99000 AND 105000 THEN '99k - 105k (Cận ngưỡng Freeship)'
+        WHEN order_amount BETWEEN 105001 AND 200000 THEN '105k - 200k'
+        ELSE 'Trên 200k'
+    END AS price_segment,
+    COUNT(order_id) AS total_orders,
+    SUM(shipping_subsidy) AS total_subsidy_loss,
+    ROUND(COUNT(order_id) * 100.0 / (SELECT COUNT(*) FROM orders WHERE status = 'COMPLETED'), 2) AS percentage_orders
+FROM orders
+WHERE status = 'COMPLETED'
+GROUP BY price_segment
+ORDER BY total_orders DESC;
+
+-- 2. Top 5 Shop và IP người mua có dấu hiệu trục lợi trợ giá freeship
+SELECT 
+    o.shop_id,
+    b.ip_address,
+    COUNT(o.order_id) AS suspicious_orders,
+    SUM(o.shipping_subsidy) AS total_subsidy_loss
+FROM orders o
+JOIN buyer_profiles b ON o.buyer_id = b.buyer_id
+WHERE o.order_amount BETWEEN 99000 AND 105000
+  AND o.status = 'COMPLETED'
+GROUP BY o.shop_id, b.ip_address
+ORDER BY suspicious_orders DESC
+LIMIT 5;
+
+-- 3. Ước tính tổng thiệt hại tài chính do lỗ hổng chính sách freeship gây ra
+SELECT 
+    COUNT(order_id) AS total_suspicious_orders,
+    SUM(shipping_subsidy) AS total_financial_damage_vnd,
+    ROUND(AVG(order_amount), 0) AS avg_aov_vnd
+FROM orders
+WHERE order_amount BETWEEN 99000 AND 105000
+  AND status = 'COMPLETED';`,
         defaultPython: `# Phân tích phân bổ giá trị đơn hàng với Pandas
 import pandas as pd
 import numpy as np
@@ -195,6 +233,25 @@ print(summary)`,
 FROM sales_pipeline
 GROUP BY DATE(created_at)
 ORDER BY order_date ASC;`,
+        solutionSql: `-- 1. Tỷ lệ hoàn thành (Fulfillment Rate) và tỷ lệ hủy theo ngày
+SELECT 
+    created_at AS order_date,
+    COUNT(order_id) AS gross_orders,
+    SUM(CASE WHEN status = 'COMPLETED' THEN 1 ELSE 0 END) AS net_completed_orders,
+    SUM(CASE WHEN status = 'CANCELLED' THEN 1 ELSE 0 END) AS cancelled_orders,
+    ROUND(SUM(CASE WHEN status = 'CANCELLED' THEN 1 ELSE 0 END) * 100.0 / COUNT(order_id), 1) AS cancel_rate_pct
+FROM sales_pipeline
+GROUP BY created_at
+ORDER BY order_date ASC;
+
+-- 2. Phân loại lý do hủy đơn để bóc tách hiện tượng 'nổ đơn ảo'
+SELECT 
+    COALESCE(cancel_reason, 'Hoàn tất') AS reason,
+    COUNT(order_id) AS order_count,
+    ROUND(COUNT(order_id) * 100.0 / (SELECT COUNT(*) FROM sales_pipeline), 1) AS pct_of_total
+FROM sales_pipeline
+GROUP BY reason
+ORDER BY order_count DESC;`,
         defaultPython: `# Phân tích tỷ lệ hủy đơn theo ngày
 import pandas as pd
 
@@ -325,6 +382,31 @@ SELECT
 FROM customers
 GROUP BY Thang_Sinh_Nhat
 ORDER BY ty_le_phan_tram DESC;`,
+        solutionSql: `-- 1. Phân bổ tháng sinh nhật phát hiện bất thường tháng 10
+SELECT 
+    Thang_Sinh_Nhat,
+    COUNT(Ma_KH) AS so_tai_khoan,
+    ROUND(COUNT(Ma_KH) * 100.0 / (SELECT COUNT(*) FROM customers), 2) AS ty_le_phan_tram
+FROM customers
+GROUP BY Thang_Sinh_Nhat
+ORDER BY ty_le_phan_tram DESC;
+
+-- 2. Cụm IP có số tài khoản sinh nhật tháng 10 bất thường
+SELECT 
+    IP_Dang_Ky,
+    COUNT(Ma_KH) AS so_luong_tk_tao
+FROM customers
+WHERE Thang_Sinh_Nhat = 10
+GROUP BY IP_Dang_Ky
+ORDER BY so_luong_tk_tao DESC;
+
+-- 3. Tổng thiệt hại tài chính voucher bị thợ săn kích hoạt
+SELECT 
+    COUNT(v.Ma_Voucher) AS so_voucher_da_dung,
+    SUM(v.Gia_Tri_Giam) AS tong_thiet_hai_vnd
+FROM voucher_usage v
+JOIN customers c ON v.Ma_KH = c.Ma_KH
+WHERE c.Thang_Sinh_Nhat = 10;`,
         defaultPython: `# Bước 1: Phân bổ tháng sinh nhật
 import pandas as pd
 import matplotlib.pyplot as plt
