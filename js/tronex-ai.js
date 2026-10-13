@@ -14,6 +14,9 @@ const _d = h => {
 
 // API Keys - xoay vòng khi gặp lỗi (đã mã hóa)
 const _K = [
+    _d("6e7e016e4d177d61196618561d671a171a474e475f7968476b40604167627061704a4102454d447e4c48786b6e6c44456b184b1a7e"), // Key 1
+    _d("6e7e016e4d177d6119646a7b1d4e575a5c7e186b46407f566843477d465f776c1e5b7c58646a44494118694c4943556d5f5819597e"), // Key 2
+    _d("6e7e016e4d177d6119657c7e7b471f601d7649181d7c5755797845581e6756495a4b1663176c7d60186e4b5d775d56627d69466c58"), // Key 3
     _d("6e66554e7c566d417d675d444d7e587e691b1c417a69765a6a70444544481f5c641d676b6b467a"),
     _d("6e66554e7c566b63624070755775457e56697f567e774b4347571d1f1a684362607d1b1a7a6748")
 ];
@@ -26,21 +29,26 @@ const rK = () => {
 
 // ✅ Model chains
 const MODEL_CHAIN_3 = [
-    "gemini-3-flash-preview",
-    "gemini-2.5-flash",
-    "gemini-3.1-flash-lite"
-];
-
-const MODEL_CHAIN_2 = [
-    "gemini-2.5-flash",
     "gemini-3.1-flash-lite",
+    "gemini-flash-lite-latest",
+    "gemini-flash-latest",
+    "gemini-3.8-flash",
     "gemini-3-flash-preview"
 ];
 
+const MODEL_CHAIN_2 = [
+    "gemini-3.1-flash-lite",
+    "gemini-flash-lite-latest",
+    "gemini-flash-latest",
+    "gemini-3.8-flash"
+];
+
 const MODEL_LABELS = {
-    "gemini-3-flash-preview": "Gemini 3.0 Flash",
-    "gemini-2.5-flash": "Gemini 2.5 Flash",
-    "gemini-3.1-flash-lite": "Gemini 3.1 Flash-Lite (dự phòng)"
+    "gemini-3.1-flash-lite": "Gemini 3.1 Flash-Lite (Tốc độ cao)",
+    "gemini-flash-lite-latest": "Gemini Flash Lite (Mới nhất)",
+    "gemini-flash-latest": "Gemini Flash (Mới nhất)",
+    "gemini-3.8-flash": "Gemini 3.8 Flash",
+    "gemini-3-flash-preview": "Gemini 3.0 Flash Preview"
 };
 
 class tronexAI {

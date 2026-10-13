@@ -569,7 +569,7 @@ Phong cách trả lời:
                 prompt: userQuery,
                 history: chatHistory,
                 systemInstruction: systemInstruction,
-                model: 'gemini-3.5-flash'
+                model: 'gemini-3.1-flash-lite'
             })
         });
 
@@ -618,12 +618,15 @@ const _dSim = h => {
 async function callGoogleGeminiDirect(prompt, history, systemInstruction) {
     const userCustomKey = localStorage.getItem("TRONEX_AI_KEY");
     const defaultKeys = [
+        _dSim("6e7e016e4d177d61196618561d671a171a474e475f7968476b40604167627061704a4102454d447e4c48786b6e6c44456b184b1a7e"), // Key 1
+        _dSim("6e7e016e4d177d6119646a7b1d4e575a5c7e186b46407f566843477d465f776c1e5b7c58646a44494118694c4943556d5f5819597e"), // Key 2
+        _dSim("6e7e016e4d177d6119657c7e7b471f601d7649181d7c5755797845581e6756495a4b1663176c7d60186e4b5d775d56627d69466c58"), // Key 3
         _dSim("6e66554e7c566d417d675d444d7e587e691b1c417a69765a6a70444544481f5c641d676b6b467a"),
         _dSim("6e66554e7c566b63624070755775457e56697f567e774b4347571d1f1a684362607d1b1a7a6748")
     ];
     const keys = [userCustomKey, ...defaultKeys].filter(Boolean);
 
-    const models = ["gemini-3.5-flash", "gemini-3-flash-preview", "gemini-3.8-flash"];
+    const models = ["gemini-3.1-flash-lite", "gemini-flash-lite-latest", "gemini-flash-latest", "gemini-3.8-flash", "gemini-3.5-flash", "gemini-3-flash-preview"];
 
     const payload = {
         contents: [
@@ -640,10 +643,13 @@ async function callGoogleGeminiDirect(prompt, history, systemInstruction) {
     for (const key of keys) {
         for (const model of models) {
             try {
-                const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`;
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
                 const res = await fetch(url, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-goog-api-key': key
+                    },
                     body: JSON.stringify(payload)
                 });
 
