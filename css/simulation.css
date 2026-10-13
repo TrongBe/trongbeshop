@@ -2673,3 +2673,149 @@ main.sim-main {
         justify-content: center;
     }
 }
+
+/* ============================================================
+   SQL HANDBOOK RESULT PREVIEWS & MINDSET ENHANCEMENTS
+   ============================================================ */
+.handbook-result-card {
+    background: #0B1120;
+    border: 1px solid #1E293B;
+    border-radius: 8px;
+    margin: 12px 0 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.result-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 14px;
+    background: #111827;
+    border-bottom: 1px solid #1F2937;
+}
+
+.result-card-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #94A3B8;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.result-row-count {
+    font-size: 0.72rem;
+    font-weight: 750;
+    color: #10B981;
+    background: rgba(16, 185, 129, 0.12);
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+
+.result-table-wrap {
+    overflow-x: auto;
+    max-height: 280px;
+}
+
+.handbook-result-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    text-align: left;
+}
+
+.handbook-result-table th {
+    background: #1E293B;
+    color: #38BDF8;
+    padding: 8px 12px;
+    font-weight: 700;
+    border-bottom: 1px solid #334155;
+    white-space: nowrap;
+}
+
+.handbook-result-table td {
+    padding: 7px 12px;
+    border-bottom: 1px solid rgba(51, 65, 85, 0.4);
+    color: #E2E8F0;
+    white-space: nowrap;
+}
+
+.handbook-result-table tbody tr:nth-child(even) {
+    background: rgba(30, 41, 59, 0.3);
+}
+
+.handbook-result-table tbody tr:hover {
+    background: rgba(99, 102, 241, 0.1);
+}
+
+.handbook-result-table td.num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    color: #FBBF24;
+}
+
+.handbook-result-table td.highlight {
+    color: #F87171;
+    font-weight: 700;
+}
+
+.step-mindset-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin: 14px 0 18px;
+}
+
+.mindset-step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.85rem;
+    line-height: 1.45;
+}
+
+.mindset-step-badge {
+    background: #6366F1;
+    color: #FFFFFF;
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    white-space: nowrap;
+    margin-top: 2px;
+}
+
+.mindset-step-desc {
+    color: var(--text-main);
+    flex: 1;
+}
+
+.pro-tip-box {
+    background: rgba(245, 158, 11, 0.08);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-left: 4px solid #F59E0B;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 0.84rem;
+    color: var(--text-main);
+    margin: 12px 0 18px;
+    line-height: 1.5;
+}
+
+.mistake-term-err {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    color: #F87171;
+    background: #18181B;
+    border: 1px solid #3F3F46;
+    border-radius: 4px;
+    padding: 6px 10px;
+    margin: 4px 0;
+}

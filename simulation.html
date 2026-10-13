@@ -15,7 +15,7 @@
 
   <!-- Core Theme & Simulation CSS -->
   <link rel="stylesheet" href="css/style.css?v=25">
-  <link rel="stylesheet" href="css/simulation.css?v=20261013_sql_handbook">
+  <link rel="stylesheet" href="css/simulation.css?v=20261013_sql_handbook_deep">
 
   <!-- Chart.js for Interactive Data Visualization -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
@@ -414,17 +414,17 @@ Gợi ý cấu trúc:
           <!-- CHƯƠNG 1 -->
           <div class="handbook-chapter-pane" id="tab-intro" style="display: block;">
             <div class="chapter-badge">Chương 1</div>
-            <h3 class="chapter-title">💡 SQL là gì? Tư duy gốc rễ từ Excel sang SQL</h3>
+            <h3 class="chapter-title">💡 SQL Là Gì? Tư Duy Gốc Rễ Từ Excel Sang SQL &amp; Câu Lệnh Đầu Tiên</h3>
             
             <p class="handbook-lead">
-              Đừng lo lắng nếu bạn chưa từng viết bất kỳ dòng code nào! SQL không phải là toán cao cấp hay lập trình phức tạp. Bạn có thể coi SQL là <b>ngôn ngữ giao tiếp bằng tiếng Anh đơn giản để yêu cầu máy tính lấy đúng số liệu bạn cần</b>.
+              Đừng lo lắng nếu bạn chưa từng viết bất kỳ dòng code nào trong đời! SQL không phải là toán cao cấp hay lập trình phức tạp. Hãy coi SQL là <b>ngôn ngữ mệnh lệnh bằng tiếng Anh đơn giản để bạn ra lệnh cho máy tính bê đúng số liệu bạn cần</b>.
             </p>
 
             <div class="handbook-callout info">
               <div class="callout-icon">🛒</div>
               <div class="callout-body">
-                <b>Hình tượng dễ hiểu nhất:</b> Hãy tưởng tượng sàn Shopee có <b>10 triệu đơn hàng</b> nằm trong một nhà kho dữ liệu khổng lồ.<br>
-                • <b>Nếu dùng Excel:</b> Bạn giống như người tự chạy vào kho bê từng xấp giấy ra ngồi đếm tay. File quá 100,000 dòng là máy tính đơ cứng, quay vòng tròn.<br>
+                <b>Hình tượng dễ hiểu nhất:</b> Hãy tưởng tượng sàn TMĐT Shopee có <b>10 triệu đơn hàng</b> nằm trong một kho dữ liệu khổng lồ.<br>
+                • <b>Nếu dùng Excel:</b> Bạn giống như người tự chạy vào kho bê từng xấp giấy ra ngồi đếm tay. File vượt quá 100,000 dòng là máy tính đơ cứng, quay vòng tròn.<br>
                 • <b>Nếu dùng SQL:</b> Bạn đóng vai người quản lý viết mẩu giấy lệnh: <i>"Lấy cho tôi những đơn hoàn tất từ 99k trở lên"</i>. Người thủ kho siêu tốc (SQL) sẽ chạy vào tìm và bê đúng kết quả ra đĩa trong <b>0.05 giây</b>!
               </div>
             </div>
@@ -448,7 +448,7 @@ Gợi ý cấu trúc:
                   <tr>
                     <td><b>Cột (Cột A, B, C...)</b></td>
                     <td><code>Column / Field</code></td>
-                    <td>Cột <code>order_amount</code> (tiền đơn), <code>status</code> (trạng thái)</td>
+                    <td>Cột <code>order_amount</code> (tiền đơn), <code>status</code> (trạng thái), <code>shipping_subsidy</code> (tiền ship)</td>
                   </tr>
                   <tr>
                     <td><b>Hàng (Hàng 1, 2, 3...)</b></td>
@@ -474,64 +474,230 @@ Gợi ý cấu trúc:
               </table>
             </div>
 
-            <div class="handbook-callout tip">
-              <div class="callout-icon">✨</div>
-              <div class="callout-body">
-                <b>Quy tắc vàng:</b> Trong phòng thực chiến Sandbox TRONEX, bạn chỉ cần nhớ 3 việc: <b>Lấy cột nào (`SELECT`)</b>, <b>ở bảng nào (`FROM`)</b>, và <b>điều kiện gì (`WHERE`)</b> là đã hoàn thành 70% bài toán!
+            <h4 class="handbook-h4">Cầm Tay Chỉ Việc: Viết Câu Lệnh SQL Hoàn Chỉnh Đầu Tiên Trong Đời</h4>
+            
+            <div class="step-mindset-box">
+              <div class="mindset-step-item">
+                <span class="mindset-step-badge">TÌNH HUỐNG</span>
+                <span class="mindset-step-desc">Ngày đầu tiên nhận việc, Sếp bảo: <i>"Em mở kho dữ liệu <code>orders</code> ra, lấy thử 3 đơn hàng hoàn tất đầu tiên để xem cấu trúc các cột gồm những thông tin gì."</i></span>
               </div>
+              <div class="mindset-step-item">
+                <span class="mindset-step-badge">BƯỚC 1</span>
+                <span class="mindset-step-desc"><b>Xác định nguồn (FROM):</b> Dữ liệu đơn hàng nằm ở bảng nào? ➔ <code>FROM orders</code></span>
+              </div>
+              <div class="mindset-step-item">
+                <span class="mindset-step-badge">BƯỚC 2</span>
+                <span class="mindset-step-desc"><b>Lọc điều kiện (WHERE):</b> Sếp bảo lấy đơn giao thành công ➔ <code>WHERE status = 'COMPLETED'</code></span>
+              </div>
+              <div class="mindset-step-item">
+                <span class="mindset-step-badge">BƯỚC 3</span>
+                <span class="mindset-step-desc"><b>Chọn cột cần xem (SELECT):</b> Chỉ định rõ các cột quan trọng ➔ <code>SELECT order_id, shop_id, buyer_id, order_amount, shipping_subsidy, status</code></span>
+              </div>
+              <div class="mindset-step-item">
+                <span class="mindset-step-badge">BƯỚC 4</span>
+                <span class="mindset-step-desc"><b>Giới hạn số dòng (LIMIT):</b> Chỉ xem 3 dòng thôi ➔ <code>LIMIT 3;</code></span>
+              </div>
+            </div>
+
+            <div class="handbook-code-card">
+              <div class="code-card-header">
+                <span class="code-lang-tag">SQL QUERY HOÀN CHỈNH #1</span>
+                <div class="code-card-actions">
+                  <button type="button" class="btn-handbook-action" onclick="window.copyHandbookCode(this)">📋 Sao chép</button>
+                  <button type="button" class="btn-handbook-action apply" onclick="window.applyHandbookCode(this)">⚡ Chèn vào Editor</button>
+                </div>
+              </div>
+              <pre><code>SELECT 
+    order_id, 
+    shop_id, 
+    buyer_id, 
+    order_amount, 
+    shipping_subsidy, 
+    status
+FROM orders
+WHERE status = 'COMPLETED'
+LIMIT 3;</code></pre>
+            </div>
+
+            <!-- Result Table Preview -->
+            <div class="handbook-result-card">
+              <div class="result-card-header">
+                <span class="result-card-title">📋 Bảng kết quả giả lập thu được khi chạy lệnh:</span>
+                <span class="result-row-count">3 dòng trả về (0.04s)</span>
+              </div>
+              <div class="result-table-wrap">
+                <table class="handbook-result-table">
+                  <thead>
+                    <tr>
+                      <th>order_id</th>
+                      <th>shop_id</th>
+                      <th>buyer_id</th>
+                      <th style="text-align: right;">order_amount</th>
+                      <th style="text-align: right;">shipping_subsidy</th>
+                      <th>status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>ORD_10001</td>
+                      <td>SHOP_042</td>
+                      <td>BUYER_881</td>
+                      <td class="num">99,500</td>
+                      <td class="num">25,000</td>
+                      <td><span style="color: #10B981; font-weight: 700;">COMPLETED</span></td>
+                    </tr>
+                    <tr>
+                      <td>ORD_10002</td>
+                      <td>SHOP_102</td>
+                      <td>BUYER_120</td>
+                      <td class="num">102,000</td>
+                      <td class="num">25,000</td>
+                      <td><span style="color: #10B981; font-weight: 700;">COMPLETED</span></td>
+                    </tr>
+                    <tr>
+                      <td>ORD_10003</td>
+                      <td>SHOP_015</td>
+                      <td>BUYER_504</td>
+                      <td class="num">450,000</td>
+                      <td class="num">25,000</td>
+                      <td><span style="color: #10B981; font-weight: 700;">COMPLETED</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="code-explain-box">
+              <b>Giải phẫu câu lệnh - Từng chữ làm nhiệm vụ gì?</b><br>
+              • <code>SELECT</code>: Lời chào mở đầu, thông báo cho máy tính biết bạn chuẩn bị chỉ định các cột muốn lấy ra đĩa.<br>
+              • <code>order_id, shop_id...</code>: Danh sách tên cột, ngăn cách nhau bằng dấu phẩy <code>,</code>. <i>(Lưu ý: Cột cuối cùng trước chữ FROM thì tuyệt đối KHÔNG có dấu phẩy)</i>.<br>
+              • <code>FROM orders</code>: Chỉ định tên kho (bảng dữ liệu) chứa thông tin.<br>
+              • <code>WHERE status = 'COMPLETED'</code>: Bộ lọc điều kiện. Chữ <code>COMPLETED</code> là chuỗi chữ nên bắt buộc phải nằm trong cặp dấu nháy đơn <code>'...'</code>.<br>
+              • <code>LIMIT 3;</code>: Giới hạn chỉ hiển thị đúng 3 dòng đầu tiên và kết thúc bằng dấu chấm phẩy <code>;</code>.
+            </div>
+
+            <div class="pro-tip-box">
+              💡 <b>Mẹo làm quen cực nhanh:</b> Nếu chỉ muốn nhìn lướt qua toàn bộ mọi cột của một bảng bất kỳ mà không cần gõ từng tên cột, bạn có thể viết ngắn gọn: <code>SELECT * FROM orders LIMIT 3;</code> (Dấu <code>*</code> nghĩa là <i>Lấy tất cả các cột</i>).
             </div>
           </div>
 
           <!-- CHƯƠNG 2 -->
           <div class="handbook-chapter-pane" id="tab-keywords" style="display: none;">
             <div class="chapter-badge">Chương 2</div>
-            <h3 class="chapter-title">🔑 Bộ Khung 6 Từ Khóa Thần Thánh Trong Mọi Câu SQL</h3>
+            <h3 class="chapter-title">🔑 Quy Trình 5 Bước Viết Câu Lệnh SQL Hoàn Chỉnh Từ Số 0</h3>
 
             <p class="handbook-lead">
-              Mọi câu lệnh truy vấn của một Data Analyst (từ người mới học cho tới cấp Senior Lead) đều xoay quanh một bộ khung thứ tự cố định. Hãy ghi nhớ quy tắc này:
+              Nhiều người mới học thường bị rối vì không biết nên viết từ nào trước, từ nào sau. Bí quyết của các chuyên gia hàng đầu là: <b>Thứ tự bạn gõ trên màn hình khác với Thứ tự bộ não tư duy và máy tính xử lý</b>!
             </p>
 
             <div class="handbook-syntax-banner">
               <code>SELECT ... FROM ... WHERE ... GROUP BY ... HAVING ... ORDER BY ... LIMIT ...</code>
             </div>
 
-            <div class="handbook-cards-grid">
-              <div class="handbook-card">
-                <div class="card-tag">1. SELECT</div>
-                <div class="card-title">Lấy cái gì ra đĩa?</div>
-                <div class="card-desc">Chỉ định các cột bạn muốn nhìn thấy trên bảng kết quả. Muốn lấy tất cả thì gõ <code>SELECT *</code>.</div>
+            <div class="step-mindset-box">
+              <div class="mindset-step-item">
+                <span class="mindset-step-badge">BƯỚC 1: FROM</span>
+                <span class="mindset-step-desc"><b>Tôi lấy dữ liệu ở đâu?</b> Đầu tiên phải xác định đúng tên bảng chứa thông tin (Ví dụ: <code>FROM orders</code>).</span>
               </div>
-              <div class="handbook-card">
-                <div class="card-tag">2. FROM</div>
-                <div class="card-title">Vào nhà kho nào?</div>
-                <div class="card-desc">Tên bảng dữ liệu chứa thông tin (Ví dụ: <code>FROM orders</code>).</div>
+              <div class="mindset-step-item">
+                <span class="mindset-step-badge">BƯỚC 2: WHERE</span>
+                <span class="mindset-step-desc"><b>Tôi cần lọc bỏ dòng nào?</b> Lọc sạch dữ liệu rác, chỉ giữ lại đơn hoàn tất, đơn trong khoảng giá mục tiêu (Ví dụ: <code>WHERE status = 'COMPLETED'</code>).</span>
               </div>
-              <div class="handbook-card">
-                <div class="card-tag">3. WHERE</div>
-                <div class="card-title">Lọc từng dòng như thế nào?</div>
-                <div class="card-desc">Điều kiện lọc trước khi tính toán. Ví dụ: <code>WHERE order_amount >= 99000 AND status = 'COMPLETED'</code>.</div>
+              <div class="mindset-step-item">
+                <span class="mindset-step-badge">BƯỚC 3: GROUP BY</span>
+                <span class="mindset-step-desc"><b>Tôi có cần gom nhóm không?</b> Nếu sếp hỏi <i>"tính theo từng Shop / từng phân khúc"</i> thì phải gom nhóm (Ví dụ: <code>GROUP BY shop_id</code>).</span>
               </div>
-              <div class="handbook-card">
-                <div class="card-tag">4. GROUP BY</div>
-                <div class="card-title">Gom nhóm theo tiêu chí nào?</div>
-                <div class="card-desc">Giống Pivot Table. Gom theo Shop để xem mỗi Shop bán được bao nhiêu: <code>GROUP BY shop_id</code>.</div>
+              <div class="mindset-step-item">
+                <span class="mindset-step-badge">BƯỚC 4: SELECT</span>
+                <span class="mindset-step-desc"><b>Tôi muốn xem chỉ số gì?</b> Bây giờ mới chọn cột hoặc đặt hàm tính toán như <code>COUNT(order_id)</code>, <code>SUM(order_amount)</code>.</span>
               </div>
-              <div class="handbook-card">
-                <div class="card-tag">5. ORDER BY</div>
-                <div class="card-title">Sắp xếp thứ tự ra sao?</div>
-                <div class="card-desc"><code>DESC</code>: Giảm dần (Lớn nhất lên đầu). <code>ASC</code>: Tăng dần (Bé nhất lên đầu).</div>
-              </div>
-              <div class="handbook-card">
-                <div class="card-tag">6. LIMIT</div>
-                <div class="card-title">Lấy bao nhiêu dòng đầu?</div>
-                <div class="card-desc">Chỉ xem Top 5 hoặc Top 10 đối tượng nổi bật nhất: <code>LIMIT 5</code>.</div>
+              <div class="mindset-step-item">
+                <span class="mindset-step-badge">BƯỚC 5: ORDER BY &amp; LIMIT</span>
+                <span class="mindset-step-desc"><b>Xếp thứ tự ai lên đầu và lấy bao nhiêu người?</b> Dùng <code>ORDER BY ... DESC</code> (giảm dần) và <code>LIMIT 5</code> để lấy Top 5 đối tượng nổi bật nhất.</span>
               </div>
             </div>
 
-            <h4 class="handbook-h4">Ví Dụ Thực Chiến: Tìm Top 5 Shop Có Nhiều Đơn Hoàn Tất Nhất</h4>
+            <h4 class="handbook-h4">Ví Dụ Thực Tiễn 1: Tìm 5 Đơn Hàng Hoàn Tất Giá Trị Cao Nhất Từ 99,000đ Trở Lên</h4>
             <div class="handbook-code-card">
               <div class="code-card-header">
-                <span class="code-lang-tag">SQL QUERY</span>
+                <span class="code-lang-tag">SQL QUERY HOÀN CHỈNH #2</span>
+                <div class="code-card-actions">
+                  <button type="button" class="btn-handbook-action" onclick="window.copyHandbookCode(this)">📋 Sao chép</button>
+                  <button type="button" class="btn-handbook-action apply" onclick="window.applyHandbookCode(this)">⚡ Chèn vào Editor</button>
+                </div>
+              </div>
+              <pre><code>SELECT 
+    order_id, 
+    shop_id, 
+    order_amount, 
+    shipping_subsidy
+FROM orders
+WHERE order_amount >= 99000 
+  AND status = 'COMPLETED'
+ORDER BY order_amount DESC
+LIMIT 5;</code></pre>
+            </div>
+
+            <!-- Result Table Preview 1 -->
+            <div class="handbook-result-card">
+              <div class="result-card-header">
+                <span class="result-card-title">📋 Bảng kết quả giả lập thu được:</span>
+                <span class="result-row-count">Top 5 đơn đắt nhất</span>
+              </div>
+              <div class="result-table-wrap">
+                <table class="handbook-result-table">
+                  <thead>
+                    <tr>
+                      <th>order_id</th>
+                      <th>shop_id</th>
+                      <th style="text-align: right;">order_amount (VNĐ)</th>
+                      <th style="text-align: right;">shipping_subsidy (VNĐ)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>ORD_99812</td>
+                      <td>SHOP_099</td>
+                      <td class="num">1,850,000</td>
+                      <td class="num">25,000</td>
+                    </tr>
+                    <tr>
+                      <td>ORD_77210</td>
+                      <td>SHOP_012</td>
+                      <td class="num">1,420,000</td>
+                      <td class="num">25,000</td>
+                    </tr>
+                    <tr>
+                      <td>ORD_66541</td>
+                      <td>SHOP_044</td>
+                      <td class="num">1,150,000</td>
+                      <td class="num">25,000</td>
+                    </tr>
+                    <tr>
+                      <td>ORD_33219</td>
+                      <td>SHOP_102</td>
+                      <td class="num">980,000</td>
+                      <td class="num">25,000</td>
+                    </tr>
+                    <tr>
+                      <td>ORD_88410</td>
+                      <td>SHOP_007</td>
+                      <td class="num">750,000</td>
+                      <td class="num">25,000</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <h4 class="handbook-h4">Ví Dụ Thực Tiễn 2: Gom Nhóm Theo Shop Để Tìm Top 5 Shop Nhận Nhiều Trợ Giá Nhất</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 10px;">
+              Khi cần thống kê tổng số đơn và tổng tiền trợ giá sàn của từng Shop, chúng ta kết hợp <code>GROUP BY shop_id</code> cùng các hàm <code>COUNT</code> và <code>SUM</code>.
+            </p>
+
+            <div class="handbook-code-card">
+              <div class="code-card-header">
+                <span class="code-lang-tag">SQL QUERY HOÀN CHỈNH #3 (CÓ GROUP BY)</span>
                 <div class="code-card-actions">
                   <button type="button" class="btn-handbook-action" onclick="window.copyHandbookCode(this)">📋 Sao chép</button>
                   <button type="button" class="btn-handbook-action apply" onclick="window.applyHandbookCode(this)">⚡ Chèn vào Editor</button>
@@ -540,88 +706,186 @@ Gợi ý cấu trúc:
               <pre><code>SELECT 
     shop_id, 
     COUNT(order_id) AS total_orders,
-    SUM(shipping_subsidy) AS total_subsidy_loss
+    SUM(shipping_subsidy) AS total_subsidy_vnd
 FROM orders
 WHERE status = 'COMPLETED'
 GROUP BY shop_id
 ORDER BY total_orders DESC
 LIMIT 5;</code></pre>
             </div>
+
+            <!-- Result Table Preview 2 -->
+            <div class="handbook-result-card">
+              <div class="result-card-header">
+                <span class="result-card-title">📋 Bảng kết quả giả lập thu được:</span>
+                <span class="result-row-count">Top 5 Shop dẫn đầu</span>
+              </div>
+              <div class="result-table-wrap">
+                <table class="handbook-result-table">
+                  <thead>
+                    <tr>
+                      <th>shop_id</th>
+                      <th style="text-align: right;">total_orders (Số đơn)</th>
+                      <th style="text-align: right;">total_subsidy_vnd (Tổng trợ giá sàn chi)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b style="color: #F87171;">SHOP_102</b></td>
+                      <td class="num">1,420</td>
+                      <td class="num highlight">35,500,000</td>
+                    </tr>
+                    <tr>
+                      <td><b style="color: #F87171;">SHOP_088</b></td>
+                      <td class="num">1,290</td>
+                      <td class="num highlight">32,250,000</td>
+                    </tr>
+                    <tr>
+                      <td>SHOP_042</td>
+                      <td class="num">860</td>
+                      <td class="num">21,500,000</td>
+                    </tr>
+                    <tr>
+                      <td>SHOP_015</td>
+                      <td class="num">450</td>
+                      <td class="num">11,250,000</td>
+                    </tr>
+                    <tr>
+                      <td>SHOP_099</td>
+                      <td class="num">310</td>
+                      <td class="num">7,750,000</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
             <div class="code-explain-box">
-              <b>Giải thích từng dòng:</b><br>
-              • Dòng 1-3: Lấy mã shop, đếm tổng số đơn và tính tổng tiền sàn đã trợ giá ship.<br>
-              • Dòng 4: Lấy từ bảng giao dịch đơn hàng <code>orders</code>.<br>
-              • Dòng 5: Chỉ tính các đơn đã giao thành công (<code>COMPLETED</code>).<br>
-              • Dòng 6: Gom nhóm theo từng Shop.<br>
-              • Dòng 7-8: Xếp người nhiều đơn nhất lên đầu và lấy đúng Top 5 Shop đáng ngờ.
+              <b>Quy tắc vàng sống còn của GROUP BY:</b><br>
+              Khi bạn dùng hàm gom nhóm như <code>COUNT(order_id)</code> hoặc <code>SUM(...)</code>, thì bất kỳ cột nào đứng lẻ loi trong câu <code>SELECT</code> (ở đây là <code>shop_id</code>) <b>BẮT BUỘC phải xuất hiện trong mệnh đề `GROUP BY`</b>! Nếu quên, hệ thống sẽ báo lỗi ngay lập tức.
             </div>
           </div>
 
           <!-- CHƯƠNG 3 -->
           <div class="handbook-chapter-pane" id="tab-functions" style="display: none;">
             <div class="chapter-badge">Chương 3</div>
-            <h3 class="chapter-title">📊 5 Hàm Thống Kê Tối Thượng Cho Mọi Báo Cáo Kinh Doanh</h3>
+            <h3 class="chapter-title">📊 5 Hàm Thống Kê Tối Thượng &amp; Công Thức Tính Chỉ Số Kinh Doanh (KPIs)</h3>
 
             <p class="handbook-lead">
-              Lãnh đạo doanh nghiệp không muốn đọc hàng triệu dòng dữ liệu chi tiết. Họ muốn nhìn thấy <b>chỉ số tổng hợp (Metrics / KPIs)</b>. Dưới đây là 5 hàm bạn sẽ dùng liên tục trong mọi bài toán:
+              Lãnh đạo doanh nghiệp không bao giờ muốn đọc hàng triệu dòng dữ liệu chi tiết. Họ muốn nhìn thấy <b>chỉ số tổng hợp (Metrics / KPIs)</b> để ra quyết định kinh doanh. Dưới đây là 5 hàm cốt lõi bạn sẽ dùng trong 99% mọi bản báo cáo:
             </p>
 
             <div class="handbook-func-list">
               <div class="func-item">
-                <div class="func-badge">1. COUNT(cột)</div>
+                <div class="func-badge">1. COUNT(cột) ➔ Đếm khối lượng giao dịch</div>
                 <div class="func-desc">
-                  <b>Đếm số lượng giao dịch:</b> Ví dụ <code>COUNT(order_id)</code> đếm xem có bao nhiêu đơn hàng được tạo ra.<br>
-                  <span class="func-note">⚠️ Nhắc nhở: Luôn viết <code>COUNT(*)</code> hoặc <code>COUNT(tên_cột)</code>. Tuyệt đối không viết <code>COUNT()</code> rỗng!</span>
+                  Ví dụ: <code>COUNT(order_id)</code> đếm xem có bao nhiêu đơn hàng được tạo ra. Dùng <code>COUNT(DISTINCT buyer_id)</code> để đếm số khách hàng duy nhất (không trùng lặp).<br>
+                  <span class="func-note">⚠️ Cảnh báo: Phải viết <code>COUNT(*)</code> hoặc <code>COUNT(order_id)</code>, tuyệt đối không để ngoặc rỗng <code>COUNT()</code>!</span>
                 </div>
               </div>
 
               <div class="func-item">
-                <div class="func-badge">2. SUM(cột)</div>
+                <div class="func-badge">2. SUM(cột) ➔ Tính tổng doanh thu &amp; chi phí</div>
                 <div class="func-desc">
-                  <b>Tính tổng tiền (Doanh thu / Chi phí):</b> Ví dụ <code>SUM(order_amount)</code> ra tổng GMV doanh số, hoặc <code>SUM(shipping_subsidy)</code> ra tổng ngân sách trợ giá sàn bị tiêu tốn.
+                  Cộng dồn tất cả giá trị tiền tệ: <code>SUM(order_amount)</code> ra tổng GMV doanh số, hoặc <code>SUM(shipping_subsidy)</code> ra tổng ngân sách trợ giá ship sàn bị tiêu tốn.
                 </div>
               </div>
 
               <div class="func-item">
-                <div class="func-badge">3. AVG(cột)</div>
+                <div class="func-badge">3. AVG(cột) ➔ Giá trị trung bình đơn (AOV - Average Order Value)</div>
                 <div class="func-desc">
-                  <b>Tính giá trị trung bình đơn (AOV - Average Order Value):</b> <code>AVG(order_amount)</code> trả lời câu hỏi: <i>"Trung bình mỗi khách hàng mua bao nhiêu tiền cho 1 đơn hàng?"</i>.
+                  <code>AVG(order_amount)</code> trả lời câu hỏi chiến lược của CEO: <i>"Trung bình mỗi khách hàng chi trả bao nhiêu tiền cho 1 đơn hàng?"</i>.
                 </div>
               </div>
 
               <div class="func-item">
-                <div class="func-badge">4. ROUND(số, n)</div>
+                <div class="func-badge">4. ROUND(số, n) ➔ Làm tròn số thập phân cho báo cáo đẹp mắt</div>
                 <div class="func-desc">
-                  <b>Làm tròn số thập phân:</b> Khi tính trung bình hoặc tỷ lệ %, số thường bị dài (vd: <code>102345.6789...</code>). Hãy dùng <code>ROUND(AVG(order_amount), 0)</code> để làm tròn số nguyên, hoặc <code>ROUND(tỷ_lệ, 2)</code> để lấy 2 chữ số thập phân cho báo cáo đẹp mắt.
+                  Khi chia số hoặc tính trung bình, kết quả hay bị số lẻ xấu (ví dụ: <code>102345.678912...</code>). Hãy bọc bên ngoài: <code>ROUND(AVG(order_amount), 0)</code> để ra số tiền chẵn, hoặc <code>ROUND(tỷ_lệ, 2)</code> để lấy 2 chữ số thập phân (vd: <code>58.40%</code>).
                 </div>
               </div>
 
               <div class="func-item">
-                <div class="func-badge">5. MIN() &amp; MAX()</div>
+                <div class="func-badge">5. MIN(cột) &amp; MAX(cột) ➔ Xác định biên độ dao động</div>
                 <div class="func-desc">
-                  <b>Tìm đơn hàng rẻ nhất &amp; khủng nhất:</b> <code>MIN(order_amount)</code> và <code>MAX(order_amount)</code> giúp xác định biên độ dao động giá trị mua sắm.
+                  <code>MIN(order_amount)</code> tìm ra đơn hàng rẻ nhất sàn, còn <code>MAX(order_amount)</code> tìm ra đơn hàng khủng nhất chiến dịch.
                 </div>
               </div>
             </div>
 
-            <h4 class="handbook-h4">Ví Dụ Thực Chiến: Đo Lường Tổng Quan Thiệt Hại Chiến Dịch</h4>
+            <div class="pro-tip-box">
+              🎯 <b>Bí quyết tính tỷ lệ phần trăm (%) trực tiếp trong SQL:</b><br>
+              Để tính tỷ trọng A chiếm bao nhiêu % trên tổng B: <code>ROUND(SUM(A) * 100.0 / SUM(B), 2) AS pct_ratio</code><br>
+              <i>*Lưu ý sống còn: Luôn nhân với <code>100.0</code> (có dấu chấm thập phân) để máy tính hiểu là phép chia số thực, tránh bị ép kiểu làm tròn về 0!</i>
+            </div>
+
+            <h4 class="handbook-h4">Ví Dụ Thực Tiễn Hoàn Chỉnh: Báo Cáo Sức Khỏe Tài Chính Toàn Bộ Chiến Dịch Mega Sale</h4>
+            
+            <div class="step-mindset-box">
+              <div class="mindset-step-item">
+                <span class="mindset-step-badge">YÊU CẦU CỦA SẾP</span>
+                <span class="mindset-step-desc"><i>"Hãy lập cho anh một bảng tổng kết tài chính: Tổng số đơn hoàn tất, Tổng GMV bán ra, Giá trị trung bình đơn (AOV), Tổng tiền sàn trợ giá freeship, Tỷ lệ trợ giá chiếm bao nhiêu % GMV, Đơn rẻ nhất và Đơn đắt nhất."</i></span>
+              </div>
+            </div>
+
             <div class="handbook-code-card">
               <div class="code-card-header">
-                <span class="code-lang-tag">SQL QUERY</span>
+                <span class="code-lang-tag">SQL QUERY HOÀN CHỈNH #4 (KPIs BÁO CÁO)</span>
                 <div class="code-card-actions">
                   <button type="button" class="btn-handbook-action" onclick="window.copyHandbookCode(this)">📋 Sao chép</button>
                   <button type="button" class="btn-handbook-action apply" onclick="window.applyHandbookCode(this)">⚡ Chèn vào Editor</button>
                 </div>
               </div>
               <pre><code>SELECT 
-    COUNT(order_id) AS total_suspicious_orders,
-    SUM(shipping_subsidy) AS total_financial_loss_vnd,
-    ROUND(AVG(order_amount), 0) AS avg_order_amount_vnd,
-    MIN(order_amount) AS min_amount_vnd,
-    MAX(order_amount) AS max_amount_vnd
+    COUNT(order_id) AS total_completed_orders,
+    SUM(order_amount) AS total_gmv_vnd,
+    ROUND(AVG(order_amount), 0) AS aov_vnd,
+    SUM(shipping_subsidy) AS total_subsidy_vnd,
+    ROUND(SUM(shipping_subsidy) * 100.0 / SUM(order_amount), 2) AS subsidy_to_gmv_pct,
+    MIN(order_amount) AS min_order_vnd,
+    MAX(order_amount) AS max_order_vnd
 FROM orders
-WHERE order_amount BETWEEN 99000 AND 105000
-  AND status = 'COMPLETED';</code></pre>
+WHERE status = 'COMPLETED';</code></pre>
+            </div>
+
+            <!-- Result Table Preview -->
+            <div class="handbook-result-card">
+              <div class="result-card-header">
+                <span class="result-card-title">📋 Bảng kết quả giả lập thu được:</span>
+                <span class="result-row-count">1 dòng tổng kết toàn sàn</span>
+              </div>
+              <div class="result-table-wrap">
+                <table class="handbook-result-table">
+                  <thead>
+                    <tr>
+                      <th style="text-align: right;">total_completed_orders</th>
+                      <th style="text-align: right;">total_gmv_vnd</th>
+                      <th style="text-align: right;">aov_vnd</th>
+                      <th style="text-align: right;">total_subsidy_vnd</th>
+                      <th style="text-align: right;">subsidy_to_gmv_pct</th>
+                      <th style="text-align: right;">min_order_vnd</th>
+                      <th style="text-align: right;">max_order_vnd</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="num">25,000</td>
+                      <td class="num">4,250,000,000</td>
+                      <td class="num">170,000</td>
+                      <td class="num highlight">625,000,000</td>
+                      <td class="num highlight">14.71%</td>
+                      <td class="num">20,000</td>
+                      <td class="num">3,500,000</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="code-explain-box">
+              <b>Phân tích số liệu nghiệp vụ để trình bày với Sếp:</b><br>
+              • Toàn sàn có <b>25,000 đơn hoàn tất</b>, tạo ra <b>4.25 tỷ VNĐ</b> doanh số GMV với giá trị trung bình mỗi đơn là <b>170,000 VNĐ</b>.<br>
+              • 🚨 <b>Cảnh báo rủi ro lớn:</b> Ngân sách trợ giá vận chuyển lên tới <b>625 triệu VNĐ (chiếm tới 14.71% GMV)</b>! Trong ngành TMĐT, trần an toàn cho chi phí trợ giá ship thường chỉ được tối đa 6% - 8% GMV. Con số 14.71% chứng tỏ đang có lỗ hổng rò rỉ ngân sách cực kỳ nghiêm trọng cần bóc tách ngay!
             </div>
           </div>
 
@@ -631,28 +895,40 @@ WHERE order_amount BETWEEN 99000 AND 105000
             <h3 class="chapter-title">🏷️ Tuyệt Chiêu Phân Khúc Dữ Liệu Với CASE WHEN</h3>
 
             <p class="handbook-lead">
-              Nếu bạn biết dùng hàm <code>=IF()</code> trong Excel thì bạn đã nắm được 90% sức mạnh của <code>CASE WHEN</code> trong SQL!
+              Nếu bạn đã từng dùng hàm <code>=IF(...)</code> trong Excel thì bạn đã nắm được 90% sức mạnh của <code>CASE WHEN</code> trong SQL! Đây là vũ khí mạnh nhất của Data Analyst để biến những con số khô khan thành các nhóm phân khúc hành vi khách hàng.
             </p>
 
             <div class="handbook-callout info">
               <div class="callout-icon">💡</div>
               <div class="callout-body">
                 <b>Tại sao Data Analyst lại cực kỳ thích CASE WHEN?</b><br>
-                Vì dữ liệu thô trong máy chỉ là những con số (ví dụ: 50,000đ, 102,000đ, 500,000đ). Nhờ <code>CASE WHEN</code>, bạn có thể tự động gắn nhãn phân loại theo từng phân khúc kinh doanh (Khách VIP, Khách Tiềm Năng, Đơn Bất Thường...).
+                Vì dữ liệu thô trong máy tính chỉ là từng con số riêng lẻ (ví dụ: 50,000đ, 101,000đ, 450,000đ). Nhờ <code>CASE WHEN</code>, bạn có thể tự động gắn nhãn phân loại theo từng giỏ giá trị: <i>Đơn dưới ngưỡng</i>, <i>Đơn cận ngưỡng Freeship</i>, <i>Đơn giá trị cao</i>...
               </div>
             </div>
 
-            <h4 class="handbook-h4">Cấu Trúc Câu Lệnh Chuẩn</h4>
+            <h4 class="handbook-h4">Cấu Trúc Cú Pháp Chuẩn</h4>
             <pre class="handbook-mini-code"><code>CASE 
     WHEN điều_kiện_1 THEN 'Nhãn phân loại 1'
     WHEN điều_kiện_2 THEN 'Nhãn phân loại 2'
     ELSE 'Nhãn mặc định'
 END AS tên_cột_mới</code></pre>
 
-            <h4 class="handbook-h4">Ví Dụ Bắt Lỗ Hổng: Phân Khúc Đơn Hàng Vận Chuyển</h4>
+            <h4 class="handbook-h4">Ví Dụ Thực Tiễn Hoàn Chỉnh: Bóc Tách Hiện Tượng "Chẻ Đơn Hàng" Ăn Freeship</h4>
+            
+            <div class="step-mindset-box">
+              <div class="mindset-step-item">
+                <span class="mindset-step-badge">BỐI CẢNH BÀI TOÁN</span>
+                <span class="mindset-step-desc">Sàn quy định: Đơn từ 99,000đ trở lên được Freeship 25,000đ. Ban Giám Đốc nghi ngờ khách hàng và người bán đang thông đồng <b>chia nhỏ một giỏ hàng to thành nhiều đơn suýt soát 99k - 105k</b> để gom nhiều mã freeship.</span>
+              </div>
+              <div class="mindset-step-item">
+                <span class="mindset-step-badge">YÊU CẦU CỦA SẾP</span>
+                <span class="mindset-step-desc"><i>"Chia toàn bộ đơn hàng thành 4 giỏ giá: Dưới 99k, 99k - 105k (Cận ngưỡng), 105k - 200k, và Trên 200k. Đếm số đơn, tỷ lệ % và tổng tiền trợ giá của từng giỏ."</i></span>
+              </div>
+            </div>
+
             <div class="handbook-code-card">
               <div class="code-card-header">
-                <span class="code-lang-tag">SQL QUERY</span>
+                <span class="code-lang-tag">SQL QUERY HOÀN CHỈNH #5 (PHÂN KHÚC CASE WHEN)</span>
                 <div class="code-card-actions">
                   <button type="button" class="btn-handbook-action" onclick="window.copyHandbookCode(this)">📋 Sao chép</button>
                   <button type="button" class="btn-handbook-action apply" onclick="window.applyHandbookCode(this)">⚡ Chèn vào Editor</button>
@@ -660,47 +936,119 @@ END AS tên_cột_mới</code></pre>
               </div>
               <pre><code>SELECT 
     CASE 
-        WHEN order_amount &lt; 99000 THEN 'Dưới 99k (Không Freeship)'
-        WHEN order_amount BETWEEN 99000 AND 105000 THEN '99k - 105k (Cận ngưỡng Freeship)'
-        WHEN order_amount BETWEEN 105001 AND 200000 THEN '105k - 200k'
-        ELSE 'Trên 200k'
+        WHEN order_amount &lt; 99000 THEN '1. Dưới 99k (Không Freeship)'
+        WHEN order_amount BETWEEN 99000 AND 105000 THEN '2. 99k - 105k (Cận ngưỡng Freeship)'
+        WHEN order_amount BETWEEN 105001 AND 200000 THEN '3. 105k - 200k (Bình thường)'
+        ELSE '4. Trên 200k (Giá trị cao)'
     END AS price_segment,
     COUNT(order_id) AS total_orders,
-    SUM(shipping_subsidy) AS total_subsidy_vnd
+    ROUND(COUNT(order_id) * 100.0 / 25000, 2) AS pct_orders,
+    SUM(shipping_subsidy) AS total_subsidy_vnd,
+    ROUND(AVG(order_amount), 0) AS avg_order_value_vnd
 FROM orders
 WHERE status = 'COMPLETED'
 GROUP BY price_segment
 ORDER BY total_orders DESC;</code></pre>
             </div>
+
+            <!-- Result Table Preview -->
+            <div class="handbook-result-card">
+              <div class="result-card-header">
+                <span class="result-card-title">📋 Bảng kết quả giả lập thu được:</span>
+                <span class="result-row-count">4 phân khúc giá</span>
+              </div>
+              <div class="result-table-wrap">
+                <table class="handbook-result-table">
+                  <thead>
+                    <tr>
+                      <th>price_segment</th>
+                      <th style="text-align: right;">total_orders</th>
+                      <th style="text-align: right;">pct_orders (%)</th>
+                      <th style="text-align: right;">total_subsidy_vnd</th>
+                      <th style="text-align: right;">avg_order_value_vnd</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b style="color: #F87171;">2. 99k - 105k (Cận ngưỡng Freeship)</b></td>
+                      <td class="num highlight">14,600</td>
+                      <td class="num highlight">58.40%</td>
+                      <td class="num highlight">365,000,000</td>
+                      <td class="num">100,500</td>
+                    </tr>
+                    <tr>
+                      <td>3. 105k - 200k (Bình thường)</td>
+                      <td class="num">5,200</td>
+                      <td class="num">20.80%</td>
+                      <td class="num">130,000,000</td>
+                      <td class="num">145,000</td>
+                    </tr>
+                    <tr>
+                      <td>1. Dưới 99k (Không Freeship)</td>
+                      <td class="num">3,400</td>
+                      <td class="num">13.60%</td>
+                      <td class="num">0</td>
+                      <td class="num">65,000</td>
+                    </tr>
+                    <tr>
+                      <td>4. Trên 200k (Giá trị cao)</td>
+                      <td class="num">1,800</td>
+                      <td class="num">7.20%</td>
+                      <td class="num">45,000,000</td>
+                      <td class="num">320,000</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
             <div class="code-explain-box">
-              <b>Phát hiện chấn động khi chạy câu này:</b><br>
-              Bạn sẽ thấy phân khúc <b>99k - 105k chiếm tới 58.4% tổng lượng đơn</b> và ngốn hơn <b>4.4 tỷ VNĐ</b> tiền trợ giá! Đây chính là bằng chứng xác thực chứng minh có hành vi chia nhỏ đơn hàng để trục lợi chính sách freeship của sàn.
+              <b>Phát hiện chấn động khi đọc bảng kết quả này:</b><br>
+              • Thông thường trong bán lẻ, phân phối đơn hàng sẽ trải đều hoặc tập trung ở các giỏ tự nhiên. Nhưng ở đây, giỏ <b>99k - 105k chiếm áp đảo tới 58.40% tổng số đơn</b> và ngốn tới <b>365 triệu VNĐ trợ giá (chiếm 58.4% toàn bộ quỹ freeship)</b>!<br>
+              • Giá trị trung bình của giỏ này là đúng <b>100,500 VNĐ</b> (vừa khít bước qua vạch 99k đúng 1,500đ). Đây chính là <b>bằng chứng đanh thép chứng minh hành vi "chẻ đơn" có chủ đích</b>!
+            </div>
+
+            <div class="pro-tip-box">
+              💡 <b>Mẹo nâng cao (Conditional Aggregation):</b> Bạn có thể đếm số đơn bất thường ngay trong 1 câu SELECT bằng cách kết hợp SUM với CASE WHEN:<br>
+              <code>SUM(CASE WHEN order_amount BETWEEN 99000 AND 105000 THEN 1 ELSE 0 END) AS suspicious_orders</code>
             </div>
           </div>
 
           <!-- CHƯƠNG 5 -->
           <div class="handbook-chapter-pane" id="tab-join" style="display: none;">
             <div class="chapter-badge">Chương 5</div>
-            <h3 class="chapter-title">🔗 Ghép 2 Bảng Lại Với Nhau Bằng JOIN</h3>
+            <h3 class="chapter-title">🔗 Ghép 2 Bảng Lại Với Nhau Bằng JOIN - Vạch Mặt Mạng Lưới Gian Lận</h3>
 
             <p class="handbook-lead">
-              Trong doanh nghiệp thực tế, người ta không bao giờ nhét tất cả thông tin vào 1 bảng duy nhất (vì sẽ khiến hệ thống bị nặng và trùng lặp). Thay vào đó, dữ liệu được chia ra thành nhiều bảng chuyên biệt.
+              Trong doanh nghiệp thực tế, người ta không bao giờ nhét tất cả thông tin vào 1 bảng duy nhất (vì sẽ khiến hệ thống bị nặng và trùng lặp dữ liệu). Thay vào đó, dữ liệu được chia ra nhiều bảng chuyên biệt và liên kết qua các cột mã định danh chung.
             </p>
 
             <div class="handbook-callout info">
               <div class="callout-icon">🧩</div>
               <div class="callout-body">
-                <b>Ví dụ trong bài toán Sandbox của bạn:</b><br>
-                • Bảng <code>orders</code>: Chứa thông tin tiền bạc, mã đơn, mã người bán (<code>shop_id</code>), mã người mua (<code>buyer_id</code>).<br>
-                • Bảng <code>buyer_profiles</code>: Chứa thông tin thiết bị, địa chỉ IP (<code>ip_address</code>), tuổi tài khoản của người mua.<br>
-                ➔ <b>Nhiệm vụ:</b> Để biết người mua nào dùng chung dải IP để đặt hàng bất thường, bạn phải <b>nối 2 bảng này lại qua cột chung `buyer_id`</b>!
+                <b>Cấu trúc dữ liệu trong bài toán Sandbox của bạn:</b><br>
+                • Bảng <code>orders</code>: Chứa thông tin đơn hàng, số tiền (<code>order_amount</code>), mã shop (<code>shop_id</code>), mã người mua (<code>buyer_id</code>). Nhưng bảng này <b>không biết</b> người mua dùng mạng Wifi nào hay thiết bị gì.<br>
+                • Bảng <code>buyer_profiles</code>: Chứa hồ sơ người mua, bao gồm địa chỉ IP mạng (<code>ip_address</code>), tuổi tài khoản (<code>account_age_days</code>).<br>
+                ➔ <b>Nhiệm vụ:</b> Nối 2 bảng này lại qua cột chung <code>buyer_id</code> để biết xem có IP nào đang đặt hàng loạt đơn cho cùng một Shop hay không!
               </div>
             </div>
 
-            <h4 class="handbook-h4">Ví Dụ Thực Chiến: Tìm Top 5 Cụm Shop &amp; IP Người Mua Trục Lợi</h4>
+            <div class="step-mindset-box">
+              <div class="mindset-step-item">
+                <span class="mindset-step-badge">ĐẶT ALIAS</span>
+                <span class="mindset-step-desc"><code>orders o</code> (đặt tên tắt bảng orders là <code>o</code>), <code>buyer_profiles b</code> (đặt tên tắt bảng buyer là <code>b</code>).</span>
+              </div>
+              <div class="mindset-step-item">
+                <span class="mindset-step-badge">CẦU NỐI (ON)</span>
+                <span class="mindset-step-desc"><code>ON o.buyer_id = b.buyer_id</code>: Sợi dây liên kết ghép từng đơn hàng với đúng hồ sơ của người mua đó.</span>
+              </div>
+            </div>
+
+            <h4 class="handbook-h4">Ví Dụ Thực Tiễn Hoàn Chỉnh: Tìm Top 5 Cặp Shop &amp; Cụm IP Người Mua Nhận Trợ Giá Nhiều Nhất</h4>
+
             <div class="handbook-code-card">
               <div class="code-card-header">
-                <span class="code-lang-tag">SQL QUERY</span>
+                <span class="code-lang-tag">SQL QUERY HOÀN CHỈNH #6 (JOIN 2 BẢNG)</span>
                 <div class="code-card-actions">
                   <button type="button" class="btn-handbook-action" onclick="window.copyHandbookCode(this)">📋 Sao chép</button>
                   <button type="button" class="btn-handbook-action apply" onclick="window.applyHandbookCode(this)">⚡ Chèn vào Editor</button>
@@ -710,7 +1058,8 @@ ORDER BY total_orders DESC;</code></pre>
     o.shop_id,
     b.ip_address,
     COUNT(o.order_id) AS suspicious_orders,
-    SUM(o.shipping_subsidy) AS total_subsidy_loss
+    SUM(o.shipping_subsidy) AS total_subsidy_loss_vnd,
+    ROUND(AVG(o.order_amount), 0) AS avg_order_amount_vnd
 FROM orders o
 JOIN buyer_profiles b ON o.buyer_id = b.buyer_id
 WHERE o.order_amount BETWEEN 99000 AND 105000
@@ -719,63 +1068,132 @@ GROUP BY o.shop_id, b.ip_address
 ORDER BY suspicious_orders DESC
 LIMIT 5;</code></pre>
             </div>
+
+            <!-- Result Table Preview -->
+            <div class="handbook-result-card">
+              <div class="result-card-header">
+                <span class="result-card-title">📋 Bảng kết quả giả lập thu được:</span>
+                <span class="result-row-count">Top 5 Cụm Shop &amp; IP đáng ngờ nhất</span>
+              </div>
+              <div class="result-table-wrap">
+                <table class="handbook-result-table">
+                  <thead>
+                    <tr>
+                      <th>shop_id</th>
+                      <th>ip_address</th>
+                      <th style="text-align: right;">suspicious_orders</th>
+                      <th style="text-align: right;">total_subsidy_loss_vnd</th>
+                      <th style="text-align: right;">avg_order_amount_vnd</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b style="color: #F87171;">SHOP_102</b></td>
+                      <td><code style="color: #38BDF8;">192.168.1.10</code></td>
+                      <td class="num highlight">1,250</td>
+                      <td class="num highlight">31,250,000</td>
+                      <td class="num">99,500</td>
+                    </tr>
+                    <tr>
+                      <td><b style="color: #F87171;">SHOP_088</b></td>
+                      <td><code style="color: #38BDF8;">192.168.1.10</code></td>
+                      <td class="num highlight">1,180</td>
+                      <td class="num highlight">29,500,000</td>
+                      <td class="num">100,200</td>
+                    </tr>
+                    <tr>
+                      <td>SHOP_042</td>
+                      <td><code>10.0.0.55</code></td>
+                      <td class="num">740</td>
+                      <td class="num">18,500,000</td>
+                      <td class="num">101,000</td>
+                    </tr>
+                    <tr>
+                      <td>SHOP_102</td>
+                      <td><code>10.0.0.88</code></td>
+                      <td class="num">120</td>
+                      <td class="num">3,000,000</td>
+                      <td class="num">99,800</td>
+                    </tr>
+                    <tr>
+                      <td>SHOP_015</td>
+                      <td><code>172.16.0.4</code></td>
+                      <td class="num">95</td>
+                      <td class="num">2,375,000</td>
+                      <td class="num">102,500</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
             <div class="code-explain-box">
-              <b>Giải thích ký tự viết tắt:</b><br>
-              • <code>orders o</code>: Đặt biệt danh (Alias) cho bảng orders là <code>o</code> để viết cho ngắn.<br>
-              • <code>buyer_profiles b</code>: Đặt biệt danh cho bảng buyer_profiles là <code>b</code>.<br>
-              • <code>ON o.buyer_id = b.buyer_id</code>: Sợi dây liên kết để ghép từng đơn hàng với hồ sơ của chính người mua đó.
+              <b>Bằng chứng không thể chối cãi khi phân tích số liệu:</b><br>
+              • Hãy nhìn vào 2 dòng đầu tiên: Cùng một dải IP là <code>192.168.1.10</code> nhưng đã tạo ra tới <b>2,430 đơn hàng</b> (1,250 đơn cho SHOP_102 và 1,180 đơn cho SHOP_088)!<br>
+              • Cụm IP này đã rút ruột tổng cộng hơn <b>60,750,000 VNĐ</b> tiền ngân sách trợ giá vận chuyển của sàn.<br>
+              • ➔ <b>Kết luận kinh doanh:</b> Đây chắc chắn là mạng lưới dùng tool tự động (botnet/máy ảo) cắm cùng mạng nội bộ để tự đặt hàng chéo cho nhau nhằm bào voucher freeship!
             </div>
           </div>
 
           <!-- CHƯƠNG 6 -->
           <div class="handbook-chapter-pane" id="tab-mistakes" style="display: none;">
             <div class="chapter-badge">Chương 6</div>
-            <h3 class="chapter-title">⚠️ 5 Lỗi Cú Pháp Ngớ Ngẩn Người Mới Hay Gặp Nhất</h3>
+            <h3 class="chapter-title">⚠️ Bắt Bệnh &amp; Tự Sửa 5 Lỗi Cú Pháp SQL Kinh Điển (Kèm Thông Báo Terminal)</h3>
 
             <p class="handbook-lead">
-              Đừng nản lòng khi thấy màn hình báo <i>⚠️ Lỗi SQL cú pháp</i>! Đến 95% nguyên nhân chỉ là do bạn gõ sót 1 dấu phẩy hoặc nhầm 1 chữ cái. Dưới đây là cách bắt bệnh và sửa ngay trong 3 giây:
+              Đừng hoảng sợ khi màn hình terminal hiện dòng chữ đỏ <i>⚠️ Lỗi SQL cú pháp</i>! Đến 95% nguyên nhân chỉ là do bạn gõ sót 1 dấu phẩy hoặc nhầm 1 chữ cái. Dưới đây là cách đối chiếu thông báo lỗi của máy tính để sửa ngay trong 3 giây:
             </p>
 
             <div class="mistake-list">
+              <!-- Lỗi 1 -->
               <div class="mistake-item">
-                <div class="mistake-title">❌ Lỗi 1: Quên dấu phẩy `,` giữa các cột</div>
+                <div class="mistake-title">❌ Lỗi 1: Thừa dấu phẩy trước FROM hoặc quên dấu phẩy giữa 2 cột</div>
                 <div class="mistake-body">
-                  <div class="code-bad">SAI: SELECT order_id shop_id order_amount FROM orders</div>
-                  <div class="code-good">ĐÚNG: SELECT order_id, shop_id, order_amount FROM orders</div>
-                  <small>💡 <i>Lưu ý: Cột cuối cùng ngay trước chữ `FROM` thì TUYỆT ĐỐI KHÔNG để dấu phẩy thừa!</i></small>
+                  <div class="mistake-term-err">🖥️ Terminal báo: Parse error on line 2: ... order_amount, FROM orders --^ Expecting 'COLUMN_NAME', got 'FROM'</div>
+                  <div class="code-bad">SAI: SELECT order_id, order_amount, FROM orders; (Dấu phẩy thừa trước FROM)</div>
+                  <div class="code-good">ĐÚNG: SELECT order_id, order_amount FROM orders;</div>
+                  <small>💡 <i>Quy tắc: Cột cuối cùng ngay trước chữ `FROM` thì TUYỆT ĐỐI KHÔNG để dấu phẩy!</i></small>
                 </div>
               </div>
 
+              <!-- Lỗi 2 -->
               <div class="mistake-item">
-                <div class="mistake-title">❌ Lỗi 2: Quên dấu nháy đơn `'...'` khi so sánh chữ (Text)</div>
+                <div class="mistake-title">❌ Lỗi 2: Quên dấu nháy đơn '...' khi so sánh chữ chuỗi (Text/String)</div>
                 <div class="mistake-body">
+                  <div class="mistake-term-err">🖥️ Terminal báo: Column COMPLETED not found in table orders</div>
                   <div class="code-bad">SAI: WHERE status = COMPLETED</div>
                   <div class="code-good">ĐÚNG: WHERE status = 'COMPLETED'</div>
-                  <small>💡 <i>Quy tắc: Chữ cái bắt buộc phải có `'...'`. Số thì viết bình thường (ví dụ: `order_amount >= 99000`).</i></small>
+                  <small>💡 <i>Quy tắc: Máy tính coi mọi từ viết không có dấu `'...'` là tên một cái cột. Do đó chữ phải có nháy đơn `'COMPLETED'`. Số thì viết bình thường (vd: `order_amount >= 99000`).</i></small>
                 </div>
               </div>
 
+              <!-- Lỗi 3 -->
               <div class="mistake-item">
-                <div class="mistake-title">❌ Lỗi 3: Dùng hàm tính toán mà quên GROUP BY</div>
+                <div class="mistake-title">❌ Lỗi 3: Dùng hàm tính toán (COUNT, SUM) mà quên GROUP BY</div>
                 <div class="mistake-body">
+                  <div class="mistake-term-err">🖥️ Hiện tượng: Bạn muốn xem từng Shop bán bao nhiêu, nhưng kết quả chỉ trả về đúng 1 dòng duy nhất!</div>
                   <div class="code-bad">SAI: SELECT shop_id, COUNT(order_id) FROM orders;</div>
                   <div class="code-good">ĐÚNG: SELECT shop_id, COUNT(order_id) FROM orders GROUP BY shop_id;</div>
-                  <small>💡 <i>Quy tắc vàng: Bất kỳ cột nào đứng trong SELECT mà không nằm trong hàm tính toán (`SUM`, `COUNT`) thì BẮT BUỘC phải xuất hiện trong `GROUP BY`.</i></small>
+                  <small>💡 <i>Quy tắc: Bất kỳ cột nào xuất hiện trong SELECT mà không bọc trong hàm (SUM, COUNT, AVG) thì BẮT BUỘC phải viết trong GROUP BY!</i></small>
                 </div>
               </div>
 
+              <!-- Lỗi 4 -->
               <div class="mistake-item">
-                <div class="mistake-title">❌ Lỗi 4: Viết COUNT() rỗng không có tham số</div>
+                <div class="mistake-title">❌ Lỗi 4: Viết hàm COUNT() rỗng không có tham số bên trong</div>
                 <div class="mistake-body">
+                  <div class="mistake-term-err">🖥️ Terminal báo: Function COUNT expects at least 1 argument</div>
                   <div class="code-bad">SAI: SELECT COUNT() FROM orders;</div>
                   <div class="code-good">ĐÚNG: SELECT COUNT(*) FROM orders; hoặc COUNT(order_id)</div>
                 </div>
               </div>
 
+              <!-- Lỗi 5 -->
               <div class="mistake-item">
                 <div class="mistake-title">❌ Lỗi 5: Gõ sai chính tả tên bảng hoặc tên cột</div>
                 <div class="mistake-body">
-                  <small>💡 <i>Mẹo trị dứt điểm: Ở Cột 1 (Mission Briefing) bên trái, toàn bộ tên bảng và tên cột đều được in đậm. Bạn chỉ cần copy paste trực tiếp tên cột (ví dụ: `shipping_subsidy`, `order_amount`) vào Editor là không bao giờ sai!</i></small>
+                  <div class="mistake-term-err">🖥️ Terminal báo: Table not found: order (hoặc Column not found: shipping_subsidy_loss)</div>
+                  <small>💡 <i>Mẹo trị dứt điểm: Ở Cột 1 (Mission Briefing) bên trái, toàn bộ tên bảng (như `orders`, `buyer_profiles`) và tên cột (như `shipping_subsidy`, `order_amount`) đều được in đậm sẵn. Bạn chỉ cần copy-paste trực tiếp là không bao giờ sai chính tả!</i></small>
                 </div>
               </div>
             </div>
@@ -783,7 +1201,9 @@ LIMIT 5;</code></pre>
             <div class="handbook-callout tip" style="margin-top: 18px;">
               <div class="callout-icon">🚨</div>
               <div class="callout-body">
-                <b>Tính năng hỗ trợ độc quyền:</b> Khi chạy mã bị lỗi, hãy nhấn ngay nút <b>"🚨 Gửi lỗi cho Mentor sửa giúp"</b> xuất hiện trong khung lỗi màu đỏ. AI Mentor sẽ chỉ rõ chỗ sai và gửi lại đoạn code chuẩn cho bạn!
+                <b>2 Tính năng trợ giúp độc quyền trên TRONEX Sandbox:</b><br>
+                1. <b>Nút "🔍 Nhờ Mentor Review":</b> Nằm ngay trên thanh công cụ Editor. Mentor sẽ chạy thử và rà soát lỗi trước khi bạn bấm Run.<br>
+                2. <b>Nút "🚨 Gửi lỗi cho Mentor sửa giúp":</b> Nếu chạy bị lỗi cú pháp, nút này sẽ tự động xuất hiện trong khung màu đỏ. Nhấn vào là AI Mentor phân tích và gửi lại đoạn code chuẩn ngay!
               </div>
             </div>
           </div>
@@ -791,54 +1211,104 @@ LIMIT 5;</code></pre>
           <!-- CHƯƠNG 7 -->
           <div class="handbook-chapter-pane" id="tab-framework" style="display: none;">
             <div class="chapter-badge">Chương 7</div>
-            <h3 class="chapter-title">🎯 Công Thức 5 Bước "Ăn Trọn Điểm" Mọi Case Study</h3>
+            <h3 class="chapter-title">🎯 Mô Phỏng Trọn Vẹn Giải Case Study Từ A Đến Z (Đạt 100/100 Điểm)</h3>
 
             <p class="handbook-lead">
-              Làm thế nào để đạt <b>100/100 điểm</b> khi nộp báo cáo cho Giám đốc Dữ liệu (Head of Data Analytics AI)? Hãy áp dụng quy trình chuẩn 5 bước sau:
+              Làm thế nào để chuyển đổi những bảng dữ liệu SQL vừa tìm được thành một <b>Bản Báo Cáo Kinh Doanh (Data Storytelling)</b> xuất sắc làm hài lòng Giám đốc Dữ liệu (Head of Data Analytics AI)? Dưới đây là toàn bộ kịch bản giải mẫu hoàn chỉnh:
             </p>
 
-            <div class="framework-step-list">
-              <div class="framework-step">
-                <div class="step-num">BƯỚC 1</div>
-                <div class="step-content">
-                  <b>Đọc kỹ Bối cảnh &amp; Soi Schema:</b>
-                  Nhìn sang Cột 1 để xem các mục tiêu cần chứng minh (Ví dụ: tỷ lệ đơn 99k-105k, Top 5 Shop trục lợi). Nhấn nút <code>👁️ Xem mẫu</code> ở từng bảng để nắm rõ giá trị thực tế của dữ liệu.
+            <h4 class="handbook-h4">Quy Trình 3 Câu Lệnh SQL Hoàn Chỉnh Cần Chạy</h4>
+
+            <div class="handbook-code-card">
+              <div class="code-card-header">
+                <span class="code-lang-tag">BƯỚC 1: ĐO LƯỜNG TỔNG QUAN THIỆT HẠI</span>
+                <div class="code-card-actions">
+                  <button type="button" class="btn-handbook-action" onclick="window.copyHandbookCode(this)">📋 Sao chép</button>
+                  <button type="button" class="btn-handbook-action apply" onclick="window.applyHandbookCode(this)">⚡ Chèn vào Editor</button>
                 </div>
               </div>
+              <pre><code>SELECT 
+    COUNT(order_id) AS total_orders,
+    SUM(order_amount) AS total_gmv,
+    SUM(shipping_subsidy) AS total_subsidy,
+    ROUND(SUM(shipping_subsidy) * 100.0 / SUM(order_amount), 2) AS subsidy_ratio_pct
+FROM orders
+WHERE status = 'COMPLETED';</code></pre>
+            </div>
 
-              <div class="framework-step">
-                <div class="step-num">BƯỚC 2</div>
-                <div class="step-content">
-                  <b>Viết truy vấn SELECT thăm dò đơn giản:</b>
-                  Chạy thử <code>SELECT * FROM orders LIMIT 5;</code> để làm quen với cấu trúc hiển thị trên bảng dữ liệu kết quả.
+            <div class="handbook-code-card">
+              <div class="code-card-header">
+                <span class="code-lang-tag">BƯỚC 2: CHỨNG MINH HÀNH VI CHẺ ĐƠN HÀNG</span>
+                <div class="code-card-actions">
+                  <button type="button" class="btn-handbook-action" onclick="window.copyHandbookCode(this)">📋 Sao chép</button>
+                  <button type="button" class="btn-handbook-action apply" onclick="window.applyHandbookCode(this)">⚡ Chèn vào Editor</button>
                 </div>
               </div>
+              <pre><code>SELECT 
+    CASE 
+        WHEN order_amount &lt; 99000 THEN 'Dưới 99k'
+        WHEN order_amount BETWEEN 99000 AND 105000 THEN '99k - 105k (Cận ngưỡng)'
+        ELSE 'Trên 105k'
+    END AS price_bucket,
+    COUNT(order_id) AS orders_count,
+    ROUND(COUNT(order_id) * 100.0 / 25000, 2) AS pct_orders,
+    SUM(shipping_subsidy) AS subsidy_loss
+FROM orders
+WHERE status = 'COMPLETED'
+GROUP BY price_bucket
+ORDER BY orders_count DESC;</code></pre>
+            </div>
 
-              <div class="framework-step">
-                <div class="step-num">BƯỚC 3</div>
-                <div class="step-content">
-                  <b>Thực hiện từng câu hỏi nghiệp vụ:</b>
-                  Áp dụng <code>CASE WHEN</code> để phân khúc giá, dùng <code>JOIN</code> để ghép nối dữ liệu thiết bị, và dùng <code>GROUP BY</code> cùng các hàm <code>COUNT</code>, <code>SUM</code> để trích xuất số liệu.
+            <div class="handbook-code-card">
+              <div class="code-card-header">
+                <span class="code-lang-tag">BƯỚC 3: TRUY VẾT CỤM IP VÀ SHOP GIAN LẬN</span>
+                <div class="code-card-actions">
+                  <button type="button" class="btn-handbook-action" onclick="window.copyHandbookCode(this)">📋 Sao chép</button>
+                  <button type="button" class="btn-handbook-action apply" onclick="window.applyHandbookCode(this)">⚡ Chèn vào Editor</button>
                 </div>
               </div>
+              <pre><code>SELECT 
+    o.shop_id,
+    b.ip_address,
+    COUNT(o.order_id) AS suspicious_orders,
+    SUM(o.shipping_subsidy) AS subsidy_amount
+FROM orders o
+JOIN buyer_profiles b ON o.buyer_id = b.buyer_id
+WHERE o.order_amount BETWEEN 99000 AND 105000
+  AND o.status = 'COMPLETED'
+GROUP BY o.shop_id, b.ip_address
+ORDER BY suspicious_orders DESC
+LIMIT 5;</code></pre>
+            </div>
 
-              <div class="framework-step">
-                <div class="step-num">BƯỚC 4</div>
-                <div class="step-content">
-                  <b>Nhờ Mentor Review trước khi chạy:</b>
-                  Nhấn nút <code>🔍 Nhờ Mentor Review</code> trên Editor. AI Mentor sẽ quét toàn bộ cú pháp và logic nghiệp vụ để bảo đảm câu lệnh của bạn hoàn hảo 100%.
-                </div>
-              </div>
+            <h4 class="handbook-h4">Mẫu Báo Cáo Kinh Doanh Đạt 100/100 Tuyệt Đối Cho Head of Data</h4>
+            <div class="code-explain-box" style="background: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.3);">
+              <b style="color: #10B981;">📄 ĐIỀN NỘI DUNG NÀY VÀO TAB "NỘP BÁO CÁO" ĐỂ ĐẠT ĐIỂM TỐI ĐA:</b><br><br>
+              
+              <b>1. BÁM SÁT DỮ LIỆU &amp; CON SỐ THỰC TẾ (Fact-based - 30 điểm):</b><br>
+              - Trong chiến dịch Mega Sale, sàn ghi nhận tổng cộng 25,000 đơn hàng hoàn tất với tổng GMV đạt 4.25 tỷ VNĐ. Tổng ngân sách trợ giá vận chuyển sàn đã chi trả là 625 triệu VNĐ (chiếm 14.71% GMV - vượt xa trần an toàn 8%).<br>
+              - Đáng chú ý, phân khúc đơn hàng cận ngưỡng freeship (99,000đ - 105,000đ) bùng nổ bất thường với 14,600 đơn hàng, chiếm tỷ trọng áp đảo 58.40% tổng số đơn toàn sàn và tiêu tốn 365 triệu VNĐ tiền trợ giá (chiếm 58.4% tổng quỹ ship).<br>
+              - Truy vết dữ liệu thiết bị và mạng cho thấy: Top 2 gian hàng SHOP_102 (1,250 đơn) và SHOP_088 (1,180 đơn) cùng dính chặt với địa chỉ IP mạng 192.168.1.10, chiếm đoạt hơn 60.75 triệu VNĐ trợ giá.<br><br>
 
-              <div class="framework-step">
-                <div class="step-num">BƯỚC 5</div>
-                <div class="step-content">
-                  <b>Nộp Báo Cáo Kinh Doanh (Data Storytelling):</b>
-                  Chuyển sang tab <b>📝 Nộp Báo Cáo</b>. Bấm <i>📑 Điền dàn ý mẫu</i> và điền các con số thực tế vừa tìm được theo 3 phần: <b>Bám sát số liệu (30đ)</b>, <b>Insight nghiệp vụ (40đ)</b>, và <b>Đề xuất giải pháp (30đ)</b> để rinh trọn điểm cao!
-                </div>
+              <b>2. INSIGHT NGHIỆP VỤ &amp; NGUYÊN NHÂN CỐT LÕI (Business Insight - 40 điểm):</b><br>
+              - Chính sách Freeship cho đơn từ 99k đang tồn tại lỗ hổng nghiêm trọng khi không giới hạn số lượt sử dụng trên mỗi thiết bị/IP mạng và không có cơ chế chặn đơn trùng.<br>
+              - Người mua và người bán đã có hành vi thông đồng "chẻ nhỏ đơn hàng" (Split orders) từ các giỏ hàng giá trị cao thành các đơn suýt soát 100k để bào tối đa voucher freeship 25k của sàn.<br>
+              - Đáng báo động hơn, xuất hiện đường dây gian lận có tổ chức sử dụng tool tự động cắm chung mạng IP (192.168.1.10) để tự tạo giao dịch ảo cho SHOP_102 và SHOP_088 nhằm rút ruột ngân sách marketing và buff chỉ số bán lẻ ảo.<br><br>
+
+              <b>3. ĐỀ XUẤT HÀNH ĐỘNG CỤ THỂ (Actionable Recommendations - 30 điểm):</b><br>
+              - <i>Ngay lập tức (24h - 48h):</i> Tạm khóa tính năng trợ giá freeship và đóng băng tiền rút của SHOP_102 và SHOP_088; Đưa dải IP 192.168.1.10 vào danh sách đen (Blacklist).<br>
+              - <i>Ngắn hạn (1-2 tuần):</i> Điều chỉnh điều kiện Freeship: Nâng ngưỡng tối thiểu từ 99,000đ lên 150,000đ; Đồng thời áp trần tối đa 2 mã freeship / 1 thiết bị (Device Fingerprint) / 1 ngày.<br>
+              - <i>Dài hạn:</i> Triển khai hệ thống Fraud Detection Engine phát hiện bất thường theo thời gian thực (Realtime alert) khi tần suất đơn hàng từ cùng IP/Thiết bị vượt ngưỡng 5 đơn/giờ.
+            </div>
+
+            <div class="handbook-callout tip">
+              <div class="callout-icon">🚀</div>
+              <div class="callout-body">
+                <b>Bạn đã sẵn sàng!</b> Hãy áp dụng ngay các câu truy vấn ở trên vào khung Editor ở giữa màn hình, nhấn <b>Run SQL</b> để tự tay chiêm ngưỡng bảng kết quả, rồi chuyển sang tab <b>Nộp Báo Cáo</b> để rinh trọn 100 điểm từ AI Mentor!
               </div>
             </div>
           </div>
+
 
         </main>
       </div>
@@ -857,7 +1327,7 @@ LIMIT 5;</code></pre>
 
   <!-- SCRIPTS -->
   <script type="module" src="js/auth.js?v=1"></script>
-  <script type="module" src="js/simulation.js?v=20261013_sql_handbook"></script>
+  <script type="module" src="js/simulation.js?v=20261013_sql_handbook_deep"></script>
 
   <!-- Sidebar & Theme Handlers -->
   <script>
