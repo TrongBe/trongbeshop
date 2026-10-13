@@ -430,61 +430,133 @@ function appendMentorMessage(sender, htmlText) {
 }
 
 async function sendToGeminiMentor(userQuery) {
-    appendMentorMessage('ai', '<em style="opacity:0.6;">&#9203; Đang phân tích...</em>');
+    appendMentorMessage('ai', '<em style="opacity:0.6;">⏳ Đang phân tích...</em>');
     const chatStream = document.getElementById('mentorChatStream');
     const thinkingBubble = chatStream?.lastElementChild;
 
     // Xây dựng System Instruction với ngữ cảnh nhiệm vụ
     const missionContext = currentCase
-        ? `Nhiệm vu: "${currentCase.title}"\nBoi canh: ${currentCase.shortDesc}\nMuc tieu phan tich:\n${currentCase.objectives.map((o, i) => `${i + 1}. ${o}`).join('\n')}\nCau truc bang du lieu: ${currentCase.schema.map(t => t.tableName + '(' + t.columns.map(c => c.name).join(', ') + ')').join('; ')}`
-        : 'Tro ly Data Analysis tong quat';
+        ? `Nhiệm vụ: "${currentCase.title}"\nBối cảnh: ${currentCase.shortDesc}\nMục tiêu phân tích:\n${currentCase.objectives.map((o, i) => `${i + 1}. ${o}`).join('\n')}\nCấu trúc bảng dữ liệu: ${currentCase.schema.map(t => t.tableName + '(' + t.columns.map(c => c.name).join(', ') + ')').join('; ')}`
+        : 'Trợ lý Data Analysis tổng quát';
 
-    const systemInstruction = `Ban la Gemini AI Mentor — mot Senior Data Analyst giau kinh nghiem dang ho tro nguoi hoc trong moi truong thuc hanh phan tich du lieu.
+    const systemInstruction = `Bạn là Gemini AI Mentor — một Senior Data Analyst giàu kinh nghiệm đang hỗ trợ người học trong môi trường thực hành phân tích dữ liệu.
 
-Ngu canh bai toan hien tai:
+Ngữ cảnh bài toán hiện tại:
 ${missionContext}
 
-Phong cach tra loi:
-- Tra loi bang tieng Viet, chuyen nghiep, than thien va khich le.
-- Khi duoc hoi ve SQL hoac Python, hay cung cap vi du code cu the, ro rang va giai thich tung buoc.
-- Khi giai thich ket qua du lieu, hay gan voi boi canh nghiep vu thuc te.
-- Su dung markdown (**, *, dau gach dau dong) de cau tra loi de doc.
-- Co the dat them cau hoi goi mo de nguoi hoc tu suy nghi sau hon sau khi da tra loi.`;
+Phong cách trả lời:
+- Trả lời bằng tiếng Việt, chuyên nghiệp, thân thiện và khích lệ.
+- Khi được hỏi về SQL hoặc Python, hãy cung cấp ví dụ code cụ thể, rõ ràng và giải thích từng bước.
+- Khi giải thích kết quả dữ liệu, hãy gắn với bối cảnh nghiệp vụ thực tế.
+- Sử dụng markdown (**, *, dấu gạch đầu dòng) để câu trả lời dễ đọc.
+- Có thể đặt thêm câu hỏi gợi mở để người học tự suy nghĩ sâu hơn sau khi đã trả lời.`;
 
+    const chatHistory = mentorChatHistory.slice();
     // Thêm tin nhắn người dùng vào lịch sử
     mentorChatHistory.push({ role: 'user', parts: [{ text: userQuery }] });
 
+    let aiResponseText = null;
+
+    // BƯỚC 1: Thử gọi qua Vercel Serverless Function /api/gemini
     try {
         const res = await fetch('/api/gemini', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 prompt: userQuery,
-                history: mentorChatHistory.slice(0, -1), // Lịch sử trừ tin nhắn hiện tại
+                history: chatHistory,
                 systemInstruction: systemInstruction,
-                model: 'gemini-2.0-flash'
+                model: 'gemini-3.5-flash'
             })
         });
 
-        const data = await res.json();
-
-        if (data && data.text) {
-            const formattedReply = formatMarkdown(data.text);
-            if (thinkingBubble) thinkingBubble.innerHTML = formattedReply;
-            // Lưu phản hồi AI vào lịch sử để duy trì ngữ cảnh
-            mentorChatHistory.push({ role: 'model', parts: [{ text: data.text }] });
-        } else {
-            const errMsg = data?.error || 'API khong tra ve noi dung';
-            throw new Error(errMsg);
+        const contentType = res.headers.get('content-type') || '';
+        // Chỉ parse JSON nếu server trả về application/json (tránh lỗi Unexpected token '<' khi gặp HTML 404/500)
+        if (contentType.includes('application/json')) {
+            const data = await res.json();
+            if (res.ok && data && data.text) {
+                aiResponseText = data.text;
+            }
         }
-    } catch (err) {
-        console.error('[AI Mentor Error]:', err);
-        // Xoá tin nhắn người dùng khỏi history nếu gọi thất bại
-        mentorChatHistory.pop();
-        if (thinkingBubble) {
-            thinkingBubble.innerHTML = `&#9888;&#65039; <b>Loi ket noi AI Mentor:</b> <code style="font-size:0.8rem;">${err.message}</code><br><small style="opacity:0.7;">Kiem tra Vercel Environment Variables (GEMINI_API_KEY) va thu lai.</small>`;
+    } catch (apiErr) {
+        console.warn('[AI Mentor] Không gọi được /api/gemini:', apiErr.message);
+    }
+
+    // BƯỚC 2: Nếu Serverless chưa sẵn sàng (trả về HTML 404/500 hoặc lỗi), tự động gọi Google Gemini API trực tiếp (Client-side)
+    if (!aiResponseText) {
+        try {
+            aiResponseText = await callGoogleGeminiDirect(userQuery, chatHistory, systemInstruction);
+        } catch (directErr) {
+            console.error('[AI Mentor Direct Error]:', directErr);
+            mentorChatHistory.pop(); // Xóa tin nhắn chưa được phản hồi
+            if (thinkingBubble) {
+                thinkingBubble.innerHTML = `⚠️ <b>Lỗi kết nối AI Mentor:</b> <code style="font-size:0.8rem;">${directErr.message}</code><br><small style="opacity:0.7;">Vui lòng thử lại sau giây lát hoặc nhập API Key cá nhân trong cài đặt.</small>`;
+            }
+            return;
         }
     }
+
+    // Hiển thị phản hồi từ AI
+    if (aiResponseText) {
+        const formattedReply = formatMarkdown(aiResponseText);
+        if (thinkingBubble) thinkingBubble.innerHTML = formattedReply;
+        // Lưu phản hồi AI vào lịch sử để duy trì ngữ cảnh
+        mentorChatHistory.push({ role: 'model', parts: [{ text: aiResponseText }] });
+    }
+}
+
+// Hàm gọi trực tiếp Google Generative Language REST API (Bypass hoàn toàn lỗi máy chủ Vercel / HTML)
+async function callGoogleGeminiDirect(prompt, history, systemInstruction) {
+    const keys = [
+        localStorage.getItem("TRONEX_AI_KEY"),
+        "AIzaSyDLMo_ZxZjQyFPyQXdlhx205GlMOR45UHg",
+        "AIzaSyBnRHrkbQwQF43nUFYuE_kjkg0sK2HDDiU",
+        "AIzaSyBujYVCD_avJy1EyYZHpwu0M10itiAXSnY",
+        "AIzaSyBW6zkLdppAwv1YI2t-ikeS3J_GXGgYjX0",
+        "AIzaSyB5jCvX0f3Nu8FI4QKHkfVciKm-JWCkOls",
+        "AIzaSyC6nbhLMVC-91NTi0vySoMH1haM9HRBdF0"
+    ].filter(Boolean);
+
+    const models = ["gemini-3.5-flash", "gemini-3-flash-preview", "gemini-3.8-flash"];
+
+    const payload = {
+        contents: [
+            ...(Array.isArray(history) ? history : []),
+            { role: "user", parts: [{ text: prompt }] }
+        ],
+        systemInstruction: {
+            parts: [{ text: systemInstruction }]
+        }
+    };
+
+    let lastError = null;
+
+    for (const key of keys) {
+        for (const model of models) {
+            try {
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`;
+                const res = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!res.ok) {
+                    const errJson = await res.json().catch(() => ({}));
+                    lastError = errJson?.error?.message || `HTTP ${res.status}`;
+                    continue;
+                }
+
+                const data = await res.json();
+                const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (text) return text;
+            } catch (e) {
+                lastError = e.message;
+            }
+        }
+    }
+
+    throw new Error(lastError || "Không thể kết nối máy chủ Google Gemini");
 }
 
 function generateFallbackMentorReply(query) {

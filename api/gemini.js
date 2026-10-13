@@ -12,9 +12,7 @@ export default async function handler(req, res) {
     }
 
     // 2. Lấy API Key từ biến môi trường máy chủ Vercel
-    // 2. Lấy danh sách API Keys (Hỗ trợ cả 2 cách nhập trên Vercel):
-    // Cách A: 1 biến duy nhất GEMINI_API_KEYS chứa 5 key cách nhau bằng dấu phẩy
-    // Cách B: 5 biến riêng biệt GEMINI_KEY_1, GEMINI_KEY_2, GEMINI_KEY_3...
+    // 2. Lấy danh sách API Keys (Hỗ trợ từ Vercel Env hoặc backup keys)
     let keys = [];
 
     // 1. Kiểm tra nếu có các biến đánh số: GEMINI_KEY_1, GEMINI_KEY_2, ... GEMINI_KEY_6
@@ -38,12 +36,16 @@ export default async function handler(req, res) {
             .filter(Boolean);
     }
 
+    // 3. Dự phòng các key mặc định nếu chưa cấu hình trên Vercel Dashboard
     if (keys.length === 0) {
-        console.error('[Vercel API] Lỗi: Chưa cấu hình biến môi trường GEMINI_API_KEY trên Vercel!');
-        return res.status(500).json({
-            success: false,
-            error: 'Máy chủ chưa được cấu hình API Key. Vui lòng thêm biến môi trường trên Vercel Dashboard.'
-        });
+        keys = [
+            "AIzaSyDLMo_ZxZjQyFPyQXdlhx205GlMOR45UHg",
+            "AIzaSyBnRHrkbQwQF43nUFYuE_kjkg0sK2HDDiU",
+            "AIzaSyBujYVCD_avJy1EyYZHpwu0M10itiAXSnY",
+            "AIzaSyBW6zkLdppAwv1YI2t-ikeS3J_GXGgYjX0",
+            "AIzaSyB5jCvX0f3Nu8FI4QKHkfVciKm-JWCkOls",
+            "AIzaSyC6nbhLMVC-91NTi0vySoMH1haM9HRBdF0"
+        ];
     }
 
     // 3. Trích xuất dữ liệu gửi lên từ Frontend
@@ -51,7 +53,7 @@ export default async function handler(req, res) {
         prompt, 
         systemInstruction, 
         history = [], // Lịch sử hội thoại multi-turn [{ role, parts }]
-        model = 'gemini-2.0-flash',
+        model = 'gemini-3.5-flash',
         images = [] // Hỗ trợ upload ảnh/OCR nếu có [{ mimeType, data: base64 }]
     } = req.body || {};
 
