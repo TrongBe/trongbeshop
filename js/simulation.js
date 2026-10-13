@@ -3,7 +3,7 @@
  * Controller cho tính năng Data Analyst Simulation (Lobby & Workspace)
  */
 
-import { simulationCases } from './simulation-data.js';
+import { simulationCases } from './simulation-data.js?v=20261013_v2';
 
 let currentCase = null;
 let currentLanguage = 'sql';
@@ -12,10 +12,13 @@ let mentorChatHistory = [];
 let latestSQLResults = null;
 let latestSQLQuery = '';
 
+// Gán biến toàn cục để debug hoặc fallback
+window.simulationCases = simulationCases;
+
 // ============================================================
-// KHỞI TẠO KHI TẢI TRANG
+// KHỞI TẠO KHI TẢI TRANG (HỖ TRỢ CẢ TRƯỜNG HỢP DOM ĐÃ SẴN SÀNG)
 // ============================================================
-document.addEventListener('DOMContentLoaded', () => {
+function bootSimulation() {
     initLobby();
     setupLobbyFilters();
     setupTerminalEvents();
@@ -23,7 +26,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('simWorkspaceView')?.classList.contains('active')) {
         document.body.classList.add('sim-workspace-active');
     }
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootSimulation);
+} else {
+    bootSimulation();
+}
+
+window.initLobby = initLobby;
+window.bootSimulation = bootSimulation;
 
 // ============================================================
 // VIEW 1: THE LOBBY LOGIC

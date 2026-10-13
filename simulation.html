@@ -144,7 +144,158 @@
 
         <!-- Mission Cards Grid -->
         <div id="missionsGrid" class="missions-grid">
-          <!-- Rendered dynamically by simulation.js -->
+          <!-- Card 1: Easy - Best Sellers -->
+          <div class="mission-card" data-id="case_best_sellers_eda">
+            <div>
+              <div class="mission-card-top">
+                <span class="mission-category-badge">🛍️ Phân Tích Bán Lẻ</span>
+                <span class="difficulty-badge easy">Mới bắt đầu</span>
+              </div>
+              <h3 class="mission-title">Khám Phá Sức Mua – Top 5 Sản Phẩm Bán Chạy Nhất</h3>
+              <p class="mission-desc">Làm quen với kho dữ liệu bán lẻ: Trích xuất danh sách sản phẩm, xếp hạng Top 5 mặt hàng bán chạy nhất và phát hiện sản phẩm sắp hết hàng cần nhập gấp.</p>
+            </div>
+            <div>
+              <div class="mission-meta-row">
+                <div class="mission-tech-stack">
+                  <span class="tech-tag">SQL Cơ Bản</span>
+                  <span class="tech-tag">SELECT</span>
+                  <span class="tech-tag">ORDER BY</span>
+                  <span class="tech-tag">LIMIT</span>
+                </div>
+                <div class="mission-duration">⏱️ 10 - 15 phút</div>
+              </div>
+              <button class="btn-start-mission" onclick="window.startMission('case_best_sellers_eda')">
+                🚀 Start Mission →
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 2: Easy - VIP Customers -->
+          <div class="mission-card" data-id="case_vip_customer_retention">
+            <div>
+              <div class="mission-card-top">
+                <span class="mission-category-badge">👑 Khách Hàng &amp; CRM</span>
+                <span class="difficulty-badge easy">Mới bắt đầu</span>
+              </div>
+              <h3 class="mission-title">Phân Hạng Khách Hàng VIP &amp; Doanh Thu Theo Tỉnh Thành</h3>
+              <p class="mission-desc">Lọc danh sách khách hàng VIP chi tiêu trên 5 triệu VNĐ để gửi quà tri ân cuối năm, đồng thời tìm ra thành phố có sức chi tiêu bình quân cao nhất.</p>
+            </div>
+            <div>
+              <div class="mission-meta-row">
+                <div class="mission-tech-stack">
+                  <span class="tech-tag">SQL Cơ Bản</span>
+                  <span class="tech-tag">WHERE</span>
+                  <span class="tech-tag">GROUP BY</span>
+                  <span class="tech-tag">AVG</span>
+                </div>
+                <div class="mission-duration">⏱️ 10 - 15 phút</div>
+              </div>
+              <button class="btn-start-mission" onclick="window.startMission('case_vip_customer_retention')">
+                🚀 Start Mission →
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 3: Easy - Order Delivery QA -->
+          <div class="mission-card" data-id="case_order_delivery_qa">
+            <div>
+              <div class="mission-card-top">
+                <span class="mission-category-badge">📦 Vận Hành &amp; Giao Nhận</span>
+                <span class="difficulty-badge easy">Mới bắt đầu</span>
+              </div>
+              <h3 class="mission-title">Kiểm Toán Đơn Hàng &amp; Tỷ Lệ Hoàn Tất Giao Nhận</h3>
+              <p class="mission-desc">Kiểm tra chất lượng dịch vụ giao hàng: Đo lường tỷ lệ giao thành công (Fulfillment Rate), và so sánh tốc độ giao của các đơn vị vận chuyển.</p>
+            </div>
+            <div>
+              <div class="mission-meta-row">
+                <div class="mission-tech-stack">
+                  <span class="tech-tag">SQL Cơ Bản</span>
+                  <span class="tech-tag">COUNT</span>
+                  <span class="tech-tag">SUM</span>
+                  <span class="tech-tag">Tỷ lệ %</span>
+                </div>
+                <div class="mission-duration">⏱️ 10 - 15 phút</div>
+              </div>
+              <button class="btn-start-mission" onclick="window.startMission('case_order_delivery_qa')">
+                🚀 Start Mission →
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 4: Medium - Freeship Leak -->
+          <div class="mission-card" data-id="case_freeship_leak">
+            <div>
+              <div class="mission-card-top">
+                <span class="mission-category-badge">🚚 Thương Mại Điện Tử</span>
+                <span class="difficulty-badge medium">Trung bình</span>
+              </div>
+              <h3 class="mission-title">Lỗ hổng Freeship - Trục lợi Voucher vận chuyển</h3>
+              <p class="mission-desc">Phát hiện mạng lưới gian lận cố tình chia nhỏ đơn hàng dưới giá trị quy định để bòn rút ngân sách trợ giá vận chuyển 50 tỷ VNĐ của sàn.</p>
+            </div>
+            <div>
+              <div class="mission-meta-row">
+                <div class="mission-tech-stack">
+                  <span class="tech-tag">SQL</span>
+                  <span class="tech-tag">Pandas</span>
+                  <span class="tech-tag">EDA</span>
+                </div>
+                <div class="mission-duration">⏱️ 25 phút</div>
+              </div>
+              <button class="btn-start-mission" onclick="window.startMission('case_freeship_leak')">
+                🚀 Start Mission →
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 5: Medium - Voucher Abuse -->
+          <div class="mission-card" data-id="case_voucher_abuse">
+            <div>
+              <div class="mission-card-top">
+                <span class="mission-category-badge">🎁 Chống Gian Lận</span>
+                <span class="difficulty-badge medium">Trung bình</span>
+              </div>
+              <h3 class="mission-title">Lỗ hổng Khuyến mãi – Bắt quả tang "Thợ săn Voucher"</h3>
+              <p class="mission-desc">Công ty tặng mã giảm giá 50K cho khách hàng có sinh nhật trong tháng. Doanh thu tháng 10 tăng vọt, nhưng số tài khoản khai sinh nhật tháng 10 cao bất thường.</p>
+            </div>
+            <div>
+              <div class="mission-meta-row">
+                <div class="mission-tech-stack">
+                  <span class="tech-tag">SQL</span>
+                  <span class="tech-tag">Pandas</span>
+                  <span class="tech-tag">EDA</span>
+                </div>
+                <div class="mission-duration">⏱️ 30 phút</div>
+              </div>
+              <button class="btn-start-mission" onclick="window.startMission('case_voucher_abuse')">
+                🚀 Start Mission →
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 6: Hard - Fake Orders Spike -->
+          <div class="mission-card" data-id="case_fake_orders_spike">
+            <div>
+              <div class="mission-card-top">
+                <span class="mission-category-badge">📈 Tăng Trưởng &amp; Bán Hàng</span>
+                <span class="difficulty-badge hard">Nâng cao</span>
+              </div>
+              <h3 class="mission-title">Ảo giác nổ đơn - Bẫy tăng trưởng GMV</h3>
+              <p class="mission-desc">Đơn hàng tăng vọt 300% trong 2 tuần nhưng tỷ lệ hủy và hoàn tiền (Return/Refund) bùng nổ chạm mốc 72%, làm méo mó báo cáo gọi vốn của Startup.</p>
+            </div>
+            <div>
+              <div class="mission-meta-row">
+                <div class="mission-tech-stack">
+                  <span class="tech-tag">SQL</span>
+                  <span class="tech-tag">Cohorts</span>
+                  <span class="tech-tag">Funnel Analysis</span>
+                </div>
+                <div class="mission-duration">⏱️ 35 phút</div>
+              </div>
+              <button class="btn-start-mission" onclick="window.startMission('case_fake_orders_spike')">
+                🚀 Start Mission →
+              </button>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -1327,7 +1478,7 @@ LIMIT 5;</code></pre>
 
   <!-- SCRIPTS -->
   <script type="module" src="js/auth.js?v=1"></script>
-  <script type="module" src="js/simulation.js?v=20261013_easy_cases"></script>
+  <script type="module" src="js/simulation.js?v=20261013_v2"></script>
 
   <!-- Sidebar & Theme Handlers -->
   <script>
