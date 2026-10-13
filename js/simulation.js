@@ -608,17 +608,13 @@ Phong cách trả lời:
     }
 }
 
-// Hàm gọi trực tiếp Google Generative Language REST API (Bypass hoàn toàn lỗi máy chủ Vercel / HTML)
 async function callGoogleGeminiDirect(prompt, history, systemInstruction) {
-    const keys = [
-        localStorage.getItem("TRONEX_AI_KEY"),
-        "AIzaSyDLMo_ZxZjQyFPyQXdlhx205GlMOR45UHg",
-        "AIzaSyBnRHrkbQwQF43nUFYuE_kjkg0sK2HDDiU",
-        "AIzaSyBujYVCD_avJy1EyYZHpwu0M10itiAXSnY",
-        "AIzaSyBW6zkLdppAwv1YI2t-ikeS3J_GXGgYjX0",
-        "AIzaSyB5jCvX0f3Nu8FI4QKHkfVciKm-JWCkOls",
-        "AIzaSyC6nbhLMVC-91NTi0vySoMH1haM9HRBdF0"
-    ].filter(Boolean);
+    const userCustomKey = localStorage.getItem("TRONEX_AI_KEY");
+    const keys = [userCustomKey].filter(Boolean);
+
+    if (keys.length === 0) {
+        throw new Error("Chưa cấu hình API Key trên Vercel (GEMINI_API_KEY) hoặc TRONEX_AI_KEY trong trình duyệt.");
+    }
 
     const models = ["gemini-3.5-flash", "gemini-3-flash-preview", "gemini-3.8-flash"];
 

@@ -36,16 +36,12 @@ export default async function handler(req, res) {
             .filter(Boolean);
     }
 
-    // 3. Dự phòng các key mặc định nếu chưa cấu hình trên Vercel Dashboard
+    // 3. Nếu chưa cấu hình trên Vercel Dashboard, trả về thông báo hướng dẫn rõ ràng
     if (keys.length === 0) {
-        keys = [
-            "AIzaSyDLMo_ZxZjQyFPyQXdlhx205GlMOR45UHg",
-            "AIzaSyBnRHrkbQwQF43nUFYuE_kjkg0sK2HDDiU",
-            "AIzaSyBujYVCD_avJy1EyYZHpwu0M10itiAXSnY",
-            "AIzaSyBW6zkLdppAwv1YI2t-ikeS3J_GXGgYjX0",
-            "AIzaSyB5jCvX0f3Nu8FI4QKHkfVciKm-JWCkOls",
-            "AIzaSyC6nbhLMVC-91NTi0vySoMH1haM9HRBdF0"
-        ];
+        return res.status(500).json({
+            success: false,
+            error: 'Chưa cấu hình GEMINI_API_KEY trên Vercel Environment Variables. Vui lòng thêm biến môi trường trên Vercel Dashboard.'
+        });
     }
 
     // 3. Trích xuất dữ liệu gửi lên từ Frontend
