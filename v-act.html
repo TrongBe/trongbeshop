@@ -80,22 +80,22 @@
   </script>
   <header class="header">
     <div class="container header-inner">
-      <button class="menu-btn" onclick="toggleSidebar()" aria-label="Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
-      </button>
-      <div class="header-brand">
+      <a href="index.html" class="header-brand" style="text-decoration: none; color: inherit; display: block;">
         <h1>TRONEX: V-ACT</h1>
         <p class="header-subtitle">Hệ thống luyện thi thông minh - AI Learning Platform</p>
-      </div>
+      </a>
       <div class="header-actions">
         <button class="theme-toggle-btn" id="themeToggleBtn" title="Chế độ sáng/tối">🌙</button>
         <button class="auth-btn" id="authBtn" title="Đăng nhập">
           <span>🔑</span><span>Đăng nhập</span>
+        </button>
+        <button class="menu-btn" onclick="toggleSidebar()" aria-label="Menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
         </button>
       </div>
     </div>

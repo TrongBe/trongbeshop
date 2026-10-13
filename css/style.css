@@ -97,12 +97,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
+    gap: 12px;
 }
 
 .header-brand {
-    text-align: center;
+    text-align: left;
     flex: 1;
+    min-width: 0;
 }
 
 .header h1 {
@@ -131,6 +132,8 @@ body {
     position: static;
     transform: none;
     flex-shrink: 0;
+    width: 38px;
+    height: 38px;
     background: rgba(255, 255, 255, 0.12);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: #FFFFFF;
@@ -138,14 +141,16 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8px;
+    padding: 7px;
     border-radius: 10px;
-    transition: background var(--transition), border-color var(--transition);
+    transition: all var(--transition);
+    box-sizing: border-box;
 }
 
 .menu-btn:hover {
     background: rgba(255, 255, 255, 0.22);
     border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-1px);
 }
 
 .sidebar-overlay {

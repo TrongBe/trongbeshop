@@ -37,9 +37,33 @@
         <button class="auth-btn" id="authBtn" title="Đăng nhập">
           <span>🔑</span><span>Đăng nhập</span>
         </button>
+        <button class="menu-btn" onclick="toggleSidebar()" aria-label="Menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
       </div>
     </div>
   </header>
+
+  <!-- Sidebar Overlay -->
+  <div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+  <!-- Sidebar Menu -->
+  <div id="sidebarMenu" class="sidebar-menu">
+    <div class="sidebar-header">
+      <h2>Danh mục</h2>
+      <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="index.html">🏠 Trang chủ</a></li>
+      <li><a href="v-act.html">🚀 TRONEX (Làm bài)</a></li>
+      <li><a href="profile.html" class="active">👤 Tài khoản</a></li>
+    </ul>
+  </div>
 
   <main class="profile-page">
     <div class="container" style="max-width: 700px; padding-top: 40px; padding-bottom: 60px;">
@@ -260,6 +284,26 @@
         set('pStatTime', totalTime);
       } catch(e) {}
     }
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebarMenu');
+      const overlay = document.getElementById('sidebarOverlay');
+      if (!sidebar || !overlay) return;
+      if (sidebar.classList.contains('active')) {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+        setTimeout(() => {
+          overlay.style.display = 'none';
+        }, 300);
+      } else {
+        overlay.style.display = 'block';
+        setTimeout(() => {
+          overlay.classList.add('active');
+          sidebar.classList.add('active');
+        }, 10);
+      }
+    }
+    window.toggleSidebar = toggleSidebar;
   </script>
 </body>
 
