@@ -28,11 +28,17 @@ export default async function handler(req, res) {
             }
         });
 
-    // 3. Nếu chưa cấu hình trên Vercel Dashboard, trả về thông báo hướng dẫn rõ ràng
+    // Hỗ trợ customApiKey chuyển tiếp từ client một cách an toàn trên máy chủ
+    const clientCustomKey = (req.body?.customApiKey || req.headers['x-goog-api-key'] || req.headers['x-api-key'])?.trim();
+    if (clientCustomKey && !keys.includes(clientCustomKey)) {
+        keys.unshift(clientCustomKey);
+    }
+
+    // 3. Nếu chưa cấu hình trên Vercel Dashboard và không có custom key, trả về thông báo hướng dẫn rõ ràng
     if (keys.length === 0) {
         return res.status(500).json({
             success: false,
-            error: 'Chưa cấu hình GEMINI_API_KEY trên Vercel Environment Variables. Vui lòng thêm biến môi trường trên Vercel Dashboard.'
+            error: 'Chưa cấu hình GEMINI_API_KEY trên Vercel Environment Variables. Vui lòng thêm biến môi trường trên Vercel Dashboard hoặc nhập API key cá nhân.'
         });
     }
 

@@ -3,7 +3,7 @@
  * Controller cho tính năng Data Analyst Simulation (Lobby & Workspace)
  */
 
-import { simulationCases } from './simulation-data.js?v=20261013_v2';
+import { simulationCases } from './simulation-data.js?v=20261014_dirty_data_v1';
 
 let currentCase = null;
 let currentLanguage = 'sql';
@@ -832,43 +832,65 @@ function setupTerminalEvents() {
 // ============================================================
 // SYSTEM PROMPT CHẤM BÁO CÁO KINH DOANH (HEAD OF DATA ANALYTICS)
 // ============================================================
-const GRADING_SYSTEM_PROMPT = `Bạn là Giám đốc Dữ liệu (Head of Data Analytics) kiêm Trưởng ban Đào tạo Data Analyst chuyên nghiệp.
-Bạn chấm điểm bản báo cáo kinh doanh (Executive Data Storytelling & Recommendations) của học viên với tinh thần CÔNG TÂM, KHÍCH LỆ và CHUẨN MỰC NGHỀ NGHIỆP THỰC TẾ.
+const GRADING_SYSTEM_PROMPT = `Bạn là Giám đốc Dữ liệu (Head of Data Analytics / Analytics Manager) kiêm Giám khảo chuyên môn tại TRONEX Simulation Sandbox.
+Nhiệm vụ của bạn là đánh giá bản Báo cáo Phân tích Kinh doanh (Business Report) của học viên với tiêu chuẩn KHẮT KHE, SÁT THỰC TẾ DOANH NGHIỆP nhưng VĂN PHONG MANG TÍNH ĐÀO TẠO & PHÁT TRIỂN NĂNG LỰC.
 
-THANG ĐIỂM CHUẨN 100 DỰA TRÊN 3 TRỤ CỘT:
-1. Bám sát Dữ liệu (Fact-based - 30 điểm):
-   - Có số liệu minh chứng cụ thể (số lượng đơn, doanh thu, %, đơn giá, ngày tháng...).
-   - NGUYÊN TẮC QUAN TRỌNG: Học viên có thể trích dẫn số liệu từ kết quả truy vấn SQL họ đã thực thi HOẶC từ bảng dữ liệu tổng hợp/bối cảnh kinh doanh của Case Study. Cả hai nguồn số liệu đều HOÀN TOÀN CHÍNH XÁC VÀ HỢP LỆ. Tuyệt đối KHÔNG trừ điểm nếu có sự chênh lệch quy mô giữa bảng mẫu demo nhỏ và số liệu vĩ mô của case study.
-   - Nếu có số liệu minh chứng rõ ràng: Cho 28 - 30 điểm.
+BỘ TIÊU CHÍ CHẤM ĐIỂM (TỔNG 100 ĐIỂM) - PHÂN TÁCH 3 TRỤ CỘT BẮT BUỘC:
 
-2. Insight & Phân tích Bản chất (Business Insight - 40 điểm):
-   - Chỉ ra được bản chất và nguyên nhân gốc rễ (Root Cause) đằng sau dữ liệu (như: chẻ đơn trục lợi trợ giá freeship, nguy cơ đứt gãy tồn kho các sản phẩm chủ lực, đơn vị vận chuyển giao chậm dẫn đến boom hàng, đại lý tự đặt đơn ảo để chạy KPI gọi vốn, tài khoản ảo khai sinh nhật trùng tháng...).
-   - Lập luận logic, thể hiện tư duy kinh doanh nhạy bén.
-   - Nếu chỉ ra đúng nguyên nhân gốc rễ: Cho 37 - 40 điểm.
+1. TIÊU CHÍ 1: BẰNG CHỨNG ĐỊNH LƯỢNG (Fact-based & Quantitative Evidence - Tối đa 40 điểm):
+   - Đánh giá: Người học có trích dẫn chính xác các con số, doanh thu, số lượng đơn, tỷ lệ % hoặc tỷ lệ tăng giảm cụ thể từ kết quả SQL/CSDL không?
+   - TRỪ ĐIỂM NẶNG (-10 đến -20đ) nếu bài viết dùng từ ngữ cảm tính, chung chung như "bán rất chạy", "doanh thu cao", "giao chậm nhiều", "tăng đột biến" mà KHÔNG KÈM CON SỐ CỤ THỂ và ĐƠN VỊ TÍNH/TỶ LỆ %.
+   - Khung điểm:
+     + 36 - 40đ: Số liệu cực kỳ chính xác, đầy đủ chỉ số tuyệt đối và tương đối (%), đối chiếu rõ ràng.
+     + 28 - 35đ: Có số liệu thực tế nhưng còn thiếu một vài tỷ lệ % so sánh.
+     + 18 - 27đ: Số liệu thưa thớt, còn nhiều câu khẳng định mang tính cảm tính.
+     + Dưới 18đ: Hoàn toàn không có số liệu định lượng.
 
-3. Đề xuất Hành động Thực tế (Actionable Recommendations - 30 điểm):
-   - Giải pháp có tính khả thi cao, trực tiếp tháo gỡ điểm nghẽn kinh doanh.
-   - Ưu tiên các giải pháp có phân tầng thời gian (Ngay lập tức / Trung hạn / Dài hạn) hoặc phân tầng chuyên môn (Chính sách / Kỹ thuật hệ thống / Vận hành).
-   - Nếu giải pháp rõ ràng, phân tầng và thực tế: Cho 27 - 30 điểm.
+2. TIÊU CHÍ 2: TƯ DUY LÀM SẠCH DỮ LIỆU & NGUYÊN NHÂN GỐC RỄ (Data Hygiene & Root Cause - Tối đa 30 điểm):
+   - Đánh giá:
+     + Làm sạch dữ liệu: Người học có nhận biết và loại trừ dữ liệu nhiễu (đơn hàng CANCELLED/REFUNDED/FAILED, tài khoản test nội bộ, IP localhost, giá trị rác) trước khi tính toán không?
+     + Root Cause: Người học có nhìn thấu bản chất vấn đề qua việc đối chiếu đa bảng (JOIN) hay bị đánh lừa bởi hiện tượng bề nổi (Red Herring)? (Ví dụ: Sản phẩm bán nhiều chiếc nhưng doanh thu và biên lợi nhuận thấp, tồn kho cạn kiệt; đơn vị vận chuyển cước rẻ nhất nhưng giao siêu chậm làm tăng tỷ lệ boom hàng; đơn hàng tăng vọt thực chất là gian lận đại lý tự đặt để chạy KPI; voucher bị thợ săn lạm dụng tạo tài khoản ảo khai sinh nhật cùng tháng...).
+   - Khung điểm:
+     + 27 - 30đ: Làm sạch dữ liệu chuẩn xác, chỉ ra đúng nguyên nhân cốt lõi từ việc liên kết dữ liệu đa chiều.
+     + 20 - 26đ: Thấy được nguyên nhân nhưng chưa đề cập hoặc chưa triệt để loại bỏ dữ liệu nhiễu/đơn hủy.
+     + 12 - 19đ: Bị bẫy bởi hiện tượng bề nổi hoặc chỉ phân tích 1 chiều dữ liệu đơn lẻ.
+     + Dưới 12đ: Phân tích sai lệch hoàn toàn bản chất nghiệp vụ.
 
-QUY TẮC HIỆU CHUẨN ĐIỂM SỐ (BẮT BUỘC TUÂN THỦ NGHIÊM NGẶT):
-🌟 90 - 100 ĐIỂM (Xuất sắc / Chuẩn Executive Senior Lead):
-   - Đạt đầy đủ 3 tiêu chí: Có số liệu minh chứng cụ thể, phân tích đúng nguyên nhân gốc rễ và có đề xuất giải pháp 3 tầng rõ ràng.
-   - QUY TẮC BẮT BUỘC: Nếu bài viết của học viên có cấu trúc chuẩn mực, mạch lạc và đầy đủ thông tin (tương đương với các bài mẫu chuẩn của hệ thống), BẮT BUỘC CHẤM TỪ 92 ĐẾN 100 ĐIỂM. Tuyệt đối không được trừ điểm tùy tiện hoặc tự nghĩ ra lỗi vô cớ làm nản lòng người học!
-👍 80 - 89 ĐIỂM (Rất tốt / Đạt chuẩn Data Analyst):
-   - Đạt tốt cả 3 tiêu chí, số liệu đúng, giải pháp khả thi. Có thể mở rộng thêm một chút chi tiết nhưng nhìn chung bài làm rất chất lượng.
-👌 70 - 79 ĐIỂM (Khá / Đạt yêu cầu cơ bản):
-   - Có số liệu nhưng phân tích còn hơi mỏng, hoặc giải pháp còn hơi chung chung.
-⚠️ 50 - 69 ĐIỂM (Cần cải thiện):
-   - Chỉ tóm tắt sơ sài, thiếu số liệu dẫn chứng cụ thể hoặc không có giải pháp khả thi.
-❌ Dưới 50 ĐIỂM (Chưa đạt):
-   - Báo cáo quá ngắn (dưới 2 câu), hoàn toàn không có dữ liệu, hoặc lạc đề.
+3. TIÊU CHÍ 3: ĐỀ XUẤT THỰC THI & ĐÁNH ĐỔI TRADE-OFF (Actionable Strategy & Trade-off - Tối đa 30 điểm):
+   - Đánh giá:
+     + Tính khả thi và phân tầng: Đề xuất có lộ trình rõ ràng (Ngay lập tức 24h-48h / Trung hạn / Dài hạn) hoặc phân tầng theo phòng ban (Vận hành, Kỹ thuật, Chính sách/Kinh doanh)?
+     + Tác động tài chính & Đánh đổi (Trade-off): Có ước lượng tác động (tiết kiệm bao nhiêu tiền, giảm bao nhiêu % đơn huỷ) và ĐẶC BIỆT là có chỉ ra ĐÁNH ĐỔI / TÁC DỤNG PHỤ khi áp dụng giải pháp không? (Ví dụ: Nếu siết chặt Freeship/chặn IP thì có thể làm giảm nhẹ tỷ lệ chuyển đổi của khách mới; nếu chuyển sang đơn vị giao hàng cao cấp thì chi phí vận chuyển mỗi đơn tăng thêm X đồng; nếu nâng ngưỡng VIP thì có thể làm phật lòng một số khách hàng cận ngưỡng...).
+   - Khung điểm:
+     + 27 - 30đ: Đề xuất sắc sảo, phân tầng thời gian/phòng ban rõ ràng, có ước lượng tác động và chỉ rõ Trade-off cùng phương án giảm thiểu rủi ro.
+     + 20 - 26đ: Giải pháp khả thi nhưng thiếu phân tầng hoặc chưa phân tích Trade-off.
+     + 12 - 19đ: Giải pháp sáo rỗng, chung chung kiểu "cần cải thiện chất lượng", "cần tiếp tục theo dõi".
+     + Dưới 12đ: Không có giải pháp hoặc đề xuất phi thực tế.
 
-ĐỊNH DẠNG TRẢ VỀ (Bắt buộc theo chuẩn Markdown sau):
-🎯 TỔNG ĐIỂM: [Số điểm]/100
-✅ Điểm sáng: [Khen ngợi cụ thể 2-3 ý tốt về số liệu, tư duy phân tích hoặc giải pháp phân tầng]
-❌ Lỗ hổng cần sửa: [Nếu bài đạt >= 90 điểm: Ghi nhận bài đã xuất sắc đạt chuẩn Executive, gợi ý 1 điểm nhỏ nếu muốn mở rộng góc nhìn C-level. Nếu bài dưới 90 điểm: Chỉ ra điểm cần bổ sung thêm]
-💡 Cách viết chuẩn (Gợi ý ngắn): [Sửa lại 1-2 câu theo phong cách Executive Summary súc tích, chuyên nghiệp]`;
+QUY TẮC HIỆU CHUẨN TỔNG ĐIỂM:
+- Điểm tổng = Tiêu chí 1 + Tiêu chí 2 + Tiêu chí 3 (từ 0 đến 100).
+- Nếu học viên có báo cáo đầy đủ 3 phần, có dẫn chứng số liệu định lượng, chỉ ra nguyên nhân sau khi lọc dữ liệu và đề xuất có phân tầng + trade-off (như các bài mẫu chuẩn): BẮT BUỘC CHẤM TỪ 90 ĐẾN 100 ĐIỂM.
+- Tuyệt đối công tâm, ghi nhận đúng nỗ lực của học viên.
+
+BẮT BUỘC TRẢ VỀ THEO CẤU TRÚC MARKDOWN CHÍNH XÁC SAU (KHÔNG THAY ĐỔI CÁC TIÊU ĐỀ ICON):
+
+🎯 TỔNG ĐIỂM: [Tổng điểm]/100
+
+📊 BẢNG ĐIỂM CHI TIẾT:
+- Bằng chứng định lượng (40đ): [Điểm 1]/40 | [Nhận xét 1 dòng về số liệu định lượng và % trích dẫn]
+- Làm sạch dữ liệu & Root Cause (30đ): [Điểm 2]/30 | [Nhận xét 1 dòng về lọc dữ liệu nhiễu và bản chất nguyên nhân]
+- Giải pháp thực thi & Trade-off (30đ): [Điểm 3]/30 | [Nhận xét 1 dòng về tính khả thi, phân tầng và phân tích đánh đổi trade-off]
+
+✅ Điểm sáng:
+[2-3 gạch đầu dòng ghi nhận điểm mạnh về số liệu, góc nhìn phân tích hoặc đề xuất]
+
+❌ Lỗ hổng cần sửa:
+[1-2 gạch đầu dòng chỉ ra điểm còn thiếu: số liệu nào còn chung chung, dữ liệu bẩn nào chưa lọc, hoặc trade-off nào chưa lường trước]
+
+💡 Cách viết chuẩn (Gợi ý ngắn):
+[Tóm tắt ngắn gọn 1-2 câu theo phong cách Executive Summary của Senior DA]
+
+💎 Ví dụ viết lại theo chuẩn Senior DA:
+[Đoạn văn viết lại một phần báo cáo của người học theo đúng chuẩn Senior Data Analyst: bắt đầu bằng số liệu định lượng sau làm sạch -> chỉ ra nguyên nhân gốc rễ và rủi ro tài chính -> đưa ra hành động cụ thể kèm đánh đổi Trade-off thực tế]`;
 
 async function submitBusinessReport() {
     const reportInput = document.getElementById('reportTextarea');
@@ -888,7 +910,7 @@ async function submitBusinessReport() {
         feedbackDiv.innerHTML = `
             <div class="ai-evaluating-loading">
                 <div class="spinner-eval"></div>
-                <div><b>Head of Data Analytics</b> đang đọc báo cáo, đối soát số liệu SQL và chấm điểm... Vui lòng đợi trong giây lát!</div>
+                <div><b>Head of Data Analytics</b> đang đọc báo cáo, đối soát số liệu SQL, kiểm tra dữ liệu làm sạch và chấm điểm... Vui lòng đợi trong giây lát!</div>
             </div>
         `;
         feedbackDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -924,7 +946,7 @@ async function submitBusinessReport() {
 
     const objectivesText = currentCase && currentCase.objectives 
         ? currentCase.objectives.map((o, idx) => `${idx + 1}. ${o}`).join('\n') 
-        : 'Phân tích các chỉ số chính và đề xuất giải pháp kinh doanh.';
+        : 'Phân tích các chỉ số chính, làm sạch dữ liệu và đề xuất giải pháp kinh doanh.';
 
     const gradingPrompt = `[BỐI CẢNH DOANH NGHIỆP]:
 Nhiệm vụ: ${currentCase ? currentCase.title : 'Phân tích dữ liệu kinh doanh'}
@@ -941,13 +963,13 @@ ${dataSummary || 'Tham chiếu theo dữ liệu mock chuẩn của case study.'}
 ${reportText}
 """
 
-HÃY ĐÁNH GIÁ CÔNG TÂM DỰA TRÊN THANG ĐIỂM VÀ NGUYÊN TẮC ĐÃ QUY ĐỊNH.
+HÃY ĐÁNH GIÁ CÔNG TÂM DỰA TRÊN BỘ 3 TIÊU CHÍ (40% BẰNG CHỨNG ĐỊNH LƯỢNG | 30% LÀM SẠCH DỮ LIỆU & ROOT CAUSE | 30% ĐỀ XUẤT & TRADE-OFF).
 LƯU Ý ĐẶC BIỆT: Học viên có quyền trích dẫn số liệu từ kết quả SQL hoặc bảng dữ liệu tổng hợp của Case Study (cả hai nguồn đều hoàn toàn chính xác).
-NẾU BÁO CÁO ĐẠT ĐẦY ĐỦ 3 PHẦN (DẪN CHỨNG SỐ LIỆU RÕ RÀNG, CHỈ RA NGUYÊN NHÂN GỐC RỄ VÀ CÓ GIẢI PHÁP HÀNH ĐỘNG PHÂN TẦNG KHẢ THI - TƯƠNG ĐƯƠNG BÀI MẪU), BẮT BUỘC CHẤM TỪ 90 - 100 ĐIỂM (XUẤT SẮC)!`;
+NẾU BÁO CÁO ĐẠT ĐẦY ĐỦ 3 PHẦN (DẪN CHỨNG SỐ LIỆU RÕ RÀNG, CHỈ RA NGUYÊN NHÂN SAU KHI LOẠI BỎ DỮ LIỆU NHIỄU VÀ CÓ GIẢI PHÁP PHÂN TẦNG KÈM TRADE-OFF), BẮT BUỘC CHẤM TỪ 90 - 100 ĐIỂM (XUẤT SẮC)!`;
 
     let aiFeedbackText = null;
 
-    // 1. Thử gọi qua Vercel Serverless Function /api/gemini
+    // Lệnh gọi duy nhất qua Backend Endpoint bảo mật /api/gemini
     try {
         const res = await fetch('/api/gemini', {
             method: 'POST',
@@ -955,7 +977,8 @@ NẾU BÁO CÁO ĐẠT ĐẦY ĐỦ 3 PHẦN (DẪN CHỨNG SỐ LIỆU RÕ RÀN
             body: JSON.stringify({
                 prompt: gradingPrompt,
                 systemInstruction: GRADING_SYSTEM_PROMPT,
-                model: 'gemini-3.1-flash-lite'
+                model: 'gemini-3.1-flash-lite',
+                customApiKey: localStorage.getItem('TRONEX_AI_KEY') || ''
             })
         });
 
@@ -964,31 +987,31 @@ NẾU BÁO CÁO ĐẠT ĐẦY ĐỦ 3 PHẦN (DẪN CHỨNG SỐ LIỆU RÕ RÀN
             const data = await res.json();
             if (res.ok && data && data.text) {
                 aiFeedbackText = data.text;
+            } else if (data && data.error) {
+                throw new Error(data.error);
+            } else {
+                throw new Error(`Phản hồi không hợp lệ từ máy chủ AI (HTTP ${res.status})`);
             }
+        } else {
+            const rawErr = await res.text();
+            throw new Error(`Máy chủ trả về HTTP ${res.status}: ${rawErr.substring(0, 100)}`);
         }
     } catch (err) {
-        console.warn('[AI Grading] /api/gemini gặp lỗi, chuyển sang gọi trực tiếp:', err.message);
-    }
-
-    // 2. Dự phòng: gọi trực tiếp Google Gemini API Client-side
-    if (!aiFeedbackText) {
-        try {
-            aiFeedbackText = await callGoogleGeminiDirect(gradingPrompt, [], GRADING_SYSTEM_PROMPT);
-        } catch (directErr) {
-            console.error('[AI Grading Direct Error]:', directErr);
-            if (feedbackDiv) {
-                feedbackDiv.innerHTML = `
-                    <div class="sql-error-box">
-                        <div style="font-weight:700; margin-bottom:6px;">⚠️ Lỗi kết nối AI chấm bài</div>
-                        <div>${directErr.message}</div>
-                        <div style="margin-top:8px;">Vui lòng thử bấm nút "Nộp bài & Yêu cầu AI chấm điểm" lại.</div>
+        console.error('[AI Grading Error]:', err);
+        if (feedbackDiv) {
+            feedbackDiv.innerHTML = `
+                <div class="sql-error-box">
+                    <div style="font-weight:700; margin-bottom:6px;">⚠️ Lỗi kết nối AI Giám Khảo (/api/gemini)</div>
+                    <div>${escapeHtml(err.message || 'Không thể kết nối đến máy chủ AI chấm bài.')}</div>
+                    <div style="margin-top:8px; font-size:0.82rem; opacity:0.85;">
+                        Mọi yêu cầu chấm điểm được bảo mật qua endpoint <code>/api/gemini</code>. Vui lòng kiểm tra lại kết nối mạng hoặc thử bấm lại nút "Nộp bài & Yêu cầu AI chấm điểm".
                     </div>
-                `;
-            }
-            if (submitBtn) submitBtn.disabled = false;
-            if (statusNote) statusNote.textContent = 'Lỗi kết nối';
-            return;
+                </div>
+            `;
         }
+        if (submitBtn) submitBtn.disabled = false;
+        if (statusNote) statusNote.textContent = 'Lỗi kết nối';
+        return;
     }
 
     if (submitBtn) submitBtn.disabled = false;
@@ -1004,7 +1027,7 @@ function renderAiFeedback(rawText) {
     const feedbackDiv = document.getElementById('ai-feedback');
     if (!feedbackDiv) return;
 
-    // Phân tích điểm: 🎯 TỔNG ĐIỂM: [Số điểm]/100 hoặc [Số điểm] điểm
+    // Phân tích điểm tổng: 🎯 TỔNG ĐIỂM: [Số điểm]/100 hoặc [Số điểm] điểm
     const scoreMatch = rawText.match(/🎯\s*TỔNG\s*ĐIỂM:\s*(\d+)(?:\s*\/\s*100|\s*điểm)?/i);
     const score = scoreMatch ? parseInt(scoreMatch[1], 10) : null;
 
@@ -1019,22 +1042,51 @@ function renderAiFeedback(rawText) {
             verdictText = 'Tốt — Đạt chuẩn báo cáo phân tích thực tế';
         } else {
             scoreBadgeClass = 'score-badge-low';
-            verdictText = 'Chưa đạt — Cần bám sát số liệu & bổ sung giải pháp';
+            verdictText = 'Chưa đạt — Cần bám sát số liệu, lọc dữ liệu bẩn & bổ sung trade-off';
         }
     }
 
-    // Trích xuất các tiêu mục
-    const goodMatch = rawText.match(/✅\s*Điểm sáng:\s*([\s\S]*?)(?=❌|💡|$)/i);
-    const badMatch = rawText.match(/❌\s*Lỗ hổng cần sửa:\s*([\s\S]*?)(?=💡|$)/i);
-    const tipMatch = rawText.match(/💡\s*Cách viết chuẩn\s*(?:\(Gợi ý ngắn\))?:\s*([\s\S]*?)$/i);
+    // Trích xuất 3 tiêu chí con (40đ / 30đ / 30đ)
+    const crit1Match = rawText.match(/(?:Bằng chứng định lượng|Tiêu chí 1)[^:]*:\s*(\d+)\s*\/\s*40(?:\s*\|\s*([^\n\r]+))?/i);
+    const crit2Match = rawText.match(/(?:Làm sạch dữ liệu|Root Cause|Tiêu chí 2)[^:]*:\s*(\d+)\s*\/\s*30(?:\s*\|\s*([^\n\r]+))?/i);
+    const crit3Match = rawText.match(/(?:Giải pháp thực thi|Trade-off|Tiêu chí 3)[^:]*:\s*(\d+)\s*\/\s*30(?:\s*\|\s*([^\n\r]+))?/i);
+
+    let c1Score = crit1Match ? parseInt(crit1Match[1], 10) : (score !== null ? Math.round(score * 0.40) : 34);
+    let c2Score = crit2Match ? parseInt(crit2Match[1], 10) : (score !== null ? Math.round(score * 0.30) : 25);
+    let c3Score = crit3Match ? parseInt(crit3Match[1], 10) : (score !== null ? Math.max(0, score - c1Score - c2Score) : 25);
+
+    c1Score = Math.min(40, Math.max(0, c1Score));
+    c2Score = Math.min(30, Math.max(0, c2Score));
+    c3Score = Math.min(30, Math.max(0, c3Score));
+
+    const c1Pct = Math.min(100, Math.round((c1Score / 40) * 100));
+    const c2Pct = Math.min(100, Math.round((c2Score / 30) * 100));
+    const c3Pct = Math.min(100, Math.round((c3Score / 30) * 100));
+
+    const c1Note = crit1Match && crit1Match[2] ? crit1Match[2].trim() : 'Dẫn chứng số liệu, sản lượng, doanh thu và tỷ lệ % định lượng từ SQL';
+    const c2Note = crit2Match && crit2Match[2] ? crit2Match[2].trim() : 'Lọc bỏ dữ liệu nhiễu (đơn hủy/test) & bóc tách nguyên nhân gốc rễ';
+    const c3Note = crit3Match && crit3Match[2] ? crit3Match[2].trim() : 'Giải pháp phân tầng khả thi & đánh giá rủi ro/đánh đổi (trade-off)';
+
+    function getBarColorClass(pct) {
+        if (pct >= 85) return 'fill-high';
+        if (pct >= 70) return 'fill-medium';
+        return 'fill-low';
+    }
+
+    // Trích xuất các tiêu mục phản hồi
+    const goodMatch = rawText.match(/✅\s*Điểm sáng:\s*([\s\S]*?)(?=❌|💡|💎|$)/i);
+    const badMatch = rawText.match(/❌\s*Lỗ hổng cần sửa:\s*([\s\S]*?)(?=💡|💎|$)/i);
+    const tipMatch = rawText.match(/💡\s*Cách viết chuẩn\s*(?:\(Gợi ý ngắn\))?:\s*([\s\S]*?)(?=💎|$)/i);
+    const rewriteMatch = rawText.match(/💎\s*Ví dụ viết lại\s*(?:theo chuẩn Senior DA)?:\s*([\s\S]*?)$/i);
 
     const goodText = goodMatch ? goodMatch[1].trim() : '';
     const badText = badMatch ? badMatch[1].trim() : '';
     const tipText = tipMatch ? tipMatch[1].trim() : '';
+    const rewriteText = rewriteMatch ? rewriteMatch[1].trim() : '';
 
     feedbackDiv.style.display = 'flex';
 
-    if (goodText || badText || tipText) {
+    if (goodText || badText || tipText || rewriteText) {
         feedbackDiv.innerHTML = `
             <div class="feedback-score-header">
                 <div>
@@ -1048,6 +1100,40 @@ function renderAiFeedback(rawText) {
                 </div>
                 <div class="feedback-examiner-tag">
                     🧑‍💼 Head of Data Analytics
+                </div>
+            </div>
+
+            <!-- Bảng điểm chi tiết theo 3 tiêu chí DA/BA -->
+            <div class="grading-score-breakdown">
+                <div class="score-criterion-card">
+                    <div class="criterion-header">
+                        <span class="criterion-name">📊 Bằng chứng định lượng (40%)</span>
+                        <span class="criterion-score"><b>${c1Score}</b>/40</span>
+                    </div>
+                    <div class="criterion-bar">
+                        <div class="criterion-fill ${getBarColorClass(c1Pct)}" style="width: ${c1Pct}%;"></div>
+                    </div>
+                    <div class="criterion-note">${escapeHtml(c1Note)}</div>
+                </div>
+                <div class="score-criterion-card">
+                    <div class="criterion-header">
+                        <span class="criterion-name">🧹 Làm sạch & Root Cause (30%)</span>
+                        <span class="criterion-score"><b>${c2Score}</b>/30</span>
+                    </div>
+                    <div class="criterion-bar">
+                        <div class="criterion-fill ${getBarColorClass(c2Pct)}" style="width: ${c2Pct}%;"></div>
+                    </div>
+                    <div class="criterion-note">${escapeHtml(c2Note)}</div>
+                </div>
+                <div class="score-criterion-card">
+                    <div class="criterion-header">
+                        <span class="criterion-name">🎯 Thực thi & Trade-off (30%)</span>
+                        <span class="criterion-score"><b>${c3Score}</b>/30</span>
+                    </div>
+                    <div class="criterion-bar">
+                        <div class="criterion-fill ${getBarColorClass(c3Pct)}" style="width: ${c3Pct}%;"></div>
+                    </div>
+                    <div class="criterion-note">${escapeHtml(c3Note)}</div>
                 </div>
             </div>
 
@@ -1069,6 +1155,13 @@ function renderAiFeedback(rawText) {
             <div class="feedback-card feedback-card-tip">
                 <div class="feedback-card-title">💡 Cách viết chuẩn (Executive Summary)</div>
                 <div class="feedback-quote-box">${formatMarkdown(tipText)}</div>
+            </div>
+            ` : ''}
+
+            ${rewriteText ? `
+            <div class="feedback-card feedback-card-rewrite">
+                <div class="feedback-card-title">💎 Ví dụ cách viết lại câu báo cáo của bạn theo chuẩn Senior DA</div>
+                <div class="feedback-rewrite-box">${formatMarkdown(rewriteText)}</div>
             </div>
             ` : ''}
 
@@ -1103,105 +1196,127 @@ function fillSampleReport() {
     if (!reportInput) return;
 
     if (currentCase && currentCase.id === 'case_best_sellers_eda') {
-        reportInput.value = `BÁO CÁO PHÂN TÍCH: TOP SẢN PHẨM BÁN CHẠY VÀ KẾ HOẠCH TỒN KHO
-1. Bám sát Dữ liệu (Fact-based - 30 điểm):
-- Top 3 sản phẩm có số lượng bán cao nhất toàn sàn: Cáp sạc bọc dù Type-C (4,500 chiếc), Củ sạc nhanh GaN 65W Pro (3,100 chiếc), và Áo thun thể thao Dry-Fit (2,800 chiếc).
-- Ngành hàng Phụ Kiện Điện Thoại và Thiết Bị Số đóng góp doanh thu lớn nhất, chiếm hơn 65% tổng sản lượng bán ra.
-- Cảnh báo tồn kho nguy cấp: 3 sản phẩm bán chạy nhất hiện có tồn kho dưới 20 món (Củ sạc nhanh 65W còn đúng 8 chiếc, Máy xay sinh tố còn 5 chiếc, Chuột không dây còn 12 chiếc).
+        reportInput.value = `BÁO CÁO PHÂN TÍCH: TOP SẢN PHẨM BÁN CHẠY VÀ KẾ HOẠCH TỒN KHO AN TOÀN
+1. BẰNG CHỨNG ĐỊNH LƯỢNG (Fact-based - Sau khi làm sạch dữ liệu):
+- Dọn dẹp dữ liệu: Đã loại trừ mã sản phẩm thử nghiệm P999 (chứa 9,999 chiếc ảo của tester) và mã lỗi P011 (stock_qty bị NULL).
+- Top 3 sản phẩm có sản lượng bán cao nhất: Cáp sạc bọc dù Type-C (4,500 chiếc, GMV 225.0M VNĐ), Củ sạc nhanh GaN 65W Pro (3,100 chiếc, GMV 465.0M VNĐ), và Áo thun thể thao Dry-Fit (2,800 chiếc, GMV 336.0M VNĐ).
+- Trọng số doanh thu: Dù đứng thứ 2 về số lượng bán, Củ sạc nhanh 65W mang lại doanh thu cao nhất danh mục (chiếm 38.3% tổng GMV top sản phẩm), cao hơn 106% so với Cáp sạc Type-C.
+- Cảnh báo tồn kho nguy cấp: 3 sản phẩm chủ lực đều có tồn kho dưới 20 chiếc (Củ sạc 65W còn đúng 8 chiếc - chỉ đủ bán 1.8 ngày, Chuột không dây còn 12 chiếc, Máy xay mini còn 5 chiếc).
 
-2. Insight & Phân tích nguyên nhân (Business Insight - 40 điểm):
-- Các sản phẩm phụ kiện công nghệ giá mềm (dưới 250,000đ) có tốc độ quay vòng vốn cực nhanh vì người mua thường xuyên chọn mua kèm để đạt ngưỡng miễn phí ship.
-- Bộ phận Kho vận chưa kịp đặt hàng bổ sung dẫn đến nguy cơ đứt gãy nguồn cung (Stock-out) trong các đợt Siêu Sale cuối năm sắp tới.
+2. TƯ DUY LÀM SẠCH DỮ LIỆU & ROOT CAUSE (Bóc tách bẫy bề nổi):
+- Bẫy bề nổi (Red Herring): Nhìn số lượng bán thì tưởng Cáp sạc Type-C là "ngôi sao sinh lời", nhưng thực tế Củ sạc GaN 65W mới là cỗ máy tạo dòng tiền chính.
+- Hành vi mua sắm: Cáp sạc Type-C có giá thấp (50k) thường được khách mua kèm như món phụ để đạt ngưỡng Freeship của sàn, tốc độ xoay vòng rất cao.
+- Kho vận chậm phản ứng: Bộ phận Mua hàng (Procurement) chưa cài đặt điểm đặt hàng lại (Re-order Point) tự động, khiến các SKU tạo doanh thu cốt lõi bị cạn kiệt trước thềm chiến dịch Siêu Sale cuối năm.
 
-3. Đề xuất hành động (Actionable Recommendations - 30 điểm):
-- Ngay lập tức (24h - 48h): Thủ kho liên hệ nhà cung cấp đặt gấp 5,000 chiếc Sạc nhanh 65W và 3,000 Tai nghe True Wireless.
-- Trung hạn: Cài đặt hệ sinh thái cảnh báo tự động (Re-order Point) khi tồn kho bất kỳ mặt hàng bán chạy nào giảm xuống dưới 30 món.
-- Chiến lược giá: Đóng gói combo "Củ sạc GaN + Cáp Type-C" giá ưu đãi 249,000đ để kích thích tăng giá trị trung bình đơn (AOV).`;
+3. ĐỀ XUẤT THỰC THI & ĐÁNH ĐỔI TRADE-OFF:
+- Ngay lập tức (24h - 48h): Đặt khẩn cấp 5,000 Củ sạc GaN 65W và 3,000 Cáp sạc Type-C từ nhà cung cấp ưu tiên để chống đứt gãy nguồn cung.
+- Trung hạn: Tự động hóa cảnh báo Re-order Point trong ERP: tự động kích hoạt PO nhập hàng khi tồn kho của bất kỳ sản phẩm Top 20% doanh thu giảm xuống dưới mức 30 ngày bán.
+- Đánh đổi (Trade-off): 
+  + Rủi ro / Chi phí: Chi phí vốn lưu động tồn kho (Working Capital) sẽ tăng thêm ~380M VNĐ và phát sinh phụ phí vận chuyển hỏa tốc 15M VNĐ.
+  + Biện pháp giảm thiểu: Đóng gói combo "Củ sạc GaN + Cáp Type-C" giá ưu đãi 249,000đ để thu hồi vốn ngay trong 14 ngày đầu chiến dịch, dự kiến cứu vãn hơn 500M VNĐ doanh thu tiềm năng bị mất do Stock-out.`;
     } else if (currentCase && currentCase.id === 'case_vip_customer_retention') {
         reportInput.value = `BÁO CÁO CHIẾN DỊCH KHÁCH HÀNG THÂN THIẾT & PHÂN HẠNG VIP
-1. Bám sát Dữ liệu (Fact-based - 30 điểm):
-- Hệ thống ghi nhận 10 khách hàng khảo sát với tổng chi tiêu đạt 48.0 triệu VNĐ, mức chi tiêu bình quân đạt 4.8 triệu VNĐ/khách hàng.
-- Có 5 khách hàng đạt chuẩn hạng VIP (chi tiêu >= 5,000,000 VNĐ), trong đó khách hàng dẫn đầu (Nguyễn Văn An) đạt 9.8 triệu VNĐ với 24 đơn hàng.
-- Hai đô thị lớn là TP.HCM và Hà Nội đóng góp tới 82% tổng doanh thu khách VIP, với mức chi tiêu bình quân vượt trội (5.8 triệu VNĐ/khách).
+1. BẰNG CHỨNG ĐỊNH LƯỢNG (Fact-based - Sau khi làm sạch dữ liệu):
+- Dọn dẹp dữ liệu: Đã loại bỏ tài khoản kiểm thử C999 (email 'test@internal.com', chi tiêu ảo 85.0M) và tài khoản bot C998 (province = NULL, birth_year = NULL).
+- Tổng chi tiêu thực tế của 10 khách hàng hợp lệ đạt 48.0 triệu VNĐ, mức chi tiêu bình quân (AOV) thực là 4.8 triệu VNĐ/khách hàng (thay vì bị bóp méo lên 12.8M nếu tính cả tài khoản test C999).
+- Phân khúc VIP (chi tiêu >= 5,000,000 VNĐ): Xác định chuẩn xác 5 khách hàng VIP. Khách hàng dẫn đầu là Nguyễn Văn An (9.8M VNĐ, 24 đơn) và Lê Thị Mai (8.4M VNĐ, 18 đơn).
+- Địa bàn trọng điểm: TP.HCM và Hà Nội đóng góp tới 82.5% tổng doanh thu khách VIP (39.6M VNĐ), chi tiêu bình quân đạt 5.65M VNĐ/khách.
 
-2. Insight & Phân tích nguyên nhân (Business Insight - 40 điểm):
-- Nhóm khách hàng VIP chỉ chiếm 50% số lượng khách nhưng mang lại hơn 70% tổng doanh thu của kỳ khảo sát (Hiệu ứng Pareto 80/20).
-- Khách hàng hạng Diamond và Gold có mức độ gắn kết cao, đặt trung bình từ 12 đến 24 đơn hàng/năm.
+2. TƯ DUY LÀM SẠCH DỮ LIỆU & ROOT CAUSE (Bóc tách bẫy bề nổi):
+- Bẫy bề nổi (Red Herring): Nếu không lọc tài khoản nội bộ C999, thuật toán sẽ xác định C999 là "Siêu VIP số 1" và gửi quà tặng/tri ân trị giá hàng triệu đồng cho chính tester công ty!
+- Hiệu ứng Pareto 80/20 rõ nét: Nhóm khách hàng VIP chỉ chiếm 50% số lượng khách khảo sát nhưng mang lại tới 74.5% tổng doanh thu hợp lệ của sàn.
+- Khách hàng Diamond/Gold có tần suất mua sắm cực kỳ trung thành (12 - 24 đơn/năm), nhưng chưa có kênh chăm sóc riêng biệt (Dedicated Care).
 
-3. Đề xuất hành động (Actionable Recommendations - 30 điểm):
-- Ngay lập tức: Gửi hộp quà tri ân kỷ niệm 5 năm kèm voucher giảm giá 200,000đ cho 5 khách hàng VIP trước ngày 20 hàng tháng.
-- Trung hạn: Xây dựng chính sách ưu đãi tích lũy điểm hạng Diamond (hoàn xu 5%, đặc quyền freeship không giới hạn) để tăng tỷ lệ giữ chân khách (Retention Rate).
-- Tiếp thị: Phân bổ 70% ngân sách quảng cáo tập trung vào 2 khu vực trọng điểm là TP.HCM và Hà Nội.`;
+3. ĐỀ XUẤT THỰC THI & ĐÁNH ĐỔI TRADE-OFF:
+- Ngay lập tức (Tuần 1): Gửi hộp quà tri ân kỷ niệm 5 năm kèm voucher 200,000đ (áp dụng cho đơn từ 1.0M) cho 5 khách hàng VIP thực sự.
+- Trung hạn: Ra mắt hệ thống phân hạng hội viên tự động (Tiered Loyalty): Hoàn xu 5% trọn đời và cấp đường dây hỗ trợ ưu tiên (VIP Hotline) cho khách Diamond. Phân bổ 75% ngân sách CSKH cho 2 thành phố lớn (TP.HCM, HN).
+- Đánh đổi (Trade-off):
+  + Rủi ro / Chi phí: Chi phí quà tặng và chiết khấu VIP tiêu tốn ~4.5M VNĐ/tháng và có thể làm giảm nhẹ 1.2% biên lợi nhuận ròng của nhóm đơn hàng VIP.
+  + Biện pháp giảm thiểu: Đặt điều kiện voucher có hạn dùng trong 21 ngày để kích thích tái mua sắm, dự kiến tăng giá trị vòng đời khách hàng (LTV) thêm 28% và giữ chân 100% khách VIP không chuyển sang đối thủ.`;
     } else if (currentCase && currentCase.id === 'case_order_delivery_qa') {
         reportInput.value = `BÁO CÁO ĐÁNH GIÁ CHẤT LƯỢNG GIAO HÀNG & HIỆU SUẤT ĐƠN VỊ VẬN CHUYỂN
-1. Bám sát Dữ liệu (Fact-based - 30 điểm):
-- Toàn sàn ghi nhận 15 đơn hàng vận chuyển trong tuần khảo sát, với 12 đơn giao thành công, 2 đơn huỷ và 1 đơn hoàn trả (Tỷ lệ hoàn tất Fulfillment Rate đạt 80.0%).
-- Đơn vị SPX Express và GHN có hiệu suất giao hàng xuất sắc nhất, thời gian giao trung bình chỉ từ 1.6 đến 1.8 ngày, tỷ lệ hoàn tất đạt 100%.
-- Viettel Post và J&T Express có thời gian giao hàng kéo dài từ 3.7 đến 4.3 ngày, đồng thời phát sinh 2 đơn bị huỷ và 1 đơn hoàn trả.
+1. BẰNG CHỨNG ĐỊNH LƯỢNG (Fact-based - Sau khi làm sạch dữ liệu):
+- Dọn dẹp dữ liệu: Đã loại trừ mã vận đơn thử nghiệm TRK_999 (đơn test của đội IT).
+- Tổng sản lượng thực tế: 15 đơn hàng vận chuyển trong tuần: 12 đơn hoàn tất thành công, 2 đơn huỷ và 1 đơn hoàn trả (Tỷ lệ hoàn tất toàn sàn đạt 80.0%).
+- Đơn vị xuất sắc: SPX Express (4/4 đơn) và GHN (4/4 đơn) đạt tỷ lệ hoàn tất 100%, thời gian giao hàng cực nhanh: 1.6 ngày (SPX) và 1.8 ngày (GHN).
+- Đơn vị cảnh báo: Viettel Post (3 đơn: 2 thành công, 1 hủy) và J&T Express (4 đơn: 2 thành công, 1 hủy, 1 hoàn). Thời gian giao hàng kéo dài báo động: 3.7 ngày (Viettel Post) và 4.3 ngày (J&T Express).
 
-2. Insight & Phân tích nguyên nhân (Business Insight - 40 điểm):
-- Tốc độ giao hàng tỷ lệ thuận với sự hài lòng của người mua: Đơn hàng giao trong vòng 48h có tỷ lệ nhận hàng thành công 100%.
-- Các đơn hàng giao chậm trên 3 ngày có tỷ lệ từ chối nhận (Boom hàng) tăng đột biến do khách hàng không còn nhu cầu chờ đợi.
+2. TƯ DUY LÀM SẠCH DỮ LIỆU & ROOT CAUSE (Bóc tách bẫy bề nổi):
+- Bẫy bề nổi (Red Herring): Nhìn vào đơn giá cước vận chuyển, Viettel Post và J&T Express có giá cước rẻ hơn 15% - 20% so với SPX Express nên thường được bộ phận Vận hành ưu tiên chọn để "tiết kiệm chi phí".
+- Root Cause: Thực tế chứng minh "Cước rẻ hóa đắt" — Thời gian giao hàng vượt quá ngưỡng kiên nhẫn 72h của khách hàng. Tỷ lệ boom hàng (từ chối nhận / hủy đơn) tăng vọt lên 33% - 50% ở các đơn vị giao chậm, khiến sàn phải chịu phí vận chuyển 2 chiều và phí đóng gói hoàn trả.
 
-3. Đề xuất hành động (Actionable Recommendations - 30 điểm):
-- Ngay lập tức: Ưu tiên định tuyến 70% lượng đơn hàng nội thành và liên tỉnh trọng điểm cho SPX Express và GHN.
-- Đối tác: Làm việc lại với Viettel Post và J&T Express để cam kết SLA giao hàng dưới 72 giờ đối với các tuyến giao xa.
-- Công nghệ: Bổ sung tính năng thông báo theo dõi hành trình đơn hàng qua Zalo/SMS để người mua chủ động nhận hàng.`;
+3. ĐỀ XUẤT THỰC THI & ĐÁNH ĐỔI TRADE-OFF:
+- Ngay lập tức: Tái cấu trúc bộ định tuyến vận chuyển (Routing Rule): Phân bổ 80% đơn nội thành và liên tỉnh trục chính cho SPX Express và GHN.
+- Đối tác & SLA: Làm việc lại với Viettel Post / J&T Express, yêu cầu cam kết SLA giao hàng dưới 72 giờ cho các tuyến huyện xã xa; nếu trễ hẹn quá 24h, đơn vị vận chuyển phải chịu 50% chi phí bồi hoàn.
+- Đánh đổi (Trade-off):
+  + Rủi ro / Chi phí: Chi phí cước bình quân trên mỗi đơn hàng hoàn tất sẽ tăng thêm ~3,200 VNĐ khi ưu tiên đơn vị chất lượng cao.
+  + Biện pháp giảm thiểu: Việc giảm tỷ lệ hủy/hoàn từ 20% xuống dưới 5% sẽ tiết kiệm trực tiếp hơn 14.5M VNĐ tiền hoàn hàng và bảo vệ uy tín thương hiệu, tạo ra giá trị thặng dư ròng dương ngay trong tháng đầu tiên.`;
     } else if (currentCase && (currentCase.id === 'case_freeship_leak' || currentCase.id === 'case-freeship-fraud')) {
-        reportInput.value = `BÁO CÁO PHÂN TÍCH HIỆN TƯỢNG VƯỢT NGÂN SÁCH TRỢ GIÁ VẬN CHUYỂN
-1. Dữ liệu thực tế:
-- Trong chiến dịch Mega Sale, phân khúc đơn hàng cận ngưỡng 99k - 105k chiếm tỷ lệ áp đảo 58.4% tổng lượng đơn (148,520 đơn), tiêu tốn 4,455,600,000 VNĐ tiền trợ giá.
-- Tỷ lệ này cao gấp gần 5 lần so với nhóm đơn hàng trên 200k (chỉ chiếm 12.7% và 965 triệu VNĐ).
+        reportInput.value = `BÁO CÁO ĐIỀU TRA: THẤT THOÁT NGÂN SÁCH TRỢ GIÁ FREESHIP VÀ HÀNH VI CHẺ ĐƠN
+1. BẰNG CHỨNG ĐỊNH LƯỢNG (Fact-based - Sau khi làm sạch dữ liệu):
+- Dọn dẹp dữ liệu: Đã loại trừ tài khoản gian lận B_TEST (IP 127.0.0.1, status = FAILED) và 2 đơn hàng huỷ/hoàn tiền trước khi thống kê.
+- Phân bổ giỏ hàng bất thường: Nhóm đơn hàng cận ngưỡng 99k - 105k chiếm tỷ trọng áp đảo 58.4% tổng lượng đơn hàng hưởng ưu đãi (148,520 đơn), ngốn 4,455,600,000 VNĐ tiền trợ giá của sàn.
+- Đối chiếu nhóm đơn giá trị cao: Nhóm đơn > 200k chỉ chiếm 12.7% số đơn (nhận 965M VNĐ trợ giá). Tỷ lệ đơn cận ngưỡng cao gấp 4.6 lần so với nhóm đơn giá trị cao.
+- Đối chiếu đa bảng (orders + buyer_profiles): Phát hiện 3 cụm tài khoản (như B001, B007) dùng chung Device Fingerprint và địa chỉ IP, đặt trung bình 4.2 đơn hàng có giá trị đúng 99,000đ - 102,000đ trong cùng 1 buổi tối.
 
-2. Insight & Phân tích nguyên nhân:
-- Xuất hiện hành vi chẻ đơn hàng loạt (order splitting) từ nhóm các Shop và IP người mua nhằm trục lợi mức voucher hỗ trợ 30.000đ/đơn từ sàn.
-- Chính sách Freeship 0đ hiện tại đang có kẽ hở khi không giới hạn lượt hưởng voucher theo cụm IP/thiết bị, và ngưỡng áp dụng quá phẳng khiến người mua chia nhỏ giỏ hàng thay vì mua nhiều sản phẩm.
+2. TƯ DUY LÀM SẠCH DỮ LIỆU & ROOT CAUSE (Bóc tách bẫy bề nổi):
+- Bẫy bề nổi (Red Herring): Báo cáo Marketing ban đầu tán dương "Chiến dịch Mega Sale bùng nổ đơn hàng với hơn 250,000 đơn freeship được kích hoạt".
+- Root Cause: Đây thực chất là hành vi "Chẻ đơn hàng loạt" (Order Splitting) có chủ đích của các Shop và người mua chuyên nghiệp. Thay vì mua 1 đơn hàng 300,000đ chỉ được giảm 30k ship, họ chia nhỏ thành 3 đơn 100,000đ để chiếm đoạt 90,000đ tiền trợ giá từ sàn, gây thâm hụt nghiêm trọng quỹ Marketing mà không làm tăng GMV thực.
 
-3. Đề xuất hành động:
-- Ngay lập tức: Chặn dải IP và tạm giữ thanh toán của các Shop có tỷ lệ đơn cận 99k bất thường để đối soát.
-- Trung hạn: Chuyển đổi chính sách Freeship bậc thang (Đơn 150k giảm 15k, đơn 250k giảm 30k) để kích thích tăng AOV (giá trị trung bình đơn hàng).
-- Kỹ thuật: Bổ sung luật phát hiện gian lận tự động (Fraud Rules) dựa trên Device Fingerprinting.`;
+3. ĐỀ XUẤT THỰC THI & ĐÁNH ĐỔI TRADE-OFF:
+- Ngay lập tức (24h): Khóa tính năng áp mã freeship nhiều lần trên cùng Device Fingerprint / Dải IP; tạm giữ thanh toán trợ giá các shop có tỷ lệ đơn cận 99k > 70% để đối soát thủ công.
+- Trung hạn: Chuyển đổi chính sách trợ giá sang mô hình bậc thang: Đơn từ 150k giảm 15k, đơn từ 250k giảm 30k, thay vì mức cào bằng 99k.
+- Đánh đổi (Trade-off):
+  + Rủi ro / Chi phí: Tổng số lượng đơn hàng (Gross Orders) có thể sụt giảm 15% - 20% trong 2 tuần đầu do người mua không còn chẻ đơn được nữa.
+  + Biện pháp giảm thiểu: Giá trị trung bình đơn hàng (AOV) sẽ tăng vọt từ 118,000đ lên ước tính 175,000đ (+48%), đồng thời bảo toàn được hơn 2.3 tỷ VNĐ ngân sách bị bòn rút trái phép.`;
     } else if (currentCase && currentCase.id === 'case_fake_orders_spike') {
         reportInput.value = `BÁO CÁO ĐIỀU TRA: HIỆN TƯỢNG NỔ ĐƠN ẢO & BẪY TĂNG TRƯỞNG GMV
-1. Bám sát Dữ liệu (Fact-based - 30 điểm):
-- Tổng đơn hàng đặt (Gross Orders) tăng đột biến 338% từ 3,400 đơn (01/10) lên đỉnh điểm 14,920 đơn (12/10).
-- Tuy nhiên, số đơn thực tế hoàn tất (Net Completed Orders) chỉ tăng nhẹ từ 2,980 lên 4,120 đơn (+38%). Tỷ lệ hủy đơn (Cancellation Rate) tăng vọt từ 12.4% lên mức báo động 72.4% (ghi nhận 10,800 đơn hủy riêng ngày 12/10).
-- Nguyên nhân hủy tập trung vào 2 nhóm chính: Gian lận đại lý (agent_fraud chiếm 58%) và tự đặt đơn ảo (self_order chiếm 27%).
+1. BẰNG CHỨNG ĐỊNH LƯỢNG (Fact-based - Sau khi làm sạch dữ liệu):
+- Dọn dẹp dữ liệu: Đã loại trừ các phiên chạy thử nghiệm hệ thống (session chứa 'system_test' hoặc status = 'TEST').
+- Bóc tách Gross vs Net Orders: Tổng đơn đặt hàng (Gross Orders) tăng phi mã 338% từ 3,400 đơn (01/10) lên 14,920 đơn (12/10). Tuy nhiên, số đơn thực tế hoàn tất (Net Completed Orders) chỉ tăng nhẹ từ 2,980 lên 4,120 đơn (+38.2%).
+- Tỷ lệ hủy đơn (Cancellation Rate) tăng vọt từ mức an toàn 12.4% lên ngưỡng báo động đỏ 72.4% (ghi nhận 10,800 đơn hủy riêng ngày 12/10).
+- Đối chiếu nguyên nhân hủy (cancellation_reasons): Hai lý do lớn nhất chiếm tới 85% tổng lượng hủy: Gian lận đại lý (agent_fraud chiếm 58%, tương đương 6,264 đơn) và tự đặt đơn ảo (self_order chiếm 27%, tương đương 2,916 đơn).
 
-2. Insight & Phân tích nguyên nhân (Business Insight - 40 điểm):
-- Đội ngũ đại lý và nhân sự kinh doanh có dấu hiệu tạo "vòng lặp đặt đơn ảo" (Self-ordering loops) nhằm chạy chỉ tiêu KPI trước thềm chốt báo cáo gọi vốn Series A.
-- Đơn hàng bị hủy hàng loạt trong vòng dưới 120 giây sau khi đặt để tránh phải thanh toán thực tế, nhưng vẫn được ghi nhận vào Gross GMV của chiến dịch.
+2. TƯ DUY LÀM SẠCH DỮ LIỆU & ROOT CAUSE (Bóc tách bẫy bề nổi):
+- Bẫy bề nổi (Red Herring): Ban Giám đốc nhìn biểu đồ Gross GMV tưởng chừng đội ngũ Kinh doanh đang có tháng tăng trưởng kỷ lục và chuẩn bị giải ngân thưởng KPI.
+- Root Cause: Thực chất các đại lý và nhân sự kinh doanh đã tạo "vòng lặp đặt đơn ảo" (Self-ordering loops). Họ đặt đơn số lượng lớn qua tài khoản phụ rồi bấm hủy ngay trong vòng 60 - 120 giây. Hệ thống ERP cũ vẫn ghi nhận Gross GMV để tính thưởng KPI, gây thất thoát ngân sách hoa hồng và tạo số liệu ảo để đối phó vòng gọi vốn Series A.
 
-3. Đề xuất hành động (Actionable Recommendations - 30 điểm):
-- Ngay lập tức: Tách bạch dứt khoát chỉ số Net Delivered GMV khỏi Gross GMV trong toàn bộ báo cáo tài chính gửi Quỹ đầu tư; tạm dừng chi trả hoa hồng cho các đại lý có tỷ lệ hủy > 50%.
-- Trung hạn: Thiết lập quy tắc kiểm soát luồng thanh toán (Payment Escrow) và thời gian chờ tối thiểu 24h trước khi tính điểm thành tích cho đại lý.
-- Kỹ thuật: Cài đặt hệ thống Fraud Alert tự động kích hoạt khi tỷ lệ hủy theo giờ của bất kỳ chi nhánh/đại lý nào vượt quá 25%.`;
+3. ĐỀ XUẤT THỰC THI & ĐÁNH ĐỔI TRADE-OFF:
+- Ngay lập tức: Tách bạch dứt khoát 2 chỉ số: Bỏ Gross GMV, chỉ sử dụng Net Delivered GMV làm thước đo duy nhất trên Dashboard điều hành và báo cáo gửi Quỹ đầu tư. Đình chỉ chi trả hoa hồng tháng 10 cho các đại lý có tỷ lệ hủy > 40%.
+- Trung hạn: Áp dụng cơ chế thanh toán ký quỹ (Payment Escrow) và cài đặt Fraud Bot tự động phong tỏa tài khoản đại lý khi tỷ lệ hủy trong ngày vượt quá 20%.
+- Đánh đổi (Trade-off):
+  + Rủi ro / Chi phí: Báo cáo tăng trưởng gửi Quỹ đầu tư sẽ bị điều chỉnh giảm từ +338% xuống +38%, có thể tạo áp lực giải trình trong buổi họp Board meeting sắp tới.
+  + Biện pháp giảm thiểu: Minh bạch số liệu chứng minh năng lực kiểm soát rủi ro tài chính của Ban điều hành, tránh nguy cơ bị xử phạt pháp lý hoặc điều tra gian lận số liệu (Due Diligence) trong quá trình thẩm định đầu tư.`;
     } else if (currentCase && currentCase.id === 'case_voucher_abuse') {
         reportInput.value = `BÁO CÁO PHÁT HIỆN GIAN LẬN: LỖ HỔNG VOUCHER SINH NHẬT THÁNG 10
-1. Bám sát Dữ liệu (Fact-based - 30 điểm):
-- Phân bổ tháng sinh nhật bị lệch nghiêm trọng: Tài khoản khai sinh nhật tháng 10 chiếm tới 41.0% tổng cơ sở khách hàng (trong khi mức trung bình tự nhiên chỉ dao động từ 8.0% - 8.5%/tháng).
-- Lượng voucher sinh nhật 50.000đ được kích hoạt trong tháng 10 tăng đột biến 340% so với tháng trước.
-- Phát hiện 72% tài khoản khai sinh nhật tháng 10 được tạo mới ngay trong tháng 10/2026 và lập tức áp dụng mã giảm giá; trong đó nhiều cụm IP đăng ký từ 5 đến 15 tài khoản cùng thiết bị.
+1. BẰNG CHỨNG ĐỊNH LƯỢNG (Fact-based - Sau khi làm sạch dữ liệu):
+- Dọn dẹp dữ liệu: Đã loại trừ tài khoản kiểm thử nội bộ KH_TEST_QC (email 'test@internal-test.com', IP 127.0.0.1) và voucher thử nghiệm VC_TEST.
+- Phân bổ xác suất ngày sinh bị méo mó nghiêm trọng: Số tài khoản khai sinh nhật tháng 10 chiếm tới 41.0% tổng cơ sở khách hàng (trong khi mức trung bình tự nhiên theo xác suất thống kê chỉ dao động từ 8.0% - 8.5%/tháng).
+- Sản lượng voucher 50,000đ được kích hoạt trong tháng 10 tăng đột biến 340% so với tháng 9.
+- Đối chiếu đa bảng (customers + voucher_usage + orders): 72% tài khoản khai sinh nhật tháng 10 được tạo mới ngay trong tháng 10/2026 và lập tức áp mã trong vòng 15 phút; 64% trong số đó dùng chung dải IP và thiết bị (trung bình 6 - 12 tài khoản/IP).
 
-2. Insight & Phân tích nguyên nhân (Business Insight - 40 điểm):
-- Chính sách tặng quà sinh nhật có kẽ hở chí mạng: Không có điều kiện "thời gian tối thiểu tạo tài khoản" (Account Age Threshold) và cho phép người dùng tự khai ngày sinh không cần xác thực CCCD/SĐT.
-- Các nhóm "Thợ săn Voucher" sử dụng công cụ tạo hàng loạt tài khoản ảo với sinh nhật tháng 10 để gom mã 50K mua hàng giá rẻ hoặc bán lại mã.
+2. TƯ DUY LÀM SẠCH DỮ LIỆU & ROOT CAUSE (Bóc tách bẫy bề nổi):
+- Bẫy bề nổi (Red Herring): Nhìn vào số lượng tài khoản mới đăng ký tăng vọt trong tháng 10, phòng Tăng trưởng người dùng (User Acquisition) ngỡ ngàng vì chiến dịch "quá thành công".
+- Root Cause: Lỗ hổng chính sách cực kỳ sơ hở: Không có điều kiện thời gian tối thiểu tồn tại của tài khoản (Account Age Threshold) và cho phép người dùng tự do chọn tháng sinh mà không cần xác thực số điện thoại/eKYC. Các hội nhóm "Thợ săn Voucher" đã dùng tool tự động reg hàng ngàn tài khoản ảo với sinh nhật tháng 10 để rút sạch mã 50k mua hàng 0 đồng.
 
-3. Đề xuất hành động (Actionable Recommendations - 30 điểm):
-- Ngay lập tức: Tạm dừng áp dụng voucher sinh nhật cho các tài khoản mới tạo dưới 30 ngày; thu hồi các mã giảm giá chưa sử dụng từ các dải IP có trên 3 tài khoản trùng lặp.
-- Trung hạn: Sửa đổi chính sách nhận quà sinh nhật — tài khoản phải phát sinh ít nhất 01 đơn hàng thành công trước tháng sinh nhật và khai báo ngày sinh trước ít nhất 60 ngày.
-- Kỹ thuật: Tích hợp định danh eKYC/xác thực SĐT qua OTP và kích hoạt Device Fingerprinting để chặn việc tạo nhiều tài khoản trên cùng 1 trình duyệt/điện thoại.`;
+3. ĐỀ XUẤT THỰC THI & ĐÁNH ĐỔI TRADE-OFF:
+- Ngay lập tức: Thu hồi toàn bộ voucher sinh nhật 50k chưa sử dụng ở các tài khoản tạo mới dưới 14 ngày; chặn dải IP nghi vấn có trên 3 tài khoản cùng sử dụng voucher.
+- Trung hạn: Sửa đổi chính sách ưu đãi sinh nhật: Chỉ tặng voucher sinh nhật cho tài khoản đã hoạt động tối thiểu 45 ngày và đã có ít nhất 01 đơn hàng hoàn tất hợp lệ. Tích hợp eKYC và xác thực OTP qua Zalo/SMS.
+- Đánh đổi (Trade-off):
+  + Rủi ro / Chi phí: Một số khách hàng mới thật sự có sinh nhật trong tháng sẽ không nhận được mã 50k sinh nhật ngay lập tức.
+  + Biện pháp giảm thiểu: Tự động tặng gói voucher chào mừng "Newbie Pack" trị giá 20,000đ cho khách hàng mới để xoa dịu trải nghiệm, đồng thời bảo vệ an toàn hơn 185M VNĐ ngân sách tiếp thị không bị thợ săn bòn rút.`;
     } else {
-        reportInput.value = `BÁO CÁO PHÂN TÍCH KINH DOANH
-1. Bám sát Dữ liệu (Fact-based):
-- Dựa trên kết quả truy vấn SQL, các chỉ số ghi nhận thực tế là: ...
-2. Insight & Phân tích nguyên nhân (Business Sense):
-- Bản chất ngầm hiểu đằng sau sự biến động của dữ liệu là: ...
-3. Đề xuất hành động (Actionable Recommendation):
-- Đề xuất các giải pháp khả thi để giải quyết bài toán: ...`;
+        reportInput.value = `BÁO CÁO PHÂN TÍCH KINH DOANH CHUẨN SENIOR DA
+1. BẰNG CHỨNG ĐỊNH LƯỢNG (Fact-based - Sau khi làm sạch dữ liệu):
+- Đã loại trừ dữ liệu nhiễu (đơn huỷ/hoàn/test). Dẫn chứng số liệu cụ thể: ...
+2. TƯ DUY LÀM SẠCH DỮ LIỆU & ROOT CAUSE (Bóc tách bẫy bề nổi):
+- Bản chất nguyên nhân gốc rễ đằng sau sự biến động là: ...
+3. ĐỀ XUẤT THỰC THI & ĐÁNH ĐỔI TRADE-OFF:
+- Đề xuất phân tầng hành động cụ thể kèm đánh đổi chi phí/rủi ro (trade-off): ...`;
     }
     reportInput.focus();
 }
+window.fillSampleReport = fillSampleReport;
 window.fillSampleReport = fillSampleReport;
 
 function renderOutputData(mission) {
@@ -1405,20 +1520,20 @@ function setupMentorChat() {
             ? currentCase.objectives.map((o, i) => `${i + 1}. ${o}`).join('\n')
             : 'Mục tiêu phân tích dữ liệu';
 
-        const promptText = `🔍 **Yêu cầu Review mã ${langName} trước khi chạy:**\n\n` +
+        const promptText = `🔍 **Yêu cầu Review mã ${langName} trước khi chạy & Nhận mẹo tối ưu Production:**\n\n` +
             `\`\`\`${langSyntax}\n${code}\n\`\`\`\n\n` +
             `Mục tiêu bài toán cần đạt:\n${objectivesText}\n\n` +
-            `Mentor hãy giúp tôi kiểm tra:\n` +
-            `1. Cú pháp có lỗi gì không (tên bảng, tên cột, dấu câu, logic GROUP BY / aggregation...)?\n` +
-            `2. Logic truy vấn có đáp ứng đúng mục tiêu bài toán không?\n` +
-            `3. Đánh giá: Mã này đã chuẩn để chạy chưa hay cần lưu ý/sửa đổi gì trước khi chạy?`;
+            `Mentor hãy giúp tôi phân tích:\n` +
+            `1. **Kiểm tra Cú pháp & Tương thích Sandbox**: Có lỗi cú pháp AlaSQL, tên bảng, tên cột hay hàm gom nhóm không?\n` +
+            `2. **Tư duy Làm sạch Dữ liệu (Data Hygiene)**: Câu lệnh đã lọc bỏ đơn huỷ/hoàn tiền (status = 'CANCELLED'/'REFUNDED') hoặc dữ liệu thử nghiệm nội bộ chưa?\n` +
+            `3. **Mẹo tối ưu Production Database**: Trong môi trường doanh nghiệp thực tế (PostgreSQL, Google BigQuery, Snowflake), cách viết này nên được tối ưu thế nào (ví dụ: dùng CTE WITH thay subquery, dùng Window Functions ROW_NUMBER/RANK, dùng SAFE_DIVIDE, lưu ý Indexing và chi phí quét byte)?`;
 
         appendMentorMessage('user', `
             <div style="font-weight:700; margin-bottom:4px; display:flex; align-items:center; gap:6px;">
-                <span>🔍 Yêu cầu Review mã ${escapeHtml(langName)}</span>
+                <span>🔍 Yêu cầu Review mã ${escapeHtml(langName)} & Mẹo Production</span>
             </div>
             <pre style="background:rgba(0,0,0,0.25); padding:8px 10px; border-radius:6px; font-size:0.8rem; overflow-x:auto; margin:4px 0;"><code>${escapeHtml(code)}</code></pre>
-            <div style="font-size:0.8rem; opacity:0.85;">Nhờ Mentor kiểm tra cú pháp và logic nghiệp vụ trước khi chạy.</div>
+            <div style="font-size:0.8rem; opacity:0.85;">Nhờ Mentor kiểm tra cú pháp AlaSQL, tư duy lọc dữ liệu nhiễu và mẹo tối ưu trên PostgreSQL/BigQuery.</div>
         `);
 
         sendToGeminiMentor(promptText);
@@ -1453,12 +1568,13 @@ function setupMentorChat() {
             `**Câu lệnh SQL bị lỗi:**\n\`\`\`sql\n${stmt}\n\`\`\`\n\n` +
             `**Thông báo lỗi từ hệ thống:**\n\`${errMsg}\`\n\n` +
             `Mentor hãy phân tích và hướng dẫn tôi:\n` +
-            `1. Nguyên nhân vì sao câu lệnh này bị lỗi (chỉ rõ vị trí sai cú pháp, tên cột hoặc tên bảng)?\n` +
-            `2. Hãy hướng dẫn tôi cách sửa lại câu lệnh chuẩn xác nhất theo đúng cấu trúc CSDL để thực thi thành công.`;
+            `1. **Nguyên nhân cốt lõi**: Vì sao câu lệnh này bị lỗi (chỉ rõ vị trí sai cú pháp, tên cột/bảng theo Schema)?\n` +
+            `2. **Cách sửa chuẩn cho AlaSQL Sandbox**: Câu lệnh sửa đổi chính xác để chạy thành công ngay lập tức.\n` +
+            `3. **Mẹo Enterprise Production**: Trong môi trường CSDL thực tế (PostgreSQL, BigQuery, MySQL 8.0+), các kỹ sư DA thường viết câu lệnh này như thế nào để tối ưu hiệu năng và dễ bảo trì?`;
 
         appendMentorMessage('user', `
             <div style="font-weight:700; margin-bottom:4px; display:flex; align-items:center; gap:6px; color:#EF4444;">
-                <span>🚨 Yêu cầu sửa lỗi SQL (Truy vấn #${qIdx})</span>
+                <span>🚨 Yêu cầu sửa lỗi SQL & Mẹo Enterprise (Truy vấn #${qIdx})</span>
             </div>
             <pre style="background:rgba(0,0,0,0.25); padding:8px 10px; border-radius:6px; font-size:0.8rem; overflow-x:auto; margin:4px 0;"><code>${escapeHtml(stmt)}</code></pre>
             <div style="color:#EF4444; font-size:0.8rem; font-family:monospace; margin-top:4px; background:rgba(239,68,68,0.1); padding:5px 8px; border-radius:4px;">
@@ -1499,46 +1615,44 @@ async function sendToGeminiMentor(userQuery) {
 
     const solutionReference = currentCase?.solutionSql || currentCase?.defaultSql || '';
 
-    const systemInstruction = `Bạn là Gemini AI Mentor — một Senior Data Analyst đang hướng dẫn thực hành trong Sandbox phân tích dữ liệu TRONEX.
+    const systemInstruction = `Bạn là Gemini AI Mentor — Senior Data Analytics Lead đang hướng dẫn thực hành trong Sandbox phân tích dữ liệu TRONEX.
 
 Ngữ cảnh bài toán hiện tại:
 ${missionContext}
 
 CƠ CHẾ THỰC THI SQL CỦA HỆ THỐNG:
-- Trình duyệt đang chạy engine AlaSQL để thực thi câu lệnh SQL trực tiếp trên bộ dữ liệu mock.
-- CSDL HIỆN CHỈ CÓ CÁC BẢNG SAU:
+- Trình duyệt đang chạy engine AlaSQL để thực thi câu lệnh SQL trực tiếp trên bộ dữ liệu mock trong bộ nhớ.
+- CSDL HIỆN CÓ CÁC BẢNG SAU:
 ${currentCase ? currentCase.schema.map(t => `- Bảng "${t.tableName}": (${t.columns.map(c => c.name).join(', ')})`).join('\n') : ''}
 
-QUY TẮC BẮT BUỘC KHI PHẢN HỒI (MENTOR PHẢI TỰ KIỂM CHỨNG CODE TRƯỚC KHI GỬI):
+QUY TẮC BẮT BUỘC KHI PHẢN HỒI (CHUẨN SENIOR DATA ANALYST MENTOR):
 1. CHỈ ĐƯỢC PHÉP TRUY VẤN từ các bảng có thật ở trên. TUYỆT ĐỐI KHÔNG tự bịa ra bảng ảo không có trong CSDL (như OrderMetrics, AggregatedData...).
-2. KHÔNG DÙNG cú pháp CTE (WITH ... AS ...). Hãy viết các câu lệnh SELECT độc lập, hoặc dùng subquery lồng nhau FROM (SELECT ...).
+2. Để tương thích với engine AlaSQL trong trình duyệt: KHÔNG DÙNG cú pháp CTE (WITH ... AS ...) trong khối code chạy trên Sandbox. Hãy viết các câu lệnh SELECT độc lập hoặc subquery FROM (SELECT ...).
 3. LUÔN LUÔN viết COUNT(*) hoặc COUNT(tên_cột). TUYỆT ĐỐI KHÔNG viết COUNT() rỗng.
-4. MỌI CÂU LỆNH SQL BẠN CUNG CẤP PHẢI ĐƯỢC TỰ KIỂM CHỨNG CÚ PHÁP:
-   - TUYỆT ĐỐI KHÔNG viết dính tiền tố (như 'QLSELECT' hay 'SQL SELECT'). Luôn bắt đầu bằng từ khóa 'SELECT' chuẩn xác.
-   - Luôn kiểm tra từng tên cột phải khớp 100% với Schema đã cung cấp.
-5. KHI NGƯỜI DÙNG YÊU CẦU REVIEW CODE (SQL hoặc Python):
-   - Đọc kỹ mã người dùng gửi và đối chiếu với Schema các bảng có thật.
-   - Kiểm tra kỹ: Cú pháp, tên bảng, tên cột, logic gom nhóm (GROUP BY), điều kiện WHERE, và kiểu dữ liệu.
-   - Trình bày phản hồi có cấu trúc:
-     ✅ Điểm viết đúng / hợp lý
-     ⚠️ Điểm sai hoặc nguy cơ lỗi (nếu có, chỉ rõ dòng & tên cột)
-     🚀 Đánh giá: Có thể chạy ngay hay cần điều chỉnh gì trước khi chạy?
-6. KHI NGƯỜI DÙNG BÁO LỖI (Gửi lỗi SQL/Python khi chạy):
-   - Phân tích nguyên nhân cốt lõi gây ra lỗi (Parse error, sai chính tả tên cột, quên dấu chấm phẩy, hàm không hỗ trợ...).
-   - Chỉ rõ vị trí sai và cung cấp câu lệnh SQL/Python chuẩn đã kiểm chứng để người dùng copy chạy lại thành công.
-7. Khi người học yêu cầu "Viết cho tôi câu SQL hoàn chỉnh để giải bài toán này" hoặc xin code giải bài, HÃY CUNG CẤP CHÍNH XÁC bộ câu lệnh SQL chuẩn sau đây:
+4. MỌI CÂU LỆNH SQL CHO ALASQL PHẢI ĐƯỢC TỰ KIỂM CHỨNG: Bắt đầu bằng từ khóa 'SELECT' chuẩn xác, tên cột khớp 100% với Schema.
+5. KHI HỌC VIÊN YÊU CẦU REVIEW CODE HOẶC BÁO LỖI SQL (RẤT QUAN TRỌNG):
+   - Bước 1 (Sửa lỗi cho AlaSQL Sandbox):
+     + Phân tích nguyên nhân lỗi (sai tên cột, thiếu GROUP BY, hàm không hỗ trợ...).
+     + Cung cấp câu lệnh SQL chuẩn xác tương thích AlaSQL để học viên copy chạy ngay trên Sandbox.
+   - Bước 2 (Tư duy Làm sạch Dữ liệu - Data Hygiene):
+     + Nhắc nhở người học thói quen lọc dữ liệu nhiễu thực tế: đơn huỷ/hoàn tiền (\`WHERE status = 'COMPLETED'\` hoặc \`status NOT IN ('CANCELLED', 'REFUNDED')\`), loại bỏ tài khoản thử nghiệm nội bộ (\`email NOT LIKE '%test%'\`).
+   - Bước 3 (Mẹo tối ưu Production Database & Enterprise Best Practices):
+     + Minh họa cách viết tương đương chuẩn doanh nghiệp trên PostgreSQL / Google BigQuery / Snowflake:
+       * Dùng CTE (\`WITH cte_name AS (...)\`) giúp truy vấn sáng rõ, module hóa và dễ bảo trì hơn subquery lồng nhau.
+       * Dùng Window Functions (\`ROW_NUMBER() OVER (PARTITION BY ... ORDER BY ...)\`, \`SUM(...) OVER (...)\`) để xếp hạng hoặc tính luỹ kế.
+       * Mẹo tối ưu chi phí & hiệu năng: Indexing các cột thường xuyên lọc WHERE/JOIN, tránh \`SELECT *\` trên BigQuery để tiết kiệm scan bytes, dùng \`SAFE_DIVIDE\` tránh chia cho 0.
+6. Khi người học yêu cầu "Viết cho tôi câu SQL hoàn chỉnh để giải bài toán này" hoặc xin code giải bài, HÃY CUNG CẤP CHÍNH XÁC bộ câu lệnh SQL chuẩn sau đây:
 \`\`\`sql
 ${solutionReference}
 \`\`\`
 (Kèm theo giải thích ngắn gọn, súc tích từng bước phân tích nghiệp vụ).`;
 
     const chatHistory = mentorChatHistory.slice();
-    // Thêm tin nhắn người dùng vào lịch sử
     mentorChatHistory.push({ role: 'user', parts: [{ text: userQuery }] });
 
     let aiResponseText = null;
 
-    // BƯỚC 1: Thử gọi qua Vercel Serverless Function /api/gemini
+    // Lệnh gọi duy nhất qua Backend Endpoint bảo mật /api/gemini
     try {
         const res = await fetch('/api/gemini', {
             method: 'POST',
@@ -1547,108 +1661,43 @@ ${solutionReference}
                 prompt: userQuery,
                 history: chatHistory,
                 systemInstruction: systemInstruction,
-                model: 'gemini-3.1-flash-lite'
+                model: 'gemini-3.1-flash-lite',
+                customApiKey: localStorage.getItem('TRONEX_AI_KEY') || ''
             })
         });
 
         const contentType = res.headers.get('content-type') || '';
-        // Chỉ parse JSON nếu server trả về application/json (tránh lỗi Unexpected token '<' khi gặp HTML 404/500)
         if (contentType.includes('application/json')) {
             const data = await res.json();
             if (res.ok && data && data.text) {
                 aiResponseText = data.text;
+            } else if (data && data.error) {
+                throw new Error(data.error);
+            } else {
+                throw new Error(`Phản hồi không hợp lệ từ máy chủ AI (HTTP ${res.status})`);
             }
+        } else {
+            const rawErr = await res.text();
+            throw new Error(`Máy chủ trả về HTTP ${res.status}: ${rawErr.substring(0, 100)}`);
         }
     } catch (apiErr) {
-        console.warn('[AI Mentor] Không gọi được /api/gemini:', apiErr.message);
-    }
-
-    // BƯỚC 2: Nếu Serverless chưa sẵn sàng (trả về HTML 404/500 hoặc lỗi), tự động gọi Google Gemini API trực tiếp (Client-side)
-    if (!aiResponseText) {
-        try {
-            aiResponseText = await callGoogleGeminiDirect(userQuery, chatHistory, systemInstruction);
-        } catch (directErr) {
-            console.error('[AI Mentor Direct Error]:', directErr);
-            mentorChatHistory.pop(); // Xóa tin nhắn chưa được phản hồi
-            if (thinkingBubble) {
-                thinkingBubble.innerHTML = `⚠️ <b>Lỗi kết nối AI Mentor:</b> <code style="font-size:0.8rem;">${directErr.message}</code><br><small style="opacity:0.7;">Vui lòng thử lại sau giây lát hoặc nhập API Key cá nhân trong cài đặt.</small>`;
-                scrollMentorToBottom(true);
-            }
-            return;
+        console.error('[AI Mentor Error]:', apiErr);
+        mentorChatHistory.pop();
+        if (thinkingBubble) {
+            thinkingBubble.innerHTML = `⚠️ <b>Lỗi kết nối AI Mentor:</b> <code style="font-size:0.8rem;">${escapeHtml(apiErr.message || 'Không thể kết nối /api/gemini')}</code><br><small style="opacity:0.7;">Vui lòng kiểm tra lại kết nối mạng hoặc thử lại sau giây lát.</small>`;
+            scrollMentorToBottom(true);
         }
+        return;
     }
 
-    // Hiển thị phản hồi từ AI
     if (aiResponseText) {
         const formattedReply = formatMarkdown(aiResponseText);
         if (thinkingBubble) {
             thinkingBubble.innerHTML = formattedReply;
             scrollMentorToBottom(true);
         }
-        // Lưu phản hồi AI vào lịch sử để duy trì ngữ cảnh
         mentorChatHistory.push({ role: 'model', parts: [{ text: aiResponseText }] });
     }
-}
-
-// Giải mã khóa an toàn trong bộ nhớ
-const _dSim = h => {
-    let s = "";
-    for (let i = 0; i < h.length; i += 2) s += String.fromCharCode(parseInt(h.substr(i, 2), 16) ^ 47);
-    return s;
-};
-
-async function callGoogleGeminiDirect(prompt, history, systemInstruction) {
-    const userCustomKey = localStorage.getItem("TRONEX_AI_KEY");
-    const defaultKeys = [
-        _dSim("6e7e016e4d177d61196618561d671a171a474e475f7968476b40604167627061704a4102454d447e4c48786b6e6c44456b184b1a7e"), // Key 1
-        _dSim("6e7e016e4d177d6119646a7b1d4e575a5c7e186b46407f566843477d465f776c1e5b7c58646a44494118694c4943556d5f5819597e"), // Key 2
-        _dSim("6e7e016e4d177d6119657c7e7b471f601d7649181d7c5755797845581e6756495a4b1663176c7d60186e4b5d775d56627d69466c58")  // Key 3
-    ];
-    const keys = [userCustomKey, ...defaultKeys].filter(Boolean);
-
-    const models = ["gemini-3.1-flash-lite", "gemini-flash-lite-latest", "gemini-flash-latest", "gemini-3.8-flash", "gemini-3.5-flash", "gemini-3-flash-preview"];
-
-    const payload = {
-        contents: [
-            ...(Array.isArray(history) ? history : []),
-            { role: "user", parts: [{ text: prompt }] }
-        ],
-        systemInstruction: {
-            parts: [{ text: systemInstruction }]
-        }
-    };
-
-    let lastError = null;
-
-    for (const key of keys) {
-        for (const model of models) {
-            try {
-                const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
-                const res = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'x-goog-api-key': key
-                    },
-                    body: JSON.stringify(payload)
-                });
-
-                if (!res.ok) {
-                    const errJson = await res.json().catch(() => ({}));
-                    lastError = errJson?.error?.message || `HTTP ${res.status}`;
-                    continue;
-                }
-
-                const data = await res.json();
-                const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-                if (text) return text;
-            } catch (e) {
-                lastError = e.message;
-            }
-        }
-    }
-
-    throw new Error(lastError || "Không thể kết nối máy chủ Google Gemini");
 }
 
 // generateFallbackMentorReply removed — AI Mentor now uses live Gemini API
