@@ -15,7 +15,7 @@
 
   <!-- Core Theme & Simulation CSS -->
   <link rel="stylesheet" href="css/style.css?v=25">
-  <link rel="stylesheet" href="css/simulation.css?v=20261014_fix_newline_v3">
+  <link rel="stylesheet" href="css/simulation.css?v=20261014_sql_drill_v1">
 
   <!-- Chart.js for Interactive Data Visualization -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
@@ -136,6 +136,7 @@
 
           <div class="lobby-filter-tabs">
             <button class="sim-filter-btn active" data-filter="all">Tất cả</button>
+            <button class="sim-filter-btn" data-filter="sql_drill">⚡ Luyện tập SQL</button>
             <button class="sim-filter-btn" data-filter="easy">🟢 Mới bắt đầu</button>
             <button class="sim-filter-btn" data-filter="medium">🟡 Trung cấp</button>
             <button class="sim-filter-btn" data-filter="hard">🔴 Nâng cao</button>
@@ -354,6 +355,11 @@
 
           <!-- CỘT 2: EXECUTION CONSOLE & DATA VIZ (GIỮA) -->
           <section class="col-console" id="colConsole">
+
+            <!-- KHUNG CHẾ ĐỘ LUYỆN TẬP SQL THEO TỪNG CÂU (SQL PRACTICE DRILLS) -->
+            <div class="drill-console-pane" id="drillConsolePane" style="display: none;">
+              <!-- Danh sách 5 câu hỏi thẻ dọc sẽ được render động tại đây -->
+            </div>
 
             <!-- Nửa trên: Terminal & Code Editor -->
             <div class="terminal-pane" id="terminalPane">
@@ -1547,7 +1553,7 @@ LIMIT 5;</code></pre>
 
   <!-- SCRIPTS -->
   <script type="module" src="js/auth.js?v=1"></script>
-  <script type="module" src="js/simulation.js?v=20261014_fix_newline_v3"></script>
+  <script type="module" src="js/simulation.js?v=20261014_sql_drill_v1"></script>
 
   <!-- Sidebar & Theme Handlers -->
   <script>

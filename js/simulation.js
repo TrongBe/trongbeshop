@@ -3,7 +3,7 @@
  * Controller cho tính năng Data Analyst Simulation (Lobby & Workspace)
  */
 
-import { simulationCases } from './simulation-data.js?v=20261014_fix_newline_v3';
+import { simulationCases } from './simulation-data.js?v=20261014_sql_drill_v1';
 
 let currentCase = null;
 let currentLanguage = 'sql';
@@ -64,16 +64,20 @@ function renderMissionCards(cases) {
     }
 
     grid.innerHTML = cases.map(c => {
-        const techBadges = c.techStack.map(t => `<span class="tech-tag">${t}</span>`).join('');
+        const isDrill = c.type === 'sql_drill';
+        const techBadges = (c.techStack || []).map(t => `<span class="tech-tag">${t}</span>`).join('');
+        const actionBtnText = isDrill ? '⚡ Luyện tập ngay →' : '🚀 Start Mission →';
+        const categoryBadgeText = isDrill ? `${c.badgeIcon} Luyện Tập SQL (5 câu)` : `${c.badgeIcon} ${c.categoryLabel}`;
+
         return `
-            <div class="mission-card" data-id="${c.id}">
+            <div class="mission-card ${isDrill ? 'drill-card-highlight' : ''}" data-id="${c.id}">
                 <div>
                     <div class="mission-card-top">
-                        <span class="mission-category-badge">${c.badgeIcon} ${c.categoryLabel}</span>
+                        <span class="mission-category-badge">${categoryBadgeText}</span>
                         <span class="difficulty-badge ${c.difficulty}">${c.difficultyLabel}</span>
                     </div>
-                    <h3 class="mission-title">${c.title}</h3>
-                    <p class="mission-desc">${c.shortDesc}</p>
+                    <h3 class="mission-title">${escapeHtml(c.title)}</h3>
+                    <p class="mission-desc">${escapeHtml(c.shortDesc)}</p>
                 </div>
                 <div>
                     <div class="mission-meta-row">
@@ -85,7 +89,7 @@ function renderMissionCards(cases) {
                         </div>
                     </div>
                     <button class="btn-start-mission" onclick="window.startMission('${c.id}')">
-                        🚀 Start Mission →
+                        ${actionBtnText}
                     </button>
                 </div>
             </div>
@@ -105,9 +109,16 @@ function setupLobbyFilters() {
             const matchesQuery = !query || 
                 c.title.toLowerCase().includes(query) || 
                 c.shortDesc.toLowerCase().includes(query) ||
-                c.categoryLabel.toLowerCase().includes(query);
+                (c.categoryLabel && c.categoryLabel.toLowerCase().includes(query));
 
-            const matchesCategory = currentFilter === 'all' || c.difficulty === currentFilter;
+            let matchesCategory = false;
+            if (currentFilter === 'all') {
+                matchesCategory = true;
+            } else if (currentFilter === 'sql_drill') {
+                matchesCategory = c.type === 'sql_drill';
+            } else {
+                matchesCategory = c.difficulty === currentFilter;
+            }
             return matchesQuery && matchesCategory;
         });
 
@@ -164,18 +175,6 @@ export function startMission(caseId) {
     latestSQLResults = null;
     latestSQLQuery = '';
 
-    // Reset Báo Cáo & AI Feedback
-    const reportInput = document.getElementById('reportTextarea');
-    if (reportInput) reportInput.value = '';
-    const feedbackDiv = document.getElementById('ai-feedback');
-    if (feedbackDiv) {
-        feedbackDiv.style.display = 'none';
-        feedbackDiv.innerHTML = '';
-    }
-    const statusNote = document.getElementById('reportStatusNote');
-    if (statusNote) statusNote.textContent = 'Chấm khắt khe trên thang điểm 100 bởi Head of Data Analytics';
-    window.switchOutputTab?.('table');
-
     // 1. Đăng ký dữ liệu JSON vào AlaSQL để chạy SQL thật
     registerCaseDatabaseInAlaSQL(mission);
 
@@ -188,12 +187,46 @@ export function startMission(caseId) {
         badgeEl.textContent = mission.difficultyLabel;
     }
 
-    // 3. Render Cột Trái (Mission Briefing)
-    renderBriefing(mission);
+    const terminalPane = document.getElementById('terminalPane');
+    const paneResizer = document.getElementById('paneResizer');
+    const outputPane = document.getElementById('outputPane');
+    const drillPane = document.getElementById('drillConsolePane');
 
-    // 4. Render Cột Giữa (Terminal & Mock Data preview)
-    renderTerminal(mission);
-    renderOutputData(mission);
+    if (mission.type === 'sql_drill') {
+        // Chế độ Luyện tập SQL theo từng câu
+        if (terminalPane) terminalPane.style.display = 'none';
+        if (paneResizer) paneResizer.style.display = 'none';
+        if (outputPane) outputPane.style.display = 'none';
+        if (drillPane) drillPane.style.display = 'flex';
+
+        renderDrillBriefing(mission);
+        renderDrillWorkspace(mission);
+    } else {
+        // Chế độ Case Study kinh doanh thông thường
+        if (drillPane) drillPane.style.display = 'none';
+        if (terminalPane) terminalPane.style.display = 'flex';
+        if (paneResizer) paneResizer.style.display = 'flex';
+        if (outputPane) outputPane.style.display = 'flex';
+
+        // Reset Báo Cáo & AI Feedback
+        const reportInput = document.getElementById('reportTextarea');
+        if (reportInput) reportInput.value = '';
+        const feedbackDiv = document.getElementById('ai-feedback');
+        if (feedbackDiv) {
+            feedbackDiv.style.display = 'none';
+            feedbackDiv.innerHTML = '';
+        }
+        const statusNote = document.getElementById('reportStatusNote');
+        if (statusNote) statusNote.textContent = 'Chấm khắt khe trên thang điểm 100 bởi Head of Data Analytics';
+        window.switchOutputTab?.('table');
+
+        // 3. Render Cột Trái (Mission Briefing)
+        renderBriefing(mission);
+
+        // 4. Render Cột Giữa (Terminal & Mock Data preview)
+        renderTerminal(mission);
+        renderOutputData(mission);
+    }
 
     // 5. Khởi tạo Cột Phải (Gemini AI Mentor)
     resetMentorChat(mission);
@@ -2210,14 +2243,19 @@ window.toggleWorkspaceColumn = function(side) {
  */
 window.insertTextToEditor = function(textToInsert) {
     if (!textToInsert) return;
-    const editor = document.getElementById('terminalEditor');
-    if (!editor) return;
-
-    // Chuyển sang tab SQL nếu đang ở tab khác
-    const tabSql = document.getElementById('tabSql');
-    if (currentLanguage !== 'sql' && tabSql) {
-        tabSql.click();
+    
+    let editor = null;
+    if (currentCase && currentCase.type === 'sql_drill') {
+        editor = activeDrillEditor || document.querySelector('.drill-sql-input');
+    } else {
+        editor = document.getElementById('terminalEditor');
+        // Chuyển sang tab SQL nếu đang ở tab khác
+        const tabSql = document.getElementById('tabSql');
+        if (currentLanguage !== 'sql' && tabSql) {
+            tabSql.click();
+        }
     }
+    if (!editor) return;
 
     editor.focus();
 
@@ -2636,3 +2674,715 @@ function initWorkspaceEnhancements() {
     // Khởi tạo thanh kéo chỉnh chiều cao (Vertical Resizer)
     initPaneResizer();
 }
+
+// ============================================================
+// CHẾ ĐỘ LUYỆN TẬP SQL THEO TỪNG CÂU (SQL PRACTICE DRILLS)
+// ============================================================
+
+let activeDrillEditor = null;
+window.setActiveDrillEditor = function(el) {
+    activeDrillEditor = el;
+    document.querySelectorAll('.drill-question-card').forEach(card => card.classList.remove('active-drill'));
+    el.closest('.drill-question-card')?.classList.add('active-drill');
+};
+
+function getDrillStorageKey(drillId, qId) {
+    return `tronex_drill_${drillId}_q_${qId}`;
+}
+
+function getSavedDrillData(drillId, qId) {
+    try {
+        const raw = localStorage.getItem(getDrillStorageKey(drillId, qId));
+        return raw ? JSON.parse(raw) : null;
+    } catch(e) {
+        return null;
+    }
+}
+
+function saveDrillData(drillId, qId, data) {
+    try {
+        localStorage.setItem(getDrillStorageKey(drillId, qId), JSON.stringify(data));
+    } catch(e) {}
+}
+
+function renderDrillBriefing(mission) {
+    const container = document.getElementById('briefingInnerContent') || document.getElementById('briefingContainer');
+    if (!container || !mission) return;
+
+    const questions = mission.questions || [];
+    let completedCount = 0;
+    let totalScore = 0;
+
+    questions.forEach(q => {
+        const saved = getSavedDrillData(mission.id, q.id);
+        if (saved && typeof saved.score === 'number') {
+            completedCount++;
+            totalScore += saved.score;
+        }
+    });
+
+    const progressPct = questions.length > 0 ? Math.round((completedCount / questions.length) * 100) : 0;
+    const avgScore = completedCount > 0 ? Math.round(totalScore / completedCount) : null;
+
+    // Quick navigation chips
+    const navChipsHtml = questions.map((q, idx) => {
+        const saved = getSavedDrillData(mission.id, q.id);
+        let statusClass = '';
+        let badgeIcon = `Câu ${idx + 1}`;
+        if (saved && saved.score !== undefined && saved.score !== null) {
+            if (saved.score >= 80) {
+                statusClass = 'done';
+                badgeIcon = `✓ C${idx + 1}`;
+            } else {
+                statusClass = 'review';
+                badgeIcon = `! C${idx + 1}`;
+            }
+        }
+        return `<a href="#drill_card_${q.id}" class="drill-nav-chip ${statusClass}" title="Nhảy đến Câu ${idx + 1}: ${escapeHtml(q.title)}">${badgeIcon}</a>`;
+    }).join('');
+
+    // Schema rendering với 1-Click chèn nhanh vào ô SQL đang mở
+    const schema = mission.schema || [];
+    const schemaHtml = schema.map((table, tIdx) => {
+        const colsHtml = (table.columns || []).map(col => `
+            <div class="schema-field-item">
+                <div class="field-name-group">
+                    <span class="field-name schema-insertable-col" onclick="window.insertTextToEditor('${escapeHtml(col.name)}')" title="Click để chèn '${escapeHtml(col.name)}' vào ô SQL đang làm">
+                        <b>${escapeHtml(col.name)}</b>
+                        <span class="click-insert-hint">+</span>
+                    </span>
+                    ${col.desc ? `<span class="field-desc-text">${escapeHtml(col.desc)}</span>` : ''}
+                </div>
+                <span class="field-type">${escapeHtml(col.type || 'TEXT')}</span>
+            </div>
+        `).join('');
+
+        const sampleRows = (mission.mockDb && mission.mockDb[table.tableName]) ? mission.mockDb[table.tableName].slice(0, 3) : [];
+        let sampleTableHtml = '';
+        if (sampleRows.length > 0) {
+            const sampleHeaders = Object.keys(sampleRows[0]);
+            const sTh = sampleHeaders.map(h => `<th>${escapeHtml(h)}</th>`).join('');
+            const sRows = sampleRows.map(r => `<tr>${sampleHeaders.map(h => {
+                const cellData = formatCellContent(r[h]);
+                const numClass = cellData.isNum ? ' class="cell-numeric"' : '';
+                return `<td${numClass}>${cellData.html}</td>`;
+            }).join('')}</tr>`).join('');
+            sampleTableHtml = `
+                <div class="schema-sample-preview" id="drill_sample_table_${tIdx}" style="display:none;">
+                    <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:6px; font-weight:600;">Dữ liệu mẫu (3 dòng đầu):</div>
+                    <div class="table-micro-scroll">
+                        <table class="micro-data-table"><thead><tr>${sTh}</tr></thead><tbody>${sRows}</tbody></table>
+                    </div>
+                </div>
+            `;
+        }
+
+        return `
+            <div class="schema-table-block">
+                <div class="schema-table-header" onclick="window.toggleSchemaSample('drill_sample_table_${tIdx}')">
+                    <div class="schema-table-title">
+                        <span class="schema-table-icon">🗄️</span>
+                        <span class="schema-insertable-table" onclick="event.stopPropagation(); window.insertTextToEditor('${escapeHtml(table.tableName)}')" title="Click để chèn bảng '${escapeHtml(table.tableName)}'">
+                            <b>${escapeHtml(table.tableName)}</b>
+                            <span class="click-insert-hint">+</span>
+                        </span>
+                    </div>
+                    <span class="schema-sample-btn" title="Bấm để xem 3 dòng dữ liệu mẫu">👁️ Mẫu</span>
+                </div>
+                ${sampleTableHtml}
+                <div class="schema-fields-list">${colsHtml}</div>
+            </div>
+        `;
+    }).join('');
+
+    container.innerHTML = `
+        <div class="briefing-section">
+            <!-- Widget Tiến Độ Luyện Tập -->
+            <div class="drill-briefing-widget">
+                <div class="drill-briefing-top">
+                    <span>⚡ Tiến độ hoàn thành</span>
+                    <span id="drillBriefingCountText" style="color:var(--primary, #4F46E5); font-family:'JetBrains Mono', monospace; font-weight:800;">
+                        ${completedCount}/${questions.length} câu (${progressPct}%)
+                    </span>
+                </div>
+                <div class="drill-progress-track">
+                    <div class="drill-progress-fill" id="drillBriefingProgressFill" style="width: ${progressPct}%;"></div>
+                </div>
+                <div style="font-size:0.78rem; color:var(--text-muted); margin-bottom:10px;">
+                    ${avgScore !== null ? `🎯 Điểm trung bình: <b style="color:var(--text-main);">${avgScore}/100đ</b>` : 'Chưa có câu nào được nộp chấm điểm.'}
+                </div>
+                <div class="drill-questions-quick-nav">
+                    ${navChipsHtml}
+                </div>
+            </div>
+
+            <!-- Nút Tra Cứu Cẩm Nang SQL Nhanh -->
+            <button type="button" class="btn-drill-handbook-briefing" onclick="window.openSqlHandbook()">
+                <span>📖</span>
+                <span>Cẩm Nang SQL Thực Chiến</span>
+            </button>
+
+            <!-- Sơ Đồ CSDL Sandbox -->
+            <div style="margin-top:20px;">
+                <div class="briefing-section-title">
+                    <span class="section-icon">📑</span>
+                    <span>Sơ đồ Sandbox (2 bảng)</span>
+                </div>
+                <div style="font-size:0.78rem; color:var(--text-muted); margin-bottom:12px;">
+                    Nhấn vào <b>tên bảng</b> hoặc <b>tên cột</b> để chèn nhanh vào ô câu hỏi đang làm.
+                </div>
+                <div class="schema-tables-container">${schemaHtml}</div>
+            </div>
+        </div>
+    `;
+}
+
+function renderDrillWorkspace(mission) {
+    const container = document.getElementById('drillConsolePane');
+    if (!container || !mission) return;
+
+    const questions = mission.questions || [];
+
+    const cardsHtml = questions.map((q, idx) => {
+        const saved = getSavedDrillData(mission.id, q.id);
+        const userSql = saved && saved.sql ? saved.sql : (q.defaultSql || '');
+        const savedScore = saved ? saved.score : null;
+
+        let statusBadgeHtml = `<span class="drill-status-badge pending" id="drill_badge_${q.id}">⏳ Chưa làm</span>`;
+        if (savedScore !== null && savedScore !== undefined) {
+            if (savedScore >= 80) {
+                statusBadgeHtml = `<span class="drill-status-badge success" id="drill_badge_${q.id}">✅ Đạt ${savedScore}/100đ</span>`;
+            } else {
+                statusBadgeHtml = `<span class="drill-status-badge warning" id="drill_badge_${q.id}">⚠️ Cần sửa ${savedScore}/100đ</span>`;
+            }
+        }
+
+        const savedFeedbackHtml = saved && saved.feedbackHtml ? saved.feedbackHtml : '';
+
+        return `
+            <div class="drill-question-card" id="drill_card_${q.id}" data-qid="${q.id}">
+                <!-- Header câu hỏi -->
+                <div class="drill-card-header">
+                    <div class="drill-header-left">
+                        <span class="drill-qnum-badge">[Câu ${q.questionNumber}]</span>
+                        <h3 class="drill-qtitle">${escapeHtml(q.title)}</h3>
+                    </div>
+                    <div class="drill-header-right">
+                        ${statusBadgeHtml}
+                    </div>
+                </div>
+
+                <!-- Đề bài câu hỏi -->
+                <div class="drill-prompt-box">
+                    ${formatDrillPromptText(q.prompt)}
+                </div>
+
+                <!-- Nút bật tắt Gợi ý -->
+                <div class="drill-hint-toggle-row">
+                    <button type="button" class="btn-drill-hint-toggle" onclick="window.toggleDrillHint('${q.id}')">
+                        <span>💡 Gợi ý cú pháp</span>
+                    </button>
+                </div>
+                <div class="drill-hint-content" id="drill_hint_${q.id}" style="display: none;">
+                    <b>💡 Gợi ý từ khóa:</b> ${escapeHtml(q.hint || '')}
+                </div>
+
+                <!-- Dark Editor nhập code SQL -->
+                <div class="drill-editor-wrapper">
+                    <div class="drill-editor-bar">
+                        <span>SQL Query Editor • Câu ${q.questionNumber}</span>
+                        <span>Phím tắt: <kbd>Ctrl + Enter</kbd> chạy thử</span>
+                    </div>
+                    <textarea 
+                        id="drill_input_${q.id}" 
+                        class="drill-sql-input" 
+                        spellcheck="false" 
+                        placeholder="Viết câu lệnh SQL cho Câu ${q.questionNumber} tại đây..."
+                        onfocus="window.setActiveDrillEditor(this)"
+                    >${escapeHtml(userSql)}</textarea>
+                </div>
+
+                <!-- Thanh nút hành động -->
+                <div class="drill-actions-row">
+                    <div class="drill-actions-left">
+                        <button type="button" class="btn-drill-run" onclick="window.runDrillSql('${mission.id}', '${q.id}')" title="Thực thi câu SQL bằng AlaSQL và xem trước bảng kết quả">
+                            ▶️ Chạy thử SQL
+                        </button>
+                        <button type="button" class="btn-drill-submit" id="btn_submit_${q.id}" onclick="window.submitDrillQuestion('${mission.id}', '${q.id}')" title="Nộp bài để AI chấm điểm chi tiết (100đ)">
+                            📤 Nộp Câu ${q.questionNumber} &amp; Chấm điểm
+                        </button>
+                    </div>
+                    <div class="drill-actions-right">
+                        <button type="button" class="btn-drill-reset" onclick="window.resetDrillQuestion('${mission.id}', '${q.id}')" title="Đặt lại code SQL ban đầu">
+                            🔄 Khôi phục
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Khung Bảng Kết Quả Chạy Thử (ẩn ban đầu) -->
+                <div class="drill-preview-pane" id="drill_preview_${q.id}" style="display: none;"></div>
+
+                <!-- Khung Phản Hồi AI Chấm Điểm -->
+                <div class="drill-ai-feedback" id="drill_feedback_${q.id}" style="${savedFeedbackHtml ? 'display: block;' : 'display: none;'}">
+                    ${savedFeedbackHtml}
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    container.innerHTML = cardsHtml;
+
+    // Bắt sự kiện bàn phím và tự động lưu nháp
+    questions.forEach(q => {
+        const input = document.getElementById(`drill_input_${q.id}`);
+        if (input) {
+            input.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                    e.preventDefault();
+                    window.runDrillSql(mission.id, q.id);
+                }
+            });
+            input.addEventListener('input', () => {
+                const currentData = getSavedDrillData(mission.id, q.id) || {};
+                currentData.sql = input.value;
+                saveDrillData(mission.id, q.id, currentData);
+            });
+        }
+    });
+
+    // Mặc định active ô đầu tiên
+    const firstInput = document.querySelector('.drill-sql-input');
+    if (firstInput) {
+        window.setActiveDrillEditor(firstInput);
+    }
+}
+
+function formatDrillPromptText(text) {
+    if (!text) return '';
+    return escapeHtml(text)
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
+        .replace(/\n/g, '<br>');
+}
+
+window.toggleDrillHint = function(qId) {
+    const hintBox = document.getElementById(`drill_hint_${qId}`);
+    if (!hintBox) return;
+    hintBox.style.display = hintBox.style.display === 'none' ? 'block' : 'none';
+};
+
+window.runDrillSql = function(drillId, qId) {
+    const input = document.getElementById(`drill_input_${qId}`);
+    const previewPane = document.getElementById(`drill_preview_${qId}`);
+    if (!input || !previewPane) return;
+
+    const rawSql = input.value.trim();
+    if (!rawSql) {
+        previewPane.style.display = 'block';
+        previewPane.innerHTML = `<div class="drill-preview-error">⚠️ Vui lòng nhập câu lệnh SQL trước khi bấm Chạy thử!</div>`;
+        return;
+    }
+
+    if (typeof alasql === 'undefined') {
+        previewPane.style.display = 'block';
+        previewPane.innerHTML = `<div class="drill-preview-error">⚠️ AlaSQL chưa sẵn sàng. Vui lòng kiểm tra lại kết nối mạng.</div>`;
+        return;
+    }
+
+    const cleanSql = sanitizeSqlStatement(rawSql);
+
+    const tStart = performance.now();
+    let results = [];
+    let isError = false;
+    let errMsg = '';
+
+    try {
+        results = alasql(cleanSql);
+    } catch (err) {
+        isError = true;
+        errMsg = err.message || 'Lỗi cú pháp SQL không xác định';
+    }
+    const duration = (performance.now() - tStart).toFixed(1);
+
+    previewPane.style.display = 'block';
+
+    if (isError) {
+        previewPane.innerHTML = `
+            <div class="drill-preview-header">
+                <span style="color:#EF4444; font-weight:700;">❌ Lỗi thực thi SQL (${duration}ms)</span>
+                <button type="button" style="background:transparent; border:none; color:var(--text-muted); cursor:pointer;" onclick="document.getElementById('drill_preview_${qId}').style.display='none'">✕ Đóng</button>
+            </div>
+            <div class="drill-preview-error">${escapeHtml(errMsg)}</div>
+        `;
+        return;
+    }
+
+    if (!Array.isArray(results)) {
+        previewPane.innerHTML = `
+            <div class="drill-preview-header">
+                <span style="color:#10B981; font-weight:700;">✅ Thực thi thành công (${duration}ms)</span>
+                <button type="button" style="background:transparent; border:none; color:var(--text-muted); cursor:pointer;" onclick="document.getElementById('drill_preview_${qId}').style.display='none'">✕ Đóng</button>
+            </div>
+            <div style="padding:10px 14px; font-size:0.84rem; color:var(--text-main);">
+                Kết quả: <code>${escapeHtml(String(results))}</code>
+            </div>
+        `;
+        return;
+    }
+
+    if (results.length === 0) {
+        previewPane.innerHTML = `
+            <div class="drill-preview-header">
+                <span style="color:#F59E0B; font-weight:700;">⚠️ Kết quả rỗng (0 dòng) • ${duration}ms</span>
+                <button type="button" style="background:transparent; border:none; color:var(--text-muted); cursor:pointer;" onclick="document.getElementById('drill_preview_${qId}').style.display='none'">✕ Đóng</button>
+            </div>
+            <div style="padding:12px 14px; font-size:0.84rem; color:var(--text-muted);">
+                Câu lệnh hợp lệ nhưng không tìm thấy bản ghi nào thỏa mãn điều kiện. Hãy kiểm tra lại điều kiện WHERE.
+            </div>
+        `;
+        return;
+    }
+
+    const displayRows = results.slice(0, 10);
+    const columns = Object.keys(displayRows[0] || {});
+    const thHtml = columns.map(c => `<th>${escapeHtml(c)}</th>`).join('');
+    const trHtml = displayRows.map(row => {
+        const tdHtml = columns.map(col => {
+            const cell = formatCellContent(row[col]);
+            const numClass = cell.isNum ? ' style="text-align:right; font-variant-numeric:tabular-nums;"' : '';
+            return `<td${numClass}>${cell.html}</td>`;
+        }).join('');
+        return `<tr>${tdHtml}</tr>`;
+    }).join('');
+
+    previewPane.innerHTML = `
+        <div class="drill-preview-header">
+            <span>📋 Bảng Kết Quả (${results.length} dòng${results.length > 10 ? ' — hiển thị 10 dòng đầu' : ''}) • ${duration}ms</span>
+            <button type="button" style="background:transparent; border:none; color:var(--text-muted); cursor:pointer;" onclick="document.getElementById('drill_preview_${qId}').style.display='none'">✕ Đóng</button>
+        </div>
+        <div class="drill-preview-table-wrap">
+            <table class="drill-preview-table">
+                <thead><tr>${thHtml}</tr></thead>
+                <tbody>${trHtml}</tbody>
+            </table>
+        </div>
+    `;
+};
+
+window.resetDrillQuestion = function(drillId, qId) {
+    const mission = simulationCases.find(c => c.id === drillId);
+    if (!mission) return;
+    const q = (mission.questions || []).find(item => item.id === qId);
+    if (!q) return;
+
+    if (!confirm(`Bạn có chắc muốn khôi phục câu lệnh ban đầu cho Câu ${q.questionNumber}?`)) {
+        return;
+    }
+
+    const input = document.getElementById(`drill_input_${qId}`);
+    if (input) {
+        input.value = q.defaultSql || '';
+        input.focus();
+    }
+
+    const preview = document.getElementById(`drill_preview_${qId}`);
+    if (preview) preview.style.display = 'none';
+
+    saveDrillData(drillId, qId, { sql: q.defaultSql || '', score: null });
+
+    const badge = document.getElementById(`drill_badge_${qId}`);
+    if (badge) {
+        badge.className = 'drill-status-badge pending';
+        badge.textContent = '⏳ Chưa làm';
+    }
+
+    renderDrillBriefing(mission);
+};
+
+const DRILL_GRADING_SYSTEM_INSTRUCTION = `Bạn là Trưởng nhóm Dữ liệu (Senior SQL Lead & Database Instructor) tại TRONEX Data Lab.
+Nhiệm vụ của bạn là chấm điểm câu lệnh SQL của học viên cho 1 câu hỏi luyện tập ngắn, trên thang điểm 100 với 3 phần rõ ràng:
+1. 🎯 Điểm số & Kết quả dữ liệu (Tối đa 50 điểm)
+2. ✨ Chấm cách trình bày & Clean Code SQL (Tối đa 30 điểm)
+3. 🚀 Code chuẩn tối ưu & Hướng dẫn làm tốt hơn (Tối đa 20 điểm)
+
+QUY TẮC ĐỊNH DẠNG BẮT BUỘC TRẢ VỀ:
+Bắt đầu phản hồi bằng định dạng điểm chính xác để hệ thống phân tích:
+🎯 TỔNG ĐIỂM: [Số]/100
+- Tiêu chí 1: [A]/50 | [Nhận xét ngắn về kết quả dữ liệu & cú pháp]
+- Tiêu chí 2: [B]/30 | [Nhận xét ngắn về Clean Code, viết hoa từ khóa, xuống dòng, alias]
+- Tiêu chí 3: [C]/20 | [Nhận xét ngắn về độ tối ưu và mẹo thực chiến]
+
+Sau đó trình bày chi tiết 3 mục:
+### 🎯 Điểm số & Kết quả dữ liệu (X/50đ)
+[Đánh giá xem dữ liệu lấy ra đã khớp với yêu cầu đề bài chưa. Nếu có lỗi cú pháp hoặc logic (dư dấu phẩy trước FROM, quên nháy đơn 'COMPLETED', thiếu GROUP BY khi dùng hàm tổng hợp, viết COUNT() rỗng, quên 100.0 khi tính %), chỉ rõ vị trí sai và cách sửa ngay lập tức.]
+
+### ✨ Chấm cách trình bày & Clean Code SQL (Y/30đ)
+[Đánh giá phong cách viết code:
+- Có VIẾT HOA toàn bộ từ khóa SQL (SELECT, FROM, WHERE, GROUP BY, ORDER BY, LIMIT, CASE WHEN, JOIN) không?
+- Có xuống dòng thụt lề tách biệt từng mệnh đề cho dễ đọc không?
+- Có dùng từ khóa AS đặt tên cột (Alias) rõ nghĩa như khi đi làm thực tế không?
+- Có tránh lạm dụng SELECT * khi đề bài chỉ yêu cầu các cột cụ thể không?]
+
+### 🚀 Code chuẩn tối ưu & Hướng dẫn làm tốt hơn (Z/20đ)
+[Đưa ra khối code SQL mẫu mực nhất (viết hoa từ khóa, thụt dòng đẹp mắt, alias chuẩn):
+\`\`\`sql
+...
+\`\`\`
+Kèm theo 1 mẹo thực chiến ngắn gọn (ví dụ: ý nghĩa con số vừa tìm được nếu đưa vào báo cáo gửi sếp, hoặc lưu ý hiệu năng khi làm việc với triệu bản ghi).]
+`;
+
+window.submitDrillQuestion = async function(drillId, qId) {
+    const mission = simulationCases.find(c => c.id === drillId);
+    if (!mission) return;
+    const q = (mission.questions || []).find(item => item.id === qId);
+    if (!q) return;
+
+    const input = document.getElementById(`drill_input_${qId}`);
+    const submitBtn = document.getElementById(`btn_submit_${qId}`);
+    const feedbackBox = document.getElementById(`drill_feedback_${qId}`);
+
+    const userSql = input?.value?.trim() || '';
+    if (!userSql) {
+        alert(`Vui lòng nhập câu lệnh SQL cho Câu ${q.questionNumber} trước khi nộp bài!`);
+        input?.focus();
+        return;
+    }
+
+    // 1. Chạy SQL người học trên AlaSQL
+    let userSuccess = true;
+    let userResults = [];
+    let userError = '';
+    try {
+        userResults = alasql(sanitizeSqlStatement(userSql));
+        if (!Array.isArray(userResults)) userResults = [userResults];
+    } catch(err) {
+        userSuccess = false;
+        userError = err.message;
+    }
+
+    // 2. Chạy ngầm expectedSql để đối chiếu kết quả chuẩn
+    let expectedResults = [];
+    try {
+        expectedResults = alasql(sanitizeSqlStatement(q.expectedSql));
+        if (!Array.isArray(expectedResults)) expectedResults = [expectedResults];
+    } catch(err) {
+        console.warn('Lỗi chạy expectedSql:', err);
+    }
+
+    // 3. Hiển thị trạng thái đang chấm
+    if (submitBtn) submitBtn.disabled = true;
+    if (feedbackBox) {
+        feedbackBox.style.display = 'block';
+        feedbackBox.innerHTML = `
+            <div class="drill-feedback-loading">
+                <div class="drill-feedback-spinner"></div>
+                <div><b>AI Mentor &amp; SQL Lead</b> đang kiểm tra logic, đối chiếu dữ liệu và chấm Clean Code cho Câu ${q.questionNumber}...</div>
+            </div>
+        `;
+        feedbackBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // 4. Chuẩn bị prompt gửi AI Gateway
+    const gradingPrompt = `
+[CÂU HỎI LUYỆN TẬP SQL ${q.questionNumber}]:
+Tiêu đề: ${q.title}
+Yêu cầu đề bài:
+${q.prompt}
+
+[CÂU LỆNH SQL CỦA HỌC VIÊN]:
+"""
+${userSql}
+"""
+
+[KẾT QUẢ THỰC THI TRÊN SANDBOX CỦA HỌC VIÊN]:
+${userSuccess ? `Thành công! Số dòng: ${userResults.length}. Mẫu kết quả (3 dòng đầu):\n${JSON.stringify(userResults.slice(0, 3), null, 2)}` : `Lỗi thực thi SQL: ${userError}`}
+
+[CÂU LỆNH MẪU CHUẨN]:
+"""
+${q.expectedSql}
+"""
+
+[KẾT QUẢ CHUẨN ĐỐI CHIẾU]:
+Số dòng: ${expectedResults.length}. Mẫu kết quả:\n${JSON.stringify(expectedResults.slice(0, 3), null, 2)}
+
+HÃY ĐÁNH GIÁ VÀ CHẤM ĐIỂM THEO THANG 100 DỰA TRÊN 3 TIÊU CHÍ (50đ Dữ liệu & Cú pháp | 30đ Clean Code & Format | 20đ Tối ưu & Mẹo thực chiến).
+NẾU HỌC VIÊN ĐẠT KẾT QUẢ ĐÚNG VÀ TRÌNH BÀY SẠCH SẼ, HÃY CHẤM ĐIỂM TỪ 90 - 100 ĐIỂM!
+`;
+
+    let aiRawResponse = '';
+    try {
+        aiRawResponse = await callAiGateway({
+            prompt: gradingPrompt,
+            systemInstruction: DRILL_GRADING_SYSTEM_INSTRUCTION,
+            model: 'gemini-3.1-flash-lite'
+        });
+    } catch (err) {
+        console.error('[Drill AI Grading Error]:', err);
+        if (feedbackBox) {
+            feedbackBox.innerHTML = `
+                <div class="drill-preview-error">
+                    <div style="font-weight:700; margin-bottom:4px;">⚠️ Lỗi kết nối AI Chấm điểm</div>
+                    <div>${escapeHtml(err.message || 'Không thể kết nối đến máy chủ AI.')}</div>
+                    <div style="margin-top:6px; font-size:0.78rem;">Vui lòng kiểm tra kết nối mạng và thử bấm lại nút Nộp câu hỏi.</div>
+                </div>
+            `;
+        }
+        if (submitBtn) submitBtn.disabled = false;
+        return;
+    }
+
+    if (submitBtn) submitBtn.disabled = false;
+
+    // 5. Render và Lưu Kết Quả
+    renderDrillAiFeedback(drillId, q, aiRawResponse, userSql);
+};
+
+function renderDrillAiFeedback(drillId, q, rawText, userSql) {
+    const feedbackBox = document.getElementById(`drill_feedback_${q.id}`);
+    const badge = document.getElementById(`drill_badge_${q.id}`);
+    if (!feedbackBox) return;
+
+    // Phân tích điểm tổng
+    const scoreMatch = rawText.match(/🎯\s*TỔNG\s*ĐIỂM:\s*(\d+)/i);
+    const totalScore = scoreMatch ? parseInt(scoreMatch[1], 10) : 85;
+
+    // Phân tích 3 tiêu chí
+    const c1Match = rawText.match(/Tiêu chí 1[^:]*:\s*(\d+)\s*\/\s*50(?:\s*\|\s*([^\n\r]+))?/i);
+    const c2Match = rawText.match(/Tiêu chí 2[^:]*:\s*(\d+)\s*\/\s*30(?:\s*\|\s*([^\n\r]+))?/i);
+    const c3Match = rawText.match(/Tiêu chí 3[^:]*:\s*(\d+)\s*\/\s*20(?:\s*\|\s*([^\n\r]+))?/i);
+
+    let c1Score = c1Match ? parseInt(c1Match[1], 10) : Math.round(totalScore * 0.50);
+    let c2Score = c2Match ? parseInt(c2Match[1], 10) : Math.round(totalScore * 0.30);
+    let c3Score = c3Match ? parseInt(c3Match[1], 10) : Math.max(0, totalScore - c1Score - c2Score);
+
+    c1Score = Math.min(50, Math.max(0, c1Score));
+    c2Score = Math.min(30, Math.max(0, c2Score));
+    c3Score = Math.min(20, Math.max(0, c3Score));
+
+    const c1Pct = Math.round((c1Score / 50) * 100);
+    const c2Pct = Math.round((c2Score / 30) * 100);
+    const c3Pct = Math.round((c3Score / 20) * 100);
+
+    const c1Note = c1Match && c1Match[2] ? c1Match[2].trim() : 'Tính chính xác của dữ liệu và cú pháp SQL';
+    const c2Note = c2Match && c2Match[2] ? c2Match[2].trim() : 'Viết hoa từ khóa, xuống dòng và đặt tên alias';
+    const c3Note = c3Match && c3Match[2] ? c3Match[2].trim() : 'Câu lệnh tối ưu và mẹo thực chiến';
+
+    function getBarClass(pct) {
+        if (pct >= 85) return 'high';
+        if (pct >= 70) return 'medium';
+        return 'low';
+    }
+
+    let badgeClass = totalScore >= 80 ? 'high' : (totalScore >= 60 ? 'medium' : 'low');
+    let verdictText = totalScore >= 80 ? 'Xuất sắc — Đạt yêu cầu' : 'Cần sửa đổi để đạt chuẩn';
+
+    // Format markdown phần thân
+    const bodyText = rawText
+        .replace(/🎯\s*TỔNG\s*ĐIỂM:[\s\S]*?(?=###|$)/i, '')
+        .trim();
+
+    const formattedBodyHtml = formatDrillFeedbackMarkdown(bodyText);
+
+    const feedbackHtml = `
+        <div class="drill-feedback-top">
+            <div class="drill-feedback-score-wrap">
+                <span class="drill-feedback-score-badge ${badgeClass}">${totalScore}/100đ</span>
+                <div>
+                    <div style="font-weight:700; font-size:0.95rem; color:var(--text-main);">${verdictText}</div>
+                    <div style="font-size:0.78rem; color:var(--text-muted);">Đánh giá bởi SQL Lead &amp; AI Mentor</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="drill-criteria-grid">
+            <div class="drill-criterion-card">
+                <div class="drill-criterion-title">
+                    <span>🎯 Dữ liệu &amp; Cú pháp</span>
+                    <span style="font-family:'JetBrains Mono', monospace; font-weight:800;">${c1Score}/50đ</span>
+                </div>
+                <div class="drill-criterion-bar">
+                    <div class="drill-criterion-bar-fill ${getBarClass(c1Pct)}" style="width:${c1Pct}%"></div>
+                </div>
+                <div class="drill-criterion-note">${escapeHtml(c1Note)}</div>
+            </div>
+
+            <div class="drill-criterion-card">
+                <div class="drill-criterion-title">
+                    <span>✨ Clean Code SQL</span>
+                    <span style="font-family:'JetBrains Mono', monospace; font-weight:800;">${c2Score}/30đ</span>
+                </div>
+                <div class="drill-criterion-bar">
+                    <div class="drill-criterion-bar-fill ${getBarClass(c2Pct)}" style="width:${c2Pct}%"></div>
+                </div>
+                <div class="drill-criterion-note">${escapeHtml(c2Note)}</div>
+            </div>
+
+            <div class="drill-criterion-card">
+                <div class="drill-criterion-title">
+                    <span>🚀 Tối ưu &amp; Thực chiến</span>
+                    <span style="font-family:'JetBrains Mono', monospace; font-weight:800;">${c3Score}/20đ</span>
+                </div>
+                <div class="drill-criterion-bar">
+                    <div class="drill-criterion-bar-fill ${getBarClass(c3Pct)}" style="width:${c3Pct}%"></div>
+                </div>
+                <div class="drill-criterion-note">${escapeHtml(c3Note)}</div>
+            </div>
+        </div>
+
+        <div class="drill-feedback-body">
+            ${formattedBodyHtml}
+        </div>
+    `;
+
+    feedbackBox.innerHTML = feedbackHtml;
+
+    // Cập nhật Badge
+    if (badge) {
+        if (totalScore >= 80) {
+            badge.className = 'drill-status-badge success';
+            badge.textContent = `✅ Đạt ${totalScore}/100đ`;
+        } else {
+            badge.className = 'drill-status-badge warning';
+            badge.textContent = `⚠️ Cần sửa ${totalScore}/100đ`;
+        }
+    }
+
+    // Lưu vào localStorage
+    saveDrillData(drillId, q.id, {
+        sql: userSql,
+        score: totalScore,
+        feedbackHtml,
+        updatedAt: new Date().toISOString()
+    });
+
+    // Cập nhật widget tiến độ bên cột Briefing
+    const mission = simulationCases.find(c => c.id === drillId);
+    if (mission) {
+        renderDrillBriefing(mission);
+    }
+}
+
+function formatDrillFeedbackMarkdown(text) {
+    if (!text) return '';
+    let html = escapeHtml(text);
+
+    // Code blocks
+    html = html.replace(/```(?:sql)?\s*([\s\S]*?)```/gi, (_, code) => {
+        return `<pre><code>${code.trim()}</code></pre>`;
+    });
+
+    // Headings
+    html = html.replace(/###\s*(.+)/g, '<h4>$1</h4>');
+
+    // Bold
+    html = html.replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
+
+    // Inline code
+    html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+    // Newlines
+    html = html.replace(/\n\n+/g, '<br><br>');
+    html = html.replace(/\n/g, '<br>');
+
+    return html;
+}
+

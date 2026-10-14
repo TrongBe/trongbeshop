@@ -888,3 +888,550 @@ print(suspicious_months)`,
         }
     }
 ];
+
+// ============================================================
+// CHẾ ĐỘ LUYỆN TẬP SQL THEO TỪNG CÂU (SQL PRACTICE DRILLS)
+// ============================================================
+export const drillSchema = [
+    {
+        tableName: "orders",
+        description: "Bảng dữ liệu giao dịch đơn hàng toàn sàn",
+        columns: [
+            { name: "order_id", type: "VARCHAR", desc: "Mã đơn hàng (PK)" },
+            { name: "shop_id", type: "VARCHAR", desc: "Mã gian hàng bán lẻ" },
+            { name: "buyer_id", type: "VARCHAR", desc: "Mã người mua hàng" },
+            { name: "order_amount", type: "DECIMAL", desc: "Tổng tiền hàng (VNĐ)" },
+            { name: "shipping_subsidy", type: "DECIMAL", desc: "Tiền trợ giá freeship (VNĐ)" },
+            { name: "status", type: "VARCHAR", desc: "Trạng thái: COMPLETED, CANCELLED, REFUNDED" }
+        ]
+    },
+    {
+        tableName: "buyer_profiles",
+        description: "Bảng hồ sơ người mua và thiết bị truy cập",
+        columns: [
+            { name: "buyer_id", type: "VARCHAR", desc: "Mã người mua hàng (PK/FK)" },
+            { name: "ip_address", type: "VARCHAR", desc: "Địa chỉ IP mạng đặt hàng" },
+            { name: "account_age_days", type: "INT", desc: "Số ngày tuổi đời tài khoản" }
+        ]
+    }
+];
+
+export const drillMockDb = {
+    orders: [
+        // SHOP_102: 12 đơn (10 đơn hoàn tất có trợ giá > 0, 1 đơn trợ giá = 0, 1 đơn hủy)
+        { order_id: "ORD_1001", shop_id: "SHOP_102", buyer_id: "B_001", order_amount: 99000,  shipping_subsidy: 30000, status: "COMPLETED" },
+        { order_id: "ORD_1002", shop_id: "SHOP_102", buyer_id: "B_002", order_amount: 99500,  shipping_subsidy: 30000, status: "COMPLETED" },
+        { order_id: "ORD_1003", shop_id: "SHOP_102", buyer_id: "B_003", order_amount: 100000, shipping_subsidy: 30000, status: "COMPLETED" },
+        { order_id: "ORD_1004", shop_id: "SHOP_102", buyer_id: "B_001", order_amount: 101000, shipping_subsidy: 30000, status: "COMPLETED" },
+        { order_id: "ORD_1005", shop_id: "SHOP_102", buyer_id: "B_004", order_amount: 102500, shipping_subsidy: 30000, status: "COMPLETED" },
+        { order_id: "ORD_1006", shop_id: "SHOP_102", buyer_id: "B_002", order_amount: 103000, shipping_subsidy: 30000, status: "COMPLETED" },
+        { order_id: "ORD_1007", shop_id: "SHOP_102", buyer_id: "B_005", order_amount: 104000, shipping_subsidy: 30000, status: "COMPLETED" },
+        { order_id: "ORD_1008", shop_id: "SHOP_102", buyer_id: "B_001", order_amount: 105000, shipping_subsidy: 30000, status: "COMPLETED" },
+        { order_id: "ORD_1009", shop_id: "SHOP_102", buyer_id: "B_006", order_amount: 120000, shipping_subsidy: 25000, status: "COMPLETED" },
+        { order_id: "ORD_1010", shop_id: "SHOP_102", buyer_id: "B_007", order_amount: 150000, shipping_subsidy: 25000, status: "COMPLETED" },
+        { order_id: "ORD_1011", shop_id: "SHOP_102", buyer_id: "B_008", order_amount: 85000,  shipping_subsidy: 0,     status: "COMPLETED" },
+        { order_id: "ORD_1012", shop_id: "SHOP_102", buyer_id: "B_009", order_amount: 100000, shipping_subsidy: 30000, status: "CANCELLED" },
+
+        // SHOP_101: 8 đơn (5 hoàn tất, 1 hủy, 2 hoàn tiền)
+        { order_id: "ORD_1013", shop_id: "SHOP_101", buyer_id: "B_010", order_amount: 99800,  shipping_subsidy: 30000, status: "COMPLETED" },
+        { order_id: "ORD_1014", shop_id: "SHOP_101", buyer_id: "B_011", order_amount: 100500, shipping_subsidy: 30000, status: "COMPLETED" },
+        { order_id: "ORD_1015", shop_id: "SHOP_101", buyer_id: "B_012", order_amount: 102000, shipping_subsidy: 30000, status: "COMPLETED" },
+        { order_id: "ORD_1016", shop_id: "SHOP_101", buyer_id: "B_010", order_amount: 180000, shipping_subsidy: 30000, status: "COMPLETED" },
+        { order_id: "ORD_1017", shop_id: "SHOP_101", buyer_id: "B_013", order_amount: 250000, shipping_subsidy: 35000, status: "COMPLETED" },
+        { order_id: "ORD_1018", shop_id: "SHOP_101", buyer_id: "B_014", order_amount: 75000,  shipping_subsidy: 0,     status: "COMPLETED" },
+        { order_id: "ORD_1019", shop_id: "SHOP_101", buyer_id: "B_015", order_amount: 99200,  shipping_subsidy: 30000, status: "CANCELLED" },
+        { order_id: "ORD_1020", shop_id: "SHOP_101", buyer_id: "B_016", order_amount: 320000, shipping_subsidy: 35000, status: "REFUNDED" },
+
+        // SHOP_103: 6 đơn (5 hoàn tất, 1 hủy)
+        { order_id: "ORD_1021", shop_id: "SHOP_103", buyer_id: "B_017", order_amount: 99100,  shipping_subsidy: 30000, status: "COMPLETED" },
+        { order_id: "ORD_1022", shop_id: "SHOP_103", buyer_id: "B_018", order_amount: 104500, shipping_subsidy: 30000, status: "COMPLETED" },
+        { order_id: "ORD_1023", shop_id: "SHOP_103", buyer_id: "B_019", order_amount: 160000, shipping_subsidy: 25000, status: "COMPLETED" },
+        { order_id: "ORD_1024", shop_id: "SHOP_103", buyer_id: "B_020", order_amount: 450000, shipping_subsidy: 35000, status: "COMPLETED" },
+        { order_id: "ORD_1025", shop_id: "SHOP_103", buyer_id: "B_021", order_amount: 55000,  shipping_subsidy: 0,     status: "COMPLETED" },
+        { order_id: "ORD_1026", shop_id: "SHOP_103", buyer_id: "B_022", order_amount: 110000, shipping_subsidy: 25000, status: "CANCELLED" },
+
+        // SHOP_104: 5 đơn (4 hoàn tất, 1 hoàn tiền)
+        { order_id: "ORD_1027", shop_id: "SHOP_104", buyer_id: "B_001", order_amount: 99900,  shipping_subsidy: 30000, status: "COMPLETED" },
+        { order_id: "ORD_1028", shop_id: "SHOP_104", buyer_id: "B_023", order_amount: 135000, shipping_subsidy: 25000, status: "COMPLETED" },
+        { order_id: "ORD_1029", shop_id: "SHOP_104", buyer_id: "B_024", order_amount: 280000, shipping_subsidy: 35000, status: "COMPLETED" },
+        { order_id: "ORD_1030", shop_id: "SHOP_104", buyer_id: "B_025", order_amount: 65000,  shipping_subsidy: 0,     status: "COMPLETED" },
+        { order_id: "ORD_1031", shop_id: "SHOP_104", buyer_id: "B_003", order_amount: 101500, shipping_subsidy: 30000, status: "REFUNDED" },
+
+        // SHOP_105: 4 đơn (4 hoàn tất)
+        { order_id: "ORD_1032", shop_id: "SHOP_105", buyer_id: "B_006", order_amount: 99300,  shipping_subsidy: 30000, status: "COMPLETED" },
+        { order_id: "ORD_1033", shop_id: "SHOP_105", buyer_id: "B_008", order_amount: 195000, shipping_subsidy: 25000, status: "COMPLETED" },
+        { order_id: "ORD_1034", shop_id: "SHOP_105", buyer_id: "B_014", order_amount: 550000, shipping_subsidy: 40000, status: "COMPLETED" },
+        { order_id: "ORD_1035", shop_id: "SHOP_105", buyer_id: "B_017", order_amount: 750000, shipping_subsidy: 40000, status: "COMPLETED" },
+
+        // SHOP_106: 3 đơn (2 hoàn tất, 1 hủy)
+        { order_id: "ORD_1036", shop_id: "SHOP_106", buyer_id: "B_004", order_amount: 103500, shipping_subsidy: 30000, status: "COMPLETED" },
+        { order_id: "ORD_1037", shop_id: "SHOP_106", buyer_id: "B_011", order_amount: 80000,  shipping_subsidy: 0,     status: "COMPLETED" },
+        { order_id: "ORD_1038", shop_id: "SHOP_106", buyer_id: "B_019", order_amount: 100000, shipping_subsidy: 30000, status: "CANCELLED" }
+    ],
+    buyer_profiles: [
+        { buyer_id: "B_001", ip_address: "192.168.1.88", account_age_days: 2 },
+        { buyer_id: "B_002", ip_address: "192.168.1.88", account_age_days: 1 },
+        { buyer_id: "B_003", ip_address: "192.168.1.88", account_age_days: 3 },
+        { buyer_id: "B_004", ip_address: "192.168.1.88", account_age_days: 2 },
+        { buyer_id: "B_005", ip_address: "192.168.1.88", account_age_days: 1 },
+        { buyer_id: "B_006", ip_address: "113.161.45.22", account_age_days: 180 },
+        { buyer_id: "B_007", ip_address: "14.232.88.10",  account_age_days: 320 },
+        { buyer_id: "B_008", ip_address: "171.244.12.9",  account_age_days: 45 },
+        { buyer_id: "B_009", ip_address: "192.168.1.88", account_age_days: 1 },
+        { buyer_id: "B_010", ip_address: "10.0.4.15",     account_age_days: 4 },
+        { buyer_id: "B_011", ip_address: "10.0.4.15",     account_age_days: 5 },
+        { buyer_id: "B_012", ip_address: "10.0.4.15",     account_age_days: 2 },
+        { buyer_id: "B_013", ip_address: "27.72.100.4",   account_age_days: 540 },
+        { buyer_id: "B_014", ip_address: "118.69.34.8",   account_age_days: 90 },
+        { buyer_id: "B_015", ip_address: "10.0.4.15",     account_age_days: 3 },
+        { buyer_id: "B_016", ip_address: "42.112.50.19",  account_age_days: 210 },
+        { buyer_id: "B_017", ip_address: "125.235.14.88", account_age_days: 15 },
+        { buyer_id: "B_018", ip_address: "125.235.14.88", account_age_days: 12 },
+        { buyer_id: "B_019", ip_address: "1.53.190.22",   account_age_days: 400 },
+        { buyer_id: "B_020", ip_address: "115.79.80.12",  account_age_days: 600 },
+        { buyer_id: "B_021", ip_address: "183.80.45.6",   account_age_days: 720 },
+        { buyer_id: "B_022", ip_address: "125.235.14.88", account_age_days: 10 },
+        { buyer_id: "B_023", ip_address: "203.162.0.1",   account_age_days: 300 },
+        { buyer_id: "B_024", ip_address: "116.108.99.3",  account_age_days: 150 },
+        { buyer_id: "B_025", ip_address: "171.225.10.8",  account_age_days: 85 }
+    ]
+};
+
+// ============================================================
+// 3 THẺ CẤP ĐỘ LUYỆN TẬP SQL (EASY - MEDIUM - HARD)
+// ============================================================
+export const drillCases = [
+    {
+        id: "drill_sql_basic",
+        type: "sql_drill",
+        title: "Luyện tập SQL Cơ bản — Truy vấn & Bộ lọc điều kiện",
+        category: "SQL Practice Drills",
+        categoryLabel: "Luyện Tập SQL",
+        difficulty: "easy",
+        difficultyLabel: "Cơ bản",
+        estimatedTime: "15 - 20 phút",
+        techStack: ["SQL Drill", "SELECT", "WHERE", "ORDER BY", "LIMIT"],
+        badgeIcon: "⚡",
+        shortDesc: "Thực hành 5 câu hỏi truy vấn cơ bản: Lọc đơn COMPLETED, giới hạn kết quả, kiểm tra ngưỡng giá 99k và lọc theo gian hàng SHOP_102.",
+        schema: drillSchema,
+        mockDb: drillMockDb,
+        questions: [
+            {
+                id: "q1",
+                questionNumber: 1,
+                title: "Lấy 3 đơn hàng hoàn tất đầu tiên",
+                prompt: "Lấy 3 đơn hàng hoàn tất (`status = 'COMPLETED'`) đầu tiên từ bảng `orders` với đầy đủ 6 cột: `order_id`, `shop_id`, `buyer_id`, `order_amount`, `shipping_subsidy`, `status`.",
+                hint: "Dùng mệnh đề WHERE status = 'COMPLETED' kết hợp LIMIT 3 để lấy đúng 3 dòng đầu tiên.",
+                expectedSql: `SELECT 
+    order_id, 
+    shop_id, 
+    buyer_id, 
+    order_amount, 
+    shipping_subsidy, 
+    status 
+FROM orders 
+WHERE status = 'COMPLETED' 
+LIMIT 3;`,
+                defaultSql: `-- [Câu 1] Lấy 3 đơn hàng hoàn tất đầu tiên từ bảng orders
+SELECT 
+    order_id, 
+    shop_id, 
+    buyer_id, 
+    order_amount, 
+    shipping_subsidy, 
+    status 
+FROM orders 
+WHERE status = 'COMPLETED' 
+LIMIT 3;`
+            },
+            {
+                id: "q2",
+                questionNumber: 2,
+                title: "Xem toàn bộ hồ sơ 5 người mua đầu tiên",
+                prompt: "Xem nhanh toàn bộ các cột (`SELECT *`) của 5 hồ sơ người mua đầu tiên trong bảng `buyer_profiles`.",
+                hint: "Sử dụng ký tự sao (*) để lấy mọi cột: SELECT * FROM buyer_profiles LIMIT 5;",
+                expectedSql: `SELECT * 
+FROM buyer_profiles 
+LIMIT 5;`,
+                defaultSql: `-- [Câu 2] Xem nhanh toàn bộ các cột của 5 người mua đầu tiên
+SELECT * 
+FROM buyer_profiles 
+LIMIT 5;`
+            },
+            {
+                id: "q3",
+                questionNumber: 3,
+                title: "Lọc đơn hoàn tất có giá trị từ 99.000đ trở lên",
+                prompt: "Lọc các đơn hàng đã hoàn tất (`status = 'COMPLETED'`) có giá trị đơn (`order_amount`) từ `99000` trở lên. Hiển thị 4 cột: `order_id`, `shop_id`, `order_amount`, `shipping_subsidy`.",
+                hint: "Kết hợp 2 điều kiện bằng toán tử AND: WHERE status = 'COMPLETED' AND order_amount >= 99000;",
+                expectedSql: `SELECT 
+    order_id, 
+    shop_id, 
+    order_amount, 
+    shipping_subsidy 
+FROM orders 
+WHERE status = 'COMPLETED' 
+  AND order_amount >= 99000;`,
+                defaultSql: `-- [Câu 3] Lọc đơn hoàn tất có giá trị >= 99.000đ
+SELECT 
+    order_id, 
+    shop_id, 
+    order_amount, 
+    shipping_subsidy 
+FROM orders 
+WHERE status = 'COMPLETED' 
+  AND order_amount >= 99000;`
+            },
+            {
+                id: "q4",
+                questionNumber: 4,
+                title: "Top 5 đơn hàng hoàn tất có giá trị cao nhất sàn",
+                prompt: "Tìm Top 5 đơn hàng hoàn tất có giá trị (`order_amount`) cao nhất toàn sàn từ `99000` trở lên. Hiển thị 4 cột: `order_id`, `shop_id`, `order_amount`, `shipping_subsidy`, sắp xếp giảm dần theo giá trị đơn.",
+                hint: "Sắp xếp giảm dần bằng ORDER BY order_amount DESC và lấy 5 dòng với LIMIT 5.",
+                expectedSql: `SELECT 
+    order_id, 
+    shop_id, 
+    order_amount, 
+    shipping_subsidy 
+FROM orders 
+WHERE status = 'COMPLETED' 
+  AND order_amount >= 99000 
+ORDER BY order_amount DESC 
+LIMIT 5;`,
+                defaultSql: `-- [Câu 4] Top 5 đơn hoàn tất có order_amount cao nhất toàn sàn >= 99k
+SELECT 
+    order_id, 
+    shop_id, 
+    order_amount, 
+    shipping_subsidy 
+FROM orders 
+WHERE status = 'COMPLETED' 
+  AND order_amount >= 99000 
+ORDER BY order_amount DESC 
+LIMIT 5;`
+            },
+            {
+                id: "q5",
+                questionNumber: 5,
+                title: "Đơn hoàn tất của SHOP_102 có trợ giá vận chuyển",
+                prompt: "Lọc danh sách các đơn hàng hoàn tất của riêng gian hàng `'SHOP_102'` có nhận trợ giá vận chuyển (`shipping_subsidy > 0`), sắp xếp theo giá trị đơn hàng tăng dần (`ASC`) và lấy 10 dòng đầu tiên.",
+                hint: "Sử dụng 3 điều kiện lọc: WHERE status = 'COMPLETED' AND shop_id = 'SHOP_102' AND shipping_subsidy > 0 ORDER BY order_amount ASC LIMIT 10;",
+                expectedSql: `SELECT 
+    order_id, 
+    shop_id, 
+    buyer_id, 
+    order_amount, 
+    shipping_subsidy, 
+    status 
+FROM orders 
+WHERE status = 'COMPLETED' 
+  AND shop_id = 'SHOP_102' 
+  AND shipping_subsidy > 0 
+ORDER BY order_amount ASC 
+LIMIT 10;`,
+                defaultSql: `-- [Câu 5] Lọc 10 đơn hoàn tất có trợ giá của SHOP_102, sắp xếp tăng dần
+SELECT 
+    order_id, 
+    shop_id, 
+    buyer_id, 
+    order_amount, 
+    shipping_subsidy, 
+    status 
+FROM orders 
+WHERE status = 'COMPLETED' 
+  AND shop_id = 'SHOP_102' 
+  AND shipping_subsidy > 0 
+ORDER BY order_amount ASC 
+LIMIT 10;`
+            }
+        ]
+    },
+    {
+        id: "drill_sql_intermediate",
+        type: "sql_drill",
+        title: "Luyện tập SQL Trung bình — Gom nhóm GROUP BY & Tính KPIs",
+        category: "SQL Practice Drills",
+        categoryLabel: "Luyện Tập SQL",
+        difficulty: "medium",
+        difficultyLabel: "Trung bình",
+        estimatedTime: "20 - 25 phút",
+        techStack: ["SQL Drill", "GROUP BY", "COUNT/SUM/AVG", "ROUND", "DISTINCT"],
+        badgeIcon: "⚡",
+        shortDesc: "Thực hành 5 câu hỏi hàm tổng hợp và gom nhóm: Đếm đơn, tính GMV, AOV làm tròn, tỷ lệ chi phí freeship và Top 5 Shop nhiều đơn nhất.",
+        schema: drillSchema,
+        mockDb: drillMockDb,
+        questions: [
+            {
+                id: "q1",
+                questionNumber: 1,
+                title: "Đếm tổng đơn hoàn tất và tổng GMV toàn sàn",
+                prompt: "Đếm tổng số đơn hàng hoàn tất (`COUNT(order_id) AS total_completed_orders`) và tính tổng doanh số GMV (`SUM(order_amount) AS total_gmv_vnd`) của toàn sàn.",
+                hint: "Dùng các hàm COUNT() và SUM() trên bảng orders kèm điều kiện WHERE status = 'COMPLETED'.",
+                expectedSql: `SELECT 
+    COUNT(order_id) AS total_completed_orders, 
+    SUM(order_amount) AS total_gmv_vnd 
+FROM orders 
+WHERE status = 'COMPLETED';`,
+                defaultSql: `-- [Câu 1] Tổng số đơn hoàn tất và tổng GMV toàn sàn
+SELECT 
+    COUNT(order_id) AS total_completed_orders, 
+    SUM(order_amount) AS total_gmv_vnd 
+FROM orders 
+WHERE status = 'COMPLETED';`
+            },
+            {
+                id: "q2",
+                questionNumber: 2,
+                title: "Tính AOV làm tròn, đơn rẻ nhất và đắt nhất",
+                prompt: "Tính giá trị trung bình mỗi đơn hàng hoàn tất được làm tròn đến hàng đơn vị (`ROUND(AVG(order_amount), 0) AS aov_vnd`), kèm giá trị đơn rẻ nhất (`MIN(order_amount) AS min_order_vnd`) và đắt nhất (`MAX(order_amount) AS max_order_vnd`).",
+                hint: "Dùng ROUND(AVG(cột), 0) để làm tròn số thực, kết hợp MIN() và MAX().",
+                expectedSql: `SELECT 
+    ROUND(AVG(order_amount), 0) AS aov_vnd, 
+    MIN(order_amount) AS min_order_vnd, 
+    MAX(order_amount) AS max_order_vnd 
+FROM orders 
+WHERE status = 'COMPLETED';`,
+                defaultSql: `-- [Câu 2] AOV làm tròn, đơn nhỏ nhất và đơn lớn nhất
+SELECT 
+    ROUND(AVG(order_amount), 0) AS aov_vnd, 
+    MIN(order_amount) AS min_order_vnd, 
+    MAX(order_amount) AS max_order_vnd 
+FROM orders 
+WHERE status = 'COMPLETED';`
+            },
+            {
+                id: "q3",
+                questionNumber: 3,
+                title: "Tính tổng tiền trợ giá và tỷ lệ % trợ giá / GMV",
+                prompt: "Tính tổng tiền trợ giá (`SUM(shipping_subsidy) AS total_subsidy_vnd`) và tỷ lệ % chi phí trợ giá so với tổng GMV (`ROUND(SUM(shipping_subsidy) * 100.0 / SUM(order_amount), 2) AS subsidy_to_gmv_pct`) cho các đơn hoàn tất.",
+                hint: "Bắt buộc nhân với 100.0 (số thực) trước khi chia để không bị cắt bớt phần thập phân: ROUND(SUM(...) * 100.0 / SUM(...), 2).",
+                expectedSql: `SELECT 
+    SUM(shipping_subsidy) AS total_subsidy_vnd, 
+    ROUND(SUM(shipping_subsidy) * 100.0 / SUM(order_amount), 2) AS subsidy_to_gmv_pct 
+FROM orders 
+WHERE status = 'COMPLETED';`,
+                defaultSql: `-- [Câu 3] Tổng trợ giá và tỷ lệ % chi phí trợ giá so với GMV
+SELECT 
+    SUM(shipping_subsidy) AS total_subsidy_vnd, 
+    ROUND(SUM(shipping_subsidy) * 100.0 / SUM(order_amount), 2) AS subsidy_to_gmv_pct 
+FROM orders 
+WHERE status = 'COMPLETED';`
+            },
+            {
+                id: "q4",
+                questionNumber: 4,
+                title: "Top 5 Shop có số lượng đơn hoàn tất cao nhất",
+                prompt: "Gom nhóm các đơn hoàn tất theo từng gian hàng (`GROUP BY shop_id`) để tính tổng số đơn (`total_orders`) và tổng tiền trợ giá (`total_subsidy_vnd`). Sắp xếp giảm dần theo số đơn để lấy Top 5 Shop nhiều đơn nhất.",
+                hint: "Sử dụng SELECT shop_id, COUNT(...) AS total_orders, SUM(...) GROUP BY shop_id ORDER BY total_orders DESC LIMIT 5;",
+                expectedSql: `SELECT 
+    shop_id, 
+    COUNT(order_id) AS total_orders, 
+    SUM(shipping_subsidy) AS total_subsidy_vnd 
+FROM orders 
+WHERE status = 'COMPLETED' 
+GROUP BY shop_id 
+ORDER BY total_orders DESC 
+LIMIT 5;`,
+                defaultSql: `-- [Câu 4] Top 5 Shop có số đơn hoàn tất cao nhất
+SELECT 
+    shop_id, 
+    COUNT(order_id) AS total_orders, 
+    SUM(shipping_subsidy) AS total_subsidy_vnd 
+FROM orders 
+WHERE status = 'COMPLETED' 
+GROUP BY shop_id 
+ORDER BY total_orders DESC 
+LIMIT 5;`
+            },
+            {
+                id: "q5",
+                questionNumber: 5,
+                title: "Đếm số người mua duy nhất và tổng đơn theo từng Shop",
+                prompt: "Gom nhóm các đơn hoàn tất theo từng gian hàng (`GROUP BY shop_id`), đếm số lượng người mua duy nhất không trùng lặp (`COUNT(DISTINCT buyer_id) AS unique_buyers`) và tổng số đơn (`COUNT(order_id) AS total_orders`), lấy Top 5 Shop có số đơn cao nhất.",
+                hint: "Dùng từ khóa DISTINCT bên trong COUNT: COUNT(DISTINCT buyer_id) AS unique_buyers.",
+                expectedSql: `SELECT 
+    shop_id, 
+    COUNT(DISTINCT buyer_id) AS unique_buyers, 
+    COUNT(order_id) AS total_orders 
+FROM orders 
+WHERE status = 'COMPLETED' 
+GROUP BY shop_id 
+ORDER BY total_orders DESC 
+LIMIT 5;`,
+                defaultSql: `-- [Câu 5] Đếm người mua duy nhất và tổng đơn của Top 5 Shop
+SELECT 
+    shop_id, 
+    COUNT(DISTINCT buyer_id) AS unique_buyers, 
+    COUNT(order_id) AS total_orders 
+FROM orders 
+WHERE status = 'COMPLETED' 
+GROUP BY shop_id 
+ORDER BY total_orders DESC 
+LIMIT 5;`
+            }
+        ]
+    },
+    {
+        id: "drill_sql_advanced",
+        type: "sql_drill",
+        title: "Luyện tập SQL Nâng cao — Phân khúc CASE WHEN & Truy vết với JOIN",
+        category: "SQL Practice Drills",
+        categoryLabel: "Luyện Tập SQL",
+        difficulty: "hard",
+        difficultyLabel: "Nâng cao",
+        estimatedTime: "25 - 30 phút",
+        techStack: ["SQL Drill", "CASE WHEN", "JOIN", "Conditional Aggregation"],
+        badgeIcon: "⚡",
+        shortDesc: "Thực hành 5 câu hỏi nâng cao: Phân khúc 4 giỏ giá bằng CASE WHEN, đếm điều kiện trên 1 dòng và JOIN bảng người mua để truy vết gian lận IP.",
+        schema: drillSchema,
+        mockDb: drillMockDb,
+        questions: [
+            {
+                id: "q1",
+                questionNumber: 1,
+                title: "Phân loại đơn Freeship bằng CASE WHEN",
+                prompt: "Dùng `CASE WHEN` gắn nhãn các đơn hoàn tất thành 2 nhóm: `'Không Freeship'` (nếu `order_amount < 99000`) và `'Đủ điều kiện Freeship'` (từ `99000` trở lên) đặt tên cột là `freeship_group`, sau đó đếm tổng số đơn của mỗi nhóm (`COUNT(order_id) AS total_orders`).",
+                hint: "Cấu trúc CASE WHEN: CASE WHEN order_amount < 99000 THEN 'Không Freeship' ELSE 'Đủ điều kiện Freeship' END AS freeship_group, gom nhóm bằng GROUP BY freeship_group.",
+                expectedSql: `SELECT 
+    CASE 
+        WHEN order_amount < 99000 THEN 'Không Freeship' 
+        ELSE 'Đủ điều kiện Freeship' 
+    END AS freeship_group, 
+    COUNT(order_id) AS total_orders 
+FROM orders 
+WHERE status = 'COMPLETED' 
+GROUP BY freeship_group;`,
+                defaultSql: `-- [Câu 1] Phân loại 2 nhóm Freeship bằng CASE WHEN và đếm số đơn
+SELECT 
+    CASE 
+        WHEN order_amount < 99000 THEN 'Không Freeship' 
+        ELSE 'Đủ điều kiện Freeship' 
+    END AS freeship_group, 
+    COUNT(order_id) AS total_orders 
+FROM orders 
+WHERE status = 'COMPLETED' 
+GROUP BY freeship_group;`
+            },
+            {
+                id: "q2",
+                questionNumber: 2,
+                title: "Chia 4 giỏ giá bằng CASE WHEN BETWEEN & tính KPI",
+                prompt: "Dùng `CASE WHEN ... BETWEEN` chia các đơn hoàn tất thành 4 giỏ giá (`price_segment`):\n- `< 99000`: `'1. Dưới 99k (Không Freeship)'`\n- `BETWEEN 99000 AND 105000`: `'2. 99k - 105k (Cận ngưỡng Freeship)'`\n- `BETWEEN 105001 AND 200000`: `'3. 105k - 200k (Bình thường)'`\n- `ELSE`: `'4. Trên 200k (Giá trị cao)'`\nGom nhóm theo `price_segment` để tính số lượng đơn (`total_orders`), tổng trợ giá (`total_subsidy_vnd`) và AOV làm tròn (`avg_order_value_vnd`), sắp xếp theo `total_orders DESC`.",
+                hint: "Sử dụng CASE WHEN ... BETWEEN ... AND ... THEN ... END AS price_segment, gom nhóm bằng GROUP BY price_segment và sắp xếp ORDER BY total_orders DESC.",
+                expectedSql: `SELECT 
+    CASE 
+        WHEN order_amount < 99000 THEN '1. Dưới 99k (Không Freeship)' 
+        WHEN order_amount BETWEEN 99000 AND 105000 THEN '2. 99k - 105k (Cận ngưỡng Freeship)' 
+        WHEN order_amount BETWEEN 105001 AND 200000 THEN '3. 105k - 200k (Bình thường)' 
+        ELSE '4. Trên 200k (Giá trị cao)' 
+    END AS price_segment, 
+    COUNT(order_id) AS total_orders, 
+    SUM(shipping_subsidy) AS total_subsidy_vnd, 
+    ROUND(AVG(order_amount), 0) AS avg_order_value_vnd 
+FROM orders 
+WHERE status = 'COMPLETED' 
+GROUP BY price_segment 
+ORDER BY total_orders DESC;`,
+                defaultSql: `-- [Câu 2] Chia 4 giỏ giá và tính các KPI số đơn, tổng trợ giá, AOV
+SELECT 
+    CASE 
+        WHEN order_amount < 99000 THEN '1. Dưới 99k (Không Freeship)' 
+        WHEN order_amount BETWEEN 99000 AND 105000 THEN '2. 99k - 105k (Cận ngưỡng Freeship)' 
+        WHEN order_amount BETWEEN 105001 AND 200000 THEN '3. 105k - 200k (Bình thường)' 
+        ELSE '4. Trên 200k (Giá trị cao)' 
+    END AS price_segment, 
+    COUNT(order_id) AS total_orders, 
+    SUM(shipping_subsidy) AS total_subsidy_vnd, 
+    ROUND(AVG(order_amount), 0) AS avg_order_value_vnd 
+FROM orders 
+WHERE status = 'COMPLETED' 
+GROUP BY price_segment 
+ORDER BY total_orders DESC;`
+            },
+            {
+                id: "q3",
+                questionNumber: 3,
+                title: "Conditional Aggregation trên 1 dòng duy nhất",
+                prompt: "Sử dụng kỹ thuật Conditional Aggregation (`SUM(CASE WHEN order_amount BETWEEN 99000 AND 105000 THEN 1 ELSE 0 END) AS suspicious_orders`) để đếm số đơn cận ngưỡng 99k-105k và tổng số đơn hoàn tất (`COUNT(order_id) AS total_completed_orders`) ngay trên 1 dòng kết quả duy nhất mà không dùng `GROUP BY`.",
+                hint: "Lồng CASE WHEN bên trong SUM: SUM(CASE WHEN ... THEN 1 ELSE 0 END), không dùng GROUP BY.",
+                expectedSql: `SELECT 
+    SUM(CASE WHEN order_amount BETWEEN 99000 AND 105000 THEN 1 ELSE 0 END) AS suspicious_orders, 
+    COUNT(order_id) AS total_completed_orders 
+FROM orders 
+WHERE status = 'COMPLETED';`,
+                defaultSql: `-- [Câu 3] Conditional Aggregation: Đếm đơn cận ngưỡng và tổng đơn trên 1 dòng duy nhất
+SELECT 
+    SUM(CASE WHEN order_amount BETWEEN 99000 AND 105000 THEN 1 ELSE 0 END) AS suspicious_orders, 
+    COUNT(order_id) AS total_completed_orders 
+FROM orders 
+WHERE status = 'COMPLETED';`
+            },
+            {
+                id: "q4",
+                questionNumber: 4,
+                title: "Nối 2 bảng orders và buyer_profiles bằng JOIN",
+                prompt: "Dùng `JOIN` nối bảng `orders o` với `buyer_profiles b` qua khóa chung `ON o.buyer_id = b.buyer_id`. Lấy ra 5 đơn hàng hoàn tất đầu tiên gồm các cột: `o.order_id`, `o.shop_id`, `o.order_amount`, `b.ip_address`, `b.account_age_days`.",
+                hint: "Cú pháp JOIN: FROM orders o JOIN buyer_profiles b ON o.buyer_id = b.buyer_id WHERE o.status = 'COMPLETED' LIMIT 5;",
+                expectedSql: `SELECT 
+    o.order_id, 
+    o.shop_id, 
+    o.order_amount, 
+    b.ip_address, 
+    b.account_age_days 
+FROM orders o 
+JOIN buyer_profiles b ON o.buyer_id = b.buyer_id 
+WHERE o.status = 'COMPLETED' 
+LIMIT 5;`,
+                defaultSql: `-- [Câu 4] JOIN bảng orders và buyer_profiles để lấy địa chỉ IP và tuổi tài khoản
+SELECT 
+    o.order_id, 
+    o.shop_id, 
+    o.order_amount, 
+    b.ip_address, 
+    b.account_age_days 
+FROM orders o 
+JOIN buyer_profiles b ON o.buyer_id = b.buyer_id 
+WHERE o.status = 'COMPLETED' 
+LIMIT 5;`
+            },
+            {
+                id: "q5",
+                questionNumber: 5,
+                title: "Truy vết Top 5 cặp (Shop + IP) khả nghi gian lận",
+                prompt: "Nối `orders o` và `buyer_profiles b` (`ON o.buyer_id = b.buyer_id`), lọc các đơn hoàn tất nằm trong giỏ giá nhạy cảm (`o.order_amount BETWEEN 99000 AND 105000`). Gom nhóm theo cặp `GROUP BY o.shop_id, b.ip_address` để tìm Top 5 cặp (Shop + Địa chỉ IP) có số đơn khả nghi (`COUNT(o.order_id) AS suspicious_orders`) cao nhất, kèm tổng tiền trợ giá thất thoát (`SUM(o.shipping_subsidy) AS total_subsidy_loss_vnd`) và AOV (`ROUND(AVG(o.order_amount), 0) AS avg_order_amount_vnd`).",
+                hint: "Nối 2 bảng bằng JOIN, lọc giỏ giá nhạy cảm, gom nhóm 2 cột GROUP BY o.shop_id, b.ip_address và ORDER BY suspicious_orders DESC LIMIT 5.",
+                expectedSql: `SELECT 
+    o.shop_id, 
+    b.ip_address, 
+    COUNT(o.order_id) AS suspicious_orders, 
+    SUM(o.shipping_subsidy) AS total_subsidy_loss_vnd, 
+    ROUND(AVG(o.order_amount), 0) AS avg_order_amount_vnd 
+FROM orders o 
+JOIN buyer_profiles b ON o.buyer_id = b.buyer_id 
+WHERE o.status = 'COMPLETED' 
+  AND o.order_amount BETWEEN 99000 AND 105000 
+GROUP BY o.shop_id, b.ip_address 
+ORDER BY suspicious_orders DESC 
+LIMIT 5;`,
+                defaultSql: `-- [Câu 5] Top 5 cặp (Shop + IP) khả nghi bòn rút trợ giá freeship
+SELECT 
+    o.shop_id, 
+    b.ip_address, 
+    COUNT(o.order_id) AS suspicious_orders, 
+    SUM(o.shipping_subsidy) AS total_subsidy_loss_vnd, 
+    ROUND(AVG(o.order_amount), 0) AS avg_order_amount_vnd 
+FROM orders o 
+JOIN buyer_profiles b ON o.buyer_id = b.buyer_id 
+WHERE o.status = 'COMPLETED' 
+  AND o.order_amount BETWEEN 99000 AND 105000 
+GROUP BY o.shop_id, b.ip_address 
+ORDER BY suspicious_orders DESC 
+LIMIT 5;`
+            }
+        ]
+    }
+];
+
+// Tự động thêm 3 thẻ luyện tập vào danh sách tổng
+simulationCases.push(...drillCases);
+

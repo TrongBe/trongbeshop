@@ -3466,3 +3466,744 @@ main.sim-main {
     padding: 6px 10px;
     margin: 4px 0;
 }
+
+/* ============================================================
+   CHẾ ĐỘ LUYỆN TẬP SQL THEO TỪNG CÂU (SQL PRACTICE DRILLS)
+   ============================================================ */
+
+/* Khung cuộn toàn bộ câu hỏi ở cột giữa */
+.drill-console-pane {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: 24px;
+    overflow-y: auto;
+    height: 100%;
+    box-sizing: border-box;
+    background: var(--bg-main, #f8fafc);
+}
+
+/* Thẻ từng câu hỏi */
+.drill-question-card {
+    background: var(--bg-card, #ffffff);
+    border: 1px solid var(--border, #e2e8f0);
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    transition: all 0.25s ease;
+    position: relative;
+}
+
+.drill-question-card:hover {
+    border-color: rgba(99, 102, 241, 0.4);
+    box-shadow: 0 4px 18px rgba(99, 102, 241, 0.08);
+}
+
+.drill-question-card.active-drill {
+    border-color: var(--primary, #4F46E5);
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2), 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Header câu hỏi */
+.drill-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.drill-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    flex: 1;
+}
+
+.drill-qnum-badge {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(79, 70, 229, 0.22));
+    color: var(--primary, #4F46E5);
+    font-weight: 800;
+    font-size: 0.82rem;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    border: 1px solid rgba(99, 102, 241, 0.35);
+    letter-spacing: 0.5px;
+}
+
+.drill-qtitle {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-main, #0f172a);
+    margin: 0;
+    line-height: 1.35;
+}
+
+/* Badge trạng thái làm bài */
+.drill-status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.drill-status-badge.pending {
+    background: var(--bg-surface, #f1f5f9);
+    color: var(--text-muted, #64748b);
+    border: 1px solid var(--border, #cbd5e1);
+}
+
+.drill-status-badge.success {
+    background: rgba(16, 185, 129, 0.12);
+    color: #10B981;
+    border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+.drill-status-badge.warning {
+    background: rgba(245, 158, 11, 0.12);
+    color: #D97706;
+    border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+/* Hộp đề bài câu hỏi */
+.drill-prompt-box {
+    background: var(--bg-surface, #f8fafc);
+    border-left: 4px solid var(--primary, #4F46E5);
+    border-top: 1px solid var(--border, #e2e8f0);
+    border-right: 1px solid var(--border, #e2e8f0);
+    border-bottom: 1px solid var(--border, #e2e8f0);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--text-main, #1e293b);
+}
+
+.drill-prompt-box code {
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--primary, #4F46E5);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+/* Nút toggle gợi ý */
+.drill-hint-toggle-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.btn-drill-hint-toggle {
+    background: transparent;
+    border: 1px dashed rgba(245, 158, 11, 0.5);
+    color: #D97706;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-drill-hint-toggle:hover {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: #D97706;
+}
+
+/* Hộp gợi ý từ khóa */
+.drill-hint-content {
+    background: rgba(245, 158, 11, 0.08);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    font-size: 0.84rem;
+    color: var(--text-main, #1e293b);
+    line-height: 1.5;
+    animation: fadeInDrill 0.2s ease;
+}
+
+.drill-hint-content code {
+    background: rgba(245, 158, 11, 0.18);
+    color: #B45309;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.86em;
+}
+
+/* Dark SQL Code Editor từng câu */
+.drill-editor-wrapper {
+    background: #0f172a;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #334155;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.2s ease;
+}
+
+.drill-editor-wrapper:focus-within {
+    border-color: #6366F1;
+}
+
+.drill-editor-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1e293b;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    border-bottom: 1px solid #334155;
+}
+
+.drill-editor-bar kbd {
+    background: #0f172a;
+    border: 1px solid #475569;
+    color: #cbd5e1;
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+}
+
+.drill-sql-input {
+    width: 100%;
+    min-height: 110px;
+    max-height: 320px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #f8fafc;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    padding: 12px 14px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+/* Thanh hành động câu hỏi */
+.drill-actions-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+
+.drill-actions-left,
+.drill-actions-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-drill-run {
+    background: var(--bg-surface, #f1f5f9);
+    color: var(--text-main, #0f172a);
+    border: 1px solid var(--border, #cbd5e1);
+    border-radius: 7px;
+    padding: 7px 15px;
+    font-size: 0.83rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.btn-drill-run:hover {
+    background: var(--bg-subtle, #e2e8f0);
+    border-color: #94a3b8;
+}
+
+.btn-drill-submit {
+    background: linear-gradient(135deg, #4F46E5, #6366F1);
+    color: #FFFFFF !important;
+    border: none;
+    border-radius: 7px;
+    padding: 7px 18px;
+    font-size: 0.83rem;
+    font-weight: 800;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 10px rgba(79, 70, 229, 0.35);
+    transition: all 0.2s ease;
+}
+
+.btn-drill-submit:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.45);
+    background: linear-gradient(135deg, #4338CA, #4F46E5);
+}
+
+.btn-drill-submit:disabled,
+.btn-drill-run:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-drill-reset {
+    background: transparent;
+    color: var(--text-muted, #64748b);
+    border: 1px solid var(--border, #e2e8f0);
+    border-radius: 7px;
+    padding: 7px 12px;
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-drill-reset:hover {
+    color: var(--text-main, #0f172a);
+    border-color: #94a3b8;
+}
+
+/* Khung preview kết quả chạy SQL của câu hỏi */
+.drill-preview-pane {
+    margin-top: 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border, #e2e8f0);
+    overflow: hidden;
+    background: var(--bg-surface, #f8fafc);
+    animation: fadeInDrill 0.2s ease;
+}
+
+.drill-preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-card, #ffffff);
+    padding: 6px 12px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-muted, #64748b);
+    border-bottom: 1px solid var(--border, #e2e8f0);
+}
+
+.drill-preview-table-wrap {
+    max-height: 220px;
+    overflow: auto;
+}
+
+.drill-preview-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.drill-preview-table th {
+    background: var(--bg-card, #ffffff);
+    padding: 6px 10px;
+    text-align: left;
+    font-weight: 700;
+    color: var(--text-muted, #475569);
+    border-bottom: 2px solid var(--border, #e2e8f0);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    white-space: nowrap;
+}
+
+.drill-preview-table td {
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--border, #e2e8f0);
+    color: var(--text-main, #1e293b);
+    white-space: nowrap;
+}
+
+.drill-preview-table tr:nth-child(even) {
+    background: rgba(148, 163, 184, 0.04);
+}
+
+.drill-preview-error {
+    padding: 12px 14px;
+    background: rgba(239, 68, 68, 0.08);
+    border-left: 3px solid #EF4444;
+    color: #DC2626;
+    font-size: 0.82rem;
+    font-family: 'JetBrains Mono', monospace;
+    line-height: 1.45;
+}
+
+/* Khung phản hồi AI Chấm Điểm */
+.drill-ai-feedback {
+    margin-top: 16px;
+    border-radius: 12px;
+    padding: 18px 20px;
+    background: var(--bg-card, #ffffff);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    animation: fadeInDrill 0.3s ease;
+}
+
+.drill-feedback-loading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    color: var(--text-muted, #64748b);
+    font-size: 0.88rem;
+}
+
+.drill-feedback-spinner {
+    width: 22px;
+    height: 22px;
+    border: 3px solid rgba(99, 102, 241, 0.2);
+    border-top-color: #6366F1;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    flex-shrink: 0;
+}
+
+.drill-feedback-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--border, #e2e8f0);
+}
+
+.drill-feedback-score-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.drill-feedback-score-badge {
+    font-size: 1.25rem;
+    font-weight: 800;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.drill-feedback-score-badge.high {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10B981;
+    border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.drill-feedback-score-badge.medium {
+    background: rgba(245, 158, 11, 0.15);
+    color: #D97706;
+    border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.drill-feedback-score-badge.low {
+    background: rgba(239, 68, 68, 0.15);
+    color: #EF4444;
+    border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+/* Các thanh tiêu chí con 50đ / 30đ / 20đ */
+.drill-criteria-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+    .drill-criteria-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.drill-criterion-card {
+    background: var(--bg-surface, #f8fafc);
+    border: 1px solid var(--border, #e2e8f0);
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+
+.drill-criterion-title {
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: var(--text-muted, #64748b);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.drill-criterion-bar {
+    height: 6px;
+    background: var(--border, #e2e8f0);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 6px;
+}
+
+.drill-criterion-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.4s ease;
+}
+
+.drill-criterion-bar-fill.high { background: #10B981; }
+.drill-criterion-bar-fill.medium { background: #F59E0B; }
+.drill-criterion-bar-fill.low { background: #EF4444; }
+
+.drill-criterion-note {
+    font-size: 0.75rem;
+    color: var(--text-muted, #64748b);
+    line-height: 1.4;
+}
+
+/* Nội dung nhận xét chi tiết */
+.drill-feedback-body {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--text-main, #1e293b);
+}
+
+.drill-feedback-body h4 {
+    margin: 14px 0 6px;
+    font-size: 0.94rem;
+    color: var(--text-main, #0f172a);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.drill-feedback-body pre {
+    background: #0f172a;
+    color: #f8fafc;
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    overflow-x: auto;
+    margin: 8px 0;
+    border: 1px solid #334155;
+}
+
+.drill-feedback-body pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+}
+
+/* Widget tiến độ trong Cột Trái (.col-briefing) */
+.drill-briefing-widget {
+    background: var(--bg-surface, #f8fafc);
+    border: 1px solid var(--border, #e2e8f0);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 18px;
+}
+
+.drill-briefing-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.drill-progress-track {
+    height: 8px;
+    background: var(--border, #e2e8f0);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.drill-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4F46E5, #10B981);
+    border-radius: 4px;
+    transition: width 0.4s ease;
+}
+
+.drill-questions-quick-nav {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.drill-nav-chip {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    cursor: pointer;
+    border: 1px solid var(--border, #cbd5e1);
+    background: var(--bg-card, #ffffff);
+    color: var(--text-muted, #64748b);
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.drill-nav-chip:hover {
+    border-color: #6366F1;
+    color: #6366F1;
+}
+
+.drill-nav-chip.done {
+    background: rgba(16, 185, 129, 0.15);
+    border-color: rgba(16, 185, 129, 0.4);
+    color: #10B981;
+}
+
+.drill-nav-chip.review {
+    background: rgba(245, 158, 11, 0.15);
+    border-color: rgba(245, 158, 11, 0.4);
+    color: #D97706;
+}
+
+.btn-drill-handbook-briefing {
+    width: 100%;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(79, 70, 229, 0.15));
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    color: var(--primary, #4F46E5);
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 14px;
+    transition: all 0.2s ease;
+}
+
+.btn-drill-handbook-briefing:hover {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(79, 70, 229, 0.25));
+    border-color: #6366F1;
+}
+
+@keyframes fadeInDrill {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Dark Mode Overrides cho SQL Drills */
+[data-theme="dark"] .drill-console-pane {
+    background: #090d16;
+}
+
+[data-theme="dark"] .drill-question-card {
+    background: #111827;
+    border-color: #1f2937;
+}
+
+[data-theme="dark"] .drill-question-card:hover {
+    border-color: #374151;
+}
+
+[data-theme="dark"] .drill-question-card.active-drill {
+    border-color: #6366F1;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.3);
+}
+
+[data-theme="dark"] .drill-qtitle {
+    color: #f1f5f9;
+}
+
+[data-theme="dark"] .drill-prompt-box {
+    background: #1e293b;
+    border-color: #334155;
+    border-left-color: #6366F1;
+    color: #cbd5e1;
+}
+
+[data-theme="dark"] .drill-hint-content {
+    background: rgba(245, 158, 11, 0.12);
+    border-color: rgba(245, 158, 11, 0.3);
+    color: #fde68a;
+}
+
+[data-theme="dark"] .btn-drill-run {
+    background: #1f2937;
+    color: #f1f5f9;
+    border-color: #374151;
+}
+
+[data-theme="dark"] .btn-drill-run:hover {
+    background: #374151;
+}
+
+[data-theme="dark"] .btn-drill-reset {
+    color: #94a3b8;
+    border-color: #374151;
+}
+
+[data-theme="dark"] .drill-preview-pane {
+    background: #0f172a;
+    border-color: #1e293b;
+}
+
+[data-theme="dark"] .drill-preview-header {
+    background: #1e293b;
+    color: #94a3b8;
+    border-color: #334155;
+}
+
+[data-theme="dark"] .drill-preview-table th {
+    background: #1e293b;
+    color: #94a3b8;
+    border-color: #334155;
+}
+
+[data-theme="dark"] .drill-preview-table td {
+    border-color: #1e293b;
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .drill-ai-feedback {
+    background: #111827;
+    border-color: rgba(99, 102, 241, 0.4);
+}
+
+[data-theme="dark"] .drill-criterion-card {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+[data-theme="dark"] .drill-feedback-body {
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .drill-feedback-body h4 {
+    color: #f8fafc;
+}
+
+[data-theme="dark"] .drill-briefing-widget {
+    background: #111827;
+    border-color: #1f2937;
+}
+
+[data-theme="dark"] .drill-nav-chip {
+    background: #1e293b;
+    border-color: #374151;
+    color: #94a3b8;
+}
+
