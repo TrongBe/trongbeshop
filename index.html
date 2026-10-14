@@ -4,61 +4,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="TRONEX - Hệ thống luyện thi thông minh, luyện đề VACT, thi thử online. Nền tảng học tập của Trọng Be.">
-  <meta name="keywords" content="luyện đề VACT, luyện thi, tronex, trọng be, v-act, thi thử, ôn thi, AI học tập">
-  <title>Hệ Thống Luyện Thi Trực Tuyến</title>
+  <meta name="description" content="TRONEX - Hệ thống luyện thi ĐGNL V-ACT và thực hành truy vấn dữ liệu SQL trực tiếp trên trình duyệt.">
+  <meta name="keywords" content="luyện đề VACT, ĐGNL, tronex, sql sandbox, data analyst simulation, thi thử online">
+  <title>TRONEX — Luyện Đề V-ACT & Thực Hành SQL Trực Tuyến</title>
   <meta name="google-site-verification" content="Lo-EVHe_AEf6Rn2gmZsmFKMCQoWhqgWW_lKOdFRSsco" />
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Import Map cho thư viện AI -->
-  <script type="importmap">
-    {
-      "imports": {
-        "@google/generative-ai": "https://cdn.jsdelivr.net/npm/@google/generative-ai/+esm"
-      }
-    }
-  </script>
+  <!-- Core Theme & Layout CSS -->
+  <link rel="stylesheet" href="css/style.css?v=20261014_saas_v1">
 
-  <!-- KaTeX for Math & Science -->
+  <!-- KaTeX for Math & Science Preview -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
-    onload="renderMathInElement(document.body);"></script>
+    onload="if(window.renderMathInElement) renderMathInElement(document.body);"></script>
 
-  <!-- Mammoth.js for Word (.docx) support -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
-
-  <!-- PDF.js for PDF (.pdf) support -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-
+  <!-- Dark Mode Script (Prevent flash on initial paint) -->
+  <script>
+    (function () {
+      const saved = localStorage.getItem('tronex_theme') || 'light';
+      if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    })();
+  </script>
 </head>
 
-<body>
-  <header class="header-vnu" id="mainHeader">
-    <div class="container" style="display:flex; align-items:center; justify-content:space-between;">
-      <a href="index.html" class="logo-vnu">
-        <div class="logo-text">
-          <h2>TRONEX</h2>
-          <p>AI Learning Platform</p>
-        </div>
+<body class="modern-saas-page">
+
+  <!-- ============================================================
+       KHU VỰC 1: FLOATING GLASSMORPHISM NAVBAR (HEADER HIỆN ĐẠI)
+       ============================================================ -->
+  <nav class="nav-floating-bar" id="mainNavbar">
+    <div class="nav-glass-shell">
+      <!-- Left: Brand Logo & Monospace Version Badge -->
+      <a href="index.html" class="nav-brand-wrap" title="TRONEX Home">
+        <span class="nav-brand-logo">TRONEX</span>
+        <span class="nav-version-badge">v1.9</span>
       </a>
-      <nav class="nav-vnu">
-        <a href="index.html">Trang chủ</a>
-        <a href="v-act.html">Hệ thống TRONEX</a>
-        <a href="simulation.html">DA Simulation</a>
-        <a href="#">Tin tức</a>
-        <a href="#">Tuyển sinh</a>
-      </nav>
-      <div class="header-actions">
-        <button class="theme-toggle-btn" id="themeToggleBtn" title="Chế độ sáng/tối">🌙</button>
+
+      <!-- Center: Pill Navigation Links -->
+      <div class="nav-pills">
+        <a href="index.html" class="nav-pill-item active">Tổng quan</a>
+        <a href="v-act.html" class="nav-pill-item">Phòng luyện đề V-ACT</a>
+        <a href="simulation.html" class="nav-pill-item">Thực hành SQL</a>
+        <a href="profile.html" class="nav-pill-item">Hồ sơ cá nhân</a>
+      </div>
+
+      <!-- Right: Action Buttons -->
+      <div class="nav-actions-cluster">
+        <button class="theme-toggle-btn" id="themeToggleBtn" title="Chuyển chế độ Sáng / Tối">🌙</button>
         <button class="auth-btn" id="authBtn" title="Đăng nhập">
           <span>🔑</span><span>Đăng nhập</span>
         </button>
-        <button class="menu-btn" onclick="toggleSidebar()" aria-label="Menu">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <button class="menu-btn" onclick="toggleSidebar()" aria-label="Menu di động">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="3" y1="12" x2="21" y2="12"></line>
             <line x1="3" y1="6" x2="21" y2="6"></line>
             <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -66,130 +68,430 @@
         </button>
       </div>
     </div>
-  </header>
+  </nav>
 
-  <!-- Sidebar Overlay -->
+  <!-- Sidebar Overlay & Menu Drawer cho Thiết bị di động -->
   <div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
-
-  <!-- Sidebar Menu -->
   <div id="sidebarMenu" class="sidebar-menu">
     <div class="sidebar-header">
-      <h2>Danh mục</h2>
+      <h2>Menu Điều Hướng</h2>
       <button class="close-btn" onclick="toggleSidebar()">&times;</button>
     </div>
     <ul class="sidebar-nav">
-      <li><a href="index.html" class="active">🏠 Trang chủ</a></li>
-      <li><a href="v-act.html">🚀 TRONEX (Làm bài)</a></li>
-      <li><a href="simulation.html">📊 DA Simulation</a></li>
-      <li><a href="profile.html">👤 Tài khoản</a></li>
+      <li><a href="index.html" class="active">🏠 Tổng quan</a></li>
+      <li><a href="v-act.html">🚀 Phòng luyện đề V-ACT</a></li>
+      <li><a href="simulation.html">📊 Thực hành SQL Sandbox</a></li>
+      <li><a href="profile.html">👤 Hồ sơ cá nhân</a></li>
+      <li><a href="javascript:void(0)" onclick="openChangelog()">📑 Nhật ký cập nhật (v1.9)</a></li>
     </ul>
   </div>
 
   <main>
-    <!-- Hero Section -->
-    <section class="hero-vnu">
-      <div class="hero-vnu-content">
-        <div class="hero-badge">✨ AI-Powered • TRONEX v3.0</div>
-        <h1>Nền tảng<br>luyện thi thông minh</h1>
-        <p>Hệ thống TRONEX xây dựng hệ sinh thái luyện tập cùng AI, nơi hội tụ công nghệ AI và trải nghiệm người dùng
-          tối ưu.</p>
-        <div class="hero-btn-group">
-          <a href="v-act.html" class="hero-btn-primary">🚀 Khám phá TRONEX</a>
-          <a href="#news-section" class="hero-btn-secondary">📰 Tin tức</a>
+    <!-- ============================================================
+         KHU VỰC 2: SPLIT-HERO SECTION (ĐIỀU HƯỚNG NHANH & TRẠNG THÁI HỌC TẬP)
+         ============================================================ -->
+    <section class="hero-split-section">
+      <div class="saas-container">
+        <div class="hero-split-grid">
+
+          <!-- Cột Trái (55% chiều rộng): Giới thiệu & Điều hướng chính -->
+          <div class="hero-split-left">
+            <div class="hero-live-pill">
+              <span class="live-dot"></span>
+              <span>Hệ thống luyện đề ĐGNL &amp; Thực hành SQL</span>
+            </div>
+            <h1 class="hero-split-title">
+              Luyện đề V-ACT &amp; Truy vấn dữ liệu thực tế trên trình duyệt.
+            </h1>
+            <p class="hero-split-desc">
+              Làm bài thi thử chuẩn cấu trúc ĐGNL với bộ đếm giờ, công thức KaTeX, tự động lưu nháp; hoặc thực hành viết lệnh SQL trực tiếp trên tập dữ liệu giao dịch.
+            </p>
+            <div class="hero-actions-cluster">
+              <a href="v-act.html" class="btn-hero-primary">
+                <span>🚀 Vào phòng luyện đề</span>
+              </a>
+              <a href="simulation.html" class="btn-hero-secondary">
+                <span>💻 Mở SQL Sandbox</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Cột Phải (45% chiều rộng): Thẻ Tiếp tục phiên học (Interactive Quick-Resume) -->
+          <div class="hero-split-right">
+            <div class="quick-resume-card" id="quickResumeCard">
+              <div class="quick-resume-badge" id="quickResumeBadge">
+                <span>⚡ TIẾP TỤC PHIÊN HỌC</span>
+              </div>
+              <h3 class="quick-resume-title" id="quickResumeTitle">
+                Đang kiểm tra tiến trình...
+              </h3>
+              <p class="quick-resume-meta" id="quickResumeMeta">
+                Hệ thống đang đồng bộ dữ liệu phiên làm việc gần nhất của bạn.
+              </p>
+              <div class="quick-resume-stats-row" id="quickResumeStatsRow">
+                <div class="quick-resume-stat-item">
+                  <span class="quick-resume-stat-val" id="quickResumeStat1">—</span>
+                  <span class="quick-resume-stat-lbl" id="quickResumeLbl1">Tiến độ</span>
+                </div>
+                <div class="quick-resume-stat-item" style="border-left: 1px solid var(--border); padding-left: 12px;">
+                  <span class="quick-resume-stat-val" id="quickResumeStat2">—</span>
+                  <span class="quick-resume-stat-lbl" id="quickResumeLbl2">Thời gian</span>
+                </div>
+                <div class="quick-resume-stat-item" style="border-left: 1px solid var(--border); padding-left: 12px;">
+                  <span class="quick-resume-stat-val" id="quickResumeStat3">—</span>
+                  <span class="quick-resume-stat-lbl" id="quickResumeLbl3">Trạng thái</span>
+                </div>
+              </div>
+              <a href="v-act.html?quiz=de_1_dgnl" class="btn-quick-resume" id="quickResumeBtn">
+                <span id="quickResumeBtnText">Bắt đầu luyện tập ngay</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+
         </div>
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <div class="hero-stat-value" id="heroTotalTests">0</div>
-            <div class="hero-stat-label">Lượt làm bài</div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         KHU VỰC 3: BENTO GRID 12 CỘT (THỐNG KÊ CÁ NHÂN & LỊCH SỬ GẦN ĐÂY)
+         ============================================================ -->
+    <section class="bento-stats-section">
+      <div class="saas-container">
+        <div class="bento-layout-12">
+
+          <!-- Khối Trái (5 cột) — Lưới 2x2 Thẻ Chỉ Số Thực Tế -->
+          <div class="bento-col-5">
+            <div class="stats-2x2-grid">
+              <!-- Thẻ 1: Số lần làm bài -->
+              <div class="bento-stat-box">
+                <div class="bento-stat-top">
+                  <span class="bento-stat-label">Lần làm bài</span>
+                  <span class="bento-stat-icon">📚</span>
+                </div>
+                <div class="bento-stat-val" id="statTotalTests">0</div>
+                <div class="bento-stat-sub" id="statTotalTestsSub">Tổng lượt nộp bài</div>
+              </div>
+
+              <!-- Thẻ 2: Điểm trung bình -->
+              <div class="bento-stat-box">
+                <div class="bento-stat-top">
+                  <span class="bento-stat-label">Điểm trung bình</span>
+                  <span class="bento-stat-icon">🎯</span>
+                </div>
+                <div class="bento-stat-val" id="statAvgScore">—</div>
+                <div class="bento-stat-sub" id="statAvgScoreSub">Theo thang điểm đề</div>
+              </div>
+
+              <!-- Thẻ 3: Điểm cao nhất -->
+              <div class="bento-stat-box">
+                <div class="bento-stat-top">
+                  <span class="bento-stat-label">Điểm cao nhất</span>
+                  <span class="bento-stat-icon">🔥</span>
+                </div>
+                <div class="bento-stat-val" id="statBestScore">—</div>
+                <div class="bento-stat-sub" id="statBestScoreSub">Kỷ lục bài thi tốt nhất</div>
+              </div>
+
+              <!-- Thẻ 4: Phút luyện tập -->
+              <div class="bento-stat-box">
+                <div class="bento-stat-top">
+                  <span class="bento-stat-label">Phút luyện tập</span>
+                  <span class="bento-stat-icon">⏱️</span>
+                </div>
+                <div class="bento-stat-val" id="statTotalTime">0</div>
+                <div class="bento-stat-sub">Thời gian tích lũy</div>
+              </div>
+            </div>
           </div>
-          <div class="hero-stat">
-            <div class="hero-stat-value" id="heroAvgScore">—</div>
-            <div class="hero-stat-label">Điểm TB</div>
+
+          <!-- Khối Phải (7 cột) — Bảng Lịch Sử 5 Lần Làm Bài Gần Nhất -->
+          <div class="bento-col-7">
+            <div class="recent-history-panel">
+              <div class="recent-history-header">
+                <div class="recent-history-title">
+                  <span>⚡ Lịch sử làm bài gần đây</span>
+                </div>
+                <button type="button" class="btn-clear-history" onclick="window.clearLocalAttempts()" title="Xóa lịch sử cục bộ trên trình duyệt này">
+                  🗑️ Xóa lịch sử
+                </button>
+              </div>
+
+              <!-- Danh sách lượt nộp bài -->
+              <div class="recent-attempts-list" id="recentAttemptsContainer">
+                <div class="recent-empty-state">
+                  <span>Đang tải lịch sử thi...</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="hero-stat">
-            <div class="hero-stat-value" id="heroTotalTime">0</div>
-            <div class="hero-stat-label">Phút luyện tập</div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         KHU VỰC 4: DANH SÁCH ĐỀ THI THỰC TẾ TRÊN HỆ THỐNG (#homeQuizGrid)
+         ============================================================ -->
+    <section style="padding: 16px 0 48px;">
+      <div class="saas-container">
+        <div class="section-header-row">
+          <div>
+            <h2 class="section-main-title">Đề thi sẵn có trên hệ thống</h2>
+            <div style="font-size: 0.88rem; color: var(--text-muted); margin-top: 4px;">
+              Các bộ đề chuẩn cấu trúc V-ACT ĐGNL và đề thi phân môn được đồng bộ thời gian thực
+            </div>
+          </div>
+          <a href="v-act.html" class="section-sub-link">
+            <span>Xem tất cả &amp; Tạo đề mới</span>
+            <span>→</span>
+          </a>
+        </div>
+
+        <!-- Container Lưới Đề Thi (Tuyệt đối không dùng id quizListView để tránh xung đột với v-act.html) -->
+        <div id="homeQuizGrid" class="home-quiz-grid">
+          <div style="grid-column: 1 / -1; padding: 40px 20px; text-align: center; color: var(--text-muted); background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border);">
+            Đang tải danh sách đề thi từ hệ sinh thái TRONEX...
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Stats Dashboard -->
-    <section style="padding: 40px 0 0; background: var(--bg-page);">
-      <div class="container" style="max-width: 1100px;">
-        <div class="stats-dashboard">
-          <div class="stat-card">
-            <span class="stat-icon">📚</span>
-            <div class="stat-value" id="statTotalTests">0</div>
-            <div class="stat-label">Lần làm bài</div>
-          </div>
-          <div class="stat-card">
-            <span class="stat-icon">🎯</span>
-            <div class="stat-value" id="statAvgScore">—</div>
-            <div class="stat-label">Điểm trung bình</div>
-          </div>
-          <div class="stat-card">
-            <span class="stat-icon">🔥</span>
-            <div class="stat-value" id="statBestScore">—</div>
-            <div class="stat-label">Điểm cao nhất</div>
-          </div>
-          <div class="stat-card">
-            <span class="stat-icon">⏱️</span>
-            <div class="stat-value" id="statTotalTime">0</div>
-            <div class="stat-label">Phút luyện tập</div>
+    <!-- ============================================================
+         KHU VỰC 5: BENTO 2 PHÂN KHU KỸ THUẬT (PREVIEWS THU NHỎ HTML/CSS)
+         ============================================================ -->
+    <section class="bento-features-section">
+      <div class="saas-container">
+        <div class="section-header-row" style="margin-bottom: 28px;">
+          <div>
+            <h2 class="section-main-title">Phân khu kỹ thuật &amp; Công nghệ lõi</h2>
+            <div style="font-size: 0.88rem; color: var(--text-muted); margin-top: 4px;">
+              Trải nghiệm các module học tập và phân tích dữ liệu độc quyền của TRONEX
+            </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- News Section -->
-    <section class="section-vnu" id="news-section">
-      <div class="container">
-        <h2 class="section-title-vnu">TIN TỨC & SỰ KIỆN</h2>
-        <div class="news-grid">
-          <!-- Card 1 -->
-          <div class="news-card" onclick="location.href='v-act.html'">
-            <div class="news-image-wrapper">
-              <img src="feature_ai_learning_1778785444091.png" alt="AI Learning">
-              <div class="news-banner">Sức mạnh hệ thống - Vượt tầm thế giới</div>
+        <div class="bento-features-grid">
+
+          <!-- THẺ BENTO 1: V-ACT STUDIO & AI EXTRACTION -->
+          <div class="bento-feature-card">
+            <div>
+              <div class="bento-feature-tag">🚀 V-ACT EXAM STUDIO</div>
+              <h3 class="bento-feature-title">Trình làm đề V-ACT &amp; Trích xuất đề AI</h3>
+
+              <!-- UI Preview thu nhỏ bằng HTML/CSS mô phỏng Phiếu trắc nghiệm & Math Live -->
+              <div class="mini-preview-vact">
+                <div class="mini-preview-bar">
+                  <span>PHIẾU TRẢ LỜI ĐGNL (MẪU)</span>
+                  <span style="color:#10B981;">● Đang tính giờ</span>
+                </div>
+
+                <div class="mini-bubble-row">
+                  <span class="mini-q-label">C1:</span>
+                  <span class="mini-bubble checked">A</span>
+                  <span class="mini-bubble">B</span>
+                  <span class="mini-bubble">C</span>
+                  <span class="mini-bubble">D</span>
+                </div>
+
+                <div class="mini-bubble-row">
+                  <span class="mini-q-label">C2:</span>
+                  <span class="mini-bubble">A</span>
+                  <span class="mini-bubble">B</span>
+                  <span class="mini-bubble checked">C</span>
+                  <span class="mini-bubble">D</span>
+                </div>
+
+                <div class="mini-bubble-row">
+                  <span class="mini-q-label">C3:</span>
+                  <span class="mini-bubble">A</span>
+                  <span class="mini-bubble">B</span>
+                  <span class="mini-bubble">C</span>
+                  <span class="mini-bubble flagged" title="Đã đánh dấu xem lại">D</span>
+                  <span style="font-size: 11px; color:#F59E0B; margin-left: 4px;">🚩 Xem lại</span>
+                </div>
+
+                <div class="mini-formula-preview">
+                  <span>KaTeX Live:</span>
+                  <code style="font-family:'JetBrains Mono', monospace; font-size:0.75rem;">$$\lim_{x \to 0} \frac{\sin x}{x} = 1$$</code>
+                </div>
+              </div>
+
+              <!-- 4 Tính năng thực tế -->
+              <ul class="bento-features-list">
+                <li>
+                  <span class="bento-check-icon">✓</span>
+                  <span><b>5 dạng câu hỏi:</b> Trắc nghiệm đơn, Đúng/Sai nhóm, Điền khuyết trả lời ngắn, Đọc hiểu văn bản và Tự luận chấm theo LCS Diff.</span>
+                </li>
+                <li>
+                  <span class="bento-check-icon">✓</span>
+                  <span><b>Trích xuất đề tự động:</b> Phân tách cấu trúc đề thi thông minh từ file <code>.docx</code>, <code>.pdf</code> và ảnh chụp qua Gemini AI.</span>
+                </li>
+                <li>
+                  <span class="bento-check-icon">✓</span>
+                  <span><b>Chế độ tập trung (Zen Mode):</b> Tối giản thanh công cụ, mở rộng không gian đọc và bộ đếm giờ chuẩn kỳ thi ĐHQG.</span>
+                </li>
+                <li>
+                  <span class="bento-check-icon">✓</span>
+                  <span><b>Tự động lưu nháp (Autosave):</b> Tự động khôi phục toàn bộ câu trả lời ngay khi tải lại trang hoặc mất mạng.</span>
+                </li>
+              </ul>
             </div>
-            <div class="news-content">
-              <h3>TRONEX chính thức ra mắt phiên bản 3.0 với trí tuệ nhân tạo Gemini tích hợp sâu</h3>
+
+            <div>
+              <a href="v-act.html" class="btn-bento-card-action">
+                <span>Vào phòng luyện đề V-ACT ngay</span>
+                <span>→</span>
+              </a>
             </div>
           </div>
-          <!-- Card 2 -->
-          <div class="news-card" onclick="location.href='v-act.html'">
-            <div class="news-image-wrapper">
-              <img src="feature_exam_system_1778785470753.png" alt="Exam System">
-              <div class="news-banner">Công nghệ giáo dục hiện đại</div>
+
+          <!-- THẺ BENTO 2: SQL PRACTICE LAB & DATA ANALYST SANDBOX -->
+          <div class="bento-feature-card">
+            <div>
+              <div class="bento-feature-tag">💻 SQL ANALYTICS LAB</div>
+              <h3 class="bento-feature-title">Phòng thực hành SQL &amp; Phân tích dữ liệu</h3>
+
+              <!-- UI Preview thu nhỏ bằng HTML/CSS mô phỏng Terminal SQL AlaSQL -->
+              <div class="mini-terminal-preview">
+                <div class="mini-term-header">
+                  <div class="mini-dots">
+                    <span class="mini-dot red"></span>
+                    <span class="mini-dot yellow"></span>
+                    <span class="mini-dot green"></span>
+                  </div>
+                  <span class="mini-term-title">tronex_sandbox.sql (AlaSQL Engine)</span>
+                </div>
+
+                <div class="mini-term-code">
+                  <span class="syn-kw">SELECT</span> shop_id, <span class="syn-func">COUNT</span>(order_id) <span class="syn-kw">AS</span> total_orders<br>
+                  <span class="syn-kw">FROM</span> orders<br>
+                  <span class="syn-kw">WHERE</span> status = <span class="syn-str">'COMPLETED'</span><br>
+                  <span class="syn-kw">GROUP BY</span> shop_id<br>
+                  <span class="syn-kw">ORDER BY</span> total_orders <span class="syn-kw">DESC</span> <span class="syn-kw">LIMIT</span> 5;
+                </div>
+
+                <div class="mini-term-table">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>shop_id</th>
+                        <th>total_orders</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>SHOP_102</td>
+                        <td style="color:#10B981; font-weight:700;">142</td>
+                      </tr>
+                      <tr>
+                        <td>SHOP_088</td>
+                        <td style="color:#10B981; font-weight:700;">97</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- 4 Tính năng thực tế -->
+              <ul class="bento-features-list">
+                <li>
+                  <span class="bento-check-icon">✓</span>
+                  <span><b>Thực thi SQL trực tiếp:</b> Chạy truy vấn tức thời trên trình duyệt với engine AlaSQL trong-bộ-nhớ, không cần cài đặt SQL Server.</span>
+                </li>
+                <li>
+                  <span class="bento-check-icon">✓</span>
+                  <span><b>Dữ liệu giao dịch thực chiến:</b> Thực hành trên bảng <code>orders</code>, <code>buyer_profiles</code> cài cắm 10% dữ liệu nhiễu doanh nghiệp.</span>
+                </li>
+                <li>
+                  <span class="bento-check-icon">✓</span>
+                  <span><b>Cẩm nang tra cứu cú pháp:</b> Tích hợp sẵn hướng dẫn từ cơ bản (<code>WHERE</code>, <code>GROUP BY</code>) đến nâng cao (<code>CASE WHEN</code>, <code>JOIN</code>).</span>
+                </li>
+                <li>
+                  <span class="bento-check-icon">✓</span>
+                  <span><b>AI Mentor &amp; SQL Lead:</b> Tự động kiểm tra logic dữ liệu, review Clean Code và chấm điểm chi tiết trên thang điểm 100.</span>
+                </li>
+              </ul>
             </div>
-            <div class="news-content">
-              <h3>Tối ưu hóa trải nghiệm làm bài trắc nghiệm với giao diện TRONEX chuẩn hóa</h3>
+
+            <div>
+              <a href="simulation.html" class="btn-bento-card-action">
+                <span>Mở phòng thực hành SQL Sandbox</span>
+                <span>→</span>
+              </a>
             </div>
           </div>
-          <!-- Card 3 -->
-          <div class="news-card" onclick="location.href='v-act.html'">
-            <div class="news-image-wrapper">
-              <img src="landing_page_hero_1778785096105.png" alt="TRONEX Ecosystem">
-              <div class="news-banner">Hệ sinh thái thông minh</div>
-            </div>
-            <div class="news-content">
-              <h3>Khám phá khả năng đồng bộ Firebase Realtime giúp quản lý đề thi tập trung</h3>
-            </div>
-          </div>
+
         </div>
-        <a href="#" class="btn-vnu-more">XEM TẤT CẢ TIN TỨC →</a>
       </div>
     </section>
   </main>
 
-  <script>
-    // === DARK MODE TOGGLE ===
-    (function () {
-      const saved = localStorage.getItem('tronex_theme') || 'light';
-      if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
-    })();
+  <!-- ============================================================
+       FOOTER & BẢN QUYỀN
+       ============================================================ -->
+  <footer class="footer">
+    <div class="saas-container footer-content" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:32px; padding: 48px 24px 32px;">
+      <div class="footer-section">
+        <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 12px; color: var(--text-main);">Liên Hệ Kỹ Thuật</h3>
+        <p style="margin-bottom: 6px; font-size: 0.9rem; color: var(--text-muted);">Thư điện tử: <a href="mailto:nguyentrong0398787723@gmail.com" style="color:var(--primary); text-decoration:none;">nguyentrong0398787723@gmail.com</a></p>
+        <p style="margin-bottom: 6px; font-size: 0.9rem; color: var(--text-muted);">Điện thoại: <a href="tel:0977162967" style="color:var(--primary); text-decoration:none;">0977162967</a></p>
+        <p style="margin-bottom: 6px; font-size: 0.9rem; color: var(--text-muted);">Facebook: <a href="https://www.facebook.com/trong.be.nguyen.2025" target="_blank" style="color:var(--primary); text-decoration:none;">Trọng Be Nguyễn</a></p>
+      </div>
+      <div class="footer-section">
+        <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 12px; color: var(--text-main);">Điều Khoản &amp; Quyền Riêng Tư</h3>
+        <p style="margin-bottom: 6px; font-size: 0.9rem;"><a href="terms.html" style="color:var(--text-muted); text-decoration:none;">👉 Điều khoản sử dụng</a></p>
+        <p style="margin-bottom: 6px; font-size: 0.9rem;"><a href="privacy.html" style="color:var(--text-muted); text-decoration:none;">👉 Chính sách quyền riêng tư</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom" style="border-top: 1px solid var(--border); padding: 20px 24px; text-align: center; font-size: 0.85rem; color: var(--text-muted);">
+      <p>Nền tảng: <strong>TRONEX</strong> | Tác giả: <strong>Nguyễn Thanh Trọng</strong> | Phiên bản: <a href="javascript:void(0)" onclick="openChangelog()" style="color: var(--primary); font-weight: 700; text-decoration: none;">v1.9</a></p>
+    </div>
+  </footer>
 
+  <!-- ============================================================
+       MODAL: NHẬT KÝ CẬP NHẬT HỆ THỐNG (#changelogModal)
+       ============================================================ -->
+  <div id="changelogModal" class="modal-overlay" style="display:none;" onclick="if(event.target===this) closeChangelog()">
+    <div class="modal-content" style="max-width: 520px; border-radius: 20px; border: 1px solid var(--border); background: var(--bg-card);">
+      <div class="modal-header" style="border-bottom: 1px solid var(--border); padding: 18px 24px;">
+        <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-main);">Nhật ký cập nhật hệ thống</h3>
+        <button class="modal-close" onclick="closeChangelog()">&times;</button>
+      </div>
+      <div class="modal-body" style="padding: 20px 24px; max-height: 70vh; overflow-y: auto; line-height: 1.6;">
+        <div class="changelog-item">
+          <h4 style="color:var(--primary); margin-bottom: 8px;">🚀 Phiên bản v1.9 (Hiện tại)</h4>
+          <ul style="padding-left: 20px; font-size: 13.5px; line-height: 1.8; margin-bottom: 18px; color: var(--text-muted);">
+            <li><b>Tái thiết kế Bento Grid SaaS</b>: Giao diện trang chủ phong cách Linear/Vercel với lưới 12 cột, hiển thị số liệu thực tế.</li>
+            <li><b>Chế độ Luyện tập SQL theo từng câu</b>: Bổ sung 3 thẻ luyện tập (Cơ bản, Trung bình, Nâng cao) với AI Mentor chấm điểm 100đ.</li>
+            <li><b>Khôi phục phiên học (Quick-Resume)</b>: Tự động ghi nhớ và gợi ý tiếp tục bài thi đang làm dở hoặc lượt thi gần nhất.</li>
+          </ul>
+
+          <h4 style="color:var(--primary); margin-bottom: 8px;">🚀 Phiên bản v1.8</h4>
+          <ul style="padding-left: 20px; font-size: 13.5px; line-height: 1.8; margin-bottom: 18px; color: var(--text-muted);">
+            <li><b>Chế độ Phân tích sâu (Thinking)</b>: Kích hoạt khi bấm "Phân tích lại" để đảm bảo tốc độ quét lần đầu nhanh nhất.</li>
+            <li><b>Nâng cấp Gemini 3.0 Flash</b>: Trích xuất đề thi thông minh, tự động gộp câu hỏi Đúng/Sai nhóm.</li>
+          </ul>
+
+          <h4 style="color:var(--primary); margin-bottom: 8px;">🚀 Phiên bản v1.7</h4>
+          <ul style="padding-left: 20px; font-size: 13.5px; line-height: 1.8; color: var(--text-muted);">
+            <li><b>Nhập đề từ file Word (.docx) &amp; PDF</b>: Hỗ trợ trích xuất văn bản trực tiếp.</li>
+            <li><b>Xem trước Math Live KaTeX</b>: Hiển thị tức thời công thức toán học ngay khi chỉnh sửa đề.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE SCRIPTS -->
+  <script type="module" src="js/app.js?v=85"></script>
+  <script type="module" src="js/auth.js?v=2"></script>
+
+  <!-- ============================================================
+       HOMEPAGE CONTROLLER JAVASCRIPT
+       ============================================================ -->
+  <script>
+    // --- 1. CHUYỂN ĐỔI CHẾ ĐỘ SÁNG / TỐI ---
     function initThemeToggle() {
       const btn = document.getElementById('themeToggleBtn');
       if (!btn) return;
@@ -203,111 +505,15 @@
       });
     }
 
-    // === LOAD STATS FROM localStorage ===
-    function loadStats() {
-      try {
-        const attempts = JSON.parse(localStorage.getItem('tronex_attempts') || '[]');
-        const total = attempts.length;
-        const totalTimeMins = Math.round(attempts.reduce((s, a) => s + (a.seconds || 0), 0) / 60);
-        const scores = attempts.map(a => a.score).filter(s => s !== undefined);
-        const avg = scores.length > 0 ? (scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(0) : null;
-        const best = scores.length > 0 ? Math.max(...scores) : null;
-
-        const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val !== null ? val : '—'; };
-        set('statTotalTests', total); set('heroTotalTests', total);
-        set('statAvgScore', avg); set('heroAvgScore', avg);
-        set('statBestScore', best);
-        set('statTotalTime', totalTimeMins); set('heroTotalTime', totalTimeMins);
-      } catch (e) { }
-    }
-
-    // === HEADER SCROLL EFFECT ===
-    window.addEventListener('scroll', () => {
-      const header = document.getElementById('mainHeader');
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    });
-
-    document.addEventListener('DOMContentLoaded', () => {
-      initThemeToggle();
-      loadStats();
-    });
-  </script>
-
-  <footer class="footer">
-    <div class="container footer-content">
-      <div class="footer-section">
-        <h3>Liên Hệ</h3>
-        <p>Thư điện tử: <a href="mailto:nguyentrong0398787723@gmail.com">nguyentrong0398787723@gmail.com</a></p>
-        <p>Điện thoại: <a href="tel:0977162967">0977162967</a></p>
-        <p>Facebook: <a href="https://www.facebook.com/trong.be.nguyen.2025" target="_blank">Trọng Be Nguyễn</a></p>
-      </div>
-      <div class="footer-section">
-        <h3>Điều Khoản & Quyền Riêng Tư</h3>
-        <p><a href="terms.html">👉 Điều khoản sử dụng</a></p>
-        <p><a href="privacy.html">👉 Chính sách quyền riêng tư</a></p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>Nguồn: <strong>Nguyễn Thanh Trọng</strong> | Phiên bản: <a href="javascript:void(0)" onclick="openChangelog()"
-          style="color: #6366f1; font-weight: 700; text-decoration: none;">v1.9</a></p>
-    </div>
-  </footer>
-
-  <script type="module" src="js/app.js?v=84"></script>
-  <script type="module" src="js/auth.js?v=1"></script>
-
-  <!-- CHANGELOG MODAL (New v45) -->
-  <div id="changelogModal" class="modal-overlay" style="display:none;" onclick="if(event.target===this) closeChangelog()">
-    <div class="modal-content" style="max-width: 500px;">
-      <div class="modal-header">
-        <h3>Nhật ký cập nhật hệ thống</h3>
-        <button class="modal-close" onclick="closeChangelog()">&times;</button>
-      </div>
-      <div class="modal-body" style="line-height: 1.6;">
-        <div class="changelog-item">
-          <h4 style="color:var(--primary); margin-bottom: 8px;">🚀 Phiên bản v1.8 (Mới nhất)</h4>
-          <ul style="padding-left: 20px; font-size: 14px; line-height: 1.8; margin-bottom: 15px;">
-            <li><b>Chế độ Phân tích sâu (Thinking)</b>: Chỉ kích hoạt khi bạn bấm "Phân tích lại" để đảm bảo tốc độ quét
-              lần đầu nhanh nhất.</li>
-            <li><b>Nâng cấp Gemini 3.0 Flash</b>: Trái tim AI mới nhất giúp trích xuất đề thi cực kỳ thông minh.</li>
-            <li><b>Tự động thử lại</b>: Hệ thống sẽ tự động kiên trì kết nối nếu máy chủ Google bị quá tải (Lỗi 503).
-            </li>
-          </ul>
-
-          <h4 style="color:var(--primary); margin-bottom: 8px;">🚀 Phiên bản v1.7</h4>
-          <ul style="padding-left: 20px; font-size: 14px; line-height: 1.8; margin-bottom: 15px;">
-            <li><b>Nhập đề từ file Word (.docx)</b>: Hỗ trợ trích xuất văn bản trực tiếp từ file Word.</li>
-            <li><b>Xem trước Math Live</b>: Xem trước công thức toán học ngay trong khi chỉnh sửa đề.</li>
-          </ul>
-
-          <h4 style="color:var(--primary); margin-bottom: 8px;">🚀 Phiên bản v1.5</h4>
-          <ul style="padding-left: 20px; font-size: 14px; line-height: 1.8;">
-            <li><b>Đồng bộ Firebase Realtime</b>: Mở khóa quyền kết nối, đảm bảo đề "Công khai" xuất hiện ngay lập tức
-              trên mọi thiết bị.</li>
-            <li><b>Trí tuệ nhân tạo (AI)</b>: Ép AI tự gộp câu hỏi Đúng/Sai và nhận diện Tiêu đề phần thi.</li>
-            <li><b>Chế độ Luyện tập</b>: Hiển thị đáp án tức thời cho cả câu Đúng/Sai và Trả lời ngắn.</li>
-            <li><b>Biểu đồ Thống kê</b>: Nâng cấp vòng tròn chấm điểm thành dạng Pie Chart chuẩn xác.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <script>
+    // --- 2. BẬT / TẮT MENU DI ĐỘNG ---
     function toggleSidebar() {
       const sidebar = document.getElementById('sidebarMenu');
       const overlay = document.getElementById('sidebarOverlay');
+      if (!sidebar || !overlay) return;
       if (sidebar.classList.contains('active')) {
         sidebar.classList.remove('active');
         overlay.classList.remove('active');
-        setTimeout(() => {
-          overlay.style.display = 'none';
-        }, 300);
+        setTimeout(() => { overlay.style.display = 'none'; }, 280);
       } else {
         overlay.style.display = 'block';
         setTimeout(() => {
@@ -316,6 +522,384 @@
         }, 10);
       }
     }
+    window.toggleSidebar = toggleSidebar;
+
+    // --- 3. ĐÓNG / MỞ CHANGELOG MODAL ---
+    window.openChangelog = function () {
+      const m = document.getElementById("changelogModal");
+      if (m) m.style.display = "flex";
+    };
+    window.closeChangelog = function () {
+      const m = document.getElementById("changelogModal");
+      if (m) m.style.display = "none";
+    };
+
+    // --- 4. ĐỌC THỐNG KÊ TỪ LOCALSTORAGE (KHỐI TRÁI BENTO) ---
+    function loadStats() {
+      try {
+        const attempts = JSON.parse(localStorage.getItem('tronex_attempts') || '[]');
+        const total = attempts.length;
+        const totalTimeMins = Math.round(attempts.reduce((s, a) => s + (a.seconds || 0), 0) / 60);
+        const scores = attempts.map(a => a.score).filter(s => typeof s === 'number' && !isNaN(s));
+        const avg = scores.length > 0 ? (scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(0) : null;
+        const best = scores.length > 0 ? Math.max(...scores) : null;
+
+        const setVal = (id, val) => {
+          const el = document.getElementById(id);
+          if (el) el.textContent = (val !== null && val !== undefined) ? val : '—';
+        };
+
+        setVal('statTotalTests', total);
+        setVal('statAvgScore', avg !== null ? `${avg}đ` : '—');
+        setVal('statBestScore', best !== null ? `${best}đ` : '—');
+        setVal('statTotalTime', totalTimeMins > 0 ? `${totalTimeMins}p` : '0p');
+
+        // Chú thích so sánh
+        const lastScore = attempts.length > 0 ? attempts[attempts.length - 1].score : null;
+        const subAvgEl = document.getElementById('statAvgScoreSub');
+        if (subAvgEl && lastScore !== null && avg !== null) {
+          const diff = lastScore - avg;
+          if (diff > 0) {
+            subAvgEl.innerHTML = `<span style="color:#10B981; font-weight:600;">+${diff.toFixed(0)}đ</span> so với lần thi gần nhất`;
+          } else if (diff < 0) {
+            subAvgEl.innerHTML = `<span style="color:#EF4444; font-weight:600;">${diff.toFixed(0)}đ</span> so với lần thi gần nhất`;
+          } else {
+            subAvgEl.textContent = 'Bằng điểm lần thi gần nhất';
+          }
+        }
+      } catch (e) {
+        console.warn('[TRONEX] Lỗi đọc thống kê:', e);
+      }
+    }
+
+    // --- 5. RENDER THẺ "TIẾP TỤC PHIÊN HỌC" (QUICK-RESUME) ---
+    function renderQuickResumeCard() {
+      const cardTitle = document.getElementById('quickResumeTitle');
+      const cardMeta = document.getElementById('quickResumeMeta');
+      const badge = document.getElementById('quickResumeBadge');
+      const stat1 = document.getElementById('quickResumeStat1');
+      const lbl1 = document.getElementById('quickResumeLbl1');
+      const stat2 = document.getElementById('quickResumeStat2');
+      const lbl2 = document.getElementById('quickResumeLbl2');
+      const stat3 = document.getElementById('quickResumeStat3');
+      const lbl3 = document.getElementById('quickResumeLbl3');
+      const btn = document.getElementById('quickResumeBtn');
+      const btnText = document.getElementById('quickResumeBtnText');
+
+      if (!cardTitle || !btn) return;
+
+      // 1. Kiểm tra bản lưu nháp đang làm dở (tronex_quiz_progress_*)
+      let inProgressQuizId = null;
+      let inProgressCount = 0;
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && key.startsWith('tronex_quiz_progress_')) {
+          const qId = key.replace('tronex_quiz_progress_', '');
+          try {
+            const data = JSON.parse(localStorage.getItem(key));
+            const ansCount = data && data.answers ? Object.keys(data.answers).length : 0;
+            if (ansCount > 0) {
+              inProgressQuizId = qId;
+              inProgressCount = ansCount;
+              break;
+            }
+          } catch (e) { }
+        }
+      }
+
+      // 2. Kiểm tra lịch sử nộp bài gần nhất
+      let attempts = [];
+      try {
+        attempts = JSON.parse(localStorage.getItem('tronex_attempts') || '[]');
+      } catch (e) { }
+      const lastAttempt = attempts.length > 0 ? attempts[attempts.length - 1] : null;
+
+      if (inProgressQuizId) {
+        // Trường hợp A: Đang có bài làm dở chưa nộp
+        badge.innerHTML = `<span>⏳ ĐANG LÀM DỞ • CHƯA NỘP</span>`;
+        badge.style.color = '#F59E0B';
+        badge.style.background = 'rgba(245, 158, 11, 0.12)';
+
+        let quizTitle = inProgressQuizId;
+        if (window.__mockQuizzes) {
+          const found = window.__mockQuizzes.find(q => q && q.id === inProgressQuizId);
+          if (found && found.title) quizTitle = found.title;
+        }
+
+        cardTitle.textContent = quizTitle;
+        cardMeta.textContent = `Bạn đã trả lời được ${inProgressCount} câu. Bài làm đã được tự động lưu nháp an toàn.`;
+
+        stat1.textContent = `${inProgressCount} câu`;
+        lbl1.textContent = 'Đã chọn';
+        stat2.textContent = 'Đang lưu';
+        lbl2.textContent = 'Nháp cục bộ';
+        stat3.textContent = 'Chưa nộp';
+        lbl3.textContent = 'Trạng thái';
+
+        btn.href = `v-act.html?quiz=${encodeURIComponent(inProgressQuizId)}`;
+        btnText.textContent = 'Làm tiếp bài thi ngay';
+      } else if (lastAttempt) {
+        // Trường hợp B: Đã từng nộp bài thi
+        badge.innerHTML = `<span>✨ PHIÊN THI GẦN NHẤT</span>`;
+        badge.style.color = '#10B981';
+        badge.style.background = 'rgba(16, 185, 129, 0.12)';
+
+        cardTitle.textContent = lastAttempt.quizTitle || lastAttempt.quizId || 'Bài thi gần nhất';
+        const mins = Math.floor((lastAttempt.seconds || 0) / 60);
+        const secs = (lastAttempt.seconds || 0) % 60;
+        const timeStr = `${mins}p ${secs}s`;
+
+        cardMeta.textContent = `Lần thi trước bạn đạt ${lastAttempt.score} điểm (${lastAttempt.correct || 0}/${lastAttempt.total || 0} câu đúng). Hãy luyện lại để nâng cao thành tích!`;
+
+        stat1.textContent = `${lastAttempt.score}đ`;
+        lbl1.textContent = 'Điểm số';
+        stat2.textContent = `${lastAttempt.correct || 0}/${lastAttempt.total || 0}`;
+        lbl2.textContent = 'Câu đúng';
+        stat3.textContent = timeStr;
+        lbl3.textContent = 'Thời gian';
+
+        btn.href = `v-act.html?quiz=${encodeURIComponent(lastAttempt.quizId || 'de_1_dgnl')}`;
+        btnText.textContent = 'Làm lại đề này';
+      } else {
+        // Trường hợp C: Người dùng mới toanh chưa có lịch sử
+        badge.innerHTML = `<span>🎯 ĐỀ THI GỢI Ý BẮT ĐẦU</span>`;
+        cardTitle.textContent = 'Đề 1 — Đề Thi Mẫu ĐGNL Chuẩn Cấu Trúc (120 câu)';
+        cardMeta.textContent = 'Đề thi toàn diện 120 câu hỏi bao gồm đầy đủ 3 phần thi: Ngôn ngữ, Toán học & Xử lý số liệu, Tư duy khoa học.';
+
+        stat1.textContent = '120';
+        lbl1.textContent = 'Tổng số câu';
+        stat2.textContent = '1200đ';
+        lbl2.textContent = 'Thang điểm';
+        stat3.textContent = '150p';
+        lbl3.textContent = 'Thời lượng';
+
+        btn.href = 'v-act.html?quiz=de_1_dgnl';
+        btnText.textContent = 'Bắt đầu luyện tập ngay';
+      }
+    }
+
+    // --- 6. RENDER LỊCH SỬ 5 LẦN LÀM BÀI GẦN NHẤT (KHỐI PHẢI BENTO) ---
+    function renderRecentAttempts() {
+      const container = document.getElementById('recentAttemptsContainer');
+      if (!container) return;
+
+      let attempts = [];
+      try {
+        attempts = JSON.parse(localStorage.getItem('tronex_attempts') || '[]');
+      } catch (e) { }
+
+      if (!attempts || attempts.length === 0) {
+        container.innerHTML = `
+          <div class="recent-empty-state">
+            <div style="font-size: 1.6rem; margin-bottom: 8px;">📑</div>
+            <div style="font-weight: 600; color: var(--text-main); margin-bottom: 4px;">Chưa có lịch sử làm bài</div>
+            <div style="font-size: 0.85rem; margin-bottom: 16px;">Chọn một đề thi bên dưới để bắt đầu bài kiểm tra đầu tiên của bạn.</div>
+            <a href="v-act.html" class="recent-attempt-btn" style="display:inline-block; padding: 8px 16px;">Khám phá danh sách đề</a>
+          </div>
+        `;
+        return;
+      }
+
+      // Lấy tối đa 5 lần gần nhất, đảo ngược để lần mới nhất ở trên
+      const recent = attempts.slice(-5).reverse();
+
+      const formatTime = (sec) => {
+        const s = sec || 0;
+        const m = Math.floor(s / 60);
+        const rem = s % 60;
+        return `${m.toString().padStart(2, '0')}:${rem.toString().padStart(2, '0')}`;
+      };
+
+      const formatDate = (isoStr) => {
+        if (!isoStr) return '';
+        try {
+          const d = new Date(isoStr);
+          const now = new Date();
+          const diffMs = now - d;
+          const diffMins = Math.floor(diffMs / 60000);
+          if (diffMins < 60) return `${Math.max(1, diffMins)}p trước`;
+          const diffHours = Math.floor(diffMins / 60);
+          if (diffHours < 24) return `${diffHours}h trước`;
+          return `${d.getDate()}/${d.getMonth() + 1}`;
+        } catch (e) {
+          return '';
+        }
+      };
+
+      const rowsHtml = recent.map(a => {
+        const total = a.total || 0;
+        const correct = a.correct || 0;
+        const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+
+        let badgeClass = 'high';
+        if (pct < 50) badgeClass = 'low';
+        else if (pct < 80) badgeClass = 'mid';
+
+        const fillWidth = Math.min(100, Math.max(0, pct));
+        const fillColor = pct >= 80 ? '#10B981' : (pct >= 50 ? '#F59E0B' : '#EF4444');
+
+        return `
+          <div class="recent-attempt-item">
+            <div class="recent-attempt-title" title="${escapeHtml(a.quizTitle || a.quizId)}">
+              ${escapeHtml(a.quizTitle || a.quizId)}
+            </div>
+
+            <div class="recent-attempt-progress-wrap" title="Đúng ${correct}/${total} câu (${pct}%)">
+              <div class="recent-attempt-track">
+                <div class="recent-attempt-fill" style="width: ${fillWidth}%; background: ${fillColor};"></div>
+              </div>
+              <span class="recent-attempt-ratio">${correct}/${total}</span>
+            </div>
+
+            <div>
+              <span class="recent-score-badge ${badgeClass}">${a.score !== undefined ? a.score : 0}đ</span>
+            </div>
+
+            <div class="recent-attempt-time">
+              <span>${formatTime(a.seconds)}</span>
+              <span style="font-size:0.68rem; color:var(--text-muted);">${formatDate(a.date)}</span>
+            </div>
+
+            <div>
+              <a href="v-act.html?quiz=${encodeURIComponent(a.quizId || 'de_1_dgnl')}" class="recent-attempt-btn" title="Làm lại đề này">
+                Làm lại
+              </a>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      container.innerHTML = rowsHtml;
+    }
+
+    // --- 7. XÓA LỊCH SỬ CỤC BỘ ---
+    window.clearLocalAttempts = function () {
+      if (confirm('Bạn có chắc muốn xóa sạch toàn bộ lịch sử thi trên thiết bị này? Dữ liệu thống kê sẽ được đặt lại về 0.')) {
+        localStorage.removeItem('tronex_attempts');
+        loadStats();
+        renderQuickResumeCard();
+        renderRecentAttempts();
+      }
+    };
+
+    // --- 8. RENDER DANH SÁCH ĐỀ THI (#homeQuizGrid) ---
+    function renderHomeQuizGrid() {
+      const grid = document.getElementById('homeQuizGrid');
+      if (!grid) return;
+
+      const quizzes = window.__mockQuizzes;
+      if (!quizzes || !Array.isArray(quizzes) || quizzes.length === 0) {
+        return; // Chờ app.js load xong mockQuizzes
+      }
+
+      // Lọc danh sách ID duy nhất
+      const uniqueQuizzes = [];
+      const seenIds = new Set();
+      quizzes.forEach(q => {
+        if (!q || !q.id) return;
+        const qId = q.id.toString().trim();
+        if (!seenIds.has(qId)) {
+          seenIds.add(qId);
+          uniqueQuizzes.push(q);
+        }
+      });
+
+      // Lấy 6 đề tiêu biểu để hiển thị trên trang chủ
+      const displayQuizzes = uniqueQuizzes.slice(0, 6);
+
+      const cardsHtml = displayQuizzes.map(quiz => {
+        // Đếm chính xác số câu hỏi
+        let qCount = 0;
+        if (typeof window.getQuizQuestionCount === 'function') {
+          qCount = window.getQuizQuestionCount(quiz);
+        } else if (Array.isArray(quiz.questions)) {
+          qCount = quiz.questions.length;
+        }
+
+        // Xác định thang điểm
+        const isScale10 = quiz.scoreScale === 10 || quiz.id === 'de_thi_thu_thptqg_anh';
+        const scaleLabel = isScale10 ? 'Thang 10đ' : 'Thang 1200đ';
+
+        // Trạng thái công khai / riêng tư
+        const isPublic = quiz.privacy === 'public' || !quiz.privacy;
+        const privacyBadge = isPublic
+          ? `<span class="home-quiz-pill public">🌐 Công khai</span>`
+          : `<span class="home-quiz-pill private">🔒 Riêng tư</span>`;
+
+        // Lượt làm bài
+        const views = quiz.viewCount || 0;
+
+        return `
+          <div class="home-quiz-card" data-quiz-id="${escapeHtml(quiz.id)}">
+            <div class="home-quiz-accent-bar"></div>
+            <div>
+              <div class="home-quiz-pills">
+                ${privacyBadge}
+                <span class="home-quiz-pill">📚 ${qCount} câu</span>
+                <span class="home-quiz-pill">🎯 ${scaleLabel}</span>
+                <span class="home-quiz-pill" id="views-${escapeHtml(quiz.id)}">👁️ ${views} lượt</span>
+              </div>
+              <h3 class="home-quiz-title">${escapeHtml(quiz.title || 'Đề thi')}</h3>
+              <p class="home-quiz-desc">${escapeHtml(quiz.description || 'Không có mô tả chi tiết.')}</p>
+            </div>
+            <div>
+              <a href="v-act.html?quiz=${encodeURIComponent(quiz.id)}" class="btn-start-home-quiz">
+                <span>Bắt đầu làm bài</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      grid.innerHTML = cardsHtml;
+    }
+    window.renderHomeQuizGrid = renderHomeQuizGrid;
+
+    // Helper escapeHtml
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    // --- 9. KHỞI TẠO TRANG CHỦ & ĐỒNG BỘ DỮ LIỆU ---
+    document.addEventListener('DOMContentLoaded', () => {
+      initThemeToggle();
+      loadStats();
+      renderQuickResumeCard();
+      renderRecentAttempts();
+
+      // Thử render đề thi ngay hoặc lặp ngắn chờ app.js
+      let retries = 0;
+      const pollTimer = setInterval(() => {
+        retries++;
+        if (window.__mockQuizzes && window.__mockQuizzes.length > 0) {
+          renderHomeQuizGrid();
+          renderQuickResumeCard();
+          clearInterval(pollTimer);
+        } else if (retries > 25) {
+          clearInterval(pollTimer);
+        }
+      }, 150);
+
+      // Hook vào hàm __initQuizList của app.js để khi Firebase cập nhật viewCount thì trang chủ cũng update
+      const checkHook = setInterval(() => {
+        if (window.__initQuizList) {
+          const originalInit = window.__initQuizList;
+          window.__initQuizList = function () {
+            if (typeof originalInit === 'function') originalInit();
+            if (typeof window.renderHomeQuizGrid === 'function') window.renderHomeQuizGrid();
+            if (typeof window.renderQuickResumeCard === 'function') window.renderQuickResumeCard();
+          };
+          clearInterval(checkHook);
+        }
+      }, 200);
+    });
   </script>
 </body>
 
