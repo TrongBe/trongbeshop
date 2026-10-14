@@ -42,8 +42,10 @@
 }
 
 /* Dark Mode Tokens */
+html[data-theme="dark"],
+:root[data-theme="dark"],
 [data-theme="dark"] {
-    --bg-page: #0F172A;
+    --bg-page: #090D16;
     --bg-surface: #1E293B;
     --bg-card: #1E293B;
     --text-main: #F1F5F9;
@@ -65,22 +67,30 @@
 html {
     scroll-behavior: smooth;
     background-color: #F8FAFC;
+    color: var(--text-main);
 }
 
-[data-theme="dark"] html {
+html[data-theme="dark"],
+:root[data-theme="dark"] {
     background-color: #090D16;
 }
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: transparent;
+    background-color: #F8FAFC;
     color: var(--text-main);
     line-height: 1.6;
-    transition: color var(--transition);
+    transition: background-color var(--transition), color var(--transition);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     min-height: 100vh;
     position: relative;
+}
+
+html[data-theme="dark"] body,
+[data-theme="dark"] body {
+    background-color: #090D16;
+    color: #F1F5F9;
 }
 
 /* ============================================================
@@ -94,16 +104,18 @@ body::before {
     inset: 0;
     z-index: -2;
     pointer-events: none;
-    background-color: transparent;
+    background-color: #F8FAFC;
     background-image: 
         radial-gradient(circle at 18% 18%, rgba(224, 231, 255, 0.65) 0%, rgba(224, 231, 255, 0.2) 35%, transparent 65%),
         radial-gradient(circle at 82% 24%, rgba(224, 242, 254, 0.65) 0%, rgba(224, 242, 254, 0.2) 32%, transparent 60%),
         radial-gradient(circle at 50% 80%, rgba(243, 232, 255, 0.55) 0%, rgba(243, 232, 255, 0.15) 38%, transparent 65%);
     opacity: 0.95;
+    transition: background-color var(--transition);
 }
 
+html[data-theme="dark"] body::before,
 [data-theme="dark"] body::before {
-    background-color: transparent;
+    background-color: #090D16;
     background-image: 
         radial-gradient(circle at 20% 20%, rgba(79, 70, 229, 0.12) 0%, transparent 55%),
         radial-gradient(circle at 80% 25%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
