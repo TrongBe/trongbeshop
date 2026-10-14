@@ -23,6 +23,7 @@ function bootSimulation() {
     setupLobbyFilters();
     setupTerminalEvents();
     setupMentorChat();
+    initWorkspaceEnhancements();
     if (document.getElementById('simWorkspaceView')?.classList.contains('active')) {
         document.body.classList.add('sim-workspace-active');
     }
@@ -203,7 +204,7 @@ export function startMission(caseId) {
 window.startMission = startMission;
 
 function renderBriefing(mission) {
-    const container = document.getElementById('briefingContainer') || document.getElementById('briefingContent');
+    const container = document.getElementById('briefingInnerContent') || document.getElementById('briefingContainer') || document.getElementById('briefingContent');
     if (!container || !mission) return;
 
     // 1. Phân tích Objectives (Mục tiêu phân tích) an toàn
@@ -215,14 +216,17 @@ function renderBriefing(mission) {
         </li>
     `).join('');
 
-    // 2. Phân tích Schema (Cấu trúc bảng) hiển thị đầy đủ col.name, col.type VÀ col.desc, kèm preview dòng mẫu từ mockDb
+    // 2. Phân tích Schema (Cấu trúc bảng) hỗ trợ 1-Click chèn nhanh tên bảng & tên cột vào SQL Editor
     const schema = Array.isArray(mission.schema) ? mission.schema : [];
     const schemaHtml = schema.map((table, tIdx) => {
         const columns = Array.isArray(table.columns) ? table.columns : [];
         const colsHtml = columns.map(col => `
             <div class="schema-field-item">
                 <div class="field-name-group">
-                    <span class="field-name"><b>${escapeHtml(col.name)}</b></span>
+                    <span class="field-name schema-insertable-col" onclick="window.insertTextToEditor('${escapeHtml(col.name)}')" title="Click để chèn cột '${escapeHtml(col.name)}' vào SQL Editor">
+                        <b>${escapeHtml(col.name)}</b>
+                        <span class="click-insert-hint" title="Click để chèn vào SQL Editor">+</span>
+                    </span>
                     ${col.desc ? `<span class="field-desc-text">${escapeHtml(col.desc)}</span>` : ''}
                 </div>
                 <span class="field-type">${escapeHtml(col.type || 'TEXT')}</span>
@@ -235,7 +239,11 @@ function renderBriefing(mission) {
         if (sampleRows.length > 0) {
             const sampleHeaders = Object.keys(sampleRows[0]);
             const sTh = sampleHeaders.map(h => `<th>${escapeHtml(h)}</th>`).join('');
-            const sRows = sampleRows.map(r => `<tr>${sampleHeaders.map(h => `<td>${escapeHtml(String(r[h] ?? ''))}</td>`).join('')}</tr>`).join('');
+            const sRows = sampleRows.map(r => `<tr>${sampleHeaders.map(h => {
+                const cellData = formatCellContent(r[h]);
+                const numClass = cellData.isNum ? ' class="cell-numeric"' : '';
+                return `<td${numClass}>${cellData.html}</td>`;
+            }).join('')}</tr>`).join('');
             sampleTableHtml = `
                 <div class="schema-sample-preview" id="sample_table_${tIdx}" style="display:none;">
                     <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:6px; font-weight:600;">Dữ liệu thực tế mẫu (3 dòng đầu):</div>
@@ -253,7 +261,10 @@ function renderBriefing(mission) {
             <div class="schema-block">
                 <div class="schema-header" onclick="window.toggleSchemaSample('sample_table_${tIdx}', this)" title="Click để xem dữ liệu mẫu">
                     <div class="schema-title-text">
-                        <span>📁 <b>${escapeHtml(table.tableName)}</b></span>
+                        <span class="schema-insertable-table" onclick="event.stopPropagation(); window.insertTextToEditor('${escapeHtml(table.tableName)}')" title="Click để chèn bảng '${escapeHtml(table.tableName)}' vào SQL Editor">
+                            📁 <b>${escapeHtml(table.tableName)}</b>
+                            <span class="click-insert-hint" title="Click để chèn vào SQL Editor">+</span>
+                        </span>
                         <span class="schema-desc-sub">${escapeHtml(table.description || '')}</span>
                     </div>
                     ${sampleRows.length > 0 ? `<button type="button" class="btn-toggle-sample">👁️ Xem mẫu</button>` : ''}
@@ -570,6 +581,21 @@ function runSQLWithAlaSQL(rawSql) {
     }
 }
 
+function formatCellContent(val) {
+    if (val === null || val === undefined || (typeof val === 'string' && val.trim().toUpperCase() === 'NULL')) {
+        return { isNull: true, isNum: false, html: '<span class="val-null">NULL</span>' };
+    }
+    if (typeof val === 'number') {
+        return { isNull: false, isNum: true, html: escapeHtml(val.toLocaleString('vi-VN')) };
+    }
+    const str = String(val).trim();
+    if (str === '') {
+        return { isNull: false, isNum: false, html: '' };
+    }
+    const isNum = /^[\$₫€¥]?\s*-?[\d,.]+(?:\s*(?:%|VNĐ|vnd|đ|k|K|M|B|chiếc|đơn|cái))?$/i.test(str) && /\d/.test(str);
+    return { isNull: false, isNum: isNum, html: escapeHtml(str) };
+}
+
 function renderMultiQueryResults(queryResults, totalElapsed, totalQueries, successCount, errorCount, totalRows) {
     const tableContainer = document.getElementById('outputTableContainer');
     if (!tableContainer) return;
@@ -637,12 +663,27 @@ function renderMultiQueryResults(queryResults, totalElapsed, totalQueries, succe
             `;
         } else {
             const headers = Object.keys(q.rows[0]);
-            const thHtml = headers.map(h => `<th>${escapeHtml(h)}</th>`).join('');
+
+            // Tự động kiểm tra từng cột để căn phải số liệu
+            const colIsNum = headers.map(h => {
+                let numCount = 0;
+                let sampleCount = Math.min(q.rows.length, 10);
+                for (let r = 0; r < sampleCount; r++) {
+                    if (formatCellContent(q.rows[r][h]).isNum) numCount++;
+                }
+                return sampleCount > 0 ? (numCount / sampleCount) >= 0.5 : false;
+            });
+
+            const thHtml = headers.map((h, idx) => {
+                const thClass = colIsNum[idx] ? ' class="th-numeric"' : '';
+                return `<th${thClass}>${escapeHtml(h)}</th>`;
+            }).join('');
+
             const rowsHtml = q.rows.map(row => {
-                const cells = headers.map(h => {
-                    const val = row[h];
-                    const displayVal = (typeof val === 'number') ? val.toLocaleString('vi-VN') : (val ?? '');
-                    return `<td>${escapeHtml(String(displayVal))}</td>`;
+                const cells = headers.map((h, idx) => {
+                    const cellData = formatCellContent(row[h]);
+                    const tdClass = (cellData.isNum || colIsNum[idx]) ? ' class="cell-numeric"' : '';
+                    return `<td${tdClass}>${cellData.html}</td>`;
                 }).join('');
                 return `<tr>${cells}</tr>`;
             }).join('');
@@ -665,6 +706,9 @@ function renderMultiQueryResults(queryResults, totalElapsed, totalQueries, succe
 
     html += `</div></div>`;
     tableContainer.innerHTML = html;
+
+    // Tự động đồng bộ số liệu sang Split-View của tab Báo cáo nếu đang mở
+    window.refreshReportSplitData?.();
 }
 
 function setupTerminalEvents() {
@@ -759,7 +803,10 @@ function setupTerminalEvents() {
             }
         } else if (activeTab === 'report') {
             tabReport?.classList.add('active');
-            if (paneReport) paneReport.style.display = 'block';
+            if (paneReport) {
+                paneReport.style.display = 'block';
+                window.refreshReportSplitData?.();
+            }
         }
     }
     window.switchOutputTab = switchOutputTab;
@@ -774,6 +821,12 @@ function setupTerminalEvents() {
 
     const btnFillSample = document.getElementById('btnFillSampleReport');
     btnFillSample?.addEventListener('click', fillSampleReport);
+
+    const btnFillFramework = document.getElementById('btnFillReportFramework');
+    btnFillFramework?.addEventListener('click', () => window.fillReportFramework?.());
+
+    const btnToggleSplit = document.getElementById('btnToggleSplitView');
+    btnToggleSplit?.addEventListener('click', () => window.toggleReportSplitView?.());
 }
 
 // ============================================================
@@ -1155,16 +1208,40 @@ function renderOutputData(mission) {
     // 1. Render Table
     const tableContainer = document.getElementById('outputTableContainer');
     if (tableContainer && mission?.mockData?.headers && mission?.mockData?.rows) {
-        const thHtml = mission.mockData.headers.map(h => `<th>${escapeHtml(h)}</th>`).join('');
-        const rowsHtml = mission.mockData.rows.map(r => `
-            <tr>${r.map(cell => `<td>${escapeHtml(String(cell))}</td>`).join('')}</tr>
-        `).join('');
+        const headers = mission.mockData.headers;
+        const rows = mission.mockData.rows;
+
+        // Tự động kiểm tra từng cột để căn phải số liệu
+        const colIsNum = headers.map((_, colIdx) => {
+            let numCount = 0;
+            let sampleCount = Math.min(rows.length, 10);
+            for (let r = 0; r < sampleCount; r++) {
+                if (formatCellContent(rows[r][colIdx]).isNum) numCount++;
+            }
+            return sampleCount > 0 ? (numCount / sampleCount) >= 0.5 : false;
+        });
+
+        const thHtml = headers.map((h, idx) => {
+            const thClass = colIsNum[idx] ? ' class="th-numeric"' : '';
+            return `<th${thClass}>${escapeHtml(h)}</th>`;
+        }).join('');
+
+        const rowsHtml = rows.map(r => {
+            const cells = r.map((cell, idx) => {
+                const cellData = formatCellContent(cell);
+                const tdClass = (cellData.isNum || colIsNum[idx]) ? ' class="cell-numeric"' : '';
+                return `<td${tdClass}>${cellData.html}</td>`;
+            }).join('');
+            return `<tr>${cells}</tr>`;
+        }).join('');
 
         tableContainer.innerHTML = `
-            <table class="sim-data-table">
-                <thead><tr>${thHtml}</tr></thead>
-                <tbody>${rowsHtml}</tbody>
-            </table>
+            <div class="sim-table-scroll-container">
+                <table class="sim-data-table">
+                    <thead><tr>${thHtml}</tr></thead>
+                    <tbody>${rowsHtml}</tbody>
+                </table>
+            </div>
         `;
     }
 
@@ -1172,6 +1249,9 @@ function renderOutputData(mission) {
     if (mission?.mockData?.chart) {
         renderChart(mission.mockData.chart);
     }
+
+    // Tự động đồng bộ số liệu sang Split-View của tab Báo cáo
+    window.refreshReportSplitData?.();
 }
 
 function renderChart(chartConfig) {
@@ -1914,3 +1994,483 @@ document.addEventListener('keydown', (e) => {
         }
     }
 });
+
+// ============================================================
+// WORKSPACE STUDIO UI/UX ENHANCEMENTS (THU GỌN CỘT, SPLIT-VIEW, RESIZER, 1-CLICK INSERT)
+// ============================================================
+
+/**
+ * 1. Thu gọn / Mở rộng Cột Trái (Briefing) hoặc Cột Phải (AI Mentor)
+ * Giúp Cột Giữa (Console & Data Output) có thể mở rộng tối đa ~95% không gian
+ */
+window.toggleWorkspaceColumn = function(side) {
+    const studio = document.getElementById('workspaceStudio') || document.querySelector('.workspace-studio');
+    if (!studio) return;
+
+    if (side === 'left') {
+        const isCollapsed = studio.classList.toggle('sidebar-left-collapsed');
+        try { localStorage.setItem('sim_col_left_collapsed', isCollapsed ? '1' : '0'); } catch (e) {}
+
+        const btnToggle = document.getElementById('btnToggleLeftCol');
+        if (btnToggle) {
+            btnToggle.classList.toggle('is-collapsed', isCollapsed);
+            const icon = btnToggle.querySelector('.toggle-icon');
+            const text = btnToggle.querySelector('.toggle-text');
+            if (icon) icon.textContent = isCollapsed ? '▶' : '◀';
+            if (text) text.textContent = isCollapsed ? 'Đề bài (Mở)' : 'Đề bài';
+            btnToggle.title = isCollapsed ? 'Mở rộng cột Đề bài' : 'Thu gọn cột Đề bài';
+        }
+    } else if (side === 'right') {
+        const isCollapsed = studio.classList.toggle('sidebar-right-collapsed');
+        try { localStorage.setItem('sim_col_right_collapsed', isCollapsed ? '1' : '0'); } catch (e) {}
+
+        const btnToggle = document.getElementById('btnToggleRightCol');
+        if (btnToggle) {
+            btnToggle.classList.toggle('is-collapsed', isCollapsed);
+            const icon = btnToggle.querySelector('.toggle-icon');
+            const text = btnToggle.querySelector('.toggle-text');
+            if (icon) icon.textContent = isCollapsed ? '◀' : '▶';
+            if (text) text.textContent = isCollapsed ? 'AI Mentor (Mở)' : 'AI Mentor';
+            btnToggle.title = isCollapsed ? 'Mở rộng cột AI Mentor' : 'Thu gọn cột AI Mentor';
+        }
+    }
+
+    // Tự động resize lại Chart.js nếu đang xem tab biểu đồ
+    if (currentChartInstance) {
+        setTimeout(() => {
+            currentChartInstance.resize();
+        }, 300);
+    }
+};
+
+/**
+ * 2. 1-Click Chèn nhanh Tên Bảng hoặc Tên Cột vào SQL Editor tại đúng vị trí con trỏ
+ */
+window.insertTextToEditor = function(textToInsert) {
+    if (!textToInsert) return;
+    const editor = document.getElementById('terminalEditor');
+    if (!editor) return;
+
+    // Chuyển sang tab SQL nếu đang ở tab khác
+    const tabSql = document.getElementById('tabSql');
+    if (currentLanguage !== 'sql' && tabSql) {
+        tabSql.click();
+    }
+
+    editor.focus();
+
+    const startPos = editor.selectionStart ?? editor.value.length;
+    const endPos = editor.selectionEnd ?? editor.value.length;
+    const val = editor.value;
+
+    // Phân tích ký tự liền trước: nếu là chữ cái/số hoặc dấu ngoặc thì tự động thêm 1 khoảng trắng
+    let prefix = '';
+    if (startPos > 0) {
+        const prevChar = val.charAt(startPos - 1);
+        if (/[a-zA-Z0-9_\)\]]/.test(prevChar)) {
+            prefix = ' ';
+        }
+    }
+
+    const insertedString = prefix + textToInsert;
+    const newContent = val.substring(0, startPos) + insertedString + val.substring(endPos);
+    editor.value = newContent;
+
+    // Di chuyển con trỏ chuột đến ngay sau chuỗi vừa chèn
+    const newCursorPos = startPos + insertedString.length;
+    editor.selectionStart = newCursorPos;
+    editor.selectionEnd = newCursorPos;
+
+    // Kích hoạt sự kiện input để trình soạn thảo bắt kịp thay đổi
+    editor.dispatchEvent(new Event('input', { bubbles: true }));
+
+    // Hiệu ứng nhấp nháy sáng nhẹ (Flash animation) trên khung soạn thảo
+    editor.classList.remove('editor-insert-flash');
+    void editor.offsetWidth; // Force reflow
+    editor.classList.add('editor-insert-flash');
+    setTimeout(() => {
+        editor.classList.remove('editor-insert-flash');
+    }, 550);
+
+    // Cập nhật thanh trạng thái
+    const statusText = document.getElementById('terminalStatusText');
+    if (statusText) {
+        statusText.innerHTML = `⚡ Đã chèn <b>${escapeHtml(textToInsert)}</b> vào SQL Editor tại vị trí con trỏ!`;
+    }
+};
+
+/**
+ * 3. Thu gọn hoặc Phóng to chiều cao Code Editor
+ */
+window.toggleEditorMinimize = function() {
+    const colConsole = document.getElementById('colConsole');
+    const btnToggle = document.getElementById('btnToggleEditorSize');
+    const textSpan = document.getElementById('toggleEditorSizeText');
+    if (!colConsole) return;
+
+    const isMinimized = colConsole.classList.toggle('editor-minimized');
+    if (textSpan) {
+        textSpan.textContent = isMinimized ? 'Mở rộng code' : 'Thu gọn';
+    }
+    if (btnToggle) {
+        btnToggle.classList.toggle('active', isMinimized);
+        btnToggle.title = isMinimized ? 'Mở rộng lại khung soạn thảo code' : 'Thu gọn khung code để tối đa không gian cho bảng dữ liệu/báo cáo';
+    }
+
+    if (currentChartInstance) {
+        setTimeout(() => {
+            currentChartInstance.resize();
+        }, 200);
+    }
+};
+
+/**
+ * 4. Thanh kéo chỉnh độ cao giữa Code Editor và Bảng kết quả (Vertical Resizer)
+ */
+function initPaneResizer() {
+    const resizer = document.getElementById('paneResizer');
+    const terminalPane = document.getElementById('terminalPane');
+    const colConsole = document.getElementById('colConsole');
+    if (!resizer || !terminalPane || !colConsole) return;
+
+    let isDragging = false;
+    let startY = 0;
+    let startHeight = 0;
+
+    // Khôi phục chiều cao đã lưu nếu có
+    try {
+        const savedHeight = localStorage.getItem('sim_terminal_height');
+        if (savedHeight && !isNaN(parseInt(savedHeight))) {
+            const h = parseInt(savedHeight);
+            if (h >= 100 && h <= 650) {
+                terminalPane.style.height = `${h}px`;
+                terminalPane.style.flex = 'none';
+            }
+        }
+    } catch (e) {}
+
+    const onMouseDown = (e) => {
+        if (colConsole.classList.contains('editor-minimized')) return;
+        isDragging = true;
+        startY = e.clientY;
+        startHeight = terminalPane.getBoundingClientRect().height;
+        resizer.classList.add('is-resizing');
+        document.body.style.userSelect = 'none';
+        document.body.style.cursor = 'ns-resize';
+
+        window.addEventListener('mousemove', onMouseMove);
+        window.addEventListener('mouseup', onMouseUp);
+    };
+
+    const onMouseMove = (e) => {
+        if (!isDragging) return;
+        const deltaY = e.clientY - startY;
+        const consoleRect = colConsole.getBoundingClientRect();
+        const maxH = Math.max(consoleRect.height - 180, 200);
+        let newH = startHeight + deltaY;
+        if (newH < 110) newH = 110;
+        if (newH > maxH) newH = maxH;
+
+        terminalPane.style.height = `${newH}px`;
+        terminalPane.style.flex = 'none';
+    };
+
+    const onMouseUp = () => {
+        if (!isDragging) return;
+        isDragging = false;
+        resizer.classList.remove('is-resizing');
+        document.body.style.userSelect = '';
+        document.body.style.cursor = '';
+
+        const finalH = Math.round(terminalPane.getBoundingClientRect().height);
+        try { localStorage.setItem('sim_terminal_height', finalH.toString()); } catch (e) {}
+
+        window.removeEventListener('mousemove', onMouseMove);
+        window.removeEventListener('mouseup', onMouseUp);
+
+        if (currentChartInstance) {
+            currentChartInstance.resize();
+        }
+    };
+
+    resizer.addEventListener('mousedown', onMouseDown);
+
+    // Hỗ trợ cảm ứng trên thiết bị cảm ứng
+    resizer.addEventListener('touchstart', (e) => {
+        if (e.touches && e.touches.length === 1) {
+            onMouseDown({ clientY: e.touches[0].clientY });
+        }
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+        if (isDragging && e.touches && e.touches.length === 1) {
+            onMouseMove({ clientY: e.touches[0].clientY });
+        }
+    }, { passive: true });
+
+    window.addEventListener('touchend', onMouseUp, { passive: true });
+}
+
+/**
+ * 5. Bật / Tắt chế độ Split-View (Chia đôi màn hình) khi viết Báo cáo
+ */
+window.toggleReportSplitView = function() {
+    const container = document.getElementById('reportSplitContainer');
+    const btn = document.getElementById('btnToggleSplitView');
+    const btnText = document.getElementById('splitViewBtnText');
+    if (!container) return;
+
+    const isActive = container.classList.toggle('split-active');
+    try { localStorage.setItem('sim_report_split_active', isActive ? '1' : '0'); } catch (e) {}
+
+    if (btn) {
+        btn.classList.toggle('active', isActive);
+        if (btnText) {
+            btnText.textContent = isActive ? 'Thu gọn bảng SQL' : 'Ghim kết quả SQL (Split-View)';
+        }
+    }
+
+    if (isActive) {
+        window.refreshReportSplitData();
+    }
+};
+
+/**
+ * 6. Tự động đồng bộ số liệu truy vấn gần nhất (hoặc benchmark) sang Bảng Split-View cạnh ô viết báo cáo
+ */
+window.refreshReportSplitData = function() {
+    const splitBody = document.getElementById('reportSplitDataBody');
+    if (!splitBody) return;
+
+    // 1. Kiểm tra nếu có kết quả SQL gần nhất người dùng vừa chạy thành công
+    if (latestSQLResults && Array.isArray(latestSQLResults) && latestSQLResults.length > 0) {
+        const validQueries = latestSQLResults.filter(q => Array.isArray(q.rows) && q.rows.length > 0);
+        if (validQueries.length > 0) {
+            let html = '';
+            validQueries.forEach((q) => {
+                const headers = Object.keys(q.rows[0]);
+                const colIsNum = headers.map(h => {
+                    let numCount = 0;
+                    let sampleCount = Math.min(q.rows.length, 10);
+                    for (let r = 0; r < sampleCount; r++) {
+                        if (formatCellContent(q.rows[r][h]).isNum) numCount++;
+                    }
+                    return sampleCount > 0 ? (numCount / sampleCount) >= 0.5 : false;
+                });
+
+                const thHtml = headers.map((h, idx) => {
+                    const thClass = colIsNum[idx] ? ' class="th-numeric"' : '';
+                    return `<th${thClass}>${escapeHtml(h)}</th>`;
+                }).join('');
+
+                const rowsHtml = q.rows.map(row => {
+                    const cells = headers.map((h, idx) => {
+                        const cellData = formatCellContent(row[h]);
+                        const tdClass = (cellData.isNum || colIsNum[idx]) ? ' class="cell-numeric"' : '';
+                        return `<td${tdClass}>${cellData.html}</td>`;
+                    }).join('');
+                    return `<tr>${cells}</tr>`;
+                }).join('');
+
+                const stmtPreview = q.statement ? escapeHtml(q.statement.substring(0, 75)) + (q.statement.length > 75 ? '...' : '') : `Truy vấn #${q.index}`;
+                const rowCountText = `${q.rows.length} dòng`;
+                const elapsedText = q.elapsed ? `${q.elapsed}ms` : '';
+
+                html += `
+                    <div class="split-table-card">
+                        <div class="split-table-card-header">
+                            <span class="split-stmt-badge" title="${escapeHtml(q.statement || '')}">#${q.index}: ${stmtPreview}</span>
+                            <span class="split-meta-badge">${rowCountText} ${elapsedText ? '• ' + elapsedText : ''}</span>
+                        </div>
+                        <div class="split-table-scroll">
+                            <table class="sim-data-table micro-table">
+                                <thead><tr>${thHtml}</tr></thead>
+                                <tbody>${rowsHtml}</tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+            });
+
+            splitBody.innerHTML = html;
+            return;
+        }
+    }
+
+    // 2. Nếu chưa chạy SQL hoặc không có kết quả, hiển thị bộ dữ liệu benchmark của case study
+    if (currentCase?.mockData?.headers && currentCase?.mockData?.rows) {
+        const headers = currentCase.mockData.headers;
+        const rows = currentCase.mockData.rows;
+        const colIsNum = headers.map((_, colIdx) => {
+            let numCount = 0;
+            let sampleCount = Math.min(rows.length, 10);
+            for (let r = 0; r < sampleCount; r++) {
+                if (formatCellContent(rows[r][colIdx]).isNum) numCount++;
+            }
+            return sampleCount > 0 ? (numCount / sampleCount) >= 0.5 : false;
+        });
+
+        const thHtml = headers.map((h, idx) => {
+            const thClass = colIsNum[idx] ? ' class="th-numeric"' : '';
+            return `<th${thClass}>${escapeHtml(h)}</th>`;
+        }).join('');
+
+        const rowsHtml = rows.map(r => {
+            const cells = r.map((cell, idx) => {
+                const cellData = formatCellContent(cell);
+                const tdClass = (cellData.isNum || colIsNum[idx]) ? ' class="cell-numeric"' : '';
+                return `<td${tdClass}>${cellData.html}</td>`;
+            }).join('');
+            return `<tr>${cells}</tr>`;
+        }).join('');
+
+        splitBody.innerHTML = `
+            <div class="split-table-card">
+                <div class="split-table-card-header">
+                    <span class="split-stmt-badge">📌 Dữ liệu mốc Case Study (Benchmark)</span>
+                    <span class="split-meta-badge">${rows.length} dòng mốc</span>
+                </div>
+                <div class="split-table-scroll">
+                    <table class="sim-data-table micro-table">
+                        <thead><tr>${thHtml}</tr></thead>
+                        <tbody>${rowsHtml}</tbody>
+                    </table>
+                </div>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:6px; padding:0 4px;">
+                    💡 <i>Gợi ý: Viết lệnh SQL ở khung trên và nhấn <b>▶ Chạy mã (Ctrl+Enter)</b> để số liệu tùy biến tự động cập nhật vào đây!</i>
+                </div>
+            </div>
+        `;
+        return;
+    }
+
+    // 3. Fallback khi chưa có dữ liệu nào
+    splitBody.innerHTML = `
+        <div style="padding: 24px 16px; text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+            <div style="font-size: 2rem; margin-bottom: 8px;">📊</div>
+            <b>Chưa có kết quả truy vấn SQL</b><br>
+            Hãy nhập câu lệnh SQL vào Editor và nhấn <b>▶ Chạy mã</b> để bảng số liệu tự động ghim tại đây!
+        </div>
+    `;
+};
+
+/**
+ * 7. Điền Khung Báo Cáo Chuẩn Thực Tế 4 Mục (Executive Framework)
+ * [1. Tóm tắt số liệu phát hiện (Key Findings & Metrics)]
+ * [2. Nguyên nhân gốc rễ (Root Cause Analysis)]
+ * [3. Đề xuất hành động & Ước tính tác động (Actionable Recommendations & Impact)]
+ * [4. Rủi ro & Sự đánh đổi cần lưu ý (Risks & Trade-offs)]
+ */
+window.fillReportFramework = function() {
+    const reportInput = document.getElementById('reportTextarea');
+    if (!reportInput) return;
+
+    if (reportInput.value.trim().length > 30) {
+        if (!confirm('Ô soạn thảo đã có nội dung. Bạn có chắc muốn chèn Khung báo cáo chuẩn 4 mục (nội dung hiện tại sẽ được thay thế)?')) {
+            return;
+        }
+    }
+
+    const missionTitle = currentCase?.title ? ` - ${currentCase.title.toUpperCase()}` : '';
+
+    const frameworkTemplate = `BÁO CÁO PHÂN TÍCH KINH DOANH & ĐỀ XUẤT CHIẾN LƯỢC${missionTitle}
+
+[1. Tóm tắt số liệu phát hiện (Key Findings & Metrics)]
+- Dữ liệu cốt lõi: [Dẫn chứng số liệu cụ thể từ kết quả SQL — ví dụ: Tổng số đơn, Doanh thu, Tỷ lệ % tăng/giảm...]
+- Phân bổ / Xu hướng: [So sánh tỷ lệ chênh lệch giữa các nhóm khách hàng, danh mục hàng hóa hoặc mốc thời gian]
+- Điểm bất thường phát hiện: [Số liệu bị lệch chuẩn nghiêm trọng (outlier) hoặc hành vi đáng ngờ phát hiện qua bảng dữ liệu]
+
+[2. Nguyên nhân gốc rễ (Root Cause Analysis)]
+- Yếu tố trực tiếp (Direct Driver): [Hành vi hoặc nguyên nhân bề nổi phát sinh trực tiếp từ dữ liệu]
+- Nguyên nhân cốt lõi (Root Cause): [Kẽ hở chính sách, lỗ hổng quy trình vận hành hoặc điểm nghẽn kỹ thuật hệ thống]
+- Tác động dây chuyền: [Nguy cơ tổn thất tài chính, trải nghiệm người dùng hoặc đứt gãy chuỗi cung ứng nếu không can thiệp]
+
+[3. Đề xuất hành động & Ước tính tác động (Actionable Recommendations & Impact)]
+- Tầng 1: Hành động khẩn cấp (Ngay lập tức - 24h đến 7 ngày): [Khoanh vùng rủi ro, vá lỗ hổng hoặc ngăn chặn thiệt hại tức thì]
+- Tầng 2: Cải tiến trung hạn (1 - 3 tháng tới): [Hoàn thiện chính sách, tối ưu hóa quy trình, cập nhật điều kiện kinh doanh]
+- Tầng 3: Giải pháp kỹ thuật dài hạn (Hệ thống): [Ứng dụng cảnh báo tự động, định danh eKYC/OTP, Device Fingerprinting hoặc AI Fraud Detection]
+- Ước tính tác động (Expected Impact): [Kỳ vọng giảm thiểu % thiệt hại, tiết kiệm chi phí hoặc thúc đẩy tăng trưởng doanh thu]
+
+[4. Rủi ro & Sự đánh đổi cần lưu ý (Risks & Trade-offs)]
+- Rủi ro tiềm ẩn: [Khả năng ảnh hưởng đến trải nghiệm người dùng thật, sự phản đối của đối tác hoặc chi phí vận hành tăng]
+- Biện pháp giảm thiểu (Mitigation Plan): [Phương án dự phòng để cân bằng giữa an toàn hệ thống và trải nghiệm khách hàng]`;
+
+    reportInput.value = frameworkTemplate;
+    reportInput.focus();
+
+    // Tự động bật Split-View nếu chưa bật để người dùng tiện tra cứu số liệu bên cạnh
+    const splitContainer = document.getElementById('reportSplitContainer');
+    if (splitContainer && !splitContainer.classList.contains('split-active')) {
+        window.toggleReportSplitView();
+    }
+};
+
+/**
+ * 8. Khởi tạo & Phục hồi trạng thái Studio Workspace từ localStorage
+ */
+function initWorkspaceEnhancements() {
+    const studio = document.getElementById('workspaceStudio') || document.querySelector('.workspace-studio');
+
+    // Phục hồi trạng thái thu gọn cột Trái / Phải
+    try {
+        const leftCollapsed = localStorage.getItem('sim_col_left_collapsed') === '1';
+        const rightCollapsed = localStorage.getItem('sim_col_right_collapsed') === '1';
+
+        if (studio) {
+            if (leftCollapsed) {
+                studio.classList.add('sidebar-left-collapsed');
+                const btnLeft = document.getElementById('btnToggleLeftCol');
+                if (btnLeft) {
+                    btnLeft.classList.add('is-collapsed');
+                    const icon = btnLeft.querySelector('.toggle-icon');
+                    const text = btnLeft.querySelector('.toggle-text');
+                    if (icon) icon.textContent = '▶';
+                    if (text) text.textContent = 'Đề bài (Mở)';
+                    btnLeft.title = 'Mở rộng cột Đề bài';
+                }
+            }
+
+            if (rightCollapsed) {
+                studio.classList.add('sidebar-right-collapsed');
+                const btnRight = document.getElementById('btnToggleRightCol');
+                if (btnRight) {
+                    btnRight.classList.add('is-collapsed');
+                    const icon = btnRight.querySelector('.toggle-icon');
+                    const text = btnRight.querySelector('.toggle-text');
+                    if (icon) icon.textContent = '◀';
+                    if (text) text.textContent = 'AI Mentor (Mở)';
+                    btnRight.title = 'Mở rộng cột AI Mentor';
+                }
+            }
+        }
+    } catch (e) {}
+
+    // Phục hồi trạng thái Split-View của tab Báo Cáo
+    try {
+        const splitContainer = document.getElementById('reportSplitContainer');
+        const splitActive = localStorage.getItem('sim_report_split_active');
+        // Mặc định là bật (split-active) trừ khi người dùng chủ động tắt ('0')
+        if (splitContainer) {
+            if (splitActive === '0') {
+                splitContainer.classList.remove('split-active');
+                const btnSplit = document.getElementById('btnToggleSplitView');
+                if (btnSplit) {
+                    btnSplit.classList.remove('active');
+                    const btnText = document.getElementById('splitViewBtnText');
+                    if (btnText) btnText.textContent = 'Ghim kết quả SQL (Split-View)';
+                }
+            } else {
+                splitContainer.classList.add('split-active');
+                const btnSplit = document.getElementById('btnToggleSplitView');
+                if (btnSplit) {
+                    btnSplit.classList.add('active');
+                    const btnText = document.getElementById('splitViewBtnText');
+                    if (btnText) btnText.textContent = 'Thu gọn bảng SQL';
+                }
+            }
+        }
+    } catch (e) {}
+
+    // Khởi tạo thanh kéo chỉnh chiều cao (Vertical Resizer)
+    initPaneResizer();
+}

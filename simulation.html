@@ -15,7 +15,7 @@
 
   <!-- Core Theme & Simulation CSS -->
   <link rel="stylesheet" href="css/style.css?v=25">
-  <link rel="stylesheet" href="css/simulation.css?v=20261013_sql_handbook_deep">
+  <link rel="stylesheet" href="css/simulation.css?v=20261014_workspace_v2">
 
   <!-- Chart.js for Interactive Data Visualization -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
@@ -313,6 +313,9 @@
             <button class="btn-back-lobby" onclick="window.showSimView('lobby')">
               ← Quay lại Sảnh
             </button>
+            <button id="btnToggleLeftCol" class="btn-workspace-toggle" onclick="window.toggleWorkspaceColumn('left')" title="Thu gọn / Mở rộng Đề bài (Cột Trái)">
+              <span class="toggle-icon">◀</span> <span class="toggle-text">Đề bài</span>
+            </button>
             <div class="workspace-mission-info">
               <span id="workspaceBadge" class="difficulty-badge medium">Trung bình</span>
               <h2 id="workspaceTitle">Nhiệm vụ phân tích</h2>
@@ -326,54 +329,76 @@
             <button class="btn-reset-code" onclick="window.sendMentorChip('Gợi ý cho tôi tư duy tiếp cận bước đầu tiên')">
               💡 Cần gợi ý?
             </button>
+            <button id="btnToggleRightCol" class="btn-workspace-toggle" onclick="window.toggleWorkspaceColumn('right')" title="Thu gọn / Mở rộng AI Mentor (Cột Phải)">
+              <span class="toggle-text">AI Mentor</span> <span class="toggle-icon">▶</span>
+            </button>
           </div>
         </div>
 
         <!-- 3-Column Studio -->
-        <div class="workspace-studio">
+        <div class="workspace-studio" id="workspaceStudio">
 
           <!-- CỘT 1: MISSION BRIEFING (TRÁI) -->
           <aside class="col-briefing" id="briefingContainer">
-            <!-- Nội dung tóm tắt đề bài, schema, objectives được render động -->
+            <!-- Nút thu gọn nhanh mép cột -->
+            <button type="button" class="btn-col-edge-toggle btn-edge-left" onclick="window.toggleWorkspaceColumn('left')" title="Thu gọn cột đề bài">
+              ◀
+            </button>
+            <div class="col-collapse-strip strip-left" onclick="window.toggleWorkspaceColumn('left')" title="Bấm để mở rộng cột Đề bài">
+              <span class="strip-label">📋 ĐỀ BÀI &amp; SCHEMA</span>
+            </div>
+            <div class="briefing-inner-content" id="briefingInnerContent">
+              <!-- Nội dung tóm tắt đề bài, schema, objectives được render động -->
+            </div>
           </aside>
 
           <!-- CỘT 2: EXECUTION CONSOLE & DATA VIZ (GIỮA) -->
-          <section class="col-console">
+          <section class="col-console" id="colConsole">
 
             <!-- Nửa trên: Terminal & Code Editor -->
-            <div class="terminal-pane">
+            <div class="terminal-pane" id="terminalPane">
               <div class="terminal-header">
                 <div class="terminal-lang-tabs">
                   <button class="terminal-tab active" id="tabSql">SQL Query</button>
                   <button class="terminal-tab" id="tabPython">Python (Pandas)</button>
                 </div>
                 <div class="terminal-actions">
+                  <button class="btn-toggle-editor-size" id="btnToggleEditorSize" onclick="window.toggleEditorMinimize()" title="Thu gọn hoặc mở rộng khung soạn thảo để dành tối đa không gian cho bảng dữ liệu/báo cáo">
+                    ↕ <span id="toggleEditorSizeText">Thu gọn</span>
+                  </button>
                   <button class="btn-review-code" id="btnReviewCode" title="Nhờ AI Mentor kiểm tra cú pháp và logic mã trước khi chạy">🔍 Nhờ Mentor Review</button>
                   <button class="btn-reset-code" id="btnResetCode" title="Đặt lại code ban đầu">🔄 Khôi phục</button>
-                  <button class="btn-run-code" id="btnRunCode" title="Thực thi truy vấn SQL (Phím tắt: Ctrl + Enter)">▶ Chạy mã (Run)</button>
+                  <button class="btn-run-code" id="btnRunCode" title="Thực thi truy vấn SQL (Phím tắt: Ctrl + Enter hoặc Cmd + Enter)">
+                    ▶ Chạy mã <kbd class="kbd-shortcut">Ctrl+↵</kbd>
+                  </button>
                 </div>
               </div>
 
               <div class="terminal-editor-body">
-                <textarea id="terminalEditor" class="terminal-code-textarea" spellcheck="false" placeholder="Nhập câu truy vấn SQL hoặc mã Python tại đây..."></textarea>
+                <textarea id="terminalEditor" class="terminal-code-textarea" spellcheck="false" placeholder="Nhập câu truy vấn SQL hoặc mã Python tại đây... (Nhấn Ctrl + Enter để chạy)"></textarea>
               </div>
 
               <div class="terminal-status-bar">
                 <span id="terminalStatusText">Sẵn sàng thực thi truy vấn (nhấn Chạy mã hoặc Ctrl + Enter)...</span>
-                <span>Console v2.4</span>
+                <span>Console v2.4 • Nhấn 1-click vào cột Schema để chèn nhanh</span>
               </div>
             </div>
 
+            <!-- Thanh kéo chỉnh chiều cao (Vertical Resizer) -->
+            <div class="pane-resizer-vertical" id="paneResizer" title="Kéo lên/xuống để chỉnh độ cao Code Editor và Bảng kết quả">
+              <div class="resizer-handle-grip"></div>
+            </div>
+
             <!-- Nửa dưới: Data Table & Interactive Chart -->
-            <div class="output-pane">
+            <div class="output-pane" id="outputPane">
               <div class="output-header">
                 <div class="output-tabs">
                   <button class="output-tab-btn active" id="outputTabTable">📋 Bảng Dữ Liệu</button>
                   <button class="output-tab-btn" id="outputTabChart">📊 Biểu Đồ Trực Quan</button>
                   <button class="output-tab-btn" id="outputTabReport">📝 Nộp Báo Cáo</button>
                 </div>
-                <div style="font-size: 0.8rem; color: var(--text-muted);">
-                  Interactive Output
+                <div class="output-header-right">
+                  <span style="font-size: 0.8rem; color: var(--text-muted);">Interactive Output</span>
                 </div>
               </div>
 
@@ -390,44 +415,81 @@
                   </div>
                 </div>
 
-                <!-- Thẻ Nộp Báo Cáo & AI Chấm Điểm -->
+                <!-- Thẻ Nộp Báo Cáo & AI Chấm Điểm (Hỗ trợ Split-View) -->
                 <div id="outputReportPane" style="display: none;">
                   <div class="report-box-container">
-                    <div class="report-instruction-banner">
-                      <div class="report-banner-icon">💼</div>
-                      <div class="report-banner-text">
-                        <div class="report-banner-title">Data Storytelling — Nộp Báo Cáo Kinh Doanh</div>
-                        <div class="report-banner-desc">
-                          Hãy viết báo cáo phân tích theo 3 tiêu chí: <b>Bám sát số liệu (30đ)</b> • <b>Insight & Logic kinh doanh (40đ)</b> • <b>Đề xuất hành động (30đ)</b>. <b>Head of Data Analytics (AI)</b> sẽ đối soát trực tiếp với kết quả SQL và chấm điểm theo thang 100!
+                    
+                    <div class="report-top-toolbar">
+                      <div class="report-instruction-banner">
+                        <div class="report-banner-icon">💼</div>
+                        <div class="report-banner-text">
+                          <div class="report-banner-title">Data Storytelling — Báo Cáo Kinh Doanh Thực Chiến</div>
+                          <div class="report-banner-desc">
+                            Báo cáo chấm theo 3 tiêu chí: <b>Dữ liệu (30đ)</b> • <b>Insight bản chất (40đ)</b> • <b>Giải pháp 3 tầng (30đ)</b>. <b>Head of Data Analytics</b> sẽ đối soát trực tiếp với kết quả SQL!
+                          </div>
                         </div>
+                      </div>
+
+                      <div class="report-toolbar-actions">
+                        <button type="button" id="btnToggleSplitView" class="btn-split-toggle active" onclick="window.toggleReportSplitView()" title="Ghim kết quả SQL song song với ô soạn thảo báo cáo để dễ dàng đối soát số liệu">
+                          📌 <span id="splitViewBtnText">Ghim kết quả SQL (Split-View)</span>
+                        </button>
                       </div>
                     </div>
 
-                    <div class="report-form-group">
-                      <div class="report-label-row">
-                        <label for="reportTextarea" class="report-input-label">Nội dung báo cáo của bạn:</label>
-                        <button type="button" id="btnFillSampleReport" class="btn-sample-report" title="Điền khung dàn ý chuẩn để bạn triển khai">
-                          📑 Điền dàn ý mẫu
-                        </button>
+                    <!-- Dual Split-View Container -->
+                    <div class="report-split-container split-active" id="reportSplitContainer">
+                      
+                      <!-- Cột Trái Split-View: Bảng số liệu SQL đối soát trực tiếp -->
+                      <div class="report-split-left" id="reportSplitDataPane">
+                        <div class="split-data-header">
+                          <div class="split-data-title">
+                            <span>📊 Kết Quả SQL Gần Nhất (Đối Soát)</span>
+                          </div>
+                          <button type="button" class="btn-refresh-split-data" onclick="window.refreshReportSplitData()" title="Làm mới bảng số liệu">
+                            🔄 Làm mới
+                          </button>
+                        </div>
+                        <div class="split-data-body" id="reportSplitDataBody">
+                          <!-- Nội dung bảng SQL đồng bộ tự động từ truy vấn gần nhất -->
+                        </div>
                       </div>
-                      <textarea id="reportTextarea" class="report-textarea" rows="8" placeholder="Nhập nội dung báo cáo kinh doanh của bạn tại đây...
+
+                      <!-- Cột Phải Split-View: Form Soạn thảo Báo Cáo -->
+                      <div class="report-split-right" id="reportSplitFormPane">
+                        <div class="report-form-group">
+                          <div class="report-label-row">
+                            <label for="reportTextarea" class="report-input-label">Nội dung báo cáo của bạn:</label>
+                            <div class="report-template-buttons">
+                              <button type="button" id="btnFillReportFramework" class="btn-sample-report btn-framework" onclick="window.fillReportFramework()" title="Chèn sườn cấu trúc chuẩn 4 mục (Findings, Root Cause, Action Plan, Risks)">
+                                📋 Khung chuẩn 4 mục
+                              </button>
+                              <button type="button" id="btnFillSampleReport" class="btn-sample-report" onclick="window.fillSampleReport()" title="Điền bài giải mẫu chi tiết chuẩn Senior Lead">
+                                💡 Bài giải mẫu
+                              </button>
+                            </div>
+                          </div>
+                          <textarea id="reportTextarea" class="report-textarea" rows="10" placeholder="Nhập nội dung báo cáo kinh doanh của bạn tại đây...
 
 Gợi ý cấu trúc:
 1. Phát hiện dữ liệu (Fact-based): Nêu rõ các số liệu cụ thể vừa truy vấn được từ SQL (tỷ lệ %, số tiền, số lượng đơn...).
 2. Phân tích nguyên nhân (Business Sense): Đâu là bản chất ngầm hiểu? Phát hiện hành vi gì (chẻ đơn, trục lợi voucher...)?
-3. Đề xuất hành động (Actionable Recommendation): Các giải pháp cụ thể, khả thi để giải quyết dứt điểm vấn đề..."></textarea>
-                    </div>
+3. Đề xuất hành động (Actionable Recommendation): Các giải pháp cụ thể, phân tầng thời gian để giải quyết bài toán..."></textarea>
+                        </div>
 
-                    <div class="report-actions-bar">
-                      <button id="btnSubmitReport" class="btn-submit-report">
-                        <span class="btn-icon">🎯</span> Nộp bài & Yêu cầu AI chấm điểm
-                      </button>
-                      <span class="report-status-note" id="reportStatusNote">Chấm khắt khe trên thang điểm 100 bởi Head of Data Analytics</span>
-                    </div>
+                        <div class="report-actions-bar">
+                          <button id="btnSubmitReport" class="btn-submit-report" onclick="window.submitBusinessReport()">
+                            <span class="btn-icon">🎯</span> Nộp bài & Yêu cầu AI chấm điểm
+                          </button>
+                          <span class="report-status-note" id="reportStatusNote">Chấm công tâm bởi Head of Data Analytics</span>
+                        </div>
 
-                    <!-- Vùng kết quả chấm điểm của AI (ban đầu ẩn đi) -->
-                    <div id="ai-feedback" class="ai-feedback-container" style="display: none;">
-                      <!-- Render động kết quả chấm điểm tại đây -->
+                        <!-- Vùng kết quả chấm điểm của AI (ban đầu ẩn đi) -->
+                        <div id="ai-feedback" class="ai-feedback-container" style="display: none;">
+                          <!-- Render động kết quả chấm điểm tại đây -->
+                        </div>
+                      </div>
+
                     </div>
                   </div>
                 </div>
@@ -437,7 +499,14 @@ Gợi ý cấu trúc:
           </section>
 
           <!-- CỘT 3: GEMINI AI MENTOR (PHẢI) -->
-          <aside class="col-mentor">
+          <aside class="col-mentor" id="colMentor">
+            <!-- Nút thu gọn nhanh mép cột -->
+            <button type="button" class="btn-col-edge-toggle btn-edge-right" onclick="window.toggleWorkspaceColumn('right')" title="Thu gọn AI Mentor">
+              ▶
+            </button>
+            <div class="col-collapse-strip strip-right" onclick="window.toggleWorkspaceColumn('right')" title="Bấm để mở rộng AI Mentor">
+              <span class="strip-label">✨ GEMINI AI MENTOR</span>
+            </div>
             <div class="mentor-header">
               <div class="mentor-brand">
                 <div class="mentor-avatar">✨</div>
@@ -1478,7 +1547,7 @@ LIMIT 5;</code></pre>
 
   <!-- SCRIPTS -->
   <script type="module" src="js/auth.js?v=1"></script>
-  <script type="module" src="js/simulation.js?v=20261014_v1"></script>
+  <script type="module" src="js/simulation.js?v=20261014_workspace_v2"></script>
 
   <!-- Sidebar & Theme Handlers -->
   <script>
