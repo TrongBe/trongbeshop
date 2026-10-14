@@ -66,30 +66,32 @@ html[data-theme="dark"],
 
 html {
     scroll-behavior: smooth;
-    background-color: #F8FAFC;
+    background-color: #F4F7FE !important;
     color: var(--text-main);
 }
 
-html[data-theme="dark"],
-:root[data-theme="dark"] {
-    background-color: #090D16;
+html[data-theme="dark"] {
+    background-color: #060913 !important;
 }
 
-body {
+body,
+html[data-theme="dark"] body,
+[data-theme="dark"] body,
+body.modern-saas-page {
     font-family: 'Inter', sans-serif;
-    background-color: #F8FAFC;
+    background-color: transparent !important;
     color: var(--text-main);
     line-height: 1.6;
-    transition: background-color var(--transition), color var(--transition);
+    transition: color var(--transition);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     min-height: 100vh;
     position: relative;
+    isolation: isolate;
 }
 
 html[data-theme="dark"] body,
 [data-theme="dark"] body {
-    background-color: #090D16;
     color: #F1F5F9;
 }
 
@@ -104,23 +106,20 @@ body::before {
     inset: 0;
     z-index: -2;
     pointer-events: none;
-    background-color: #F8FAFC;
     background-image: 
-        radial-gradient(circle at 18% 18%, rgba(224, 231, 255, 0.65) 0%, rgba(224, 231, 255, 0.2) 35%, transparent 65%),
-        radial-gradient(circle at 82% 24%, rgba(224, 242, 254, 0.65) 0%, rgba(224, 242, 254, 0.2) 32%, transparent 60%),
-        radial-gradient(circle at 50% 80%, rgba(243, 232, 255, 0.55) 0%, rgba(243, 232, 255, 0.15) 38%, transparent 65%);
-    opacity: 0.95;
-    transition: background-color var(--transition);
+        radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.28) 0%, rgba(99, 102, 241, 0.08) 32%, transparent 60%),
+        radial-gradient(circle at 85% 20%, rgba(6, 182, 212, 0.26) 0%, rgba(6, 182, 212, 0.08) 30%, transparent 58%),
+        radial-gradient(circle at 50% 85%, rgba(168, 85, 247, 0.24) 0%, rgba(236, 72, 153, 0.06) 35%, transparent 62%);
+    filter: blur(40px);
+    animation: auroraDrift 14s ease-in-out infinite alternate;
 }
 
 html[data-theme="dark"] body::before,
 [data-theme="dark"] body::before {
-    background-color: #090D16;
     background-image: 
-        radial-gradient(circle at 20% 20%, rgba(79, 70, 229, 0.12) 0%, transparent 55%),
-        radial-gradient(circle at 80% 25%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 50% 75%, rgba(139, 92, 246, 0.10) 0%, transparent 55%);
-    opacity: 1;
+        radial-gradient(circle at 15% 15%, rgba(79, 70, 229, 0.38) 0%, rgba(79, 70, 229, 0.12) 35%, transparent 65%),
+        radial-gradient(circle at 85% 22%, rgba(6, 182, 212, 0.30) 0%, rgba(6, 182, 212, 0.08) 32%, transparent 60%),
+        radial-gradient(circle at 50% 85%, rgba(139, 92, 246, 0.32) 0%, rgba(236, 72, 153, 0.08) 38%, transparent 65%);
 }
 
 /* Global Subtle Architectural Grid on body::after */
@@ -131,19 +130,30 @@ body::after {
     z-index: -1;
     pointer-events: none;
     background-image: 
-        linear-gradient(to right, rgba(99, 102, 241, 0.06) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(99, 102, 241, 0.06) 1px, transparent 1px);
-    background-size: 28px 28px;
-    mask-image: radial-gradient(ellipse at 50% 20%, black 30%, transparent 80%);
-    -webkit-mask-image: radial-gradient(ellipse at 50% 20%, black 30%, transparent 80%);
+        linear-gradient(to right, rgba(79, 70, 229, 0.11) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(79, 70, 229, 0.11) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: radial-gradient(ellipse 90% 80% at 50% 35%, black 40%, transparent 95%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 35%, black 40%, transparent 95%);
 }
 
+html[data-theme="dark"] body::after,
 [data-theme="dark"] body::after {
     background-image: 
-        linear-gradient(to right, rgba(99, 102, 241, 0.10) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(99, 102, 241, 0.10) 1px, transparent 1px);
-    mask-image: radial-gradient(ellipse at 50% 20%, black 30%, transparent 80%);
-    -webkit-mask-image: radial-gradient(ellipse at 50% 20%, black 30%, transparent 80%);
+        linear-gradient(to right, rgba(129, 140, 248, 0.15) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(129, 140, 248, 0.15) 1px, transparent 1px);
+}
+
+@keyframes auroraDrift {
+    0% {
+        transform: scale(1) translate(0, 0);
+    }
+    50% {
+        transform: scale(1.06) translate(15px, -15px);
+    }
+    100% {
+        transform: scale(1) translate(-10px, 10px);
+    }
 }
 
 /* Smart Exception: Hide Aurora Glow & Grid in Zen Mode */
@@ -3016,7 +3026,7 @@ main {
 /* News Section */
 .section-vnu {
     padding: 80px 0;
-    background: white;
+    background: transparent !important;
 }
 
 .section-title-vnu {
@@ -3774,7 +3784,7 @@ main {
 
 /* --- Section styling dark mode --- */
 [data-theme="dark"] .section-vnu {
-    background: var(--bg-page) !important;
+    background: transparent !important;
 }
 
 [data-theme="dark"] .section-title-vnu {
@@ -3883,7 +3893,7 @@ main {
    ============================================================ */
 .profile-page {
     min-height: calc(100vh - 200px);
-    background: var(--bg-page, #f0f2f5);
+    background: transparent !important;
 }
 
 .profile-not-logged {
@@ -4200,7 +4210,7 @@ main {
 }
 
 [data-theme="dark"] .profile-page {
-    background: var(--bg-page);
+    background: transparent !important;
 }
 
 [data-theme="dark"] .profile-card {
@@ -6349,9 +6359,16 @@ body.modern-saas-page {
    AURORA MESH GRADIENT & PERSPECTIVE GRID (v2.0 VISUAL UPGRADE)
    ============================================================ */
 
-/* Khung bọc Aurora Mesh và Lưới viễn cảnh (Hiện đã chuyển sang body::before và body::after toàn cục) */
+/* Khung bọc Aurora Mesh và Lưới viễn cảnh */
 .aurora-ambient-container {
-    display: none !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
 }
 
 /* Lưới tọa độ SVG với mask làm mờ dần viền */
@@ -7559,40 +7576,38 @@ body.modern-saas-page {
 
 /* Layer 1: Antigravity Micro-particles Canvas */
 #antigravityCanvas {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
     pointer-events: none !important;
-    z-index: 0;
-    transition: opacity 0.4s ease;
+    z-index: 9990 !important;
 }
 
 /* Layer 2: Cursor Aura (Radial Glow) */
 .cursor-glow-aura {
-    position: fixed;
+    position: fixed !important;
     top: 0;
     left: 0;
-    width: 420px;
-    height: 420px;
-    margin-left: -210px;
-    margin-top: -210px;
+    width: 480px;
+    height: 480px;
+    margin-left: -240px;
+    margin-top: -240px;
     border-radius: 50%;
     pointer-events: none !important;
-    z-index: 1;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(14, 165, 233, 0.05) 35%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.35s ease;
+    z-index: 9991 !important;
+    background: radial-gradient(circle, rgba(79, 70, 229, 0.22) 0%, rgba(6, 182, 212, 0.12) 38%, transparent 70%);
+    opacity: 1;
     will-change: transform;
 }
 
 [data-theme="dark"] .cursor-glow-aura {
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.18) 0%, rgba(56, 189, 248, 0.09) 35%, transparent 70%);
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.28) 0%, rgba(56, 189, 248, 0.16) 40%, transparent 70%);
 }
 
 /* Layer 2: Cursor Magnetic Ring */
 .cursor-magnetic-ring {
-    position: fixed;
+    position: fixed !important;
     top: 0;
     left: 0;
     width: 32px;
@@ -7601,7 +7616,7 @@ body.modern-saas-page {
     margin-top: -16px;
     border-radius: 50%;
     pointer-events: none !important;
-    z-index: 9999;
+    z-index: 9999 !important;
     border: 1.5px solid rgba(79, 70, 229, 0.65);
     box-shadow: 0 0 10px rgba(79, 70, 229, 0.25);
     opacity: 0;
@@ -7687,12 +7702,5 @@ body.zen-mode .cursor-magnetic-ring {
     opacity: 0 !important;
 }
 
-/* Safeguards: Disable on touch devices */
-@media (pointer: coarse) {
-    #antigravityCanvas,
-    .cursor-glow-aura,
-    .cursor-magnetic-ring {
-        display: none !important;
-    }
-}
+/* Note: @media (pointer: coarse) was removed so Windows touchscreen laptops still display effects properly */
 

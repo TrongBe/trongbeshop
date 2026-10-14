@@ -3508,7 +3508,7 @@ main.sim-main {
     overflow-y: auto;
     height: 100%;
     box-sizing: border-box;
-    background: var(--bg-main, #f8fafc);
+    background: transparent !important;
 }
 
 /* Thẻ từng câu hỏi */
@@ -4135,7 +4135,7 @@ main.sim-main {
 
 /* Dark Mode Overrides cho SQL Drills */
 [data-theme="dark"] .drill-console-pane {
-    background: #090d16;
+    background: transparent !important;
 }
 
 [data-theme="dark"] .drill-question-card {
