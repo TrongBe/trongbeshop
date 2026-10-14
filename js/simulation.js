@@ -3,7 +3,7 @@
  * Controller cho tính năng Data Analyst Simulation (Lobby & Workspace)
  */
 
-import { simulationCases } from './simulation-data.js?v=20261014_gateway_v2';
+import { simulationCases } from './simulation-data.js?v=20261014_fix_newline_v3';
 
 let currentCase = null;
 let currentLanguage = 'sql';
@@ -431,7 +431,7 @@ function splitSqlStatements(sqlText) {
 
 function sanitizeSqlStatement(stmt) {
     if (!stmt) return '';
-    let cleaned = stmt.trim();
+    let cleaned = String(stmt).replace(/<br\s*\/?>/gi, '\n').trim();
 
     // Bỏ qua nếu toàn bộ câu lệnh chỉ là comment
     const codeWithoutComments = cleaned
@@ -500,8 +500,11 @@ function runSQLWithAlaSQL(rawSql) {
     document.getElementById('outputTabChart')?.classList.remove('active');
     document.getElementById('outputTabReport')?.classList.remove('active');
 
+    // 0. Khử sạch mọi thẻ <br> nếu người dùng dán mã dính thẻ HTML
+    const cleanSql = String(rawSql || '').replace(/<br\s*\/?>/gi, '\n');
+
     // 1. Tách các câu lệnh SQL (phân tách bởi dấu chấm phẩy ;)
-    const statements = splitSqlStatements(rawSql);
+    const statements = splitSqlStatements(cleanSql);
 
     if (statements.length === 0) {
         if (tableContainer) tableContainer.innerHTML = `<div class="sql-empty-box">🔍 Không có câu lệnh SQL hợp lệ nào được tìm thấy để thực thi.</div>`;
@@ -1801,7 +1804,7 @@ function verifyAndValidateMentorCode(rawCode, lang) {
         }
 
         // Bước A: Tiền xử lý dọn dẹp các lỗi AI thường sinh nhầm (như dính chữ QLSELECT, SQLSELECT, Markdown dính...)
-        let cleaned = rawCode
+        let cleaned = cleanCodeString(rawCode)
             .replace(/^[ \t]*QLSELECT\b/gmi, 'SELECT')
             .replace(/^[ \t]*SQLSELECT\b/gmi, 'SELECT')
             .replace(/^[ \t]*SQL\s+SELECT\b/gmi, 'SELECT')
@@ -1896,18 +1899,34 @@ function verifyAndValidateMentorCode(rawCode, lang) {
 
 let mentorCodeBlockCounter = 0;
 
+function cleanCodeString(str) {
+    if (!str) return '';
+    return String(str)
+        .replace(/<br\s*\/?>/gi, '\n')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&amp;/g, '&')
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .replace(/&nbsp;/g, ' ');
+}
+
 function formatMarkdown(text) {
     if (!text) return '';
 
-    // 1. Xử lý fenced code blocks (```lang\n...\n```) với thanh công cụ Sao chép, Chèn vào Editor & BẢO CHỨNG TỰ KIỂM TRA
-    text = text.replace(/```(\w*)\n([\s\S]*?)```/g, (_, lang, code) => {
+    const codeBlocks = [];
+
+    // 1. Tách và bảo toàn toàn bộ Fenced Code Blocks (```lang ... ```)
+    // Dùng placeholder để các bước replace inline markdown và \n -> <br> KHÔNG BAO GIỜ xâm lấn vào nội dung code!
+    text = text.replace(/```(\w*)[^\S\r\n]*\r?\n([\s\S]*?)```/g, (_, lang, code) => {
         const blockId = `mentor_code_${++mentorCodeBlockCounter}`;
         const cleanLang = (lang || 'sql').toLowerCase();
         const langLabel = `<span class="code-lang-label">${cleanLang.toUpperCase()}</span>`;
 
         // TỰ ĐỘNG KIỂM CHỨNG BẢO ĐẢM CODE CỦA MENTOR ĐÚNG 100% TRƯỚC KHI GỬI
         const verification = verifyAndValidateMentorCode(code, cleanLang);
-        const finalCode = verification.code;
+        // Đảm bảo code thuần túy không chứa bất kỳ thẻ <br> nào
+        const finalCode = cleanCodeString(verification.code).trim();
         const escapedCode = escapeHtml(finalCode);
 
         let verificationBadge = '';
@@ -1947,7 +1966,7 @@ function formatMarkdown(text) {
 
         const copyBtn = `<button type="button" class="btn-code-action btn-copy-code" onclick="window.copyMentorCode('${blockId}', this)" title="Sao chép đoạn mã">📋 Sao chép</button>`;
 
-        return `
+        const blockHtml = `
             <div class="mentor-code-block" id="${blockId}">
                 <div class="mentor-code-header">
                     ${langLabel}
@@ -1958,9 +1977,13 @@ function formatMarkdown(text) {
                 </div>
                 ${verificationBadge}
                 <pre><code>${escapedCode}</code></pre>
-                <textarea class="raw-code-store" style="display:none;">${finalCode}</textarea>
+                <textarea class="raw-code-store" style="display:none;">${escapedCode}</textarea>
             </div>
         `;
+
+        const placeholder = `%%%TRONEX_CODE_BLOCK_${codeBlocks.length}%%%`;
+        codeBlocks.push(blockHtml);
+        return placeholder;
     });
 
     // 2. Inline code `...`
@@ -1968,15 +1991,24 @@ function formatMarkdown(text) {
     // 3. Bold và Italic
     text = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
     text = text.replace(/\*(.*?)\*/g, '<i>$1</i>');
-    // 4. Dòng mới
-    text = text.replace(/\n/g, '<br>');
+    // 4. Dòng mới cho văn bản thông thường
+    text = text.replace(/\r?\n/g, '<br>');
+
+    // 5. Khôi phục lại toàn vẹn các Fenced Code Blocks (giữ nguyên từng ký tự \n xuống dòng, không có <br>)
+    codeBlocks.forEach((blockHtml, idx) => {
+        text = text.replace(`%%%TRONEX_CODE_BLOCK_${idx}%%%`, blockHtml);
+    });
+
     return text;
 }
 
 window.copyMentorCode = function(blockId, btnElement) {
     const block = document.getElementById(blockId);
     if (!block) return;
-    const raw = block.querySelector('.raw-code-store')?.value || block.querySelector('code')?.textContent || '';
+    const rawStore = block.querySelector('.raw-code-store');
+    const codeEl = block.querySelector('code');
+    let raw = rawStore ? rawStore.value : (codeEl?.innerText || codeEl?.textContent || '');
+    raw = cleanCodeString(raw);
     if (!raw) return;
 
     navigator.clipboard.writeText(raw.trim()).then(() => {
@@ -1993,7 +2025,10 @@ window.copyMentorCode = function(blockId, btnElement) {
 window.applyMentorCode = function(blockId, lang) {
     const block = document.getElementById(blockId);
     if (!block) return;
-    const raw = block.querySelector('.raw-code-store')?.value || block.querySelector('code')?.textContent || '';
+    const rawStore = block.querySelector('.raw-code-store');
+    const codeEl = block.querySelector('code');
+    let raw = rawStore ? rawStore.value : (codeEl?.innerText || codeEl?.textContent || '');
+    raw = cleanCodeString(raw);
     if (!raw) return;
 
     const editor = document.getElementById('terminalEditor');
