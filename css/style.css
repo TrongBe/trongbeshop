@@ -6731,6 +6731,14 @@ body.modern-saas-page {
     background: linear-gradient(135deg, #1E1B4B 0%, #4338CA 50%, #0284C7 100%);
 }
 
+.home-quiz-card.category-chem .home-quiz-visual-banner {
+    background: linear-gradient(135deg, #0369A1 0%, #0284C7 50%, #06B6D4 100%);
+}
+
+.home-quiz-card.category-general .home-quiz-visual-banner {
+    background: linear-gradient(135deg, #1E293B 0%, #334155 50%, #475569 100%);
+}
+
 /* Phần thân thẻ chứa thông tin */
 .home-quiz-body {
     padding: 20px;

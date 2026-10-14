@@ -2,6 +2,8 @@ export const mockQuizzes = [
     {
         id: "de_1_dgnl",
         title: "Đề 1 (120/120 câu)",
+        category: "vnu",
+        subject: "VNU-ĐGNL",
         description: "Phần 1: Tiếng Việt, Tiếng Anh (60 câu) & Phần 2: Toán (30 câu) & Phần 3: Tư duy KH (30 câu)",
         questions: [
             // Questions 1-20
@@ -306,6 +308,8 @@ export const mockQuizzes = [
     {
         id: "de_2_dgnl",
         title: "Đề 2: Đề chính thức Đợt 1 - 2026 (120/120 câu)",
+        category: "vnu",
+        subject: "VNU-ĐGNL",
         description: "Phần 1: Ngôn ngữ (60 câu) & Phần 2: Toán học (30 câu) & Phần 3: Tư duy khoa học (30 câu)",
         questions: [
             // 1 - 20 (Tiếng Việt)
@@ -636,6 +640,8 @@ export const mockQuizzes = [
     {
         id: "de_thi_thu_thptqg_anh",
         title: "Đề thi thử THPTQG môn Tiếng Anh",
+        category: "anh",
+        subject: "Tiếng Anh",
         description: "Đề thi thử THPT Quốc Gia môn Tiếng Anh - gồm các dạng: điền vào đoạn văn, sắp xếp hội thoại/đoạn văn, đọc hiểu đoạn văn",
         scoreScale: 10,
         scorePerQuestion: 0.25,
@@ -736,6 +742,8 @@ export const mockQuizzes = [
     {
         id: "de_chuong_1_ester_lipid",
         title: "Chương 1: Ester - Lipid",
+        category: "hoa",
+        subject: "Hóa học",
         description: "Hệ thống bài tập Chương 1: Ester - Lipid (Phần I. Lựa chọn: 24 câu | Phần II. Đúng/Sai: 6 câu | Phần III. Trả lời ngắn: 6 câu | Phần IV. Tự luận: 4 câu)",
         scoreScale: 10,
         scorePerQuestion: 0.25,
@@ -908,6 +916,8 @@ export const mockQuizzes = [
     {
         id: "de_chuong_2_carbohydrate",
         title: "Chương 2: Carbohydrate",
+        category: "hoa",
+        subject: "Hóa học",
         description: "Hệ thống bài tập Ôn tập Chương 2: Carbohydrate (Phần I. Trắc nghiệm: 18 câu | Phần II. Đúng/Sai: 5 câu | Phần III. Trả lời ngắn: 7 câu)",
         scoreScale: 10,
         scorePerQuestion: 0.33,
@@ -1127,6 +1137,8 @@ export const mockQuizzes = [
     {
         id: "de_4_advertisement",
         title: "4 advertisement",
+        category: "anh",
+        subject: "Tiếng Anh",
         description: "4 bài đọc quảng cáo Tiếng Anh (Điền từ vào chỗ trống - 24 câu hỏi)",
         scoreScale: 10,
         scorePerQuestion: 0.42,

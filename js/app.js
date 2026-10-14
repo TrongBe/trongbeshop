@@ -1,4 +1,4 @@
-import { mockQuizzes } from './data.js?v=84';
+import { mockQuizzes } from './data.js?v=86';
 import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
@@ -191,6 +191,20 @@ function initQuizList() {
         card.className = 'quiz-card';
         card.dataset.quizId = quiz.id;
 
+        // Xác định môn học / loại đề để hiển thị badge
+        let subjectBadge = '';
+        const qCount = getQuizQuestionCount(quiz);
+        const titleLower = ((quiz.title || '') + ' ' + (quiz.id || '')).toLowerCase();
+        if (qCount === 120 || quiz.category === 'vnu' || (quiz.id && quiz.id.endsWith('_dgnl'))) {
+            subjectBadge = '<span style="background:#4F46E5; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🎓 VNU-ĐGNL</span>';
+        } else if (quiz.category === 'hoa' || titleLower.includes('hóa') || titleLower.includes('ester') || titleLower.includes('lipid') || titleLower.includes('carbohydrate') || (quiz.id && (quiz.id.includes('chuong_1') || quiz.id.includes('chuong_2')))) {
+            subjectBadge = '<span style="background:#0284C7; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🧪 Hóa học</span>';
+        } else if (quiz.category === 'anh' || titleLower.includes('anh') || titleLower.includes('english') || titleLower.includes('advertisement')) {
+            subjectBadge = '<span style="background:#0D9488; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🇬🇧 Tiếng Anh</span>';
+        } else if (quiz.category === 'toan' || titleLower.includes('toán') || titleLower.includes('math')) {
+            subjectBadge = '<span style="background:#F59E0B; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">📐 Toán học</span>';
+        }
+
         // Build card HTML (không dùng onclick attribute)
         card.innerHTML = `
             <h3>${quiz.title}</h3>
@@ -203,9 +217,10 @@ function initQuizList() {
                     <span>${quiz.createdBy.displayName || 'Ẩn danh'}</span>
                 </div>` : ''}
             <div class="tags-container" style="margin-bottom: 24px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px;">
+                ${subjectBadge}
                 ${(quiz.privacy === 'public' || !quiz.privacy) ? '<span style="background:#10B981; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🌍 Công Khai</span>' : '<span style="background:#6366f1; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🔒 Riêng tư</span>'}
-                <span class="quiz-meta">📚 Số câu: ${getQuizQuestionCount(quiz)}</span>
-                ${(quiz.id === 'de_thi_thu_thptqg_anh' || quiz.scoreScale === 10) ? '<span style="background:#f59e0b; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🎯 Thang điểm 10 (0.25đ/câu)</span>' : ''}
+                <span class="quiz-meta">📚 Số câu: ${qCount}</span>
+                ${(qCount !== 120 && (quiz.scoreScale === 10 || quiz.id === 'de_thi_thu_thptqg_anh' || quiz.id.includes('chuong_') || quiz.id.includes('advertisement'))) ? '<span style="background:#f59e0b; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🎯 Thang điểm 10</span>' : '<span style="background:#6366f1; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🎯 Thang điểm 1200</span>'}
                 <span class="quiz-views" id="views-${quiz.id}">Lượt truy cập: ${quiz.viewCount || 0}</span>
             </div>
             <div class="card-btn-row" style="display: flex; gap: 10px;">
@@ -1408,92 +1423,97 @@ function loadCustomQuizzes() {
 }
 
 window.loadPublicQuizzes = function () {
-    if (!quizListContainer && !isVACTPage) return; // Bảo vệ trang index.html
     console.log("🔄 Đang quét dữ liệu từ Cloud... (Trang TRONEX: " + isVACTPage + ")");
     try {
-        const publicRef = ref(dbRT, FIREBASE_ROOT);
-        onValue(publicRef, (snapshot) => {
+        const handleSnapshot = (snapshot, sourceBranch) => {
             const data = snapshot.val();
-            if (data) {
-                let listChanged = false;
+            if (!data) return;
+            let listChanged = false;
 
-                // v70: Không xóa mockQuizzes nữa - chỉ merge từ Firebase vào
-                // de_1_dgnl từ data.js là seed ban đầu, Firebase là nguồn chân lý sau khi đã có data
+            Object.keys(data).forEach(key => {
+                let pq = convertFirebaseData(data[key]);
+                if (!pq) return;
+                const pqId = key.toString().trim();
+                const existingIdx = mockQuizzes.findIndex(q => q && (q.id || '').toString().trim() === pqId);
 
-                Object.keys(data).forEach(key => {
-                    // v70: Dùng convertFirebaseData để đệ quy convert toàn bộ nested arrays
-                    let pq = convertFirebaseData(data[key]);
-                    const pqId = key.toString().trim();
-                    const existingIdx = mockQuizzes.findIndex(q => q && (q.id || '').toString().trim() === pqId);
-
-                    // 1. Cập nhật lượt xem trực tiếp trên DOM và Memory
-                    if (pq.viewCount !== undefined) {
-                        if (existingIdx !== -1) mockQuizzes[existingIdx].viewCount = pq.viewCount;
-                        const viewEl = document.getElementById(`views-${pqId}`);
-                        if (viewEl) {
+                // 1. Cập nhật lượt xem trực tiếp trên DOM và Memory
+                if (pq.viewCount !== undefined) {
+                    if (existingIdx !== -1) mockQuizzes[existingIdx].viewCount = pq.viewCount;
+                    const viewEl = document.getElementById(`views-${pqId}`);
+                    if (viewEl) {
+                        if (viewEl.classList.contains('home-quiz-pill')) {
+                            viewEl.innerHTML = `👁️ ${pq.viewCount} lượt`;
+                        } else {
                             viewEl.innerHTML = `Lượt truy cập: ${pq.viewCount}`;
                         }
                     }
+                }
 
-                    // 2. Xử lý nội dung đề thi - Firebase là nguồn chân lý
-                    if (!pq.title || !pq.questions) return;
-                    if (!Array.isArray(pq.questions) || pq.questions.length === 0) return;
+                // 2. Xử lý nội dung đề thi - Firebase là nguồn chân lý
+                if (!pq.title || !pq.questions) return;
+                if (!Array.isArray(pq.questions) || pq.questions.length === 0) return;
 
-                    // Với các đề seed từ data.js: Firebase được phép override NHƯNG phải có đủ câu hỏi
-                    // Nếu Firebase trả về ít hơn 50% so với backup → dùng backup (data bị corrupt)
-                    if (window.__vactSeedBackup) {
-                        const backupObj = window.__vactSeedBackup.find(q => q && q.id === pqId);
-                        if (backupObj) {
-                            const backupCount = (backupObj.questions || []).length;
-                            if (backupCount > 0 && pq.questions.length < backupCount * 0.5) {
-                                console.warn(`[TRONEX] Firebase data cho ${pqId} bị thiếu câu hỏi, dùng backup từ data.js`);
-                                return; // Giữ nguyên version từ data.js
-                            }
+                // Với các đề seed từ data.js: Firebase được phép override NHƯNG phải có đủ câu hỏi
+                if (window.__vactSeedBackup) {
+                    const backupObj = window.__vactSeedBackup.find(q => q && q.id === pqId);
+                    if (backupObj) {
+                        const backupCount = (backupObj.questions || []).length;
+                        if (backupCount > 0 && pq.questions.length < backupCount * 0.5) {
+                            console.warn(`[TRONEX] Firebase data cho ${pqId} bị thiếu câu hỏi, dùng backup từ data.js`);
+                            return; // Giữ nguyên version từ data.js
                         }
                     }
+                }
 
-                    if (existingIdx === -1) {
-                        mockQuizzes.push(pq);
+                if (existingIdx === -1) {
+                    mockQuizzes.push(pq);
+                    listChanged = true;
+                } else {
+                    const localCopy = { ...mockQuizzes[existingIdx] };
+                    const remoteCopy = { ...pq };
+                    delete localCopy.viewCount;
+                    delete remoteCopy.viewCount;
+
+                    if (JSON.stringify(localCopy) !== JSON.stringify(remoteCopy)) {
+                        mockQuizzes[existingIdx] = pq;
                         listChanged = true;
-                    } else {
-                        const localCopy = { ...mockQuizzes[existingIdx] };
-                        const remoteCopy = { ...pq };
-                        delete localCopy.viewCount;
-                        delete remoteCopy.viewCount;
+                    }
+                }
+            });
 
-                        if (JSON.stringify(localCopy) !== JSON.stringify(remoteCopy)) {
-                            mockQuizzes[existingIdx] = pq;
-                            listChanged = true;
-                        }
+            // Tự động seed đề TRONEX lên Firebase nếu chưa có
+            if (isVACTPage && sourceBranch === 'VACT') {
+                const seedList = window.__vactSeedBackup || mockQuizzes;
+                seedList.forEach(seed => {
+                    if (seed && seed.id && (!data || !data[seed.id])) {
+                        console.log(`🚀 Seeding ${seed.id} lên Firebase lần đầu...`);
+                        window.__publishPublicQuiz(seed);
                     }
                 });
-
-                // v51: Tự động seed đề TRONEX lên Firebase nếu chưa có
-                if (isVACTPage) {
-                    const seedList = window.__vactSeedBackup || mockQuizzes;
-                    seedList.forEach(seed => {
-                        if (seed && seed.id && (!data || !data[seed.id])) {
-                            console.log(`🚀 Seeding ${seed.id} lên Firebase lần đầu...`);
-                            window.__publishPublicQuiz(seed);
-                        }
-                    });
-                }
-
-                if (listChanged) initQuizList();
-            } else {
-                // v51: Firebase trống hoàn toàn
-                if (isVACTPage) {
-                    const seedList = window.__vactSeedBackup || mockQuizzes;
-                    if (seedList.length > 0) {
-                        console.log("🚀 Nhánh VACT trống, đang tự động tạo và đồng bộ các đề seed...");
-                        seedList.forEach(seed => window.__publishPublicQuiz(seed));
-                    } else {
-                        console.warn("⚠️ Không tìm thấy đề seed trong mockQuizzes để đồng bộ.");
-                    }
-                }
             }
+
+            if (listChanged && typeof initQuizList === 'function' && quizListContainer) {
+                initQuizList();
+            }
+            if (typeof window.renderHomeQuizGrid === 'function') {
+                window.renderHomeQuizGrid();
+            }
+        };
+
+        // Lắng nghe nhánh VACT (chứa các đề thi V-ACT & chuyên đề môn học chính thức)
+        const vactRef = ref(dbRT, 'VACT');
+        onValue(vactRef, (snapshot) => {
+            handleSnapshot(snapshot, 'VACT');
         }, (error) => {
-            console.warn("⚠️ Firebase connection blocked or restricted:", error.message);
+            console.warn("⚠️ Firebase VACT branch error:", error.message);
+        });
+
+        // Lắng nghe nhánh public_quizzes (chứa các đề cộng đồng)
+        const publicQuizzesRef = ref(dbRT, 'public_quizzes');
+        onValue(publicQuizzesRef, (snapshot) => {
+            handleSnapshot(snapshot, 'public_quizzes');
+        }, (error) => {
+            console.warn("⚠️ Firebase public_quizzes branch error:", error.message);
         });
     } catch (e) { console.error("Load public error:", e); }
 };
