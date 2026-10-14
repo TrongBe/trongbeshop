@@ -7552,3 +7552,147 @@ body.modern-saas-page {
     border-color: rgba(51, 65, 85, 0.5);
     box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.45);
 }
+
+/* ============================================================
+   INTERACTIVE ANTIGRAVITY CURSOR & PROXIMITY SPOTLIGHT SYSTEM
+   ============================================================ */
+
+/* Layer 1: Antigravity Micro-particles Canvas */
+#antigravityCanvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none !important;
+    z-index: 0;
+    transition: opacity 0.4s ease;
+}
+
+/* Layer 2: Cursor Aura (Radial Glow) */
+.cursor-glow-aura {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 420px;
+    height: 420px;
+    margin-left: -210px;
+    margin-top: -210px;
+    border-radius: 50%;
+    pointer-events: none !important;
+    z-index: 1;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(14, 165, 233, 0.05) 35%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    will-change: transform;
+}
+
+[data-theme="dark"] .cursor-glow-aura {
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.18) 0%, rgba(56, 189, 248, 0.09) 35%, transparent 70%);
+}
+
+/* Layer 2: Cursor Magnetic Ring */
+.cursor-magnetic-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    margin-left: -16px;
+    margin-top: -16px;
+    border-radius: 50%;
+    pointer-events: none !important;
+    z-index: 9999;
+    border: 1.5px solid rgba(79, 70, 229, 0.65);
+    box-shadow: 0 0 10px rgba(79, 70, 229, 0.25);
+    opacity: 0;
+    transition: opacity 0.3s ease, border-color 0.2s ease, transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+    will-change: transform;
+}
+
+[data-theme="dark"] .cursor-magnetic-ring {
+    border-color: rgba(129, 140, 248, 0.7);
+    box-shadow: 0 0 12px rgba(99, 102, 241, 0.4);
+}
+
+.cursor-magnetic-ring.is-hovering {
+    border-color: #4F46E5 !important;
+    box-shadow: 0 0 16px rgba(79, 70, 229, 0.45) !important;
+}
+
+[data-theme="dark"] .cursor-magnetic-ring.is-hovering {
+    border-color: #38BDF8 !important;
+    box-shadow: 0 0 18px rgba(56, 189, 248, 0.65) !important;
+}
+
+/* Layer 3: Proximity Card Spotlight */
+.quiz-card,
+.mission-card,
+.bento-card,
+.setup-card,
+.vact-lobby-hero,
+.profile-card {
+    position: relative;
+}
+
+.quiz-card::before,
+.mission-card::before,
+.bento-card::before,
+.setup-card::before,
+.vact-lobby-hero::before,
+.profile-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(350px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(99, 102, 241, 0.16), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none !important;
+    z-index: 1;
+}
+
+.quiz-card:hover::before,
+.mission-card:hover::before,
+.bento-card:hover::before,
+.setup-card:hover::before,
+.vact-lobby-hero:hover::before,
+.profile-card:hover::before {
+    opacity: 1;
+}
+
+[data-theme="dark"] .quiz-card::before,
+[data-theme="dark"] .mission-card::before,
+[data-theme="dark"] .bento-card::before,
+[data-theme="dark"] .setup-card::before,
+[data-theme="dark"] .vact-lobby-hero::before,
+[data-theme="dark"] .profile-card::before {
+    background: radial-gradient(350px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(99, 102, 241, 0.22), transparent 60%);
+}
+
+.quiz-card > *,
+.mission-card > *,
+.bento-card > *,
+.setup-card > *,
+.vact-lobby-hero > *,
+.profile-card > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Safeguards: Zen Mode in v-act.html & simulation */
+body.zen-mode #antigravityCanvas,
+body.zen-mode .cursor-glow-aura,
+body.zen-mode .cursor-magnetic-ring {
+    display: none !important;
+    opacity: 0 !important;
+}
+
+/* Safeguards: Disable on touch devices */
+@media (pointer: coarse) {
+    #antigravityCanvas,
+    .cursor-glow-aura,
+    .cursor-magnetic-ring {
+        display: none !important;
+    }
+}
+
