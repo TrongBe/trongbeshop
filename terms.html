@@ -1,43 +1,173 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Điều Khoản Sử Dụng - Học Tập Trực Tuyến</title>
+  <title>Điều Khoản Sử Dụng — TRONEX</title>
+  <meta name="description" content="Điều khoản và quy định sử dụng nền tảng luyện thi TRONEX.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Inter', sans-serif; background-color: #F3F4F6; color: #111827; line-height: 1.6; padding: 40px 20px; margin: 0; }
-    .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
-    h1 { color: #4F46E5; margin-bottom: 24px; text-align: center; }
-    h2 { color: #4338CA; margin-top: 32px; font-size: 20px; }
-    p { margin-bottom: 16px; color: #4B5563; }
-    ul { margin-bottom: 16px; color: #4B5563; padding-left: 20px; }
-    li { margin-bottom: 8px; }
-    .btn-back { display: inline-block; margin-top: 32px; padding: 12px 24px; background: #4F46E5; color: white; text-decoration: none; border-radius: 8px; font-weight: 500; text-align: center; }
-    .btn-back:hover { background: #4338CA; }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=20261014_darkfix_2">
+
+  <!-- Dark Mode Script (Prevent flash on initial paint) -->
+  <script>
+    (function () {
+      const saved = localStorage.getItem('tronex_theme') || 'light';
+      if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    })();
+  </script>
 </head>
+
 <body>
-  <div class="container">
-    <h1>Điều Khoản Sử Dụng</h1>
-    <p>Chào mừng bạn đến với Nền tảng Học Tập Trực Tuyến được xây dựng bởi Nguyễn Thanh Trọng. Khi truy cập và sử dụng trang web này, bạn đồng ý với các điều khoản và điều kiện dưới đây.</p>
-    
-    <h2>1. Mục Đích Sử Dụng</h2>
-    <p>Nền tảng được tạo ra hoàn toàn với mục đích phi thương mại, nhằm cung cấp môi trường học tập, thi thử và ôn luyện hiệu quả, nhanh chóng cho học sinh. Mọi tài nguyên trên web được sử dụng cho việc tự rèn luyện cá nhân.</p>
+  <!-- ============================================================
+       FLOATING GLASSMORPHISM NAVBAR (DESIGN SYSTEM UNIFIED)
+       ============================================================ -->
+  <nav class="nav-floating-bar" id="mainNavbar">
+    <div class="nav-glass-shell">
+      <!-- Left: Brand Logo & Monospace Version Badge -->
+      <a href="index.html" class="nav-brand-wrap" title="TRONEX Home">
+        <span class="nav-brand-logo">TRONEX</span>
+        <span class="nav-version-badge">v1.9</span>
+      </a>
 
-    <h2>2. Hành Vi Bị Nghiêm Cấm</h2>
-    <ul>
-      <li>Nghiêm cấm sao chép, phân phối hoặc sử dụng dữ liệu của trang web cho các mục đích thương mại mà chưa có sự đồng ý của tác giả.</li>
-      <li>Nghiêm cấm các hành vi tấn công, gây nghẽn mạng, phá hoại hệ thống (Hack/DDoS) hoặc khai thác lỗ hổng hệ thống để gian lận điểm số.</li>
-      <li>Không được sử dụng tài khoản của người khác hoặc chia sẻ tài khoản cá nhân cho mục đích làm hỏng tính toàn vẹn của kết quả bài thi.</li>
+      <!-- Center: Pill Navigation Links -->
+      <div class="nav-pills">
+        <a href="index.html" class="nav-pill-item">Tổng quan</a>
+        <a href="v-act.html" class="nav-pill-item">Luyện đề V-ACT</a>
+        <a href="simulation.html" class="nav-pill-item">Thực hành SQL</a>
+        <a href="profile.html" class="nav-pill-item">Hồ sơ</a>
+      </div>
+
+      <!-- Right: Action Buttons -->
+      <div class="nav-actions-cluster">
+        <button class="theme-toggle-btn" id="themeToggleBtn" title="Chuyển chế độ Sáng / Tối">🌙</button>
+        <button class="auth-btn" id="authBtn" title="Đăng nhập">
+          <span>🔑</span><span>Đăng nhập</span>
+        </button>
+        <button class="menu-btn" onclick="toggleSidebar()" aria-label="Menu di động">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sidebar Overlay & Menu Drawer cho Thiết bị di động -->
+  <div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+  <div id="sidebarMenu" class="sidebar-menu">
+    <div class="sidebar-header">
+      <h2>Menu Điều Hướng</h2>
+      <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="index.html">🏠 Tổng quan</a></li>
+      <li><a href="v-act.html">🚀 Luyện đề V-ACT</a></li>
+      <li><a href="simulation.html">📊 Thực hành SQL</a></li>
+      <li><a href="profile.html">👤 Hồ sơ</a></li>
     </ul>
-
-    <h2>3. Thay Đổi Nội Dung</h2>
-    <p>Chúng tôi có quyền chỉnh sửa, thay đổi hoặc xóa bỏ các đề thi, bài tập và tính năng của hệ thống bất kỳ lúc nào để liên tục tối ưu trải nghiệm học tập mà không cần thông báo trước.</p>
-
-    <a href="index.html" class="btn-back">← Quay lại Trang Chủ</a>
   </div>
+
+  <main>
+    <div class="container saas-container">
+      <div class="bento-policy-surface">
+        <h1>Điều Khoản Sử Dụng</h1>
+        <p>Chào mừng bạn đến với Nền tảng Học Tập &amp; Luyện Thi Trực Tuyến <strong>TRONEX</strong> được xây dựng bởi <strong>Nguyễn Thanh Trọng</strong>. Khi truy cập và sử dụng trang web này, bạn đồng ý tuân thủ các điều khoản và điều kiện dưới đây.</p>
+
+        <h2>📚 1. Mục Đích Sử Dụng</h2>
+        <p>Nền tảng được tạo ra hoàn toàn với mục đích giáo dục, phi thương mại, nhằm cung cấp môi trường luyện đề thi thử chuẩn ĐGNL V-ACT và thực hành truy vấn SQL trực quan cho học sinh, sinh viên. Mọi tài nguyên trên web được sử dụng cho việc tự rèn luyện và phát triển kỹ năng cá nhân.</p>
+
+        <h2>⚠️ 2. Hành Vi Bị Nghiêm Cấm</h2>
+        <ul>
+          <li>Nghiêm cấm sao chép, tự ý phân phối hoặc sử dụng trái phép dữ liệu đề thi của hệ thống cho các mục đích thương mại khi chưa có sự đồng ý của tác giả.</li>
+          <li>Nghiêm cấm các hành vi tấn công mạng, gây nghẽn máy chủ (DDoS), hoặc can thiệp kỹ thuật trái phép vào cơ sở dữ liệu Firebase nhằm gian lận điểm số.</li>
+          <li>Không được mạo danh tài khoản người khác hoặc chia sẻ tài khoản cho mục đích làm sai lệch kết quả bảng xếp hạng và nhật ký học tập.</li>
+        </ul>
+
+        <h2>🔄 3. Thay Đổi Nội Dung &amp; Cập Nhật</h2>
+        <p>Chúng tôi có quyền chỉnh sửa, bổ sung hoặc tối ưu hóa các bộ đề thi, tính năng AI hỗ trợ và môi trường thực hành SQL bất kỳ lúc nào để liên tục nâng cao trải nghiệm học tập của người dùng.</p>
+
+        <div style="margin-top: 36px; display: flex; gap: 12px; flex-wrap: wrap;">
+          <a href="index.html" class="btn btn-primary" style="padding: 12px 24px; border-radius: var(--radius-md); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+            <span>🏠 Quay lại Trang Chủ</span>
+          </a>
+          <a href="privacy.html" class="btn btn-outline" style="padding: 12px 24px; border-radius: var(--radius-md); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; color: var(--primary); border-color: var(--primary);">
+            <span>🛡️ Xem Chính Sách Quyền Riêng Tư</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============================================================
+       UNIFIED MODERN FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="footer-inner container saas-container" style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px; padding:40px 24px;">
+      <div class="footer-brand" style="max-width:320px;">
+        <span class="nav-brand-logo" style="font-size:1.4rem; font-weight:800; background:linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">TRONEX</span>
+        <p style="font-size:0.88rem; color:var(--text-muted); margin-top:8px; line-height:1.6;">Nền tảng luyện đề đánh giá năng lực V-ACT và thực hành truy vấn SQL trực tuyến hàng đầu.</p>
+      </div>
+      <div class="footer-links-group" style="display:flex; gap:40px; flex-wrap:wrap;">
+        <div>
+          <h4 style="font-size:0.95rem; font-weight:700; color:var(--text-main); margin-bottom:12px;">Điều hướng</h4>
+          <p style="margin-bottom:8px;"><a href="index.html" style="color:var(--text-muted); font-size:0.88rem; text-decoration:none;">Tổng quan</a></p>
+          <p style="margin-bottom:8px;"><a href="v-act.html" style="color:var(--text-muted); font-size:0.88rem; text-decoration:none;">Luyện đề V-ACT</a></p>
+          <p style="margin-bottom:8px;"><a href="simulation.html" style="color:var(--text-muted); font-size:0.88rem; text-decoration:none;">Thực hành SQL</a></p>
+          <p style="margin-bottom:8px;"><a href="profile.html" style="color:var(--text-muted); font-size:0.88rem; text-decoration:none;">Hồ sơ cá nhân</a></p>
+        </div>
+        <div>
+          <h4 style="font-size:0.95rem; font-weight:700; color:var(--text-main); margin-bottom:12px;">Pháp lý &amp; Trợ giúp</h4>
+          <p style="margin-bottom:8px;"><a href="terms.html" style="color:var(--primary); font-size:0.88rem; font-weight:600; text-decoration:none;">Điều khoản sử dụng</a></p>
+          <p style="margin-bottom:8px;"><a href="privacy.html" style="color:var(--text-muted); font-size:0.88rem; text-decoration:none;">Chính sách riêng tư</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom" style="border-top:1px solid var(--border); padding:18px 24px; text-align:center; font-size:0.85rem; color:var(--text-muted);">
+      <p>Nền tảng: <strong>TRONEX</strong> | Tác giả: <strong>Nguyễn Thanh Trọng</strong> | Phiên bản: <strong style="color:var(--primary);">v1.9</strong></p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/auth.js?v=2"></script>
+
+  <script>
+    // Theme toggle
+    document.addEventListener('DOMContentLoaded', function () {
+      const btn = document.getElementById('themeToggleBtn');
+      if (!btn) return;
+      const isDark = () => document.documentElement.getAttribute('data-theme') === 'dark';
+      btn.textContent = isDark() ? '☀️' : '🌙';
+      btn.addEventListener('click', () => {
+        const nextTheme = isDark() ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', nextTheme);
+        localStorage.setItem('tronex_theme', nextTheme);
+        btn.textContent = nextTheme === 'dark' ? '☀️' : '🌙';
+      });
+    });
+
+    // Mobile sidebar
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebarMenu');
+      const overlay = document.getElementById('sidebarOverlay');
+      if (!sidebar || !overlay) return;
+      if (sidebar.classList.contains('active')) {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+        setTimeout(() => { overlay.style.display = 'none'; }, 280);
+      } else {
+        overlay.style.display = 'block';
+        setTimeout(() => {
+          overlay.classList.add('active');
+          sidebar.classList.add('active');
+        }, 10);
+      }
+    }
+    window.toggleSidebar = toggleSidebar;
+  </script>
 </body>
+
 </html>

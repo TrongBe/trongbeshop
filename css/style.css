@@ -64,16 +64,104 @@
 
 html {
     scroll-behavior: smooth;
+    background-color: #F8FAFC;
+}
+
+[data-theme="dark"] html {
+    background-color: #090D16;
 }
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--bg-page);
+    background-color: transparent;
     color: var(--text-main);
     line-height: 1.6;
-    transition: background-color var(--transition), color var(--transition);
+    transition: color var(--transition);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* ============================================================
+   1. GLOBAL AMBIENT AURORA GLOW & ARCHITECTURAL GRID (v2.0)
+   ============================================================ */
+
+/* Global Aurora Mesh on body::before */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background-color: #F8FAFC;
+    background-image: 
+        radial-gradient(circle at 12% 14%, #E0E7FF 0%, rgba(224, 231, 255, 0.45) 35%, transparent 65%),
+        radial-gradient(circle at 88% 26%, #E0F2FE 0%, rgba(224, 242, 254, 0.5) 32%, transparent 60%),
+        radial-gradient(circle at 45% 82%, #F3E8FF 0%, rgba(243, 232, 255, 0.4) 38%, transparent 68%);
+    filter: blur(80px);
+    opacity: 0.95;
+    animation: auroraDrift 18s ease-in-out infinite alternate;
+}
+
+[data-theme="dark"] body::before {
+    background-color: #090D16;
+    background-image: 
+        radial-gradient(circle at 15% 15%, rgba(79, 70, 229, 0.16) 0%, transparent 60%),
+        radial-gradient(circle at 85% 25%, rgba(6, 182, 212, 0.10) 0%, transparent 55%),
+        radial-gradient(circle at 50% 75%, rgba(139, 92, 246, 0.12) 0%, transparent 60%);
+    filter: blur(80px);
+    opacity: 1;
+}
+
+/* Global Subtle Architectural Grid on body::after */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: 
+        linear-gradient(to right, rgba(99, 102, 241, 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(99, 102, 241, 0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+    mask-image: radial-gradient(ellipse at 50% 20%, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 20%, black 30%, transparent 80%);
+}
+
+[data-theme="dark"] body::after {
+    background-image: 
+        linear-gradient(to right, rgba(99, 102, 241, 0.10) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(99, 102, 241, 0.10) 1px, transparent 1px);
+    mask-image: radial-gradient(ellipse at 50% 20%, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 20%, black 30%, transparent 80%);
+}
+
+/* Smart Exception: Hide Aurora Glow & Grid in Zen Mode */
+body.zen-mode {
+    background-color: var(--bg-page) !important;
+}
+body.zen-mode::before,
+body.zen-mode::after {
+    display: none !important;
+}
+
+/* Page Transition: Smooth Content Reveal across all pages */
+@keyframes pageContentReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+main {
+    animation: pageContentReveal 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    position: relative;
+    z-index: 2;
 }
 
 .container {
@@ -5188,21 +5276,15 @@ body.zen-mode .btn-zen-toggle {
 /* MODERN BENTO GRID & DEVELOPER SAAS HOMEPAGE (v1.9)           */
 /* ============================================================ */
 
-/* --- Dot-grid Pattern & Layout Shell --- */
+/* --- Dot-grid Pattern & Layout Shell (Now unified globally via body::before and body::after) --- */
 body.modern-saas-page {
-    background-color: #F8FAFC;
-    background-image: radial-gradient(rgba(148, 163, 184, 0.22) 1.2px, transparent 1.2px);
-    background-size: 24px 24px;
+    background-color: transparent;
     color: #0F172A;
     min-height: 100vh;
 }
 
 [data-theme="dark"] body.modern-saas-page {
-    background-color: #090D16;
-    background-image: 
-        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.15), transparent 70%),
-        radial-gradient(rgba(255, 255, 255, 0.08) 1.2px, transparent 1.2px);
-    background-size: 100% 100%, 24px 24px;
+    background-color: transparent;
     color: #F1F5F9;
 }
 
@@ -6258,16 +6340,9 @@ body.modern-saas-page {
    AURORA MESH GRADIENT & PERSPECTIVE GRID (v2.0 VISUAL UPGRADE)
    ============================================================ */
 
-/* Khung bọc Aurora Mesh và Lưới viễn cảnh */
+/* Khung bọc Aurora Mesh và Lưới viễn cảnh (Hiện đã chuyển sang body::before và body::after toàn cục) */
 .aurora-ambient-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
+    display: none !important;
 }
 
 /* Lưới tọa độ SVG với mask làm mờ dần viền */
@@ -7091,4 +7166,375 @@ body.modern-saas-page {
     border-color: #818CF8 !important;
     color: #FFFFFF !important;
     background: rgba(99, 102, 241, 0.15) !important;
+}
+
+/* ============================================================
+   DESIGN SYSTEM SYNCHRONIZATION (v2.0 ALL-PAGES UNIFIED)
+   ============================================================ */
+
+/* 1. V-ACT Lobby Hero Banner */
+.vact-lobby-hero {
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.08) 0%, rgba(124, 58, 237, 0.05) 100%);
+    border-radius: var(--radius-xl);
+    padding: 36px 32px;
+    margin-bottom: 28px;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+}
+
+[data-theme="dark"] .vact-lobby-hero {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.75) 0%, rgba(15, 23, 42, 0.85) 100%);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+.vact-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--primary-light);
+    color: var(--primary);
+    padding: 5px 14px;
+    border-radius: 9999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    border: 1px solid rgba(79, 70, 229, 0.2);
+}
+
+.vact-lobby-hero h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+    line-height: 1.25;
+}
+
+.vact-lobby-hero p {
+    font-size: 0.98rem;
+    color: var(--text-muted);
+    max-width: 720px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.vact-hero-meta-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.vact-hero-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-surface);
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-main);
+    box-shadow: var(--shadow-sm);
+}
+
+/* 2. Modernized Quiz Card & Accent Bars */
+.quiz-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.05);
+}
+
+[data-theme="dark"] .quiz-card {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.4);
+}
+
+/* Top Accent Bar on Quiz Cards */
+.quiz-card-accent-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+}
+
+.quiz-card-accent-bar.accent-vnu {
+    background: linear-gradient(90deg, #4F46E5 0%, #7C3AED 100%);
+}
+
+.quiz-card-accent-bar.accent-hoa {
+    background: linear-gradient(90deg, #0284C7 0%, #06B6D4 100%);
+}
+
+.quiz-card-accent-bar.accent-anh {
+    background: linear-gradient(90deg, #0D9488 0%, #10B981 100%);
+}
+
+.quiz-card-accent-bar.accent-toan {
+    background: linear-gradient(90deg, #F59E0B 0%, #EA580C 100%);
+}
+
+.quiz-card-accent-bar.accent-default {
+    background: linear-gradient(90deg, #6366F1 0%, #8B5CF6 100%);
+}
+
+/* Quiz Pill Badges */
+.quiz-pill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+
+.quiz-pill-badge.badge-vnu {
+    background: rgba(79, 70, 229, 0.12);
+    color: #4F46E5;
+    border: 1px solid rgba(79, 70, 229, 0.28);
+}
+[data-theme="dark"] .quiz-pill-badge.badge-vnu {
+    background: rgba(99, 102, 241, 0.2);
+    color: #A5B4FC;
+    border-color: rgba(99, 102, 241, 0.4);
+}
+
+.quiz-pill-badge.badge-hoa {
+    background: rgba(2, 132, 199, 0.12);
+    color: #0284C7;
+    border: 1px solid rgba(2, 132, 199, 0.28);
+}
+[data-theme="dark"] .quiz-pill-badge.badge-hoa {
+    background: rgba(14, 165, 233, 0.2);
+    color: #7DD3FC;
+    border-color: rgba(14, 165, 233, 0.4);
+}
+
+.quiz-pill-badge.badge-anh {
+    background: rgba(13, 148, 136, 0.12);
+    color: #0D9488;
+    border: 1px solid rgba(13, 148, 136, 0.28);
+}
+[data-theme="dark"] .quiz-pill-badge.badge-anh {
+    background: rgba(20, 184, 166, 0.2);
+    color: #5EEAD4;
+    border-color: rgba(20, 184, 166, 0.4);
+}
+
+.quiz-pill-badge.badge-toan {
+    background: rgba(245, 158, 11, 0.12);
+    color: #D97706;
+    border: 1px solid rgba(245, 158, 11, 0.28);
+}
+[data-theme="dark"] .quiz-pill-badge.badge-toan {
+    background: rgba(245, 158, 11, 0.2);
+    color: #FCD34D;
+    border-color: rgba(245, 158, 11, 0.4);
+}
+
+.quiz-pill-badge.badge-public {
+    background: rgba(16, 185, 129, 0.12);
+    color: #059669;
+    border: 1px solid rgba(16, 185, 129, 0.28);
+}
+[data-theme="dark"] .quiz-pill-badge.badge-public {
+    background: rgba(16, 185, 129, 0.2);
+    color: #6EE7B7;
+    border-color: rgba(16, 185, 129, 0.4);
+}
+
+.quiz-pill-badge.badge-private {
+    background: rgba(99, 102, 241, 0.12);
+    color: #4F46E5;
+    border: 1px solid rgba(99, 102, 241, 0.28);
+}
+[data-theme="dark"] .quiz-pill-badge.badge-private {
+    background: rgba(99, 102, 241, 0.2);
+    color: #C7D2FE;
+    border-color: rgba(99, 102, 241, 0.4);
+}
+
+.quiz-pill-badge.badge-meta {
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+}
+[data-theme="dark"] .quiz-pill-badge.badge-meta {
+    background: rgba(255, 255, 255, 0.05);
+    color: #94A3B8;
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Glowing Start Button on Quiz Card */
+.card-start-btn {
+    background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25) !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    border-radius: var(--radius-md) !important;
+    font-weight: 600 !important;
+}
+
+.card-start-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 24px rgba(79, 70, 229, 0.45) !important;
+    filter: brightness(1.05) !important;
+}
+
+/* 3. Bento Policy Surface for Privacy & Terms pages */
+.bento-policy-surface {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 44px 40px;
+    box-shadow: var(--shadow-md);
+    margin: 30px auto 60px;
+    max-width: 840px;
+    position: relative;
+    overflow: hidden;
+}
+
+[data-theme="dark"] .bento-policy-surface {
+    background: rgba(17, 24, 39, 0.78);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.4);
+}
+
+.bento-policy-surface::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #4F46E5 0%, #06B6D4 50%, #8B5CF6 100%);
+}
+
+.bento-policy-surface h1 {
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.bento-policy-surface h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-top: 32px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.bento-policy-surface p,
+.bento-policy-surface ul {
+    color: var(--text-muted);
+    font-size: 0.98rem;
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+.bento-policy-surface ul {
+    padding-left: 24px;
+}
+
+.bento-policy-surface li {
+    margin-bottom: 8px;
+}
+
+/* 4. Unified Card Hover Lift & Spotlight Across All Pages */
+.quiz-card:hover,
+.mission-card:hover,
+.stat-card:hover,
+.bento-card:hover {
+    transform: translateY(-4px) !important;
+    border-color: rgba(99, 102, 241, 0.45) !important;
+    box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(99, 102, 241, 0.35) !important;
+}
+
+[data-theme="dark"] .quiz-card:hover,
+[data-theme="dark"] .mission-card:hover,
+[data-theme="dark"] .stat-card:hover,
+[data-theme="dark"] .bento-card:hover {
+    border-color: rgba(129, 140, 248, 0.5) !important;
+    box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(129, 140, 248, 0.4) !important;
+}
+
+/* 5. Modernized Profile Surface */
+.profile-card {
+    background: rgba(255, 255, 255, 0.88) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--shadow-md) !important;
+    overflow: hidden;
+}
+
+[data-theme="dark"] .profile-card {
+    background: rgba(17, 24, 39, 0.78) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.45) !important;
+}
+
+.profile-avatar-section {
+    background: linear-gradient(135deg, #3730A3 0%, #4F46E5 50%, #7C3AED 100%) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-avatar-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+    background-size: 16px 16px;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.profile-not-logged {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 48px 32px;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+}
+
+[data-theme="dark"] .profile-not-logged {
+    background: rgba(17, 24, 39, 0.75);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.45);
 }

@@ -4,105 +4,175 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quyền Riêng Tư - Học Tập Trực Tuyến</title>
+  <title>Chính Sách Quyền Riêng Tư — TRONEX</title>
+  <meta name="description" content="Chính sách quyền riêng tư và bảo mật dữ liệu học viên tại nền tảng TRONEX.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #F3F4F6;
-      color: #111827;
-      line-height: 1.6;
-      padding: 40px 20px;
-      margin: 0;
-    }
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=20261014_darkfix_2">
 
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      background: #fff;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    }
-
-    h1 {
-      color: #10B981;
-      margin-bottom: 24px;
-      text-align: center;
-    }
-
-    h2 {
-      color: #047857;
-      margin-top: 32px;
-      font-size: 20px;
-    }
-
-    p {
-      margin-bottom: 16px;
-      color: #4B5563;
-    }
-
-    ul {
-      margin-bottom: 16px;
-      color: #4B5563;
-      padding-left: 20px;
-    }
-
-    li {
-      margin-bottom: 8px;
-    }
-
-    .btn-back {
-      display: inline-block;
-      margin-top: 32px;
-      padding: 12px 24px;
-      background: #10B981;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 500;
-      text-align: center;
-    }
-
-    .btn-back:hover {
-      background: #059669;
-    }
-  </style>
+  <!-- Dark Mode Script (Prevent flash on initial paint) -->
+  <script>
+    (function () {
+      const saved = localStorage.getItem('tronex_theme') || 'light';
+      if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    })();
+  </script>
 </head>
 
 <body>
-  <div class="container">
-    <h1>Chính Sách Quyền Riêng Tư</h1>
-    <p>Bảo mật thông tin của bạn là ưu tiên hàng đầu của chúng tôi. Dưới đây là cách chúng tôi thu thập, sử dụng và bảo
-      vệ thông tin của bạn thông qua hệ thống Học Tập Trực Tuyến.</p>
+  <!-- ============================================================
+       FLOATING GLASSMORPHISM NAVBAR (DESIGN SYSTEM UNIFIED)
+       ============================================================ -->
+  <nav class="nav-floating-bar" id="mainNavbar">
+    <div class="nav-glass-shell">
+      <!-- Left: Brand Logo & Monospace Version Badge -->
+      <a href="index.html" class="nav-brand-wrap" title="TRONEX Home">
+        <span class="nav-brand-logo">TRONEX</span>
+        <span class="nav-version-badge">v1.9</span>
+      </a>
 
-    <h2>1. Thu Thập Dữ Liệu</h2>
-    <p>Hệ thống chỉ thu thập các thông tin cơ bản sau đây:</p>
-    <ul>
-      <li><strong>Thông tin tài khoản:</strong> Khi bạn đăng ký/đăng nhập (Google hoặc Email), chúng tôi chỉ lưu trữ
-        Email và Tên hiển thị của bạn để định danh.</li>
-      <li>HIỆN TẠI TRANG WEB ĐÃ DỪNG HOẠT ĐỘNG ĐĂNG NHẬP NÊN KHÔNG THU THẬP THÔNG TIN TÀI KHOẢN</li>
-      <li><strong>Lịch sử & Kết quả bài làm:</strong> Các đáp án chuyên môn bạn đã chọn để phục vụ cho việc tính điểm số
-        và báo cáo kết quả đánh giá cá nhân.</li>
+      <!-- Center: Pill Navigation Links -->
+      <div class="nav-pills">
+        <a href="index.html" class="nav-pill-item">Tổng quan</a>
+        <a href="v-act.html" class="nav-pill-item">Luyện đề V-ACT</a>
+        <a href="simulation.html" class="nav-pill-item">Thực hành SQL</a>
+        <a href="profile.html" class="nav-pill-item">Hồ sơ</a>
+      </div>
+
+      <!-- Right: Action Buttons -->
+      <div class="nav-actions-cluster">
+        <button class="theme-toggle-btn" id="themeToggleBtn" title="Chuyển chế độ Sáng / Tối">🌙</button>
+        <button class="auth-btn" id="authBtn" title="Đăng nhập">
+          <span>🔑</span><span>Đăng nhập</span>
+        </button>
+        <button class="menu-btn" onclick="toggleSidebar()" aria-label="Menu di động">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sidebar Overlay & Menu Drawer cho Thiết bị di động -->
+  <div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+  <div id="sidebarMenu" class="sidebar-menu">
+    <div class="sidebar-header">
+      <h2>Menu Điều Hướng</h2>
+      <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="index.html">🏠 Tổng quan</a></li>
+      <li><a href="v-act.html">🚀 Luyện đề V-ACT</a></li>
+      <li><a href="simulation.html">📊 Thực hành SQL</a></li>
+      <li><a href="profile.html">👤 Hồ sơ</a></li>
     </ul>
-
-    <h2>2. Sử Dụng Dữ Liệu Của Bạn</h2>
-    <p>Dữ liệu chỉ được sử dụng cho các mục đích thiết yếu và tự động:</p>
-    <ul>
-      <li>Hiển thị kết quả, thứ hạng hoặc lịch sử làm bài riêng của cá nhân bạn.</li>
-      <li>Đếm lượt truy cập tổng của một bộ đề cụ thể.</li>
-    </ul>
-
-    <h2>3. Lưu Trữ Và Chia Sẻ Dữ Liệu</h2>
-    <p>Toàn bộ cơ sở dữ liệu được mã hóa và lưu trữ trên hệ thống cơ sở hạ tầng đám mây Google Firebase. Chúng tôi
-      <strong>Cam Kết Tuyệt Đối Không Bán, Trao Đổi Hay Tiết Lộ</strong> dữ liệu cá nhân của học viên cho bất cứ bên thứ
-      ba nào vì bất kỳ lý do gì.
-    </p>
-
-    <a href="index.html" class="btn-back">← Quay lại Trang Chủ</a>
   </div>
+
+  <main>
+    <div class="container saas-container">
+      <div class="bento-policy-surface">
+        <h1>Chính Sách Quyền Riêng Tư</h1>
+        <p>Bảo mật thông tin của bạn là ưu tiên hàng đầu của chúng tôi. Dưới đây là cách chúng tôi thu thập, sử dụng và bảo vệ thông tin của bạn thông qua nền tảng TRONEX.</p>
+
+        <h2>🛡️ 1. Thu Thập Dữ Liệu</h2>
+        <p>Hệ thống chỉ thu thập các thông tin cơ bản sau đây:</p>
+        <ul>
+          <li><strong>Thông tin tài khoản:</strong> Khi bạn đăng nhập qua tài khoản Google, chúng tôi chỉ lưu trữ Email, Tên hiển thị và Ảnh đại diện công khai nhằm phục vụ việc cá nhân hóa giao diện và lưu trữ tiến trình học tập.</li>
+          <li><strong>Lịch sử &amp; Kết quả bài làm:</strong> Các câu trả lời bạn đã chọn để phục vụ cho việc tính điểm số tức thì, hiển thị lại khi xem lại bài (Review Mode) và thống kê thời gian luyện thi.</li>
+        </ul>
+
+        <h2>🎯 2. Sử Dụng Dữ Liệu Của Bạn</h2>
+        <p>Dữ liệu chỉ được sử dụng cho các mục đích thiết yếu và tự động:</p>
+        <ul>
+          <li>Hiển thị kết quả, điểm số, thứ hạng và lịch sử làm bài riêng của cá nhân bạn.</li>
+          <li>Đếm lượt truy cập tổng của một bộ đề hoặc bài thực hành để cộng đồng dễ dàng nhận biết các nội dung phổ biến.</li>
+          <li>Hỗ trợ tính năng khôi phục phiên học (Quick-Resume) trên chính trình duyệt của bạn.</li>
+        </ul>
+
+        <h2>🔒 3. Lưu Trữ Và Cam Kết Bảo Mật</h2>
+        <p>Toàn bộ cơ sở dữ liệu được mã hóa và lưu trữ an toàn trên hệ thống cơ sở hạ tầng Google Firebase Realtime Database. Chúng tôi <strong>Cam Kết Tuyệt Đối Không Bán, Trao Đổi Hay Tiết Lộ</strong> dữ liệu cá nhân của người học cho bất cứ bên thứ ba nào vì bất kỳ lý do gì.</p>
+
+        <div style="margin-top: 36px; display: flex; gap: 12px; flex-wrap: wrap;">
+          <a href="index.html" class="btn btn-primary" style="padding: 12px 24px; border-radius: var(--radius-md); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+            <span>🏠 Quay lại Trang Chủ</span>
+          </a>
+          <a href="terms.html" class="btn btn-outline" style="padding: 12px 24px; border-radius: var(--radius-md); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; color: var(--primary); border-color: var(--primary);">
+            <span>📑 Xem Điều Khoản Sử Dụng</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============================================================
+       UNIFIED MODERN FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="footer-inner container saas-container" style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px; padding:40px 24px;">
+      <div class="footer-brand" style="max-width:320px;">
+        <span class="nav-brand-logo" style="font-size:1.4rem; font-weight:800; background:linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">TRONEX</span>
+        <p style="font-size:0.88rem; color:var(--text-muted); margin-top:8px; line-height:1.6;">Nền tảng luyện đề đánh giá năng lực V-ACT và thực hành truy vấn SQL trực tuyến hàng đầu.</p>
+      </div>
+      <div class="footer-links-group" style="display:flex; gap:40px; flex-wrap:wrap;">
+        <div>
+          <h4 style="font-size:0.95rem; font-weight:700; color:var(--text-main); margin-bottom:12px;">Điều hướng</h4>
+          <p style="margin-bottom:8px;"><a href="index.html" style="color:var(--text-muted); font-size:0.88rem; text-decoration:none;">Tổng quan</a></p>
+          <p style="margin-bottom:8px;"><a href="v-act.html" style="color:var(--text-muted); font-size:0.88rem; text-decoration:none;">Luyện đề V-ACT</a></p>
+          <p style="margin-bottom:8px;"><a href="simulation.html" style="color:var(--text-muted); font-size:0.88rem; text-decoration:none;">Thực hành SQL</a></p>
+          <p style="margin-bottom:8px;"><a href="profile.html" style="color:var(--text-muted); font-size:0.88rem; text-decoration:none;">Hồ sơ cá nhân</a></p>
+        </div>
+        <div>
+          <h4 style="font-size:0.95rem; font-weight:700; color:var(--text-main); margin-bottom:12px;">Pháp lý &amp; Trợ giúp</h4>
+          <p style="margin-bottom:8px;"><a href="terms.html" style="color:var(--text-muted); font-size:0.88rem; text-decoration:none;">Điều khoản sử dụng</a></p>
+          <p style="margin-bottom:8px;"><a href="privacy.html" style="color:var(--primary); font-size:0.88rem; font-weight:600; text-decoration:none;">Chính sách riêng tư</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom" style="border-top:1px solid var(--border); padding:18px 24px; text-align:center; font-size:0.85rem; color:var(--text-muted);">
+      <p>Nền tảng: <strong>TRONEX</strong> | Tác giả: <strong>Nguyễn Thanh Trọng</strong> | Phiên bản: <strong style="color:var(--primary);">v1.9</strong></p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/auth.js?v=2"></script>
+
+  <script>
+    // Theme toggle
+    document.addEventListener('DOMContentLoaded', function () {
+      const btn = document.getElementById('themeToggleBtn');
+      if (!btn) return;
+      const isDark = () => document.documentElement.getAttribute('data-theme') === 'dark';
+      btn.textContent = isDark() ? '☀️' : '🌙';
+      btn.addEventListener('click', () => {
+        const nextTheme = isDark() ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', nextTheme);
+        localStorage.setItem('tronex_theme', nextTheme);
+        btn.textContent = nextTheme === 'dark' ? '☀️' : '🌙';
+      });
+    });
+
+    // Mobile sidebar
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebarMenu');
+      const overlay = document.getElementById('sidebarOverlay');
+      if (!sidebar || !overlay) return;
+      if (sidebar.classList.contains('active')) {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+        setTimeout(() => { overlay.style.display = 'none'; }, 280);
+      } else {
+        overlay.style.display = 'block';
+        setTimeout(() => {
+          overlay.classList.add('active');
+          sidebar.classList.add('active');
+        }, 10);
+      }
+    }
+    window.toggleSidebar = toggleSidebar;
+  </script>
 </body>
 
 </html>

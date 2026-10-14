@@ -191,47 +191,67 @@ function initQuizList() {
         card.className = 'quiz-card';
         card.dataset.quizId = quiz.id;
 
-        // Xác định môn học / loại đề để hiển thị badge
+        // Xác định môn học / loại đề để hiển thị badge và accent bar
         let subjectBadge = '';
+        let accentClass = 'accent-default';
         const qCount = getQuizQuestionCount(quiz);
         const titleLower = ((quiz.title || '') + ' ' + (quiz.id || '')).toLowerCase();
         if (qCount === 120 || quiz.category === 'vnu' || (quiz.id && quiz.id.endsWith('_dgnl'))) {
-            subjectBadge = '<span style="background:#4F46E5; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🎓 VNU-ĐGNL</span>';
+            subjectBadge = '<span class="quiz-pill-badge badge-vnu">🎓 VNU-ĐGNL</span>';
+            accentClass = 'accent-vnu';
         } else if (quiz.category === 'hoa' || titleLower.includes('hóa') || titleLower.includes('ester') || titleLower.includes('lipid') || titleLower.includes('carbohydrate') || (quiz.id && (quiz.id.includes('chuong_1') || quiz.id.includes('chuong_2')))) {
-            subjectBadge = '<span style="background:#0284C7; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🧪 Hóa học</span>';
+            subjectBadge = '<span class="quiz-pill-badge badge-hoa">🧪 Hóa học</span>';
+            accentClass = 'accent-hoa';
         } else if (quiz.category === 'anh' || titleLower.includes('anh') || titleLower.includes('english') || titleLower.includes('advertisement')) {
-            subjectBadge = '<span style="background:#0D9488; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🇬🇧 Tiếng Anh</span>';
+            subjectBadge = '<span class="quiz-pill-badge badge-anh">🇬🇧 Tiếng Anh</span>';
+            accentClass = 'accent-anh';
         } else if (quiz.category === 'toan' || titleLower.includes('toán') || titleLower.includes('math')) {
-            subjectBadge = '<span style="background:#F59E0B; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">📐 Toán học</span>';
+            subjectBadge = '<span class="quiz-pill-badge badge-toan">📐 Toán học</span>';
+            accentClass = 'accent-toan';
         }
 
-        // Build card HTML (không dùng onclick attribute)
+        const privacyBadge = (quiz.privacy === 'public' || !quiz.privacy) 
+            ? '<span class="quiz-pill-badge badge-public">🌍 Công Khai</span>' 
+            : '<span class="quiz-pill-badge badge-private">🔒 Riêng tư</span>';
+
+        const scaleBadge = (qCount !== 120 && (quiz.scoreScale === 10 || quiz.id === 'de_thi_thu_thptqg_anh' || quiz.id.includes('chuong_') || quiz.id.includes('advertisement'))) 
+            ? '<span class="quiz-pill-badge badge-toan">🎯 Thang 10</span>' 
+            : '<span class="quiz-pill-badge badge-vnu">🎯 Thang 1200</span>';
+
+        // Build card HTML với top accent bar, modern pill badges và button glow
         card.innerHTML = `
-            <h3>${quiz.title}</h3>
-            <p>${quiz.description}</p>
-            ${quiz.createdBy ? `
-                <div class="quiz-card-author">
-                    <img src="${quiz.createdBy.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(quiz.createdBy.displayName || 'U')}&background=6366f1&color=fff&size=48`}" 
-                         alt="${quiz.createdBy.displayName || ''}"
-                         onerror="this.src='https://ui-avatars.com/api/?name=U&background=6366f1&color=fff&size=48'">
-                    <span>${quiz.createdBy.displayName || 'Ẩn danh'}</span>
-                </div>` : ''}
-            <div class="tags-container" style="margin-bottom: 24px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px;">
-                ${subjectBadge}
-                ${(quiz.privacy === 'public' || !quiz.privacy) ? '<span style="background:#10B981; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🌍 Công Khai</span>' : '<span style="background:#6366f1; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🔒 Riêng tư</span>'}
-                <span class="quiz-meta">📚 Số câu: ${qCount}</span>
-                ${(qCount !== 120 && (quiz.scoreScale === 10 || quiz.id === 'de_thi_thu_thptqg_anh' || quiz.id.includes('chuong_') || quiz.id.includes('advertisement'))) ? '<span style="background:#f59e0b; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🎯 Thang điểm 10</span>' : '<span style="background:#6366f1; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">🎯 Thang điểm 1200</span>'}
-                <span class="quiz-views" id="views-${quiz.id}">Lượt truy cập: ${quiz.viewCount || 0}</span>
-            </div>
-            <div class="card-btn-row" style="display: flex; gap: 10px;">
-                <button class="btn btn-primary card-start-btn" style="flex: 1;" type="button"
-                    onclick="window.__sq('${quiz.id}')">Bắt Đầu Làm Bài</button>
-                ${isQuizOwner(quiz.id) ? `
-                    <button class="btn btn-outline card-edit-btn" style="padding: 12px; color: #3B82F6; border-color: #3B82F6;" type="button" title="Chỉnh sửa đề này">✏️</button>
-                    <button class="btn btn-outline card-del-btn" style="padding: 12px; color: #EF4444; border-color: #EF4444;" type="button" title="Xóa đề này">🗑️</button>
-                    <button class="btn btn-outline card-submissions-btn" style="padding: 12px; color: #16a34a; border-color: #16a34a;" type="button" title="Xem bài nộp">📋</button>
-                    <button class="btn btn-outline card-share-btn" style="padding: 12px; color: #8b5cf6; border-color: #8b5cf6;" type="button" title="Sao chép link chia sẻ">🔗</button>
-                ` : ""}
+            <div class="quiz-card-accent-bar ${accentClass}"></div>
+            <div class="quiz-card-content" style="display: flex; flex-direction: column; flex: 1; justify-content: space-between;">
+                <div>
+                    <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin-bottom: 8px; line-height: 1.4;">${quiz.title}</h3>
+                    <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 16px;">${quiz.description}</p>
+                    ${quiz.createdBy ? `
+                        <div class="quiz-card-author" style="margin-bottom: 14px;">
+                            <img src="${quiz.createdBy.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(quiz.createdBy.displayName || 'U')}&background=6366f1&color=fff&size=48`}" 
+                                 alt="${quiz.createdBy.displayName || ''}"
+                                 onerror="this.src='https://ui-avatars.com/api/?name=U&background=6366f1&color=fff&size=48'">
+                            <span style="font-size: 0.82rem; font-weight: 500; color: var(--text-muted);">${quiz.createdBy.displayName || 'Ẩn danh'}</span>
+                        </div>` : ''}
+                    <div class="tags-container" style="margin-bottom: 22px; display: flex; align-items: center; flex-wrap: wrap; gap: 7px;">
+                        ${subjectBadge}
+                        ${privacyBadge}
+                        <span class="quiz-pill-badge badge-meta">📚 Số câu: ${qCount}</span>
+                        ${scaleBadge}
+                        <span class="quiz-pill-badge badge-meta quiz-views" id="views-${quiz.id}">👀 Lượt xem: ${quiz.viewCount || 0}</span>
+                    </div>
+                </div>
+                <div class="card-btn-row" style="display: flex; gap: 10px; margin-top: auto;">
+                    <button class="btn btn-primary card-start-btn" style="flex: 1; padding: 11px 18px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;" type="button"
+                        onclick="window.__sq('${quiz.id}')">
+                        <span>🚀 Bắt Đầu Làm Bài</span>
+                    </button>
+                    ${isQuizOwner(quiz.id) ? `
+                        <button class="btn btn-outline card-edit-btn" style="padding: 10px 14px; color: #3B82F6; border-color: #3B82F6; border-radius: var(--radius-md);" type="button" title="Chỉnh sửa đề này">✏️</button>
+                        <button class="btn btn-outline card-del-btn" style="padding: 10px 14px; color: #EF4444; border-color: #EF4444; border-radius: var(--radius-md);" type="button" title="Xóa đề này">🗑️</button>
+                        <button class="btn btn-outline card-submissions-btn" style="padding: 10px 14px; color: #16a34a; border-color: #16a34a; border-radius: var(--radius-md);" type="button" title="Xem bài nộp">📋</button>
+                        <button class="btn btn-outline card-share-btn" style="padding: 10px 14px; color: #8b5cf6; border-color: #8b5cf6; border-radius: var(--radius-md);" type="button" title="Sao chép link chia sẻ">🔗</button>
+                    ` : ""}
+                </div>
             </div>
         `;
 
@@ -725,7 +745,7 @@ function renderQuestions() {
         if (q.groupText && q.groupText.trim() !== "" && q.groupText !== lastGroupText) {
             const passageDiv = document.createElement('div');
             passageDiv.className = 'reading-passage';
-            passageDiv.style.cssText = 'padding: 20px; border-radius: 12px; margin-bottom: 24px; border-left: 5px solid var(--primary); font-size: 1.05rem; line-height: 1.7; white-space: pre-wrap;';
+            passageDiv.style.cssText = 'padding: 20px; border-radius: 12px; margin-bottom: 24px; border: 1px solid var(--border); border-left: 5px solid var(--primary); background: var(--bg-surface); color: var(--text-main); font-size: 1.05rem; line-height: 1.7; white-space: pre-wrap; box-shadow: var(--shadow-sm);';
             passageDiv.innerHTML = q.groupText;
             questionsContainer.appendChild(passageDiv);
             lastGroupText = q.groupText;
@@ -1360,19 +1380,19 @@ function highlightEssay(q, textarea) {
 
     const resDiv = document.createElement('div');
     resDiv.className = 'essay-review-result';
-    resDiv.style.cssText = 'margin-top: 10px; padding: 12px 16px; border-radius: 8px; background: #F9FAFB; border: 2px solid ' + (diff.isPass ? '#10B981' : '#EF4444') + ';';
+    resDiv.style.cssText = 'margin-top: 10px; padding: 14px 18px; border-radius: 10px; background: var(--bg-surface); color: var(--text-main); border: 2px solid ' + (diff.isPass ? '#10B981' : '#EF4444') + '; box-shadow: var(--shadow-sm);';
 
     const statusBadge = diff.isPass
         ? `<span style="background: #10B981; color: #FFF; padding: 3px 8px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; margin-left: 8px;">ĐÚNG (${diff.percent}%)</span>`
         : `<span style="background: #EF4444; color: #FFF; padding: 3px 8px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; margin-left: 8px;">SAI (${diff.percent}%)</span>`;
 
     resDiv.innerHTML = `
-        <div style="font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; color: #374151;">
+        <div style="font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; color: var(--text-main);">
             Bài làm của bạn: ${statusBadge}
         </div>
-        <div style="line-height: 1.8; margin-bottom: 12px; font-size: 0.95rem;">${diff.html}</div>
-        <div style="background: #EFF6FF; border-left: 4px solid #3B82F6; padding: 10px 14px; border-radius: 6px; font-size: 0.9rem; color: #1E40AF;">
-            <strong>📌 Đáp án gốc:</strong><br>${escapeHTML(q.correctAnswer || "")}
+        <div style="line-height: 1.8; margin-bottom: 12px; font-size: 0.95rem; color: var(--text-main);">${diff.html}</div>
+        <div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3B82F6; padding: 10px 14px; border-radius: 6px; font-size: 0.9rem; color: var(--text-main);">
+            <strong style="color: #3B82F6;">📌 Đáp án gốc:</strong><br>${escapeHTML(q.correctAnswer || "")}
         </div>
     `;
     parent.appendChild(resDiv);
@@ -1387,19 +1407,19 @@ function highlightEssaySub(sq, textarea) {
 
     const resDiv = document.createElement('div');
     resDiv.className = 'essay-review-result';
-    resDiv.style.cssText = 'margin-top: 6px; padding: 10px 14px; border-radius: 8px; background: #F9FAFB; border: 2px solid ' + (diff.isPass ? '#10B981' : '#EF4444') + ';';
+    resDiv.style.cssText = 'margin-top: 6px; padding: 12px 16px; border-radius: 8px; background: var(--bg-surface); color: var(--text-main); border: 2px solid ' + (diff.isPass ? '#10B981' : '#EF4444') + '; box-shadow: var(--shadow-sm);';
 
     const statusBadge = diff.isPass
         ? `<span style="background: #10B981; color: #FFF; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-left: 6px;">ĐÚNG (${diff.percent}%)</span>`
         : `<span style="background: #EF4444; color: #FFF; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-left: 6px;">SAI (${diff.percent}%)</span>`;
 
     resDiv.innerHTML = `
-        <div style="font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; color: #374151;">
+        <div style="font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; color: var(--text-main);">
             Kết quả: ${statusBadge}
         </div>
-        <div style="line-height: 1.6; margin-bottom: 8px; font-size: 0.9rem;">${diff.html}</div>
-        <div style="background: #EFF6FF; border-left: 4px solid #3B82F6; padding: 8px 12px; border-radius: 6px; font-size: 0.85rem; color: #1E40AF;">
-            <strong>📌 Đáp án gốc:</strong> ${escapeHTML(sq.correctAnswer || "")}
+        <div style="line-height: 1.6; margin-bottom: 8px; font-size: 0.9rem; color: var(--text-main);">${diff.html}</div>
+        <div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3B82F6; padding: 8px 12px; border-radius: 6px; font-size: 0.85rem; color: var(--text-main);">
+            <strong style="color: #3B82F6;">📌 Đáp án gốc:</strong> ${escapeHTML(sq.correctAnswer || "")}
         </div>
     `;
     parent.appendChild(resDiv);
