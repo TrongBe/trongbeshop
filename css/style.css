@@ -94,23 +94,20 @@ body::before {
     inset: 0;
     z-index: -2;
     pointer-events: none;
-    background-color: #F8FAFC;
+    background-color: transparent;
     background-image: 
-        radial-gradient(circle at 12% 14%, #E0E7FF 0%, rgba(224, 231, 255, 0.45) 35%, transparent 65%),
-        radial-gradient(circle at 88% 26%, #E0F2FE 0%, rgba(224, 242, 254, 0.5) 32%, transparent 60%),
-        radial-gradient(circle at 45% 82%, #F3E8FF 0%, rgba(243, 232, 255, 0.4) 38%, transparent 68%);
-    filter: blur(80px);
+        radial-gradient(circle at 18% 18%, rgba(224, 231, 255, 0.65) 0%, rgba(224, 231, 255, 0.2) 35%, transparent 65%),
+        radial-gradient(circle at 82% 24%, rgba(224, 242, 254, 0.65) 0%, rgba(224, 242, 254, 0.2) 32%, transparent 60%),
+        radial-gradient(circle at 50% 80%, rgba(243, 232, 255, 0.55) 0%, rgba(243, 232, 255, 0.15) 38%, transparent 65%);
     opacity: 0.95;
-    animation: auroraDrift 18s ease-in-out infinite alternate;
 }
 
 [data-theme="dark"] body::before {
-    background-color: #090D16;
+    background-color: transparent;
     background-image: 
-        radial-gradient(circle at 15% 15%, rgba(79, 70, 229, 0.16) 0%, transparent 60%),
-        radial-gradient(circle at 85% 25%, rgba(6, 182, 212, 0.10) 0%, transparent 55%),
-        radial-gradient(circle at 50% 75%, rgba(139, 92, 246, 0.12) 0%, transparent 60%);
-    filter: blur(80px);
+        radial-gradient(circle at 20% 20%, rgba(79, 70, 229, 0.12) 0%, transparent 55%),
+        radial-gradient(circle at 80% 25%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 50% 75%, rgba(139, 92, 246, 0.10) 0%, transparent 55%);
     opacity: 1;
 }
 
@@ -7188,7 +7185,7 @@ body.modern-saas-page {
 
 [data-theme="dark"] .vact-lobby-hero {
     background: linear-gradient(135deg, rgba(30, 41, 59, 0.75) 0%, rgba(15, 23, 42, 0.85) 100%);
-    border-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(51, 65, 85, 0.5);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
 }
 
@@ -7243,6 +7240,11 @@ body.modern-saas-page {
     box-shadow: var(--shadow-sm);
 }
 
+[data-theme="dark"] .vact-hero-meta-item {
+    background: rgba(30, 41, 59, 0.6);
+    border-color: rgba(51, 65, 85, 0.5);
+}
+
 /* 2. Modernized Quiz Card & Accent Bars */
 .quiz-card {
     background: rgba(255, 255, 255, 0.85);
@@ -7264,7 +7266,7 @@ body.modern-saas-page {
     background: rgba(30, 41, 59, 0.7);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(51, 65, 85, 0.5);
     box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.4);
 }
 
@@ -7383,13 +7385,13 @@ body.modern-saas-page {
 [data-theme="dark"] .quiz-pill-badge.badge-meta {
     background: rgba(255, 255, 255, 0.05);
     color: #94A3B8;
-    border-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(51, 65, 85, 0.5);
 }
 
 /* Glowing Start Button on Quiz Card */
 .card-start-btn {
     background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    border: none !important;
     color: #FFFFFF !important;
     box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25) !important;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
@@ -7420,7 +7422,7 @@ body.modern-saas-page {
 
 [data-theme="dark"] .bento-policy-surface {
     background: rgba(17, 24, 39, 0.78);
-    border-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(51, 65, 85, 0.5);
     box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.4);
 }
 
@@ -7477,15 +7479,15 @@ body.modern-saas-page {
 .bento-card:hover {
     transform: translateY(-4px) !important;
     border-color: rgba(99, 102, 241, 0.45) !important;
-    box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(99, 102, 241, 0.35) !important;
+    box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.12) !important;
 }
 
 [data-theme="dark"] .quiz-card:hover,
 [data-theme="dark"] .mission-card:hover,
 [data-theme="dark"] .stat-card:hover,
 [data-theme="dark"] .bento-card:hover {
-    border-color: rgba(129, 140, 248, 0.5) !important;
-    box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(129, 140, 248, 0.4) !important;
+    border-color: rgba(99, 102, 241, 0.4) !important;
+    box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.5) !important;
 }
 
 /* 5. Modernized Profile Surface */
@@ -7501,7 +7503,7 @@ body.modern-saas-page {
 
 [data-theme="dark"] .profile-card {
     background: rgba(17, 24, 39, 0.78) !important;
-    border-color: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(51, 65, 85, 0.5) !important;
     box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.45) !important;
 }
 
@@ -7535,6 +7537,6 @@ body.modern-saas-page {
 
 [data-theme="dark"] .profile-not-logged {
     background: rgba(17, 24, 39, 0.75);
-    border-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(51, 65, 85, 0.5);
     box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.45);
 }
