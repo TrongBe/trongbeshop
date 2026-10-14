@@ -34,6 +34,14 @@
 
 <body class="modern-saas-page">
 
+  <!-- Aurora Ambient Glow & Perspective Grid Pattern (Background Depth) -->
+  <div class="aurora-ambient-container" aria-hidden="true">
+    <div class="aurora-orb aurora-orb-1"></div>
+    <div class="aurora-orb aurora-orb-2"></div>
+    <div class="aurora-orb aurora-orb-3"></div>
+    <div class="perspective-grid-pattern"></div>
+  </div>
+
   <!-- ============================================================
        KHU VỰC 1: FLOATING GLASSMORPHISM NAVBAR (HEADER HIỆN ĐẠI)
        ============================================================ -->
@@ -101,7 +109,7 @@
               <span>Hệ thống luyện đề ĐGNL &amp; Thực hành SQL</span>
             </div>
             <h1 class="hero-split-title">
-              Luyện đề V-ACT &amp; Truy vấn dữ liệu thực tế trên trình duyệt.
+              <span class="hero-gradient-text">Luyện đề V-ACT</span> &amp; <span class="hero-gradient-text-alt">Truy vấn dữ liệu</span> thực tế trên trình duyệt.
             </h1>
             <p class="hero-split-desc">
               Làm bài thi thử chuẩn cấu trúc ĐGNL với bộ đếm giờ, công thức KaTeX, tự động lưu nháp; hoặc thực hành viết lệnh SQL trực tiếp trên tập dữ liệu giao dịch.
@@ -116,36 +124,75 @@
             </div>
           </div>
 
-          <!-- Cột Phải (45% chiều rộng): Thẻ Tiếp tục phiên học (Interactive Quick-Resume) -->
+          <!-- Cột Phải (45% chiều rộng): Thẻ Tiếp tục phiên học & Interactive 3D Mockup -->
           <div class="hero-split-right">
-            <div class="quick-resume-card" id="quickResumeCard">
-              <div class="quick-resume-badge" id="quickResumeBadge">
-                <span>⚡ TIẾP TỤC PHIÊN HỌC</span>
+            <div class="hero-mockup-wrapper">
+              <!-- Floating Badges với @keyframes floatSlow -->
+              <div class="floating-badge badge-katex" title="Hỗ trợ đầy đủ công thức toán học KaTeX">
+                <span>📐</span><span>KaTeX Math Ready</span>
               </div>
-              <h3 class="quick-resume-title" id="quickResumeTitle">
-                Đang kiểm tra tiến trình...
-              </h3>
-              <p class="quick-resume-meta" id="quickResumeMeta">
-                Hệ thống đang đồng bộ dữ liệu phiên làm việc gần nhất của bạn.
-              </p>
-              <div class="quick-resume-stats-row" id="quickResumeStatsRow">
-                <div class="quick-resume-stat-item">
-                  <span class="quick-resume-stat-val" id="quickResumeStat1">—</span>
-                  <span class="quick-resume-stat-lbl" id="quickResumeLbl1">Tiến độ</span>
-                </div>
-                <div class="quick-resume-stat-item" style="border-left: 1px solid var(--border); padding-left: 12px;">
-                  <span class="quick-resume-stat-val" id="quickResumeStat2">—</span>
-                  <span class="quick-resume-stat-lbl" id="quickResumeLbl2">Thời gian</span>
-                </div>
-                <div class="quick-resume-stat-item" style="border-left: 1px solid var(--border); padding-left: 12px;">
-                  <span class="quick-resume-stat-val" id="quickResumeStat3">—</span>
-                  <span class="quick-resume-stat-lbl" id="quickResumeLbl3">Trạng thái</span>
-                </div>
+              <div class="floating-badge badge-alasql" title="Truy vấn dữ liệu thuần Client-side SQL Sandbox">
+                <span>⚡</span><span>AlaSQL Engine</span>
               </div>
-              <a href="v-act.html?quiz=de_1_dgnl" class="btn-quick-resume" id="quickResumeBtn">
-                <span id="quickResumeBtnText">Bắt đầu luyện tập ngay</span>
-                <span>→</span>
-              </a>
+              <div class="floating-badge badge-firebase" title="Đồng bộ điểm và kết quả qua Firebase">
+                <span>☁️</span><span>Firebase Sync</span>
+              </div>
+
+              <!-- Thẻ Quick Resume chính -->
+              <div class="quick-resume-card" id="quickResumeCard">
+                <div class="quick-resume-badge" id="quickResumeBadge">
+                  <span>⚡ TIẾP TỤC PHIÊN HỌC</span>
+                </div>
+                <h3 class="quick-resume-title" id="quickResumeTitle">
+                  Đang kiểm tra tiến trình...
+                </h3>
+                <p class="quick-resume-meta" id="quickResumeMeta">
+                  Hệ thống đang đồng bộ dữ liệu phiên làm việc gần nhất của bạn.
+                </p>
+
+                <!-- Mini Sparkline SVG có animation vẽ đường stroke-dasharray -->
+                <div class="hero-sparkline-box">
+                  <div class="hero-sparkline-header">
+                    <span>Tiến độ điểm số mô phỏng</span>
+                    <span class="trend-positive">▲ +120đ tăng trưởng</span>
+                  </div>
+                  <svg class="sparkline-svg" viewBox="0 0 320 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <linearGradient id="sparklineGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#4F46E5" stop-opacity="0.32"/>
+                        <stop offset="100%" stop-color="#4F46E5" stop-opacity="0.0"/>
+                      </linearGradient>
+                      <linearGradient id="sparklineStroke" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stop-color="#4F46E5"/>
+                        <stop offset="50%" stop-color="#06B6D4"/>
+                        <stop offset="100%" stop-color="#10B981"/>
+                      </linearGradient>
+                    </defs>
+                    <path d="M0,38 Q40,32 70,35 T140,24 T210,18 T280,10 L320,6 L320,48 L0,48 Z" fill="url(#sparklineGrad)"/>
+                    <path class="sparkline-path" d="M0,38 Q40,32 70,35 T140,24 T210,18 T280,10 L320,6" stroke="url(#sparklineStroke)" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+                    <circle cx="320" cy="6" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
+                  </svg>
+                </div>
+
+                <div class="quick-resume-stats-row" id="quickResumeStatsRow">
+                  <div class="quick-resume-stat-item">
+                    <span class="quick-resume-stat-val" id="quickResumeStat1">—</span>
+                    <span class="quick-resume-stat-lbl" id="quickResumeLbl1">Tiến độ</span>
+                  </div>
+                  <div class="quick-resume-stat-item" style="border-left: 1px solid var(--border); padding-left: 12px;">
+                    <span class="quick-resume-stat-val" id="quickResumeStat2">—</span>
+                    <span class="quick-resume-stat-lbl" id="quickResumeLbl2">Thời gian</span>
+                  </div>
+                  <div class="quick-resume-stat-item" style="border-left: 1px solid var(--border); padding-left: 12px;">
+                    <span class="quick-resume-stat-val" id="quickResumeStat3">—</span>
+                    <span class="quick-resume-stat-lbl" id="quickResumeLbl3">Trạng thái</span>
+                  </div>
+                </div>
+                <a href="v-act.html?quiz=de_1_dgnl" class="btn-quick-resume" id="quickResumeBtn">
+                  <span id="quickResumeBtnText">Bắt đầu luyện tập ngay</span>
+                  <span>→</span>
+                </a>
+              </div>
             </div>
           </div>
 
@@ -163,8 +210,11 @@
           <!-- Khối Trái (5 cột) — Lưới 2x2 Thẻ Chỉ Số Thực Tế -->
           <div class="bento-col-5">
             <div class="stats-2x2-grid">
-              <!-- Thẻ 1: Số lần làm bài -->
-              <div class="bento-stat-box">
+              <!-- Thẻ 1: Số lần làm bài (Tông Indigo) -->
+              <div class="bento-stat-box stat-indigo">
+                <svg class="bento-stat-watermark" viewBox="0 0 64 64" fill="none" stroke="#4F46E5" stroke-width="3">
+                  <path d="M4 48 Q18 20 32 36 T60 12" stroke-linecap="round"/>
+                </svg>
                 <div class="bento-stat-top">
                   <span class="bento-stat-label">Lần làm bài</span>
                   <span class="bento-stat-icon">📚</span>
@@ -173,8 +223,12 @@
                 <div class="bento-stat-sub" id="statTotalTestsSub">Tổng lượt nộp bài</div>
               </div>
 
-              <!-- Thẻ 2: Điểm trung bình -->
-              <div class="bento-stat-box">
+              <!-- Thẻ 2: Điểm trung bình (Tông Cyan) -->
+              <div class="bento-stat-box stat-cyan">
+                <svg class="bento-stat-watermark" viewBox="0 0 64 64" fill="none" stroke="#0284C7" stroke-width="4">
+                  <circle cx="32" cy="32" r="24" stroke-opacity="0.25"/>
+                  <path d="M32 8 A 24 24 0 1 1 12 44" stroke-linecap="round"/>
+                </svg>
                 <div class="bento-stat-top">
                   <span class="bento-stat-label">Điểm trung bình</span>
                   <span class="bento-stat-icon">🎯</span>
@@ -183,18 +237,27 @@
                 <div class="bento-stat-sub" id="statAvgScoreSub">Theo thang điểm đề</div>
               </div>
 
-              <!-- Thẻ 3: Điểm cao nhất -->
-              <div class="bento-stat-box">
+              <!-- Thẻ 3: Điểm cao nhất (Tông Emerald) -->
+              <div class="bento-stat-box stat-emerald">
+                <svg class="bento-stat-watermark" viewBox="0 0 64 64" fill="none" stroke="#10B981" stroke-width="3">
+                  <polygon points="32,6 39,22 56,23 43,35 48,52 32,42 16,52 21,35 8,23 25,22" stroke-linejoin="round"/>
+                </svg>
                 <div class="bento-stat-top">
                   <span class="bento-stat-label">Điểm cao nhất</span>
-                  <span class="bento-stat-icon">🔥</span>
+                  <span class="bento-stat-icon">🏆</span>
                 </div>
                 <div class="bento-stat-val" id="statBestScore">—</div>
                 <div class="bento-stat-sub" id="statBestScoreSub">Kỷ lục bài thi tốt nhất</div>
               </div>
 
-              <!-- Thẻ 4: Phút luyện tập -->
-              <div class="bento-stat-box">
+              <!-- Thẻ 4: Phút luyện tập (Tông Amber) -->
+              <div class="bento-stat-box stat-amber">
+                <svg class="bento-stat-watermark" viewBox="0 0 64 64" fill="#F59E0B">
+                  <rect x="8" y="36" width="10" height="24" rx="2"/>
+                  <rect x="22" y="24" width="10" height="36" rx="2"/>
+                  <rect x="36" y="14" width="10" height="46" rx="2"/>
+                  <rect x="50" y="4" width="10" height="56" rx="2"/>
+                </svg>
                 <div class="bento-stat-top">
                   <span class="bento-stat-label">Phút luyện tập</span>
                   <span class="bento-stat-icon">⏱️</span>
@@ -807,7 +870,7 @@
       // Lấy 6 đề tiêu biểu để hiển thị trên trang chủ
       const displayQuizzes = uniqueQuizzes.slice(0, 6);
 
-      const cardsHtml = displayQuizzes.map(quiz => {
+      const cardsHtml = displayQuizzes.map((quiz, idx) => {
         // Đếm chính xác số câu hỏi
         let qCount = 0;
         if (typeof window.getQuizQuestionCount === 'function') {
@@ -820,6 +883,50 @@
         const isScale10 = quiz.scoreScale === 10 || quiz.id === 'de_thi_thu_thptqg_anh';
         const scaleLabel = isScale10 ? 'Thang 10đ' : 'Thang 1200đ';
 
+        // Phân loại chủ đề môn học và Banner Art đồ họa SVG
+        const titleLower = ((quiz.title || '') + ' ' + (quiz.id || '')).toLowerCase();
+        let catClass = 'category-comprehensive';
+        let catName = 'Đề Chuẩn ĐGNL';
+        let catSvgArt = `
+          <svg viewBox="0 0 64 64" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="2">
+            <circle cx="32" cy="32" r="24" stroke-dasharray="4 2"/>
+            <polygon points="32,16 44,44 20,44" fill="rgba(255,255,255,0.2)"/>
+            <circle cx="32" cy="32" r="4" fill="#FFFFFF"/>
+          </svg>
+        `;
+
+        if (titleLower.includes('toán') || titleLower.includes('math') || titleLower.includes('số liệu') || titleLower.includes('logic')) {
+          catClass = 'category-math';
+          catName = 'Toán & Xử lý số liệu';
+          catSvgArt = `
+            <svg viewBox="0 0 64 64" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="2.2">
+              <path d="M12 48 L24 20 L36 38 L48 14 L56 26" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="48" cy="14" r="3.5" fill="#FFFFFF"/>
+              <line x1="8" y1="54" x2="56" y2="54" stroke-opacity="0.4"/>
+            </svg>
+          `;
+        } else if (titleLower.includes('anh') || titleLower.includes('văn') || titleLower.includes('ngôn ngữ') || titleLower.includes('english')) {
+          catClass = 'category-lang';
+          catName = 'Ngôn ngữ & Ngoại ngữ';
+          catSvgArt = `
+            <svg viewBox="0 0 64 64" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="2">
+              <path d="M16 16 C24 12, 32 18, 32 48 C24 44, 16 46, 16 46 Z" fill="rgba(255,255,255,0.18)"/>
+              <path d="M48 16 C40 12, 32 18, 32 48 C40 44, 48 46, 48 46 Z" fill="rgba(255,255,255,0.18)"/>
+              <path d="M32 18 L32 48"/>
+            </svg>
+          `;
+        } else if (titleLower.includes('lý') || titleLower.includes('hóa') || titleLower.includes('sinh') || titleLower.includes('sử') || titleLower.includes('địa') || titleLower.includes('khoa học')) {
+          catClass = 'category-science';
+          catName = 'Tư duy Khoa học';
+          catSvgArt = `
+            <svg viewBox="0 0 64 64" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="2">
+              <ellipse cx="32" cy="32" rx="26" ry="10" transform="rotate(30 32 32)"/>
+              <ellipse cx="32" cy="32" rx="26" ry="10" transform="rotate(-30 32 32)"/>
+              <circle cx="32" cy="32" r="5" fill="#FFFFFF"/>
+            </svg>
+          `;
+        }
+
         // Trạng thái công khai / riêng tư
         const isPublic = quiz.privacy === 'public' || !quiz.privacy;
         const privacyBadge = isPublic
@@ -830,23 +937,30 @@
         const views = quiz.viewCount || 0;
 
         return `
-          <div class="home-quiz-card" data-quiz-id="${escapeHtml(quiz.id)}">
-            <div class="home-quiz-accent-bar"></div>
-            <div>
-              <div class="home-quiz-pills">
-                ${privacyBadge}
-                <span class="home-quiz-pill">📚 ${qCount} câu</span>
-                <span class="home-quiz-pill">🎯 ${scaleLabel}</span>
-                <span class="home-quiz-pill" id="views-${escapeHtml(quiz.id)}">👁️ ${views} lượt</span>
+          <div class="home-quiz-card ${catClass} fade-in-up delay-${(idx % 3) + 1}" data-quiz-id="${escapeHtml(quiz.id)}">
+            <div class="home-quiz-visual-banner">
+              <span class="home-quiz-banner-category">${catName}</span>
+              <div class="home-quiz-banner-art">
+                ${catSvgArt}
               </div>
-              <h3 class="home-quiz-title">${escapeHtml(quiz.title || 'Đề thi')}</h3>
-              <p class="home-quiz-desc">${escapeHtml(quiz.description || 'Không có mô tả chi tiết.')}</p>
             </div>
-            <div>
-              <a href="v-act.html?quiz=${encodeURIComponent(quiz.id)}" class="btn-start-home-quiz">
-                <span>Bắt đầu làm bài</span>
-                <span>→</span>
-              </a>
+            <div class="home-quiz-body">
+              <div>
+                <div class="home-quiz-pills">
+                  ${privacyBadge}
+                  <span class="home-quiz-pill pill-primary">📚 ${qCount} câu</span>
+                  <span class="home-quiz-pill">🎯 ${scaleLabel}</span>
+                  <span class="home-quiz-pill" id="views-${escapeHtml(quiz.id)}">👁️ ${views} lượt</span>
+                </div>
+                <h3 class="home-quiz-title">${escapeHtml(quiz.title || 'Đề thi')}</h3>
+                <p class="home-quiz-desc">${escapeHtml(quiz.description || 'Không có mô tả chi tiết.')}</p>
+              </div>
+              <div>
+                <a href="v-act.html?quiz=${encodeURIComponent(quiz.id)}" class="btn-start-home-quiz">
+                  <span>Vào phòng luyện đề ngay</span>
+                  <span>→</span>
+                </a>
+              </div>
             </div>
           </div>
         `;

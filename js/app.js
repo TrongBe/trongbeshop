@@ -710,7 +710,7 @@ function renderQuestions() {
         if (q.groupText && q.groupText.trim() !== "" && q.groupText !== lastGroupText) {
             const passageDiv = document.createElement('div');
             passageDiv.className = 'reading-passage';
-            passageDiv.style.cssText = 'background: #f8fafc; padding: 20px; border-radius: 12px; margin-bottom: 24px; border-left: 5px solid var(--primary); font-size: 1.05rem; line-height: 1.7; white-space: pre-wrap;';
+            passageDiv.style.cssText = 'padding: 20px; border-radius: 12px; margin-bottom: 24px; border-left: 5px solid var(--primary); font-size: 1.05rem; line-height: 1.7; white-space: pre-wrap;';
             passageDiv.innerHTML = q.groupText;
             questionsContainer.appendChild(passageDiv);
             lastGroupText = q.groupText;
@@ -756,7 +756,7 @@ function renderQuestions() {
             // v48: Hiển thị sơ đồ được vẽ bằng code (HTML/SVG/Table)
             const diagramDiv = document.createElement('div');
             diagramDiv.className = 'question-diagram';
-            diagramDiv.style.cssText = 'background: white; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; margin-bottom: 20px; overflow-x: auto;';
+            diagramDiv.style.cssText = 'background: var(--bg-surface); border: 1px solid var(--border); color: var(--text-main); padding: 15px; border-radius: 8px; margin-bottom: 20px; overflow-x: auto;';
             diagramDiv.innerHTML = q.diagramCode;
             qBlock.appendChild(diagramDiv);
         }
@@ -851,7 +851,7 @@ function renderQuestions() {
             input.className = 'form-control short-answer-input';
             input.name = `question_${q.id}`;
             input.placeholder = 'Nhập câu trả lời của bạn...';
-            input.style.cssText = 'max-width: 300px; margin-top: 10px; font-size: 0.9rem; padding: 8px 12px; border: 2px solid #E5E7EB; border-radius: 8px; transition: all 0.3s ease;';
+            input.style.cssText = 'max-width: 300px; margin-top: 10px; font-size: 0.9rem; padding: 8px 12px; border: 2px solid var(--border); background: var(--bg-surface); color: var(--text-main); border-radius: 8px; transition: all 0.3s ease;';
 
             input.addEventListener('change', () => {
                 if (quizForm.dataset.quizMode === 'practice') {
@@ -873,7 +873,7 @@ function renderQuestions() {
             textarea.name = `question_${q.id}`;
             textarea.rows = 4;
             textarea.placeholder = 'Nhập câu trả lời tự luận của bạn vào đây...';
-            textarea.style.cssText = 'width: 100%; max-width: 650px; margin-top: 10px; font-size: 0.95rem; padding: 10px 14px; border: 2px solid #E5E7EB; border-radius: 8px; transition: all 0.3s ease; resize: vertical;';
+            textarea.style.cssText = 'width: 100%; max-width: 650px; margin-top: 10px; font-size: 0.95rem; padding: 10px 14px; border: 2px solid var(--border); background: var(--bg-surface); color: var(--text-main); border-radius: 8px; transition: all 0.3s ease; resize: vertical;';
             optionsList.appendChild(textarea);
         } else if (qType === 'essay_group') {
             const groupDiv = document.createElement('div');
@@ -889,7 +889,7 @@ function renderQuestions() {
                 textarea.name = `question_${q.id}_${sq.id}`;
                 textarea.rows = 2;
                 textarea.placeholder = 'Nhập câu trả lời...';
-                textarea.style.cssText = 'width: 100%; max-width: 650px; font-size: 0.9rem; padding: 8px 12px; border: 2px solid #E5E7EB; border-radius: 8px; resize: vertical;';
+                textarea.style.cssText = 'width: 100%; max-width: 650px; font-size: 0.9rem; padding: 8px 12px; border: 2px solid var(--border); background: var(--bg-surface); color: var(--text-main); border-radius: 8px; resize: vertical;';
                 itemDiv.appendChild(label);
                 itemDiv.appendChild(textarea);
                 groupDiv.appendChild(itemDiv);

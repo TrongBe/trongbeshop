@@ -5025,8 +5025,12 @@ body {
 
 /* --- 2. CHẾ ĐỘ TẬP TRUNG (ZEN MODE - ZERO DISTRACTION) --- */
 body.zen-mode {
-    background-color: #f8fafc !important;
+    background-color: var(--bg-page, #f8fafc) !important;
     overflow: hidden !important; /* Khóa cuộn trang chính, chỉ cuộn cột câu hỏi */
+}
+
+[data-theme="dark"] body.zen-mode {
+    background-color: #090D16 !important;
 }
 
 /* Triệt tiêu mọi thành phần gây xao nhãng */
@@ -5160,7 +5164,7 @@ body.zen-mode .btn-zen-toggle {
     font-size: 9px;
     line-height: 1;
 }
-
+
 
 /* ============================================================ */
 /* MODERN BENTO GRID & DEVELOPER SAAS HOMEPAGE (v1.9)           */
@@ -6230,4 +6234,802 @@ body.modern-saas-page {
     .bento-feature-card {
         padding: 22px;
     }
+}
+
+/* ============================================================
+   AURORA MESH GRADIENT & PERSPECTIVE GRID (v2.0 VISUAL UPGRADE)
+   ============================================================ */
+
+/* Khung bọc Aurora Mesh và Lưới viễn cảnh */
+.aurora-ambient-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* Lưới tọa độ SVG với mask làm mờ dần viền */
+.perspective-grid-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(to right, rgba(99, 102, 241, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+    background-size: 36px 36px;
+    mask-image: radial-gradient(ellipse 75% 65% at 50% 30%, black 20%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 30%, black 20%, transparent 80%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+[data-theme="dark"] .perspective-grid-pattern {
+    background-image: 
+        linear-gradient(to right, rgba(99, 102, 241, 0.12) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(99, 102, 241, 0.12) 1px, transparent 1px);
+    mask-image: radial-gradient(ellipse 75% 65% at 50% 30%, black 15%, transparent 85%);
+    -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 30%, black 15%, transparent 85%);
+}
+
+/* 3 Quầng sáng Aurora Glow (Light: Pastel Mesh, Dark: Luminous Glow) */
+.aurora-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(75px);
+    opacity: 0.65;
+    animation: auroraDrift 16s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Orb 1: Indigo quầng lớn trên góc trái Hero */
+.aurora-orb-1 {
+    width: 580px;
+    height: 520px;
+    top: -120px;
+    left: -80px;
+    background: radial-gradient(circle, #E0E7FF 0%, rgba(224, 231, 255, 0.4) 60%, transparent 80%);
+    animation-duration: 18s;
+}
+
+/* Orb 2: Sky Blue quầng trôi khu vực Bento */
+.aurora-orb-2 {
+    width: 620px;
+    height: 580px;
+    top: 250px;
+    right: -100px;
+    background: radial-gradient(circle, #E0F2FE 0%, rgba(224, 242, 254, 0.45) 55%, transparent 80%);
+    animation-duration: 22s;
+    animation-delay: -5s;
+}
+
+/* Orb 3: Rose/Purple quầng nhấn khu vực Đề thi */
+.aurora-orb-3 {
+    width: 500px;
+    height: 480px;
+    top: 750px;
+    left: 15%;
+    background: radial-gradient(circle, #F3E8FF 0%, rgba(243, 232, 255, 0.4) 60%, transparent 80%);
+    animation-duration: 20s;
+    animation-delay: -10s;
+}
+
+/* Dark Mode Aurora Glows */
+[data-theme="dark"] .aurora-orb-1 {
+    background: radial-gradient(circle, rgba(79, 70, 229, 0.22) 0%, rgba(79, 70, 229, 0.08) 60%, transparent 80%);
+    opacity: 0.85;
+}
+
+[data-theme="dark"] .aurora-orb-2 {
+    background: radial-gradient(circle, rgba(14, 165, 233, 0.16) 0%, rgba(14, 165, 233, 0.05) 60%, transparent 80%);
+    opacity: 0.8;
+}
+
+[data-theme="dark"] .aurora-orb-3 {
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.18) 0%, rgba(139, 92, 246, 0.06) 60%, transparent 80%);
+    opacity: 0.85;
+}
+
+@keyframes auroraDrift {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(35px, 25px) scale(1.08);
+    }
+    100% {
+        transform: translate(-25px, 45px) scale(0.95);
+    }
+}
+
+/* Đảm bảo nội dung trang nằm trên lớp nền Aurora */
+.modern-saas-page > nav,
+.modern-saas-page > main,
+.modern-saas-page > footer,
+.modern-saas-page > .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Chữ chuyển sắc Gradient Text nổi bật */
+.hero-gradient-text {
+    background: linear-gradient(135deg, #4F46E5 0%, #06B6D4 55%, #8B5CF6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    display: inline-block;
+}
+
+.hero-gradient-text-alt {
+    background: linear-gradient(135deg, #0284C7 0%, #10B981 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    display: inline-block;
+}
+
+/* Shimmer Effect trên nút CTA chính */
+.btn-hero-primary {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-hero-primary::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -120%;
+    width: 60%;
+    height: 200%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    transform: rotate(25deg);
+    pointer-events: none;
+    transition: none;
+}
+
+.btn-hero-primary:hover::after {
+    left: 160%;
+    transition: all 0.85s ease-in-out;
+}
+
+/* ============================================================
+   HERO INTERACTIVE 3D-TILT MOCKUP & FLOATING BADGES
+   ============================================================ */
+
+/* Khối bọc mockup Hero */
+.hero-mockup-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* Huy hiệu nổi (Floating Badges) với @keyframes floatSlow */
+.floating-badge {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    box-shadow: 0 10px 25px -4px rgba(0, 0, 0, 0.12), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    z-index: 10;
+    white-space: nowrap;
+    animation: floatSlow 4s ease-in-out infinite alternate;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.floating-badge:hover {
+    transform: scale(1.08) translateY(-3px) !important;
+    box-shadow: 0 16px 30px -4px rgba(79, 70, 229, 0.25);
+}
+
+.floating-badge.badge-katex {
+    top: -18px;
+    left: 20px;
+    background: rgba(238, 242, 255, 0.95);
+    color: #4338CA;
+    border: 1.5px solid #C7D2FE;
+    animation-delay: 0s;
+}
+
+[data-theme="dark"] .floating-badge.badge-katex {
+    background: rgba(30, 27, 75, 0.9);
+    color: #A5B4FC;
+    border-color: rgba(99, 102, 241, 0.4);
+}
+
+.floating-badge.badge-alasql {
+    top: 14px;
+    right: -16px;
+    background: rgba(209, 250, 229, 0.95);
+    color: #065F46;
+    border: 1.5px solid #A7F3D0;
+    animation-delay: -1.4s;
+}
+
+[data-theme="dark"] .floating-badge.badge-alasql {
+    background: rgba(6, 78, 59, 0.9);
+    color: #6EE7B7;
+    border-color: rgba(16, 185, 129, 0.4);
+}
+
+.floating-badge.badge-firebase {
+    bottom: -16px;
+    right: 28px;
+    background: rgba(224, 242, 254, 0.95);
+    color: #0369A1;
+    border: 1.5px solid #BAE6FD;
+    animation-delay: -2.7s;
+}
+
+[data-theme="dark"] .floating-badge.badge-firebase {
+    background: rgba(12, 74, 110, 0.9);
+    color: #7DD3FC;
+    border-color: rgba(14, 165, 233, 0.4);
+}
+
+@keyframes floatSlow {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-7px);
+    }
+}
+
+/* Biểu đồ Sparkline trong thẻ Quick Resume */
+.hero-sparkline-box {
+    margin: 12px 0 16px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: rgba(99, 102, 241, 0.04);
+    border: 1px solid rgba(99, 102, 241, 0.12);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+[data-theme="dark"] .hero-sparkline-box {
+    background: rgba(99, 102, 241, 0.08);
+    border-color: rgba(99, 102, 241, 0.18);
+}
+
+.hero-sparkline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.hero-sparkline-header .trend-positive {
+    color: #10B981;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-weight: 700;
+}
+
+.sparkline-svg {
+    width: 100%;
+    height: 48px;
+    overflow: visible;
+}
+
+.sparkline-path {
+    stroke-dasharray: 450;
+    stroke-dashoffset: 450;
+    animation: drawSparkline 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes drawSparkline {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* ============================================================
+   MÀU SẮC HÓA 4 THẺ THỐNG KÊ (COLOR-CODED BENTO & WATERMARK SVG)
+   ============================================================ */
+
+.bento-stat-box {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Watermark SVG chìm ở góc dưới bên phải thẻ */
+.bento-stat-watermark {
+    position: absolute;
+    bottom: -6px;
+    right: -6px;
+    width: 68px;
+    height: 68px;
+    opacity: 0.08;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 0;
+}
+
+.bento-stat-box:hover .bento-stat-watermark {
+    opacity: 0.16;
+    transform: scale(1.1) rotate(4deg);
+}
+
+[data-theme="dark"] .bento-stat-watermark {
+    opacity: 0.12;
+}
+
+[data-theme="dark"] .bento-stat-box:hover .bento-stat-watermark {
+    opacity: 0.22;
+}
+
+/* Đảm bảo nội dung nằm trên watermark */
+.bento-stat-top, .bento-stat-val, .bento-stat-sub {
+    position: relative;
+    z-index: 1;
+}
+
+/* Thẻ 1: Indigo (Lần làm bài) */
+.bento-stat-box.stat-indigo {
+    border-left: 4px solid #4F46E5;
+}
+.bento-stat-box.stat-indigo .bento-stat-icon {
+    background: #EEF2FF;
+    color: #4F46E5;
+}
+.bento-stat-box.stat-indigo:hover {
+    border-color: rgba(79, 70, 229, 0.45);
+    box-shadow: 0 12px 28px -6px rgba(79, 70, 229, 0.18);
+}
+[data-theme="dark"] .bento-stat-box.stat-indigo .bento-stat-icon {
+    background: rgba(79, 70, 229, 0.2);
+    color: #A5B4FC;
+}
+
+/* Thẻ 2: Cyan (Điểm trung bình) */
+.bento-stat-box.stat-cyan {
+    border-left: 4px solid #0284C7;
+}
+.bento-stat-box.stat-cyan .bento-stat-icon {
+    background: #E0F2FE;
+    color: #0284C7;
+}
+.bento-stat-box.stat-cyan:hover {
+    border-color: rgba(2, 132, 199, 0.45);
+    box-shadow: 0 12px 28px -6px rgba(2, 132, 199, 0.18);
+}
+[data-theme="dark"] .bento-stat-box.stat-cyan .bento-stat-icon {
+    background: rgba(2, 132, 199, 0.2);
+    color: #7DD3FC;
+}
+
+/* Thẻ 3: Emerald (Điểm cao nhất) */
+.bento-stat-box.stat-emerald {
+    border-left: 4px solid #10B981;
+}
+.bento-stat-box.stat-emerald .bento-stat-icon {
+    background: #D1FAE5;
+    color: #10B981;
+}
+.bento-stat-box.stat-emerald:hover {
+    border-color: rgba(16, 185, 129, 0.45);
+    box-shadow: 0 12px 28px -6px rgba(16, 185, 129, 0.18);
+}
+[data-theme="dark"] .bento-stat-box.stat-emerald .bento-stat-icon {
+    background: rgba(16, 185, 129, 0.2);
+    color: #6EE7B7;
+}
+
+/* Thẻ 4: Amber (Phút luyện tập) */
+.bento-stat-box.stat-amber {
+    border-left: 4px solid #F59E0B;
+}
+.bento-stat-box.stat-amber .bento-stat-icon {
+    background: #FEF3C7;
+    color: #F59E0B;
+}
+.bento-stat-box.stat-amber:hover {
+    border-color: rgba(245, 158, 11, 0.45);
+    box-shadow: 0 12px 28px -6px rgba(245, 158, 11, 0.18);
+}
+[data-theme="dark"] .bento-stat-box.stat-amber .bento-stat-icon {
+    background: rgba(245, 158, 11, 0.2);
+    color: #FCD34D;
+}
+
+/* ============================================================
+   NÂNG CẤP THẺ ĐỀ THI (#homeQuizGrid) VỚI HEADER BANNER ĐỒ HỌA
+   ============================================================ */
+
+.home-quiz-card {
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Visual Header Banner cao 72px */
+.home-quiz-visual-banner {
+    height: 72px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.home-quiz-banner-category {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #FFFFFF;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.home-quiz-banner-art {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    opacity: 0.85;
+    pointer-events: none;
+}
+
+/* Category Themes cho Banner */
+.home-quiz-card.category-math .home-quiz-visual-banner {
+    background: linear-gradient(135deg, #3730A3 0%, #4F46E5 50%, #3B82F6 100%);
+}
+
+.home-quiz-card.category-lang .home-quiz-visual-banner {
+    background: linear-gradient(135deg, #065F46 0%, #0D9488 50%, #10B981 100%);
+}
+
+.home-quiz-card.category-science .home-quiz-visual-banner {
+    background: linear-gradient(135deg, #6B21A8 0%, #7C3AED 50%, #C026D3 100%);
+}
+
+.home-quiz-card.category-comprehensive .home-quiz-visual-banner {
+    background: linear-gradient(135deg, #1E1B4B 0%, #4338CA 50%, #0284C7 100%);
+}
+
+/* Phần thân thẻ chứa thông tin */
+.home-quiz-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.home-quiz-pills {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 14px;
+}
+
+.home-quiz-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 0.74rem;
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--text-muted);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .home-quiz-pill {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.08);
+    color: #94A3B8;
+}
+
+.home-quiz-pill.public {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10B981;
+    border-color: rgba(16, 185, 129, 0.25);
+}
+
+.home-quiz-pill.pill-primary {
+    background: rgba(79, 70, 229, 0.08);
+    color: #4F46E5;
+    border-color: rgba(79, 70, 229, 0.2);
+}
+
+[data-theme="dark"] .home-quiz-pill.pill-primary {
+    background: rgba(99, 102, 241, 0.15);
+    color: #A5B4FC;
+    border-color: rgba(99, 102, 241, 0.3);
+}
+
+.home-quiz-title {
+    font-size: 1.12rem;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.4;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+}
+
+.home-quiz-desc {
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.btn-start-home-quiz {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 16px;
+    border-radius: 10px;
+    background: var(--primary);
+    color: #FFFFFF;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.btn-start-home-quiz:hover {
+    background: var(--primary-hover);
+    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+    transform: translateY(-1px);
+}
+
+/* Micro-interaction Hover Spotlight */
+.home-quiz-card:hover {
+    transform: translateY(-5px) !important;
+    border-color: rgba(99, 102, 241, 0.45) !important;
+    box-shadow: 0 16px 36px -8px rgba(79, 70, 229, 0.2) !important;
+}
+
+/* Staggered Fade Up Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay-1 { animation-delay: 0.08s; }
+.delay-2 { animation-delay: 0.16s; }
+.delay-3 { animation-delay: 0.24s; }
+.delay-4 { animation-delay: 0.32s; }
+
+/* ============================================================
+   STRICT DARK MODE RULES CHO V-ACT & CÂU HỎI TRẮC NGHIỆM
+   ============================================================ */
+
+/* Khử màu nền trắng tĩnh và chữ đen tĩnh */
+[data-theme="dark"] .reading-passage {
+    background-color: #111827 !important;
+    color: #F1F5F9 !important;
+    border: 1px solid #334155 !important;
+    border-left: 5px solid #6366F1 !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="dark"] .question-card {
+    background-color: #111827 !important;
+    border-color: #334155 !important;
+    color: #F1F5F9 !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+[data-theme="dark"] .question-card .question-text {
+    color: #F1F5F9 !important;
+}
+
+[data-theme="dark"] .question-card h4 {
+    color: #818CF8 !important;
+}
+
+[data-theme="dark"] .q-card-header {
+    border-bottom-color: #1E293B !important;
+}
+
+[data-theme="dark"] .q-card-title {
+    color: #818CF8 !important;
+}
+
+/* Các tùy chọn đáp án */
+[data-theme="dark"] .tronex-option-label,
+[data-theme="dark"] .option-label {
+    background: #1E293B !important;
+    border-color: #334155 !important;
+    color: #F1F5F9 !important;
+}
+
+[data-theme="dark"] .tronex-option-label:hover,
+[data-theme="dark"] .option-label:hover {
+    background: #283548 !important;
+    border-color: #6366F1 !important;
+}
+
+[data-theme="dark"] .tronex-opt-letter {
+    background: #0F172A !important;
+    color: #F1F5F9 !important;
+    border-right-color: #334155 !important;
+}
+
+[data-theme="dark"] .tronex-opt-text {
+    color: #F1F5F9 !important;
+}
+
+[data-theme="dark"] .tronex-option-label.selected {
+    background: rgba(99, 102, 241, 0.18) !important;
+    border-color: #6366F1 !important;
+}
+
+[data-theme="dark"] .tronex-option-label.selected .tronex-opt-letter {
+    background: #4F46E5 !important;
+    color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .tronex-clear-btn {
+    background: #1E293B !important;
+    border-color: #334155 !important;
+    color: #EF4444 !important;
+}
+
+/* Bảng Đúng/Sai và Bảng So sánh */
+[data-theme="dark"] .tf-table,
+[data-theme="dark"] .comparison-table {
+    background: #111827 !important;
+    color: #F1F5F9 !important;
+    border-color: #334155 !important;
+}
+
+[data-theme="dark"] .tf-table th,
+[data-theme="dark"] .comparison-table th {
+    background: #1E293B !important;
+    color: #F1F5F9 !important;
+    border-color: #334155 !important;
+}
+
+[data-theme="dark"] .tf-table td,
+[data-theme="dark"] .comparison-table td {
+    background: #111827 !important;
+    color: #E2E8F0 !important;
+    border-color: #334155 !important;
+}
+
+[data-theme="dark"] .radio-label {
+    border-color: #475569 !important;
+    background: #1E293B !important;
+}
+
+/* KaTeX Math Formulas chuyển sáng 100% trong Dark Mode */
+[data-theme="dark"] .katex,
+[data-theme="dark"] .katex-display,
+[data-theme="dark"] .katex .base,
+[data-theme="dark"] .katex-html,
+[data-theme="dark"] .katex .mord,
+[data-theme="dark"] .katex .mbin,
+[data-theme="dark"] .katex .mrel,
+[data-theme="dark"] .katex .mop {
+    color: #F1F5F9 !important;
+}
+
+[data-theme="dark"] .katex .rule {
+    border-color: #F1F5F9 !important;
+}
+
+/* Sidebar V-ACT & Phiếu trả lời */
+[data-theme="dark"] .tronex-sidebar {
+    background: #111827 !important;
+    border-color: #334155 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="dark"] .tronex-sidebar-handle {
+    background: #1E293B !important;
+    border-bottom-color: #334155 !important;
+}
+
+[data-theme="dark"] .tronex-palette-container {
+    background: #111827 !important;
+    border-color: #334155 !important;
+}
+
+[data-theme="dark"] .tronex-palette-header {
+    background: #1E293B !important;
+    color: #F1F5F9 !important;
+    border-bottom: 1px solid #334155 !important;
+}
+
+[data-theme="dark"] .tronex-palette-btn {
+    background: #1E293B !important;
+    border-color: #334155 !important;
+    color: #CBD5E1 !important;
+}
+
+[data-theme="dark"] .tronex-palette-btn:hover {
+    border-color: #818CF8 !important;
+    color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .tronex-palette-btn.flagged,
+[data-theme="dark"] .tronex-palette-btn.status-review {
+    background: #3B2D14 !important;
+    border-color: #F59E0B !important;
+    color: #FBBF24 !important;
+}
+
+[data-theme="dark"] .tronex-result-card {
+    background: #111827 !important;
+    border-color: #334155 !important;
+    color: #F1F5F9 !important;
+}
+
+[data-theme="dark"] .quiz-header {
+    background: #111827 !important;
+    border: 1px solid #334155 !important;
+    color: #F1F5F9 !important;
+}
+
+[data-theme="dark"] .btn-zen-toggle {
+    background: #1E293B !important;
+    color: #E2E8F0 !important;
+    border-color: #334155 !important;
+}
+
+[data-theme="dark"] .btn-flag-review {
+    background: #312E1B !important;
+    color: #FBBF24 !important;
+    border-color: #78350F !important;
+}
+
+[data-theme="dark"] .short-answer-input,
+[data-theme="dark"] .essay-input {
+    background: #1E293B !important;
+    color: #F1F5F9 !important;
+    border-color: #334155 !important;
+}
+
+[data-theme="dark"] .question-diagram {
+    background: #1E293B !important;
+    border-color: #334155 !important;
+    color: #F1F5F9 !important;
 }
