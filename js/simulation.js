@@ -3,7 +3,7 @@
  * Controller cho tính năng Data Analyst Simulation (Lobby & Workspace)
  */
 
-import { simulationCases } from './simulation-data.js?v=20261014_sql_drill_v1';
+import { simulationCases } from './simulation-data.js?v=20261014_sql_drill_v2';
 
 let currentCase = null;
 let currentLanguage = 'sql';
@@ -2845,8 +2845,20 @@ function renderDrillWorkspace(mission) {
 
     const cardsHtml = questions.map((q, idx) => {
         const saved = getSavedDrillData(mission.id, q.id);
-        const userSql = saved && saved.sql ? saved.sql : (q.defaultSql || '');
-        const savedScore = saved ? saved.score : null;
+        const savedScore = (saved && saved.score !== undefined) ? saved.score : null;
+
+        // Nếu câu hỏi chưa có điểm nhưng đang chứa đáp án mẫu hoàn chỉnh -> trả về ô trống để học viên tự làm
+        let userSql = '';
+        if (saved && saved.sql && savedScore !== null) {
+            // Đã nộp bài và có điểm -> giữ nguyên câu lệnh đã nộp của học viên
+            userSql = saved.sql;
+        } else if (saved && saved.sql && saved.sql.trim() !== (q.expectedSql || '').trim()) {
+            // Học viên đang tự gõ nháp khác với đáp án mẫu -> giữ nguyên
+            userSql = saved.sql;
+        } else {
+            // Chưa làm hoặc trước đó vô tình lưu đáp án mẫu -> trả về khung soạn thảo trống
+            userSql = q.defaultSql || `-- [Câu ${q.questionNumber}] Viết câu lệnh SQL của bạn tại đây:\n\n`;
+        }
 
         let statusBadgeHtml = `<span class="drill-status-badge pending" id="drill_badge_${q.id}">⏳ Chưa làm</span>`;
         if (savedScore !== null && savedScore !== undefined) {
@@ -2857,7 +2869,7 @@ function renderDrillWorkspace(mission) {
             }
         }
 
-        const savedFeedbackHtml = saved && saved.feedbackHtml ? saved.feedbackHtml : '';
+        const savedFeedbackHtml = (saved && saved.feedbackHtml && savedScore !== null) ? saved.feedbackHtml : '';
 
         return `
             <div class="drill-question-card" id="drill_card_${q.id}" data-qid="${q.id}">
@@ -3078,16 +3090,29 @@ window.resetDrillQuestion = function(drillId, qId) {
         return;
     }
 
+    const defaultStarter = q.defaultSql || `-- [Câu ${q.questionNumber}] Viết câu lệnh SQL của bạn tại đây:\n\n`;
+
     const input = document.getElementById(`drill_input_${qId}`);
     if (input) {
-        input.value = q.defaultSql || '';
+        input.value = defaultStarter;
         input.focus();
     }
 
     const preview = document.getElementById(`drill_preview_${qId}`);
-    if (preview) preview.style.display = 'none';
+    if (preview) {
+        preview.style.display = 'none';
+        preview.innerHTML = '';
+    }
 
-    saveDrillData(drillId, qId, { sql: q.defaultSql || '', score: null });
+    const feedback = document.getElementById(`drill_feedback_${qId}`);
+    if (feedback) {
+        feedback.style.display = 'none';
+        feedback.innerHTML = '';
+    }
+
+    try {
+        localStorage.removeItem(getDrillStorageKey(drillId, qId));
+    } catch(e) {}
 
     const badge = document.getElementById(`drill_badge_${qId}`);
     if (badge) {

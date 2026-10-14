@@ -1032,17 +1032,7 @@ export const drillCases = [
 FROM orders 
 WHERE status = 'COMPLETED' 
 LIMIT 3;`,
-                defaultSql: `-- [Câu 1] Lấy 3 đơn hàng hoàn tất đầu tiên từ bảng orders
-SELECT 
-    order_id, 
-    shop_id, 
-    buyer_id, 
-    order_amount, 
-    shipping_subsidy, 
-    status 
-FROM orders 
-WHERE status = 'COMPLETED' 
-LIMIT 3;`
+                defaultSql: `-- [Câu 1] Viết câu lệnh SQL của bạn tại đây:\n\n`
             },
             {
                 id: "q2",
@@ -1053,10 +1043,7 @@ LIMIT 3;`
                 expectedSql: `SELECT * 
 FROM buyer_profiles 
 LIMIT 5;`,
-                defaultSql: `-- [Câu 2] Xem nhanh toàn bộ các cột của 5 người mua đầu tiên
-SELECT * 
-FROM buyer_profiles 
-LIMIT 5;`
+                defaultSql: `-- [Câu 2] Viết câu lệnh SQL của bạn tại đây:\n\n`
             },
             {
                 id: "q3",
@@ -1072,15 +1059,7 @@ LIMIT 5;`
 FROM orders 
 WHERE status = 'COMPLETED' 
   AND order_amount >= 99000;`,
-                defaultSql: `-- [Câu 3] Lọc đơn hoàn tất có giá trị >= 99.000đ
-SELECT 
-    order_id, 
-    shop_id, 
-    order_amount, 
-    shipping_subsidy 
-FROM orders 
-WHERE status = 'COMPLETED' 
-  AND order_amount >= 99000;`
+                defaultSql: `-- [Câu 3] Viết câu lệnh SQL của bạn tại đây:\n\n`
             },
             {
                 id: "q4",
@@ -1098,17 +1077,7 @@ WHERE status = 'COMPLETED'
   AND order_amount >= 99000 
 ORDER BY order_amount DESC 
 LIMIT 5;`,
-                defaultSql: `-- [Câu 4] Top 5 đơn hoàn tất có order_amount cao nhất toàn sàn >= 99k
-SELECT 
-    order_id, 
-    shop_id, 
-    order_amount, 
-    shipping_subsidy 
-FROM orders 
-WHERE status = 'COMPLETED' 
-  AND order_amount >= 99000 
-ORDER BY order_amount DESC 
-LIMIT 5;`
+                defaultSql: `-- [Câu 4] Viết câu lệnh SQL của bạn tại đây:\n\n`
             },
             {
                 id: "q5",
@@ -1129,20 +1098,7 @@ WHERE status = 'COMPLETED'
   AND shipping_subsidy > 0 
 ORDER BY order_amount ASC 
 LIMIT 10;`,
-                defaultSql: `-- [Câu 5] Lọc 10 đơn hoàn tất có trợ giá của SHOP_102, sắp xếp tăng dần
-SELECT 
-    order_id, 
-    shop_id, 
-    buyer_id, 
-    order_amount, 
-    shipping_subsidy, 
-    status 
-FROM orders 
-WHERE status = 'COMPLETED' 
-  AND shop_id = 'SHOP_102' 
-  AND shipping_subsidy > 0 
-ORDER BY order_amount ASC 
-LIMIT 10;`
+                defaultSql: `-- [Câu 5] Viết câu lệnh SQL của bạn tại đây:\n\n`
             }
         ]
     },
@@ -1172,12 +1128,7 @@ LIMIT 10;`
     SUM(order_amount) AS total_gmv_vnd 
 FROM orders 
 WHERE status = 'COMPLETED';`,
-                defaultSql: `-- [Câu 1] Tổng số đơn hoàn tất và tổng GMV toàn sàn
-SELECT 
-    COUNT(order_id) AS total_completed_orders, 
-    SUM(order_amount) AS total_gmv_vnd 
-FROM orders 
-WHERE status = 'COMPLETED';`
+                defaultSql: `-- [Câu 1] Viết câu lệnh SQL của bạn tại đây:\n\n`
             },
             {
                 id: "q2",
@@ -1191,13 +1142,7 @@ WHERE status = 'COMPLETED';`
     MAX(order_amount) AS max_order_vnd 
 FROM orders 
 WHERE status = 'COMPLETED';`,
-                defaultSql: `-- [Câu 2] AOV làm tròn, đơn nhỏ nhất và đơn lớn nhất
-SELECT 
-    ROUND(AVG(order_amount), 0) AS aov_vnd, 
-    MIN(order_amount) AS min_order_vnd, 
-    MAX(order_amount) AS max_order_vnd 
-FROM orders 
-WHERE status = 'COMPLETED';`
+                defaultSql: `-- [Câu 2] Viết câu lệnh SQL của bạn tại đây:\n\n`
             },
             {
                 id: "q3",
@@ -1210,12 +1155,7 @@ WHERE status = 'COMPLETED';`
     ROUND(SUM(shipping_subsidy) * 100.0 / SUM(order_amount), 2) AS subsidy_to_gmv_pct 
 FROM orders 
 WHERE status = 'COMPLETED';`,
-                defaultSql: `-- [Câu 3] Tổng trợ giá và tỷ lệ % chi phí trợ giá so với GMV
-SELECT 
-    SUM(shipping_subsidy) AS total_subsidy_vnd, 
-    ROUND(SUM(shipping_subsidy) * 100.0 / SUM(order_amount), 2) AS subsidy_to_gmv_pct 
-FROM orders 
-WHERE status = 'COMPLETED';`
+                defaultSql: `-- [Câu 3] Viết câu lệnh SQL của bạn tại đây:\n\n`
             },
             {
                 id: "q4",
@@ -1232,16 +1172,7 @@ WHERE status = 'COMPLETED'
 GROUP BY shop_id 
 ORDER BY total_orders DESC 
 LIMIT 5;`,
-                defaultSql: `-- [Câu 4] Top 5 Shop có số đơn hoàn tất cao nhất
-SELECT 
-    shop_id, 
-    COUNT(order_id) AS total_orders, 
-    SUM(shipping_subsidy) AS total_subsidy_vnd 
-FROM orders 
-WHERE status = 'COMPLETED' 
-GROUP BY shop_id 
-ORDER BY total_orders DESC 
-LIMIT 5;`
+                defaultSql: `-- [Câu 4] Viết câu lệnh SQL của bạn tại đây:\n\n`
             },
             {
                 id: "q5",
@@ -1258,16 +1189,7 @@ WHERE status = 'COMPLETED'
 GROUP BY shop_id 
 ORDER BY total_orders DESC 
 LIMIT 5;`,
-                defaultSql: `-- [Câu 5] Đếm người mua duy nhất và tổng đơn của Top 5 Shop
-SELECT 
-    shop_id, 
-    COUNT(DISTINCT buyer_id) AS unique_buyers, 
-    COUNT(order_id) AS total_orders 
-FROM orders 
-WHERE status = 'COMPLETED' 
-GROUP BY shop_id 
-ORDER BY total_orders DESC 
-LIMIT 5;`
+                defaultSql: `-- [Câu 5] Viết câu lệnh SQL của bạn tại đây:\n\n`
             }
         ]
     },
@@ -1301,16 +1223,7 @@ LIMIT 5;`
 FROM orders 
 WHERE status = 'COMPLETED' 
 GROUP BY freeship_group;`,
-                defaultSql: `-- [Câu 1] Phân loại 2 nhóm Freeship bằng CASE WHEN và đếm số đơn
-SELECT 
-    CASE 
-        WHEN order_amount < 99000 THEN 'Không Freeship' 
-        ELSE 'Đủ điều kiện Freeship' 
-    END AS freeship_group, 
-    COUNT(order_id) AS total_orders 
-FROM orders 
-WHERE status = 'COMPLETED' 
-GROUP BY freeship_group;`
+                defaultSql: `-- [Câu 1] Viết câu lệnh SQL của bạn tại đây:\n\n`
             },
             {
                 id: "q2",
@@ -1332,21 +1245,7 @@ FROM orders
 WHERE status = 'COMPLETED' 
 GROUP BY price_segment 
 ORDER BY total_orders DESC;`,
-                defaultSql: `-- [Câu 2] Chia 4 giỏ giá và tính các KPI số đơn, tổng trợ giá, AOV
-SELECT 
-    CASE 
-        WHEN order_amount < 99000 THEN '1. Dưới 99k (Không Freeship)' 
-        WHEN order_amount BETWEEN 99000 AND 105000 THEN '2. 99k - 105k (Cận ngưỡng Freeship)' 
-        WHEN order_amount BETWEEN 105001 AND 200000 THEN '3. 105k - 200k (Bình thường)' 
-        ELSE '4. Trên 200k (Giá trị cao)' 
-    END AS price_segment, 
-    COUNT(order_id) AS total_orders, 
-    SUM(shipping_subsidy) AS total_subsidy_vnd, 
-    ROUND(AVG(order_amount), 0) AS avg_order_value_vnd 
-FROM orders 
-WHERE status = 'COMPLETED' 
-GROUP BY price_segment 
-ORDER BY total_orders DESC;`
+                defaultSql: `-- [Câu 2] Viết câu lệnh SQL của bạn tại đây:\n\n`
             },
             {
                 id: "q3",
@@ -1359,12 +1258,7 @@ ORDER BY total_orders DESC;`
     COUNT(order_id) AS total_completed_orders 
 FROM orders 
 WHERE status = 'COMPLETED';`,
-                defaultSql: `-- [Câu 3] Conditional Aggregation: Đếm đơn cận ngưỡng và tổng đơn trên 1 dòng duy nhất
-SELECT 
-    SUM(CASE WHEN order_amount BETWEEN 99000 AND 105000 THEN 1 ELSE 0 END) AS suspicious_orders, 
-    COUNT(order_id) AS total_completed_orders 
-FROM orders 
-WHERE status = 'COMPLETED';`
+                defaultSql: `-- [Câu 3] Viết câu lệnh SQL của bạn tại đây:\n\n`
             },
             {
                 id: "q4",
@@ -1382,17 +1276,7 @@ FROM orders o
 JOIN buyer_profiles b ON o.buyer_id = b.buyer_id 
 WHERE o.status = 'COMPLETED' 
 LIMIT 5;`,
-                defaultSql: `-- [Câu 4] JOIN bảng orders và buyer_profiles để lấy địa chỉ IP và tuổi tài khoản
-SELECT 
-    o.order_id, 
-    o.shop_id, 
-    o.order_amount, 
-    b.ip_address, 
-    b.account_age_days 
-FROM orders o 
-JOIN buyer_profiles b ON o.buyer_id = b.buyer_id 
-WHERE o.status = 'COMPLETED' 
-LIMIT 5;`
+                defaultSql: `-- [Câu 4] Viết câu lệnh SQL của bạn tại đây:\n\n`
             },
             {
                 id: "q5",
@@ -1413,20 +1297,7 @@ WHERE o.status = 'COMPLETED'
 GROUP BY o.shop_id, b.ip_address 
 ORDER BY suspicious_orders DESC 
 LIMIT 5;`,
-                defaultSql: `-- [Câu 5] Top 5 cặp (Shop + IP) khả nghi bòn rút trợ giá freeship
-SELECT 
-    o.shop_id, 
-    b.ip_address, 
-    COUNT(o.order_id) AS suspicious_orders, 
-    SUM(o.shipping_subsidy) AS total_subsidy_loss_vnd, 
-    ROUND(AVG(o.order_amount), 0) AS avg_order_amount_vnd 
-FROM orders o 
-JOIN buyer_profiles b ON o.buyer_id = b.buyer_id 
-WHERE o.status = 'COMPLETED' 
-  AND o.order_amount BETWEEN 99000 AND 105000 
-GROUP BY o.shop_id, b.ip_address 
-ORDER BY suspicious_orders DESC 
-LIMIT 5;`
+                defaultSql: `-- [Câu 5] Viết câu lệnh SQL của bạn tại đây:\n\n`
             }
         ]
     }
