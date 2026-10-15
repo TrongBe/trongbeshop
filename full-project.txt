@@ -23295,20 +23295,26 @@ Nhiệm vụ của bạn là chấm điểm câu lệnh SQL của học viên ch
 2. ✨ Chấm cách trình bày & Clean Code SQL (Tối đa 30 điểm)
 3. 🚀 Code chuẩn tối ưu & Hướng dẫn làm tốt hơn (Tối đa 20 điểm)
 
-QUY TẮC CÔNG BẰNG TUYỆT ĐỐI (LOẠI BỎ TRIỆT ĐỂ TRỪ ĐIỂM OAN):
-1. Khi mục [ĐỐI CHIẾU DỮ LIỆU TỰ ĐỘNG TỪ HỆ THỐNG SANDBOX] xác nhận "KHỚP 100% HOÀN TOÀN":
-   - Tiêu chí 1 BẮT BUỘC ĐẠT 50/50 ĐIỂM! Không được tìm lý do trừ điểm ở phần dữ liệu.
-2. Tiêu chí 2 (Clean Code - Tối đa 30 điểm):
-   - Đạt 30/30đ khi học viên:
-     + VIẾT HOA toàn bộ từ khóa SQL (SELECT, FROM, WHERE, GROUP BY, ORDER BY, LIMIT, JOIN, ON, CASE, WHEN, THEN, ELSE, END, AS...).
-     + Xuống dòng tách bạch từng mệnh đề rõ ràng.
-     + Đặt tên cột bí danh (AS) tường minh theo snake_case khi có tính toán hoặc đề bài yêu cầu.
-   - Chỉ trừ điểm Tiêu chí 2 nếu học viên viết thường từ khóa (select, from), dồn tất cả lên 1 dòng duy nhất, hoặc quên đặt AS. Khi trừ điểm, BẮT BUỘC chỉ rõ cách viết hoa và xuống dòng để học viên sửa đạt 100 điểm.
-3. Tiêu chí 3 (Tối ưu & Mẹo thực chiến - Tối đa 20 điểm):
+QUY TẮC CÔNG BẰNG TUYỆT ĐỐI & GIẢI QUYẾT XUNG ĐỘT TIÊU CHÍ (CONFLICT RESOLUTION):
+1. XUNG ĐỘT SELECT * (ĐẶC BIỆT QUAN TRỌNG - KHÔNG TẠO BẪY ĐIỂM NGHỊCH LÝ):
+   - Khi đề bài HOẶC đáp án mẫu yêu cầu/cho phép dùng SELECT * (ví dụ: xem nhanh bảng, lấy toàn bộ hồ sơ):
+     + Nếu học viên viết \`SELECT *\`: BẮT BUỘC ĐẠT 30/30đ ở Tiêu chí 2 (Clean Code) VÀ 50/50đ ở Tiêu chí 1 (Dữ liệu). NGHIÊM CẤM trừ 5đ Clean Code với lý do "lạm dụng SELECT *" hay "thiếu cẩn thận", vì đây là mệnh đề đề bài yêu cầu tường minh!
+     + Nếu học viên liệt kê đầy đủ tất cả các cột của bảng thay vì viết dấu *: CŨNG BẮT BUỘC ĐẠT ĐIỂM TỐI ĐA, không được trừ điểm vì bản chất tập dữ liệu lấy ra hoàn toàn trùng khớp.
+   - Khi đề bài yêu cầu cụ thể danh sách cột (ví dụ: chỉ lấy 4 cột: order_id, shop_id, order_amount, shipping_subsidy):
+     + Nếu học viên dùng SELECT *: Chỉ trừ điểm ở Tiêu chí 1 (vì thừa cột chưa đúng yêu cầu), TUYỆT ĐỐI KHÔNG TRỪ KÉP ở Tiêu chí 2.
+
+2. XUNG ĐỘT ĐẶT TÊN BÍ DANH (AS):
+   - Chỉ yêu cầu từ khóa AS khi có biểu thức tính toán (COUNT, SUM, AVG, ROUND, CASE WHEN...) hoặc khi đề bài ghi rõ "đặt tên cột là ...".
+   - Tuyệt đối không đòi hỏi đặt AS cho câu lệnh SELECT * hoặc khi chỉ lấy các cột nguyên bản của bảng.
+
+3. NGUYÊN TẮC KHÔNG PHẠT KÉP (ANTI-DOUBLE JEOPARDY):
+   - Tuyệt đối không bao giờ trừ điểm cùng một lỗi ở cả Tiêu chí 1 và Tiêu chí 2. Tiêu chí 1 chỉ chấm tính đúng đắn của dữ liệu, Tiêu chí 2 chỉ chấm phong cách định dạng code (viết hoa từ khóa, xuống dòng thụt lề).
+
+4. TIÊU CHÍ 3 (TỐI ƯU & MẸO THỰC CHIẾN - 20 ĐIỂM):
    - Khi câu lệnh của học viên đã đáp ứng chính xác và tối ưu cho bài toán, BẮT BUỘC ĐẠT 20/20 ĐIỂM!
-   - Khối code mẫu và 1 mẹo thực chiến bạn cung cấp (ví dụ: đánh index trên production, partition, lưu ý NULL...) là QUÀ TẶNG MỞ RỘNG KIẾN THỨC, TUYỆT ĐỐI KHÔNG ĐƯỢC LẤY LÀM LÝ DO TRỪ ĐIỂM HỌC VIÊN!
-   - NGHIÊM CẤM TRỪ 2 - 5 ĐIỂM Ở TIÊU CHÍ 3 (CHẤM 15/20 HAY 18/20) VỚI LÝ DO "CHƯA ÁP DỤNG MẸO MỞ RỘNG".
-4. NGUYÊN TẮC 100/100 ĐIỂM TUYỆT ĐỐI:
+   - Khối code mẫu và mẹo thực chiến bạn cung cấp (ví dụ: đánh index trên production, partition, lưu ý NULL...) là QUÀ TẶNG MỞ RỘNG KIẾN THỨC, TUYỆT ĐỐI KHÔNG ĐƯỢC LẤY LÀM LÝ DO TRỪ ĐIỂM HỌC VIÊN! CẤM TRỪ TỪ 100 XUỐNG 95 VÌ MẸO MỞ RỘNG!
+
+5. NGUYÊN TẮC 100/100 ĐIỂM TUYỆT ĐỐI:
    - Nếu câu lệnh có dữ liệu đúng 100% và Clean Code chuẩn: BẮT BUỘC CHẤM 100/100 ĐIỂM (50/50, 30/30, 20/20). Tuyệt đối không chấm 95 hay 97 điểm vô lý!
 
 QUY TẮC ĐỊNH DẠNG BẮT BUỘC TRẢ VỀ:
@@ -23326,8 +23332,8 @@ Sau đó trình bày chi tiết 3 mục:
 [Đánh giá phong cách viết code:
 - Có VIẾT HOA toàn bộ từ khóa SQL (SELECT, FROM, WHERE, GROUP BY, ORDER BY, LIMIT, CASE WHEN, JOIN) không?
 - Có xuống dòng thụt lề tách biệt từng mệnh đề cho dễ đọc không?
-- Có dùng từ khóa AS đặt tên cột (Alias) rõ nghĩa như khi đi làm thực tế không?
-- Có tránh lạm dụng SELECT * khi đề bài chỉ yêu cầu các cột cụ thể không?
+- Có dùng từ khóa AS đặt tên cột (Alias) rõ nghĩa cho các biểu thức tính toán (COUNT, SUM, AVG, ROUND, CASE WHEN) không? (Các cột nguyên bản hoặc SELECT * không cần AS).
+- Quy tắc SELECT *: Chỉ coi là lạm dụng nếu đề bài đã liệt kê danh sách cột cụ thể mà học viên vẫn lấy SELECT *. Nếu đề bài yêu cầu xem toàn bộ cột / SELECT * thì dùng SELECT * là HOÀN TOÀN CHUẨN XÁC, đạt trọn 30/30đ!
 Nếu bị trừ điểm ở mục này, hãy ghi rõ: "Để đạt 30/30đ và tổng 100đ, hãy: ..."]
 
 ### 🚀 Code chuẩn tối ưu & Hướng dẫn làm tốt hơn (Z/20đ)
@@ -23379,7 +23385,13 @@ window.submitDrillQuestion = async function(drillId, qId) {
     // 3. Đối chiếu tự động dữ liệu giữa kết quả học viên và đáp án chuẩn
     const isDataExactMatch = userSuccess && compareSqlResults(userResults, expectedResults);
 
-    // 4. Hiển thị trạng thái đang chấm
+    // 4. Kiểm tra xem đề bài hoặc câu mẫu có yêu cầu/chấp nhận SELECT * hay không
+    const promptDemandsSelectAll = (q.expectedSql || '').toUpperCase().includes('SELECT *') || 
+                                   (q.prompt || '').toUpperCase().includes('SELECT *') ||
+                                   (q.prompt || '').toLowerCase().includes('toàn bộ các cột') ||
+                                   (q.prompt || '').toLowerCase().includes('toàn bộ cột');
+
+    // 5. Hiển thị trạng thái đang chấm
     if (submitBtn) submitBtn.disabled = true;
     if (feedbackBox) {
         feedbackBox.style.display = 'block';
@@ -23392,7 +23404,7 @@ window.submitDrillQuestion = async function(drillId, qId) {
         feedbackBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
-    // 5. Chuẩn bị prompt gửi AI Gateway
+    // 6. Chuẩn bị prompt gửi AI Gateway
     const gradingPrompt = `
 [CÂU HỎI LUYỆN TẬP SQL ${q.questionNumber}]:
 Tiêu đề: ${q.title}
@@ -23423,6 +23435,18 @@ ${isDataExactMatch
         : '❌ Câu lệnh bị lỗi cú pháp, không thực thi được.')
 }
 
+[ĐẶC BIỆT LƯU Ý VỀ MỆNH ĐỀ SELECT & TRÁNH XUNG ĐỘT TIÊU CHÍ CHẤM BÀI]:
+${promptDemandsSelectAll 
+    ? `⭐ CÂU HỎI NÀY YÊU CẦU HOẶC KHUYẾN KHÍCH XEM TOÀN BỘ CỘT (DÙNG SELECT *):
+- Học viên dùng \`SELECT *\`: TUÂN THỦ 100% YÊU CẦU ĐỀ BÀI -> BẮT BUỘC ĐẠT 30/30 ĐIỂM CLEAN CODE (Tiêu chí 2) và 50/50 ĐIỂM DỮ LIỆU (Tiêu chí 1). TUYỆT ĐỐI NGHIÊM CẤM TRỪ ĐIỂM vì dùng SELECT *!
+- Học viên liệt kê đầy đủ toàn bộ các cột của bảng thay vì dùng dấu *: CŨNG ĐẠT ĐIỂM TỐI ĐA, vì kết quả dữ liệu hoàn toàn tương đương.
+- Truy vấn \`SELECT *\` hoặc lấy cột nguyên bản không có tính toán thì KHÔNG CẦN đặt từ khóa \`AS\` (Alias).`
+    : `⭐ CÂU HỎI NÀY YÊU CẦU DANH SÁCH CỘT CỤ THỂ:
+- Nếu học viên dùng \`SELECT *\` thay vì chỉ chọn các cột đề yêu cầu: Chỉ trừ điểm ở Tiêu chí 1 (Dữ liệu chưa chọn đúng cột), TUYỆT ĐỐI KHÔNG TRỪ KÉP ở Tiêu chí 2 (Clean Code).`
+}
+- NGUYÊN TẮC KHÔNG PHẠT KÉP: Một lỗi chỉ được trừ ở 1 tiêu chí thích hợp nhất.
+- NGUYÊN TẮC ALIAS (AS): Chỉ yêu cầu đặt AS cho các cột có biểu thức tính toán (COUNT, SUM, AVG, ROUND, CASE WHEN) hoặc khi đề bài ghi rõ tên cột mới. Các cột nguyên bản từ bảng không bắt buộc phải có AS.
+
 QUY TẮC CHẤM ĐIỂM CÔNG BẰNG:
 - Nếu học viên có dữ liệu khớp 100% VÀ trình bày Clean Code (viết hoa từ khóa, xuống dòng rõ ràng, alias chuẩn): BẮT BUỘC CHẤM 100/100 ĐIỂM TUYỆT ĐỐI (50/50, 30/30, 20/20)!
 - TUYỆT ĐỐI KHÔNG ĐƯỢC TỰ Ý TRỪ 2 - 5 ĐIỂM Ở TIÊU CHÍ 3 (CHẤM 95 HOẶC 97 ĐIỂM) KHI CÂU LỆNH ĐÃ TỐI ƯU VÀ KHÔNG CÓ LỖI!
@@ -23452,7 +23476,7 @@ QUY TẮC CHẤM ĐIỂM CÔNG BẰNG:
 
     if (submitBtn) submitBtn.disabled = false;
 
-    // 6. Render và Lưu Kết Quả
+    // 7. Render và Lưu Kết Quả
     renderDrillAiFeedback(drillId, q, aiRawResponse, userSql, isDataExactMatch);
 };
 
@@ -23478,13 +23502,44 @@ function renderDrillAiFeedback(drillId, q, rawText, userSql, isDataExactMatch = 
     c2Score = Math.min(30, Math.max(0, c2Score));
     c3Score = Math.min(20, Math.max(0, c3Score));
 
-    // BẢO VỆ CHỐNG TRỪ ĐIỂM OAN (Fairness Calibration Guardrail):
+    // BẢO VỆ CHỐNG TRỪ ĐIỂM OAN & XỬ LÝ TRIỆT ĐỂ XUNG ĐỘT (Fairness & Conflict Resolution Guardrail):
     // 1. Nếu sandbox AlaSQL xác nhận dữ liệu đã khớp 100% với đáp án mẫu -> Tiêu chí 1 đạt 50/50đ
     if (isDataExactMatch && c1Score < 50) {
         c1Score = 50;
     }
 
-    // 2. Nếu Tiêu chí 1 đạt 50/50 và Tiêu chí 2 đạt 30/30 (Dữ liệu chuẩn, Clean Code hoàn hảo),
+    // 2. Xử lý xung đột SELECT * (Đề bài yêu cầu xem toàn bộ các cột):
+    const isSelectAllQuestion = (q.expectedSql || '').toUpperCase().includes('SELECT *') || 
+                                (q.prompt || '').toUpperCase().includes('SELECT *') ||
+                                (q.prompt || '').toLowerCase().includes('toàn bộ các cột') ||
+                                (q.prompt || '').toLowerCase().includes('toàn bộ cột');
+
+    if (isSelectAllQuestion) {
+        // Trường hợp A: Đề bài yêu cầu SELECT *, dữ liệu khớp, học viên dùng SELECT * hoặc liệt kê đủ cột
+        // Nhưng AI lại trừ điểm Tiêu chí 2 vì "lạm dụng SELECT *" hoặc "thiếu cẩn thận":
+        if (isDataExactMatch && c2Score < 30) {
+            const upperKeywords = (userSql.match(/\b(SELECT|FROM|LIMIT|WHERE|ORDER BY)\b/g) || []).length;
+            const lowerKeywords = (userSql.match(/\b(select|from|limit|where|order by)\b/g) || []).length;
+            if (upperKeywords >= lowerKeywords) {
+                c2Score = 30;
+            }
+        }
+
+        // Trường hợp B: Học viên dùng SELECT * đúng yêu cầu hoặc liệt kê cột, dữ liệu khớp nhưng AI trừ Tiêu chí 1:
+        if (isDataExactMatch && c1Score < 50) {
+            c1Score = 50;
+        }
+    }
+
+    // 3. Xử lý xung đột Alias (AS): Nếu câu lệnh không có phép tính/hàm tổng hợp thì không cần AS
+    const hasAggregationOrCalc = /\b(COUNT|SUM|AVG|MIN|MAX|ROUND|CASE)\b/i.test(userSql);
+    if (!hasAggregationOrCalc && isDataExactMatch && c2Score === 25) {
+        if (c2Match && c2Match[2] && c2Match[2].toLowerCase().includes('alias')) {
+            c2Score = 30;
+        }
+    }
+
+    // 4. Nếu Tiêu chí 1 đạt 50/50 và Tiêu chí 2 đạt 30/30 (Dữ liệu chuẩn, Clean Code hoàn hảo),
     // mà AI lại trừ 2-5 điểm ở Tiêu chí 3 chỉ vì bổ sung lời khuyên mở rộng -> Phục hồi trọn vẹn 20/20đ
     if (c1Score === 50 && c2Score === 30 && c3Score >= 15) {
         c3Score = 20;
@@ -23502,7 +23557,12 @@ function renderDrillAiFeedback(drillId, q, rawText, userSql, isDataExactMatch = 
     let c3Note = c3Match && c3Match[2] ? c3Match[2].trim() : 'Câu lệnh tối ưu và mẹo thực chiến';
 
     if (isDataExactMatch && c1Score === 50) {
-        c1Note = 'Dữ liệu và cú pháp hoàn toàn chính xác (khớp 100% với đáp án chuẩn)';
+        c1Note = isSelectAllQuestion 
+            ? 'Dữ liệu lấy ra hoàn toàn chính xác (khớp 100% với yêu cầu xem toàn bộ các cột)' 
+            : 'Dữ liệu và cú pháp hoàn toàn chính xác (khớp 100% với đáp án chuẩn)';
+    }
+    if (isSelectAllQuestion && c2Score === 30) {
+        c2Note = 'Dùng SELECT * hoàn toàn chính xác theo yêu cầu đề bài; từ khóa viết hoa chuẩn mực';
     }
     if (c3Score === 20 && (!c3Match || !c3Match[2] || c3Match[2].toLowerCase().includes('trừ') || c3Match[2].toLowerCase().includes('chưa tối ưu'))) {
         c3Note = 'Câu lệnh đã tối ưu chuẩn mực; mẹo thực chiến là kiến thức mở rộng';
@@ -23524,9 +23584,12 @@ function renderDrillAiFeedback(drillId, q, rawText, userSql, isDataExactMatch = 
         .replace(/🎯\s*TỔNG\s*ĐIỂM:[\s\S]*?(?=###|$)/i, '')
         .trim();
 
-    // Đồng bộ lại tiêu đề markdown nếu điểm được bảo vệ lên 50 hoặc 20
+    // Đồng bộ lại tiêu đề markdown nếu điểm được bảo vệ lên 50, 30 hoặc 20
     if (c1Score === 50) {
         bodyText = bodyText.replace(/###\s*🎯\s*Điểm số & Kết quả dữ liệu[^(\n]*\(\s*\d+\s*\/\s*50\s*đ?\s*\)/i, '### 🎯 Điểm số & Kết quả dữ liệu (50/50đ)');
+    }
+    if (c2Score === 30) {
+        bodyText = bodyText.replace(/###\s*✨\s*Chấm cách trình bày[^(\n]*\(\s*\d+\s*\/\s*30\s*đ?\s*\)/i, '### ✨ Chấm cách trình bày & Clean Code SQL (30/30đ)');
     }
     if (c3Score === 20) {
         bodyText = bodyText.replace(/###\s*🚀\s*Code chuẩn tối ưu[^(\n]*\(\s*\d+\s*\/\s*20\s*đ?\s*\)/i, '### 🚀 Code chuẩn tối ưu & Hướng dẫn làm tốt hơn (20/20đ)');
