@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261015_darkfix_3">
+  <link rel="stylesheet" href="css/style.css?v=20261026_scrollfix">
 
   <!-- Dark Mode Script (Prevent flash on initial paint) -->
   <script>
@@ -235,6 +235,8 @@
           <div id="questionsContainer">
             <!-- Javascript sẽ tự động thêm câu hỏi vào đây -->
           </div>
+          <!-- Đệm an toàn chống khuất đáp án D ở câu cuối cùng -->
+          <div class="quiz-scroll-spacer" style="height: 160px; width: 100%; pointer-events: none; clear: both;" aria-hidden="true"></div>
         </form>
       </div>
 
@@ -683,7 +685,7 @@
     <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ef629dc6201fd.svg" alt="AI">
   </button>
 
-  <script type="module" src="js/app.js?v=89"></script>
+  <script type="module" src="js/app.js?v=91"></script>
   <script type="module" src="js/gemini.js?v=12"></script>
   <script type="module" src="js/tronex-ai.js?v=7"></script>
   <script type="module" src="js/auth.js?v=1"></script>

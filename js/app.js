@@ -1,4 +1,4 @@
-import { mockQuizzes } from './data.js?v=89';
+import { mockQuizzes } from './data.js?v=90';
 import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
@@ -49,6 +49,7 @@ if (isVACTPage) {
     const homeQuizzes = mockQuizzes.filter(q => q && q.id);
     mockQuizzes.length = 0;
     mockQuizzes.push(...homeQuizzes);
+    window.__vactSeedBackup = [...homeQuizzes];
 }
 
 // === HELPER: Đệ quy chuyển Firebase Object-Array về Array thực (v70) ===
@@ -1670,15 +1671,26 @@ window.loadPublicQuizzes = function () {
                 if (!pq.title || !pq.questions) return;
                 if (!Array.isArray(pq.questions) || pq.questions.length === 0) return;
 
-                // Với các đề seed từ data.js: Firebase được phép override NHƯNG phải có đủ câu hỏi
+                // Với các đề seed từ data.js: data.js là nguồn chân lý cho câu hỏi và cấu trúc đề
                 if (window.__vactSeedBackup) {
                     const backupObj = window.__vactSeedBackup.find(q => q && q.id === pqId);
                     if (backupObj) {
-                        const backupCount = (backupObj.questions || []).length;
-                        if (backupCount > 0 && pq.questions.length < backupCount * 0.5) {
-                            console.warn(`[TRONEX] Firebase data cho ${pqId} bị thiếu câu hỏi, dùng backup từ data.js`);
-                            return; // Giữ nguyên version từ data.js
+                        // Cập nhật lượt xem từ Firebase
+                        if (existingIdx !== -1 && pq.viewCount !== undefined) {
+                            mockQuizzes[existingIdx].viewCount = pq.viewCount;
                         }
+                        // Nếu Firebase đang giữ bản cũ khác với data.js, tự động cập nhật bản mới lên Firebase
+                        const localSeedCopy = { ...backupObj };
+                        delete localSeedCopy.viewCount;
+                        const remoteSeedCopy = { ...pq };
+                        delete remoteSeedCopy.viewCount;
+                        if (JSON.stringify(localSeedCopy) !== JSON.stringify(remoteSeedCopy)) {
+                            console.log(`🔄 Tự động đồng bộ bản mới của đề seed ${pqId} từ data.js lên Firebase...`);
+                            if (typeof window.__publishPublicQuiz === 'function') {
+                                window.__publishPublicQuiz({ ...backupObj, viewCount: pq.viewCount || 0 });
+                            }
+                        }
+                        return; // Không cho dữ liệu cũ từ Firebase đè lên data.js
                     }
                 }
 

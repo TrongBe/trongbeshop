@@ -895,7 +895,7 @@ export const mockQuizzes = [
                 {
                         id: "gk1_c1_q9",
                         section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
-                        text: "Câu 9: Thực hiện phản ứng xà phòng hóa hoàn toàn 8,9 gam tristearin bằng dung dịch NaOH vừa đủ. Khối lượng glycerol thu được là",
+                        text: "Câu 9: Thực hiện phản ứng xà phòng hóa hoàn toàn 8,9 gam tripalmitin bằng dung dịch NaOH vừa đủ. Khối lượng glycerol thu được là",
                         options: [
                                 "A. 0,92 gram.",
                                 "B. 1,84 gram.",
@@ -944,14 +944,14 @@ export const mockQuizzes = [
                         id: "gk1_c1_q13",
                         section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
                         text: "Câu 13: Linoleic acid (có cấu tạo như hình bên dưới) là một trong những acid béo có lợi cho sức khỏe tim mạch, ngăn ngừa các bệnh về tim, động mạch vành. Phát biểu nào sau đây sai?",
-                        diagramCode: "<div style=\"text-align:center; padding:10px 0;\"><svg viewBox=\"0 0 540 90\" style=\"max-width:100%; height:auto;\"><path d=\"M 15 45 L 45 65 L 75 45 L 105 65 L 135 45 L 165 65 L 195 45 L 225 65 L 255 45 L 285 65 L 315 45 L 345 65 L 375 45 L 405 65 L 435 45 L 465 65 L 495 45\" fill=\"none\" stroke=\"#4F46E5\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"165\" y1=\"58\" x2=\"195\" y2=\"38\" stroke=\"#4F46E5\" stroke-width=\"2.5\"/><line x1=\"255\" y1=\"38\" x2=\"285\" y2=\"58\" stroke=\"#4F46E5\" stroke-width=\"2.5\"/><text x=\"500\" y=\"49\" fill=\"#EF4444\" font-weight=\"700\" font-size=\"14\" font-family=\"sans-serif\">COOH</text><text x=\"5\" y=\"49\" fill=\"#10B981\" font-weight=\"700\" font-size=\"13\" font-family=\"sans-serif\">CH₃</text></svg><div style=\"font-size:0.85rem; color:var(--text-muted); margin-top:4px;\">Cấu trúc hóa học của Linoleic acid (C₁₇H₃₁COOH - acid béo omega-6 có 2 liên kết đôi C=C)</div></div>",
+                        diagramCode: "<div style=\"text-align:center; padding:10px 0;\"><svg viewBox=\"0 0 540 90\" style=\"max-width:100%; height:auto;\"><path d=\"M 15 45 L 45 65 L 75 45 L 105 65 L 135 45 L 165 65 L 195 45 L 225 65 L 255 45 L 285 65 L 315 45 L 345 65 L 375 45 L 405 65 L 435 45 L 465 65 L 495 45\" fill=\"none\" stroke=\"#4F46E5\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"165\" y1=\"58\" x2=\"195\" y2=\"38\" stroke=\"#4F46E5\" stroke-width=\"2.5\"/><line x1=\"255\" y1=\"38\" x2=\"285\" y2=\"58\" stroke=\"#4F46E5\" stroke-width=\"2.5\"/><text x=\"500\" y=\"49\" fill=\"#EF4444\" font-weight=\"700\" font-size=\"14\" font-family=\"sans-serif\">COOH</text><text x=\"5\" y=\"49\" fill=\"#10B981\" font-weight=\"700\" font-size=\"13\" font-family=\"sans-serif\">CH₃</text></svg><div style=\"font-size:0.85rem; color:var(--text-muted); margin-top:4px;\">Cấu trúc hóa học của Linoleic acid (C₁₇H₃₁COOH - có 2 liên kết đôi C=C và 1 nhóm -COOH, tổng cộng 3 liên kết $\\pi$)</div></div>",
                         options: [
-                                "A. Trong phân tử linoleic acid có 2 liên kết đôi C=C.",
-                                "B. Ở điều kiện thích hợp, 1 mol linoleic acid tác dụng được tối đa với 6 mol H₂.",
+                                "A. Trong phân tử linoleic acid có 2 liên kết $\\pi$.",
+                                "B. Ở điều kiện thích hợp, 1 mol trilinolein tác dụng được tối đa với 6 mol H₂.",
                                 "C. Trilinolein có công thức phân tử là C₅₇H₉₈O₆.",
                                 "D. Linoleic acid thuộc loại acid béo omega-6."
                         ],
-                        correctIndex: 1
+                        correctIndex: 0
                 },
                 {
                         id: "gk1_c1_q14",

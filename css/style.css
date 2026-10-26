@@ -4859,7 +4859,7 @@ main {
         margin-right: 125px !important;
         width: auto !important;
         min-width: 0 !important;
-        padding: 0 4px 0 0 !important;
+        padding: 0 4px 220px 0 !important;
     }
 
     /* Right Sidebar Panel (Position Fixed: Always stays on screen when scrolling down) */
@@ -5117,12 +5117,14 @@ main {
     .view-section.tronex-layout.active .tronex-main {
         flex: 0 0 calc(70% - 16px) !important;
         max-width: calc(70% - 16px) !important;
-        height: calc(100vh - 40px) !important;
+        height: calc(100vh - 120px) !important;
         overflow-y: auto !important;
         padding-right: 18px !important;
+        padding-bottom: 220px !important;
         scroll-behavior: smooth !important;
         scrollbar-width: thin !important;
         scrollbar-color: #cbd5e1 transparent !important;
+        box-sizing: border-box !important;
     }
 
     .view-section.tronex-layout.active .tronex-main::-webkit-scrollbar {
@@ -5139,13 +5141,23 @@ main {
         max-width: calc(30% - 16px) !important;
         position: sticky !important;
         top: 20px !important;
-        max-height: calc(100vh - 40px) !important;
+        max-height: calc(100vh - 120px) !important;
         overflow-y: auto !important;
         z-index: 100 !important;
         border-radius: 16px !important;
         box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04) !important;
         scrollbar-width: thin !important;
     }
+}
+
+/* Khoảng đệm an toàn chống khuất đáp án D ở câu cuối cùng */
+#questionsContainer {
+    padding-bottom: 180px !important;
+    box-sizing: border-box !important;
+}
+
+.question-card:last-child {
+    margin-bottom: 160px !important;
 }
 
 /* --- 2. CHẾ ĐỘ TẬP TRUNG (ZEN MODE - ZERO DISTRACTION) --- */
@@ -5159,6 +5171,7 @@ body.zen-mode {
 }
 
 /* Triệt tiêu mọi thành phần gây xao nhãng */
+body.zen-mode .nav-floating-bar,
 body.zen-mode header.header,
 body.zen-mode footer,
 body.zen-mode .footer,
@@ -5171,6 +5184,15 @@ body.zen-mode .quiz-filter-tabs,
 body.zen-mode .quiz-search-bar,
 body.zen-mode #setupView {
     display: none !important;
+}
+
+body.zen-mode .view-section.tronex-layout.active .tronex-main {
+    height: calc(100vh - 40px) !important;
+    padding-bottom: 220px !important;
+}
+
+body.zen-mode .view-section.tronex-layout.active .tronex-sidebar {
+    max-height: calc(100vh - 40px) !important;
 }
 
 body.zen-mode .tronex-layout {
