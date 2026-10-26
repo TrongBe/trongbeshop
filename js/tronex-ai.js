@@ -115,6 +115,24 @@ class tronexAI {
         msg.className = `msg-bubble msg-${sender}`;
         msg.innerHTML = text;
         this.chatMessages.appendChild(msg);
+
+        // Hỗ trợ hiển thị KaTeX trong cả tin nhắn của học sinh (nếu có công thức)
+        if (sender === 'user' && window.renderMathInElement && (text.includes('$') || text.includes('\\'))) {
+            try {
+                window.renderMathInElement(msg, {
+                    delimiters: [
+                        { left: '$$', right: '$$', display: true },
+                        { left: '$', right: '$', display: false },
+                        { left: '\\(', right: '\\)', display: false },
+                        { left: '\\[', right: '\\]', display: true }
+                    ],
+                    throwOnError: false
+                });
+            } catch (e) {
+                console.warn('[KaTeX User Msg Error]', e);
+            }
+        }
+
         this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
         return msg;
     }
@@ -210,7 +228,9 @@ QUY TẮC ĐỊNH DẠNG CÔNG THỨC TOÁN - KHOA HỌC
 - Công thức Toán học, Vật lý, Hóa học: Luôn viết chuẩn KaTeX:
   + Dùng $$...$$ cho công thức khối hiển thị riêng một dòng.
   + Dùng $...$ cho công thức nằm trong dòng văn bản (inline).
-  + Ví dụ: $CH_3COOCH_3$, $\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1$, $S = \\pi r^2$.
+  + Số thập phân viết chuẩn trong KaTeX (ví dụ: $8,9$ gam hoặc $0,15$ mol, không làm mất dấu phẩy).
+  + Ký hiệu $\pi$: Viết $\pi$ (ví dụ: $2\pi$, $3\pi$, $S = \pi r^2$).
+  + Hóa học: Viết chuẩn công thức và phương trình, dùng mũi tên $\\rightarrow$ hoặc $\\rightleftharpoons$ (hoặc $\\ce{...}$). Ví dụ: $(C_{15}H_{31}COO)_3C_3H_5$, $CH_3COOH + C_2H_5OH \\rightleftharpoons CH_3COOC_2H_5 + H_2O$.
 - Trình bày Markdown đẹp mắt, có tiêu đề và gạch đầu dòng rõ ràng, không viết thành một khối chữ dính liền.
 - Giọng điệu: Tận tâm, ân cần, giải thích khúc chiết, sư phạm và truyền cảm hứng.`;
 
@@ -323,29 +343,58 @@ QUY TẮC ĐỊNH DẠNG CÔNG THỨC TOÁN - KHOA HỌC
 
     renderAiResponse(container, text) {
         if (!container) return;
-        let html = text
-            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+
+        // 1. Chuẩn hóa các mũi tên hóa học thông dụng trước
+        let normalized = text
+            .replace(/<->|<=>|<==>/g, '\\rightleftharpoons ')
+            .replace(/->|-->|--->/g, '\\rightarrow ');
+
+        // 2. Bảo vệ tất cả các khối công thức KaTeX ($$...$$, \[...\], $...$, \(...\))
+        // Tránh bị escape HTML (&lt;, &gt;, &amp;) làm hỏng cú pháp công thức và ký hiệu
+        const mathBlocks = [];
+        normalized = normalized.replace(/(\$\$[\s\S]*?\$\$|\\\[[\s\S]*?\\\]|\$[\s\S]*?\$|\\\([\s\S]*?\\\))/g, (match) => {
+            mathBlocks.push(match);
+            return '___KATEX_MATH_BLOCK_' + (mathBlocks.length - 1) + '___';
+        });
+
+        // 3. Render Markdown an toàn cho phần văn bản thông thường
+        let html = normalized
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
             .replace(/\*(.*?)\*/g, '<em>$1</em>')
-            .replace(/`(.*?)`/g, '<code style="background:#f1f5f9;padding:1px 5px;border-radius:4px;">$1</code>')
+            .replace(/`([^`]+)`/g, '<code style="background:#f1f5f9;padding:1px 5px;border-radius:4px;">$1</code>')
             .replace(/^### (.*?)$/gm, '<h3 style="color:var(--primary,#6366f1);margin:12px 0 6px;">$1</h3>')
             .replace(/^## (.*?)$/gm, '<h2 style="color:var(--primary,#6366f1);margin:16px 0 8px;">$1</h2>')
             .replace(/^- (.*?)$/gm, '<li style="margin:3px 0;">$1</li>')
             .replace(/(<li.*<\/li>)/gs, '<ul style="padding-left:20px;margin:8px 0;">$1</ul>')
             .replace(/\n/g, '<br>');
 
+        // 4. Khôi phục lại các khối KaTeX nguyên vẹn
+        html = html.replace(/___KATEX_MATH_BLOCK_(\d+)___/g, (_, idx) => {
+            let m = mathBlocks[parseInt(idx, 10)] || '';
+            return m
+                .replace(/<->|<=>|<==>/g, '\\rightleftharpoons ')
+                .replace(/->|-->|--->/g, '\\rightarrow ');
+        });
+
         container.innerHTML = html;
 
         if (window.renderMathInElement) {
-            window.renderMathInElement(container, {
-                delimiters: [
-                    { left: '$$', right: '$$', display: true },
-                    { left: '$', right: '$', display: false },
-                    { left: '\\(', right: '\\)', display: false },
-                    { left: '\\[', right: '\\]', display: true }
-                ],
-                throwOnError: false
-            });
+            try {
+                window.renderMathInElement(container, {
+                    delimiters: [
+                        { left: '$$', right: '$$', display: true },
+                        { left: '$', right: '$', display: false },
+                        { left: '\\(', right: '\\)', display: false },
+                        { left: '\\[', right: '\\]', display: true }
+                    ],
+                    throwOnError: false
+                });
+            } catch (err) {
+                console.warn('[KaTeX Render Error]', err);
+            }
         }
         if (this.chatMessages) this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
     }

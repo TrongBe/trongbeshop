@@ -241,23 +241,43 @@ main {
     flex-shrink: 0;
     width: 38px;
     height: 38px;
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #FFFFFF;
+    background: #FFFFFF;
+    border: 1.5px solid #E2E8F0;
+    color: #0F172A;
     cursor: pointer;
-    display: flex;
+    display: none; /* Ẩn trên desktop vì đã có nav-pills */
     align-items: center;
     justify-content: center;
     padding: 7px;
     border-radius: 10px;
     transition: all var(--transition);
     box-sizing: border-box;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+}
+
+@media (max-width: 768px) {
+    .menu-btn {
+        display: flex !important; /* Hiển thị trên thiết bị di động */
+    }
 }
 
 .menu-btn:hover {
-    background: rgba(255, 255, 255, 0.22);
-    border-color: rgba(255, 255, 255, 0.4);
+    background: #F8FAFC;
+    border-color: #CBD5E1;
     transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="dark"] .menu-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.16);
+    color: #F8FAFC;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .menu-btn:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .sidebar-overlay {
@@ -3135,15 +3155,15 @@ main {
     right: 25px !important;
     width: 380px !important;
     height: 550px !important;
-    background: rgba(255, 255, 255, 0.98) !important;
+    background: #FFFFFF !important;
     backdrop-filter: blur(15px) !important;
     border-radius: 24px !important;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 0 15px 50px rgba(15, 23, 42, 0.15) !important;
     display: none;
     flex-direction: column !important;
     z-index: 9999 !important;
     overflow: hidden !important;
-    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid #E2E8F0 !important;
 }
 
 .ai-chat-container.fullscreen {
@@ -3170,7 +3190,7 @@ main {
     display: flex !important;
     flex-direction: column !important;
     gap: 16px !important;
-    background: #f9fafb !important;
+    background: #F8FAFC !important;
 }
 
 .msg-bubble {
@@ -3183,9 +3203,15 @@ main {
 
 .msg-ai {
     align-self: flex-start !important;
-    background: white !important;
-    color: #1f2937 !important;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05) !important;
+    background: #FFFFFF !important;
+    color: #0F172A !important;
+    border: 1px solid #E2E8F0 !important;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05) !important;
+}
+
+.msg-ai code {
+    background: #F1F5F9 !important;
+    color: #4F46E5 !important;
 }
 
 .msg-user {
@@ -3196,17 +3222,62 @@ main {
 
 .ai-chat-input-area {
     padding: 16px !important;
-    background: white !important;
-    border-top: 1px solid #e5e7eb !important;
+    background: #FFFFFF !important;
+    border-top: 1px solid #E2E8F0 !important;
     display: flex !important;
     gap: 10px !important;
 }
 
 .ai-chat-input {
     flex: 1 !important;
-    border: 1px solid #e5e7eb !important;
+    background: #FFFFFF !important;
+    border: 1px solid #CBD5E1 !important;
+    color: #0F172A !important;
     border-radius: 12px !important;
     padding: 10px 15px !important;
+}
+
+.ai-chat-input:focus {
+    border-color: #6366F1 !important;
+    outline: none !important;
+}
+
+/* AI Chat Dark Mode */
+[data-theme="dark"] .ai-chat-container {
+    background: #0F172A !important;
+    border-color: #334155 !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6) !important;
+}
+
+[data-theme="dark"] .ai-chat-messages {
+    background: #0B1120 !important;
+}
+
+[data-theme="dark"] .msg-ai {
+    background: #1E293B !important;
+    color: #F8FAFC !important;
+    border-color: #334155 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme="dark"] .msg-ai code {
+    background: #334155 !important;
+    color: #A5B4FC !important;
+}
+
+[data-theme="dark"] .ai-chat-input-area {
+    background: #1E293B !important;
+    border-top-color: #334155 !important;
+}
+
+[data-theme="dark"] .ai-chat-input {
+    background: #0F172A !important;
+    border-color: #334155 !important;
+    color: #F8FAFC !important;
+}
+
+[data-theme="dark"] .ai-chat-input:focus {
+    border-color: #818CF8 !important;
 }
 
 /* ============================================================
@@ -3335,25 +3406,39 @@ main {
 
 /* --- Dark Mode Toggle Button --- */
 .theme-toggle-btn {
-    background: none;
-    border: 1.5px solid rgba(255,255,255,0.3);
-    color: white;
+    background: #FFFFFF;
+    border: 1.5px solid #E2E8F0;
+    color: #0F172A;
     width: 38px;
     height: 38px;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 17px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
     flex-shrink: 0;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
 }
 
 .theme-toggle-btn:hover {
-    background: rgba(255,255,255,0.15);
-    border-color: rgba(255,255,255,0.6);
-    transform: rotate(20deg) scale(1.1);
+    background: #F8FAFC;
+    border-color: #CBD5E1;
+    transform: rotate(15deg) scale(1.05);
+    box-shadow: 0 3px 8px rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="dark"] .theme-toggle-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.16);
+    color: #F8FAFC;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .theme-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 /* --- Hero Section with Background Image --- */
@@ -3848,27 +3933,29 @@ main {
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 6px 14px;
-    border: 1.5px solid rgba(255,255,255,0.35);
-    border-radius: 20px;
-    background: rgba(255,255,255,0.1);
-    color: white;
-    font-size: 13px;
+    padding: 7px 16px;
+    border: 1.5px solid #E2E8F0;
+    border-radius: 9999px;
+    background: #FFFFFF;
+    color: #0F172A;
+    font-size: 13.5px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
     white-space: nowrap;
-    backdrop-filter: blur(4px);
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
 }
 
 .auth-btn:hover {
-    background: rgba(255,255,255,0.2);
-    border-color: rgba(255,255,255,0.5);
+    background: #F8FAFC;
+    border-color: #CBD5E1;
+    color: var(--primary, #4F46E5);
     transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(15, 23, 42, 0.08);
 }
 
 .auth-btn--logged {
-    padding: 3px 12px 3px 3px;
+    padding: 3px 14px 3px 4px;
     gap: 8px;
 }
 
@@ -3877,15 +3964,37 @@ main {
     height: 30px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid rgba(255,255,255,0.5);
+    border: 2px solid #E2E8F0;
 }
 
 .header-username {
     font-size: 13px;
     font-weight: 600;
-    max-width: 100px;
+    color: #0F172A;
+    max-width: 110px;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+[data-theme="dark"] .auth-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.16);
+    color: #F8FAFC;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .auth-btn:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #A5B4FC;
+}
+
+[data-theme="dark"] .header-avatar {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .header-username {
+    color: #F8FAFC;
 }
 
 /* ============================================================
@@ -7090,7 +7199,43 @@ body.modern-saas-page {
     background: #1E293B !important;
 }
 
-/* KaTeX Math Formulas chuyển sáng 100% trong Dark Mode */
+/* ============================================================
+   KATEX MATH & SCIENCE FORMULAS HIGH-CONTRAST (LIGHT & DARK)
+   ============================================================ */
+/* Light Mode (Mặc định): Mọi ký tự toán/lý/hóa (kể cả dấu phẩy thập phân, phân số, ký hiệu) hiển thị đen sắc nét */
+.katex,
+.katex-display,
+.katex .base,
+.katex-html,
+.katex .mord,
+.katex .mbin,
+.katex .mrel,
+.katex .mop,
+.katex .mpunct,
+.katex .mopen,
+.katex .mclose,
+.katex .minner,
+.katex .text {
+    color: #0F172A !important;
+}
+
+.katex .rule,
+.katex .frac-line {
+    border-color: #0F172A !important;
+}
+
+/* Đảm bảo KaTeX trong tin nhắn Trợ giảng AI Light Mode luôn sắc nét */
+.msg-ai .katex,
+.msg-ai .katex * {
+    color: #0F172A !important;
+}
+
+.msg-ai .katex .rule,
+.msg-ai .katex .frac-line {
+    border-color: #0F172A !important;
+}
+
+/* Dark Mode: KaTeX Math Formulas chuyển sáng 100% */
 [data-theme="dark"] .katex,
 [data-theme="dark"] .katex-display,
 [data-theme="dark"] .katex .base,
@@ -7098,12 +7243,28 @@ body.modern-saas-page {
 [data-theme="dark"] .katex .mord,
 [data-theme="dark"] .katex .mbin,
 [data-theme="dark"] .katex .mrel,
-[data-theme="dark"] .katex .mop {
-    color: #F1F5F9 !important;
+[data-theme="dark"] .katex .mop,
+[data-theme="dark"] .katex .mpunct,
+[data-theme="dark"] .katex .mopen,
+[data-theme="dark"] .katex .mclose,
+[data-theme="dark"] .katex .minner,
+[data-theme="dark"] .katex .text {
+    color: #F8FAFC !important;
 }
 
-[data-theme="dark"] .katex .rule {
-    border-color: #F1F5F9 !important;
+[data-theme="dark"] .katex .rule,
+[data-theme="dark"] .katex .frac-line {
+    border-color: #F8FAFC !important;
+}
+
+[data-theme="dark"] .msg-ai .katex,
+[data-theme="dark"] .msg-ai .katex * {
+    color: #F8FAFC !important;
+}
+
+[data-theme="dark"] .msg-ai .katex .rule,
+[data-theme="dark"] .msg-ai .katex .frac-line {
+    border-color: #F8FAFC !important;
 }
 
 /* Sidebar V-ACT & Phiếu trả lời */
