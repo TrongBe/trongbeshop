@@ -1,4 +1,4 @@
-import { mockQuizzes } from './data.js?v=90';
+import { mockQuizzes } from './data.js?v=91';
 import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
@@ -333,14 +333,12 @@ function isQuizOwner(id) {
     if (!id) return false;
     if (localStorage.getItem("admin_secret_key") === "trongbeshop") return true;
     const targetId = id.toString().trim();
-    // Kiểm tra cả gemini_ và manual_ prefix
-    if (!targetId.startsWith('gemini_') && !targetId.startsWith('manual_')) return false;
     try {
-        // Kiểm tra theo UID nếu đã đăng nhập
-        const uid = localStorage.getItem('tronex_uid');
+        // Kiểm tra theo UID nếu đã đăng nhập (hỗ trợ chỉnh sửa cả đề tạo và đề chuyên đề)
+        const uid = localStorage.getItem('tronex_uid') || window.__tronexCurrentUser?.uid;
         if (uid) {
             const quiz = mockQuizzes.find(q => q && (q.id || '').toString().trim() === targetId);
-            if (quiz && quiz.createdBy?.uid === uid) return true;
+            if (quiz && (quiz.createdBy?.uid === uid || !quiz.createdBy || targetId.startsWith('gemini_') || targetId.startsWith('manual_'))) return true;
         }
         // Fallback: kiểm tra localStorage key
         const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -978,13 +976,14 @@ function renderQuestions() {
             qBlock.appendChild(textDiv);
         }
 
-        if (q.imageSrc) {
+        const qImgSrc = q.imageSrc || q.imageData;
+        if (qImgSrc) {
             const imgDiv = document.createElement('div');
             imgDiv.className = 'question-image';
-            imgDiv.innerHTML = `<img src="${q.imageSrc}" alt="Hình minh họa">`;
+            imgDiv.innerHTML = `<img src="${qImgSrc}" alt="Hình minh họa">`;
             const imgEl = imgDiv.querySelector('img');
             imgEl.onclick = () => {
-                if (window.showImageLightbox) window.showImageLightbox(q.imageSrc);
+                if (window.showImageLightbox) window.showImageLightbox(qImgSrc);
             };
             qBlock.appendChild(imgDiv);
         } else if (q.diagramCode) {
@@ -1667,32 +1666,9 @@ window.loadPublicQuizzes = function () {
                     }
                 }
 
-                // 2. Xử lý nội dung đề thi - Firebase là nguồn chân lý
+                // 2. Xử lý nội dung đề thi - Firebase là nguồn chân lý (Không ghi đè tự động trong onValue để tránh vòng lặp giật giật)
                 if (!pq.title || !pq.questions) return;
                 if (!Array.isArray(pq.questions) || pq.questions.length === 0) return;
-
-                // Với các đề seed từ data.js: data.js là nguồn chân lý cho câu hỏi và cấu trúc đề
-                if (window.__vactSeedBackup) {
-                    const backupObj = window.__vactSeedBackup.find(q => q && q.id === pqId);
-                    if (backupObj) {
-                        // Cập nhật lượt xem từ Firebase
-                        if (existingIdx !== -1 && pq.viewCount !== undefined) {
-                            mockQuizzes[existingIdx].viewCount = pq.viewCount;
-                        }
-                        // Nếu Firebase đang giữ bản cũ khác với data.js, tự động cập nhật bản mới lên Firebase
-                        const localSeedCopy = { ...backupObj };
-                        delete localSeedCopy.viewCount;
-                        const remoteSeedCopy = { ...pq };
-                        delete remoteSeedCopy.viewCount;
-                        if (JSON.stringify(localSeedCopy) !== JSON.stringify(remoteSeedCopy)) {
-                            console.log(`🔄 Tự động đồng bộ bản mới của đề seed ${pqId} từ data.js lên Firebase...`);
-                            if (typeof window.__publishPublicQuiz === 'function') {
-                                window.__publishPublicQuiz({ ...backupObj, viewCount: pq.viewCount || 0 });
-                            }
-                        }
-                        return; // Không cho dữ liệu cũ từ Firebase đè lên data.js
-                    }
-                }
 
                 if (existingIdx === -1) {
                     mockQuizzes.push(pq);
@@ -1707,6 +1683,11 @@ window.loadPublicQuizzes = function () {
                         mockQuizzes[existingIdx] = pq;
                         listChanged = true;
                     }
+                }
+
+                // Cập nhật currentActiveQuiz nếu đang làm bài thi này
+                if (window.currentActiveQuiz && (window.currentActiveQuiz.id || '').toString().trim() === pqId) {
+                    window.currentActiveQuiz = pq;
                 }
             });
 

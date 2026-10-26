@@ -1016,12 +1016,13 @@ export const mockQuizzes = [
                 {
                         id: "gk1_c2_q4",
                         section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
-                        text: "Câu 4: Công thức cấu tạo dạng mạch vòng α-glucose là dạng vòng 6 cạnh pyranose có nhóm -OH hemiacetal tại vị trí carbon nào và có đặc điểm không gian gì?",
+                        text: "Câu 4: Công thức cấu tạo dạng mạch vòng $\\alpha$ - glucose là",
+                        imageSrc: "images/q4_chuong2.png",
                         options: [
-                                "A. Nhóm -OH ở vị trí carbon số 1 (hemiacetal) hướng xuống dưới mặt phẳng vòng (dạng α).",
-                                "B. Nhóm -OH ở vị trí carbon số 1 (hemiacetal) hướng lên trên mặt phẳng vòng (dạng β).",
-                                "C. Nhóm -OH ở vị trí carbon số 2 hướng xuống dưới mặt phẳng vòng.",
-                                "D. Nhóm -OH ở vị trí carbon số 4 hướng lên trên mặt phẳng vòng."
+                                "A. Hình A.",
+                                "B. Hình B.",
+                                "C. Hình C.",
+                                "D. Hình D."
                         ],
                         correctIndex: 0
                 },
@@ -1882,9 +1883,15 @@ export const mockQuizzes = [
             },
             {
                 id: "q4_chuong2_carb",
-                text: "Câu 4: Tinh thể chất rắn X vị ngọt, dễ tan trong nước. X có nhiều trong các bộ phận của cây đặc biệt là quả chín. Oxi hóa chất X bằng nước bromine thu được chất hữu cơ Y. Tên gọi của X và Y lần lượt là",
-                options: ["A. fructose và gluconic acid.", "B. glucose và gluconic acid.", "C. glucose và ammonium gluconate.", "D. saccharose và glucose."],
-                correctIndex: 1
+                text: "Câu 4: Công thức cấu tạo dạng mạch vòng $\\alpha$ - glucose là",
+                imageSrc: "images/q4_chuong2.png",
+                options: [
+                    "A. Hình A.",
+                    "B. Hình B.",
+                    "C. Hình C.",
+                    "D. Hình D."
+                ],
+                correctIndex: 0
             },
             {
                 id: "q5_chuong2_carb",
