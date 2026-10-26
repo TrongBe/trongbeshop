@@ -1,4 +1,4 @@
-import { mockQuizzes } from './data.js?v=86';
+import { mockQuizzes } from './data.js?v=88';
 import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
@@ -37,8 +37,8 @@ const isAdmin = localStorage.getItem("admin_secret_key") === "trongbeshop";
 
 
 if (isVACTPage) {
-    // Giữ lại tất cả đề V-ACT / ĐGNL / Chương / Advertisement từ data.js
-    const vactQuizzes = mockQuizzes.filter(q => q && q.id && (q.id.endsWith('_dgnl') || q.id.startsWith('de_') || q.id.startsWith('vact_') || q.id.includes('chuong_') || q.id.includes('advertisement')));
+    // Giữ lại tất cả đề V-ACT / ĐGNL / Chương / Ôn tập / Hóa / Advertisement từ data.js
+    const vactQuizzes = mockQuizzes.filter(q => q && q.id && (q.id.endsWith('_dgnl') || q.id.startsWith('de_') || q.id.startsWith('vact_') || q.id.startsWith('on_tap_') || q.id.includes('chuong_') || q.id.includes('advertisement') || q.category === 'hoa'));
     mockQuizzes.length = 0;
     mockQuizzes.push(...vactQuizzes);
 
@@ -254,6 +254,15 @@ function initQuizList() {
                 </div>
             </div>
         `;
+
+        // Cho phép bấm vào bất kỳ vị trí nào trên thẻ để bắt đầu cấu hình
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', function (e) {
+            if (e.target.closest('button') || e.target.closest('a') || e.target.closest('input')) return;
+            if (typeof window.startQuiz === 'function') {
+                window.startQuiz(quiz.id);
+            }
+        });
 
         // === v73: Gắn listener TRỰC TIẾP vào button ngay sau render ===
         // Đây là cách đáng tin cậy 100%, không phụ thuộc onclick attribute hay event delegation
@@ -496,35 +505,191 @@ window.startQuiz = async function (quizId) {
 
     document.getElementById('setupQuizTitle').textContent = `Cấu hình: ${currentQuiz.title}`;
 
-    // === Hiển thị Participant Modal trước khi vào setup ===
-    const modal = document.getElementById('participantModal');
-    const nameInput = document.getElementById('participantNameInput');
-    const nameField = document.getElementById('participantNameField');
-    const greeting = document.getElementById('participantGreeting');
-    const subtitle = document.getElementById('participantSubtitle');
-    const avatarArea = document.getElementById('participantAvatarArea');
+    // Khởi tạo bộ chọn phần ôn tập nếu đề có selectableSections
+    renderSectionSelector(currentQuiz);
 
-    if (!modal) { showView('setup'); return; }
-
+    // Điền tên thí sinh sẵn có nếu có
     const user = window.__currentUser || null; // từ auth.js
-    if (user && user.displayName) {
-        // Đã đăng nhập — auto fill
-        greeting.textContent = `Xin chào, ${user.displayName}! 👋`;
-        subtitle.textContent = 'Tài khoản của bạn sẽ được gắn vào bài nộp tự động.';
-        if (nameField) nameField.style.display = 'none';
-        if (avatarArea) avatarArea.innerHTML = `<img src="${user.photoURL || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(user.displayName) + '&background=6366f1&color=fff&size=80'}" style="width:72px;height:72px;border-radius:50%;border:3px solid #6366f1;" onerror="this.src='https://ui-avatars.com/api/?name=U&background=6366f1&color=fff&size=80'">`;
-        currentParticipant = { uid: user.uid, displayName: user.displayName, photoURL: user.photoURL || null };
-    } else {
-        // Chưa đăng nhập — hiện ô nhập tên
-        greeting.textContent = 'Xác nhận thông tin';
-        subtitle.textContent = 'Nhập tên của bạn để bắt đầu làm bài (không bắt buộc)';
-        if (nameField) nameField.style.display = 'block';
-        if (avatarArea) avatarArea.innerHTML = '<span style="font-size:52px; line-height:1;">👤</span>';
-        if (nameInput) nameInput.value = '';
-        currentParticipant = null;
+    const setupNameInput = document.getElementById('setupParticipantNameInput');
+    const modalNameInput = document.getElementById('participantNameInput');
+    if (setupNameInput) {
+        if (user && user.displayName) {
+            setupNameInput.value = user.displayName;
+        } else if (currentParticipant && currentParticipant.displayName && currentParticipant.displayName !== 'Ẩn danh') {
+            setupNameInput.value = currentParticipant.displayName;
+        }
     }
-    modal.style.display = 'flex';
+    if (modalNameInput && setupNameInput) {
+        modalNameInput.value = setupNameInput.value;
+    }
+
+    // Đưa thẳng người dùng tới màn hình Cấu hình & Chọn phần ôn tập
+    const modal = document.getElementById('participantModal');
+    if (modal) modal.style.display = 'none';
+    showView('setup');
 };
+
+// === BỘ CHỌN PHẦN ÔN TẬP LINH HOẠT CHO ĐỀ THI ===
+function renderSectionSelector(quiz) {
+    const container = document.getElementById('setupSectionSelectorContainer');
+    if (!container) return;
+
+    if (!quiz || !quiz.selectableSections || !Array.isArray(quiz.selectableSections) || quiz.selectableSections.length === 0) {
+        container.style.display = 'none';
+        container.innerHTML = '';
+        return;
+    }
+
+    const totalQCount = quiz.questions ? quiz.questions.length : 0;
+    
+    // Gom nhóm theo thuộc tính group
+    const groups = {};
+    quiz.selectableSections.forEach(sec => {
+        const grp = sec.group || 'Phần ôn tập';
+        if (!groups[grp]) groups[grp] = [];
+        groups[grp].push(sec);
+    });
+
+    let groupsHtml = '';
+    Object.entries(groups).forEach(([grpName, secs]) => {
+        const groupTotal = secs.reduce((sum, s) => sum + (s.count || 0), 0);
+        let itemsHtml = '';
+        secs.forEach(s => {
+            itemsHtml += `
+                <label class="section-option-card" title="Tích chọn để luyện phần này">
+                    <input type="checkbox" name="quizSectionSelect" value="${s.id}" data-count="${s.count || 0}" checked>
+                    <span class="custom-sec-check"></span>
+                    <div class="sec-text-wrap">
+                        <span class="sec-name">${s.name}</span>
+                        <span class="sec-badge">${s.count} câu</span>
+                    </div>
+                </label>
+            `;
+        });
+
+        groupsHtml += `
+            <div class="section-group-block">
+                <div class="section-group-header">
+                    <span class="section-group-title">${grpName}</span>
+                    <span class="section-group-pill">${groupTotal} câu</span>
+                </div>
+                <div class="section-items-grid">
+                    ${itemsHtml}
+                </div>
+            </div>
+        `;
+    });
+
+    container.innerHTML = `
+        <div class="section-selector-card">
+            <div class="selector-header-row">
+                <div class="selector-title-wrap">
+                    <span class="selector-icon">🎯</span>
+                    <div>
+                        <h4 class="selector-title">Chọn phần bạn muốn ôn tập:</h4>
+                        <p class="selector-subtitle">Hệ thống cho phép chọn ôn từng chương trắc nghiệm, đúng/sai hoặc câu hỏi ngắn</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nút chọn nhanh (Preset Pills) -->
+            <div class="selector-presets-row">
+                <button type="button" class="preset-pill-btn active" data-preset="all">✨ Toàn bộ đề (${totalQCount} câu)</button>
+                <button type="button" class="preset-pill-btn" data-preset="part1">📝 Cả 3 chương Trắc nghiệm (47 câu)</button>
+                <button type="button" class="preset-pill-btn" data-preset="c1">🧪 Chương 1: Ester - Lipid (15 câu)</button>
+                <button type="button" class="preset-pill-btn" data-preset="c2">🌾 Chương 2: Carbohydrate (17 câu)</button>
+                <button type="button" class="preset-pill-btn" data-preset="c3">🧬 Chương 3: Nitrogen (15 câu)</button>
+                <button type="button" class="preset-pill-btn" data-preset="tf">⚖️ II. Đúng / Sai (8 câu)</button>
+                <button type="button" class="preset-pill-btn" data-preset="sa">✏️ III. Trả lời ngắn (13 câu)</button>
+            </div>
+
+            <div class="selector-groups-container">
+                ${groupsHtml}
+            </div>
+
+            <div class="selector-footer-bar">
+                <span class="selector-status-info">⚡ Đang chọn: <strong id="selectedSecCountText">${totalQCount} câu hỏi</strong></span>
+                <span class="selector-hint-text">💡 Bạn có thể chọn 1 hoặc nhiều phần kết hợp cùng lúc</span>
+            </div>
+        </div>
+    `;
+
+    container.style.display = 'block';
+
+    const checkboxes = container.querySelectorAll('input[name="quizSectionSelect"]');
+    const countDisplay = container.querySelector('#selectedSecCountText');
+    const presetBtns = container.querySelectorAll('.preset-pill-btn');
+
+    function updateCount() {
+        let selectedCount = 0;
+        let selectedSecs = 0;
+        checkboxes.forEach(cb => {
+            if (cb.checked) {
+                selectedCount += parseInt(cb.dataset.count || '0');
+                selectedSecs++;
+            }
+        });
+        if (countDisplay) {
+            countDisplay.textContent = `${selectedCount} câu hỏi (${selectedSecs} phần)`;
+        }
+
+        // Cập nhật trạng thái active của các preset buttons
+        presetBtns.forEach(btn => {
+            const p = btn.dataset.preset;
+            if (p === 'all') {
+                btn.classList.toggle('active', selectedSecs === checkboxes.length);
+            } else if (p === 'part1') {
+                const c1 = container.querySelector('input[value="part1_c1"]')?.checked;
+                const c2 = container.querySelector('input[value="part1_c2"]')?.checked;
+                const c3 = container.querySelector('input[value="part1_c3"]')?.checked;
+                const tf = container.querySelector('input[value="part2_tf"]')?.checked;
+                const sa = container.querySelector('input[value="part3_sa"]')?.checked;
+                btn.classList.toggle('active', c1 && c2 && c3 && !tf && !sa);
+            } else if (p === 'c1') {
+                btn.classList.toggle('active', selectedSecs === 1 && container.querySelector('input[value="part1_c1"]')?.checked);
+            } else if (p === 'c2') {
+                btn.classList.toggle('active', selectedSecs === 1 && container.querySelector('input[value="part1_c2"]')?.checked);
+            } else if (p === 'c3') {
+                btn.classList.toggle('active', selectedSecs === 1 && container.querySelector('input[value="part1_c3"]')?.checked);
+            } else if (p === 'tf') {
+                btn.classList.toggle('active', selectedSecs === 1 && container.querySelector('input[value="part2_tf"]')?.checked);
+            } else if (p === 'sa') {
+                btn.classList.toggle('active', selectedSecs === 1 && container.querySelector('input[value="part3_sa"]')?.checked);
+            }
+        });
+    }
+
+    checkboxes.forEach(cb => {
+        cb.addEventListener('change', updateCount);
+    });
+
+    presetBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const preset = btn.dataset.preset;
+            checkboxes.forEach(cb => {
+                if (preset === 'all') {
+                    cb.checked = true;
+                } else if (preset === 'part1') {
+                    cb.checked = ['part1_c1', 'part1_c2', 'part1_c3'].includes(cb.value);
+                } else if (preset === 'c1') {
+                    cb.checked = (cb.value === 'part1_c1');
+                } else if (preset === 'c2') {
+                    cb.checked = (cb.value === 'part1_c2');
+                } else if (preset === 'c3') {
+                    cb.checked = (cb.value === 'part1_c3');
+                } else if (preset === 'tf') {
+                    cb.checked = (cb.value === 'part2_tf');
+                } else if (preset === 'sa') {
+                    cb.checked = (cb.value === 'part3_sa');
+                }
+            });
+            updateCount();
+        });
+    });
+
+    updateCount();
+}
 
 // === XÁC NHẬN PARTICIPANT VÀ VÀO SETUP ===
 window.__confirmParticipant = function () {
@@ -539,6 +704,9 @@ window.__confirmParticipant = function () {
         currentParticipant = { uid: null, displayName: name || 'Ẩn danh', photoURL: null };
     }
     if (modal) modal.style.display = 'none';
+
+    // Đảm bảo bộ chọn phần ôn tập được cập nhật trước khi hiển thị setup view
+    renderSectionSelector(currentQuiz);
     showView('setup');
 };
 
@@ -550,6 +718,15 @@ if (btnConfirmStart) {
         const quizMode = document.querySelector('input[name="quizMode"]:checked').value;
         quizForm.dataset.quizMode = quizMode;
         quizForm.dataset.isShuffle = isShuffle;
+
+        // Cập nhật thông tin thí sinh từ ô nhập trên setupView
+        const user = window.__currentUser || null;
+        if (user && user.displayName) {
+            currentParticipant = { uid: user.uid, displayName: user.displayName, photoURL: user.photoURL || null };
+        } else {
+            const enteredName = (document.getElementById('setupParticipantNameInput')?.value || document.getElementById('participantNameInput')?.value || '').trim();
+            currentParticipant = { uid: null, displayName: enteredName || 'Ẩn danh', photoURL: null };
+        }
 
         let flattenedQs = [];
         JSON.parse(JSON.stringify(currentQuiz.questions)).forEach(q => {
@@ -566,6 +743,27 @@ if (btnConfirmStart) {
                 flattenedQs.push(q);
             }
         });
+
+        // Lọc theo các phần ôn tập được tích chọn (nếu đề có selectableSections)
+        if (currentQuiz.selectableSections && currentQuiz.selectableSections.length > 0) {
+            const checkedBoxes = document.querySelectorAll('input[name="quizSectionSelect"]:checked');
+            if (checkedBoxes.length === 0) {
+                alert('⚠️ Vui lòng chọn ít nhất một phần ôn tập để bắt đầu làm bài!');
+                return;
+            }
+            const selectedSecIds = Array.from(checkedBoxes).map(cb => cb.value);
+            const activeSections = currentQuiz.selectableSections.filter(s => selectedSecIds.includes(s.id));
+            const activeMatchNames = activeSections.map(s => s.section);
+            flattenedQs = flattenedQs.filter(q => activeMatchNames.includes(q.section));
+
+            if (activeSections.length < currentQuiz.selectableSections.length) {
+                currentQuizTitle.textContent = `${currentQuiz.title} (${activeSections.map(s => s.name).join(' + ')})`;
+            } else {
+                currentQuizTitle.textContent = currentQuiz.title;
+            }
+        } else {
+            currentQuizTitle.textContent = currentQuiz.title;
+        }
 
         if (isShuffle) {
             currentQuiz.renderedQuestions = shuffleQuestionsBySection(flattenedQs);
@@ -1134,9 +1332,11 @@ function renderResults(correct, incorrect, unanswered) {
 
     if (isEnglishTHPTQG) {
         // Thang điểm 10 cho đề có scoreScale === 10
-        const rawScore = currentQuiz.scorePerQuestion 
-            ? (correct * currentQuiz.scorePerQuestion) 
-            : (total > 0 ? ((correct / total) * 10) : 0);
+        const rawScore = (currentQuiz.selectableSections && total > 0)
+            ? ((correct / total) * 10)
+            : (currentQuiz.scorePerQuestion 
+                ? (correct * currentQuiz.scorePerQuestion) 
+                : (total > 0 ? ((correct / total) * 10) : 0));
         score = Number.isInteger(rawScore) ? rawScore.toString() : rawScore.toFixed(2).replace(/\.?0+$/, '');
         if (scoreContainer) {
             scoreContainer.innerHTML = `<span id="tronexScoreText">${score}</span> / 10`;

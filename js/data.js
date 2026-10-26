@@ -739,6 +739,945 @@ export const mockQuizzes = [
             }
         ]
     },
+        // === ĐỀ ÔN TẬP GIỮA KÌ I - HÓA HỌC 12 ===
+    {
+        id: "on_tap_giua_ki_1_hoa_12",
+        title: "Ôn tập giữa kì I - Hóa học 12",
+        category: "hoa",
+        subject: "Hóa học",
+        description: "Bộ đề ôn tập kiểm tra giữa kì I môn Hóa học 12 theo cấu trúc mới: I. Trắc nghiệm (Chương 1, 2, 3) | II. Đúng/Sai | III. Trả lời ngắn (Tự chọn phần ôn linh hoạt)",
+        scoreScale: 10,
+        scorePerQuestion: 0.25,
+        selectableSections: [
+                {
+                        id: "part1_c1",
+                        group: "I. Trắc nghiệm nhiều lựa chọn",
+                        name: "Chương 1: Ester - Lipid",
+                        label: "Chương 1: Ester - Lipid (15 câu)",
+                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                        count: 15,
+                        type: "multiple_choice"
+                },
+                {
+                        id: "part1_c2",
+                        group: "I. Trắc nghiệm nhiều lựa chọn",
+                        name: "Chương 2: Carbohydrate",
+                        label: "Chương 2: Carbohydrate (17 câu)",
+                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                        count: 17,
+                        type: "multiple_choice"
+                },
+                {
+                        id: "part1_c3",
+                        group: "I. Trắc nghiệm nhiều lựa chọn",
+                        name: "Chương 3: Hợp chất chứa Nitrogen",
+                        label: "Chương 3: Hợp chất chứa Nitrogen (15 câu)",
+                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                        count: 15,
+                        type: "multiple_choice"
+                },
+                {
+                        id: "part2_tf",
+                        group: "II. Đúng / Sai",
+                        name: "II. Đúng / Sai",
+                        label: "II. Đúng / Sai (8 câu - 32 ý hỏi)",
+                        section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
+                        count: 8,
+                        type: "true_false_group"
+                },
+                {
+                        id: "part3_sa",
+                        group: "III. Trả lời ngắn",
+                        name: "III. Trả lời ngắn",
+                        label: "III. Trả lời ngắn (13 câu)",
+                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                        count: 13,
+                        type: "short_answer"
+                }
+        ],
+        questions: [
+                {
+                        id: "gk1_c1_q1",
+                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                        text: "Câu 1: Chất nào sau đây thuộc loại ester?",
+                        options: [
+                                "A. CH₃COOCH₃.",
+                                "B. CH₃COOH.",
+                                "C. HCOOH.",
+                                "D. CH₃COCH₃."
+                        ],
+                        correctIndex: 0
+                },
+                {
+                        id: "gk1_c1_q2",
+                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                        text: "Câu 2: Chất nào sau đây không phải là ester?",
+                        options: [
+                                "A. CH₃COOCH₃.",
+                                "B. HCOOCH₃.",
+                                "C. CH₃COOH.",
+                                "D. C₆H₅COOCH₃."
+                        ],
+                        correctIndex: 2
+                },
+                {
+                        id: "gk1_c1_q3",
+                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                        text: "Câu 3: Công thức của methyl formate là",
+                        options: [
+                                "A. HCOOCH₃.",
+                                "B. CH₃COOC₂H₅.",
+                                "C. HCOOC₂H₅.",
+                                "D. CH₃COOCH₃."
+                        ],
+                        correctIndex: 0
+                },
+                {
+                        id: "gk1_c1_q4",
+                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                        text: "Câu 4: Ester ethyl acetate có công thức cấu tạo là",
+                        options: [
+                                "A. COOCH₃.",
+                                "B. CH₃COOC₂H₅.",
+                                "C. HCOOC₂H₅.",
+                                "D. CH₃COOCH₃."
+                        ],
+                        correctIndex: 1
+                },
+                {
+                        id: "gk1_c1_q5",
+                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                        text: "Câu 5: Acid nào sau đây thuộc loại acid béo no thường gặp trong mỡ động vật?",
+                        options: [
+                                "A. Formic acid.",
+                                "B. Acetic acid.",
+                                "C. Stearic acid.",
+                                "D. Oleic acid."
+                        ],
+                        correctIndex: 2
+                },
+                {
+                        id: "gk1_c1_q6",
+                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                        text: "Câu 6: “Chất béo là triester của… (1)… với các… (2)… gọi chung là các triglyceride.” Nội dung phù hợp trong ô trống (1), (2) lần lượt là",
+                        options: [
+                                "A. glycerol, acetic acid.",
+                                "B. glycerol, acid béo.",
+                                "C. ethylene glycol, acid béo.",
+                                "D. methyl alcohol, acid béo."
+                        ],
+                        correctIndex: 1
+                },
+                {
+                        id: "gk1_c1_q7",
+                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                        text: "Câu 7: Thành phần chính của xà phòng thông thường là muối nào sau đây?",
+                        options: [
+                                "A. C₆H₅COONa.",
+                                "B. C₁₇H₃₅COONa.",
+                                "C. CH₃[CH₂]₁₁OSO₃Na.",
+                                "D. C₂H₅COONa."
+                        ],
+                        correctIndex: 1
+                },
+                {
+                        id: "gk1_c1_q8",
+                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                        text: "Câu 8: Thủy phân methyl propanoate trong môi trường acid thu được sản phẩm gồm",
+                        options: [
+                                "A. CH₃COOH và C₂H₅OH.",
+                                "B. C₂H₅COOH và CH₃OH.",
+                                "C. C₂H₅COOH và C₂H₅OH.",
+                                "D. CH₃COOH và C₃H₇OH."
+                        ],
+                        correctIndex: 1
+                },
+                {
+                        id: "gk1_c1_q9",
+                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                        text: "Câu 9: Thực hiện phản ứng xà phòng hóa hoàn toàn 8,9 gam tristearin bằng dung dịch NaOH vừa đủ. Khối lượng glycerol thu được là",
+                        options: [
+                                "A. 0,92 gram.",
+                                "B. 1,84 gram.",
+                                "C. 2,76 gram.",
+                                "D. 0,46 gram."
+                        ],
+                        correctIndex: 0
+                },
+                {
+                        id: "gk1_c1_q10",
+                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                        text: "Câu 10: Chất béo lỏng như triolein có thể chuyển hóa thành chất béo rắn (mỡ nhân tạo) bằng phản ứng nào sau đây?",
+                        options: [
+                                "A. Xà phòng hóa.",
+                                "B. Hydrogen hóa (xúc tác, t°, p).",
+                                "C. Thủy phân trong môi trường acid.",
+                                "D. Oxi hóa bằng dung dịch KMnO₄."
+                        ],
+                        correctIndex: 1
+                },
+                {
+                        id: "gk1_c1_q11",
+                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                        text: "Câu 11: Ưu điểm vượt trội của chất giặt rửa tổng hợp so với xà phòng thông thường là",
+                        options: [
+                                "A. Dễ bị phân hủy sinh học hơn.",
+                                "B. Không tạo kết tủa và giặt rửa tốt trong nước cứng chứa ion Ca²⁺, Mg²⁺.",
+                                "C. Được sản xuất hoàn toàn từ mỡ động vật.",
+                                "D. Không làm hại da tay khi sử dụng."
+                        ],
+                        correctIndex: 1
+                },
+                {
+                        id: "gk1_c1_q12",
+                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                        text: "Câu 12: Từ isoamyl alcohol và acetic acid, với xúc tác H₂SO₄ đặc, đun nóng người ta điều chế được isoamyl acetate có mùi thơm đặc trưng của",
+                        options: [
+                                "A. Quả chín dứa.",
+                                "B. Quả chuối chín.",
+                                "C. Quả táo.",
+                                "D. Hoa nhài."
+                        ],
+                        correctIndex: 1
+                },
+                {
+                        id: "gk1_c1_q13",
+                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                        text: "Câu 13: Linoleic acid (có cấu tạo như hình bên dưới) là một trong những acid béo có lợi cho sức khỏe tim mạch, ngăn ngừa các bệnh về tim, động mạch vành. Phát biểu nào sau đây sai?",
+                        diagramCode: "<div style=\"text-align:center; padding:10px 0;\"><svg viewBox=\"0 0 540 90\" style=\"max-width:100%; height:auto;\"><path d=\"M 15 45 L 45 65 L 75 45 L 105 65 L 135 45 L 165 65 L 195 45 L 225 65 L 255 45 L 285 65 L 315 45 L 345 65 L 375 45 L 405 65 L 435 45 L 465 65 L 495 45\" fill=\"none\" stroke=\"#4F46E5\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"165\" y1=\"58\" x2=\"195\" y2=\"38\" stroke=\"#4F46E5\" stroke-width=\"2.5\"/><line x1=\"255\" y1=\"38\" x2=\"285\" y2=\"58\" stroke=\"#4F46E5\" stroke-width=\"2.5\"/><text x=\"500\" y=\"49\" fill=\"#EF4444\" font-weight=\"700\" font-size=\"14\" font-family=\"sans-serif\">COOH</text><text x=\"5\" y=\"49\" fill=\"#10B981\" font-weight=\"700\" font-size=\"13\" font-family=\"sans-serif\">CH₃</text></svg><div style=\"font-size:0.85rem; color:var(--text-muted); margin-top:4px;\">Cấu trúc hóa học của Linoleic acid (C₁₇H₃₁COOH - acid béo omega-6 có 2 liên kết đôi C=C)</div></div>",
+                        options: [
+                                "A. Trong phân tử linoleic acid có 2 liên kết đôi C=C.",
+                                "B. Ở điều kiện thích hợp, 1 mol linoleic acid tác dụng được tối đa với 6 mol H₂.",
+                                "C. Trilinolein có công thức phân tử là C₅₇H₉₈O₆.",
+                                "D. Linoleic acid thuộc loại acid béo omega-6."
+                        ],
+                        correctIndex: 1
+                },
+                {
+                        id: "gk1_c1_q14",
+                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                        text: "Câu 14: Đun nóng 12,0 gam acetic acid với 11,5 gam ethanol có H₂SO₄ đặc làm xúc tác. Đến khi phản ứng đạt trạng thái cân bằng thu được 11,44 gam ethyl acetate. Hiệu suất của phản ứng ester hóa là",
+                        options: [
+                                "A. 60,0%.",
+                                "B. 65,0%.",
+                                "C. 70,0%.",
+                                "D. 75,0%."
+                        ],
+                        correctIndex: 1
+                },
+                {
+                        id: "gk1_c1_q15",
+                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                        text: "Câu 15: Xà phòng hóa hoàn toàn 17,8 gam triglyceride X bằng dung dịch KOH dư thu được 1,84 gam glycerol và m gam hỗn hợp muối potassium của các acid béo. Giá trị của m là",
+                        options: [
+                                "A. 19,68 gram.",
+                                "B. 18,32 gram.",
+                                "C. 20,16 gram.",
+                                "D. 19,12 gram."
+                        ],
+                        correctIndex: 1
+                },
+                {
+                        id: "gk1_c2_q1",
+                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                        text: "Câu 1: Chất nào sau đây không có phản ứng thủy phân?",
+                        options: [
+                                "A. Fructose.",
+                                "B. Amylose.",
+                                "C. Cellulose.",
+                                "D. Amylopectin."
+                        ],
+                        correctIndex: 0
+                },
+                {
+                        id: "gk1_c2_q2",
+                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                        text: "Câu 2: Chất nào sau đây thuộc loại polysaccharide?",
+                        options: [
+                                "A. Fructose.",
+                                "B. Glucose.",
+                                "C. Maltose.",
+                                "D. Cellulose."
+                        ],
+                        correctIndex: 3
+                },
+                {
+                        id: "gk1_c2_q3",
+                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                        text: "Câu 3: Chất nào sau đây thuộc loại monosaccharide?",
+                        options: [
+                                "A. Cellulose.",
+                                "B. Tinh bột.",
+                                "C. Saccharose.",
+                                "D. Fructose."
+                        ],
+                        correctIndex: 3
+                },
+                {
+                        id: "gk1_c2_q4",
+                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                        text: "Câu 4: Công thức cấu tạo dạng mạch vòng α-glucose là dạng vòng 6 cạnh pyranose có nhóm -OH hemiacetal tại vị trí carbon nào và có đặc điểm không gian gì?",
+                        options: [
+                                "A. Nhóm -OH ở vị trí carbon số 1 (hemiacetal) hướng xuống dưới mặt phẳng vòng (dạng α).",
+                                "B. Nhóm -OH ở vị trí carbon số 1 (hemiacetal) hướng lên trên mặt phẳng vòng (dạng β).",
+                                "C. Nhóm -OH ở vị trí carbon số 2 hướng xuống dưới mặt phẳng vòng.",
+                                "D. Nhóm -OH ở vị trí carbon số 4 hướng lên trên mặt phẳng vòng."
+                        ],
+                        correctIndex: 0
+                },
+                {
+                        id: "gk1_c2_q5",
+                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                        text: "Câu 5: Dung dịch chất nào sau đây được dùng làm dịch truyền y tế để cung cấp năng lượng cho cơ thể suy nhược?",
+                        options: [
+                                "A. Glucose 5%.",
+                                "B. Saccharose 10%.",
+                                "C. Fructose 5%.",
+                                "D. Glycerol 5%."
+                        ],
+                        correctIndex: 0
+                },
+                {
+                        id: "gk1_c2_q6",
+                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                        text: "Câu 6: Thuốc thử dùng để nhận biết hồ tinh bột ở nhiệt độ thường là",
+                        options: [
+                                "A. Dung dịch AgNO₃/NH₃.",
+                                "B. Dung dịch iodine (I₂).",
+                                "C. Cu(OH)₂.",
+                                "D. Dung dịch nước bromine."
+                        ],
+                        correctIndex: 1
+                },
+                {
+                        id: "gk1_c2_q7",
+                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                        text: "Câu 7: Mỗi đơn vị glucose cấu thành phân tử cellulose có chứa bao nhiêu nhóm -OH tự do?",
+                        options: [
+                                "A. 1.",
+                                "B. 2.",
+                                "C. 3.",
+                                "D. 4."
+                        ],
+                        correctIndex: 2
+                },
+                {
+                        id: "gk1_c2_q8",
+                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                        text: "Câu 8: Phát biểu nào sau đây đúng về fructose?",
+                        options: [
+                                "A. Fructose không có khả năng tham gia phản ứng tráng bạc.",
+                                "B. Trong dung dịch kiềm, fructose và glucose có thể chuyển hóa qua lại cho nhau.",
+                                "C. Fructose làm mất màu dung dịch nước bromine tương tự glucose.",
+                                "D. Fructose là polysaccharide có trong củ mài."
+                        ],
+                        correctIndex: 1
+                },
+                {
+                        id: "gk1_c2_q9",
+                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                        text: "Câu 9: Glucose có thể lên men tạo lactic acid có trong sữa chua qua phản ứng nào sau đây?",
+                        options: [
+                                "A. CH₂OH-[CHOH]₄-CHO + Br₂ + H₂O → CH₂OH-[CHOH]₄-COOH + 2HBr.",
+                                "B. 2C₆H₁₂O₆ + Cu(OH)₂ → (C₆H₁₁O₆)₂Cu + 2H₂O.",
+                                "C. C₆H₁₂O₆ → 2CH₃CH(OH)COOH.",
+                                "D. C₆H₁₂O₆ → 2C₂H₅OH + 2CO₂."
+                        ],
+                        correctIndex: 2
+                },
+                {
+                        id: "gk1_c2_q10",
+                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                        text: "Câu 10: Cho các chất: glucose, fructose, saccharose, tinh bột, cellulose. Số chất tham gia phản ứng hòa tan Cu(OH)₂ khi đun nóng tạo kết tủa đỏ gạch là",
+                        options: [
+                                "A. 2.",
+                                "B. 3.",
+                                "C. 4.",
+                                "D. 5."
+                        ],
+                        correctIndex: 0
+                },
+                {
+                        id: "gk1_c2_q11",
+                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                        text: "Câu 11: Hiện tượng xảy ra khi đun nóng glucose với dung dịch AgNO₃ trong NH₃ dư là",
+                        options: [
+                                "A. Xuất hiện kết tủa màu xanh lam.",
+                                "B. Có khí không màu thoát ra.",
+                                "C. Xuất hiện lớp kim loại bạc sáng bám vào thành ống nghiệm.",
+                                "D. Dung dịch đổi sang màu đỏ gạch."
+                        ],
+                        correctIndex: 2
+                },
+                {
+                        id: "gk1_c2_q12",
+                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                        text: "Câu 12: Phản ứng nào sau đây chứng minh dạng mạch vòng của Glucose có nhóm -OH hemiacetal?",
+                        options: [
+                                "A. Phản ứng với Cu(OH)₂ tạo dung dịch xanh lam.",
+                                "B. Phản ứng tráng bạc với AgNO₃/NH₃.",
+                                "C. Phản ứng với CH₃OH khi có mặt khí HCl khan.",
+                                "D. Phản ứng lên men rượu."
+                        ],
+                        correctIndex: 2
+                },
+                {
+                        id: "gk1_c2_q13",
+                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                        text: "Câu 13: Khi thủy phân hoàn toàn tinh bột hoặc cellulose trong môi trường acid thu được monosaccharide duy nhất là",
+                        options: [
+                                "A. Fructose.",
+                                "B. Glucose.",
+                                "C. Galactose.",
+                                "D. Maltose."
+                        ],
+                        correctIndex: 1
+                },
+                {
+                        id: "gk1_c2_q14",
+                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                        text: "Câu 14: Khác biệt cấu trúc cơ bản giữa amylose và amylopectin trong tinh bột là",
+                        options: [
+                                "A. Amylose phân nhánh, amylopectin không phân nhánh.",
+                                "B. Amylose không phân nhánh (chỉ liên kết α-1,4), amylopectin phân nhánh (liên kết α-1,4 và α-1,6).",
+                                "C. Amylose gồm các gốc β-glucose, amylopectin gồm α-glucose.",
+                                "D. Amylose tan tốt trong nước lạnh, amylopectin không tan."
+                        ],
+                        correctIndex: 1
+                },
+                {
+                        id: "gk1_c2_q15",
+                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                        text: "Câu 15: Chất nào sau đây phản ứng với HNO₃ đặc (xúc tác H₂SO₄ đặc, đun nóng) tạo thành chất nổ thuốc súng không khói?",
+                        options: [
+                                "A. Tinh bột.",
+                                "B. Glucose.",
+                                "C. Cellulose.",
+                                "D. Saccharose."
+                        ],
+                        correctIndex: 2
+                },
+                {
+                        id: "gk1_c2_q16",
+                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                        text: "Câu 16: Thủy phân hoàn toàn 3,42 gam saccharose trong dung dịch H₂SO₄ loãng thu được dung dịch X. Cho X tác dụng với lượng dư dung dịch AgNO₃ trong NH₃ đun nóng thu được m gam Ag. Giá trị m là",
+                        options: [
+                                "A. 1,08 gram.",
+                                "B. 2,16 gram.",
+                                "C. 4,32 gram.",
+                                "D. 3,24 gram."
+                        ],
+                        correctIndex: 2
+                },
+                {
+                        id: "gk1_c2_q17",
+                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                        text: "Câu 17: Đun nóng 18,0 gam glucose với dung dịch AgNO₃ trong NH₃ dư thu được m gam Ag kim loại. Biết hiệu suất phản ứng tráng bạc đạt 90%. Giá trị của m là",
+                        options: [
+                                "A. 21,60 gram.",
+                                "B. 19,44 gram.",
+                                "C. 10,80 gram.",
+                                "D. 17,50 gram."
+                        ],
+                        correctIndex: 1
+                },
+                {
+                        id: "gk1_c3_q1",
+                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                        text: "Câu 1: Amine nào sau đây thuộc loại amine bậc hai?",
+                        options: [
+                                "A. CH₃NH₂.",
+                                "B. CH₃-NH-C₂H₅.",
+                                "C. (CH₃)₃N.",
+                                "D. C₆H₅NH₂."
+                        ],
+                        correctIndex: 1
+                },
+                {
+                        id: "gk1_c3_q2",
+                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                        text: "Câu 2: Ở điều kiện thường, amine nào sau đây là chất khí, có mùi khai tương tự ammonia?",
+                        options: [
+                                "A. Dimethylamine.",
+                                "B. Aniline.",
+                                "C. Propylamine.",
+                                "D. Phenylamine."
+                        ],
+                        correctIndex: 0
+                },
+                {
+                        id: "gk1_c3_q3",
+                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                        text: "Câu 3: Tên gốc-chức của amine có công thức cấu tạo CH₃-CH₂-NH₂ là",
+                        options: [
+                                "A. ethylamine.",
+                                "B. N-methylethylamine.",
+                                "C. methylethanamine.",
+                                "D. diethylamine."
+                        ],
+                        correctIndex: 0
+                },
+                {
+                        id: "gk1_c3_q4",
+                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                        text: "Câu 4: Dung dịch chất nào sau đây làm quỳ tím chuyển sang màu xanh?",
+                        options: [
+                                "A. Aniline.",
+                                "B. Methylamine.",
+                                "C. Glycine.",
+                                "D. Phenol."
+                        ],
+                        correctIndex: 1
+                },
+                {
+                        id: "gk1_c3_q5",
+                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                        text: "Câu 5: Hiện tượng xảy ra khi nhỏ vài giọt nước bromine vào dung dịch aniline là",
+                        options: [
+                                "A. Xuất hiện kết tủa màu đỏ gạch.",
+                                "B. Xuất hiện kết tủa màu trắng.",
+                                "C. Dung dịch chuyển sang màu xanh lam.",
+                                "D. Khí không màu thoát ra."
+                        ],
+                        correctIndex: 1
+                },
+                {
+                        id: "gk1_c3_q6",
+                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                        text: "Câu 6: Amino acid là hợp chất hữu cơ tạp chức chứa đồng thời hai nhóm chức nào?",
+                        options: [
+                                "A. Nhóm -OH và -COOH.",
+                                "B. Nhóm -NH₂ và -COOH.",
+                                "C. Nhóm -CHO và -NH₂.",
+                                "D. Nhóm -CO- và -NH₂."
+                        ],
+                        correctIndex: 1
+                },
+                {
+                        id: "gk1_c3_q7",
+                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                        text: "Câu 7: Amino acid X có tên thường là alanine. Công thức cấu tạo của X là",
+                        options: [
+                                "A. H₂N-C(CH₃)₂-COOH.",
+                                "B. H₂N-CH₂-COOH.",
+                                "C. CH₃-CH(NH₂)-COOH.",
+                                "D. H₂N-CH₂-CH₂-COOH."
+                        ],
+                        correctIndex: 2
+                },
+                {
+                        id: "gk1_c3_q8",
+                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                        text: "Câu 8: Ở điều kiện thường, các amino acid tồn tại chủ yếu ở dạng cấu tạo nào?",
+                        options: [
+                                "A. Phân tử trung hòa.",
+                                "B. Cation mang điện dương.",
+                                "C. Ion lưỡng cực.",
+                                "D. Anion mang điện âm."
+                        ],
+                        correctIndex: 2
+                },
+                {
+                        id: "gk1_c3_q9",
+                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                        text: "Câu 9: Quá trình di chuyển của các amino acid trong điện trường dưới tác dụng của hiệu điện thế được gọi là",
+                        options: [
+                                "A. Sự điện li.",
+                                "B. Sự điện di.",
+                                "C. Sự điện phân.",
+                                "D. Sự điện giải."
+                        ],
+                        correctIndex: 1
+                },
+                {
+                        id: "gk1_c3_q10",
+                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                        text: "Câu 10: Liên kết được hình thành giữa hai đơn vị α-amino acid qua nhóm -CO-NH- gọi là",
+                        options: [
+                                "A. Liên kết glycoside.",
+                                "B. Liên kết peptide.",
+                                "C. Liên kết ester.",
+                                "D. Liên kết hydrogen."
+                        ],
+                        correctIndex: 1
+                },
+                {
+                        id: "gk1_c3_q11",
+                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                        text: "Câu 11: Thuốc thử Cu(OH)₂ trong môi trường kiềm tác dụng với chất nào sau đây tạo hợp chất màu tím đặc trưng (phản ứng biuret)?",
+                        options: [
+                                "A. Dipeptide Gly-Ala.",
+                                "B. Tripeptide Gly-Ala-Val.",
+                                "C. Glucose.",
+                                "D. Glycerol."
+                        ],
+                        correctIndex: 1
+                },
+                {
+                        id: "gk1_c3_q12",
+                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                        text: "Câu 12: Để nhận biết dung dịch chứa peptide có từ 2 liên kết peptide trở lên (tripeptide trở lên), người ta dùng thuốc thử nào?",
+                        options: [
+                                "A. Dung dịch Iodine.",
+                                "B. Dung dịch Cu(OH)₂ trong môi trường kiềm.",
+                                "C. Dung dịch AgNO₃/NH₃.",
+                                "D. Quỳ tím."
+                        ],
+                        correctIndex: 1
+                },
+                {
+                        id: "gk1_c3_q13",
+                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                        text: "Câu 13: Khi pha sữa bằng nước nóng thấy xuất hiện vón cục là do",
+                        options: [
+                                "A. Sự đông tụ của protein bởi nhiệt độ.",
+                                "B. Sự đông tụ của protein bởi acid.",
+                                "C. Sự đông tụ của protein bởi base.",
+                                "D. Sự đông tụ của protein do kim loại nặng."
+                        ],
+                        correctIndex: 0
+                },
+                {
+                        id: "gk1_c3_q14",
+                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                        text: "Câu 14: Tên gọi theo danh pháp thay thế của amine CH₃-CH₂-CH₂-NH₂ là",
+                        options: [
+                                "A. Propan-1-amine.",
+                                "B. Propan-2-amine.",
+                                "C. Propylamine.",
+                                "D. Isopropylamine."
+                        ],
+                        correctIndex: 0
+                },
+                {
+                        id: "gk1_c3_q15",
+                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                        text: "Câu 15: Dung dịch amino acid nào sau đây làm quỳ tím chuyển sang màu đỏ (môi trường acid)?",
+                        options: [
+                                "A. Glycine.",
+                                "B. Alanine.",
+                                "C. Lysine.",
+                                "D. Glutamic acid."
+                        ],
+                        correctIndex: 3
+                },
+                {
+                        id: "gk1_tf_q1",
+                        section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
+                        type: "true_false_group",
+                        text: "<strong>Câu 1:</strong> Isoamyl acetate có mùi chuối chín nên được dùng làm hương liệu nhân tạo. Trong ngành sơn, isoamyl acetate được dùng làm dung môi vecni, dung môi sơn mài,... Isoamyl acetate được điều chế theo các bước sau:<br><strong>Bước 1:</strong> Cho vào bình cầu 15 mL isoamyl alcohol (d = 0,81 g/mL), 10 mL acetic acid (d = 1,049 g/mL) và 7 mL H₂SO₄ đậm đặc, cho thêm vào bình vài viên đá bọt. Lắp ống sinh hàn hồi lưu thẳng đứng. Đun hồi lưu khoảng 1 giờ.<br><strong>Bước 2:</strong> Để nguội rồi rót sản phẩm vào phễu chiết, lắc đều rồi để yên 5 phút, chất lỏng tách thành hai lớp, loại bỏ lớp dưới, lấy lớp trên.<br><strong>Bước 3:</strong> Cho từ từ dung dịch Na₂CO₃ 10% vào phần chất lỏng ở bước 2 và lắc đều đến khi hết bọt khí, thêm tiếp 20 mL dung dịch NaCl bão hòa rồi để yên cho tách lớp. Chiết lấy phần chất lỏng phía trên, làm khan thu được isoamyl acetate.",
+                        subQuestions: [
+                                {
+                                        id: "a",
+                                        text: "a) Isoamyl acetate rất ít tan trong nước và có khối lượng riêng nhỏ hơn khối lượng riêng của nước.",
+                                        correctAnswer: "Đúng"
+                                },
+                                {
+                                        id: "b",
+                                        text: "b) Thêm dung dịch Na₂CO₃ ở bước 3 nhằm mục đích loại bỏ acid lẫn trong isoamyl acetate.",
+                                        correctAnswer: "Đúng"
+                                },
+                                {
+                                        id: "c",
+                                        text: "c) Ở bước 1, xảy ra phản ứng thế nhóm -OH của (CH₃)₂CHCH₂CH₂OH bằng gốc CH₃COO⁻.",
+                                        correctAnswer: "Sai"
+                                },
+                                {
+                                        id: "d",
+                                        text: "d) Nếu hiệu suất phản ứng ester hóa là 60% và lượng isoamyl acetate bị hao hụt mất 5% thì khối lượng isoamyl acetate thu được là 10,23 gam. (Kết quả làm tròn đến hàng phần trăm).",
+                                        correctAnswer: "Đúng"
+                                }
+                        ]
+                },
+                {
+                        id: "gk1_tf_q2",
+                        section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
+                        type: "true_false_group",
+                        text: "<strong>Câu 2:</strong> Một học sinh tiến hành tổng hợp isoamyl acetate (thành phần chính của dầu chuối) từ acetic acid và isoamyl alcohol theo phương trình hóa học sau:<br>$$CH_3COOH + HO-CH_2-CH_2-CH(CH_3)_2 \\xrightarrow{H_2SO_4, t^\\circ} CH_3COOCH_2-CH_2-CH(CH_3)_2 + H_2O$$Cho biết số sóng hấp thụ đặc trưng của một số liên kết trên phổ hồng ngoại (IR):<br>• Liên kết O-H (alcohol): 3650 - 3200 cm⁻¹<br>• Liên kết O-H (carboxylic acid): 3300 - 2500 cm⁻¹<br>• Liên kết C=O (ester, carboxylic acid): 1780 - 1650 cm⁻¹",
+                        subQuestions: [
+                                {
+                                        id: "a",
+                                        text: "a) Tách isoamyl acetate từ hỗn hợp sau phản ứng có thể thực hiện bằng phương pháp chiết.",
+                                        correctAnswer: "Đúng"
+                                },
+                                {
+                                        id: "b",
+                                        text: "b) Isoamyl acetate là ester no, đơn chức, mạch hở.",
+                                        correctAnswer: "Đúng"
+                                },
+                                {
+                                        id: "c",
+                                        text: "c) Phổ hồng ngoại có số sóng hấp thụ ở 3350 cm⁻¹ là phổ của acetic acid.",
+                                        correctAnswer: "Sai"
+                                },
+                                {
+                                        id: "d",
+                                        text: "d) Thực hiện phản ứng giữa 9,0 gam acetic acid và 8,8 gam isoamyl alcohol, với hiệu suất phản ứng là 60% thì thu được 7,8 gam isoamyl acetate.",
+                                        correctAnswer: "Đúng"
+                                }
+                        ]
+                },
+                {
+                        id: "gk1_tf_q3",
+                        section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
+                        type: "true_false_group",
+                        text: "<strong>Câu 3:</strong> Ethyl acetate là một ester được sử dụng làm dung môi để tách, chiết chất hữu cơ. Hợp chất này được điều chế từ acetic acid, ethanol theo phản ứng:<br>$$CH_3COOH + C_2H_5OH \\xrightleftharpoons{H_2SO_4 \\text{ đặc}, t^\\circ} CH_3COOC_2H_5 + H_2O \\quad (*)$$Biết nhiệt độ trong bình cầu phản ứng giữ ở mức 65 - 70°C, nhiệt độ trong ống sinh hàn duy trì ở 25°C. Nhiệt độ sôi của các hợp chất: C₂H₅OH (78,3°C), CH₃COOH (118°C), H₂O (100°C), CH₃COOC₂H₅ (77°C), H₂SO₄ (337°C).",
+                        subQuestions: [
+                                {
+                                        id: "a",
+                                        text: "a) Khi thực hiện đun nóng 6,0 gam acetic acid với 6,0 gam ethanol có H₂SO₄ đặc làm xúc tác. Khối lượng ester tạo thành với hiệu suất phản ứng 60% là 6,9 gam.",
+                                        correctAnswer: "Sai"
+                                },
+                                {
+                                        id: "b",
+                                        text: "b) Chất lỏng trong bình hứng có ethyl acetate. Vai trò của ống sinh hàn để ngưng tụ hơi, nước làm lạnh đi vào ở đầu thấp và đi ra ở đầu cao.",
+                                        correctAnswer: "Đúng"
+                                },
+                                {
+                                        id: "c",
+                                        text: "c) Ban đầu bình cầu chứa acetic acid, ethanol và sulfuric acid đặc. Nếu nhiệt độ phản ứng ở bình cầu càng cao thì hiệu suất phản ứng điều chế ethyl acetate càng cao.",
+                                        correctAnswer: "Sai"
+                                },
+                                {
+                                        id: "d",
+                                        text: "d) Trong phản ứng (*) phân tử H₂O tạo nên từ -OH trong nhóm -COOH của acetic acid và H trong nhóm -OH của ethanol.",
+                                        correctAnswer: "Đúng"
+                                }
+                        ]
+                },
+                {
+                        id: "gk1_tf_q4",
+                        section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
+                        type: "true_false_group",
+                        text: "<strong>Câu 4:</strong> Tiến hành thí nghiệm theo trình tự các bước như sau:<br><strong>Bước 1:</strong> Cho vào bát sứ nhỏ khoảng 1 gam mỡ (hoặc dầu thực vật) và 2 - 2,5 mL dung dịch NaOH 40%.<br><strong>Bước 2:</strong> Đun hỗn hợp sôi nhẹ và liên tục khuấy đều bằng đũa thủy tinh trong 8 - 10 phút. Thỉnh thoảng thêm vài giọt nước cất để giữ cho thể tích hỗn hợp không đổi.<br><strong>Bước 3:</strong> Sau 8 - 10 phút, rót thêm vào hỗn hợp 4 - 5 mL dung dịch NaCl bão hòa nóng, khuấy nhẹ rồi để nguội.",
+                        subQuestions: [
+                                {
+                                        id: "a",
+                                        text: "a) Phản ứng xảy ra trong thí nghiệm được gọi là phản ứng xà phòng hoá.",
+                                        correctAnswer: "Đúng"
+                                },
+                                {
+                                        id: "b",
+                                        text: "b) Sau bước 2, hỗn hợp trở thành đồng nhất.",
+                                        correctAnswer: "Đúng"
+                                },
+                                {
+                                        id: "c",
+                                        text: "c) Sau bước 3, có lớp chất rắn màu trắng nhẹ nổi lên trên.",
+                                        correctAnswer: "Đúng"
+                                },
+                                {
+                                        id: "d",
+                                        text: "d) Vai trò của NaCl bão hoà ở bước 3 là để trung hoà kiềm dư sau phản ứng.",
+                                        correctAnswer: "Sai"
+                                }
+                        ]
+                },
+                {
+                        id: "gk1_tf_q5",
+                        section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
+                        type: "true_false_group",
+                        text: "<strong>Câu 5:</strong> Tiến hành thí nghiệm xà phòng hóa chất béo: Cho vào bát sứ nhỏ 1 gam mỡ lợn (chứa tristearin) và 2,5 mL dung dịch NaOH 40%. Đun sôi nhẹ hỗn hợp và khuấy đều trong 10 - 15 phút, thỉnh thoảng thêm nước cất. Sau đó, rót thêm 5 mL dung dịch NaCl bão hòa nóng, khuấy nhẹ rồi để nguội.",
+                        subQuestions: [
+                                {
+                                        id: "a",
+                                        text: "a) Phản ứng xà phòng hóa tristearin bằng dung dịch NaOH là phản ứng thuận nghịch (hai chiều).",
+                                        correctAnswer: "Sai"
+                                },
+                                {
+                                        id: "b",
+                                        text: "b) Việc thêm dung dịch NaCl bão hòa ở bước cuối làm tăng khối lượng riêng dung dịch và giảm độ tan của muối sodium stearate, giúp xà phòng tách ra nổi lên trên.",
+                                        correctAnswer: "Đúng"
+                                },
+                                {
+                                        id: "c",
+                                        text: "c) Nếu thay mỡ lợn bằng dầu ăn thực vật chứa triolein thì sau thí nghiệm vẫn thu được xà phòng.",
+                                        correctAnswer: "Đúng"
+                                },
+                                {
+                                        id: "d",
+                                        text: "d) Trong công nghiệp, phản ứng xà phòng hóa chất béo được dùng để sản xuất xà phòng và glycerol.",
+                                        correctAnswer: "Đúng"
+                                }
+                        ]
+                },
+                {
+                        id: "gk1_tf_q6",
+                        section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
+                        type: "true_false_group",
+                        text: "<strong>Câu 6:</strong> Valine là một amino acid thiết yếu, tham gia vào nhiều chức năng của cơ thể, thúc đẩy quá trình phát triển cơ bắp và phục hồi mô. Công thức cấu tạo của valine là $(CH_3)_2CH-CH(NH_2)-COOH$.",
+                        subQuestions: [
+                                {
+                                        id: "a",
+                                        text: "a) Công thức phân tử của valine là C₅H₁₀NO₂.",
+                                        correctAnswer: "Sai"
+                                },
+                                {
+                                        id: "b",
+                                        text: "b) Ở điều kiện thường, valine là chất rắn màu trắng, không tan trong nước, có vị ngọt.",
+                                        correctAnswer: "Sai"
+                                },
+                                {
+                                        id: "c",
+                                        text: "c) Khi cho valine tác dụng với acid HCl thu được muối có công thức phân tử là C₅H₁₂NO₂Cl.",
+                                        correctAnswer: "Đúng"
+                                },
+                                {
+                                        id: "d",
+                                        text: "d) Valine là hợp chất hữu cơ đa chức.",
+                                        correctAnswer: "Sai"
+                                }
+                        ]
+                },
+                {
+                        id: "gk1_tf_q7",
+                        section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
+                        type: "true_false_group",
+                        text: "<strong>Câu 7:</strong> Glutamic acid được sử dụng bởi hầu hết các sinh vật sống trong quá trình sinh tổng hợp protein. Công thức cấu tạo của glutamic acid là $HOOC-CH_2-CH_2-CH(NH_2)-COOH$.",
+                        subQuestions: [
+                                {
+                                        id: "a",
+                                        text: "a) Glutamic acid là một hợp chất hữu cơ đa chức có công thức phân tử là C₅H₉O₄N.",
+                                        correctAnswer: "Sai"
+                                },
+                                {
+                                        id: "b",
+                                        text: "b) Tên bán hệ thống của glutamic acid là 2-aminopentane-1,5-dioic acid.",
+                                        correctAnswer: "Sai"
+                                },
+                                {
+                                        id: "c",
+                                        text: "c) Glutamic acid là hợp chất lưỡng tính, vừa tác dụng với acid mạnh tạo muối ammonium vừa tác dụng với base mạnh tạo muối carboxylate.",
+                                        correctAnswer: "Đúng"
+                                },
+                                {
+                                        id: "d",
+                                        text: "d) Cho 22,05 gam glutamic acid tác dụng với dung dịch NaOH dư, thu được 28,65 gam muối.",
+                                        correctAnswer: "Đúng"
+                                }
+                        ]
+                },
+                {
+                        id: "gk1_tf_q8",
+                        section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
+                        type: "true_false_group",
+                        text: "<strong>Câu 8:</strong> Lysine là amino acid thiết yếu ($H_2N-(CH_2)_4-CH(NH_2)-COOH$) có điểm đẳng điện pI = 9,7 (pI là giá trị pH mà nồng độ ion lưỡng cực đạt cực đại. Khi pH < pI amino acid tồn tại chủ yếu ở dạng cation; khi pH > pI tồn tại chủ yếu ở dạng anion).",
+                        subQuestions: [
+                                {
+                                        id: "a",
+                                        text: "a) Lysine có 6 nguyên tử C trong phân tử.",
+                                        correctAnswer: "Đúng"
+                                },
+                                {
+                                        id: "b",
+                                        text: "b) Lysine vừa tác dụng với dung dịch HCl, vừa tác dụng với dung dịch NaOH.",
+                                        correctAnswer: "Đúng"
+                                },
+                                {
+                                        id: "c",
+                                        text: "c) Trong phân tử peptide Lys-Gly-Ala, amino acid đầu N là Lys.",
+                                        correctAnswer: "Đúng"
+                                },
+                                {
+                                        id: "d",
+                                        text: "d) Trong dung dịch pH = 6, có thể tách hỗn hợp gồm lysine và glutamic acid (pI = 3,2) bằng phương pháp điện di.",
+                                        correctAnswer: "Đúng"
+                                }
+                        ]
+                },
+                {
+                        id: "gk1_sa_q1",
+                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                        type: "short_answer",
+                        text: "Câu 1: Cho các chất sau: saccharose, glucose, fructose, cellulose. Số chất có phản ứng với thuốc thử Tollens (đun nóng) là ____.",
+                        correctAnswer: "2"
+                },
+                {
+                        id: "gk1_sa_q2",
+                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                        type: "short_answer",
+                        text: "Câu 2: Cho dãy các dung dịch: glucose, saccharose, fructose, tinh bột, cellulose. Có bao nhiêu dung dịch trong dãy phản ứng được với Cu(OH)₂ ở nhiệt độ thường tạo thành dung dịch có màu xanh lam?",
+                        correctAnswer: "3"
+                },
+                {
+                        id: "gk1_sa_q3",
+                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                        type: "short_answer",
+                        text: "Câu 3: Cho các chất: Ala-Gly-Ala (1), glucose (2), glycine (3), triolein (4), methyl formate (5) và tinh bột (6). Gắn số thứ tự theo chiều tăng dần các chất bị thủy phân trong môi trường acid ở điều kiện thích hợp (VD: 123; 146; 2356;...):",
+                        correctAnswer: "1456"
+                },
+                {
+                        id: "gk1_sa_q4",
+                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                        type: "short_answer",
+                        text: "Câu 4: Cho aniline lần lượt tác dụng với dung dịch HCl, dung dịch NaOH, dung dịch Br₂, HNO₂/HCl ở điều kiện (0 - 5°C). Có bao nhiêu trường hợp xảy ra phản ứng?",
+                        correctAnswer: "3"
+                },
+                {
+                        id: "gk1_sa_q5",
+                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                        type: "short_answer",
+                        text: "Câu 5: Cho ethylamine lần lượt vào dung dịch FeCl₃ (1); dung dịch HCl (2); Cu(OH)₂ (3); dung dịch NaCl (4); dung dịch Br₂ (5); HNO₂ ở điều kiện thường (6). Ethylamine phản ứng được với các chất nào, gắn số thứ tự theo chiều tăng dần các chất (VD: 123; 146; 2356;...):",
+                        correctAnswer: "1236"
+                },
+                {
+                        id: "gk1_sa_q6",
+                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                        type: "short_answer",
+                        text: "Câu 6: Cho các chất: methylamine, glycine, alanine, ethylacetate, glutamic acid. Có bao nhiêu chất phản ứng với dung dịch HCl tạo muối?",
+                        correctAnswer: "4"
+                },
+                {
+                        id: "gk1_sa_q7",
+                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                        type: "short_answer",
+                        text: "Câu 7: Cho các phát biểu sau:<br>(1) Glycine phản ứng được với dung dịch HCl.<br>(2) Phân tử lysine có hai nguyên tử nitrogen.<br>(3) Trong môi trường acid, dạng tồn tại chủ yếu của alanine là dạng cation.<br>(4) Protein là một trong những nguồn thức ăn bổ sung các amino acid thiết yếu cho cơ thể.<br>(5) “Gạch cua” nổi lên khi nấu riêu cua là hiện tượng đông tụ protein.<br>(6) Số liên kết peptide có trong một phân tử Ala-Gly-Val-Gly-Ala là 5.<br>Liệt kê các phát biểu đúng theo thứ tự từ nhỏ đến lớn (Ví dụ: 1234,...):",
+                        correctAnswer: "12345"
+                },
+                {
+                        id: "gk1_sa_q8",
+                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                        type: "short_answer",
+                        text: "Câu 8: Cho các phát biểu sau:<br>(1) Sự đông tụ của protein chỉ xảy ra khi đun nóng dung dịch protein.<br>(2) Các amino acid thiên nhiên kiến tạo nên protein của cơ thể sống hầu hết là α-amino acid.<br>(3) Nhỏ vài giọt nước bromine vào ống nghiệm đựng dung dịch aniline sẽ thấy xuất hiện kết tủa trắng.<br>(4) Dung dịch methylamine tác dụng với Cu(OH)₂ trong môi trường kiềm, đun nóng thì thu được kết tủa màu đỏ gạch.<br>(5) Hemoglobin là protein hình sợi nên tan được trong nước tạo dung dịch keo.<br>(6) Cho vài giọt dung dịch HNO₃ đặc vào ống nghiệm đựng dung dịch lòng trắng trứng thấy xuất hiện kết tủa màu vàng.<br>Liệt kê các phát biểu sai theo thứ tự tăng dần (Ví dụ: 1234, 1346,...):",
+                        correctAnswer: "145"
+                },
+                {
+                        id: "gk1_sa_q9",
+                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                        type: "short_answer",
+                        text: "Câu 9: Một nhóm học sinh muốn thử nghiệm phản ứng tráng bạc lên kính bằng nguyên liệu đầu là glucose. Giả sử lớp bạc có diện tích là 100 cm² và độ dày là 0,5 μm. Biết rằng khối lượng riêng của bạc là 10,49 g/cm³ và khối lượng mol của glucose là 180 g/mol. Tính lượng glucose cần dùng (gam) với giả thiết hiệu suất phản ứng là 100% (làm tròn đến 4 chữ số thập phân):",
+                        correctAnswer: "0,0437 | 0.0437 | 0.044 | 0,044"
+                },
+                {
+                        id: "gk1_sa_q10",
+                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                        type: "short_answer",
+                        text: "Câu 10: Cho 0,1 mol butanoic acid tác dụng với 0,1 mol methyl alcohol có mặt H₂SO₄ đặc làm xúc tác. Tính khối lượng ester tạo thành (gam), biết giả thiết 65% alcohol chuyển hoá thành ester:",
+                        correctAnswer: "6,63 | 6.63"
+                },
+                {
+                        id: "gk1_sa_q11",
+                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                        type: "short_answer",
+                        text: "Câu 11: Số miligam KOH dùng để xà phòng hoá hết lượng triglyceride có trong 1 g chất béo được gọi là chỉ số ester hoá của loại chất béo đó. Tính chỉ số ester của một loại chất béo chứa 65% tristearin và 23% triolein (làm tròn đến hàng đơn vị)?",
+                        correctAnswer: "166"
+                },
+                {
+                        id: "gk1_sa_q12",
+                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                        type: "short_answer",
+                        text: "Câu 12: Chỉ số xà phòng hoá là số miligam KOH dùng để xà phòng hoá hết triglycerid và trung hoà hết lượng acid tự do trong 1 g chất béo. Một chất béo chứa 3,55% stearic acid và 89% tristearin về khối lượng, còn lại là các chất không tham gia phản ứng với KOH. Tính chỉ số xà phòng hoá của chất béo trên (làm tròn đến hàng đơn vị):",
+                        correctAnswer: "175"
+                },
+                {
+                        id: "gk1_sa_q13",
+                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                        type: "short_answer",
+                        text: "Câu 13: Một loại chất béo có chứa 80% tristearin về khối lượng. Để sản xuất 2 triệu chai nước rửa tay (có chứa chất dưỡng ẩm glycerol) cần dùng tối thiểu x tấn loại chất béo trên cho phản ứng với dung dịch NaOH, đun nóng. Biết rằng trong mỗi chai nước rửa tay có chứa 7 gam glycerol. Tính giá trị của x (tấn, làm tròn đến hàng đơn vị)?",
+                        correctAnswer: "169"
+                }
+        ]
+},
     {
         id: "de_chuong_1_ester_lipid",
         title: "Chương 1: Ester - Lipid",

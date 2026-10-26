@@ -178,7 +178,17 @@
         <button id="btnBackFromSetup" class="btn btn-text">← Quay lại danh sách</button>
         <h2 id="setupQuizTitle" class="section-title">Cấu hình bài tập</h2>
 
+        <!-- Vùng chọn phần ôn tập (kích hoạt động cho đề thi có selectableSections) -->
+        <div id="setupSectionSelectorContainer" style="display:none; margin-bottom: 24px;"></div>
+
         <div class="setup-options">
+          <div class="option-item" id="setupParticipantNameOption" style="margin-bottom: 16px; display: flex; flex-direction: column; align-items: flex-start; gap: 8px;">
+            <label for="setupParticipantNameInput" style="font-weight: 600; color: var(--text-main); font-size: 0.92rem;">
+              👤 Họ và tên người làm bài:
+            </label>
+            <input type="text" id="setupParticipantNameInput" placeholder="Nhập tên của bạn (không bắt buộc)..." class="participant-input" style="width: 100%; max-width: 420px; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: var(--radius-md); background: var(--bg-card); color: var(--text-main); font-size: 0.95rem;">
+          </div>
+
           <div class="option-item">
             <label class="checkbox-container">
               <input type="checkbox" id="chkShuffle" checked>
@@ -342,7 +352,7 @@
           onkeydown="if(event.key==='Enter') window.__confirmParticipant()">
       </div>
       <button onclick="window.__confirmParticipant()" class="btn btn-primary btn-large" style="margin-top:14px;">
-        Bắt Đầu Làm Bài →
+        Tiếp Tục Chọn Phần Ôn & Cấu Hình →
       </button>
       <button onclick="document.getElementById('participantModal').style.display='none'; showView('list');" class="btn btn-text" style="width:100%; margin-top:8px;">
         ← Quay lại danh sách
@@ -693,7 +703,7 @@
     <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ef629dc6201fd.svg" alt="AI">
   </button>
 
-  <script type="module" src="js/app.js?v=84"></script>
+  <script type="module" src="js/app.js?v=88"></script>
   <script type="module" src="js/gemini.js?v=12"></script>
   <script type="module" src="js/tronex-ai.js?v=6"></script>
   <script type="module" src="js/auth.js?v=1"></script>
