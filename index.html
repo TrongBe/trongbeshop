@@ -547,7 +547,7 @@
   </div>
 
   <!-- MODULE SCRIPTS -->
-  <script type="module" src="js/app.js?v=88"></script>
+  <script type="module" src="js/app.js?v=89"></script>
   <script type="module" src="js/auth.js?v=2"></script>
   <script src="js/cursor-effect.js?v=1" defer></script>
 
@@ -880,8 +880,8 @@
           qCount = quiz.questions.length;
         }
 
-        // Xác định thang điểm: Chỉ đề 120 câu chuẩn ĐGNL mới có thang 1200đ, các đề chuyên đề môn học là thang 10đ
-        const isDgnl = (qCount === 120) || (quiz.category === 'vnu') || (quiz.id && quiz.id.endsWith('_dgnl'));
+        // Xác định thang điểm: Chỉ đề 120 câu chuẩn ĐGNL mới có thang 1200đ, các đề còn lại đều tính theo thang 10đ
+        const isDgnl = (qCount === 120);
         const scaleLabel = isDgnl ? 'Thang 1200đ' : 'Thang 10đ';
 
         // Phân loại chủ đề môn học và Banner Art đồ họa SVG

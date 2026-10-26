@@ -1,4 +1,4 @@
-import { mockQuizzes } from './data.js?v=88';
+import { mockQuizzes } from './data.js?v=89';
 import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
@@ -214,7 +214,8 @@ function initQuizList() {
             ? '<span class="quiz-pill-badge badge-public">🌍 Công Khai</span>' 
             : '<span class="quiz-pill-badge badge-private">🔒 Riêng tư</span>';
 
-        const scaleBadge = (qCount !== 120 && (quiz.scoreScale === 10 || quiz.id === 'de_thi_thu_thptqg_anh' || quiz.id.includes('chuong_') || quiz.id.includes('advertisement'))) 
+        const isDgnl120Quiz = (qCount === 120);
+        const scaleBadge = !isDgnl120Quiz 
             ? '<span class="quiz-pill-badge badge-toan">🎯 Thang 10</span>' 
             : '<span class="quiz-pill-badge badge-vnu">🎯 Thang 1200</span>';
 
@@ -1241,15 +1242,17 @@ if (quizForm) {
                     });
                     const subId = Date.now() + '_' + Math.random().toString(36).slice(2, 6);
                     const subRef = ref(dbRT, `submissions/${currentQuiz.id}/${subId}`);
-                    const isEnglishTHPTQG = currentQuiz.id === 'de_thi_thu_thptqg_anh' || currentQuiz.scoreScale === 10;
-                    const calculatedAutoScore = isEnglishTHPTQG 
-                        ? Number((correct * 0.25).toFixed(2)) 
-                        : correct;
+                    const totalQ = correct + incorrect + unanswered;
+                    const isDgnl120 = (totalQ === 120);
+                    const calculatedAutoScore = isDgnl120 
+                        ? (correct * 10) 
+                        : (totalQ > 0 ? Number(((correct * 10) / totalQ).toFixed(2)) : 0);
                     await set(subRef, {
                         participant: currentParticipant,
                         answers,
                         autoScore: calculatedAutoScore,
-                        totalQuestions: correct + incorrect + unanswered,
+                        scoreScale: isDgnl120 ? 1200 : 10,
+                        totalQuestions: totalQ,
                         submittedAt: Date.now(),
                         finalScore: null,
                         manualGrades: {}
@@ -1327,30 +1330,24 @@ function renderResults(correct, incorrect, unanswered) {
     const total = correct + incorrect + unanswered;
 
     let score;
-    const isEnglishTHPTQG = currentQuiz && (currentQuiz.id === 'de_thi_thu_thptqg_anh' || currentQuiz.scoreScale === 10);
+    const isDgnl120 = (total === 120);
     const scoreContainer = document.querySelector('.tronex-score');
 
-    if (isEnglishTHPTQG) {
-        // Thang điểm 10 cho đề có scoreScale === 10
-        const rawScore = (currentQuiz.selectableSections && total > 0)
-            ? ((correct / total) * 10)
-            : (currentQuiz.scorePerQuestion 
-                ? (correct * currentQuiz.scorePerQuestion) 
-                : (total > 0 ? ((correct / total) * 10) : 0));
-        score = Number.isInteger(rawScore) ? rawScore.toString() : rawScore.toFixed(2).replace(/\.?0+$/, '');
-        if (scoreContainer) {
-            scoreContainer.innerHTML = `<span id="tronexScoreText">${score}</span> / 10`;
-        }
-    } else if (isVACTPage) {
-        // Thang điểm 1200 cho TRONEX (10đ mỗi câu đúng)
-        score = correct * 10;
+    if (isDgnl120) {
+        // Thang điểm 1200 cho đề chuẩn ĐGNL 120 câu (10đ mỗi câu đúng)
+        score = (correct * 10).toString();
         if (scoreContainer) {
             scoreContainer.innerHTML = `<span id="tronexScoreText">${score}</span> / 1200`;
         }
     } else {
-        score = total > 0 ? ((correct / total) * 10).toFixed(2) : 0;
-        const scoreText = document.getElementById('tronexScoreText');
-        if (scoreText) scoreText.textContent = score;
+        // Thang điểm 10 cho TẤT CẢ các bộ đề khác:
+        // Số điểm của 1 câu được chia đều sao cho khi làm đúng hết điểm sẽ đạt 10đ
+        const rawScore = total > 0 ? ((correct * 10) / total) : 0;
+        const rounded = Math.round(rawScore * 100) / 100;
+        score = Number.isInteger(rounded) ? rounded.toString() : rounded.toFixed(2).replace(/\.?0+$/, '');
+        if (scoreContainer) {
+            scoreContainer.innerHTML = `<span id="tronexScoreText">${score}</span> / 10`;
+        }
     }
 
     // Hiển thị thời gian làm bài
@@ -2084,10 +2081,10 @@ window.viewSubmissions = function (quizId) {
             const p = sub.participant || {};
             const avatarUrl = p.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(p.displayName || 'A')}&background=6366f1&color=fff&size=48&bold=true`;
             const time = sub.submittedAt ? new Date(sub.submittedAt).toLocaleString('vi-VN') : 'Không rõ';
-            const isEnglishTHPTQG = quizId === 'de_thi_thu_thptqg_anh';
-            const autoScoreDisplay = isEnglishTHPTQG && typeof sub.autoScore === 'number'
-                ? `${sub.autoScore}/10đ`
-                : `${sub.autoScore || 0}`;
+            const isDgnl120 = sub.scoreScale === 1200 || sub.totalQuestions === 120 || quizId === 'de_1_dgnl' || quizId === 'de_2_dgnl';
+            const autoScoreDisplay = isDgnl120
+                ? `${sub.autoScore}/1200đ`
+                : `${sub.autoScore}/10đ`;
             const hasFinalScore = sub.finalScore !== undefined && sub.finalScore !== null && sub.finalScore !== '';
             const scoreBadge = hasFinalScore
                 ? `<span style="color:#16a34a;font-weight:700;font-size:1rem;">🏅 ${sub.finalScore} điểm</span>`
@@ -2224,10 +2221,10 @@ window.viewSubmissionDetail = function (quizId, submissionId, submissionData) {
     const gradeBox = document.getElementById('submissionGradeBox');
     if (gradeBox) {
         gradeBox.style.display = 'block';
-        const isEnglishTHPTQG = quiz && (quiz.id === 'de_thi_thu_thptqg_anh' || quiz.scoreScale === 10);
-        const displayScore = isEnglishTHPTQG 
-            ? `${(autoScore * 0.25).toFixed(2).replace(/\.?0+$/, '')} / 10 (${autoScore}/${flatQs.length} câu đúng)`
-            : `${autoScore} (${autoScore}/${flatQs.length} câu đúng)`;
+        const isDgnl120 = flatQs.length === 120 || (quiz && (quiz.id === 'de_1_dgnl' || quiz.id === 'de_2_dgnl' || (quiz.category === 'vnu' && flatQs.length === 120)));
+        const displayScore = isDgnl120 
+            ? `${autoScore * 10} / 1200 (${autoScore}/${flatQs.length} câu đúng)`
+            : `${flatQs.length > 0 ? ((autoScore * 10) / flatQs.length).toFixed(2).replace(/\.?0+$/, '') : 0} / 10 (${autoScore}/${flatQs.length} câu đúng)`;
         const autoEl = document.getElementById('autoScoreDisplay');
         if (autoEl) autoEl.textContent = displayScore;
         const finalInput = document.getElementById('finalScoreInput');
