@@ -795,6 +795,43 @@ export const mockQuizzes = [
                         type: "short_answer"
                 }
         ],
+        presets: [
+                {
+                        id: "all",
+                        label: "✨ Toàn bộ đề (68 câu)",
+                        sectionIds: ["part1_c1", "part1_c2", "part1_c3", "part2_tf", "part3_sa"]
+                },
+                {
+                        id: "part1",
+                        label: "📝 Cả 3 chương Trắc nghiệm (47 câu)",
+                        sectionIds: ["part1_c1", "part1_c2", "part1_c3"]
+                },
+                {
+                        id: "c1",
+                        label: "🧪 Chương 1: Ester - Lipid (15 câu)",
+                        sectionIds: ["part1_c1"]
+                },
+                {
+                        id: "c2",
+                        label: "🌾 Chương 2: Carbohydrate (17 câu)",
+                        sectionIds: ["part1_c2"]
+                },
+                {
+                        id: "c3",
+                        label: "🧬 Chương 3: Nitrogen (15 câu)",
+                        sectionIds: ["part1_c3"]
+                },
+                {
+                        id: "tf",
+                        label: "⚖️ II. Đúng / Sai (8 câu)",
+                        sectionIds: ["part2_tf"]
+                },
+                {
+                        id: "sa",
+                        label: "✏️ III. Trả lời ngắn (13 câu)",
+                        sectionIds: ["part3_sa"]
+                }
+        ],
         questions: [
                 {
                         id: "gk1_c1_q1",
@@ -2204,6 +2241,33 @@ export const mockQuizzes = [
                 type: "short_answer"
             }
         ],
+    presets: [
+        {
+            id: "all",
+            label: "✨ Toàn bộ đề (60 câu)",
+            sectionIds: ["part_a_mcq", "part_a_writing", "part_b_mcq", "part_b_writing"]
+        },
+        {
+            id: "part_a",
+            label: "📖 Phần A (30 câu)",
+            sectionIds: ["part_a_mcq", "part_a_writing"]
+        },
+        {
+            id: "part_b",
+            label: "📚 Phần B (30 câu)",
+            sectionIds: ["part_b_mcq", "part_b_writing"]
+        },
+        {
+            id: "all_mcq",
+            label: "📝 Tất cả Trắc nghiệm (50 câu)",
+            sectionIds: ["part_a_mcq", "part_b_mcq"]
+        },
+        {
+            id: "all_writing",
+            label: "✏️ Tất cả Viết câu (10 câu)",
+            sectionIds: ["part_a_writing", "part_b_writing"]
+        }
+    ],
         questions: [
             // ==========================================
             // PHẦN A: CÂU 1 - 30

@@ -1,4 +1,4 @@
-import { mockQuizzes } from './data.js?v=92';
+import { mockQuizzes } from './data.js?v=93';
 import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
@@ -540,7 +540,8 @@ function renderSectionSelector(quiz) {
         return;
     }
 
-    const totalQCount = quiz.questions ? quiz.questions.length : 0;
+    // Tính tổng số câu hỏi chính xác từ selectableSections
+    const totalQCount = quiz.selectableSections.reduce((sum, s) => sum + (s.count || 0), 0);
     
     // Gom nhóm theo thuộc tính group
     const groups = {};
@@ -580,6 +581,40 @@ function renderSectionSelector(quiz) {
         `;
     });
 
+    // Lấy danh sách presets tương ứng với từng bộ đề thi
+    let presets = [];
+    if (Array.isArray(quiz.presets) && quiz.presets.length > 0) {
+        presets = quiz.presets;
+    } else {
+        // Tự động sinh preset tổng và theo từng nhóm nếu chưa định nghĩa sẵn
+        const allIds = quiz.selectableSections.map(s => s.id);
+        presets.push({
+            id: 'all',
+            label: `✨ Toàn bộ đề (${totalQCount} câu)`,
+            sectionIds: allIds
+        });
+        Object.entries(groups).forEach(([grpName, secs]) => {
+            const grpCount = secs.reduce((sum, s) => sum + (s.count || 0), 0);
+            if (secs.length < quiz.selectableSections.length) {
+                presets.push({
+                    id: `grp_${secs.map(s => s.id).join('_')}`,
+                    label: `📁 ${grpName} (${grpCount} câu)`,
+                    sectionIds: secs.map(s => s.id)
+                });
+            }
+        });
+    }
+
+    const presetsHtml = presets.map((p, idx) => {
+        return `<button type="button" class="preset-pill-btn ${idx === 0 ? 'active' : ''}" data-preset-id="${p.id}">${p.label}</button>`;
+    }).join('\n');
+
+    const subtitleText = quiz.selectorSubtitle || (quiz.category === 'hoa' 
+        ? 'Hệ thống cho phép chọn ôn từng chương trắc nghiệm, đúng/sai hoặc câu hỏi ngắn' 
+        : (quiz.category === 'anh'
+            ? 'Lựa chọn ôn toàn bộ đề hoặc linh hoạt chọn riêng từng phần Trắc nghiệm / Viết câu của Phần A hoặc Phần B'
+            : 'Chọn một hoặc nhiều phần bên dưới để tùy chỉnh nội dung bài làm phù hợp'));
+
     container.innerHTML = `
         <div class="section-selector-card">
             <div class="selector-header-row">
@@ -587,20 +622,14 @@ function renderSectionSelector(quiz) {
                     <span class="selector-icon">🎯</span>
                     <div>
                         <h4 class="selector-title">Chọn phần bạn muốn ôn tập:</h4>
-                        <p class="selector-subtitle">Hệ thống cho phép chọn ôn từng chương trắc nghiệm, đúng/sai hoặc câu hỏi ngắn</p>
+                        <p class="selector-subtitle">${subtitleText}</p>
                     </div>
                 </div>
             </div>
 
             <!-- Nút chọn nhanh (Preset Pills) -->
             <div class="selector-presets-row">
-                <button type="button" class="preset-pill-btn active" data-preset="all">✨ Toàn bộ đề (${totalQCount} câu)</button>
-                <button type="button" class="preset-pill-btn" data-preset="part1">📝 Cả 3 chương Trắc nghiệm (47 câu)</button>
-                <button type="button" class="preset-pill-btn" data-preset="c1">🧪 Chương 1: Ester - Lipid (15 câu)</button>
-                <button type="button" class="preset-pill-btn" data-preset="c2">🌾 Chương 2: Carbohydrate (17 câu)</button>
-                <button type="button" class="preset-pill-btn" data-preset="c3">🧬 Chương 3: Nitrogen (15 câu)</button>
-                <button type="button" class="preset-pill-btn" data-preset="tf">⚖️ II. Đúng / Sai (8 câu)</button>
-                <button type="button" class="preset-pill-btn" data-preset="sa">✏️ III. Trả lời ngắn (13 câu)</button>
+                ${presetsHtml}
             </div>
 
             <div class="selector-groups-container">
@@ -623,38 +652,26 @@ function renderSectionSelector(quiz) {
     function updateCount() {
         let selectedCount = 0;
         let selectedSecs = 0;
+        const selectedIds = [];
         checkboxes.forEach(cb => {
             if (cb.checked) {
                 selectedCount += parseInt(cb.dataset.count || '0');
                 selectedSecs++;
+                selectedIds.push(cb.value);
             }
         });
         if (countDisplay) {
             countDisplay.textContent = `${selectedCount} câu hỏi (${selectedSecs} phần)`;
         }
 
-        // Cập nhật trạng thái active của các preset buttons
+        // Cập nhật trạng thái active của các preset buttons chính xác theo sectionIds
         presetBtns.forEach(btn => {
-            const p = btn.dataset.preset;
-            if (p === 'all') {
-                btn.classList.toggle('active', selectedSecs === checkboxes.length);
-            } else if (p === 'part1') {
-                const c1 = container.querySelector('input[value="part1_c1"]')?.checked;
-                const c2 = container.querySelector('input[value="part1_c2"]')?.checked;
-                const c3 = container.querySelector('input[value="part1_c3"]')?.checked;
-                const tf = container.querySelector('input[value="part2_tf"]')?.checked;
-                const sa = container.querySelector('input[value="part3_sa"]')?.checked;
-                btn.classList.toggle('active', c1 && c2 && c3 && !tf && !sa);
-            } else if (p === 'c1') {
-                btn.classList.toggle('active', selectedSecs === 1 && container.querySelector('input[value="part1_c1"]')?.checked);
-            } else if (p === 'c2') {
-                btn.classList.toggle('active', selectedSecs === 1 && container.querySelector('input[value="part1_c2"]')?.checked);
-            } else if (p === 'c3') {
-                btn.classList.toggle('active', selectedSecs === 1 && container.querySelector('input[value="part1_c3"]')?.checked);
-            } else if (p === 'tf') {
-                btn.classList.toggle('active', selectedSecs === 1 && container.querySelector('input[value="part2_tf"]')?.checked);
-            } else if (p === 'sa') {
-                btn.classList.toggle('active', selectedSecs === 1 && container.querySelector('input[value="part3_sa"]')?.checked);
+            const pId = btn.dataset.presetId;
+            const targetPreset = presets.find(p => p.id === pId);
+            if (targetPreset && Array.isArray(targetPreset.sectionIds)) {
+                const isMatch = targetPreset.sectionIds.length === selectedIds.length &&
+                    targetPreset.sectionIds.every(id => selectedIds.includes(id));
+                btn.classList.toggle('active', isMatch);
             }
         });
     }
@@ -666,25 +683,14 @@ function renderSectionSelector(quiz) {
     presetBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
-            const preset = btn.dataset.preset;
-            checkboxes.forEach(cb => {
-                if (preset === 'all') {
-                    cb.checked = true;
-                } else if (preset === 'part1') {
-                    cb.checked = ['part1_c1', 'part1_c2', 'part1_c3'].includes(cb.value);
-                } else if (preset === 'c1') {
-                    cb.checked = (cb.value === 'part1_c1');
-                } else if (preset === 'c2') {
-                    cb.checked = (cb.value === 'part1_c2');
-                } else if (preset === 'c3') {
-                    cb.checked = (cb.value === 'part1_c3');
-                } else if (preset === 'tf') {
-                    cb.checked = (cb.value === 'part2_tf');
-                } else if (preset === 'sa') {
-                    cb.checked = (cb.value === 'part3_sa');
-                }
-            });
-            updateCount();
+            const pId = btn.dataset.presetId;
+            const targetPreset = presets.find(p => p.id === pId);
+            if (targetPreset && Array.isArray(targetPreset.sectionIds)) {
+                checkboxes.forEach(cb => {
+                    cb.checked = targetPreset.sectionIds.includes(cb.value);
+                });
+                updateCount();
+            }
         });
     });
 
