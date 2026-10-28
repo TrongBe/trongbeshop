@@ -783,7 +783,7 @@ if (btnConfirmStart) {
                 let viewedList = JSON.parse(localStorage.getItem("viewed_quizzes") || "[]");
                 const qIdStr = currentQuiz.id.toString();
                 if (!viewedList.includes(qIdStr)) {
-                    const quizRef = ref(dbRT, FIREBASE_ROOT + '/' + currentQuiz.id + '/viewCount');
+                    const quizRef = ref(dbRT, 'quiz_views/' + currentQuiz.id);
                     runTransaction(quizRef, (currentValue) => {
                         return (currentValue || 0) + 1;
                     });
@@ -1709,7 +1709,7 @@ window.loadPublicQuizzes = function () {
             });
 
             // Tự động seed đề TRONEX lên Firebase nếu chưa có
-            if (isVACTPage && sourceBranch === 'VACT') {
+            if (isAdmin && isVACTPage && sourceBranch === 'VACT') {
                 const seedList = window.__vactSeedBackup || mockQuizzes;
                 seedList.forEach(seed => {
                     if (seed && seed.id && (!data || !data[seed.id])) {
@@ -1727,21 +1727,41 @@ window.loadPublicQuizzes = function () {
             }
         };
 
-        // Lắng nghe nhánh VACT (chứa các đề thi V-ACT & chuyên đề môn học chính thức)
+        // Dùng get() tải 1 lần thay vì onValue() giữ kết nối WebSocket liên tục 24/7 (Tiết kiệm connection & băng thông)
         const vactRef = ref(dbRT, 'VACT');
-        onValue(vactRef, (snapshot) => {
+        get(vactRef).then((snapshot) => {
             handleSnapshot(snapshot, 'VACT');
-        }, (error) => {
+        }).catch((error) => {
             console.warn("⚠️ Firebase VACT branch error:", error.message);
         });
 
-        // Lắng nghe nhánh public_quizzes (chứa các đề cộng đồng)
         const publicQuizzesRef = ref(dbRT, 'public_quizzes');
-        onValue(publicQuizzesRef, (snapshot) => {
+        get(publicQuizzesRef).then((snapshot) => {
             handleSnapshot(snapshot, 'public_quizzes');
-        }, (error) => {
+        }).catch((error) => {
             console.warn("⚠️ Firebase public_quizzes branch error:", error.message);
         });
+
+        // Tải lượt xem từ nhánh riêng quiz_views (nhẹ, không tải lại toàn bộ câu hỏi)
+        const viewsRef = ref(dbRT, 'quiz_views');
+        get(viewsRef).then((snapshot) => {
+            const viewsData = snapshot.val();
+            if (viewsData) {
+                Object.keys(viewsData).forEach(qId => {
+                    const count = viewsData[qId];
+                    const idx = mockQuizzes.findIndex(q => q && (q.id || '').toString().trim() === qId.toString().trim());
+                    if (idx !== -1) mockQuizzes[idx].viewCount = count;
+                    const viewEl = document.getElementById(`views-${qId}`);
+                    if (viewEl) {
+                        if (viewEl.classList.contains('home-quiz-pill')) {
+                            viewEl.innerHTML = `👁️ ${count} lượt`;
+                        } else {
+                            viewEl.innerHTML = `Lượt truy cập: ${count}`;
+                        }
+                    }
+                });
+            }
+        }).catch(() => {});
     } catch (e) { console.error("Load public error:", e); }
 };
 
