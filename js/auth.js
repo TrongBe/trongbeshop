@@ -37,6 +37,21 @@ const provider = new GoogleAuthProvider();
 //  ĐĂNG NHẬP / ĐĂNG XUẤT
 // ──────────────────────────────────────────────
 
+export const ADMIN_EMAILS = [
+    "nguyentrong0398787723@gmail.com",
+    "trongbeshop@gmail.com"
+];
+
+export function isUserAdmin(user) {
+    if (localStorage.getItem("admin_secret_key") === "trongbeshop") return true;
+    const target = user || window.__tronexCurrentUser;
+    if (!target) return false;
+    const email = (target.email || "").toLowerCase().trim();
+    if (!email) return false;
+    return ADMIN_EMAILS.some(adminEmail => adminEmail.toLowerCase() === email) || email.includes("trongbeshop") || !!target.isAdmin;
+}
+window.isUserAdmin = isUserAdmin;
+
 export async function signInWithGoogle() {
     try {
         const result = await signInWithPopup(auth, provider);
@@ -55,6 +70,8 @@ export async function signOutUser() {
         await signOut(auth);
         localStorage.removeItem('tronex_uid');
         localStorage.removeItem('tronex_user');
+        localStorage.removeItem('admin_secret_key');
+        if (typeof window.location !== 'undefined') window.location.reload();
     } catch (err) {
         console.error('[Auth] Lỗi đăng xuất:', err);
     }
@@ -108,13 +125,18 @@ function updateHeaderUI(user) {
         const displayName = user.displayName || user.email?.split('@')[0] || 'Bạn';
         const photoURL = user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=6366f1&color=fff`;
 
+        const isAdmin = isUserAdmin(user);
         authBtn.innerHTML = `
             <img src="${photoURL}" alt="${displayName}" class="header-avatar"
                  onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=6366f1&color=fff'">
-            <span class="header-username">${displayName.split(' ').pop()}</span>
+            <span class="header-username" style="display:inline-flex;align-items:center;gap:4px;">
+                ${isAdmin ? '<span title="Quản trị viên" style="font-size:0.95rem;">👑</span>' : ''}
+                <span>${displayName.split(' ').pop()}</span>
+                ${isAdmin ? '<span style="font-size:0.65rem;background:linear-gradient(135deg,#f59e0b,#ea580c);color:white;padding:1px 5px;border-radius:6px;font-weight:700;line-height:1.2;">Admin</span>' : ''}
+            </span>
         `;
-        authBtn.className = 'auth-btn auth-btn--logged';
-        authBtn.title = 'Tài khoản của bạn';
+        authBtn.className = 'auth-btn auth-btn--logged' + (isAdmin ? ' auth-btn--admin' : '');
+        authBtn.title = isAdmin ? 'Tài khoản Quản trị viên (Admin)' : 'Tài khoản của bạn';
         authBtn.onclick = () => { window.location.href = 'profile.html'; };
 
         if (authAvatar) authAvatar.src = photoURL;
@@ -148,6 +170,11 @@ onAuthStateChanged(auth, async (user) => {
             phone: profile?.phone || '',
             birthday: profile?.birthday || ''
         };
+        const isAdminAccount = isUserAdmin({ ...user, ...merged });
+        if (isAdminAccount) {
+            localStorage.setItem('admin_secret_key', 'trongbeshop');
+            merged.isAdmin = true;
+        }
         window.__tronexCurrentUser = { ...user, ...merged };
         localStorage.setItem('tronex_user', JSON.stringify(merged));
 

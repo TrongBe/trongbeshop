@@ -33,7 +33,29 @@ let quizStartTime = null;
 const isVACTPage = window.location.pathname.toLowerCase().includes('v-act') || !!document.getElementById('quizListView');
 const FIREBASE_ROOT = isVACTPage ? 'VACT' : 'public_quizzes';
 const LOCAL_STORAGE_KEY = isVACTPage ? 'trongbeshop_vact_quizzes' : 'trongbeshop_custom_quizzes';
-const isAdmin = localStorage.getItem("admin_secret_key") === "trongbeshop";
+export function checkIsAdmin() {
+    if (localStorage.getItem("admin_secret_key") === "trongbeshop") return true;
+    if (typeof window.isUserAdmin === 'function' && window.isUserAdmin()) return true;
+    const user = window.__tronexCurrentUser;
+    if (user) {
+        const email = (user.email || '').toLowerCase().trim();
+        if (email === 'nguyentrong0398787723@gmail.com' || email.includes('trongbeshop') || user.isAdmin) {
+            localStorage.setItem("admin_secret_key", "trongbeshop");
+            return true;
+        }
+    }
+    try {
+        const local = JSON.parse(localStorage.getItem('tronex_user') || '{}');
+        const email = (local.email || '').toLowerCase().trim();
+        if (email === 'nguyentrong0398787723@gmail.com' || email.includes('trongbeshop') || local.isAdmin) {
+            localStorage.setItem("admin_secret_key", "trongbeshop");
+            return true;
+        }
+    } catch(e) {}
+    return false;
+}
+window.checkIsAdmin = checkIsAdmin;
+const isAdmin = checkIsAdmin;
 
 
 if (isVACTPage) {
@@ -331,16 +353,14 @@ window.__initQuizList = initQuizList; // alias for tronex-ai.js
 
 function isQuizOwner(id) {
     if (!id) return false;
-    if (localStorage.getItem("admin_secret_key") === "trongbeshop") return true;
+    if (checkIsAdmin()) return true;
     const targetId = id.toString().trim();
     try {
-        // Kiểm tra theo UID nếu đã đăng nhập (hỗ trợ chỉnh sửa cả đề tạo và đề chuyên đề)
         const uid = localStorage.getItem('tronex_uid') || window.__tronexCurrentUser?.uid;
         if (uid) {
             const quiz = mockQuizzes.find(q => q && (q.id || '').toString().trim() === targetId);
-            if (quiz && (quiz.createdBy?.uid === uid || !quiz.createdBy || targetId.startsWith('gemini_') || targetId.startsWith('manual_'))) return true;
+            if (quiz && quiz.createdBy && quiz.createdBy.uid === uid) return true;
         }
-        // Fallback: kiểm tra localStorage key
         const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
         if (saved) {
             const parsed = JSON.parse(saved);
@@ -351,56 +371,70 @@ function isQuizOwner(id) {
 }
 
 window.deleteCustomQuiz = function (id) {
-    const isAdmin = localStorage.getItem("admin_secret_key") === "trongbeshop";
+    const isAdm = checkIsAdmin();
     const idx = mockQuizzes.findIndex(q => q && (q.id || '').toString().trim() === (id || '').toString().trim());
     if (idx === -1) return;
 
     const quiz = mockQuizzes[idx];
-    const isPublic = quiz.privacy === "public";
+    const isPublic = quiz.privacy === 'public';
     const isOwner = isQuizOwner(id);
 
-    const deleteModal = document.getElementById("deleteConfirmModal");
-    const btnHideLocal = document.getElementById("btnHideLocal");
-    const btnDeleteFirebase = document.getElementById("btnDeleteFirebase");
+    const deleteModal = document.getElementById('deleteConfirmModal');
+    const btnHideLocal = document.getElementById('btnHideLocal');
+    const btnDeleteFirebase = document.getElementById('btnDeleteFirebase');
 
-    deleteModal.style.display = "flex";
+    if (deleteModal) deleteModal.style.display = 'flex';
 
-    if (isAdmin || isOwner) {
-        btnDeleteFirebase.style.display = "block";
+    if (isAdm || isOwner) {
+        if (btnDeleteFirebase) btnDeleteFirebase.style.display = 'block';
     } else {
-        btnDeleteFirebase.style.display = "none";
+        if (btnDeleteFirebase) btnDeleteFirebase.style.display = 'none';
     }
 
-    btnHideLocal.onclick = () => {
-        mockQuizzes.splice(idx, 1);
-        if (window.__saveCustomQuizzes) window.__saveCustomQuizzes();
-        initQuizList();
-        closeDeleteModal();
-        alert("Đã ẩn đề khỏi máy của bạn.");
-    };
-
-    btnDeleteFirebase.onclick = () => {
-        const msg = isAdmin ? "[ADMIN] Xóa vĩnh viễn đề này khỏi hệ thống?" : "Bạn là chủ đề này. Xóa vĩnh viễn khỏi toàn hệ thống?";
-        if (confirm(msg)) {
+    if (btnHideLocal) {
+        btnHideLocal.onclick = () => {
             mockQuizzes.splice(idx, 1);
             if (window.__saveCustomQuizzes) window.__saveCustomQuizzes();
-
-            const uid = localStorage.getItem('tronex_uid');
-            if (isPublic) {
-                if (typeof window.__deletePublicQuiz === 'function') {
-                    window.__deletePublicQuiz(id);
-                }
-            } else {
-                if (uid && typeof window.__deletePrivateQuiz === 'function') {
-                    window.__deletePrivateQuiz(uid, id);
-                }
-            }
-
             initQuizList();
             closeDeleteModal();
-            alert("Đã xóa vĩnh viễn đề thi thành công!");
-        }
-    };
+            alert('Đã ẩn đề khỏi máy của bạn.');
+        };
+    }
+
+    if (btnDeleteFirebase) {
+        btnDeleteFirebase.onclick = () => {
+            const msg = isAdm ? '[ADMIN] Xóa vĩnh viễn đề này và toàn bộ dữ liệu (lượt xem, bài nộp) khỏi hệ thống?' : 'Bạn là chủ đề này. Xóa vĩnh viễn khỏi toàn hệ thống?';
+            if (confirm(msg)) {
+                mockQuizzes.splice(idx, 1);
+                if (window.__saveCustomQuizzes) window.__saveCustomQuizzes();
+
+                const uid = localStorage.getItem('tronex_uid');
+                if (isAdm) {
+                    if (typeof window.__deletePublicQuiz === 'function') {
+                        window.__deletePublicQuiz(id);
+                    }
+                    try {
+                        set(ref(dbRT, 'VACT/' + id), null).catch(() => {});
+                        set(ref(dbRT, 'public_quizzes/' + id), null).catch(() => {});
+                        set(ref(dbRT, 'quiz_views/' + id), null).catch(() => {});
+                        set(ref(dbRT, 'submissions/' + id), null).catch(() => {});
+                    } catch(e) {}
+                } else if (isPublic) {
+                    if (typeof window.__deletePublicQuiz === 'function') {
+                        window.__deletePublicQuiz(id);
+                    }
+                } else {
+                    if (uid && typeof window.__deletePrivateQuiz === 'function') {
+                        window.__deletePrivateQuiz(uid, id);
+                    }
+                }
+
+                initQuizList();
+                closeDeleteModal();
+                alert(isAdm ? '✅ [ADMIN] Đã xóa vĩnh viễn đề thi khỏi hệ thống!' : 'Đã xóa vĩnh viễn đề thi thành công!');
+            }
+        };
+    }
 };
 
 window.closeDeleteModal = function () {
@@ -1946,24 +1980,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     let adminClickCount = 0;
-    const adminTriggerRow = document.querySelector('.header h1');
-    if (adminTriggerRow) {
-        adminTriggerRow.style.cursor = "pointer";
-        adminTriggerRow.addEventListener('click', () => {
+    const adminTriggers = document.querySelectorAll('.header h1, .nav-brand-wrap');
+    adminTriggers.forEach(el => {
+        el.style.cursor = 'pointer';
+        el.addEventListener('click', (e) => {
             adminClickCount++;
             if (adminClickCount >= 10) {
-                const isAdmin = localStorage.getItem("admin_secret_key") === "trongbeshop";
-                if (isAdmin) {
-                    localStorage.removeItem("admin_secret_key");
-                    alert("Đã TẮT quyền Admin.");
+                adminClickCount = 0;
+                e.preventDefault();
+                const isCurrentlyAdmin = checkIsAdmin();
+                if (isCurrentlyAdmin) {
+                    localStorage.removeItem('admin_secret_key');
+                    alert('Đã TẮT quyền Admin.');
                 } else {
-                    localStorage.setItem("admin_secret_key", "trongbeshop");
-                    alert("Đã BẬT quyền Admin!");
+                    localStorage.setItem('admin_secret_key', 'trongbeshop');
+                    alert('👑 Đã BẬT quyền Admin hệ thống!');
                 }
                 location.reload();
             }
         });
-    }
+    });
 
     // --- KHỞI TẠO SIDEBAR KÉO THẢ (v51) ---
     initDraggableSidebar();
@@ -2131,6 +2167,7 @@ window.viewSubmissions = function (quizId) {
                     <div style="color:#94a3b8;font-size:0.8rem;margin-top:3px;">🕐 ${time}</div>
                 </div>
                 <div style="text-align:right;flex-shrink:0;">${scoreBadge}</div>
+                ${checkIsAdmin() ? `<button class="btn-del-sub" title="Xóa bài nộp này" style="background:#fee2e2;color:#ef4444;border:none;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:0.85rem;margin-left:8px;transition:all 0.2s;" type="button" onclick="event.stopPropagation(); window.__deleteSubmission('${quizId}', '${sub.id}')">🗑️</button>` : ''}
                 <span style="color:#c7d2fe;font-size:1.4rem;flex-shrink:0;">›</span>
             `;
             card.onclick = () => window.viewSubmissionDetail(quizId, sub.id, sub);

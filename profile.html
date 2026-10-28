@@ -103,6 +103,10 @@
             </div>
             <h2 id="profileDisplayName" class="profile-name">—</h2>
             <p id="profileEmail" class="profile-email">—</p>
+            <div id="adminProfileBadge" style="display:none; margin:12px auto 0; padding:6px 16px; background:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(234,88,12,0.15)); border:1.5px solid #f59e0b; border-radius:999px; align-items:center; gap:6px; width:fit-content;">
+              <span style="font-size:1rem;">👑</span>
+              <span style="font-size:0.85rem; font-weight:700; color:#d97706;">Quản trị viên hệ thống (Admin)</span>
+            </div>
           </div>
 
           <div class="profile-form">
@@ -244,6 +248,10 @@
       document.getElementById('profileEmail').textContent = user.email || '';
 
       // Fill form
+      const isAdm = (window.isUserAdmin && window.isUserAdmin(user)) || (localStorage.getItem("admin_secret_key") === "trongbeshop");
+      const badgeEl = document.getElementById('adminProfileBadge');
+      if (badgeEl) badgeEl.style.display = isAdm ? 'inline-flex' : 'none';
+
       document.getElementById('inputDisplayName').value = user.displayName || '';
       document.getElementById('inputBirthday').value = user.birthday || '';
       document.getElementById('inputPhone').value = user.phone || '';
