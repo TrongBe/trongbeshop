@@ -1,4 +1,4 @@
-import { mockQuizzes } from './data.js?v=91';
+import { mockQuizzes } from './data.js?v=92';
 import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
@@ -38,7 +38,7 @@ const isAdmin = localStorage.getItem("admin_secret_key") === "trongbeshop";
 
 if (isVACTPage) {
     // Giữ lại tất cả đề V-ACT / ĐGNL / Chương / Ôn tập / Hóa / Advertisement từ data.js
-    const vactQuizzes = mockQuizzes.filter(q => q && q.id && (q.id.endsWith('_dgnl') || q.id.startsWith('de_') || q.id.startsWith('vact_') || q.id.startsWith('on_tap_') || q.id.includes('chuong_') || q.id.includes('advertisement') || q.category === 'hoa'));
+    const vactQuizzes = mockQuizzes.filter(q => q && q.id && (q.id.endsWith('_dgnl') || q.id.startsWith('de_') || q.id.startsWith('vact_') || q.id.startsWith('on_tap_') || q.id.includes('chuong_') || q.id.includes('advertisement') || q.category === 'hoa' || q.category === 'anh'));
     mockQuizzes.length = 0;
     mockQuizzes.push(...vactQuizzes);
 
@@ -1085,7 +1085,7 @@ function renderQuestions() {
             input.className = 'form-control short-answer-input';
             input.name = `question_${q.id}`;
             input.placeholder = 'Nhập câu trả lời của bạn...';
-            input.style.cssText = 'max-width: 300px; margin-top: 10px; font-size: 0.9rem; padding: 8px 12px; border: 2px solid var(--border); background: var(--bg-surface); color: var(--text-main); border-radius: 8px; transition: all 0.3s ease;';
+            input.style.cssText = 'max-width: 650px; width: 100%; margin-top: 10px; font-size: 0.95rem; padding: 10px 14px; border: 2px solid var(--border); background: var(--bg-surface); color: var(--text-main); border-radius: 8px; transition: all 0.3s ease;';
 
             input.addEventListener('change', () => {
                 if (quizForm.dataset.quizMode === 'practice') {
@@ -1466,6 +1466,17 @@ function checkShortAnswerMatch(userVal, correctVal) {
     if (norm(u) === norm(c)) return true;
     for (const opt of acceptable) {
         if (norm(u) === norm(opt)) return true;
+    }
+    // Hỗ trợ câu văn viết: chuẩn hóa dấu câu ở cuối (chấm, phẩy), khoảng trắng thừa và dấu nháy
+    const cleanSentence = str => str
+        .replace(/[‘’]/g, "'")
+        .replace(/[“”]/g, '"')
+        .replace(/[.,;!?]+$/, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+    if (cleanSentence(u) === cleanSentence(c)) return true;
+    for (const opt of acceptable) {
+        if (cleanSentence(u) === cleanSentence(opt)) return true;
     }
     return false;
 }

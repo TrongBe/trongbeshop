@@ -2153,6 +2153,640 @@ export const mockQuizzes = [
                 ]
             }
         ]
+    },
+
+    // ==========================================================================
+    // ÔN TẬP GIỮA KÌ I - TIẾNG ANH 12 (60 CÂU: PHẦN A & B)
+    // ==========================================================================
+    {
+        id: "on_tap_giua_ki_1_tieng_anh_12",
+        title: "Ôn tập Giữa kì I - Tiếng Anh 12",
+        category: "anh",
+        subject: "Tiếng Anh",
+        description: "Đề cương ôn tập kiểm tra giữa kì I môn Tiếng Anh 12 (60 câu). Cấu trúc gồm Phần A (30 câu) & Phần B (30 câu): Kiến thức ngôn ngữ, Đọc hiểu (Helen Keller, A Multicultural World, Marie Curie, Green Living) & Viết câu.",
+        scoreScale: 10,
+        scorePerQuestion: 0.17,
+        selectableSections: [
+            {
+                id: "part_a_mcq",
+                group: "Phần A (Câu 1 - 30)",
+                name: "I. Trắc nghiệm (Language & Reading)",
+                label: "Trắc nghiệm (25 câu: 1 - 25)",
+                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                count: 25,
+                type: "multiple_choice"
+            },
+            {
+                id: "part_a_writing",
+                group: "Phần A (Câu 1 - 30)",
+                name: "II. Viết câu (Writing)",
+                label: "Viết câu (5 câu: 26 - 30)",
+                section: "PHẦN A: WRITING",
+                count: 5,
+                type: "short_answer"
+            },
+            {
+                id: "part_b_mcq",
+                group: "Phần B (Câu 31 - 60)",
+                name: "I. Trắc nghiệm (Language & Reading)",
+                label: "Trắc nghiệm (25 câu: 31 - 55)",
+                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                count: 25,
+                type: "multiple_choice"
+            },
+            {
+                id: "part_b_writing",
+                group: "Phần B (Câu 31 - 60)",
+                name: "II. Viết câu (Writing)",
+                label: "Viết câu (5 câu: 56 - 60)",
+                section: "PHẦN B: WRITING",
+                count: 5,
+                type: "short_answer"
+            }
+        ],
+        questions: [
+            // ==========================================
+            // PHẦN A: CÂU 1 - 30
+            // ==========================================
+            
+            // --- I. LANGUAGE KNOWLEDGE (Câu 1 - 15) ---
+            {
+                id: "gk1_eng_q1",
+                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 1. Many students regard Dr. Hoa as a role _____ because she never gives up.",
+                options: ["A. player", "B. model", "C. part", "D. play"],
+                correctIndex: 1
+            },
+            {
+                id: "gk1_eng_q2",
+                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 2. Using public transport is one way to reduce our carbon _____.",
+                options: ["A. step", "B. mark", "C. footprint", "D. print"],
+                correctIndex: 2
+            },
+            {
+                id: "gk1_eng_q3",
+                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 3. Viet Nam has great cultural _____ because 54 ethnic groups live together here.",
+                options: ["A. diversity", "B. division", "C. difference", "D. distance"],
+                correctIndex: 0
+            },
+            {
+                id: "gk1_eng_q4",
+                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 4. Mark the letter A, B, C or D to indicate the word CLOSEST in meaning to the underlined word.\nThe young man showed great <u>courage</u> when he saved the child from the fire.",
+                options: ["A. fear", "B. kindness", "C. bravery", "D. patience"],
+                correctIndex: 2
+            },
+            {
+                id: "gk1_eng_q5",
+                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 5. Mark the letter A, B, C or D to indicate the word OPPOSITE in meaning to the underlined word.\nPlastic waste is <u>harmful</u> to marine life.",
+                options: ["A. dangerous", "B. beneficial", "C. poisonous", "D. damaging"],
+                correctIndex: 1
+            },
+            {
+                id: "gk1_eng_q6",
+                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 6. Although she grew up in a poor family, her _____ to become a doctor never weakened.",
+                options: ["A. generosity", "B. politeness", "C. curiosity", "D. determination"],
+                correctIndex: 3
+            },
+            {
+                id: "gk1_eng_q7",
+                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 7. Mother Teresa _____ the Nobel Peace Prize in 1979.",
+                options: ["A. wins", "B. has won", "C. won", "D. was winning"],
+                correctIndex: 2
+            },
+            {
+                id: "gk1_eng_q8",
+                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 8. Viet Nam has _____ rich cultural heritage.",
+                options: ["A. a", "B. an", "C. the", "D. no article"],
+                correctIndex: 0
+            },
+            {
+                id: "gk1_eng_q9",
+                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 9. Our school encourages students to participate _____ green activities.",
+                options: ["A. at", "B. of", "C. in", "D. with"],
+                correctIndex: 2
+            },
+            {
+                id: "gk1_eng_q10",
+                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 10. My brother often buys second-hand clothes, _____ helps him save money and reduce waste.",
+                options: ["A. who", "B. that", "C. when", "D. which"],
+                correctIndex: 3
+            },
+            {
+                id: "gk1_eng_q11",
+                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 11. At 8 p.m. last Friday, my parents and I _____ a documentary about a famous Vietnamese scientist.",
+                options: ["A. watched", "B. were watching", "C. had watched", "D. watch"],
+                correctIndex: 1
+            },
+            {
+                id: "gk1_eng_q12",
+                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 12. Which of the following sentences is grammatically correct?",
+                options: [
+                    "A. The Nile is longest river in the world.",
+                    "B. We visited an ethnic village and the guide told us many stories about its traditions.",
+                    "C. She wants to become a engineer in the future.",
+                    "D. Sun rises in the east every morning."
+                ],
+                correctIndex: 1
+            },
+            {
+                id: "gk1_eng_q13",
+                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 13. Read the sign and answer the question:\n<div style=\"border:2px solid var(--border);border-radius:10px;padding:14px 18px;margin:12px 0;background:rgba(255,255,255,0.04);text-align:center;\"><strong style=\"font-size:1.1rem;display:block;margin-bottom:6px;color:var(--text-main);\">NO PLASTIC BAGS</strong><p style=\"margin:4px 0;\">Please bring your own reusable bag.</p><p style=\"margin:4px 0;font-style:italic;color:#10b981;\">Thank you for helping us protect the planet!</p></div>What does the sign tell customers to do?",
+                options: [
+                    "A. Buy plastic bags at the counter.",
+                    "B. Throw away used bags here.",
+                    "C. Recycle plastic bottles.",
+                    "D. Use their own bags."
+                ],
+                correctIndex: 3
+            },
+            {
+                id: "gk1_eng_q14",
+                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 14. Read the advertisement and answer the question:\n<div style=\"border:2px solid var(--border);border-radius:10px;padding:14px 18px;margin:12px 0;background:rgba(255,255,255,0.04);text-align:center;\"><strong style=\"font-size:1.1rem;display:block;margin-bottom:6px;color:#10b981;\">GREEN CLUB NEEDS YOU!</strong><p style=\"margin:4px 0;font-weight:600;\">Join our clean-up day</p><p style=\"margin:4px 0;\">Every Saturday, 7 a.m. – Riverside Park</p><p style=\"margin:4px 0;color:#3b82f6;font-weight:600;\">Free T-shirts and drinks for all volunteers</p><p style=\"margin:4px 0;font-size:0.9rem;\">Contact: greenclub@school.edu.vn</p></div>What will volunteers receive?",
+                options: [
+                    "A. Certificates and books.",
+                    "B. Free T-shirts and drinks.",
+                    "C. Free lunch.",
+                    "D. Bicycles."
+                ],
+                correctIndex: 1
+            },
+            {
+                id: "gk1_eng_q15",
+                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 15. Read the notice and answer the question:\n<div style=\"border:2px solid var(--border);border-radius:10px;padding:14px 18px;margin:12px 0;background:rgba(255,255,255,0.04);\"><strong style=\"font-size:1.1rem;display:block;margin-bottom:8px;text-align:center;color:var(--text-main);\">NOTICE</strong><p style=\"margin:4px 0;line-height:1.6;\">Because of the heavy rain, the Multicultural Festival has been moved to next Sunday. Tickets that have already been bought are still valid. Students who cannot attend on the new date may get their money back at the Student Office before Friday.</p></div>What can be understood from the notice?",
+                options: [
+                    "A. The festival has been cancelled.",
+                    "B. Students must buy new tickets.",
+                    "C. Students who cannot come on the new date can ask for a refund.",
+                    "D. The festival will be held in the rain next Sunday."
+                ],
+                correctIndex: 2
+            },
+    
+            // --- II. READING (Câu 16 - 25) ---
+            // Task 1: LIFE STORY OF HELEN KELLER (Câu 16 - 20)
+            {
+                id: "reading_gk1_helen_keller",
+                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                type: "reading_group",
+                passage: "<strong>Task 1. Read the following passage and mark the letter A, B, C or D to indicate the correct option that best fits each of the numbered blanks from 16 to 20.</strong><br><br><h3 style=\"text-align:center;margin:10px 0;color:var(--text-main);\">LIFE STORY OF HELEN KELLER</h3><br>Helen Keller was born in Alabama, the USA, in 1880. When she was only 19 months old, she fell seriously ill and <b>(16) _____</b>. As a result, she could not communicate with other people, and her childhood was full of anger and loneliness.<br><br>Everything changed in 1887 when a young teacher named Anne Sullivan came to live with the family. Sullivan was a very patient teacher. <b>(17) _____</b>, she spelled words into Helen's hand until the girl understood that everything around her had a name. Helen was curious about the world and loved to touch, smell and learn about everything. She soon learned to read Braille, to write, and later to speak.<br><br>In 1904, Helen graduated from Radcliffe College, <b>(18) _____</b>. After that, she wrote many books and <b>(19) _____</b>. She also met leaders from many countries and encouraged them to support disabled people. Although she faced countless difficulties, she never gave up. Her life story shows that <b>(20) _____</b>. Today, millions of people around the world still admire her courage and strong will.",
+                subQuestions: [
+                    {
+                        id: "gk1_eng_q16",
+                        text: "Question 16: Choose the best option for blank (16).",
+                        options: [
+                            "A. lost her sight and hearing",
+                            "B. won a famous prize",
+                            "C. moved to another country",
+                            "D. began to study at university"
+                        ],
+                        correctIndex: 0
+                    },
+                    {
+                        id: "gk1_eng_q17",
+                        text: "Question 17: Choose the best option for blank (17).",
+                        options: [
+                            "A. Because she was angry",
+                            "B. As soon as she left",
+                            "C. Day after day",
+                            "D. Unless Helen refused"
+                        ],
+                        correctIndex: 2
+                    },
+                    {
+                        id: "gk1_eng_q18",
+                        text: "Question 18: Choose the best option for blank (18).",
+                        options: [
+                            "A. but she did not enjoy reading",
+                            "B. which made her the first deaf-blind person to earn a university degree",
+                            "C. so she could see the world clearly",
+                            "D. because she wanted to be a pilot"
+                        ],
+                        correctIndex: 1
+                    },
+                    {
+                        id: "gk1_eng_q19",
+                        text: "Question 19: Choose the best option for blank (19).",
+                        options: [
+                            "A. spent her life campaigning for people with disabilities",
+                            "B. refused to meet other people",
+                            "C. forgot her teacher completely",
+                            "D. stayed at home all her life"
+                        ],
+                        correctIndex: 0
+                    },
+                    {
+                        id: "gk1_eng_q20",
+                        text: "Question 20: Choose the best option for blank (20).",
+                        options: [
+                            "A. disabled people cannot be successful",
+                            "B. determination can help people overcome serious difficulties",
+                            "C. only rich people can go to university",
+                            "D. life is easy for everyone"
+                        ],
+                        correctIndex: 1
+                    }
+                ]
+            },
+    
+            // Task 2: A MULTICULTURAL WORLD (Câu 21 - 25)
+            {
+                id: "reading_gk1_multicultural_world",
+                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                type: "reading_group",
+                passage: "<strong>Task 2. Read the following passage and mark the letter A, B, C or D to indicate the correct answer to each of the questions from 21 to 25.</strong><br><br><h3 style=\"text-align:center;margin:10px 0;color:var(--text-main);\">A MULTICULTURAL WORLD</h3><br>A multicultural society is one where people of different cultures, languages and traditions live together. Today, many countries around the world, including Viet Nam, are multicultural. Viet Nam has 54 ethnic groups, and each group has its own customs, costumes and festivals.<br><br>Living in a multicultural society brings many benefits. People can learn about different ways of life, try new foods and enjoy colourful festivals. Students who study with classmates from other backgrounds often become more open-minded and better at communicating with others. In addition, cultural diversity can make the economy stronger because it attracts tourists from other countries.<br><br>However, multicultural societies also face some challenges. Language differences can cause misunderstandings, and people may judge others by stereotypes instead of getting to know them. Some people also worry that traditional cultures may disappear when young people follow global trends.<br><br>To build a harmonious multicultural community, people need to respect cultural differences. Schools can organise cultural exchange activities, and families can encourage children to learn about other traditions. Most importantly, everyone should keep an open mind and avoid prejudice. When people accept and celebrate their differences, they can live together in peace and learn from one another.",
+                subQuestions: [
+                    {
+                        id: "gk1_eng_q21",
+                        text: "Question 21: According to paragraph 1, how many ethnic groups does Viet Nam have?",
+                        options: ["A. 45", "B. 54", "C. 64", "D. 15"],
+                        correctIndex: 1
+                    },
+                    {
+                        id: "gk1_eng_q22",
+                        text: "Question 22: The word \"challenges\" in paragraph 3 is closest in meaning to _____.",
+                        options: ["A. difficulties", "B. chances", "C. rewards", "D. choices"],
+                        correctIndex: 0
+                    },
+                    {
+                        id: "gk1_eng_q23",
+                        text: "Question 23: According to paragraph 2, how can cultural diversity help the economy?",
+                        options: [
+                            "A. It reduces the cost of food.",
+                            "B. It encourages people to work abroad.",
+                            "C. It brings in visitors from other countries.",
+                            "D. It creates new languages."
+                        ],
+                        correctIndex: 2
+                    },
+                    {
+                        id: "gk1_eng_q24",
+                        text: "Question 24: It can be inferred from paragraph 3 that _____.",
+                        options: [
+                            "A. all traditional cultures have already disappeared",
+                            "B. language differences can lead to misunderstanding between cultural groups",
+                            "C. young people never respect traditions",
+                            "D. cultural diversity always causes conflict"
+                        ],
+                        correctIndex: 1
+                    },
+                    {
+                        id: "gk1_eng_q25",
+                        text: "Question 25: Which of the following best summarises the main idea of the passage?",
+                        options: [
+                            "A. Respect and an open mind are needed to enjoy the benefits of a multicultural society.",
+                            "B. Traditional cultures are more important than global trends.",
+                            "C. Students should only study with classmates from the same background.",
+                            "D. Tourism is the most important benefit of cultural diversity."
+                        ],
+                        correctIndex: 0
+                    }
+                ]
+            },
+    
+            // --- III. WRITING (Câu 26 - 30) ---
+            {
+                id: "gk1_eng_q26",
+                section: "PHẦN A: WRITING",
+                type: "short_answer",
+                text: "Question 26 (Rearrange): Sắp xếp các từ/cụm từ sau thành câu hoàn chỉnh (không thay đổi hoặc thêm từ):\n<strong>is / famous / the scientist / for / and / courage / his / determination</strong>",
+                correctAnswer: "The scientist is famous for his courage and determination. | The scientist is famous for his courage and determination | The scientist is famous for his determination and courage. | The scientist is famous for his determination and courage"
+            },
+            {
+                id: "gk1_eng_q27",
+                section: "PHẦN A: WRITING",
+                type: "short_answer",
+                text: "Question 27 (Rearrange): Sắp xếp các từ/cụm từ sau thành câu hoàn chỉnh (không thay đổi hoặc thêm từ):\n<strong>the multicultural festival / many visitors / attracts / from / different countries / every year</strong>",
+                correctAnswer: "The multicultural festival attracts many visitors from different countries every year. | The multicultural festival attracts many visitors from different countries every year"
+            },
+            {
+                id: "gk1_eng_q28",
+                section: "PHẦN A: WRITING",
+                type: "short_answer",
+                text: "Question 28 (Rearrange): Sắp xếp các từ/cụm từ sau thành câu hoàn chỉnh (không thay đổi hoặc thêm từ):\n<strong>many people / bring / reusable bags / to / reduce / when shopping / plastic waste</strong>",
+                correctAnswer: "Many people bring reusable bags to reduce plastic waste when shopping. | Many people bring reusable bags to reduce plastic waste when shopping | Many people bring reusable bags when shopping to reduce plastic waste. | Many people bring reusable bags when shopping to reduce plastic waste"
+            },
+            {
+                id: "gk1_eng_q29",
+                section: "PHẦN A: WRITING",
+                type: "short_answer",
+                text: "Question 29 (Combine): Kết hợp cặp câu sau thành một câu, sử dụng từ gợi ý trong ngoặc:\nAt 9 p.m. yesterday, I was reading a biography. My sister came home at that time.\n<strong>→ (Dùng \"when\"):</strong>",
+                correctAnswer: "I was reading a biography when my sister came home. | I was reading a biography when my sister came home | When my sister came home, I was reading a biography. | When my sister came home, I was reading a biography | I was reading a biography when my sister came home yesterday. | When my sister came home yesterday, I was reading a biography."
+            },
+            {
+                id: "gk1_eng_q30",
+                section: "PHẦN A: WRITING",
+                type: "short_answer",
+                text: "Question 30 (Combine): Kết hợp cặp câu sau thành một câu, sử dụng từ gợi ý trong ngoặc:\nPlastic bags take hundreds of years to decompose. This makes them a serious threat to the environment.\n<strong>→ (Dùng \"which\"):</strong>",
+                correctAnswer: "Plastic bags take hundreds of years to decompose, which makes them a serious threat to the environment. | Plastic bags take hundreds of years to decompose, which makes them a serious threat to the environment"
+            },
+    
+            // ==========================================
+            // PHẦN B: CÂU 31 - 60
+            // ==========================================
+    
+            // --- I. LANGUAGE KNOWLEDGE (Câu 31 - 45) ---
+            {
+                id: "gk1_eng_q31",
+                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 31. Nelson Mandela is remembered for his great _____ in the fight against inequality.",
+                options: ["A. achievements", "B. advertisements", "C. arrangements", "D. advantages"],
+                correctIndex: 0
+            },
+            {
+                id: "gk1_eng_q32",
+                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 32. Students from different ethnic groups often wear their traditional _____ at the school festival.",
+                options: ["A. customers", "B. customs", "C. costumes", "D. custodies"],
+                correctIndex: 2
+            },
+            {
+                id: "gk1_eng_q33",
+                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 33. Reusing old jars and bottles is a simple way to cut down on household _____.",
+                options: ["A. waste", "B. waist", "C. wage", "D. weight"],
+                correctIndex: 0
+            },
+            {
+                id: "gk1_eng_q34",
+                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 34. Mark the letter A, B, C or D to indicate the word CLOSEST in meaning to the underlined word.\nMany people <u>admire</u> the nurse who worked day and night to save lives during the outbreak.",
+                options: ["A. respect", "B. blame", "C. forget", "D. warn"],
+                correctIndex: 0
+            },
+            {
+                id: "gk1_eng_q35",
+                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 35. Mark the letter A, B, C or D to indicate the word OPPOSITE in meaning to the underlined word.\nWe should be <u>open-minded</u> when we learn about other cultures.",
+                options: ["A. narrow-minded", "B. kind-hearted", "C. well-informed", "D. easy-going"],
+                correctIndex: 0
+            },
+            {
+                id: "gk1_eng_q36",
+                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 36. Many supermarkets now sell _____ products that do not harm the environment.",
+                options: ["A. eco-friendly", "B. harmful", "C. disposable", "D. fashionable"],
+                correctIndex: 0
+            },
+            {
+                id: "gk1_eng_q37",
+                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 37. The young inventor _____ his first robot when he was only fifteen.",
+                options: ["A. builds", "B. built", "C. has built", "D. was building"],
+                correctIndex: 1
+            },
+            {
+                id: "gk1_eng_q38",
+                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 38. Hoi An is _____ ancient town where many cultures have met for centuries.",
+                options: ["A. a", "B. an", "C. the", "D. no article"],
+                correctIndex: 1
+            },
+            {
+                id: "gk1_eng_q39",
+                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 39. The villagers are very proud _____ their traditional festivals.",
+                options: ["A. in", "B. at", "C. of", "D. on"],
+                correctIndex: 2
+            },
+            {
+                id: "gk1_eng_q40",
+                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 40. Reusable bags, _____ are strong and washable, help reduce plastic waste.",
+                options: ["A. that", "B. which", "C. who", "D. what"],
+                correctIndex: 1
+            },
+            {
+                id: "gk1_eng_q41",
+                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 41. When the reporter called, the mayor _____ a speech at a green festival.",
+                options: ["A. gave", "B. was giving", "C. has given", "D. gives"],
+                correctIndex: 1
+            },
+            {
+                id: "gk1_eng_q42",
+                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 42. Which of the following sentences is grammatically correct?",
+                options: [
+                    "A. Marie Curie was a first woman who won a Nobel Prize.",
+                    "B. The students who joined the clean-up day were given free T-shirts.",
+                    "C. We went to the zoo and I saw an elephant which it was very big.",
+                    "D. She is the person whose I admire most."
+                ],
+                correctIndex: 1
+            },
+            {
+                id: "gk1_eng_q43",
+                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 43. Read the sign and answer the question:\n<div style=\"border:2px solid var(--border);border-radius:10px;padding:14px 18px;margin:12px 0;background:rgba(255,255,255,0.04);text-align:center;\"><strong style=\"font-size:1.1rem;display:block;margin-bottom:6px;color:var(--text-main);\">RECYCLING POINT</strong><p style=\"margin:4px 0;\">Please put paper, glass and cans in the correct bins.</p><p style=\"margin:4px 0;font-weight:600;color:#10b981;\">Keep our school clean and green!</p></div>What should people do according to the sign?",
+                options: [
+                    "A. Throw all rubbish into one bin.",
+                    "B. Sort their waste into the right bins.",
+                    "C. Take cans home with them.",
+                    "D. Buy more paper and glass."
+                ],
+                correctIndex: 1
+            },
+            {
+                id: "gk1_eng_q44",
+                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 44. Read the announcement and answer the question:\n<div style=\"border:2px solid var(--border);border-radius:10px;padding:14px 18px;margin:12px 0;background:rgba(255,255,255,0.04);text-align:center;\"><strong style=\"font-size:1.1rem;display:block;margin-bottom:6px;color:#3b82f6;\">INTERNATIONAL CULTURE WEEK</strong><p style=\"margin:4px 0;\">Enjoy traditional food, music and dances from 10 countries.</p><p style=\"margin:4px 0;font-weight:500;\">15 – 19 November, School Hall</p><p style=\"margin:4px 0;color:#10b981;font-weight:600;\">Free entry for students</p><p style=\"margin:4px 0;font-size:0.9rem;\">Register at the Youth Union Office.</p></div>Who can get into the event for free?",
+                options: [
+                    "A. All visitors",
+                    "B. Teachers only",
+                    "C. Students",
+                    "D. Performers only"
+                ],
+                correctIndex: 2
+            },
+            {
+                id: "gk1_eng_q45",
+                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                text: "Question 45. Read the notice and answer the question:\n<div style=\"border:2px solid var(--border);border-radius:10px;padding:14px 18px;margin:12px 0;background:rgba(255,255,255,0.04);\"><strong style=\"font-size:1.1rem;display:block;margin-bottom:8px;text-align:center;color:var(--text-main);\">NOTICE</strong><p style=\"margin:4px 0;line-height:1.6;\">The talk “Women Who Changed the World” has been moved from Room 12 to the Library because many students have registered. The talk will still start at 2 p.m. on Thursday. Students without a registration card should see Ms. Hoa before Wednesday.</p></div>What can be understood from the notice?",
+                options: [
+                    "A. The talk has been cancelled.",
+                    "B. The talk will take place in a different place.",
+                    "C. The talk will begin later than planned.",
+                    "D. Students no longer need to register."
+                ],
+                correctIndex: 1
+            },
+    
+            // --- II. READING (Câu 46 - 55) ---
+            // Task 1: LIFE STORY OF MARIE CURIE (Câu 46 - 50)
+            {
+                id: "reading_gk1_marie_curie",
+                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                type: "reading_group",
+                passage: "<strong>Task 1. Read the following passage and mark the letter A, B, C or D to indicate the correct option that best fits each of the numbered blanks from 46 to 50.</strong><br><br><h3 style=\"text-align:center;margin:10px 0;color:var(--text-main);\">LIFE STORY OF MARIE CURIE</h3><br>Marie Curie was born in Warsaw, Poland, in 1867. As a child, she was very bright and loved reading, but women in her country <b>(46) _____</b>. In 1891, she moved to Paris to study at the Sorbonne. Life there was not easy. <b>(47) _____</b>, she often had very little money and food, yet she never stopped studying.<br><br>She later married Pierre Curie, a French scientist, and together they discovered two new elements, polonium and radium. In 1903, she shared the Nobel Prize in Physics, and in 1911 she won another Nobel Prize, this time in Chemistry, <b>(48) _____</b>. During World War I, she <b>(49) _____</b> and helped save the lives of many wounded soldiers. She died in 1934. Her life story shows that <b>(50) _____</b>. Today, people around the world still see her as an inspiring role model for young scientists.",
+                subQuestions: [
+                    {
+                        id: "gk1_eng_q46",
+                        text: "Question 46: Choose the best option for blank (46).",
+                        options: [
+                            "A. were not allowed to attend university",
+                            "B. could study anything they wanted",
+                            "C. often became famous scientists",
+                            "D. had many chances to study abroad"
+                        ],
+                        correctIndex: 0
+                    },
+                    {
+                        id: "gk1_eng_q47",
+                        text: "Question 47: Choose the best option for blank (47).",
+                        options: [
+                            "A. However",
+                            "B. For example",
+                            "C. Therefore",
+                            "D. Although"
+                        ],
+                        correctIndex: 1
+                    },
+                    {
+                        id: "gk1_eng_q48",
+                        text: "Question 48: Choose the best option for blank (48).",
+                        options: [
+                            "A. which made her the first person to win Nobel Prizes in two different sciences",
+                            "B. but she did not like science anymore",
+                            "C. because she wanted to become a teacher only",
+                            "D. so she stopped working in laboratories"
+                        ],
+                        correctIndex: 0
+                    },
+                    {
+                        id: "gk1_eng_q49",
+                        text: "Question 49: Choose the best option for blank (49).",
+                        options: [
+                            "A. developed mobile X-ray units",
+                            "B. left France forever",
+                            "C. stopped all her research",
+                            "D. worked as a singer"
+                        ],
+                        correctIndex: 0
+                    },
+                    {
+                        id: "gk1_eng_q50",
+                        text: "Question 50: Choose the best option for blank (50).",
+                        options: [
+                            "A. women cannot succeed in science",
+                            "B. hard work and passion can lead to great achievements",
+                            "C. money is the only way to succeed",
+                            "D. education is not important"
+                        ],
+                        correctIndex: 1
+                    }
+                ]
+            },
+    
+            // Task 2: GREEN LIVING (Câu 51 - 55)
+            {
+                id: "reading_gk1_green_living",
+                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                type: "reading_group",
+                passage: "<strong>Task 2. Read the following passage and mark the letter A, B, C or D to indicate the correct answer to each of the questions from 51 to 55.</strong><br><br><h3 style=\"text-align:center;margin:10px 0;color:var(--text-main);\">GREEN LIVING</h3><br>Green living means making choices that protect the environment and use natural resources wisely. In recent years, more and more people, especially young people, have started to adopt this lifestyle.<br><br>There are many simple ways to live green. Instead of using private cars, people can walk, cycle or take public transport to reduce carbon emissions. At home, we can switch off lights and electrical devices when we do not need them, which saves both energy and money. Many families also separate their rubbish and recycle paper, glass and plastic so that less waste goes to landfills.<br><br>Shopping habits are also important. Customers can bring reusable bags, buy local products with less packaging, and choose second-hand items instead of new ones. Although eco-friendly products are sometimes more expensive, they usually last longer and cause less damage to the planet.<br><br>Of course, living green is not always easy. Some people think that one person cannot make a difference, and others find it inconvenient to change old habits. However, if each person makes small changes every day, the combined effect can be enormous. Schools, companies and governments can help by raising awareness and providing recycling facilities. Only when everyone takes action can we protect our planet for future generations.",
+                subQuestions: [
+                    {
+                        id: "gk1_eng_q51",
+                        text: "Question 51: According to paragraph 2, why do many families separate their rubbish?",
+                        options: [
+                            "A. So that less waste goes to landfills.",
+                            "B. So that they can sell it for money.",
+                            "C. So that they can buy fewer things.",
+                            "D. So that they can use more electricity."
+                        ],
+                        correctIndex: 0
+                    },
+                    {
+                        id: "gk1_eng_q52",
+                        text: "Question 52: The word “enormous” in paragraph 4 is closest in meaning to _____.",
+                        options: ["A. tiny", "B. huge", "C. slight", "D. temporary"],
+                        correctIndex: 1
+                    },
+                    {
+                        id: "gk1_eng_q53",
+                        text: "Question 53: According to paragraph 3, why are eco-friendly products worth buying?",
+                        options: [
+                            "A. They are always cheaper than other products.",
+                            "B. They usually last longer and cause less damage to the planet.",
+                            "C. They are made only from plastic.",
+                            "D. They are sold only in supermarkets."
+                        ],
+                        correctIndex: 1
+                    },
+                    {
+                        id: "gk1_eng_q54",
+                        text: "Question 54: It can be inferred from paragraph 4 that _____.",
+                        options: [
+                            "A. doubts about their own influence may discourage some people from living green",
+                            "B. all people have already given up their old habits",
+                            "C. governments never help people to live green",
+                            "D. recycling facilities are useless"
+                        ],
+                        correctIndex: 0
+                    },
+                    {
+                        id: "gk1_eng_q55",
+                        text: "Question 55: Which of the following best summarises the main idea of the passage?",
+                        options: [
+                            "A. Green living is a lifestyle that everyone can follow through small, regular actions.",
+                            "B. Shopping is the only way to protect the environment.",
+                            "C. Eco-friendly products are too expensive for most families.",
+                            "D. Governments should stop people from using cars."
+                        ],
+                        correctIndex: 0
+                    }
+                ]
+            },
+    
+            // --- III. WRITING (Câu 56 - 60) ---
+            {
+                id: "gk1_eng_q56",
+                section: "PHẦN B: WRITING",
+                type: "short_answer",
+                text: "Question 56 (Rearrange): Sắp xếp các từ/cụm từ sau thành câu hoàn chỉnh (không thay đổi hoặc thêm từ):\n<strong>the young volunteer / is / for / and / admired / her / generosity / kindness</strong>",
+                correctAnswer: "The young volunteer is admired for her kindness and generosity. | The young volunteer is admired for her kindness and generosity | The young volunteer is admired for her generosity and kindness. | The young volunteer is admired for her generosity and kindness"
+            },
+            {
+                id: "gk1_eng_q57",
+                section: "PHẦN B: WRITING",
+                type: "short_answer",
+                text: "Question 57 (Rearrange): Sắp xếp các từ/cụm từ sau thành câu hoàn chỉnh (không thay đổi hoặc thêm từ):\n<strong>the cultural exchange programme / helps / students / understand / better / different traditions</strong>",
+                correctAnswer: "The cultural exchange programme helps students understand different traditions better. | The cultural exchange programme helps students understand different traditions better | The cultural exchange programme helps students understand better different traditions. | The cultural exchange programme helps students understand better different traditions"
+            },
+            {
+                id: "gk1_eng_q58",
+                section: "PHẦN B: WRITING",
+                type: "short_answer",
+                text: "Question 58 (Rearrange): Sắp xếp các từ/cụm từ sau thành câu hoàn chỉnh (không thay đổi hoặc thêm từ):\n<strong>using public transport / helps / air pollution / reduce / in big cities</strong>",
+                correctAnswer: "Using public transport helps reduce air pollution in big cities. | Using public transport helps reduce air pollution in big cities"
+            },
+            {
+                id: "gk1_eng_q59",
+                section: "PHẦN B: WRITING",
+                type: "short_answer",
+                text: "Question 59 (Combine): Kết hợp cặp câu sau thành một câu, sử dụng từ gợi ý trong ngoặc:\nWe were visiting a village of the Tay ethnic group. Heavy rain started at that time.\n<strong>→ (Dùng \"when\"):</strong>",
+                correctAnswer: "We were visiting a village of the Tay ethnic group when heavy rain started. | We were visiting a village of the Tay ethnic group when heavy rain started | We were visiting a village of the Tay ethnic group when heavy rain began. | When heavy rain started, we were visiting a village of the Tay ethnic group."
+            },
+            {
+                id: "gk1_eng_q60",
+                section: "PHẦN B: WRITING",
+                type: "short_answer",
+                text: "Question 60 (Combine): Kết hợp cặp câu sau thành một câu, sử dụng từ gợi ý trong ngoặc:\nNguyen Thi Hoa is a young entrepreneur. Her recycled-paper products are popular with students.\n<strong>→ (Dùng \"whose\"):</strong>",
+                correctAnswer: "Nguyen Thi Hoa, whose recycled-paper products are popular with students, is a young entrepreneur. | Nguyen Thi Hoa, whose recycled-paper products are popular with students, is a young entrepreneur"
+            }
+        ]
     }
 ];
-
