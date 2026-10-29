@@ -57,6 +57,20 @@ export function checkIsAdmin() {
 window.checkIsAdmin = checkIsAdmin;
 const isAdmin = checkIsAdmin;
 
+// Quản lý danh sách các bộ đề đã bị Admin xóa vĩnh viễn (kể cả đề mặc định từ data.js)
+const localDeletedQuizzes = JSON.parse(localStorage.getItem('tronex_deleted_quizzes') || '[]');
+window.__cloudDeletedQuizzes = {};
+
+export function isQuizDeleted(quizId) {
+    if (!quizId) return false;
+    const qIdStr = quizId.toString().trim();
+    if (localDeletedQuizzes.includes(qIdStr)) return true;
+    if (window.__cloudDeletedQuizzes && window.__cloudDeletedQuizzes[qIdStr]) return true;
+    return false;
+}
+window.isQuizDeleted = isQuizDeleted;
+
+
 
 if (isVACTPage) {
     // Giữ lại tất cả đề V-ACT / ĐGNL / Chương / Ôn tập / Hóa / Advertisement từ data.js
@@ -403,35 +417,43 @@ window.deleteCustomQuiz = function (id) {
 
     if (btnDeleteFirebase) {
         btnDeleteFirebase.onclick = () => {
-            const msg = isAdm ? '[ADMIN] Xóa vĩnh viễn đề này và toàn bộ dữ liệu (lượt xem, bài nộp) khỏi hệ thống?' : 'Bạn là chủ đề này. Xóa vĩnh viễn khỏi toàn hệ thống?';
+            const msg = isAdm ? '[ADMIN] Xóa vĩnh viễn đề này khỏi toàn bộ hệ thống (kể cả khi tải lại trang)?' : 'Bạn là chủ đề này. Xóa vĩnh viễn khỏi toàn hệ thống?';
             if (confirm(msg)) {
+                const qIdStr = (id || '').toString().trim();
+                
+                // 1. Đánh dấu xóa vào danh sách deleted_quizzes để không bao giờ bị seed lại
+                if (!localDeletedQuizzes.includes(qIdStr)) {
+                    localDeletedQuizzes.push(qIdStr);
+                    localStorage.setItem('tronex_deleted_quizzes', JSON.stringify(localDeletedQuizzes));
+                }
+                if (window.__cloudDeletedQuizzes) {
+                    window.__cloudDeletedQuizzes[qIdStr] = true;
+                }
+
+                // 2. Ghi nhận xóa triệt để trên Cloud
+                try {
+                    set(ref(dbRT, 'deleted_quizzes/' + qIdStr), true).catch(() => {});
+                    set(ref(dbRT, 'VACT/' + qIdStr), null).catch(() => {});
+                    set(ref(dbRT, 'public_quizzes/' + qIdStr), null).catch(() => {});
+                    set(ref(dbRT, 'quiz_views/' + qIdStr), null).catch(() => {});
+                    set(ref(dbRT, 'submissions/' + qIdStr), null).catch(() => {});
+                } catch(e) {}
+
+                // 3. Xóa trong memory & backup
                 mockQuizzes.splice(idx, 1);
+                if (window.__vactSeedBackup) {
+                    window.__vactSeedBackup = window.__vactSeedBackup.filter(q => q && (q.id || '').toString().trim() !== qIdStr);
+                }
                 if (window.__saveCustomQuizzes) window.__saveCustomQuizzes();
 
                 const uid = localStorage.getItem('tronex_uid');
-                if (isAdm) {
-                    if (typeof window.__deletePublicQuiz === 'function') {
-                        window.__deletePublicQuiz(id);
-                    }
-                    try {
-                        set(ref(dbRT, 'VACT/' + id), null).catch(() => {});
-                        set(ref(dbRT, 'public_quizzes/' + id), null).catch(() => {});
-                        set(ref(dbRT, 'quiz_views/' + id), null).catch(() => {});
-                        set(ref(dbRT, 'submissions/' + id), null).catch(() => {});
-                    } catch(e) {}
-                } else if (isPublic) {
-                    if (typeof window.__deletePublicQuiz === 'function') {
-                        window.__deletePublicQuiz(id);
-                    }
-                } else {
-                    if (uid && typeof window.__deletePrivateQuiz === 'function') {
-                        window.__deletePrivateQuiz(uid, id);
-                    }
+                if (!isAdm && uid && typeof window.__deletePrivateQuiz === 'function') {
+                    window.__deletePrivateQuiz(uid, id);
                 }
 
                 initQuizList();
                 closeDeleteModal();
-                alert(isAdm ? '✅ [ADMIN] Đã xóa vĩnh viễn đề thi khỏi hệ thống!' : 'Đã xóa vĩnh viễn đề thi thành công!');
+                alert(isAdm ? '✅ [ADMIN] Đã xóa vĩnh viễn đề thi thành công! Đề sẽ không bao giờ xuất hiện lại kể cả khi tải lại trang.' : 'Đã xóa vĩnh viễn đề thi thành công!');
             }
         };
     }
@@ -1690,9 +1712,37 @@ function loadCustomQuizzes() {
     } catch (e) { }
 }
 
-window.loadPublicQuizzes = function () {
-    console.log("🔄 Đang quét dữ liệu từ Cloud... (Trang TRONEX: " + isVACTPage + ")");
+window.loadPublicQuizzes = async function () {
     try {
+        // Tải danh sách đề đã bị xóa để lọc bỏ triệt để
+        try {
+            const delSnap = await get(ref(dbRT, 'deleted_quizzes'));
+            if (delSnap.exists()) {
+                window.__cloudDeletedQuizzes = delSnap.val() || {};
+                let updated = false;
+                Object.keys(window.__cloudDeletedQuizzes).forEach(delId => {
+                    if (!localDeletedQuizzes.includes(delId)) {
+                        localDeletedQuizzes.push(delId);
+                        updated = true;
+                    }
+                });
+                if (updated) {
+                    localStorage.setItem('tronex_deleted_quizzes', JSON.stringify(localDeletedQuizzes));
+                }
+
+                // Lọc bỏ ngay khỏi memory
+                for (let i = mockQuizzes.length - 1; i >= 0; i--) {
+                    if (mockQuizzes[i] && isQuizDeleted(mockQuizzes[i].id)) {
+                        mockQuizzes.splice(i, 1);
+                    }
+                }
+                if (window.__vactSeedBackup) {
+                    window.__vactSeedBackup = window.__vactSeedBackup.filter(q => q && !isQuizDeleted(q.id));
+                }
+            }
+        } catch(e) {
+            console.warn("⚠️ Kiểm tra deleted_quizzes:", e.message);
+        }
         const handleSnapshot = (snapshot, sourceBranch) => {
             const data = snapshot.val();
             if (!data) return;
@@ -1746,7 +1796,7 @@ window.loadPublicQuizzes = function () {
             if (isAdmin && isVACTPage && sourceBranch === 'VACT') {
                 const seedList = window.__vactSeedBackup || mockQuizzes;
                 seedList.forEach(seed => {
-                    if (seed && seed.id && (!data || !data[seed.id])) {
+                    if (seed && seed.id && !isQuizDeleted(seed.id) && (!data || !data[seed.id])) {
                         console.log(`🚀 Seeding ${seed.id} lên Firebase lần đầu...`);
                         window.__publishPublicQuiz(seed);
                     }
@@ -2176,6 +2226,72 @@ window.viewSubmissions = function (quizId) {
     }).catch(e => {
         if (listEl) listEl.innerHTML = `<div style="text-align:center;padding:40px;color:#ef4444;">❌ Lỗi tải bài nộp: ${e.message}</div>`;
     });
+};
+
+
+// --- XÓA 1 BÀI NỘP CỦA HỌC SINH (Dành cho Admin) ---
+window.__deleteSubmission = function (quizId, subId) {
+    if (!checkIsAdmin()) {
+        alert("⚠️ Chỉ Quản trị viên mới có quyền xóa bài nộp!");
+        return;
+    }
+    if (!confirm("[ADMIN] Bạn có chắc chắn muốn xóa bài nộp này khỏi hệ thống?")) return;
+    try {
+        set(ref(dbRT, `submissions/${quizId}/${subId}`), null).then(() => {
+            alert("✅ Đã xóa bài nộp thành công!");
+            window.viewSubmissions(quizId);
+        }).catch(e => {
+            console.error("Lỗi xóa bài nộp:", e);
+            alert("❌ Lỗi xóa bài nộp: " + e.message + "\n\n(Lưu ý: Đảm bảo Rules trên Firebase cho phép Admin xóa tại nhánh submissions)");
+        });
+    } catch (e) {
+        alert("❌ Lỗi hệ thống: " + e.message);
+    }
+};
+
+// --- XÓA TOÀN BỘ BÀI NỘP CỦA 1 ĐỀ THI (Dành cho Admin) ---
+window.__clearAllSubmissions = function (quizId) {
+    if (!checkIsAdmin()) {
+        alert("⚠️ Chỉ Quản trị viên mới có quyền xóa bài nộp!");
+        return;
+    }
+    if (!confirm("[CẢNH BÁO ADMIN] Bạn có chắc muốn xóa TOÀN BỘ bài nộp của đề này không?\n\nHành động này sẽ xóa sạch tất cả bài làm và điểm số đã nộp, không thể khôi phục!")) return;
+    try {
+        set(ref(dbRT, `submissions/${quizId}`), null).then(() => {
+            alert("✅ Đã xóa sạch toàn bộ lịch sử bài nộp của đề này!");
+            window.viewSubmissions(quizId);
+        }).catch(e => {
+            alert("❌ Lỗi xóa toàn bộ bài nộp: " + e.message);
+        });
+    } catch (e) {
+        alert("❌ Lỗi hệ thống: " + e.message);
+    }
+};
+
+// --- XUẤT BẢNG ĐIỂM RA FILE CSV/EXCEL ---
+window.__exportSubmissionsCSV = function (quizId) {
+    get(ref(dbRT, `submissions/${quizId}`)).then(snapshot => {
+        if (!snapshot.exists()) return alert("Chưa có bài nộp nào để xuất!");
+        const data = snapshot.val();
+        const rows = [['STT', 'Họ tên', 'Thời gian nộp', 'Điểm tự động', 'Điểm cuối cùng']];
+        let i = 1;
+        Object.values(data).forEach(sub => {
+            const name = sub.participant?.displayName || 'Ẩn danh';
+            const time = sub.submittedAt ? new Date(sub.submittedAt).toLocaleString('vi-VN') : '';
+            const auto = sub.autoScore ?? '';
+            const final = sub.finalScore ?? auto;
+            rows.push([i++, `"${name.replace(/"/g, '""')}"`, `"${time}"`, auto, final]);
+        });
+        const csvContent = '\uFEFF' + rows.map(e => e.join(',')).join('\n');
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.setAttribute('href', url);
+        link.setAttribute('download', `Bang_diem_${quizId}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }).catch(e => alert("Lỗi xuất dữ liệu: " + e.message));
 };
 
 // --- Xem chi tiết 1 bài làm + chấm điểm (A chấm B) ---
