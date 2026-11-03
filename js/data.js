@@ -2852,5 +2852,1035 @@ export const mockQuizzes = [
                 correctAnswer: "Nguyen Thi Hoa, whose recycled-paper products are popular with students, is a young entrepreneur. | Nguyen Thi Hoa, whose recycled-paper products are popular with students, is a young entrepreneur"
             }
         ]
-    }
+    },
+    {
+        "id": "on_tap_giua_ki_1_vat_ly_12",
+        "title": "Ôn tập GKI - Vật lí 12",
+        "category": "ly",
+        "subject": "Vật lí",
+        "description": "Trọn bộ 3 đề ôn tập kiểm tra Giữa kì I môn Vật lí 12 (Nhiệt học & Vật lí nhiệt). Gồm 3 đề hoàn chỉnh theo cấu trúc chuẩn: Trắc nghiệm 4 lựa chọn, Đúng/Sai, Trả lời ngắn và Tự luận.",
+        "presets": [
+                {
+                        "id": "all",
+                        "label": "✨ Toàn bộ cả 3 đề (60 câu/bài)",
+                        "sectionIds": [
+                                "de1_mcq",
+                                "de1_tf",
+                                "de1_sa",
+                                "de1_essay",
+                                "de2_mcq",
+                                "de2_tf",
+                                "de2_sa",
+                                "de2_essay",
+                                "de3_mcq",
+                                "de3_tf",
+                                "de3_sa",
+                                "de3_essay"
+                        ]
+                },
+                {
+                        "id": "de1",
+                        "label": "📘 Trọn vẹn Đề 1 (20 câu/bài)",
+                        "sectionIds": [
+                                "de1_mcq",
+                                "de1_tf",
+                                "de1_sa",
+                                "de1_essay"
+                        ]
+                },
+                {
+                        "id": "de2",
+                        "label": "📗 Trọn vẹn Đề 2 (20 câu/bài)",
+                        "sectionIds": [
+                                "de2_mcq",
+                                "de2_tf",
+                                "de2_sa",
+                                "de2_essay"
+                        ]
+                },
+                {
+                        "id": "de3",
+                        "label": "📙 Trọn vẹn Đề 3 (20 câu/bài)",
+                        "sectionIds": [
+                                "de3_mcq",
+                                "de3_tf",
+                                "de3_sa",
+                                "de3_essay"
+                        ]
+                },
+                {
+                        "id": "all_mcq",
+                        "label": "📝 Tất cả Trắc nghiệm (36 câu)",
+                        "sectionIds": [
+                                "de1_mcq",
+                                "de2_mcq",
+                                "de3_mcq"
+                        ]
+                },
+                {
+                        "id": "all_tf",
+                        "label": "⚖️ Tất cả Đúng / Sai (6 câu - 24 ý)",
+                        "sectionIds": [
+                                "de1_tf",
+                                "de2_tf",
+                                "de3_tf"
+                        ]
+                },
+                {
+                        "id": "all_sa",
+                        "label": "✏️ Tất cả Trả lời ngắn (12 câu)",
+                        "sectionIds": [
+                                "de1_sa",
+                                "de2_sa",
+                                "de3_sa"
+                        ]
+                },
+                {
+                        "id": "all_essay",
+                        "label": "📋 Tất cả Tự luận (6 bài)",
+                        "sectionIds": [
+                                "de1_essay",
+                                "de2_essay",
+                                "de3_essay"
+                        ]
+                }
+        ],
+        "selectableSections": [
+                {
+                        "id": "de1_mcq",
+                        "group": "Đề số 1 (20 câu/bài)",
+                        "name": "I. Trắc nghiệm 4 lựa chọn",
+                        "label": "Đề 1 - Trắc nghiệm (12 câu: 1 - 12)",
+                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                        "count": 12,
+                        "type": "multiple_choice"
+                },
+                {
+                        "id": "de1_tf",
+                        "group": "Đề số 1 (20 câu/bài)",
+                        "name": "II. Trắc nghiệm Đúng / Sai",
+                        "label": "Đề 1 - Đúng / Sai (2 câu: 1 - 2)",
+                        "section": "ĐỀ SỐ 1 - II. ĐÚNG / SAI",
+                        "count": 2,
+                        "type": "true_false_group"
+                },
+                {
+                        "id": "de1_sa",
+                        "group": "Đề số 1 (20 câu/bài)",
+                        "name": "III. Trắc nghiệm Trả lời ngắn",
+                        "label": "Đề 1 - Trả lời ngắn (4 câu: 1 - 4)",
+                        "section": "ĐỀ SỐ 1 - III. TRẢ LỜI NGẮN",
+                        "count": 4,
+                        "type": "short_answer"
+                },
+                {
+                        "id": "de1_essay",
+                        "group": "Đề số 1 (20 câu/bài)",
+                        "name": "IV. Tự luận",
+                        "label": "Đề 1 - Tự luận (2 bài: 1 - 2)",
+                        "section": "ĐỀ SỐ 1 - IV. TỰ LUẬN",
+                        "count": 2,
+                        "type": "essay_group"
+                },
+                {
+                        "id": "de2_mcq",
+                        "group": "Đề số 2 (20 câu/bài)",
+                        "name": "I. Trắc nghiệm 4 lựa chọn",
+                        "label": "Đề 2 - Trắc nghiệm (12 câu: 1 - 12)",
+                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                        "count": 12,
+                        "type": "multiple_choice"
+                },
+                {
+                        "id": "de2_tf",
+                        "group": "Đề số 2 (20 câu/bài)",
+                        "name": "II. Trắc nghiệm Đúng / Sai",
+                        "label": "Đề 2 - Đúng / Sai (2 câu: 1 - 2)",
+                        "section": "ĐỀ SỐ 2 - II. ĐÚNG / SAI",
+                        "count": 2,
+                        "type": "true_false_group"
+                },
+                {
+                        "id": "de2_sa",
+                        "group": "Đề số 2 (20 câu/bài)",
+                        "name": "III. Trắc nghiệm Trả lời ngắn",
+                        "label": "Đề 2 - Trả lời ngắn (4 câu: 1 - 4)",
+                        "section": "ĐỀ SỐ 2 - III. TRẢ LỜI NGẮN",
+                        "count": 4,
+                        "type": "short_answer"
+                },
+                {
+                        "id": "de2_essay",
+                        "group": "Đề số 2 (20 câu/bài)",
+                        "name": "IV. Tự luận",
+                        "label": "Đề 2 - Tự luận (2 bài: 1 - 2)",
+                        "section": "ĐỀ SỐ 2 - IV. TỰ LUẬN",
+                        "count": 2,
+                        "type": "essay_group"
+                },
+                {
+                        "id": "de3_mcq",
+                        "group": "Đề số 3 (20 câu/bài)",
+                        "name": "I. Trắc nghiệm 4 lựa chọn",
+                        "label": "Đề 3 - Trắc nghiệm (12 câu: 1 - 12)",
+                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                        "count": 12,
+                        "type": "multiple_choice"
+                },
+                {
+                        "id": "de3_tf",
+                        "group": "Đề số 3 (20 câu/bài)",
+                        "name": "II. Trắc nghiệm Đúng / Sai",
+                        "label": "Đề 3 - Đúng / Sai (2 câu: 1 - 2)",
+                        "section": "ĐỀ SỐ 3 - II. ĐÚNG / SAI",
+                        "count": 2,
+                        "type": "true_false_group"
+                },
+                {
+                        "id": "de3_sa",
+                        "group": "Đề số 3 (20 câu/bài)",
+                        "name": "III. Trắc nghiệm Trả lời ngắn",
+                        "label": "Đề 3 - Trả lời ngắn (4 câu: 1 - 4)",
+                        "section": "ĐỀ SỐ 3 - III. TRẢ LỜI NGẮN",
+                        "count": 4,
+                        "type": "short_answer"
+                },
+                {
+                        "id": "de3_essay",
+                        "group": "Đề số 3 (20 câu/bài)",
+                        "name": "IV. Tự luận",
+                        "label": "Đề 3 - Tự luận (2 bài: 1 - 2)",
+                        "section": "ĐỀ SỐ 3 - IV. TỰ LUẬN",
+                        "count": 2,
+                        "type": "essay_group"
+                }
+        ],
+        "questions": [
+                {
+                        "id": "gk1_vl12_de1_q1",
+                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                        "text": "Câu 1. Phát biểu nào sau đây đúng với mô hình động học phân tử?",
+                        "options": [
+                                "A. Các phân tử cấu tạo nên vật luôn đứng yên tại vị trí cân bằng.",
+                                "B. Các phân tử chuyển động càng nhanh thì nhiệt độ của vật càng cao.",
+                                "C. Giữa các phân tử chỉ tồn tại lực đẩy, không có lực hút.",
+                                "D. Khoảng cách giữa các phân tử ở thể khí rất nhỏ so với kích thước phân tử."
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "gk1_vl12_de1_q2",
+                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                        "text": "Câu 2. Quá trình chuyển từ thể lỏng sang thể rắn của một chất gọi là",
+                        "options": [
+                                "A. sự bay hơi.",
+                                "B. sự nóng chảy.",
+                                "C. sự ngưng tụ.",
+                                "D. sự đông đặc."
+                        ],
+                        "correctIndex": 3
+                },
+                {
+                        "id": "gk1_vl12_de1_q3",
+                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                        "text": "Câu 3. Nội năng của một vật phụ thuộc vào",
+                        "options": [
+                                "A. nhiệt độ và thể tích của vật.",
+                                "B. khối lượng và tốc độ chuyển động của cả vật.",
+                                "C. độ cao của vật so với mặt đất và khối lượng của vật.",
+                                "D. nhiệt lượng và công mà vật trao đổi trong mọi quá trình."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "gk1_vl12_de1_q4",
+                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                        "text": "Câu 4. Theo quy ước dấu của Nguyên lý I Nhiệt động lực học ($\\Delta U = Q + A$), biểu thức mô tả đúng trường hợp khối khí nhận nhiệt lượng và thực hiện công ra bên ngoài là",
+                        "options": [
+                                "A. $\\Delta U = Q + A$ với $Q > 0$ và $A > 0$.",
+                                "B. $\\Delta U = Q + A$ với $Q < 0$ và $A > 0$.",
+                                "C. $\\Delta U = Q + A$ với $Q > 0$ và $A < 0$.",
+                                "D. $\\Delta U = Q + A$ với $Q < 0$ và $A < 0$."
+                        ],
+                        "correctIndex": 2
+                },
+                {
+                        "id": "gk1_vl12_de1_q5",
+                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                        "text": "Câu 5. Trong thang nhiệt độ Celsius, ở áp suất tiêu chuẩn, nhiệt độ tan chảy của nước tinh khiết đóng băng và nhiệt độ sôi của nước tinh khiết lần lượt là",
+                        "options": [
+                                "A. 0 °C và 100 °C.",
+                                "B. 273 °C và 373 °C.",
+                                "C. 32 °C và 212 °C.",
+                                "D. 0 °C và 80 °C."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "gk1_vl12_de1_q6",
+                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                        "text": "Câu 6. Nhiệt độ không tuyệt đối (0 K) ứng với giá trị nào trong thang nhiệt độ Celsius?",
+                        "options": [
+                                "A. 0 °C.",
+                                "B. -273,15 °C.",
+                                "C. 273,15 °C.",
+                                "D. -100 °C."
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "gk1_vl12_de1_q7",
+                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                        "text": "Câu 7. Nhiệt dung riêng của một chất có đơn vị đo trong hệ SI là",
+                        "options": [
+                                "A. J/(kg·K).",
+                                "B. J/kg.",
+                                "C. J/K.",
+                                "D. W/kg."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "gk1_vl12_de1_q8",
+                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                        "text": "Câu 8. Đại lượng cho biết nhiệt lượng cần cung cấp để 1 kg chất rắn kết tinh chuyển hoàn toàn sang thể lỏng ở nhiệt độ nóng chảy gọi là",
+                        "options": [
+                                "A. nhiệt dung riêng.",
+                                "B. nhiệt nóng chảy riêng.",
+                                "C. nhiệt hóa hơi riêng.",
+                                "D. nội năng."
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "gk1_vl12_de1_q9",
+                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                        "text": "Câu 9. Khi truyền cùng một nhiệt lượng Q cho hai vật có cùng khối lượng m làm từ hai chất khác nhau (không xảy ra sự chuyển thể), vật nào có nhiệt dung riêng c nhỏ hơn thì",
+                        "options": [
+                                "A. có độ tăng nhiệt độ lớn hơn.",
+                                "B. có độ tăng nhiệt độ nhỏ hơn.",
+                                "C. có nhiệt độ ban đầu cao hơn.",
+                                "D. có nhiệt độ nóng chảy thấp hơn."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "gk1_vl12_de1_q10",
+                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                        "text": "Câu 10. Công thức tính nhiệt lượng Q cần cung cấp cho vật có khối lượng m, nhiệt dung riêng c để nhiệt độ của vật tăng thêm $\\Delta T$ (không xảy ra sự chuyển thể) là",
+                        "options": [
+                                "A. $Q = \\lambda m$.",
+                                "B. $Q = \\lambda / m$.",
+                                "C. $Q = mc\\Delta T$.",
+                                "D. $Q = Lm$."
+                        ],
+                        "correctIndex": 2
+                },
+                {
+                        "id": "gk1_vl12_de1_q11",
+                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                        "text": "Câu 11. Đơn vị đo của nhiệt hóa hơi riêng trong hệ SI là",
+                        "options": [
+                                "A. J/(kg·K).",
+                                "B. J/kg.",
+                                "C. J/K.",
+                                "D. kJ/mol."
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "gk1_vl12_de1_q12",
+                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                        "text": "Câu 12. Công thức tính nhiệt lượng Q tỏa ra khi khối lượng m hơi chất lỏng ngưng tụ hoàn toàn ở nhiệt độ sôi (với L là nhiệt hóa hơi riêng) là",
+                        "options": [
+                                "A. $Q = Lm$.",
+                                "B. $Q = \\lambda m$.",
+                                "C. $Q = L/m$.",
+                                "D. $Q = mc\\Delta T$."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "gk1_vl12_de1_tf1",
+                        "section": "ĐỀ SỐ 1 - II. ĐÚNG / SAI",
+                        "type": "true_false_group",
+                        "text": "<strong>Câu 1.</strong> Một nhóm học sinh làm thí nghiệm đun một khối đá tinh khiết lấy ra từ tủ đông (nhiệt độ ban đầu -15 °C) trong một ca nhôm với công suất nhiệt không đổi. Họ quan sát và ghi nhận quá trình tăng nhiệt độ và chuyển thể của nước đá. Biết $T(\\text{K}) = t(^\\circ\\text{C}) + 273$.",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Nhiệt độ ban đầu của khối nước đá trong thang nhiệt độ Kelvin là 258 K.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Trong suốt quá trình đá đang tan ở 0 °C, động năng chuyển động nhiệt trung bình của các phân tử không đổi, còn thế năng tương tác phân tử tăng lên.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Khoảng cách trung bình giữa các phân tử nước ở thể hơi nhỏ hơn rất nhiều so với ở thể rắn.",
+                                        "correctAnswer": "Sai"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Khi nước sôi ở 100 °C, sự hóa hơi diễn ra đồng thời cả ở trong lòng và trên bề mặt chất lỏng.",
+                                        "correctAnswer": "Đúng"
+                                }
+                        ]
+                },
+                {
+                        "id": "gk1_vl12_de1_tf2",
+                        "section": "ĐỀ SỐ 1 - II. ĐÚNG / SAI",
+                        "type": "true_false_group",
+                        "text": "<strong>Câu 2.</strong> Một nhóm học sinh bố trí thí nghiệm xác định nhiệt hóa hơi riêng của nước. Dùng dây đun điện trở hoạt động với công suất không đổi $P = 40\\text{ W}$ làm nóng nước trong một cốc thủy tinh đặt trên đĩa cân điện tử. Khi nước trong cốc sôi ở 100 °C, nhóm ghi nhận số chỉ khối lượng hiển thị trên cân giảm dần theo thời gian $\\Delta t$:<br>• Tại thời điểm $t_1 = 0\\text{ s}$: số chỉ cân $m_1 = 160,20\\text{ g}$.<br>• Tại thời điểm $t_2 = 450\\text{ s}$: số chỉ cân $m_2 = 152,40\\text{ g}$.",
+                        "imageSrc": "images/thi_nghiem_nhiet_hoa_hoi_nuoc.png",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Cân điện tử trong thí nghiệm này có vai trò xác định khối lượng nước đã hóa hơi trong khoảng thời gian $\\Delta t = 450\\text{ s}$.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Khối lượng nước đã hóa hơi trong thời gian 450 s là $\\Delta m = 7,80\\text{ g}$.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Bỏ qua sự mất mát nhiệt ra môi trường, nhiệt lượng do dây đun cung cấp cho nước trong thời gian $\\Delta t = 450\\text{ s}$ là $Q = 16000\\text{ J}$.",
+                                        "correctAnswer": "Sai"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Giá trị nhiệt hóa hơi riêng của nước thu được từ thí nghiệm trên là $L \\approx 2,31 \\cdot 10^6\\text{ J/kg}$.",
+                                        "correctAnswer": "Đúng"
+                                }
+                        ]
+                },
+                {
+                        "id": "gk1_vl12_de1_sa1",
+                        "section": "ĐỀ SỐ 1 - III. TRẢ LỜI NGẮN",
+                        "type": "short_answer",
+                        "text": "<strong>Câu 1.</strong> Biết nhiệt dung riêng của nước là $c = 4180\\text{ J/(kg}\\cdot\\text{K)}$. Tính nhiệt lượng tỏa ra khi làm lạnh 300 g nước từ 85 °C xuống 25 °C theo đơn vị kiloJoule (kJ). (Kết quả viết làm tròn đến chữ số hàng phần mười).",
+                        "correctAnswer": "75,2 | 75.2"
+                },
+                {
+                        "id": "gk1_vl12_de1_sa2",
+                        "section": "ĐỀ SỐ 1 - III. TRẢ LỜI NGẮN",
+                        "type": "short_answer",
+                        "text": "<strong>Câu 2.</strong> Một khối chất rắn kết tinh có khối lượng 1,8 kg đang ở nhiệt độ nóng chảy. Cung cấp một nhiệt lượng $Q = 612\\text{ kJ}$ thì khối chất rắn đó nóng chảy hoàn toàn. Nhiệt nóng chảy riêng của chất đó có giá trị bằng $x \\cdot 10^5\\text{ J/kg}$. Tìm x (Kết quả viết làm tròn đến chữ số hàng phần mười).",
+                        "correctAnswer": "3,4 | 3.4"
+                },
+                {
+                        "id": "gk1_vl12_de1_sa3",
+                        "section": "ĐỀ SỐ 1 - III. TRẢ LỜI NGẮN",
+                        "type": "short_answer",
+                        "text": "<strong>Câu 3.</strong> Cho 0,02 kg hơi nước ở 100 °C ngưng tụ hoàn toàn trong bình nhiệt lượng kế chứa 0,4 kg nước ở 15 °C. Nhiệt độ của hệ khi đạt cân bằng nhiệt là 45 °C. Cho nhiệt dung riêng của nước là $c = 4180\\text{ J/(kg}\\cdot\\text{K)}$, bỏ qua sự trao đổi nhiệt với bình và môi trường. Nhiệt hóa hơi riêng của nước tính được từ thí nghiệm có dạng $x \\cdot 10^6\\text{ J/kg}$. Tìm x (Kết quả làm tròn đến chữ số hàng phần trăm).",
+                        "correctAnswer": "2,28 | 2.28"
+                },
+                {
+                        "id": "gk1_vl12_de1_sa4",
+                        "section": "ĐỀ SỐ 1 - III. TRẢ LỜI NGẮN",
+                        "type": "short_answer",
+                        "text": "<strong>Câu 4.</strong> Một lượng khí trong cylinder kín nhận nhiệt lượng 950 J từ nguồn nhiệt, khí nở ra và thực hiện một công 320 J đẩy piston dịch chuyển. Độ biến thiên nội năng $\\Delta U$ của khối khí có giá trị bằng bao nhiêu Joule (J)? (Kết quả làm tròn đến chữ số hàng đơn vị).",
+                        "correctAnswer": "630"
+                },
+                {
+                        "id": "gk1_vl12_de1_essay1",
+                        "section": "ĐỀ SỐ 1 - IV. TỰ LUẬN",
+                        "type": "essay_group",
+                        "text": "<strong>Bài 1. (1,5 điểm)</strong> Một cylinder kín chứa 0,20 kg chất khí lí tưởng ở nhiệt độ ban đầu 25 °C. Người ta đun nóng cylinder, cung cấp cho chất khí một nhiệt lượng $Q = 1500\\text{ J}$. Khối khí giãn nở đẳng áp đẩy piston đi một đoạn làm khí thực hiện một công có độ lớn 550 J.",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Nêu quy ước về dấu của nhiệt lượng Q và công A trong công thức $\\Delta U = Q + A$ của Nguyên lý I Nhiệt động lực học.",
+                                        "correctAnswer": "Q > 0: hệ nhận nhiệt lượng; Q < 0: hệ truyền nhiệt lượng.\nA > 0: hệ nhận công; A < 0: hệ thực hiện công."
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Tính độ biến thiên nội năng $\\Delta U$ của khối khí trong quá trình biến đổi trên.",
+                                        "correctAnswer": "Khí nhận nhiệt: Q = +1500 J; Khí thực hiện công: A = -550 J.\nΔU = Q + A = 1500 - 550 = 950 J."
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Giả sử toàn bộ độ biến thiên nội năng $\\Delta U$ này dùng để làm tăng nhiệt độ của khối khí. Biết nhiệt dung riêng của khối khí trong quá trình này là $c = 1000\\text{ J/(kg}\\cdot\\text{K)}$. Tính nhiệt độ cuối cùng của khối khí theo thang đo Celsius (°C).",
+                                        "correctAnswer": "ΔU = m·c·(t_cuối - t_đầu) => 950 = 0,20·1000·(t_cuối - 25) => 200·(t_cuối - 25) = 950 => t_cuối - 25 = 4,75 => t_cuối = 29,75 °C."
+                                }
+                        ]
+                },
+                {
+                        "id": "gk1_vl12_de1_essay2",
+                        "section": "ĐỀ SỐ 1 - IV. TỰ LUẬN",
+                        "type": "essay_group",
+                        "text": "<strong>Bài 2. (1,5 điểm)</strong> Để xác định nhiệt nóng chảy riêng của nước đá, một học sinh thả $m_1 = 0,15\\text{ kg}$ nước đá ở 0 °C vào bình nhiệt lượng kế chứa $m_2 = 0,5\\text{ kg}$ nước ở nhiệt độ $t_2 = 44\\text{ }^\\circ\\text{C}$. Bỏ qua khối lượng của bình và sự trao đổi nhiệt với môi trường. Biết nhiệt dung riêng của nước là $c = 4200\\text{ J/(kg}\\cdot\\text{K)}$. Khi hệ đạt cân bằng nhiệt, nước đá đã tan hoàn toàn và nhiệt độ chung của hệ là $t = 16\\text{ }^\\circ\\text{C}$.",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Tính độ lớn nhiệt lượng do 0,5 kg nước tỏa ra khi hạ nhiệt độ từ 44 °C xuống 16 °C.",
+                                        "correctAnswer": "Q_tỏa = m2·c·(t2 - t) = 0,5·4200·(44 - 16) = 0,5·4200·28 = 58800 J = 58,8 kJ."
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Trong thí nghiệm trên, nước đá thu nhiệt hay tỏa nhiệt?",
+                                        "correctAnswer": "Nước đá thu nhiệt lượng từ nước nóng để tan chảy hoàn toàn ở 0 °C và ấm lên đến 16 °C."
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Tính giá trị nhiệt nóng chảy riêng $\\lambda$ của nước đá thu được từ thí nghiệm trên.",
+                                        "correctAnswer": "Q_thu = m1·λ + m1·c·(t - 0) = 0,15·λ + 0,15·4200·16 = 0,15·λ + 10080 J.\nTheo PT cân bằng nhiệt: Q_thu = Q_tỏa => 0,15·λ + 10080 = 58800 => 0,15·λ = 48720 => λ = 324800 J/kg = 3,248·10^5 J/kg."
+                                }
+                        ]
+                },
+                {
+                        "id": "gk1_vl12_de2_q1",
+                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                        "text": "Câu 1. Phát biểu nào sau đây không đúng khi nói về cấu tạo chất theo mô hình động học phân tử?",
+                        "options": [
+                                "A. Các chất được cấu tạo từ các hạt riêng biệt là phân tử, nguyên tử.",
+                                "B. Các phân tử chuyển động nhiệt hỗn loạn không ngừng.",
+                                "C. Ở thể rắn, các phân tử có thể di chuyển tự do khắp mọi phía mà không có vị trí cân bằng.",
+                                "D. Giữa các phân tử có lực hút và lực đẩy gọi chung là lực liên kết phân tử."
+                        ],
+                        "correctIndex": 2
+                },
+                {
+                        "id": "gk1_vl12_de2_q2",
+                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                        "text": "Câu 2. Quá trình chuyển từ thể hơi sang thể lỏng của một chất gọi là",
+                        "options": [
+                                "A. sự bay hơi.",
+                                "B. sự nóng chảy.",
+                                "C. sự ngưng tụ.",
+                                "D. sự đông đặc."
+                        ],
+                        "correctIndex": 2
+                },
+                {
+                        "id": "gk1_vl12_de2_q3",
+                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                        "text": "Câu 3. Hai cách làm thay đổi nội năng của một vật là",
+                        "options": [
+                                "A. thực hiện công và truyền nhiệt.",
+                                "B. nâng vật lên cao và làm vật chuyển động nhanh hơn.",
+                                "C. giữ nguyên nhiệt độ và giữ nguyên thể tích.",
+                                "D. bức xạ ánh sáng và phản xạ âm thanh."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "gk1_vl12_de2_q4",
+                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                        "text": "Câu 4. Theo quy ước dấu của Nguyên lý I Nhiệt động lực học ($\\Delta U = Q + A$), biểu thức mô tả đúng trường hợp khối khí truyền nhiệt lượng ra môi trường nhưng nhận công từ bên ngoài là",
+                        "options": [
+                                "A. $\\Delta U = Q + A$ với $Q > 0$ và $A > 0$.",
+                                "B. $\\Delta U = Q + A$ với $Q < 0$ và $A > 0$.",
+                                "C. $\\Delta U = Q + A$ với $Q > 0$ và $A < 0$.",
+                                "D. $\\Delta U = Q + A$ với $Q < 0$ và $A < 0$."
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "gk1_vl12_de2_q5",
+                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                        "text": "Câu 5. Công thức chuyển đổi từ thang nhiệt độ Celsius (t) sang thang nhiệt độ Kelvin (T) là",
+                        "options": [
+                                "A. $T(\\text{K}) = t(^\\circ\\text{C}) + 273$.",
+                                "B. $T(\\text{K}) = t(^\\circ\\text{C}) - 273$.",
+                                "C. $T(\\text{K}) = 1,8 \\cdot t(^\\circ\\text{C}) + 32$.",
+                                "D. $T(\\text{K}) = t(^\\circ\\text{C}) + 100$."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "gk1_vl12_de2_q6",
+                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                        "text": "Câu 6. Trong thang nhiệt độ Kelvin, khoảng cách giữa nhiệt độ nước đá đang tan và nhiệt độ sôi của nước tinh khiết ở áp suất tiêu chuẩn bằng",
+                        "options": [
+                                "A. 100 K.",
+                                "B. 273 K.",
+                                "C. 373 K.",
+                                "D. 180 K."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "gk1_vl12_de2_q7",
+                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                        "text": "Câu 7. Nhiệt nóng chảy riêng của một chất rắn kết tinh là",
+                        "options": [
+                                "A. nhiệt lượng cần cung cấp cho một đơn vị khối lượng chất đó để nhiệt độ của nó tăng thêm 1 K.",
+                                "B. nhiệt lượng cần cung cấp để 1 kg chất đó chuyển hoàn toàn từ thể rắn sang thể lỏng ở nhiệt độ nóng chảy.",
+                                "C. nhiệt lượng tỏa ra khi 1 kg chất đó hóa hơi hoàn toàn ở nhiệt độ sôi.",
+                                "D. tổng nhiệt lượng vật thu vào khi nhiệt độ tăng thêm 100 °C."
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "gk1_vl12_de2_q8",
+                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                        "text": "Câu 8. Biết nhiệt nóng chảy riêng của nước đá là $\\lambda = 3,34 \\cdot 10^5\\text{ J/kg}$. Ý nghĩa của con số này là",
+                        "options": [
+                                "A. Cần cung cấp nhiệt lượng $3,34 \\cdot 10^5\\text{ J}$ để làm nóng chảy hoàn toàn 1 kg nước đá ở 0 °C.",
+                                "B. Cần cung cấp nhiệt lượng $3,34 \\cdot 10^5\\text{ J}$ để làm 1 kg nước đá tăng thêm 1 °C.",
+                                "C. Cần cung cấp nhiệt lượng $3,34 \\cdot 10^5\\text{ J}$ để làm 1 kg nước hóa hơi hoàn toàn ở 100 °C.",
+                                "D. Khối nước đá bất kỳ khi tan chảy đều tỏa ra nhiệt lượng $3,34 \\cdot 10^5\\text{ J}$."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "gk1_vl12_de2_q9",
+                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                        "text": "Câu 9. Hai vật có cùng khối lượng m, làm từ hai chất khác nhau có nhiệt dung riêng lần lượt là $c_1 > c_2$. Để cả hai vật cùng tăng thêm một độ tăng nhiệt độ $\\Delta T$ như nhau (không chuyển thể) thì nhiệt lượng cần cung cấp $Q_1$ và $Q_2$ thỏa mãn",
+                        "options": [
+                                "A. $Q_1 > Q_2$.",
+                                "B. $Q_1 < Q_2$.",
+                                "C. $Q_1 = Q_2$.",
+                                "D. $Q_1 \\le Q_2$."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "gk1_vl12_de2_q10",
+                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                        "text": "Câu 10. Công thức xác định nhiệt nóng chảy riêng $\\lambda$ của một khối chất rắn kết tinh có khối lượng m khi nhận nhiệt lượng Q để nóng chảy hoàn toàn ở nhiệt độ nóng chảy là",
+                        "options": [
+                                "A. $\\lambda = Q \\cdot m$.",
+                                "B. $\\lambda = Q / m$.",
+                                "C. $\\lambda = m / Q$.",
+                                "D. $\\lambda = Q / (m\\Delta T)$."
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "gk1_vl12_de2_q11",
+                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                        "text": "Câu 11. Sự sôi là quá trình hóa hơi xảy ra",
+                        "options": [
+                                "A. chỉ ở trên bề mặt thoáng của chất lỏng ở bất kỳ nhiệt độ nào.",
+                                "B. cả ở trong lòng và trên mặt thoáng của chất lỏng ở nhiệt độ sôi xác định.",
+                                "C. chỉ ở đáy bình chứa chất lỏng khi bắt đầu đun nóng.",
+                                "D. khi chất lỏng hạ nhiệt độ xuống dưới 0 °C."
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "gk1_vl12_de2_q12",
+                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                        "text": "Câu 12. Công thức xác định nhiệt hóa hơi riêng L của một khối chất lỏng có khối lượng m khi nhận nhiệt lượng Q để hóa hơi hoàn toàn ở nhiệt độ sôi là",
+                        "options": [
+                                "A. $L = Q / m$.",
+                                "B. $L = Q \\cdot m$.",
+                                "C. $L = m / Q$.",
+                                "D. $L = mc\\Delta T$."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "gk1_vl12_de2_tf1",
+                        "section": "ĐỀ SỐ 2 - II. ĐÚNG / SAI",
+                        "type": "true_false_group",
+                        "text": "<strong>Câu 1.</strong> Một nhóm học sinh theo dõi quá trình chuyển thể của một lượng nước đá tinh khiết từ -10 °C lên 50 °C.",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Ở nhiệt độ -10 °C, các phân tử nước chỉ dao động xung quanh vị trí cân bằng xác định.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Trong giai đoạn nước đá đang tan chảy ở 0 °C, nội năng của hệ tăng lên dù nhiệt độ không thay đổi.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Ở thể rắn, các phân tử nước đá không chuyển động nhiệt mà đứng yên hoàn toàn tại các nút mạng tinh thể.",
+                                        "correctAnswer": "Sai"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Khi nước đá đã tan hết thành nước lỏng ở 0 °C và được đun nóng lên 50 °C, động năng chuyển động nhiệt trung bình của các phân tử nước tăng lên.",
+                                        "correctAnswer": "Đúng"
+                                }
+                        ]
+                },
+                {
+                        "id": "gk1_vl12_de2_tf2",
+                        "section": "ĐỀ SỐ 2 - II. ĐÚNG / SAI",
+                        "type": "true_false_group",
+                        "text": "<strong>Câu 2.</strong> Một nhóm học sinh bố trí thí nghiệm xác định nhiệt hóa hơi riêng của nước. Dùng dây đun điện trở hoạt động với công suất không đổi $P = 50\\text{ W}$ làm nóng nước trong một cốc thủy tinh đặt trên đĩa cân điện tử. Khi nước trong cốc sôi ở 100 °C, nhóm ghi nhận số chỉ khối lượng hiển thị trên cân giảm dần theo thời gian $\\Delta t$:<br>• Tại thời điểm $t_1 = 0\\text{ s}$: số chỉ cân $m_1 = 180,00\\text{ g}$.<br>• Tại thời điểm $t_2 = 480\\text{ s}$: số chỉ cân $m_2 = 169,50\\text{ g}$.",
+                        "imageSrc": "images/thi_nghiem_nhiet_hoa_hoi_nuoc.png",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Oát kế trong thí nghiệm dùng để đo công suất tiêu thụ điện của dây đun điện trở.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Khối lượng nước đã hóa hơi trong thời gian 480 s là $\\Delta m = 10,50\\text{ g}$.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Bỏ qua sự mất mát nhiệt ra môi trường, nhiệt lượng do dây đun cung cấp cho nước trong 480 s là $Q = 24000\\text{ J}$.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Giá trị nhiệt hóa hơi riêng của nước thu được từ thí nghiệm trên là $L \\approx 2,50 \\cdot 10^6\\text{ J/kg}$.",
+                                        "correctAnswer": "Sai"
+                                }
+                        ]
+                },
+                {
+                        "id": "gk1_vl12_de2_sa1",
+                        "section": "ĐỀ SỐ 2 - III. TRẢ LỜI NGẮN",
+                        "type": "short_answer",
+                        "text": "<strong>Câu 1.</strong> Biết nhiệt dung riêng của nước là $c = 4180\\text{ J/(kg}\\cdot\\text{K)}$. Tính nhiệt lượng tỏa ra khi làm lạnh 400 g nước từ 80 °C xuống 30 °C theo đơn vị kiloJoule (kJ). (Kết quả viết làm tròn đến chữ số hàng phần mười).",
+                        "correctAnswer": "83,6 | 83.6"
+                },
+                {
+                        "id": "gk1_vl12_de2_sa2",
+                        "section": "ĐỀ SỐ 2 - III. TRẢ LỜI NGẮN",
+                        "type": "short_answer",
+                        "text": "<strong>Câu 2.</strong> Một khối chất rắn kết tinh có khối lượng 1,5 kg đang ở nhiệt độ nóng chảy. Cung cấp một nhiệt lượng $Q = 495\\text{ kJ}$ thì khối chất rắn đó nóng chảy hoàn toàn. Nhiệt nóng chảy riêng của chất đó có giá trị bằng $x \\cdot 10^5\\text{ J/kg}$. Tìm x (Kết quả viết làm tròn đến chữ số hàng phần mười).",
+                        "correctAnswer": "3,3 | 3.3"
+                },
+                {
+                        "id": "gk1_vl12_de2_sa3",
+                        "section": "ĐỀ SỐ 2 - III. TRẢ LỜI NGẮN",
+                        "type": "short_answer",
+                        "text": "<strong>Câu 3.</strong> Cho 0,01 kg hơi nước ở 100 °C ngưng tụ hoàn toàn trong bình nhiệt lượng kế chứa 0,2 kg nước ở 20 °C. Nhiệt độ của hệ khi đạt cân bằng nhiệt là 50 °C. Cho nhiệt dung riêng của nước là $c = 4180\\text{ J/(kg}\\cdot\\text{K)}$, bỏ qua sự trao đổi nhiệt với bình và môi trường. Nhiệt hóa hơi riêng của nước tính được từ thí nghiệm có dạng $x \\cdot 10^6\\text{ J/kg}$. Tìm x (Kết quả làm tròn đến chữ số hàng phần trăm).",
+                        "correctAnswer": "2,30 | 2.30 | 2,3 | 2.3"
+                },
+                {
+                        "id": "gk1_vl12_de2_sa4",
+                        "section": "ĐỀ SỐ 2 - III. TRẢ LỜI NGẮN",
+                        "type": "short_answer",
+                        "text": "<strong>Câu 4.</strong> Một lượng khí trong cylinder kín nhận nhiệt lượng 1100 J từ nguồn nhiệt, khí nở ra và thực hiện một công 420 J đẩy piston dịch chuyển. Độ biến thiên nội năng $\\Delta U$ của khối khí có giá trị bằng bao nhiêu Joule (J)? (Kết quả làm tròn đến chữ số hàng đơn vị).",
+                        "correctAnswer": "680"
+                },
+                {
+                        "id": "gk1_vl12_de2_essay1",
+                        "section": "ĐỀ SỐ 2 - IV. TỰ LUẬN",
+                        "type": "essay_group",
+                        "text": "<strong>Bài 1. (1,5 điểm)</strong> Một cylinder kín chứa 0,25 kg chất khí lí tưởng ở nhiệt độ ban đầu 20 °C. Người ta đun nóng cylinder, cung cấp cho chất khí một nhiệt lượng $Q = 1800\\text{ J}$. Khối khí giãn nở đẳng áp đẩy piston đi một đoạn làm khí thực hiện một công có độ lớn 550 J.",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Nêu quy quy ước về dấu của nhiệt lượng Q và công A trong công thức $\\Delta U = Q + A$ của Nguyên lý I Nhiệt động lực học.",
+                                        "correctAnswer": "Q > 0: hệ nhận nhiệt lượng; Q < 0: hệ truyền nhiệt lượng.\nA > 0: hệ nhận công; A < 0: hệ thực hiện công."
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Tính độ biến thiên nội năng $\\Delta U$ của khối khí trong quá trình biến đổi trên.",
+                                        "correctAnswer": "Khí nhận nhiệt: Q = +1800 J; Khí thực hiện công: A = -550 J.\nΔU = Q + A = 1800 - 550 = 1250 J."
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Giả sử toàn bộ độ biến thiên nội năng $\\Delta U$ này dùng để làm tăng nhiệt độ của khối khí. Biết nhiệt dung riêng của khối khí trong quá trình này là $c = 1000\\text{ J/(kg}\\cdot\\text{K)}$. Tính nhiệt độ cuối cùng của khối khí theo thang đo Celsius (°C).",
+                                        "correctAnswer": "ΔU = m·c·(t_cuối - t_đầu) => 1250 = 0,25·1000·(t_cuối - 20) => 250·(t_cuối - 20) = 1250 => t_cuối - 20 = 5 => t_cuối = 25 °C."
+                                }
+                        ]
+                },
+                {
+                        "id": "gk1_vl12_de2_essay2",
+                        "section": "ĐỀ SỐ 2 - IV. TỰ LUẬN",
+                        "type": "essay_group",
+                        "text": "<strong>Bài 2. (1,5 điểm)</strong> Để xác định nhiệt nóng chảy riêng của nước đá, một học sinh thả $m_1 = 0,2\\text{ kg}$ nước đá ở 0 °C vào bình nhiệt lượng kế chứa $m_2 = 0,6\\text{ kg}$ nước ở nhiệt độ $t_2 = 50\\text{ }^\\circ\\text{C}$. Bỏ qua khối lượng của bình và sự trao đổi nhiệt với môi trường. Biết nhiệt dung riêng của nước là $c = 4200\\text{ J/(kg}\\cdot\\text{K)}$. Khi hệ đạt cân bằng nhiệt, nước đá đã tan hoàn toàn và nhiệt độ chung của hệ là $t = 17,5\\text{ }^\\circ\\text{C}$.",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Tính độ lớn nhiệt lượng do 0,6 kg nước tỏa ra khi hạ nhiệt độ từ 50 °C xuống 17,5 °C.",
+                                        "correctAnswer": "Q_tỏa = m2·c·(t2 - t) = 0,6·4200·(50 - 17,5) = 0,6·4200·32,5 = 81900 J = 81,9 kJ."
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Trong thí nghiệm trên, nước đá thu nhiệt hay tỏa nhiệt?",
+                                        "correctAnswer": "Nước đá thu nhiệt lượng từ nước nóng để tan chảy hoàn toàn ở 0 °C và ấm lên đến 17,5 °C."
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Tính giá trị nhiệt nóng chảy riêng $\\lambda$ của nước đá thu được từ thí nghiệm trên.",
+                                        "correctAnswer": "Q_thu = m1·λ + m1·c·(t - 0) = 0,2·λ + 0,2·4200·17,5 = 0,2·λ + 14700 J.\nTheo PT cân bằng nhiệt: Q_thu = Q_tỏa => 0,2·λ + 14700 = 81900 => 0,2·λ = 67200 => λ = 336000 J/kg = 3,36·10^5 J/kg."
+                                }
+                        ]
+                },
+                {
+                        "id": "gk1_vl12_de3_q1",
+                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                        "text": "Câu 1. Phát biểu nào sau đây đúng khi nói về cấu trúc của các chất ở thể rắn, thể lỏng và thể khí theo mô hình động học phân tử?",
+                        "options": [
+                                "A. Khoảng cách giữa các phân tử ở thể rắn lớn hơn rất nhiều so với ở thể khí.",
+                                "B. Lực tương tác giữa các phân tử ở thể khí là rất lớn nên chất khí không có hình dạng xác định.",
+                                "C. Ở thể lỏng, các phân tử dao động xung quanh các vị trí cân bằng có thể di chuyển được.",
+                                "D. Nhiệt độ của vật càng cao thì tốc độ chuyển động hỗn loạn của các phân tử càng giảm."
+                        ],
+                        "correctIndex": 2
+                },
+                {
+                        "id": "gk1_vl12_de3_q2",
+                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                        "text": "Câu 2. Quá trình chuyển từ thể lỏng sang thể khí (hơi) ở mặt thoáng của chất lỏng gọi là",
+                        "options": [
+                                "A. sự bay hơi.",
+                                "B. sự nóng chảy.",
+                                "C. sự ngưng tụ.",
+                                "D. sự đông đặc."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "gk1_vl12_de3_q3",
+                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                        "text": "Câu 3. Khi nhiệt độ của một vật tăng lên thì",
+                        "options": [
+                                "A. động năng chuyển động nhiệt của các phân tử cấu tạo nên vật tăng, làm nội năng của vật tăng.",
+                                "B. thế năng hấp dẫn của vật so với mặt đất luôn tăng lên.",
+                                "C. nội năng của vật luôn giữ nguyên không đổi.",
+                                "D. động năng của các phân tử giảm đi và thế năng tương tác phân tử bằng không."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "gk1_vl12_de3_q4",
+                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                        "text": "Câu 4. Theo quy ước dấu của Nguyên lý I Nhiệt động lực học, biểu thức mô tả đúng trường hợp khối khí vừa truyền nhiệt lượng ra môi trường ngoài vừa thực hiện công là",
+                        "options": [
+                                "A. $\\Delta U = Q + A$ với $Q > 0$ và $A > 0$.",
+                                "B. $\\Delta U = Q + A$ với $Q < 0$ và $A > 0$.",
+                                "C. $\\Delta U = Q + A$ với $Q > 0$ và $A < 0$.",
+                                "D. $\\Delta U = Q + A$ với $Q < 0$ và $A < 0$."
+                        ],
+                        "correctIndex": 3
+                },
+                {
+                        "id": "gk1_vl12_de3_q5",
+                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                        "text": "Câu 5. Một vật có nhiệt độ trong thang Celsius là 27 °C. Nhiệt độ của vật đó trong thang nhiệt độ Kelvin (lấy mốc $0\\text{ }^\\circ\\text{C} \\approx 273\\text{ K}$) là",
+                        "options": [
+                                "A. 300 K.",
+                                "B. 246 K.",
+                                "C. 273 K.",
+                                "D. 127 K."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "gk1_vl12_de3_q6",
+                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                        "text": "Câu 6. Đơn vị nào sau đây không phải là đơn vị đo năng lượng nhiệt hoặc nhiệt nóng chảy riêng hợp lệ?",
+                        "options": [
+                                "A. J/kg.",
+                                "B. kJ/kg.",
+                                "C. J.",
+                                "D. W·kg."
+                        ],
+                        "correctIndex": 3
+                },
+                {
+                        "id": "gk1_vl12_de3_q7",
+                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                        "text": "Câu 7. Công thức tính khối lượng m của chất lỏng đã hóa hơi hoàn toàn ở nhiệt độ sôi khi nhận nhiệt lượng Q (với L là nhiệt hóa hơi riêng) là",
+                        "options": [
+                                "A. $m = \\frac{Q}{L}$.",
+                                "B. $m = Q \\cdot L$.",
+                                "C. $m = \\frac{L}{Q}$.",
+                                "D. $m = \\frac{Q}{\\lambda}$."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "gk1_vl12_de3_q8",
+                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                        "text": "Câu 8. Điểm cố định dưới và điểm cố định trên dùng để xây dựng thang nhiệt độ Celsius ở áp suất tiêu chuẩn lần lượt là",
+                        "options": [
+                                "A. nhiệt độ đóng băng và nhiệt độ sôi của nước tinh khiết.",
+                                "B. nhiệt độ không tuyệt đối và nhiệt độ nóng chảy của nước đá.",
+                                "C. nhiệt độ cơ thể người và nhiệt độ sôi của rượu.",
+                                "D. nhiệt độ điểm ba của nước và nhiệt độ sôi của thủy ngân."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "gk1_vl12_de3_q9",
+                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                        "text": "Câu 9. Biết nhiệt dung riêng của đồng là $380\\text{ J/(kg}\\cdot\\text{K)}$. Điều này có nghĩa là",
+                        "options": [
+                                "A. cần cung cấp nhiệt lượng 380 J cho 1 kg đồng để nhiệt độ của nó tăng thêm 1 K.",
+                                "B. cần cung cấp nhiệt lượng 380 J để làm nóng chảy hoàn toàn 1 kg đồng ở nhiệt độ nóng chảy.",
+                                "C. 1 kg đồng khi hóa hơi hoàn toàn ở nhiệt độ sôi sẽ thu vào nhiệt lượng 380 J.",
+                                "D. cần cung cấp 380 J để 1 g đồng tăng nhiệt độ từ 0 °C lên 100 °C."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "gk1_vl12_de3_q10",
+                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                        "text": "Câu 10. Truyền cho hai vật đồng chất có khối lượng $m_1 = 2m_2$ cùng một nhiệt lượng Q (không xảy ra sự chuyển thể). Độ tăng nhiệt độ $\\Delta T_1$ và $\\Delta T_2$ của hai vật có mối liên hệ là",
+                        "options": [
+                                "A. $\\Delta T_1 = 0,5 \\cdot \\Delta T_2$.",
+                                "B. $\\Delta T_1 = 2 \\cdot \\Delta T_2$.",
+                                "C. $\\Delta T_1 = \\Delta T_2$.",
+                                "D. $\\Delta T_1 = 4 \\cdot \\Delta T_2$."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "gk1_vl12_de3_q11",
+                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                        "text": "Câu 11. Công thức tính khối lượng m của một chất rắn kết tinh đã nóng chảy hoàn toàn ở nhiệt độ nóng chảy khi nhận nhiệt lượng Q (với $\\lambda$ là nhiệt nóng chảy riêng) là",
+                        "options": [
+                                "A. $m = \\frac{Q}{\\lambda}$.",
+                                "B. $m = Q \\cdot \\lambda$.",
+                                "C. $m = \\frac{\\lambda}{Q}$.",
+                                "D. $m = \\frac{Q}{c \\cdot \\Delta T}$."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "gk1_vl12_de3_q12",
+                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                        "text": "Câu 12. Nhiệt hóa hơi riêng của một chất lỏng phụ thuộc vào",
+                        "options": [
+                                "A. bản chất của chất lỏng và nhiệt độ mà tại đó chất lỏng hóa hơi.",
+                                "B. khối lượng của lượng chất lỏng ban đầu.",
+                                "C. thể tích của bình chứa chất lỏng.",
+                                "D. công suất của nguồn nhiệt dùng để đun sôi chất lỏng."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "gk1_vl12_de3_tf1",
+                        "section": "ĐỀ SỐ 3 - II. ĐÚNG / SAI",
+                        "type": "true_false_group",
+                        "text": "<strong>Câu 1.</strong> Một học sinh quan sát sự chuyển thể của nước trong tự nhiên và trong đời sống hằng ngày:",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Khi nước đá tan chảy ở 0 °C, nhiệt độ không đổi vì nhiệt lượng cung cấp chuyển hóa hoàn toàn thành thế năng liên kết phân tử.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Trong quá trình nước đóng băng thành đá, nhiệt độ giảm dần và làm ngừng hoàn toàn chuyển động nhiệt của các phân tử.",
+                                        "correctAnswer": "Sai"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Nước ở thể lỏng không có hình dạng riêng xác định mà có hình dạng của phần bình chứa nó.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Khi toàn bộ nước đá đã hóa lỏng và tiếp tục đun từ 0 °C đến 100 °C, trên bề mặt thoáng của nước vẫn liên tục diễn ra sự bay hơi.",
+                                        "correctAnswer": "Đúng"
+                                }
+                        ]
+                },
+                {
+                        "id": "gk1_vl12_de3_tf2",
+                        "section": "ĐỀ SỐ 3 - II. ĐÚNG / SAI",
+                        "type": "true_false_group",
+                        "text": "<strong>Câu 2.</strong> Một nhóm học sinh bố trí thí nghiệm xác định nhiệt hóa hơi riêng của nước. Dùng dây đun điện trở hoạt động với công suất không đổi $P = 36\\text{ W}$ làm nóng nước trong một cốc thủy tinh đặt trên đĩa cân điện tử (như hình vẽ bên dưới).<br>Khi nước trong cốc sôi ở 100 °C, nhóm ghi nhận số chỉ khối lượng hiển thị trên cân giảm dần theo thời gian $\\Delta t$:<br>• Tại thời điểm $t_1 = 0\\text{ s}$: số chỉ cân $m_1 = 155,40\\text{ g}$.<br>• Tại thời điểm $t_2 = 500\\text{ s}$: số chỉ cân $m_2 = 147,40\\text{ g}$.",
+                        "imageSrc": "images/thi_nghiem_nhiet_hoa_hoi_nuoc.png",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Nhiệt kế trong thí nghiệm dùng để kiểm tra và xác định thời điểm nước trong cốc đạt nhiệt độ sôi ổn định (100 °C).",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Khối lượng nước đã hóa hơi trong thời gian 500 s là $\\Delta m = 8,00\\text{ g}$.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Bỏ qua sự mất mát nhiệt ra môi trường, nhiệt lượng do dây đun cung cấp cho nước trong 500 s là $Q = 18000\\text{ J}$.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Giá trị nhiệt hóa hơi riêng của nước thực nghiệm thu được từ số liệu thí nghiệm trên là $L = 2,25 \\cdot 10^6\\text{ J/kg}$.",
+                                        "correctAnswer": "Đúng"
+                                }
+                        ]
+                },
+                {
+                        "id": "gk1_vl12_de3_sa1",
+                        "section": "ĐỀ SỐ 3 - III. TRẢ LỜI NGẮN",
+                        "type": "short_answer",
+                        "text": "<strong>Câu 1.</strong> Biết nhiệt dung riêng của nước là $c = 4180\\text{ J/(kg}\\cdot\\text{K)}$. Tính nhiệt lượng tỏa ra khi làm lạnh 250 g nước từ 95 °C xuống 25 °C theo đơn vị kiloJoule (kJ). (Kết quả viết làm tròn đến chữ số hàng phần mười).",
+                        "correctAnswer": "73,2 | 73.2"
+                },
+                {
+                        "id": "gk1_vl12_de3_sa2",
+                        "section": "ĐỀ SỐ 3 - III. TRẢ LỜI NGẮN",
+                        "type": "short_answer",
+                        "text": "<strong>Câu 2.</strong> Một khối chất rắn kết tinh có khối lượng 2,0 kg đang ở nhiệt độ nóng chảy. Cung cấp một nhiệt lượng $Q = 672\\text{ kJ}$ thì khối chất rắn đó nóng chảy hoàn toàn. Nhiệt nóng chảy riêng $\\lambda$ của chất đó có giá trị bằng $x \\cdot 10^5\\text{ J/kg}$. Tìm x (Kết quả viết làm tròn đến chữ số hàng phần trăm).",
+                        "correctAnswer": "3,36 | 3.36"
+                },
+                {
+                        "id": "gk1_vl12_de3_sa3",
+                        "section": "ĐỀ SỐ 3 - III. TRẢ LỜI NGẮN",
+                        "type": "short_answer",
+                        "text": "<strong>Câu 3.</strong> Cho 0,025 kg hơi nước ở 100 °C ngưng tụ hoàn toàn trong bình nhiệt lượng kế chứa 0,5 kg nước ở 20 °C. Nhiệt độ của hệ khi đạt cân bằng nhiệt là 48 °C. Cho nhiệt dung riêng của nước là $c = 4180\\text{ J/(kg}\\cdot\\text{K)}$, bỏ qua sự trao đổi nhiệt với bình và môi trường. Nhiệt hóa hơi riêng của nước tính được từ thí nghiệm có dạng $x \\cdot 10^6\\text{ J/kg}$. Tìm x (Kết quả làm tròn đến chữ số hàng phần trăm).",
+                        "correctAnswer": "2,12 | 2.12"
+                },
+                {
+                        "id": "gk1_vl12_de3_sa4",
+                        "section": "ĐỀ SỐ 3 - III. TRẢ LỜI NGẮN",
+                        "type": "short_answer",
+                        "text": "<strong>Câu 4.</strong> Một lượng khí trong cylinder kín nhận nhiệt lượng 1250 J từ nguồn nhiệt, khí nở ra và thực hiện một công 480 J đẩy piston dịch chuyển. Độ biến thiên nội năng $\\Delta U$ của khối khí có giá trị bằng bao nhiêu Joule (J)? (Kết quả làm tròn đến chữ số hàng đơn vị).",
+                        "correctAnswer": "770"
+                },
+                {
+                        "id": "gk1_vl12_de3_essay1",
+                        "section": "ĐỀ SỐ 3 - IV. TỰ LUẬN",
+                        "type": "essay_group",
+                        "text": "<strong>Bài 1. (1,5 điểm)</strong> Một cylinder kín chứa 0,30 kg chất khí lí tưởng ở nhiệt độ ban đầu 22 °C. Người ta đun nóng cylinder, cung cấp cho chất khí một nhiệt lượng $Q = 2100\\text{ J}$. Khối khí giãn nở đẳng áp đẩy piston đi một đoạn làm khí thực hiện một công có độ lớn 600 J.",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Nêu quy ước về dấu của nhiệt lượng Q và công A trong công thức $\\Delta U = Q + A$ của Nguyên lý I Nhiệt động lực học.",
+                                        "correctAnswer": "Q > 0: hệ nhận nhiệt lượng; Q < 0: hệ truyền nhiệt lượng.\nA > 0: hệ nhận công; A < 0: hệ thực hiện công."
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Tính độ biến thiên nội năng $\\Delta U$ của khối khí trong quá trình biến đổi trên.",
+                                        "correctAnswer": "Khí nhận nhiệt: Q = +2100 J; Khí thực hiện công: A = -600 J.\nΔU = Q + A = 2100 - 600 = 1500 J."
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Giả sử toàn bộ độ biến thiên nội năng $\\Delta U$ này dùng để làm tăng nhiệt độ của khối khí. Biết nhiệt dung riêng của khối khí trong quá trình này là $c = 1000\\text{ J/(kg}\\cdot\\text{K)}$. Tính nhiệt độ cuối cùng của khối khí theo thang đo Celsius (°C).",
+                                        "correctAnswer": "ΔU = m·c·(t_cuối - t_đầu) => 1500 = 0,30·1000·(t_cuối - 22) => 300·(t_cuối - 22) = 1500 => t_cuối - 22 = 5 => t_cuối = 27 °C."
+                                }
+                        ]
+                },
+                {
+                        "id": "gk1_vl12_de3_essay2",
+                        "section": "ĐỀ SỐ 3 - IV. TỰ LUẬN",
+                        "type": "essay_group",
+                        "text": "<strong>Bài 2. (1,5 điểm)</strong> Để xác định nhiệt nóng chảy riêng của nước đá, một học sinh thả $m_1 = 0,12\\text{ kg}$ nước đá ở 0 °C vào bình nhiệt lượng kế chứa $m_2 = 0,45\\text{ kg}$ nước ở nhiệt độ $t_2 = 45\\text{ }^\\circ\\text{C}$. Bỏ qua khối lượng của bình và sự trao đổi nhiệt với môi trường. Biết nhiệt dung riêng của nước là $c = 4200\\text{ J/(kg}\\cdot\\text{K)}$. Khi hệ đạt cân bằng nhiệt, nước đá đã tan hoàn toàn và nhiệt độ chung của hệ là $t = 20\\text{ }^\\circ\\text{C}$.",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Tính độ lớn nhiệt lượng do 0,45 kg nước tỏa ra khi hạ nhiệt độ từ 45 °C xuống 20 °C.",
+                                        "correctAnswer": "Q_tỏa = m2·c·(t2 - t) = 0,45·4200·(45 - 20) = 0,45·4200·25 = 47250 J = 47,25 kJ."
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Trong thí nghiệm trên, nước đá thu nhiệt hay tỏa nhiệt?",
+                                        "correctAnswer": "Nước đá thu nhiệt lượng từ nước nóng để tan chảy hoàn toàn ở 0 °C và ấm lên đến 20 °C."
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Tính giá trị nhiệt nóng chảy riêng $\\lambda$ của nước đá thu được từ thí nghiệm trên.",
+                                        "correctAnswer": "Q_thu = m1·λ + m1·c·(t - 0) = 0,12·λ + 0,12·4200·20 = 0,12·λ + 10080 J.\nTheo PT cân bằng nhiệt: Q_thu = Q_tỏa => 0,12·λ + 10080 = 47250 => 0,12·λ = 37170 => λ = 309750 J/kg ≈ 3,10·10^5 J/kg."
+                                }
+                        ]
+                }
+        ]
+}
 ];

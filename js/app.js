@@ -74,7 +74,7 @@ window.isQuizDeleted = isQuizDeleted;
 
 if (isVACTPage) {
     // Giữ lại tất cả đề V-ACT / ĐGNL / Chương / Ôn tập / Hóa / Advertisement từ data.js
-    const vactQuizzes = mockQuizzes.filter(q => q && q.id && (q.id.endsWith('_dgnl') || q.id.startsWith('de_') || q.id.startsWith('vact_') || q.id.startsWith('on_tap_') || q.id.includes('chuong_') || q.id.includes('advertisement') || q.category === 'hoa' || q.category === 'anh'));
+    const vactQuizzes = mockQuizzes.filter(q => q && q.id && (q.id.endsWith('_dgnl') || q.id.startsWith('de_') || q.id.startsWith('vact_') || q.id.startsWith('on_tap_') || q.id.includes('chuong_') || q.id.includes('advertisement') || q.category === 'hoa' || q.category === 'anh' || q.category === 'ly'));
     mockQuizzes.length = 0;
     mockQuizzes.push(...vactQuizzes);
 
@@ -245,6 +245,9 @@ function initQuizList() {
         } else if (quiz.category === 'toan' || titleLower.includes('toán') || titleLower.includes('math')) {
             subjectBadge = '<span class="quiz-pill-badge badge-toan">📐 Toán học</span>';
             accentClass = 'accent-toan';
+        } else if (quiz.category === 'ly' || quiz.category === 'vatly' || titleLower.includes('vật lí') || titleLower.includes('vật lý') || titleLower.includes('nhiệt học')) {
+            subjectBadge = '<span class="quiz-pill-badge badge-ly">⚛️ Vật lí</span>';
+            accentClass = 'accent-ly';
         }
 
         const privacyBadge = (quiz.privacy === 'public' || !quiz.privacy) 
@@ -669,7 +672,9 @@ function renderSectionSelector(quiz) {
         ? 'Hệ thống cho phép chọn ôn từng chương trắc nghiệm, đúng/sai hoặc câu hỏi ngắn' 
         : (quiz.category === 'anh'
             ? 'Lựa chọn ôn toàn bộ đề hoặc linh hoạt chọn riêng từng phần Trắc nghiệm / Viết câu của Phần A hoặc Phần B'
-            : 'Chọn một hoặc nhiều phần bên dưới để tùy chỉnh nội dung bài làm phù hợp'));
+            : (quiz.category === 'ly'
+                ? 'Lựa chọn ôn trọn vẹn từng Đề (Đề 1, Đề 2, Đề 3) hoặc linh hoạt chọn theo từng phần: Trắc nghiệm 4 lựa chọn, Đúng/Sai, Trả lời ngắn, Tự luận'
+                : 'Chọn một hoặc nhiều phần bên dưới để tùy chỉnh nội dung bài làm phù hợp')));
 
     container.innerHTML = `
         <div class="section-selector-card">
