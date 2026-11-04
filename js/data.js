@@ -1,3886 +1,3886 @@
 export const mockQuizzes = [
-    {
-        id: "de_1_dgnl",
-        title: "Đề 1 (120/120 câu)",
-        category: "vnu",
-        subject: "VNU-ĐGNL",
-        description: "Phần 1: Tiếng Việt, Tiếng Anh (60 câu) & Phần 2: Toán (30 câu) & Phần 3: Tư duy KH (30 câu)",
-        questions: [
-            // Questions 1-20
-            { id: "q1", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 1: Thị Phương là nhân vật trong vở chèo Trương Viên. Thời bình, nàng động viên chồng học hành thi cử. Thời chiến, nàng chăm sóc, bảo vệ mẹ chồng và lặn lội tìm chồng.\n“Thị Phương:\nMẹ ơi, giặc đã kéo đến đây\nCon xin dắt mẹ vào ngay trong rừng\nKẻo con chút phận má hồng\nNữa gặp gian hùng, lỗi đạo tào khang.\nTrước là thất tiết cùng chàng\nSau con bỏ mẹ giữa đàng ai nuôi”.\n(Trần Việt Ngữ sưu tầm, Trương Viên chèo cổ)\nNhân vật Thị Phương là loại nhân vật gì?", options: ["A. Kép.", "B. Lão.", "C. Đào lẳng.", "D. Đào thương."], correctIndex: 3 },
-            { id: "q2", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 2: “Bị cướp vợ và chiến đấu giành lại vợ” là mô típ (motif) phổ biến trong thể loại nào của văn học dân gian Việt Nam?", options: ["A. Thần thoại.", "B. Sử thi.", "C. Tuồng, chèo.", "D. Truyện thơ."], correctIndex: 1 },
-            { id: "q3", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 3: “Sau đó vài tháng, Hà Nhân tiếp được tin nhà gửi đến kinh đô, nói cha mẹ ở nhà đã hỏi vợ cho, giục Sinh nên về mau để làm lễ cưới. Sinh bối rối quanh co, lòng rất không nỡ, hai nàng đoán biết được tình ý, bảo Sinh rằng:\n- Bọn chúng em thân bồ vóc liễu, không thể cáng đáng được việc tần tảo ở gia đình. Vả ngôi chủ phụ trong nhà, tất phải là người trong nền nếp trâm anh như Tống Tử, Tề Khương, chúng em đâu dám chòi mòi đến. Chỉ mong chàng sau buổi về quê, tình cũ sẽ vấn vương không dứt, sớm dẹp lòng quyến luyến hương thổ để lại tính kế tìm hoa.”\n(Nguyễn Dữ, Chuyện kỳ ngộ ở Trại Tây)\nDòng nào sau đây nêu không đúng đặc điểm của lời nhân vật trong đoạn trích trên?", options: ["A. Sử dụng lối nói chuộng ngôn từ hoa mỹ.", "B. Sử dụng lối nói dùng nhiều điển tích, điển cố.", "C. Sử dụng lối nói dùng hình ảnh so sánh, ẩn dụ.", "D. Sử dụng lối nói gần với lời ăn tiếng nói hằng ngày."], correctIndex: 3 },
-            { id: "q4", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 4:\n“Khắc khoải sầu đưa giọng lửng lơ,\nẤy hồn Thục đế thác bao giờ?\nNăm canh máu chảy đêm hè vắng,\nSáu khắc hồn tan bóng nguyệt mờ.\nCó phải tiếc xuân mà đứng gọi,\nHay là nhớ nước vẫn nằm mơ?\nThâu đêm ròng rã kêu ai đó,\nGiục khách giang hồ dạ ngẩn ngơ”.\n(Nguyễn Khuyến, Cuốc kêu cảm hứng)\nBài thơ thể hiện nỗi niềm gì của chủ thể trữ tình?", options: ["A. Thương tiếc mùa xuân trôi qua mất.", "B. Thương tiếc nước mất vào tay giặc.", "C. Thương tiếc máu xương của người yêu nước.", "D. Thương tiếc nước bị chia cắt."], correctIndex: 1 },
-            { id: "q5", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 5: Khi Thúy Kiều lại một lần nữa bị lừa bán vào lầu xanh, Nguyễn Du đã viết:\n“Nghĩ đời mà ngán cho đời\nTài tình chi lắm, cho trời đất ghen.\nTiếc thay nước đã đánh phèn\nMà cho bùn lại vẩn lên mấy lần!\nHồng quân với khách hồng quần\nĐã xoay đến thế, còn vần chưa tha”.\n(Nguyễn Du, Truyện Kiều)\nHai từ “hồng quân” và “hồng quần” có ý nghĩa:", options: ["A. Người lính trong quân đội và người con gái đẹp.", "B. Vị vua anh minh with người tì thiếp đẹp.", "C. Đấng tạo hóa with người ca kỹ đẹp.", "D. Đấng tạo hóa and người con gái đẹp."], correctIndex: 3 },
-            { id: "q6", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 6: “Cuộc xua đuổi đã kéo dài hàng tiếng đồng hồ. Lão Khúng đã mệt nhoài nhưng vẫn chưa chịu cho vật dừng lại. Nó phải đi thật xa, phải bắt nó vào thật sâu giữa rừng thẳm, để không còn lối nào trở lại with lão. Rồi thì mai đây khi trở về nhà, lão nghĩ, lão sẽ nói thật with mụ Huệ, lão đã không đem xuống chợ Giát để bán mà trên dọc đường đã giải thoát cho nó, trả lại cho nó cuộc đời tự do, lão đã xua nó vào rừng, vào giữa giang sơn của một bầy bò hoang... Chắc hẳn mụ Huệ cũng không mè nheo lão. Mụ sẽ thông cảm with lão, with việc làm của lão”.\n(Nguyễn Minh Châu, Phiên chợ Giát)\nHành động xua con vật đi thật xa vào rừng thẳm thể hiện điều gì?", options: ["A. Sự mệt nhoài của lão khi đem con vật xuống chợ Giát để bán.", "B. Sự quyết tâm giải thoát con vật, trả lại cho nó cuộc đời tự do.", "C. Sự mong mỏi được trở về nhà và được vợ của lão cảm thông.", "D. Sự cảm thông with con vật và sự tự dằn vặt bản thân ở lão."], correctIndex: 1 },
-            { id: "q7", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 7: “Tôi hát bài hát về cố hương tôi\nTrong ánh sáng đèn dầu\nNgọn đèn đó ông bà tôi để lại\nĐẹp và buồn hơn tất cả những ngọn đèn\nThuở tôi vừa sinh ra\nMẹ đã đặt ngọn đèn trước mặt tôi\nĐể tôi nhìn mặt đèn mà biết buồn, biết yêu và biết khóc”.\n(Nguyễn Quang Thiều, Bài hát về cố hương)\nDòng nào dưới đây không thể hiện ý nghĩa biểu đạt của hình ảnh “ánh sáng đèn dầu” trong đoạn thơ trên?", options: ["A. Ánh sáng của không gian ấu thơ.", "B. Ánh sáng của không gian gia đình.", "C. Ánh sáng của thời gian ký ức.", "D. Ánh sáng của quá khứ đau thương, mất mát."], correctIndex: 3 },
-            { id: "q8", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 8:\nTrung tá Nam hồi tưởng về cuộc trò chuyện with hạ sĩ Lãm:\n“Trong đầu anh bỗng hiện lên hình ảnh người hạ sĩ quê ở Hà Nội có cái nhìn lì lợm ngày nào…\nLãm! - Này, bây giờ ta nói chuyện tình anh em, đừng trên dưới gì hết - Vâng, tôi cũng nghĩ như thế -\nNghe nói thời kỳ chốt chặn ở biên giới, cậu là một tay súng tốt? - Vâng, thưa thủ trưởng, cũng có lẽ như thế - Nhưng chỉ im tiếng súng có mấy tháng thôi, người ta phản ảnh with tôi cậu đã không còn giữ được phẩm chất ấy nữa? - Vâng, nếu gọi như thế là phẩm chất - Tôi yêu cầu cậu chuyện trò with tôi chân thành và dễ hiểu hơn một chút, và trước hết là xin cậu hãy bỏ giúp đẫn mía trên tay kia đi cho tôi nhờ - Dạ… Thưa, tôi vẫn luôn luôn chân thành và dễ hiểu đấy chứ ạ!”\n(Chu Lai, Phố)\nĐoạn hội thoại trên cho thấy điều gì về hạ sĩ Lãm?", options: ["A. Có tài và ngang tàng.", "B. Bất tài và ngang ngược.", "C. Có tài và khiêm cung.", "D. Bất tài và chân thành."], correctIndex: 0 },
-            { id: "q9", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 9: LÊ TƯƠNG DỰC - Vua cần đến thì thần nhân phải xả thân làm việc kỳ đến chết thì thôi.\nVŨ NHƯ TÔ - Nhưng xử đãi thế thì ai muốn trau dồi nghề nghiệp? Kính sĩ mới đắc sĩ...\nLÊ TƯƠNG DỰC - Kính sĩ đắc sĩ, mi là sĩ đấy ư: Mi dám tự phụ là sĩ thảo nào mi không sợ chết.\nVŨ NHƯ TÔ - Sĩ mà không có chân tài thì tiện nhân không bàn. Anh em tiện nhân còn có những nguyện vọng sâu xa hơn đối with nước. Hoàng thượng quá nhầm về chữ sĩ. Một ông quan trị dân, with một người thợ giỏi, xây những lâu đài tráng quan, điểm xuyết cho đất nước, tiện nhân chưa biết người nào mới đáng gọi là sĩ.\n(Nguyễn Huy Tưởng, Vũ Như Tô)\nÝ nào phù hợp with tính cách Vũ Như Tô được thể hiện trong đoạn trích?", options: ["A. Không bao giờ bằng lòng with thực tại, khát khó sự sáng tạo.", "B. Trọng danh dự, muốn đem tài năng phụng sự đất nước.", "C. Coi thường vương quyền, muốn có những kẻ sĩ chân tài.", "D. Trọng danh dự, muốn có những kẻ sĩ chân tài."], correctIndex: 1 },
-            { id: "q10", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 10: “Năm 1975, khi tấm lưng của bà Chắt Chu đã bắt đầu còng xuống thì o Nhị - Lê Thị Nhị - con gái bà mới trở về. Lúc đó, o đã 29 tuổi. Phụ nữ làng chài thường lấy chồng rất sớm. Cái tuổi của o khi đó, làng đã toan gọi… gái già. O cứ ở vậy, gánh cá, gánh tấp đốt thuyền thuê, rồi làm nghề dệt thảm len ngoài Hợp tác xã Hải Đằng nuôi mẹ mà không chịu lấy chồng. Ai hỏi thì o cười, nửa thật nửa đùa, rằng “nỏ có ai chịu lấy”.\nNăm 1967, đang là một vận động viên bóng chuyền, o Nhị xung phong nhập ngũ, vào Thanh niên xung phong lấp hố bom, bạt núi mở đường, làm cọc tiêu dẫn xe, qua ngầm, vượt hố trong những đêm trời tối không đèn. Đi qua chiến tranh, sức khỏe và nhan sắc của o gửi hết ở chiến trường. Dệt thảm khá nhanh tay, lành nghề, nhưng tấm thảm đời o thì cứ rối nùi, chẳng biết đâu mà gỡ.[…]\nĐùng một cái, cả xã Thạch Kim sôi sục. Chẳng hiểu từ đâu báo chí bỗng phát hiện ra, o Lê Thị Nhị chính là nguyên mẫu của cô thanh niên xung phong trong bài thơ “Gửi em, cô Thanh niên xung phong” của nhà thơ Phạm Tiến Duật”.\n(Nguyễn Hồng Lam, Vu vơ sợi khói đốt thuyền)\nĐoạn trích có chứa đựng yếu tố:", options: ["A. Hư cấu.", "B. Phi hư cấu.", "C. Tự truyện.", "D. Tự thuật."], correctIndex: 1 },
-            { id: "q11", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 11:\nTình thiên\n“Sự vật tuần hoàn nguyên hữu định,\nVũ thiên chi hậu tất tình thiên;\nPhiến thì vũ trụ giải lâm phục,\nVạn lý sơn hà sái cẩm chiên;\nNhật noãn phong thanh hoa đới tiếu,\nThụ cao chi nhuận điểu tranh ngôn;\nNhân hòa vạn vật đô hưng phấn,\nKhổ tận cam lai, lý tự nhiên”.\n(Hồ Chí Minh, Nhật ký trong tù)\nTrời hửng\n“Sự vật vần xoay đà định sẵn,\nHết mưa là nắng hửng lên thôi;\nĐất trời một thoáng thu màn ướt,\nSông núi muôn trùng trải gấm phơi;\nTrời ấm, hoa cười chào gió nhẹ,\nCây cao, chim hót rộn cành tươi;\nNgười cùng vạn vật đều phơi phới,\nHết khổ là vui vốn lẽ đời”.\n(Nam Trân dịch)\nBài thơ “Tình thiên” thể hiện đặc điểm nổi bật nào trong phong cách sáng tác của Hồ Chí Minh?", options: ["A. Sử dụng hình ảnh thiên nhiên để ẩn dụ cho tình cảm và tâm tư của con người.", "B. Thể hiện sâu sắc tư tưởng phương Tây bằng lối diễn đạt gần gũi, giản dị.", "C. Miêu tả cảnh vật thiên nhiên thuần túy, không mang thông điệp triết lý.", "D. Đề cao hình mẫu cá nhân, khẳng định cá tính độc đáo của nhân vật trữ tình."], correctIndex: 0 },
-            { id: "q12", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 12: “Thi pháp _____ đề cao sự đổi mới, sáng tạo của cá tính nghệ sĩ, tôn vinh “cái riêng biệt”, “cái mới lạ”, theo xu hướng vượt ra khỏi mô hình chung, ký ức thể loại. Trong khi đó, thi pháp _____ chấp nhận “cái quen thuộc”, “cái lặp lại” đã trở thành sở hữu chung của mỗi thành viên trong cộng đồng, và hơn thế nó đã trở thành kỷ niệm riêng của cả một dân tộc”.\n(Vũ Anh Tuấn, Vai trò thể loại trong khoa học văn học dân gian và vấn đề phân tích tác phẩm văn học dân gian từ góc nhìn thể loại)\nChọn cụm từ phù hợp để điền vào các chỗ trống:", options: ["A. văn học trung đại - văn học hiện đại.", "B. văn học dân gian - văn học viết.", "C. văn học viết - văn học dân gian.", "D. văn học hiện đại - văn học viết."], correctIndex: 2 },
-            { id: "q13", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 13: Trường hợp nào sau đây viết đúng chính tả?", options: ["A. Sỗ sàng, súc tích, trau chuốt.", "B. Sỗ sàng, xúc tích, trau chuốt.", "C. Sỗ sàng, súc tích, trao chuốt.", "D. Sổ sàng, súc tích, trau chuốt."], correctIndex: 0 },
-            { id: "q14", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 14: Câu nào sau đây viết đúng?", options: ["A. Trong gia đình, nó là đứa bị đối xử khắc khe nhất.", "B. Gió làm cây cối trong vườn xào xạc suốt đêm.", "C. Có gì đâu mà suốt ngày cứ dành giật with nhau.", "D. Kết quả chuẩn đoán của tôi không đáng lo."], correctIndex: 1 },
-            { id: "q15", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 15: “Anh ấy không nói gì, vô hình trung, tôi bị những người đứng quanh đó hiểu lầm”.\n“Vô hình trung” trong câu trên có nghĩa gì?", options: ["A. Vô tình, không ý thức được cảm xúc của người khác.", "B. Có chủ ý mang đến kết quả từ hành động của chủ thể.", "C. Tuy không có chủ định, không cố tình nhưng lại thành ra như vậy.", "D. Vì thiếu suy nghĩ nên đôi khi tạo ra ảnh hưởng tiêu cực."], correctIndex: 2 },
-            { id: "q16", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 16: Từ “mỗi” trong câu nào được dùng with nghĩa nhấn mạnh số lượng ít của sự vật?", options: ["A. Ngày xưa, thường cũng chỉ học một thầy, cùng lắm là vài ba thầy, chứ không như ngày nay, mỗi năm một lớp rồi mỗi môn một thầy.", "B. Mỗi người nghĩ một phách, mỗi người làm một nẻo, mạnh ai người nấy lo, còn thì “sống chết mặc bay”.", "C. Các cuộc thi bơi được tiến hành trong bể bơi có 6-10 đường bơi, mỗi một đường bơi rộng 2-2.5 m, được ngăn cách bằng dây phao.", "D. Thiết kế đặc biệt ở đây khiến ta dù nhắm tịt mắt hay giương to mắt thì cũng như nhau, bởi chỉ nhìn thấy có mỗi một màu đen."], correctIndex: 3 },
-            { id: "q17", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 17: “Sống có nghị lực mạnh mẽ sẽ giúp chúng ta vượt qua mọi thử thách, mọi trở ngại của hoàn cảnh và đạt được điều chúng ta mong ước; bởi vậy do đó, mỗi người cần giữ vững tinh thần, luôn hướng đến mục tiêu và nỗ lực hoàn thành mục tiêu”.\nCâu trên mắc lỗi gì?", options: ["A. Thiếu thành phần vị ngữ.", "B. Dùng sai từ ngữ liên kết.", "C. Thiếu thành phần chủ ngữ.", "D. Dùng từ sai về từ loại."], correctIndex: 1 },
-            { id: "q18", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 18:\nCâu “Nhờ kinh nghiệm nghiên cứu khoa học từ thời còn là sinh viên của Minh đã gây ấn tượng tốt with hội đồng đánh giá.” là câu sai, nên được sửa thành câu nào sau đây?", options: ["A. Nhờ kinh nghiệm nghiên cứu khoa học từ thời còn là sinh viên, Minh đã gây ấn tượng tốt with hội đồng đánh giá.", "B. Từ thời còn là sinh viên, nhờ kinh nghiệm nghiên cứu khoa học của Minh đã gây ấn tượng tốt with hội đồng đánh giá.", "C. Nhờ kinh nghiệm nghiên cứu khoa học từ thời còn là sinh viên, hội đồng đánh giá đã có ấn tượng tốt with Minh.", "D. Từ lúc còn là sinh viên, hội đồng đánh giá đã có ấn tượng tốt về kinh nghiệm nghiên cứu khoa học của Minh."], correctIndex: 0 },
-            { id: "q19", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 19: Câu nào sau đây thể hiện phong cách ngôn ngữ sinh hoạt?", options: ["A. Về công tác đào tạo đội ngũ làm báo, Chủ tịch Hồ Chí Minh luôn nhấn mạnh đến tầm quan trọng của việc giáo dục đạo đức, bồi dưỡng tài năng.", "B. Từ điển tiếng Việt giải nghĩa “diễn đàn là nơi để nhiều người có thể phát biểu ý kiến một cách công khai và rộng rãi”.", "C. Xem lại những quan điểm mà tôi đã trình bày trong báo cáo hơn 20 trang in đó, thì thấy cơ bản đến nay vẫn đúng.", "D. Trong xã hội hiện đại, báo chí là kênh truyền thông hữu hiệu, kết nối mọi thành viên trong cộng đồng."], correctIndex: 2 },
-            { id: "q20", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 20: “Thằng em thì hay hỏi\nKhông kể chuyện như anh\n(Tuy con, má chẳng sinh\nCon vẫn quen gọi má)\n- Má ơi ai sinh cá\nAi làm ra cái kem\nĐêm sao lại màu đen\nBan ngày sao màu trắng?…”.\n(Xuân Quỳnh, Cắt nghĩa)\nTại sao nhà thơ lại lựa chọn sử dụng cụm từ chêm xen thay vì viết dưới dạng một câu riêng biệt?", options: ["A. Để làm gián đoạn mạch kể chuyện chính.", "B. Để làm nổi bật tầm quan trọng của mối quan hệ giữa má và con.", "C. Để thể hiện triết lý sống đề cao tính nhân văn.", "D. Để bổ sung thông tin và tạo cảm giác tự nhiên, gần gũi."], correctIndex: 3 },
-
-            // Reading Group 1
-            {
-                id: "reading_21_25",
-                section: "SỬ DỤNG NGÔN NGỮ",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời câu từ 21 đến 25</strong><br><br>(1) Chạy dọc theo kênh Tàu Hủ, bến Bình Đông xưa, nhờ giao thông thủy lộ thuận tiện, cộng with cư dân bản địa và làng Minh Hương phát triển sầm uất, đã thành nơi tụ hội ghe thuyền từ khắp các tỉnh miền Tây và cả Nam Bộ, khiến khu vực này dần cực thịnh trong buôn bán và xuất khẩu lúa gạo.<br><br>(2) Dựa theo những ghi chép thì tên gọi kênh Tàu Hủ có khá nhiều lý giải. “Ký ức lịch sử về Sài Gòn và vùng phụ cận” của Trương Vĩnh Ký (Nguyễn Đình Đầu dịch, NXB Trẻ) có đoạn: “Hai bên bờ rạch Chợ Lớn là hai dãy phố lớn bằng gạch gọi là Tàu khậu, để cho người Hoa từ Trung Quốc hằng năm đi ghe biển tới thuê. Họ đem hàng hóa chứa trong các phố đó, hoặc để bán sỉ, bán lẻ khi lưu trú tại Sài Gòn”. “Tàu khậu” ở đây là ngữ âm của người Triều Châu, nghĩa là “nhà gạch” (thổ khố), phương ngữ “tàu khậu” bị biến âm dần trở thành “tàu hủ”. Một lý giải khác bắt nguồn từ hình dáng của dòng kênh, do có những đoạn thắt như cổ hũ, đọc lâu dần trại ra thành âm “tàu hũ, tàu hủ” như ngày nay.<br><br>(3) Nhắc đến bến Bình Đông, không thể không đề cập đến các kho, vựa - chành (phương ngữ của người Triều Châu, nghĩa là bến, bãi), nhà máy tên tuổi như kho Hữu Thành with sáu cửa, nhà máy xay lúa Phong Thạnh with công suất lên đến 500 tấn/ngày.<br><br>(4) Còn về diện mạo phố xá, kiến trúc nhà ở đặc trưng ở bến Bình Đông mang hình thái thuộc địa with các chi tiết trang trí chạy chỉ nổi thạch cao, lan can sắt mỹ nghệ, ngói tây, cửa lá sách… có công năng dùng để buôn bán (tầng trệt) và cư ngụ (tầng trên). Với sự phát triển của nhịp sống đô thị, cả bến Bình Đông hiện chỉ còn sót lại lác đác dãy nhà cổ liên kế gồm từng cụm ba gian, năm gian, bảy gian… nằm cách nhau một khoảng trống bằng with bề ngang của từng gian nhà gần chân cầu Máy Rượu.<br><br>(5) Qua thời gian, những cư dân gốc của dãy phố này cũng lần lượt ra đi. Những khoảng trống giữa các dãy nhà được người đến sau tận dụng, xây nối thành những căn nhà phố mới with kiến trúc “phá bĩnh” - giữa các dãy nhà ngói đỏ điểm xuyết một “gạch nối” là căn nhà hiện đại, mái đúc - chẳng ăn nhập gì with những căn nhà vốn mang nét cổ kính từ hàng trăm năm nay.<br><i>(Nguyễn Đình, Chuyện nhỏ ở Chợ Lớn)</i>",
-                subQuestions: [
-                    { id: "q21", text: "Câu 21: Thông tin của đoạn (2) được tổ chức theo kiểu gì?", options: ["A. Theo trật tự thời gian.", "B. Theo trật tự không gian.", "C. Theo kiểu quan hệ nhân quả.", "D. Theo kiểu liệt kê đối tượng."], correctIndex: 3 },
-                    { id: "q22", text: "Câu 22: Việc đề cập đến các kho, vựa, nhà máy tên tuổi ở đoạn (3) có vai trò gì trong việc thể hiện nội dung chính của văn bản?", options: ["A. Góp phần làm rõ đặc trưng của hoạt động sản xuất ở bến Bình Đông.", "B. Góp phần làm rõ đặc trưng của hoạt động kinh tế ở bến Bình Đông.", "C. Góp phần làm rõ đặc trưng của hoạt động giao thông ở bến Bình Đông.", "D. Góp phần làm rõ đặc trưng của hoạt động nghề nghiệp của người dân ở bến Bình Đông."], correctIndex: 1 },
-                    { id: "q23", text: "Câu 23: Thái độ của tác giả thể hiện trong đoạn (5) là gì?", options: ["A. Tỏ ra khách quan vì những giá trị xưa, cũ sẽ dần bị thay thế theo thời gian.", "B. Tiếc nuối vì sự mai một của những kiến trúc cổ theo thời gian.", "C. Thích thú vì những căn nhà hiện đại là sự điểm xuyết cho kiến trúc cổ.", "D. Tiếc nhớ những cư dân gốc của dãy phố ở bến Bình Đông."], correctIndex: 1 },
-                    { id: "q24", text: "Câu 24: Nhận định nào sau đây là phù hợp khi nói về chủ đề của văn bản trên?", options: ["A. Vai trò của bến Bình Đông trong không gian Chợ Lớn.", "B. Nguồn gốc hình thành bến Bình Đông trong lịch sử.", "C. Đặc điểm của bến Bình Đông trong quá khứ.", "D. Vị trí địa lý giúp bến Bình Đông thành nơi mua bán lúa gạo sầm uất."], correctIndex: 0 },
-                    { id: "q25", text: "Câu 25: Dòng nào dưới đây không trình bày tác động mà văn bản có thể mang đến cho người đọc?", options: ["A. Nhận thức rõ hơn về giá trị văn hóa, lịch sử của bến Bình Đông.", "B. Trân trọng những giá trị di sản mà cha ông đã để lại.", "C. Hoài niệm, tiếc nuối with những giá trị xưa cũ đang dần mai một.", "D. Hiểu rõ hơn về những thách thức của công tác bảo tồn văn hóa."], correctIndex: 3 }
-                ]
-            },
-
-            // Reading Group 2
-            {
-                id: "reading_26_30",
-                section: "SỬ DỤNG NGÔN NGỮ",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời câu từ 26 đến 30</strong><br><br>(1) Học văn là học tha nhân mà cũng đồng thời là học bản thân ta. Ta học bảng tuần hoàn Mendeleev là học tri thức do nhà bác học cung cấp. Còn ta học tác phẩm của L. Tolstoi là vừa học những tâm hồn Nga yêu chuộng hòa bình, chán ghét chiến tranh, vừa học tiếng vang của nó vào tâm hồn ta, xem cách ta bắt lấy và đón nhận tín hiệu từ tác phẩm đó. Nếu ta chỉ thâu nhận nội dung và các thủ pháp nghệ thuật trong tiểu thuyết như các nguyên tố hóa học của bảng tuần hoàn thì mãi mãi ta không hiểu gì văn học mà cũng không hiểu gì bản thân ta.<br><br>(2) Học văn là học kinh nghiệm làm người ở đời để chính mình tự quyết lấy cuộc đời mình. Vì không ai có thể thay ta đưa ra lời giải bài toán cuộc đời ta. Người học văn vì tiếp xúc with nhiều cuộc đời trong sách vở nên có thể lúng túng, lưỡng lự, phân vân và băn khoăn khi va chạm with cuộc đời thực tế. Ta tham khảo từ những cuộc đời đó để rồi đưa ra giải pháp của riêng ta.<br><br>(3) Học văn là học cách ứng xử with quá khứ, đối mặt with hiện tại và dự báo cho tương lai. Vì vậy mà chúng ta cần cả văn chương dấn thân lẫn văn chương viễn mơ, cần cả tiểu thuyết lịch sử, tiểu thuyết hiện thực lẫn tiểu thuyết viễn tưởng. Học văn là để mở rộng chiều kích cuộc đời ta, để ta không biến thành “con người một chiều kích” như Herbert Marcuse cảnh báo từ những năm 60 thế kỷ trước.<br><br>(4) Học văn là học sống ở đời giữa muôn người cũng đồng thời là học làm người tự do lựa chọn. Theo tinh thần của Jean-Paul Sartre, con người bị buộc phải tự do, có tự do mới có lựa chọn. Lựa chọn chỉ có ý nghĩa khi lựa chọn trong tự do. Nhưng tự do của ta không đối lập with tự do của người khác, tự do của ta chỉ có ý nghĩa khi hiện hữu cùng tự do của người khác.<br><i>(Huỳnh Như Phương, Hồi âm từ phương Nam)</i>",
-                subQuestions: [
-                    { id: "q26", text: "Câu 26: Trong đoạn (2), câu nào chứa luận điểm?", options: ["A. Học văn là học kinh nghiệm làm người ở đời để chính mình tự quyết lấy cuộc đời mình.", "B. Vì không ai có thể thay ta đưa ra lời giải bài toán cuộc đời ta.", "C. Người học văn vì tiếp xúc with nhiều cuộc đời trong sách vở nên có thể lúng túng, lưỡng lự, phân vân và băn khoăn khi va chạm with cuộc đời thực tế.", "D. Ta tham khảo từ những cuộc đời đó để rồi đưa ra giải pháp của riêng ta."], correctIndex: 0 },
-                    { id: "q27", text: "Câu 27: Trong đoạn (3), cụm từ “con người một chiều kích” được sử dụng theo biện pháp tu từ nào?", options: ["A. Nhân hóa.", "B. So sánh.", "C. Ẩn dụ.", "D. Nói quá."], correctIndex: 2 },
-                    { id: "q28", text: "Câu 28: Việc tác giả nhắc đến các tên tuổi “L. Tolstoi, Herbert Marcuse” ở đoạn (1) và đoạn (3) nhằm mục đích gì?", options: ["A. Giới thiệu vấn đề.", "B. Giải thích vấn đề.", "C. Chứng minh vấn đề.", "D. Phản biện vấn đề."], correctIndex: 2 },
-                    { id: "q29", text: "Câu 29: Tác giả thể hiện quan điểm nào trong bài viết?", options: ["A. Việc học môn văn cũng giống như việc học môn hóa, bồi đắp lòng hiếu tri nơi người học.", "B. Sự lúng túng, lưỡng lự và băn khoăn của người học văn khi va chạm with cuộc đời là điều cần tránh.", "C. Hình mẫu “con người một chiều kích” là đối tượng siêu việt mà người học văn cần trở thành.", "D. Học văn là hành trình kết hợp giữa tri nhận, phản tư và điều chỉnh để hoàn thiện con người."], correctIndex: 3 },
-                    { id: "q30", text: "Câu 30: Ý nghĩa nào của việc học văn không được đề cập trong văn bản?", options: ["A. Mở ra cho con người một hành trình tự hiểu biết bản thân và người khác.", "B. Bồi đắp con người sự hiểu biết và mẫn tiệp của tâm hồn phong phú.", "C. Giữ vai trò như một nghi lễ bắt buộc, đánh dấu sự trưởng thành của con người.", "D. Hướng đến sự hình thành ý thức tự do của mỗi người."], correctIndex: 2 }
-                ]
-            },
-            // Questions 31-45
-            { id: "q31", section: "1.2. TIẾNG ANH", text: "Câu 31: Jane was careful. She didn't start the test until she _____ all the instructions.", options: ["A. read", "B. reads", "C. had read", "D. had been reading"], correctIndex: 2 },
-            { id: "q32", section: "1.2. TIẾNG ANH", text: "Câu 32: The organizers had to call _____ the concert because of insufficient attendance.", options: ["A. on", "B. off", "C. out", "D. in"], correctIndex: 1 },
-            { id: "q33", section: "1.2. TIẾNG ANH", text: "Câu 33: Typhoon Yagi slammed Asia in August 2024 with _____ rain, causing severe flooding.", options: ["A. too much", "B. too many", "C. plentiful of", "D. a large number of"], correctIndex: 0 },
-            { id: "q34", section: "1.2. TIẾNG ANH", text: "Câu 34: The weather today is _____ than yesterday, so you should wear a jacket if you go out.", options: ["A. cold", "B. much cold", "C. more cold", "D. colder"], correctIndex: 3 },
-            { id: "q35", section: "1.2. TIẾNG ANH", text: "Câu 35: We need more _____ teachers to improve the quality of education.", options: ["A. qualify", "B. qualified", "C. qualifying", "D. qualification"], correctIndex: 1 },
-            { id: "q36", section: "1.2. TIẾNG ANH", text: "Câu 36: Each of the following sentences has one error (A, B, C, or D). Find it.\nMathematics, <u>which</u> many students believe <u>is</u> too difficult, actually <u>require</u> logical thinking <u>rather than</u> memorization.", options: ["A. which", "B. is", "C. require", "D. rather than"], correctIndex: 2 },
-            { id: "q37", section: "1.2. TIẾNG ANH", text: "Câu 37: My class visited <u>the</u> museum in Paris <u>which</u> is famous <u>for</u> its <u>collection</u> of ancient paintings.", options: ["A. the", "B. which", "C. for", "D. collection"], correctIndex: 1 },
-            { id: "q38", section: "1.2. TIẾNG ANH", text: "Câu 38: Ms. Brown <u>is worried</u> <u>about</u> her <u>students's</u> ability to pass the <u>coming</u> graduation exams.", options: ["A. is worried", "B. about", "C. students's", "D. coming"], correctIndex: 0 },
-            { id: "q39", section: "1.2. TIẾNG ANH", text: "Câu 39: Elephants, <u>that</u> <u>are</u> my niece's favorite animal, are <u>among</u> the <u>smartest</u> animals.", options: ["A. that", "B. are", "C. among", "D. smartest"], correctIndex: 0 },
-            { id: "q40", section: "1.2. TIẾNG ANH", text: "Câu 40: Jane <u>said</u> that her parents wanted <u>hers</u> to marry someone <u>that</u> they <u>trusted</u>.", options: ["A. said", "B. hers", "C. that", "D. trusted"], correctIndex: 1 },
-            { id: "q41", section: "1.2. TIẾNG ANH", text: "Câu 41: Which of the following best restates each of the given sentences?\nThe shop is currently crowded possibly because its new products are very popular.", options: ["A. The shop's large number of customers is definitely the result of its new products.", "B. It is certain that customers always love the shop's new and popular products.", "C. The popularity of the shop's new products might be attracting many customers.", "D. Customers visit the shop because it is always filled with popular products."], correctIndex: 2 },
-            { id: "q42", section: "1.2. TIẾNG ANH", text: "Câu 42: The meeting was delayed because the marketing manager arrived late.", options: ["A. The meeting would not be rescheduled if the marketing manager had not arrived late.", "B. The meeting would have been delayed if the marketing manager had not arrived on time.", "C. Unless the marketing manager arrived late, the meeting would not have been postponed.", "D. The meeting would have started on time if the marketing manager had not been late."], correctIndex: 3 },
-            { id: "q43", section: "1.2. TIẾNG ANH", text: "Câu 43: This film is interesting, but the other two films are much more interesting.", options: ["A. This is the least interesting film out of the three.", "B. Of the three films, this film is the most interesting.", "C. This film is more boring than the other two films.", "D. The other two films are less boring than this one."], correctIndex: 0 },
-            { id: "q44", section: "1.2. TIẾNG ANH", text: "Câu 44: Close the windows to prevent the documents from being blown away.", options: ["A. The documents would be blown away if the windows had not been closed.", "B. If you don't close the windows, you cannot find the blown documents.", "C. The windows should be closed so that the documents are not blown away.", "D. By closing the windows, the documents will not be blown away slowly."], correctIndex: 2 },
-            { id: "q45", section: "1.2. TIẾNG ANH", text: "Câu 45: Jane said to her husband, \"Don't forget to lock the door before you go to bed.\"", options: ["A. Jane's husband asked her not to forget to lock the door before going to bed.", "B. Jane reminded her husband to lock the door before he went to bed.", "C. Jane said to her husband that he must lock the door before going to bed.", "D. Jane told her husband not to leave the door locked before he went to bed."], correctIndex: 1 },
-            {
-                id: "reading_46_52",
-                section: "1.2. TIẾNG ANH",
-                type: "reading_group",
-                passage: "<strong>Questions 46-52: Read the passage carefully.</strong><br><br>1 A former teacher, Butler, wanted a change in her life. After many years of working in the U.S., she dreamed of living somewhere quiet, peaceful, and affordable. She discovered Latronico, a small mountain village in southern Italy's Basilicata region. <b>There</b>, she was able to buy a charming old house at a very low price compared to what she would pay in a big city. For her, this was the beginning of a new chapter filled with hope and peace.<br>2 Buying the house was easier than she had expected. Latronico has a special program called “La Tua Casa a Latronico” (Your Home in Latronico). The program helps people purchase and restore empty houses that once belonged to families who moved away. This made the process simple and welcoming for newcomers. It is part of a wider trend across Italy, where small towns invite people to settle and stop villages from becoming empty.<br>3 After moving in, Butler began to work on her house. Many of these old houses need improvements, and hers was no different. She <b>fixed</b> the floors, painted the walls, and hired local workers to upgrade the kitchen and bathrooms. With each improvement, the house felt more like home. She enjoyed the process because it allowed her to be creative while also supporting local workers. In this way, she was not just fixing her house but also joining the community.<br>4 Life in Latronico soon became more than just home renovations. She loved walking through the quiet streets, greeting neighbors, and visiting small shops. People in the village were warm and friendly, making her feel part of the community very quickly. Simple moments – like buying bread at the bakery or sitting in the town square – became joyful experiences. She felt that her new life was slower, healthier, and more connected compared to her old stressful, fast-paced city life. Her story shows how affordable housing programs can give people a second chance.",
-                subQuestions: [
-                    { id: "q46", text: "Câu 46: What is the passage mainly about?", options: ["A. A former teacher's new life in an Italian village", "B. “La Tua Casa a Latronico,” a housing program", "C. How to fix old houses in an Italian village", "D. Life in Latronico for Italians who love peace"], correctIndex: 0 },
-                    { id: "q47", text: "Câu 47: According to paragraph 1, what does the word <b>There</b> refer to?", options: ["A. mountain", "B. Italy", "C. Latronico", "D. southern Basilicata"], correctIndex: 2 },
-                    { id: "q48", text: "Câu 48: In paragraph 2, which of the following is NOT a characteristic of “La Tua Casa a Latronico”?", options: ["A. It sells the houses that are no longer resided in.", "B. It provides easy opportunities for newcomers.", "C. It started a new housing trend all over Italy.", "D. It keeps some villages from being deserted."], correctIndex: 2 },
-                    { id: "q49", text: "Câu 49: What word can best replace <b>fixed</b> as used in paragraph 3?", options: ["A. strengthened", "B. repaired", "C. changed", "D. polished"], correctIndex: 1 },
-                    { id: "q50", text: "Câu 50: In paragraph 3, what can be inferred about the way Butler supported local workers?", options: ["A. She helped them to be creative.", "B. She joined their local community.", "C. She created repair jobs for them.", "D. She improved their building skills."], correctIndex: 2 },
-                    { id: "q51", text: "Câu 51: In paragraph 4, what is stated about people in Latronico?", options: ["A. They were kind and welcoming.", "B. They were quiet but friendly.", "C. They loved greeting their neighbors.", "D. They were quick at making friends."], correctIndex: 0 },
-                    { id: "q52", text: "Câu 52: In paragraph 4, what did Butler say about her life before she came to Latronico?", options: ["A. It was totally carefree.", "B. It was quick-moving.", "C. It suited old people more.", "D. It had nothing but stress."], correctIndex: 1 }
-                ]
-            },
-            {
-                id: "reading_53_60",
-                section: "1.2. TIẾNG ANH",
-                type: "reading_group",
-                passage: "<strong>Questions 53-60: Read the passage carefully.</strong><br><br>1. Climate change is making the world's weather more extreme. Scientists say that regions with hotter air can hold more water, and warmer seas give storms extra strength. This means storms today are often stronger, wetter, and more dangerous than <b>those</b> in the past. These changes are not just predictions for the future - they are already happening and affecting millions of people.<br>2. One big effect is the increase in rainfall and flooding. Typhoons no longer bring only strong winds; they now <b>dump</b> record amounts of water. In 2023, Typhoon Haikui hit Taiwan and later Hong Kong, where it caused the heaviest rainfall in 140 years. Streets, subways, and homes were flooded, and daily life was stopped for many people. This shows how climate change turns storms into water disasters, especially in crowded cities that do not have strong drainage systems.<br>3. Another effect is that typhoons now cause more economic damage. The bigger and more developed cities are, the more expensive it is to repair. Typhoon Doksuri in 2023 is a clear example. It flooded Beijing and other parts of China, destroying homes and farmland. The cost reached more than 28 billion dollars, making it the most expensive typhoon in China's history. Climate change makes such storms more frequent, and urban growth makes the damage higher, a dangerous mix for modern societies.<br>4. A third effect is that storms are stronger than they would be due to climate change. In 2024, <b>scientists</b> studied Typhoon Gaemi and found that its winds were about 9 mph stronger and rainfall 14% heavier because of hotter oceans. They also said climate change made storms like Gaemi 30% more likely. This proves climate change is not just a background factor; it directly increases the power of storms.<br>5. Finally, climate change is making typhoons intensify faster, which gives people less time to prepare. In 2025, Typhoon Kajiki grew very quickly before striking Vietnam. Nearly 600,000 people had to evacuate, and many cities, including Hanoi, were badly flooded. This rapid growth shows how climate change makes storms more dangerous by reducing warning time.<br>6. Countries now need stronger plans, better evacuation systems, and more climate action to protect people in the years ahead.",
-                subQuestions: [
-                    { id: "q53", text: "Câu 53: The best title of the passage can be _____.", options: ["A. How Typhoons Are Increasing Climate Change", "B. Climate Change and the Rising Power of Storms", "C. Rising Seas, Rising Typhoons: Only in Asia", "D. How the World Is Suffering from Extreme Weathers"], correctIndex: 1 },
-                    { id: "q54", text: "Câu 54: The word <b>those</b> in paragraph 1 refers to _____.", options: ["A. scientists", "B. regions", "C. seas", "D. storms"], correctIndex: 3 },
-                    { id: "q55", text: "Câu 55: In paragraph 2, the word <b>dump</b> is closest in meaning to _____.", options: ["A. throw away as garbage", "B. drop or release suddenly", "C. pour now and again", "D. sell at a cheap price"], correctIndex: 1 },
-                    { id: "q56", text: "Câu 56: According to paragraph 2, crowded cities without strong drainage systems _____.", options: ["A. cause many water disasters for their populations", "B. can develop storms into deadly typhoons", "C. may be the most vulnerable to climate change", "D. suffer from serious flooding caused by storms"], correctIndex: 3 },
-                    { id: "q57", text: "Câu 57: In paragraph 3, it is NOT mentioned that _____.", options: ["A. Typhoon Doksuri flooded the entire mainland China", "B. Typhoon Doksuri caused huge economic losses to China", "C. storms similar to Typhoon Doksuri occur more often now", "D. storms are more damaging due to increased urbanization"], correctIndex: 0 },
-                    { id: "q58", text: "Câu 58: In paragraph 4, the author mentions <b>scientists</b> in order to _____.", options: ["A. confirm another viewpoint", "B. present two perspectives", "C. validate his/her claim", "D. illustrate a public opinion"], correctIndex: 2 },
-                    { id: "q59", text: "Câu 59: It can be inferred from paragraph 4 that Typhoon Gaemi and similar storms _____.", options: ["A. pose higher risks of flooding", "B. are more serious in desert areas", "C. cause huge shortages of power", "D. are a factor of global warming"], correctIndex: 0 },
-                    { id: "q60", text: "Câu 60: Paragraphs 2, 3, 4, and 5 present _____ respectively as changes to storms due to climate change.", options: ["A. higher economic losses, serious floods, greater intensity, and higher speed", "B. higher speed, serious floods, higher economic losses, and greater intensity", "C. serious floods, higher economic losses, greater intensity, and higher speed", "D. serious floods, higher speed, higher economic losses, and greater intensity"], correctIndex: 2 }
-                ]
-            },
-            // Questions 61-90
-            { id: "q61", section: "PHẦN 2. TOÁN HỌC", text: "Câu 61: Một hình chữ nhật và một hình vuông có cùng chu vi là 24 (đơn vị dài). Biết rằng diện tích hình vuông lớn hơn diện tích hình chữ nhật là 4 (đơn vị diện tích). Hiệu giữa chiều dài và chiều rộng của hình chữ nhật là:", options: ["A. 2.", "B. 4.", "C. 6.", "D. 8."], correctIndex: 1 },
-            { id: "q62", section: "PHẦN 2. TOÁN HỌC", text: "Câu 62: Cho phương trình \\(\\sqrt{-x^2+mx} = 2x-1\\) with \\(m\\) là tham số thực. Tập hợp tất cả giá trị của \\(m\\) để phương trình trên vô nghiệm là:", options: ["A. \\(\\left( \\frac{1}{2}; \\infty \\right)\\).", "B. \\(\\left( \\frac{1}{2}; 2 \\right]\\).", "C. \\(\\left( -\\infty; \\frac{1}{2} \\right)\\).", "D. \\((-\\infty; 2)\\)."], correctIndex: 2 },
-            { id: "q63", section: "PHẦN 2. TOÁN HỌC", text: "Câu 63: Anh Hùng muốn gửi tiết kiệm để sau 3 năm có 800 triệu đồng mua xe. Biết lãi suất hàng tháng là 0,6%, tiền lãi sinh ra hàng tháng được nhập vào tiền vốn, số tiền gửi hàng tháng là như nhau. Anh Hùng phải gửi ngân hàng mỗi tháng số tiền gần nhất with số tiền nào sau đây:", options: ["A. 19.785.000 đồng.", "B. 19.895.000 đồng.", "C. 19.975.000 đồng.", "D. 19.665.000 đồng."], correctIndex: 1 },
-            { id: "q64", section: "PHẦN 2. TOÁN HỌC", text: "Câu 64: Cho \\(a = \\log_2 5\\), \\(b = \\log_5 3\\). Biết \\(\\log_{24} 15 = \\frac{ma+ab}{n+ab}\\) with \\(m\\), \\(n\\) là các số nguyên. Giá trị \\(S = m^2+n^2\\) là:", options: ["A. 2.", "B. 5.", "C. 13.", "D. 10."], correctIndex: 3 },
-            { id: "q65", section: "PHẦN 2. TOÁN HỌC", text: "Câu 65: Có 6 thị trấn A, B, C, D, E và F được kết nối with nhau bởi một số tuyến đường. Độ dài tính bằng kilômét của các tuyến đường kết nối giữa các thị trấn được cho kèm theo bảng sau.<br><table class=\"table table-bordered text-center\" style=\"width:auto; margin:10px auto\"><tr><td></td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td></tr><tr><td>A</td><td>0</td><td>1</td><td>0</td><td>8</td><td>4</td><td>1</td></tr><tr><td>B</td><td>1</td><td>0</td><td>2</td><td>0</td><td>0</td><td>0</td></tr><tr><td>C</td><td>0</td><td>2</td><td>0</td><td>3</td><td>0</td><td>0</td></tr><tr><td>D</td><td>8</td><td>0</td><td>3</td><td>0</td><td>5</td><td>0</td></tr><tr><td>E</td><td>4</td><td>0</td><td>0</td><td>5</td><td>0</td><td>1</td></tr><tr><td>F</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr></table>Tổng số tuyến đường kết nối các thị trấn with nhau là:", options: ["A. 8.", "B. 6.", "C. 10.", "D. 9."], correctIndex: 3 },
-            { id: "q66", section: "PHẦN 2. TOÁN HỌC", text: "Câu 66: Một công ty viễn thông đang lên kế hoạch mở rộng mạng lưới dịch vụ của mình tại một khu vực gồm sáu thị trấn: A, B, C, D, E và F. Để cung cấp dịch vụ internet và điện thoại đến từng thị trấn, công ty cần phải kéo cáp ngầm nối các thị trấn with nhau. Mỗi đoạn cáp nối hai thị trấn có một chi phí nhất định, tùy thuộc vào khoảng cách địa lý và điều kiện địa hình. Sơ đồ dưới đây thể hiện các tuyến cáp có thể xây dựng, cùng with chi phí đi kèm (tính bằng nghìn đô la) cho từng tuyến.<br><br><b>Sơ đồ tuyến cáp (thị trấn: chi phí nghìn đô la):<img src=\"https://i.ibb.co/twSqV6SV/Screenshot-2026-05-14-223438.png\"></b><br>Chi phí tối thiểu (nghìn đô la) mà công ty phải bỏ ra để xây dựng hệ thống cáp sao cho tất cả sáu thị trấn đều được kết nối with nhau là:", options: ["A. 780.", "B. 820.", "C. 760.", "D. 800."], correctIndex: 0 },
-            { id: "q67", section: "PHẦN 2. TOÁN HỌC", text: "Câu 67: Tập nghiệm của phương trình \\(\\cos 2x + 3 \\sin x - 2 = 0\\) là:", options: ["A. \\(S = \\left\\{ \\frac{\\pi}{2} + k2\\pi; \\frac{\\pi}{6} + k2\\pi; \\frac{5\\pi}{6} + k2\\pi, k \\in \\mathbb{Z} \\right\\}\\).", "B. \\(S = \\left\\{ \\frac{\\pi}{6} + k2\\pi; \\frac{5\\pi}{6} + k2\\pi, k \\in \\mathbb{Z} \\right\\}\\).", "C. \\(S = \\left\\{ \\frac{\\pi}{2} + k2\\pi; \\frac{\\pi}{3} + k2\\pi; \\frac{2\\pi}{3} + k2\\pi, k \\in \\mathbb{Z} \\right\\}\\).", "D. \\(S = \\left\\{ \\frac{\\pi}{3} + k2\\pi; \\frac{2\\pi}{3} + k2\\pi, k \\in \\mathbb{Z} \\right\\}\\)."], correctIndex: 0 },
-            { id: "q68", section: "PHẦN 2. TOÁN HỌC", text: "Câu 68: Cho tam giác ABC có a, b, c lần lượt là độ dài các cạnh đối diện with các đỉnh A, B, C. Biết \\(b(b^2-a^2)=c(a^2-c^2)\\), khi đó số đo của góc A bằng:", options: ["A. \\(30^\\circ\\).", "B. \\(45^\\circ\\).", "C. \\(60^\\circ\\).", "D. \\(120^\\circ\\)."], correctIndex: 2 },
-            { id: "q69", section: "PHẦN 2. TOÁN HỌC", text: "Câu 69: Cho hàm số \\(f(x) = \\begin{cases} \\frac{x^2-4}{x-2}, & x \\neq 2 \\\\ m+1, & x = 2 \\end{cases}\\) with m là tham số thực. Giá trị của m để hàm số liên tục tại \\(x_0 = 2\\) là:", options: ["A. \\(m=3\\).", "B. \\(m=2\\).", "C. \\(m=4\\).", "D. \\(m=1\\)."], correctIndex: 0 },
-            { id: "q70", section: "PHẦN 2. TOÁN HỌC", text: "Câu 70: Cho hàm số \\(y = x.e^x\\). Tập nghiệm của bất phương trình \\(y'' - y' - y > 0\\) là:", options: ["A. \\((-1; +\\infty)\\).", "B. \\((-\\infty; 1)\\).", "C. \\((1; +\\infty)\\).", "D. \\((-\\infty; -1)\\)."], correctIndex: 1 },
-            { id: "q71", section: "PHẦN 2. TOÁN HỌC", text: "Câu 71: Cho hàm số \\(f(x)\\) liên tục trên \\([0; 2]\\) và thoả mãn \\(\\int_{0}^{2} f(x)dx = 7\\). Tính giá trị \\(\\int_{0}^{2} (f(x)-x)dx\\).", options: ["A. 5.", "B. -5.", "C. -3.", "D. 3."], correctIndex: 1 },
-            { id: "q72", section: "PHẦN 2. TOÁN HỌC", text: "Câu 72: Xét hàm số \\(y = f(x)\\) có \\(f'(x) = 3x(x-2)\\) và đồ thị \\((C)\\) của nó thì đi qua gốc tọa độ. Tính diện tích phần hình phẳng giới hạn bởi \\((C)\\) và trục hoành.", options: ["A. 0.", "B. \\(-\\frac{27}{4}\\).", "C. 4.", "D. \\(\\frac{27}{4}\\)."], correctIndex: 3 },
-            {
-                id: "reading_73_74",
-                section: "PHẦN 2. TOÁN HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 73 đến 74</strong><br><br>Để sản xuất mỗi cái bánh loại A cần 200 g bột và 25 g thịt, để sản xuất mỗi bánh loại B cần 100 g bột và 50 g thịt. Số nguyên liệu có sẵn gồm 5 kg bột và 1 kg thịt.",
-                subQuestions: [
-                    { id: "q73", text: "Câu 73: Gọi \\(x\\) là số bánh loại A và \\(y\\) là số bánh loại B. Hệ bất phương trình biểu diễn các ràng buộc nguyên liệu là:", options: ["A. \\(\\begin{cases} 200x + 100y \\le 5000 \\\\ 25x + 50y \\le 1000 \\\\ x, y \\ge 0 \\end{cases}\\)", "B. \\(\\begin{cases} 200x + 100y \\le 1000 \\\\ 25x + 50y \\le 5000 \\\\ x, y \\ge 0 \\end{cases}\\)", "C. \\(\\begin{cases} 200x + 25y \\le 5000 \\\\ 100x + 50y \\le 1000 \\\\ x, y \\ge 0 \\end{cases}\\)", "D. \\(\\begin{cases} 200x + 25y \\le 1000 \\\\ 100x + 50y \\le 5000 \\\\ x, y \\ge 0 \\end{cases}\\)"], correctIndex: 0 },
-                    { id: "q74", text: "Câu 74: Giả sử lợi nhuận thu được từ mỗi chiếc bánh loại A là 10 nghìn đồng và từ loại B là 15 nghìn đồng. Lợi nhuận tối đa (nghìn đồng) có thể thu được là:", options: ["A. 250.", "B. 300.", "C. 350.", "D. 400."], correctIndex: 2 }
-                ]
-            },
-            {
-                id: "reading_75_76",
-                section: "PHẦN 2. TOÁN HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 75 đến 76</strong><br><br>Cho cấp số cộng \\((u_n)\\) xác định bởi:<br>\\(\\begin{cases} u_1 + u_5 = 12 \\\\ u_2 + u_6 = 16 \\end{cases}\\)",
-                subQuestions: [
-                    { id: "q75", text: "Câu 75: Công sai \\(d\\) của cấp số cộng \\((u_n)\\) là:", options: ["A. \\(d=1\\).", "B. \\(d=2\\).", "C. \\(d=3\\).", "D. \\(d=4\\)."], correctIndex: 1 },
-                    { id: "q76", text: "Câu 76: Tính giá trị giới hạn \\(\\lim_{n \\to +\\infty} \\frac{5u_n - 3}{n + 2}\\).", options: ["A. 0.", "B. 5.", "C. 10.", "D. \\(+\\infty\\)."], correctIndex: 2 }
-                ]
-            },
-            {
-                id: "reading_77_78",
-                section: "PHẦN 2. TOÁN HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 77 đến 78</strong><br><br>Trong không gian tọa độ \\(Oxyz\\), cho điểm \\(A(2; 2; -3)\\) và hai mặt phẳng \\((P): 2x + y - 2z = 0\\), \\((Q): 2x - y + z = 0\\).",
-                subQuestions: [
-                    { id: "q77", text: "Câu 77: Khoảng cách từ điểm A đến mặt phẳng (P) bằng:", options: ["A. 3.", "B. 4.", "C. 2.", "D. 6."], correctIndex: 1 },
-                    { id: "q78", text: "Câu 78: Mặt phẳng đi qua A và vuông góc with (P) và (Q) có phương trình:", options: ["A. \\(x + 6y + 4z - 2 = 0\\).", "B. \\(x - 6y - 4z - 2 = 0\\).", "C. \\(x - 6y + 4z + 22 = 0\\).", "D. \\(x + 6y - 4z - 26 = 0\\)."], correctIndex: 0 }
-                ]
-            },
-            {
-                id: "reading_79_81",
-                section: "PHẦN 2. TOÁN HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 79 đến 81</strong><br><br>Cho hàm số \\(y = x^3 - 3x + m\\).",
-                subQuestions: [
-                    { id: "q79", text: "Câu 79: Với \\(m = 1\\), giá trị lớn của hàm số trên đoạn \\([-2; 2]\\) là:", options: ["A. 4.", "B. 3.", "C. 2.", "D. 1."], correctIndex: 1 },
-                    { id: "q80", text: "Câu 80: Tất cả giá trị của \\(m\\) để hàm số nghịch biến trên tập xác định là:", options: ["A. \\(m \\in [-1; 3]\\).", "B. \\(m = 1\\).", "C. \\(m \\in \\left[-\\frac{1}{2}; 4\\right]\\).", "D. \\(m \\in \\varnothing\\)."], correctIndex: 3 },
-                    { id: "q81", text: "Câu 81: Tính tổng tất cả giá trị nguyên của tham số \\(m\\) sao cho phương trình \\(-x^3 + 3x = m\\) có 3 nghiệm thực phân biệt.", options: ["A. -1.", "B. 2.", "C. 1.", "D. 0."], correctIndex: 3 }
-                ]
-            },
-            {
-                id: "reading_82_84",
-                section: "PHẦN 2. TOÁN HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 82 đến 84</strong><br><br>Một nhà máy có hai lô hàng cần kiểm tra. Lô A có 10 sản phẩm, trong đó có 7 sản phẩm tốt và 3 sản phẩm lỗi. Lô B có 15 sản phẩm, trong đó có 10 sản phẩm tốt và 5 sản phẩm lỗi.",
-                subQuestions: [
-                    { id: "q82", text: "Câu 82: Từ lô hàng A chọn ngẫu nhiên đồng thời 2 sản phẩm, xác suất để người đó lấy được 2 sản phẩm tốt là:", options: ["A. \\(\\frac{7}{15}\\).", "B. \\(\\frac{1}{5}\\).", "C. \\(\\frac{7}{30}\\).", "D. \\(\\frac{11}{90}\\)."], correctIndex: 0 },
-                    { id: "q83", text: "Câu 83: Chọn ngẫu nhiên một lô hàng, rồi từ lô hàng đó chọn ra 2 sản phẩm. Xác suất để lấy được 2 sản phẩm tốt là:", options: ["A. \\(\\frac{94}{105}\\).", "B. \\(\\frac{23}{94}\\).", "C. \\(\\frac{47}{105}\\).", "D. \\(\\frac{49}{94}\\)."], correctIndex: 2 },
-                    { id: "q84", text: "Câu 84: Chọn ngẫu nhiên một lô hàng, rồi từ lô hàng đó chọn ra 1 sản phẩm. Biết sản phẩm được chọn là sản phẩm lỗi. Xác suất để lô được chọn là lô B là:", options: ["A. \\(\\frac{9}{19}\\).", "B. \\(\\frac{10}{19}\\).", "C. \\(\\frac{1}{2}\\).", "D. \\(\\frac{3}{5}\\)."], correctIndex: 1 }
-                ]
-            },
-            {
-                id: "reading_85_87",
-                section: "PHẦN 2. TOÁN HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 85 đến 87</strong><br><br>Trong mặt phẳng tọa độ \\(Oxy\\), cho tam giác \\(ABC\\) có tọa độ các đỉnh lần lượt là \\(A(-5; 1)\\), \\(B(1; 5)\\), \\(C(7; -3)\\).",
-                subQuestions: [
-                    { id: "q85", text: "Câu 85: Gọi \\(G\\) là trọng tâm của tam giác \\(ABC\\). Khoảng cách \\(OG\\) là:", options: ["A. \\(\\sqrt{2}\\).", "B. \\(\\sqrt{3}\\).", "C. 1.", "D. 2."], correctIndex: 0 },
-                    { id: "q86", text: "Câu 86: Gọi \\(M\\) là trung điểm cạnh \\(AC\\). Gọi \\(N\\) là điểm sao cho \\(BMCN\\) là hình bình hành. Tổng hoành độ và tung độ của \\(N\\) bằng:", options: ["A. 7.", "B. 8.", "C. 9.", "D. 10."], correctIndex: 3 },
-                    { id: "q87", text: "Câu 87: Gọi \\(D\\) là điểm nằm trên cạnh \\(BC\\) sao cho đường tròn đường kính \\(DB\\) tiếp xúc trục tung. Hiệu hoành độ và tung độ của \\(D\\) là:", options: ["A. 2.", "B. 2,5.", "C. 3.", "D. 3,5."], correctIndex: 2 }
-                ]
-            },
-            {
-                id: "reading_88_90",
-                section: "PHẦN 2. TOÁN HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 88 đến 90</strong><br><br>Cho hình chóp \\(S.ABCD\\) có đáy là hình vuông cạnh \\(a\\). Hình chiếu vuông góc \\(H\\) của \\(S\\) lên mặt đáy \\((ABCD)\\) là trung điểm của \\(AB\\). Biết \\(SH = a\\).",
-                subQuestions: [
-                    { id: "q88", text: "Câu 88: Thể tích hình chóp \\(S.BHD\\) là:", options: ["A. \\(\\frac{1}{6}a^3\\).", "B. \\(\\frac{1}{12}a^3\\).", "C. \\(\\frac{\\sqrt{2}}{12}a^3\\).", "D. \\(\\frac{\\sqrt{3}}{12}a^3\\)."], correctIndex: 1 },
-                    { id: "q89", text: "Câu 89: Chu vi tam giác \\(SBD\\) là:", options: ["A. \\(\\frac{2\\sqrt{2}+3+\\sqrt{5}}{2}a\\).", "B. \\(\\frac{2\\sqrt{2}+\\sqrt{3}+\\sqrt{5}}{2}a\\).", "C. \\(\\frac{2\\sqrt{2}+2\\sqrt{5}}{2}a\\).", "D. \\(\\frac{2\\sqrt{2}+\\sqrt{3}+5}{2}a\\)."], correctIndex: 0 },
-                    { id: "q90", text: "Câu 90: Khoảng cách từ \\(H\\) đến mặt phẳng \\((SBD)\\) xấp xỉ:", options: ["A. 0,5a.", "B. 0,66a.", "C. 0,33a.", "D. 0,25a."], correctIndex: 2 }
-                ]
-            },
-            // Questions 91-120
-            {
-                id: "reading_91_93",
-                section: "PHẦN 3. TƯ DUY KHOA HỌC",
-                type: "reading_group",
-                passage: "<strong>3.1. LOGIC, PHÂN TÍCH SỐ LIỆU</strong><br><strong>Dựa vào thông tin dưới đây để trả lời các câu từ 91 đến 93</strong><br><br>Nhân dịp tổ chức buổi lễ 20/11, đội văn nghệ của trường định sẽ biểu diễn 5 tiết mục là: đơn ca nam, đơn ca nữ, song ca nam nữ, tốp ca học sinh và tốp ca giáo viên. Thứ tự các tiết mục tuân theo các ràng buộc sau đây:<br>- Song ca nam nữ phải được biểu diễn trước đơn ca nữ.<br>- Tốp ca học sinh phải được biểu diễn trước tốp ca giáo viên.<br>- Đơn ca nam và tốp ca học sinh phải được biểu diễn liền kề nhau.",
-                subQuestions: [
-                    { id: "q91", text: "Câu 91: Có bao nhiêu tiết mục có thể biểu diễn ở vị trí thứ hai?", options: ["A. năm.", "B. bốn.", "C. ba.", "D. hai."], correctIndex: 2 },
-                    { id: "q92", text: "Câu 92: Nếu tốp ca giáo viên được biểu diễn trước đơn ca nữ thì điều nào sau đây không đúng?", options: ["A. Đơn ca nam được biểu diễn ở vị trí thứ hai.", "B. Đơn ca nữ được biểu diễn ở vị trí thứ tư.", "C. Song ca nam nữ được biểu diễn đầu tiên.", "D. Tốp ca học sinh được biểu diễn đầu tiên."], correctIndex: 1 },
-                    { id: "q93", text: "Câu 93: Nếu đơn ca nữ và tốp ca giáo viên không được biểu diễn kề nhau thì điều nào sau đây có thể đúng?", options: ["A. Đơn ca nam được biểu diễn cuối cùng.", "B. Đơn ca nữ được biểu diễn thứ tư.", "C. Song ca nam nữ biểu diễn thứ ba.", "D. Tốp ca học sinh biểu diễn thứ hai."], correctIndex: 3 }
-                ]
-            },
-            {
-                id: "reading_94_96",
-                section: "PHẦN 3. TƯ DUY KHOA HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 94 đến 96</strong><br><br>Ban cán sự của lớp sẽ được thành lập gồm đúng năm đại diện, trong đó có một người giữ vai trò lớp trưởng. Các thành viên này được lựa chọn từ hai nhóm: nhóm học sinh nam gồm F, G, J, K, M và nhóm học sinh nữ gồm P, Q, R, S. Các điều kiện lựa chọn ban cán sự phải được thỏa mãn như sau:<br>- Trong mỗi nhóm (nam và nữ) phải có ít nhất 2 đại diện.<br>- Lớp trưởng phải thuộc nhóm có đúng 2 đại diện trong ban cán sự.<br>- Nếu F được chọn thì Q cũng phải được chọn.<br>- Nếu G được chọn thì K cũng phải được chọn.<br>- Nếu J hoặc M được chọn thì người kia cũng phải được chọn.<br>- M và P không thể cùng được chọn.",
-                subQuestions: [
-                    { id: "q94", text: "Câu 94: Trong số các lựa chọn dưới đây, tổ hợp nào là một lựa chọn hợp lệ các đại diện cho ban cán sự lớp?", options: ["A. F, G, Q, R, S.", "B. F, P, Q, R, S.", "C. J, K, M, Q, S.", "D. J, M, P, Q, S."], correctIndex: 2 },
-                    { id: "q95", text: "Câu 95: Nếu cả F lẫn K đều không được chọn, thì điều nào sau đây có thể đúng?", options: ["A. G được chọn.", "B. P được chọn.", "C. J là lớp trưởng.", "D. Q là lớp trưởng."], correctIndex: 2 },
-                    { id: "q96", text: "Câu 96: Nếu lớp trưởng là một nữ sinh, thì điều nào sau đây phải đúng?", options: ["A. Nếu G được chọn thì Q cũng được chọn.", "B. Nếu G được chọn thì R cũng được chọn.", "C. Nếu J được chọn thì F cũng được chọn.", "D. Nếu J được chọn thì Q cũng được chọn."], correctIndex: 0 }
-                ]
-            },
-            {
-                id: "reading_97_99",
-                section: "PHẦN 3. TƯ DUY KHOA HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 97 đến 99</strong><br><br>Hai biểu đồ tròn dưới đây cung cấp thông tin về thị phần điện thoại của công ty X và Y trong các năm 2015 và 2025.<br><br><b>Biểu đồ 1 (2015):</b> X: 38%, Y: 20%, Khác: 42%<br><b>Biểu đồ 2 (2025):</b> X: 66%, Y: 28%, Khác: 6%<br><br>Biết rằng tổng số điện thoại bán ra năm 2015 là 50 triệu sản phẩm và năm 2025 là 95 triệu sản phẩm.",
-                subQuestions: [
-                    { id: "q97", text: "Câu 97: Số lượng điện thoại công ty X bán ra năm 2025 tăng bao nhiêu phần trăm so with năm 2015?", options: ["A. 180%.", "B. 205%.", "C. 230%.", "D. 250%."], correctIndex: 2 },
-                    { id: "q98", text: "Câu 98: Giả sử số lượng điện thoại công ty X bán ra tăng theo tốc độ tăng trưởng kép hằng năm (CAGR) không đổi trong giai đoạn 2015-2025. Biết công thức CAGR là \\(CAGR = \\left(\\frac{\\text{Giá trị cuối kỳ}}{\\text{Giá trị đầu kỳ}}\\right)^{\\frac{1}{n}} - 1\\) with n là số năm. CAGR của công ty X xấp xỉ:", options: ["A. 10,3%/năm.", "B. 11,7%/năm.", "C. 12,7%/năm.", "D. 14,1%/năm."], correctIndex: 2 },
-                    { id: "q99", text: "Câu 99: Giả sử từ năm 2024 đến năm 2025, tổng số điện thoại bán ra trên thị trường tăng 11%, và số lượng điện thoại công ty Y bán ra tăng 5%. Thị phần công ty Y trong năm 2024 bằng xấp xỉ bao nhiêu phần trăm:", options: ["A. 26,4%.", "B. 29,6%.", "C. 31,1%.", "D. 36,4%."], correctIndex: 1 }
-                ]
-            },
-            {
-                id: "reading_100_102",
-                section: "PHẦN 3. TƯ DUY KHOA HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 100 đến 102</strong><br><br>Bảng tần số cân nặng khi sinh (đơn vị kilôgam) của 1.500 trẻ sơ sinh được cho như sau:<br><table class=\"table table-bordered text-center\" style=\"width:auto; margin:10px auto\"><tr><th>Khoảng cân nặng (kg)</th><th>Tần số f</th></tr><tr><td>0,0-1,0</td><td>1</td></tr><tr><td>1,0-2,0</td><td>6</td></tr><tr><td>2,0-2,5</td><td>60</td></tr><tr><td>2,5-3,0</td><td>280</td></tr><tr><td>3,0-3,5</td><td>820</td></tr><tr><td>3,5-4,0</td><td>320</td></tr><tr><td>4,0-5,0</td><td>10</td></tr><tr><td>5,0-6,0</td><td>3</td></tr></table>",
-                subQuestions: [
-                    { id: "q100", text: "Câu 100: Khoảng chứa trung vị là:", options: ["A. 2,0-2,5.", "B. 2,5-3,0.", "C. 3,0-3,5.", "D. 3,5-4,0."], correctIndex: 2 },
-                    { id: "q101", text: "Câu 101: Trung vị cân nặng (kg) của 1.500 trẻ sơ sinh xấp xỉ:", options: ["A. 3,18.", "B. 3,23.", "C. 3,25.", "D. 3,30."], correctIndex: 2 },
-                    { id: "q102", text: "Câu 102: Cho \\(\\overline{x}\\) và \\(s\\) lần lượt là trung bình mẫu và độ lệch chuẩn mẫu của cân nặng 1.500 trẻ sơ sinh. Giá trị (kg) của \\(\\overline{x} - s\\) xấp xỉ:", options: ["A. 2,80.", "B. 2,90.", "C. 3,00.", "D. 3,10."], correctIndex: 0 }
-                ]
-            },
-            {
-                id: "reading_103_105",
-                section: "PHẦN 3. TƯ DUY KHOA HỌC",
-                type: "reading_group",
-                passage: "<strong>3.2. SUY LUẬN KHOA HỌC</strong><br><strong>Dựa vào thông tin dưới đây để trả lời các câu từ 103 đến 105</strong><br><br>Áp suất hơi bão hòa của chất lỏng dễ bay hơi là áp suất hơi của nó khi tốc độ bay hơi của chất lỏng bằng tốc độ ngưng tụ của hơi ở nhiệt độ nhất định. Chất càng dễ bay hơi thì áp suất hơi bão hòa cao và khi nhiệt độ tăng, áp suất hơi bão hòa cũng tăng. Liên hệ giữa áp suất hơi bão hòa của dung dịch (\\(P_A\\)) và áp suất hơi bão hòa của dung môi tinh chất \\(P_A^0\\) như sau:<br>\\(P_A = P_A^0 \\times \\frac{n_A}{n_A + n_B}\\)<br>Trong đó \\(n_A\\) và \\(n_B\\) lần lượt là số mol của dung môi A và chất tan B.<br>Hòa tan 24 gam urea \\((NH_2)_2CO\\) vào 200 gam nước được dung dịch X. Biết urea là chất tan không bay hơi và khối lượng phân tử của urea là 60 g/mol. Khối lượng phân tử của nước (\\(H_2O\\)) là 18 g/mol. Áp suất hơi bão hòa của nước nguyên chất ở \\(25^\\circ C\\) là 23,8 mmHg.",
-                subQuestions: [
-                    { id: "q103", text: "Câu 103: Nhận xét nào sau đây sai?", options: ["A. Áp suất hơi bão hòa của dung dịch X thấp hơn 23,52 mmHg.", "B. Khi nhiệt độ tăng, áp suất hơi bão hòa của dung dịch X tăng.", "C. Khi tăng nồng độ urea thì áp suất hơi bão hòa của dung dịch tăng.", "D. Áp suất hơi bão hòa của nước luôn lớn hơn áp suất hơi bão hòa của dung dịch X."], correctIndex: 2 },
-                    { id: "q104", text: "Câu 104: Có bốn dung dịch \\(X_1, X_2, X_3\\) và \\(X_4\\) được điều chế bằng cách hòa tan cùng một khối lượng lần lượt các chất tan: saccharose (\\(C_{12}H_{22}O_{11}\\)), maltose (\\(C_{12}H_{22}O_{11}\\)), glycerol (\\(C_3H_8O_3\\)) và sorbitol (\\(C_6H_{14}O_6\\)) vào cùng một lượng nước. Gọi \\(P_1, P_2, P_3\\) và \\(P_4\\) lần lượt là áp suất hơi bão hòa của các dung dịch \\(X_1, X_2, X_3\\) và \\(X_4\\). Hãy chọn nhận xét đúng về mối quan hệ giữa \\(P_1, P_2, P_3\\) và \\(P_4\\).", options: ["A. \\(P_1 = P_2 < P_3 < P_4\\).", "B. \\(P_1 > P_2 > P_3 = P_4\\).", "C. \\(P_1 = P_2 = P_3 = P_4\\).", "D. \\(P_1 = P_2 > P_4 > P_3\\)."], correctIndex: 3 },
-                    { id: "q105", text: "Câu 105: Cần hòa tan bao nhiêu gam glucose (\\(C_6H_{12}O_6\\)) vào 200 g nước để tạo thành dung dịch có áp suất hơi bão hòa bằng with áp suất hơi bão hòa của dung dịch X? Glucose là chất tan không bay hơi và khối lượng phân tử là 180 g/mol.", options: ["A. 8 gam.", "B. 24 gam.", "C. 36 gam.", "D. 72 gam."], correctIndex: 3 }
-                ]
-            },
-            {
-                id: "reading_106_108",
-                section: "PHẦN 3. TƯ DUY KHOA HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 106 đến 108</strong><br><br>Trong thế kỷ XIX, nhiều nhà khoa học cho rằng ánh sáng cần một môi trường đặc biệt để lan truyền, gọi là ê-te (ether). Tuy nhiên, nhiều thí nghiệm, đặc biệt là thí nghiệm Michelson - Morley (1887) không xác nhận sự tồn tại của môi trường này. Theo lý thuyết trường điện từ Maxwell, ánh sáng có bản chất là sóng điện từ with tốc độ lan truyền trong chân không là \\(c = 3.10^8\\) m/s. Ngoài ra, thí nghiệm hiện tượng quang điện cho thấy ánh sáng còn mang tính hạt, with các hạt ánh sáng gọi là photon. Ngày nay, người ta thừa nhận ánh sáng có lưỡng tính sóng - hạt.<br>Mỗi ngày, Mặt Trời gửi đến Trái Đất nhiều loại bức xạ điện từ: ánh sáng khả kiến giúp chúng ta quan sát, tia cực tím có thể gây bỏng da (with bước sóng ngắn hơn 320 nm) nhưng cũng hỗ trợ tổng hợp vitamin D, tia hồng ngoại (bước sóng dài hơn 760 nm) giúp giữ ấm Trái Đất. Việc hiểu bản chất ánh sáng còn giúp khám phá vũ trụ nhờ các kính thiên văn hiện đại. Ví dụ, kính thiên văn James Webb thu nhận bức xạ có bước sóng trong chân không từ 0,60 \\(\\mu m\\) (màu da cam) đến 28,5 \\(\\mu m\\) (hồng ngoại trung), cho phép mở rộng khả năng quan sát vũ trụ.<br>Cho biết năng lượng của một photon ánh sáng \\(\\varepsilon\\) (J) được tính theo công thức:<br>\\(\\varepsilon = hf = \\frac{hc}{\\lambda}\\)<br>with \\(f\\) (Hz) và \\(\\lambda\\) (m) lần lượt là tần số và bước sóng của ánh sáng, \\(h = 6,625.10^{-34}\\) J.s được gọi là hằng số Planck, \\(1 eV = 1,6.10^{-19}\\) J.",
-                subQuestions: [
-                    { id: "q106", text: "Câu 106: Phát biểu nào sau đây đúng?", options: ["A. Ở thế kỷ XIX, các nhà khoa học cho rằng ánh sáng lan truyền trong môi trường ê-te.", "B. Thí nghiệm Michelson - Morley (1887) giúp khẳng định sự tồn tại của môi trường ê-te.", "C. Thí nghiệm Michelson - Morley (1887) giúp khẳng định ánh sáng có tính chất hạt.", "D. Ngay từ đầu các nhà khoa học đã khẳng định sóng ánh sáng có thể lan truyền trong môi trường chân không."], correctIndex: 0 },
-                    { id: "q107", text: "Câu 107: Tần số ánh sáng nhỏ nhất mà kính thiên văn James Webb có thể thu được gần đúng là:", options: ["A. \\(1,1.10^{13}\\) Hz.", "B. \\(5,0.10^{14}\\) Hz.", "C. \\(9,4.10^{14}\\) Hz.", "D. \\(3,9.10^{14}\\) Hz."], correctIndex: 0 },
-                    { id: "q108", text: "Câu 108: Cho các phát biểu sau:<br>(1) Năng lượng của mỗi photon tia cực tím có thể gây bỏng da chủ yếu lớn hơn 3,88 eV.<br>(2) Tia cực tím luôn có hại.<br>(3) Kính thiên văn James Webb chỉ quan sát ánh sáng trong vùng hồng ngoại.<br>(4) Ánh sáng là một dạng của sóng điện từ.<br>Các phát biểu đúng là:", options: ["A. (1), (4).", "B. (1), (3).", "C. (4).", "D. (2), (3), (4).."], correctIndex: 0 }
-                ]
-            },
-            {
-                id: "reading_109_111",
-                section: "PHẦN 3. TƯ DUY KHOA HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 109 đến 111</strong><br><br>Để đánh giá ảnh hưởng của nước thải sinh hoạt đến tính thấm của màng tế bào sinh vật, sinh viên sử dụng 5 mẫu mô rễ củ cải đường giống nhau (có chứa sắc tố tím betacyanin) làm vật liệu thí nghiệm. Mỗi mẫu mô được rửa sạch và ngâm vào một ống nghiệm chứa 5 mL dung dịch tương ứng with một nghiệm thức. Nước thải sinh hoạt được pha loãng bằng nước máy sinh hoạt theo các tỷ lệ quy định trong bảng. Sau khi ủ trong 15 phút ở \\(25^\\circ C\\), độ hấp thụ của dung dịch được đo tại bước sóng 460 nm (A460). Giá trị độ hấp thụ ánh sáng phản ánh mức độ khuếch tán betacyanin qua màng tế bào, từ đó xác định sự thay đổi tính thấm của màng tế bào. Thí nghiệm được lặp lại 5 lần, số liệu thu được là giá trị trung bình của 5 lần đo.<br><table class=\"table table-bordered text-center\" style=\"width:auto; margin:10px auto\"><tr><th>Nghiệm thức (NT)</th><th>Dung dịch xử lý</th><th>Độ hấp thụ ánh sáng</th></tr><tr><td>NT 1</td><td>Nước máy sinh hoạt</td><td>0,090 \\(\\pm\\) 0,006</td></tr><tr><td>NT 2</td><td>Nước thải pha loãng 25%</td><td>0,150 \\(\\pm\\) 0,020</td></tr><tr><td>NT 3</td><td>Nước thải không pha loãng</td><td>0,400 \\(\\pm\\) 0,105</td></tr><tr><td>NT 4</td><td>Nước thải pha loãng 50% + than hoạt tính</td><td>0,130 \\(\\pm\\) 0,012</td></tr><tr><td>NT 5</td><td>Chất tẩy rửa 0,1%</td><td>0,520 \\(\\pm\\) 0,040</td></tr></table>",
-                subQuestions: [
-                    { id: "q109", text: "Câu 109: Dung dịch trong ống nghiệm có nồng độ betacyanin cao nhất ở nghiệm thức nào?", options: ["A. NT 1.", "B. NT 2.", "C. NT 3.", "D. NT 5."], correctIndex: 3 },
-                    { id: "q110", text: "Câu 110: Từ kết quả thí nghiệm, giải pháp nào sau đây nên được ưu tiên sử dụng để xử lý nước thải sinh hoạt, đồng thời giảm thiểu tổn thương màng tế bào sinh vật?", options: ["A. Nước thải sinh hoạt có thể được xả trực tiếp mà không ảnh hưởng đến sinh vật.", "B. Pha loãng 25% thể tích nước thải with 75% thể tích nước máy sinh hoạt.", "C. Pha loãng 50% nước thải sinh hoạt with 50% nước máy và lọc qua than hoạt tính.", "D. Thêm dung dịch tẩy rửa 0,1% vào nước thải sinh hoạt theo tỷ lệ thể tích 1:1."], correctIndex: 2 },
-                    { id: "q111", text: "Câu 111: Cho những nhận định sau:<br>I. Nước thải sinh hoạt không pha loãng làm giảm tính thấm màng tế bào.<br>II. Than hoạt tính làm tăng tính thấm của màng tế bào, đồng thời làm giảm mức độ khuếch tán sắc tố.<br>III. Kết quả ở nghiệm thức NT3 đáng tin cậy hơn nghiệm thức NT2 vì giá trị trung bình cao hơn.<br>IV. Khi tiến hành thí nghiệm ở \\(4^\\circ C\\), giá trị hấp thụ A460 của tất cả các nghiệm thức có thể thay đổi.<br>Những nhận định đúng là:", options: ["A. IV.", "B. I, II, IV.", "C. I, II, III, IV.", "D. III, IV."], correctIndex: 0 }
-                ]
-            },
-            {
-                id: "reading_112_114",
-                section: "PHẦN 3. TƯ DUY KHOA HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 112 đến 114</strong><br><br>Báo The New York Times dẫn số liệu được Cục Thống kê dân số Hoa Kỳ công bố ngày 22/6/2023 cho thấy, độ tuổi trung vị (median age) của Hoa Kỳ trong năm 2022 đạt con số kỷ lục 38,9 tuổi. Tuổi trung vị là chỉ số quan trọng trong việc biểu thị sự phân bổ dân số theo độ tuổi (trên một đơn vị lãnh thổ), chia dân số thành hai nhóm with số lượng bằng nhau. Nói cách khác, with tuổi trung vị 38,9 thì Hoa Kỳ đang có số người dân trên 38,9 tuổi đúng bằng số người trẻ hơn mốc này.<br>Trong những năm qua, tuổi trung vị của Hoa Kỳ liên tục tăng. Năm 1980, chỉ số này chỉ dừng ở mức 30 tuổi. Đến năm 2000, tuổi trung vị của Hoa Kỳ đã tăng vọt lên 35. Tuổi trung vị gần 39 cho thấy, Hoa Kỳ đang có dân số già quá nhanh. Trong tương lai, điều này sẽ dẫn đến những thách thức to lớn with lực lượng lao động, nền kinh tế cũng như các chương trình xã hội.<br>Báo The New York Times dẫn nguồn nhiều chuyên gia khẳng định nguyên nhân chính dẫn đến sự gia tăng tuổi trung vị là tỷ lệ sinh thấp. Tại Hoa Kỳ, phụ nữ thuộc thế hệ Gen Y (sinh trong khoảng năm 1981-1996, phần lớn hiện nay trong độ tuổi sinh đẻ) có xu hướng ưu tiên học tập và làm việc khi còn trẻ. Điều này dẫn đến việc họ kết hôn muộn hơn và có ít con hơn. Yếu tố người nhập cư cũng góp phần làm tăng tuổi trung vị. Trước đây, hầu hết người nhập cư đến Hoa Kỳ là người trong độ tuổi lao động, thường có nhiều con hơn người đã ở Hoa Kỳ từ nhiều thế hệ. Tuy nhiên, từ năm 2016, số người nhập cư vào Hoa Kỳ đã giảm, thậm chí chạm đáy trong giai đoạn đại dịch COVID-19.<br><i>(Ngọc Đức, Vì sao dân số Mỹ già quá nhanh?)</i>",
-                subQuestions: [
-                    { id: "q112", text: "Câu 112: Nhận định nào sau đây phản ánh đúng về tuổi trung vị của dân số Hoa Kỳ?", options: ["A. Tuổi trung vị đạt mức kỷ lục tính đến năm 2022 phản ánh Hoa Kỳ có cơ cấu dân số già.", "B. Tuổi trung vị năm 2022 cho thấy số dân dưới 38,9 tuổi nhiều hơn số dân trên tuổi này.", "C. Tuổi trung vị năm 2000 có xu hướng giảm so with năm 1980.", "D. Tuổi trung vị chia dân số Hoa Kỳ thành hai nhóm with số lượng bằng nhau."], correctIndex: 0 },
-                    { id: "q113", text: "Câu 113: Nhận định nào sau đây không phải là thách thức đối with Hoa Kỳ khi tuổi trung vị ngày càng gia tăng?", options: ["A. Sự suy giảm số người trong độ tuổi lao động.", "B. Sự già hóa dân số đang diễn ra.", "C. Sự gia tăng chi phí an sinh xã hội.", "D. Sự mất cân bằng về giới tính khi sinh."], correctIndex: 3 },
-                    { id: "q114", text: "Câu 114: Yếu tố nào sau đây có ảnh hưởng sâu sắc đến sự gia tăng tuổi trung vị ở Hoa Kỳ?", options: ["A. Sự ưu tiên học tập và làm việc của phụ nữ thế hệ Gen Y dẫn đến kết hôn muộn và có ít con hơn.", "B. Tỷ lệ sinh giảm ở phụ nữ trước thế hệ Gen Y khiến cho dân số trẻ giảm dần.", "C. Sự gia tăng của các dịch vụ y tế giúp kéo dài tuổi thọ của người dân.", "D. Mức độ di cư từ các quốc gia phát triển vào Hoa Kỳ ngày càng tăng."], correctIndex: 0 }
-                ]
-            },
-            {
-                id: "reading_115_117",
-                section: "PHẦN 3. TƯ DUY KHOA HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 115 đến 117</strong><br><br>Văn hóa Tây Âu thế kỷ V-X dựa trên nền tảng nền kinh tế tự cung tự cấp, sự giao lưu trao đổi rất hạn chế, văn hóa vì vậy cũng phát triển không đáng kể. Tới thế kỷ XIV, with sự phát triển kinh tế công thương ở các thành thị, quan hệ sản xuất tư bản chủ nghĩa dần dần hình thành và ngày càng lớn mạnh. Các nhà tư tưởng của giai cấp tư sản không còn chịu chấp nhận những giáo lí phong kiến lỗi thời, họ vận động khôi phục lại sự huy hoàng của văn hóa Tây Âu thời cổ đại. Họ tìm thấy trong nền văn hóa cổ đại những yếu tố phù hợp with mình, có lợi cho mình để đấu tranh chống lại những trói buộc của nền văn hóa trung cổ. Phong trào Văn hóa Phục hưng xuất hiện đầu tiên ở Ý, vì ở đây đã xuất hiện các thành thị tự do như những quốc gia nhỏ. Quan hệ sản xuất tư bản đã chiếm địa vị chi phối đời sống văn hóa. Ý lại là trung tâm của đế quốc Rôma cổ đại, vì vậy ở đây còn giữ lại nhiều di sản văn hóa cổ đại của Hy Lạp - Rôma. Hơn ai hết, các nhà văn hóa Ý có điều kiện khôi phục lại nền văn hóa trước tiên khi có điều kiện. Từ Ý, phong trào lan sang Anh, Pháp, Tây Ban Nha, Đức...<br><i>(Vũ Dương Ninh, Lịch sử văn minh thế giới)</i>",
-                subQuestions: [
-                    { id: "q115", text: "Câu 115: Phong trào Văn hóa Phục hưng ở Tây Âu thời trung đại ra đời trong bối cảnh nào?", options: ["A. Quan hệ sản xuất tư bản chủ nghĩa hình thành ở các nước Tây Âu.", "B. Các chính quyền phong kiến tìm cách đổi mới về văn hóa, tư tưởng.", "C. Những thành tựu văn hóa Hy Lạp - Rôma cổ đại được đề cao.", "D. Giai cấp tư sản đã nắm chính quyền ở hầu hết các nước châu Âu."], correctIndex: 0 },
-                    { id: "q116", text: "Câu 116: Phong trào Văn hóa Phục hưng do giai cấp nào lãnh đạo?", options: ["A. Tư sản.", "B. Vô sản.", "C. Quý tộc.", "D. Tăng lữ."], correctIndex: 0 },
-                    { id: "q117", text: "Câu 117: Vì sao phong trào Văn hóa Phục hưng ở châu Âu vừa mang tính “kế thừa” vừa mang tính “cách mạng”?", options: ["A. Vì nó khôi phục toàn bộ văn hóa Hy Lạp - Rôma cổ đại, phát triển lên một tầm cao mới.", "B. Vì nó kế thừa tinh hoa văn hóa Hy Lạp - Rôma cổ đại, phát triển lên một tầm cao mới.", "C. Vì nó khôi phục toàn bộ văn hóa thế giới cổ đại, phát triển lên một tầm cao mới.", "D. Vì nó kế thừa tinh hoa văn hóa thế giới cổ đại, phát triển lên một tầm cao mới."], correctIndex: 1 }
-                ]
-            },
-            {
-                id: "reading_118_120",
-                section: "PHẦN 3. TƯ DUY KHOA HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 118 đến 120</strong><br><br>An và Khang quyết định khởi nghiệp with ý tưởng mở một cửa hàng bánh ngọt kết hợp quán cà phê. Sau khi lên ý tưởng, họ đã thiết kế thực đơn bao gồm nhiều loại bánh ngọt và đồ uống đa dạng, with giá cả phù hợp cho nhóm khách hàng mục tiêu là giới trẻ. Trong quá trình chuẩn bị, An đảm nhận việc quảng bá và tuyển dụng nhân sự, trong khi Khang lo phần tài chính và quản lý nguồn nguyên liệu. Họ dự định sử dụng bao bì và vật dụng thân thiện with môi trường như túi giấy và ống hút tre như là một hành động bảo vệ môi trường. With niềm tin vào ý tưởng độc đáo và lượng khách hàng tiềm năng, An và Khang tin rằng họ sẽ dễ dàng nhận được nguồn vốn vay từ ngân hàng để thực hiện hoạt động kinh doanh.",
-                subQuestions: [
-                    { id: "q118", text: "Câu 118: Việc sử dụng túi giấy và ống hút tre là biểu hiện của trách nhiệm xã hội nào?", options: ["A. Trách nhiệm pháp lý.", "B. Trách nhiệm đạo đức.", "C. Trách nhiệm kinh tế.", "D. Trách nhiệm nhân văn."], correctIndex: 1 },
-                    { id: "q119", text: "Câu 119: Yếu tố nào quan trọng nhất để ngân hàng đồng ý cấp tín dụng cho dự án khởi nghiệp của An và Khang?", options: ["A. Ý tưởng kinh doanh độc đáo sẽ thu hút sự quan tâm của ngân hàng.", "B. Quy mô cửa hàng và số lượng khách tiềm năng.", "C. Kế hoạch kinh doanh chi tiết khả thi, đáp ứng các yêu cầu của ngân hàng.", "D. Quan hệ đối tác uy tín giúp tăng độ tin cậy của dự án."], correctIndex: 2 },
-                    { id: "q120", text: "Câu 120: Theo tình huống trên, bước nào trong quá trình lập kế hoạch kinh doanh đã được An và Khang thực hiện?", options: ["A. Xác định mục tiêu và chiến lược kinh doanh.", "B. Đánh giá cơ hội, rủi ro và biện pháp xử lý kinh doanh.", "C. Phân tích điều kiện thực hiện ý tưởng kinh doanh.", "D. Tóm tắt tổng kết kế hoạch kinh doanh."], correctIndex: 0 }
-                ]
-            }
-        ]
-    }
-    ,
-    {
-        id: "de_2_dgnl",
-        title: "Đề 2: Đề chính thức Đợt 1 - 2026 (120/120 câu)",
-        category: "vnu",
-        subject: "VNU-ĐGNL",
-        description: "Phần 1: Ngôn ngữ (60 câu) & Phần 2: Toán học (30 câu) & Phần 3: Tư duy khoa học (30 câu)",
-        questions: [
-            // 1 - 20 (Tiếng Việt)
-            { id: "q1", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 1: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] “Toàn thân nàng biến thành một thân cây, chân như cắm sâu xuống đất và các ngón chân vươn dài ra thành những rễ lớn rễ nhỏ. Mái tóc đẹp đẽ của nàng biến thành những lá cây. Apollon chạy đến nơi thì nàng trinh nữ xinh đẹp Daphné đã biến thành một cây nguyệt quế xanh tươi, tự nhiên như đã mọc lên từ ngàn xưa và từ ngàn xưa vốn tự nhiên và xanh tươi như vậy.”\n(Nguyễn Văn Khỏa, Thần thoại Hy Lạp)\nNgoại hình của nàng Daphné được miêu tả bởi những biện pháp tu từ nào?", options: ["A. Ẩn dụ, hoán dụ.", "B. Liệt kê, nhân hóa.", "C. Nhân hóa, hoán dụ.", "D. So sánh, liệt kê."], correctIndex: 3 },
-            { id: "q2", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 2: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] “Ngày ấy thú vật hãy còn làm chủ mặt đất chưa có dấu tích con người. Một hôm có một cây si bị bão đổ xuống trong đó bay ra hai con chim lớn gọi là Áccác Ùaquê (hay Ay và Ua). Chúng đến làm tổ ở động Hào và đẻ trăm trứng trong đó có 3 cái to lớn dị thường. Nhờ được thần bày cho cách ấp, sau 50 ngày 97 trứng nở ra người: 50 người đi về mạn đồng bằng thành người Kinh, còn 47 người lần lên mạn ngược sau trở thành tổ tiên các dân Lào, Mường, Mán, Thổ,... Còn lại ba trứng ấp đủ 100 ngày nở ra ba người hai trai một gái. Đại ca, anh cả được tộc trưởng người Kinh và người Mường Mán rước về làm Lang, nhưng bị yêu tinh đón đường ăn thịt”.\n(Nguyễn Đổng Chi, Tác phẩm được tặng giải thưởng Hồ Chí Minh)\nĐoạn trích trên thuộc thể loại văn học dân gian nào?", options: ["A. Sử thi.", "B. Thần thoại.", "C. Truyền thuyết.", "D. Truyện truyền kỳ."], correctIndex: 1 },
-            { id: "q3", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 3: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] \n“Tam nguyệt xuân thì trưởng đậu miêu,\nHoàng hồ phì mãn, bạch hồ kiêu.\nChủ nhân tại lữ bất quy khứ,\nKhả tích Hồng sơn thuộc vãn tiều”.\nDịch thơ:\n“Tiết tháng ba xuân đậu nảy đều,\nCầy vàng béo mập, trắng sinh kiêu.\nChủ nhân vắng mãi chưa về được,\nPhó thác Hồng sơn mặc chú tiều”.\n(Nguyễn Du, Ngẫu hứng I)\nCác câu thơ nào niêm với nhau trong bài thơ thất ngôn tứ tuyệt trên?", options: ["A. Câu 1 niêm với câu 3, câu 2 niêm với câu 4.", "B. Câu 1 niêm với câu 2, câu 3 niêm với câu 4.", "C. Câu 1 niêm với câu 4, câu 2 niêm với câu 3.", "D. Cả bốn câu đều không niêm với nhau."], correctIndex: 2 },
-            { id: "q4", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 4: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] \n“Gõ cửa làm chi quấy cả ngày,\nHỏi ra mới biết lão ăn mày.\nĂn mày chớ có ăn tao nhé\nGạo kém, đồng khô thế mới rầy”.\n(Nguyễn Khuyến, Ăn mày)\nBiện pháp tu từ nào đã được tác giả sử dụng trong dòng thơ thứ ba?", options: ["A. Chêm xen.", "B. Nhân hóa.", "C. Liệt kê.", "D. Chơi chữ."], correctIndex: 3 },
-            { id: "q5", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 5: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] \n“Yêu thay miền thôn tịch!\nCư xử dầu lòng, Ngao du mặc thích.\nKhéo chiều người mến cảnh yên hà;\nDễ mến khách vui miền tuyền thạch”.\n(Nguyễn Hàng, Tịch cư ninh thể phủ)\nNội dung chính được thể hiện trong đoạn trích trên là gì?", options: ["A. Khí phách ngang tàng của bậc anh hùng tráng sĩ giữa tự nhiên rộng lớn, mang chiều kích vũ trụ.", "B. Tình yêu và niềm vui thích của nhân vật trữ tình dành cho miền thôn quê u tịch, tiêu điều, nghèo khó.", "C. Đời sống cư dân thôn quê mang vẻ đẹp thanh bình, nhộn nhịp được miêu tả qua lối viết giàu nhạc tính.", "D. Lòng yêu thích sự tự do, không ràng buộc của kẻ ẩn sĩ giữa cảnh thôn dã thênh thang, rộng rãi."], correctIndex: 3 },
-            { id: "q6", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 6: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026]\n“Những ngày hè, ngọn lửa rơm cứ táp vào mặt nóng hầm hập, để nấu xong nồi cơm như thể phải “đổ mồ hôi, sôi nước mắt”. Vậy nhưng chưa bao giờ tôi nghe người dân làng tôi than thở một lời về cái bếp rơm cực nhọc đấy. Ngược lại, chúng tôi đã quá thân quen với cái mùi rơm thơm nồng và cái ngọn khói no ấm này. Những năm mất mùa, rơm nhiều mà lúa ít, cái bếp ở góc sân hay sau hè nãy cứ lạnh tanh. Từ ngoài đồng nhìn vào làng, những mái nhà tranh vắng đi ngọn khói chiều của những bếp rơm, không thấy bụng đói cồn cào nữa mà chỉ thấy một nỗi buồn dâng lên từ bốn phía.”\n(Minh Tự, Củi lửa)\nNhận xét nào sau đây là phù hợp nhất khi nói về sự thể hiện cái “tôi” nhà văn trong đoạn trích trên?", options: ["A. Cái “tôi” nhà văn mang tính trung lập, đóng vai trò thu thập thông tin và ghi chép các tập quán và sự kiện diễn ra trong đời sống người Huế.", "B. Cái “tôi” nhà văn giàu trải nghiệm thể hiện sự gắn bó với làng quê, đồng cảm sâu sắc với nỗi buồn của con người xứ Huế.", "C. Cái “tôi” nhà văn đại diện cho tầng lớp trí thức, đóng vai trò nhân chứng nhằm phát hiện và ca ngợi vẻ đẹp của con người xứ Huế.", "D. Cái “tôi” nhà văn đã được hư cấu để tái hiện khách quan những sự kiện lịch sử đã qua của cộng đồng người dân xứ Huế."], correctIndex: 1 },
-            { id: "q7", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 7: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026]\n“VŨ NHƯ TÔ - Xây Cửu Trùng Đài cho một tên bạo chúa, một tên thoán nghịch, cho một lũ gái dâm ô? Tôi không thể đem tài ra làm một việc ô uế, muôn năm làm bia miệng cho người đời được.\nĐAN THIỀM - Ông biết một mà không biết hai. Ông có tài, tài ấy phải đem cống hiến cho non sông, không nên để mục nát với cỏ cây. Ông không có tiền, ông không có thể dựng lấy một tòa đài như ý nguyện. Chấp kinh, phải tòng quyền. Đây là lúc ông nên mượn tay vua Hồng Thuận mà thực hành cái mộng lớn của ông... Ông khẽ tiếng. Đó là tiểu tiết. Ông cứ xây lấy một tòa đài cao cả. Vua Hồng Thuận và lũ cung nữ kia rồi mất đi nhưng sự nghiệp của ông còn lại về muôn đời. Dân ta nghìn thu được hãnh diện, không thẹn với những cung điện đẹp của nước ngoài, thế là đủ. Hậu thế sẽ xét công cho ông, và nhớ ơn ông mãi mãi. [...]”\n(Nguyễn Huy Tưởng, Vũ Như Tô)\nNhận xét nào sau đây phù hợp với nhân vật Đan Thiềm trong đoạn trích trên?", options: ["A. Đan Thiềm là người biết khích lệ người tài thực hiện những khát khao sáng tạo bị kìm nén.", "B. Đan Thiềm là một cung nữ tài sắc vẹn toàn, có lương tâm và trách nhiệm.", "C. Đan Thiềm là người có tài năng không thua kém Vũ Như Tô, xứng đáng được lưu danh.", "D. Đan Thiềm là người có sự trải đời, ý thức được những mánh khóe để tồn tại trong cung."], correctIndex: 0 },
-            { id: "q8", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 8: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026]\n“rồi chúng ta sẽ trở thành những ông già và những bà già trong một thế giới trẻ trung luôn đổi khác\n[...] những người trẻ đi qua ta không hề quen biết họ cười nói râm ran trong ánh nắng tưng bừng lễ phép chào ta nhưng trong bụng xót thương “ai nói chuyện với người già lâu được”\n[...] họ lạ lùng thấy ta cam chịu những đau khổ ta mang, họ không còn hiểu được\nnhư lúa gặt, chỉ còn cuống rạ nằm im lìm dưới những đám mây bay tan vào trong quên lãng ngàn đời như con vờ, như que diêm vụt tắt như viên sỏi dưới hè, như giọt nắng trong bài ca bất tận của cuộc đời.”\n(Lưu Quang Vũ, Không đề)\nNhận định nào sau đây thể hiện khái quát giá trị nhận thức của việc xây dựng hình ảnh đối lập giữa hình ảnh tuổi già và tuổi trẻ trong đoạn thơ?", options: ["A. Tuổi già nhất định sẽ dẫn đến sự cô độc và mất giá trị trong thế giới hiện đại, chúng ta phải tìm cách chống lại bi kịch thời gian bằng cách sống hết mình với chiều kích tối đa của đời", "B. Con người rất mong manh, dù từng là chủ nhân huy hoàng của thời đại mình, đến một ngày rồi sẽ bị giảm giá trị, mọi thành tựu, dấu ấn rồi sẽ lùi lại trước bước đi của lịch sử.", "C. Người trẻ không nên lặp lại bi kịch của thế hệ trước bằng cách giữ vững những giá trị nhân văn và loại bỏ những yếu tố cũ kỹ, lạc hậu để đón nhận tất cả những giá trị và mất mát của đời sống mới.", "D. Mặc dù thân xác tan biến vào hư vô, nhưng con người vẫn có sự hòa nhập vĩnh viễn của linh hồn vào sự sống chung của vũ trụ trong từng khoảnh khắc."], correctIndex: 1 },
-            { id: "q9", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 9: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026]\n“Nhưng tôi biết cái màu đỏ ấy\nCái màu đỏ như cái màu đỏ ấy\nSẽ là bông hoa chuối đỏ tươi\nTrên đỉnh dốc cao vẫy gọi đoàn người”.\n(Nguyễn Mỹ, Cuộc chia ly màu đỏ)\n“Ta về, mình có nhớ ta\nTa về, ta nhớ những hoa cùng người.\nRừng xanh hoa chuối đỏ tươi\nĐèo cao nắng ánh dao gài thắt lưng”.\n(Tố Hữu, Việt Bắc)\nHình ảnh “hoa chuối đỏ” trong hai đoạn thơ đều thể hiện:", options: ["A. Tinh thần kiên cường, quyết chiến đấu chống giặc ngoại xâm.", "B. Sức sống, vẻ đẹp của thiên nhiên trong những cuộc kháng chiến.", "C. Sự hy sinh thầm lặng của những người phụ nữ ở hậu phương.", "D. Màu máu và sự hy sinh của những người chiến sĩ nơi tiền tuyến."], correctIndex: 1 },
-            { id: "q10", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 10: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026]\n“Chú mải mê nhìn nên không nghe thấy những tiếng gõ lanh canh trên đường tàu từ xa đã đến gần.\nPíp...rù...ù...ù.\nCậu bé giật mình quay lại: một người đàn ông trẻ, khỏe mạnh, trên môi còn rung rung vì hồi còi mồm. Bộ quần áo xanh thợ nham nhở những vết gỉ sắt vàng khè hơi chật so với đôi vai rất nở. Bàn tay to bè xách chiếc búa. Khuôn mặt cởi mở và đôi mắt nom chẳng có vẻ gì là nghiêm khắc khiến chú bé mạnh dạn hẳn lên:\nChào chú!\nChào bạn!- Người đàn ông đáp lại, giọng oang oang- Bạn làm gì ở đấy?”\n(Nguyễn Thị Như Trang, Cây cúc tần)\nDòng nào dưới đây chỉ chứa những từ tượng thanh, tượng hình xuất hiện trong đoạn trích trên?", options: ["A. lanh canh, chào chú, chào bạn.", "B. oang oang, gỉ sắt, nham nhở.", "C. lanh canh, rung rung, cởi mở.", "D. oang oang, rung rung, lanh canh."], correctIndex: 3 },
-            { id: "q11", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 11: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026]\n“Một tối bầu trời đắm sắc mây,\nCây tìm nghiêng xuống nhánh hoa gầy,\nHoa nghiêng xuống cỏ, trong khi cỏ\nNghiêng xuống làn rêu, một tối đầy.\nNhững lời huyền bí tỏa lên trăng,\nNhững ý bao la rủ xuống trần,\nNhững tiếng ân tình hoa bảo gió,\nGió đào thỏ thẻ bảo hoa xuân”.\n(Xuân Diệu, Với bàn tay ấy...)\nNhững hình tượng trong hai khổ thơ trên bộc lộ:", options: ["A. Sự chia lìa, mất mát của vạn vật, gợi lên niềm cô đơn trong đêm vắng quạnh quẽ.", "B. Sự quấn quyện, đan hòa của vạn vật, gợi lên niềm khao khát tương giao.", "C. Sự đối lập, tách biệt của vạn vật, gợi lên nỗi tịch liêu và sự chia cắt.", "D. Sự bí ẩn, thâm u của vạn vật, gợi lên những dự cảm về sự mất mát, hoang tàn."], correctIndex: 1 },
-            { id: "q12", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 12: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026]\n“Bạch Tuyết thấy chồng thương cảm, thừa dịp nói rằng:\n- Mình đừng kêu tôi bằng cô nữa chớ. Tiếng cô nghe vô tình quá.\n- Thì em cũng đừng kêu qua bằng thầy nữa.\n- Hai người cười với nhau rồi kề vai nằm ngủ”.\n(Hồ Biểu Chánh, Ai làm được)\nPhương ngữ Nam Bộ trong đoạn trích trên không thể hiện điều gì?", options: ["A. Bản sắc địa phương của ngôn ngữ tiểu thuyết.", "B. Tính chân thực trong nghệ thuật kể chuyện.", "C. Tình cảm và quan hệ giữa các nhân vật.", "D. Sự trào phúng, đả kích các nhân vật."], correctIndex: 3 },
-            { id: "q13", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 13: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Một công ty quảng bá sản phẩm sử dụng từ “thanh toán không chạm” thay vì “contactless payment”. Cách làm này có tác dụng gì?", options: ["A. Thuật ngữ tiếng Việt làm nổi bật tính tiên phong của sản phẩm trong lĩnh vực công nghệ.", "B. Thuật ngữ tiếng Việt tạo cảm giác gần gũi, dễ hiểu cho người tiêu dùng trong nước.", "C. Thuật ngữ tiếng Việt phản ánh đầy đủ tính chất của hình thức thanh toán này.", "D. Thuật ngữ tiếng Việt tạo cảm giác hiện đại, mới mẻ cho người tiêu dùng trong nước."], correctIndex: 1 },
-            { id: "q14", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 14: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Trong các câu sau, câu nào đúng ngữ pháp?", options: ["A. Trong khi quá vui sướng và bất ngờ vì món quà anh tặng bởi vì tôi không biết làm sao để bày tỏ lòng biết ơn.", "B. Ngày hôm qua, chị vừa về đến nhà thì nhìn thấy đôi chim sổ lồng, tung cánh bay vút lên bầu trời mênh mông, xanh biếc.", "C. Trên dòng sông có những cánh buồm trắng nên thơ, những con thuyền nằm mơ mộng về vùng trời khác lạ, những gợn sóng nhỏ lăn tăn ấy.", "D. Với chị vào những ngày hè gió thổi hây hẩy trên những vòm cây lá lao xao, ở miền quê ngoại có triền đê xanh mướt cỏ non trải dài tít tắp như chạm vào chân trời."], correctIndex: 1 },
-            { id: "q15", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 15: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] “Bàn về cách nhìn nhận và đánh giá con người, cố nhân có câu “họa hổ họa bì nan họa cốt, tri nhân tri diện bất tri tâm”, nghĩa là vẽ hổ có thể vẽ được da, khó vẽ được xương; biết người chỉ biết mặt, khó biết lòng”.\nCâu trên mắc lỗi gì?", options: ["A. Sai ngữ pháp.", "B. Sai logic.", "C. Sai dùng từ.", "D. Sai phong cách."], correctIndex: 1 },
-            { id: "q16", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 16: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Cụm từ nào sau đây viết đúng chính tả?", options: ["A. Quẩn trí, nghĩ quẫn, túng quẫn.", "B. Quẩn trí, nghĩ quẩn, túng quẫn.", "C. Quẫn trí, nghĩ quẩn, túng quẫn.", "D. Quẫn trí, nghĩ quẫn, túng quần."], correctIndex: 0 },
-            { id: "q17", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 17: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Câu nào sau đây có từ sai chính tả?", options: ["A. Anh bàng hoàng, ngơ ngác nhìn quanh như vừa tỉnh giấc mộng.", "B. Treo cờ rũ là nghi thức đặc biệt, chỉ thực hiện khi có quốc tang.", "C. Các cầu thủ ủ rũ rời sân, cúi đầu bước chậm vào đường hầm sau trận đấu.", "D. Từ điển tiếng Việt giải nghĩa “bàn hoàn” là nghĩ quanh quẩn, không dứt ra được."], correctIndex: 1 },
-            { id: "q18", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 18: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Từ “chịu” trong câu nào sau đây có thể được hiểu theo nghĩa “tiếp nhận một tác động từ bên ngoài”?", options: ["A. Việt Nam đứng thứ 6 trong số các quốc gia chịu ảnh hưởng nặng nề từ sự biến đổi khí hậu trên thế giới.", "B. Mua hàng không kiểm tra kỹ, nhận về sản phẩm lỗi thì đành bụng làm dạ chịu, không thể trách người bán.", "C. Khi các công ty tăng cường thực hiện chính sách bán chịu thì sẽ làm tăng khả năng sinh lợi của công ty.", "D. Cuộc tranh chấp bản quyền truyền hình vẫn chưa đi đến hồi kết, khi các bên đều cho rằng mình có lý và không ai chịu ai."], correctIndex: 0 },
-            { id: "q19", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 19: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] “Lục” trong câu nào sau đây không cùng nghĩa với “lục” trong các câu còn lại?", options: ["A. Lục quân hai nước đã phối hợp chặt chẽ, thực hiện huấn luyện đúng kế hoạch, bảo đảm an toàn tuyệt đối.", "B. Diệp lục là hợp chất tự nhiên làm cho lá cây có màu xanh, đóng vai trò chính trong quá trình quang hợp.", "C. U23 Việt Nam đang tạo nên cơn địa chấn tại đấu trường châu lục sau khi giành trọn vẹn 6 điểm sau hai lượt trận mở màn.", "D. Khi phần lớn, thậm chí toàn bộ các khối đất liền trên hành tinh hợp thành một cấu trúc, siêu lục địa sẽ hình thành."], correctIndex: 2 },
-            { id: "q20", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 20: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Câu nào sau đây có sử dụng biện pháp lặp cấu trúc?", options: ["A. Đắc nhân tâm là một cuốn sách kinh điển, một cuốn sách gối đầu giường.", "B. Đa nghĩa, đồng nghĩa, đồng âm là phương tiện tạo ra các nghĩa hình tượng.", "C. Ngôn từ thi ca khác văn xuôi bởi quan hệ đặc biệt giữa từ ngữ với tư duy.", "D. Gương mặt kịch nghệ không được vẽ ra (bằng cách đánh phấn), nó được viết."], correctIndex: 0 },
-
-            // Reading Group 21-25
-            {
-                id: "reading_21_25_d2",
-                section: "SỬ DỤNG NGÔN NGỮ",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 21 đến 25</strong><br><br>“(1) Con người thường cảm thấy vui sướng khi nhận ra bản thân mình đang dần trưởng thành. Ví dụ trong một trò game có tính gây nghiện, những người thiết kế game đều phải cài đặt những bước “trưởng thành” cho game thủ ở những yếu tố quan trọng như level, rank,... để khiến họ càng đắm chìm hơn trong game.<br><br>(2) Nếu trong trò giải trí, trưởng thành là cội nguồn của niềm vui, thì trong công việc, điều này còn cần thiết hơn. Vì sự trưởng thành trong công việc sẽ khiến chúng ta thấy yêu thích công việc đó. Ví dụ khi làm thêm ở cửa hàng tiện lợi, cả ngày phải đứng quét mã vạch hàng hóa, chắc sẽ không ai định làm công việc này cả đời vì chẳng có gì thú vị, mà cũng chẳng kiếm được bao nhiêu. Vì vậy, đa số chỉ tranh thủ làm thêm để kiếm chút tiền công nhật. Nhưng nếu nghĩ khác đi thì công việc này mang lại nhiều giá trị hơn so với chỗ tiền công ấy. Chẳng hạn chúng ta có thể hiểu thêm về hành vi mua sắm của người tiêu dùng, nắm được đặc điểm vị trí của cửa hàng, học được phương pháp quản lý kho khi nhận hàng mới. Nhờ vậy, chúng ta có thể tận hưởng niềm vui “học hỏi và trưởng thành” mỗi ngày, và có thể điềm nhiên nói rằng mình yêu công việc đó. Rồi khi sự nghiệp của bản thân mở ra, quá trình trưởng thành trên sẽ là nền tảng dẫn dắt sự nghiệp đó đến thành công lớn. Điều quan trọng là tập trung vào điều mình quan tâm, và khát khao học hỏi, tích lũy kinh nghiệm từ những điều nhỏ nhất.<br><br>(3) Đương nhiên, tiền cũng là bằng chứng cho thấy giá trị công việc và sức lao động của mình. Nếu bạn kiếm tiền vì trách nhiệm với bản thân và gia đình, bạn sẽ thấy thiết tha với công việc và có động lực làm việc tốt hơn. Nhưng nếu bị giam hãm trong suy nghĩ phải kiếm thật nhiều tiền, chúng ta sẽ trở thành tù nhân của công việc. Điều thật sự quan trọng không phải là thu nhập nhiều hay ít, mà là niềm vui của sự trưởng thành và tình yêu trong công việc. Cứ thế, lúc bạn từng bước tiến gần hơn đến “hình ảnh hoàn thiện nhất” của bản thân, tiền sẽ tự nhiên đi theo bạn.”<br><i>(Theo Random Kim, Trưởng thành sau ngàn lần tranh đấu)</i>",
-                subQuestions: [
-                    { id: "q21", text: "Câu 21: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Xác định bằng chứng được sử dụng trong văn bản trên.", options: ["A. Cách những người thiết kế game tạo ra niềm khao khát chinh phục ở người chơi.", "B. Cách mà đồng tiền chứng minh cho giá trị công việc và sức lao động của bản thân.", "C. Cách một người làm thêm ở cửa hàng tiện lợi tìm thấy niềm yêu thích trong công việc.", "D. Cách đồng tiền giam hãm chúng ta và biến chúng ta thành tù nhân của công việc."], correctIndex: 2 },
-                    { id: "q22", text: "Câu 22: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Dòng nào dưới đây nêu đúng cách sắp xếp, trình bày luận điểm, lý lẽ và bằng chứng trong văn bản?", options: ["A. Triển khai luận điểm thành các lý lẽ, bằng chứng, sau đó tổng hợp, mở rộng luận điểm.", "B. Nêu các lý lẽ, bằng chứng cụ thể, sau đó khái quát, tổng hợp thành luận điểm.", "C. Nêu luận điểm, sau đó triển khai thành các lý lẽ, bằng chứng cụ thể.", "D. Trình bày các lý lẽ, bằng chứng tương đối độc lập và hướng đến luận điểm ẩn."], correctIndex: 2 },
-                    { id: "q23", text: "Câu 23: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Dòng nào dưới đây có thể khái quát nhất tác động của văn bản đến quan niệm sống của người đọc?", options: ["A. Quan tâm nhiều hơn đến những giá trị mà chúng ta có thể nhận về từ những hoạt động quen thuộc.", "B. Nhận ra sự trưởng thành đem đến niềm vui cho con người trong cả công việc lẫn cuộc sống.", "C. Cần chuyên chú ngay từ những việc nhỏ nhặt vì nó giúp con người sống có mục tiêu cụ thể hơn.", "D. Tránh cái nhìn thờ ơ, đơn giản vì cuộc sống vốn phức tạp và chứa đựng nhiều cơ hội học tập."], correctIndex: 1 },
-                    { id: "q24", text: "Câu 24: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Câu chuyện về việc làm thêm tại cửa hàng tiện lợi có vai trò gì trong văn bản?", options: ["A. Nêu sự việc cho thấy cách nhìn nhận cuộc sống thay đổi có thể khiến công việc dễ thành công hơn.", "B. Nêu sự việc cho thấy quá trình học hỏi và trưởng thành có thể đến từ những việc bình thường nhất.", "C. Nêu sự việc cho thấy cách chúng ta có thể tạo dựng sự nghiệp thành công từ những việc nhỏ nhặt.", "D. Nêu sự việc cho thấy sự chuyên chú, thay đổi tư duy là yếu tố tiên quyết đưa đến sự thành công."], correctIndex: 1 },
-                    { id: "q25", text: "Câu 25: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Văn bản có đề cập đến quan điểm: Điều thật sự quan trọng không phải là thu nhập nhiều hay ít, mà là niềm vui của sự trưởng thành và tình yêu trong công việc.\nĐánh giá nào dưới đây thể hiện cách nhìn phê phán phù hợp đối với quan điểm trên?", options: ["A. Quan điểm trên hoàn toàn đúng vì trong mọi công việc, chúng ta cần đặt niềm vui và sự thoải mái lên hàng đầu, đó là nền tảng dẫn dắt sự nghiệp đến thành công.", "B. Quan điểm trên chưa phù hợp với thực tế vì trong công việc, mỗi người cần phải ưu tiên thu nhập trước để có thể hoàn thành trách nhiệm với bản thân và gia đình họ.", "C. Quan điểm trên còn phiến diện vì chỉ tập trung nhấn mạnh vào niềm vui của sự trưởng thành mà chưa quan tâm đến những khó khăn nảy sinh trong môi trường công việc.", "D. Quan điểm trên có ý nghĩa tích cực khi nhấn mạnh giá trị học hỏi do công việc mang lại, nhưng trên thực tế cần cân bằng giữa sự phát triển bản thân và giá trị thu nhập từ công việc."], correctIndex: 3 }
-                ]
-            },
-
-            // Reading Group 26-30
-            {
-                id: "reading_26_30_d2",
-                section: "SỬ DỤNG NGÔN NGỮ",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 26 đến 30</strong><br><br>“(1) Dân trí tài chính là mức độ hiểu biết, kỹ năng, thái độ để đưa ra các quyết định tài chính đúng đắn và quản lý tài chính cá nhân hiệu quả. Nó có thể được đo qua: (i) mức độ hiểu biết kiến thức tài chính; (ii) khả năng quản lý tài chính cá nhân và ra quyết định tài chính; (iii) mức độ tiếp cận và sử dụng dịch vụ tài chính. Tại Việt Nam, cách thứ ba thường được sử dụng và cho thấy thực trạng dân trí tài chính còn khá thấp. Theo Ngân hàng Thế giới (2021), tỷ lệ người Việt Nam có tài khoản ngân hàng chỉ đạt 69%, thấp hơn các nước phát triển (80-100%). Hoặc theo Ủy ban Chứng khoán Nhà nước (2023), số lượng tài khoản chứng khoán tại Việt Nam chỉ chiếm hơn 7% quy mô dân số.<br><br>(2) Dân trí tài chính thấp có thể dẫn đến những hệ quả như mất tiền trong các vụ lừa đảo tài chính, đầu tư sai, mất vốn, khủng hoảng nợ cá nhân, thiếu chuẩn bị cho tương lai tài chính.<br><br>(3) Khảo sát của nhóm nghiên cứu cho thấy gần 75% số người được hỏi cho rằng giáo dục tài chính cho trẻ em là cần thiết. Điều này rất quan trọng vì: – Trẻ em và thanh thiếu niên thường tiếp xúc với gia đình, nhà trường, xã hội và các chính sách nhà nước, nên có cơ hội tiếp nhận sự giáo dục tài chính từ nhiều phía. – Khi được giáo dục tài chính sớm, kiến thức và thói quen tài chính tốt không chỉ ảnh hưởng đến các em mà còn có thể tạo ra những tác động tích cực, bền vững cho toàn xã hội. – Tuổi thiếu niên thuộc giai đoạn đầu của vòng đời tài chính, khi các em bắt đầu tiếp thu những kiến thức cơ bản về tài chính. Sau đó là giai đoạn tích lũy tài sản. Để tích lũy hiệu quả, các cá nhân cần có hiểu biết và kỹ năng để lập kế hoạch tài chính, đầu tư và quản lý nợ, chuẩn bị tốt hơn cho những giai đoạn tiếp theo của cuộc đời (bảo vệ tài sản và tiêu dùng trong hưu trí).<br><br>(4) Như vậy, giáo dục tài chính cho trẻ em là yêu cầu cấp bách, góp phần nâng cao dân trí tài chính, giảm thiểu rủi ro và cải thiện khả năng đạt các mục tiêu tài chính dài hạn.”<br><i>(Theo Phạm Thị Thành - Lê Hoàng Gia Bảo, trích Giáo dục tài chính cho trẻ em)</i>",
-                subQuestions: [
-                    { id: "q26", text: "Câu 26: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Văn bản trên đã sử dụng những cách trình bày thông tin nào sau đây?", options: ["A. Liệt kê, vấn đề và cách giải quyết.", "B. Liệt kê, quan hệ nhân - quả.", "C. Liệt kê, phân loại đối tượng.", "D. Liệt kê, so sánh và đối chiếu."], correctIndex: 0 },
-                    { id: "q27", text: "Câu 27: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Việc trích dẫn số liệu của ngân hàng thế giới (2021) và Ủy ban Chứng khoán Nhà nước (2023) có tác dụng gì?", options: ["A. Cung cấp minh chứng cụ thể đáng tin cậy cho thấy biểu hiện của thực trạng dân dân trí tài chính ở Việt Nam giai đoạn 2021-2023.", "B. Cung cấp minh chứng cụ thể về tỉ lệ người Việt Nam được tiếp cận với các dịch vụ tài chính trong giai đoạn 2021-2023.", "C. Cung cấp minh chứng cụ thể cho thấy khả năng khai thác các dịch vụ tài chính ở Việt Nam còn thấp so với quy mô dân số.", "D. Cung cấp minh chứng củng cố cho nhận định về thực trạng dân trí tài chính ở Việt Nam và cách thức đo lường thực trạng ấy."], correctIndex: 3 },
-                    { id: "q28", text: "Câu 28: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Quan điểm chính của người viết được thể hiện qua văn bản là gì?", options: ["A. Cảnh báo thực trạng người Việt có hiểu biết kỹ năng và thái độ với lĩnh vực tài chính còn thấp và hệ quả.", "B. Khẳng định thực trạng dân trí tài chính của Việt Nam còn ở mức thấp và tính khách quan của các nhận định.", "C. Nhận định thực trạng dân trí tài chính ở Việt Nam của nước ta thấp và cần thiết giáo dục tài chính cho trẻ em.", "D. Khách quan cung cấp thông tin về cách đo lường dân trí tài chính và lý do cần giáo dục tài chính cho trẻ em."], correctIndex: 2 },
-                    { id: "q29", text: "Câu 29: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Việc mở đầu đoạn (3) bằng một kết quả khảo sát có tác dụng gì?", options: ["A. Cung cấp bằng chứng khách quan, khẳng định sự đồng thuận giữa ý kiến của tác giả với số đông.", "B. Cung cấp tín hiệu chuyển tiếp tự nhiên, gắn kết với thực tiễn từ phần nêu thực trạng đến đề xuất giải pháp.", "C. Cung cấp kết quả khảo sát thực tế, tạo hứng thú cho người đọc bằng một bằng chứng ấn tượng.", "D. Cung cấp kết quả khảo sát thực tế, tạo tính xác thực, khách quan cho lập luận và dẫn dắt vào những lý do tiếp theo."], correctIndex: 3 },
-                    { id: "q30", text: "Câu 30: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Dòng nào dưới đây không thể hiện ý nghĩa mà văn bản có thể đem đến cho người đọc?", options: ["A. Nhận thức đầy đủ, rõ ràng hơn về khái niệm dân trí tài chính và thực trạng ấy ở Việt Nam.", "B. Nâng cao nhận thức của người đọc về tầm quan trọng của việc giáo dục tài chính cho trẻ em.", "C. Trang bị cho người đọc hiểu biết về các kỹ năng tài chính và biểu hiện lừa đảo tài chính.", "D. Cần có hành động tích cực, tự chủ trong việc tìm hiểu kiến thức tài chính từ khi còn nhỏ."], correctIndex: 2 }
-                ]
-            },
-
-            // 31 - 45 (Tiếng Anh)
-            { id: "q31", section: "1.2. TIẾNG ANH", text: "Câu 31: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Business people look _______ selling as many of their products as possible.", options: ["A. ahead", "B. forward to", "C. out for", "D. into"], correctIndex: 2 },
-            { id: "q32", section: "1.2. TIẾNG ANH", text: "Câu 32: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Being used in nearly all walks of life, QR codes bring us _______ convenience.", options: ["A. desirable", "B. desirability", "C. desire", "D. desirably"], correctIndex: 0 },
-            { id: "q33", section: "1.2. TIẾNG ANH", text: "Câu 33: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Don’t rush. We still have _______ time to make an impressive presentation by the end of April.", options: ["A. a lot", "B. most", "C. many of", "D. plenty of"], correctIndex: 3 },
-            { id: "q34", section: "1.2. TIẾNG ANH", text: "Câu 34: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Most employers look for critical thinking skills, so I _______ hard for them now that I’m in college.", options: ["A. was training", "B. trained", "C. would have trained", "D. am training"], correctIndex: 3 },
-            { id: "q35", section: "1.2. TIẾNG ANH", text: "Câu 35: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Small handmade gifts are often considered _______ store-bought gifts or money gifts.", options: ["A. the most meaningful", "B. as meaningful", "C. more meaningful", "D. as meaningful as"], correctIndex: 2 },
-            { id: "q36", section: "1.2. TIẾNG ANH", text: "Câu 36: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Find the error:\nWhen <u>my</u> friends and I <u>plan</u> a trip, our teacher always gives <u>them</u> useful advice about <u>staying safe</u>.", options: ["A. staying safe", "B. plan", "C. them", "D. my"], correctIndex: 2 },
-            { id: "q37", section: "1.2. TIẾNG ANH", text: "Câu 37: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Find the error:\n<u>As a</u> professional dancer, Laura makes beautiful <u>moves</u>, but her singing <u>are</u> not <u>as attractive</u>.", options: ["A. as attractive", "B. are", "C. moves", "D. As a"], correctIndex: 1 },
-            { id: "q38", section: "1.2. TIẾNG ANH", text: "Câu 38: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Find the error:\n<u>Mary’s picture’s</u> in <u>her</u> school brochure shows that <u>She</u> is leading a <u>group discussion</u>.", options: ["A. her", "B. Mary’s picture’s", "C. group discussion", "D. She"], correctIndex: 1 },
-            { id: "q39", section: "1.2. TIẾNG ANH", text: "Câu 39: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Find the error:\nThe student, <u>who</u> hard work impressed <u>all the</u> teachers, <u>was</u> finally rewarded <u>with</u> some scholarships.", options: ["A. with", "B. was", "C. all the", "D. who"], correctIndex: 3 },
-            { id: "q40", section: "1.2. TIẾNG ANH", text: "Câu 40: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Find the error:\nThere was <u>the football match</u> in <u>the neighborhood</u>, but <u>the event</u> attracted <u>too few</u> spectators.", options: ["A. the event", "B. too few", "C. the football match", "D. the neighborhood"], correctIndex: 2 },
-            { id: "q41", section: "1.2. TIẾNG ANH", text: "Câu 41: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Which of the following best restates the given sentence?\nMini is obviously the cutest poodle on the puppy farm I’ve just visited.", options: ["A. As a cute poodle I’ve just visited, Mini is definitely the most beautiful of all the puppies.", "B. It is a matter of fact that no puppy is as cute as Mini on the poodle farm I’ve just visited.", "C. As the cutest puppy on the farm I’ve just visited, Mini is certainly a beautiful poodle.", "D. It is for sure that no other poodle on the puppy farm I’ve just visited is cuter than Mini."], correctIndex: 3 },
-            { id: "q42", section: "1.2. TIẾNG ANH", text: "Câu 42: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Which of the following best restates the given sentence?\nThose who start first will come last.", options: ["A. Start first or you will come last.", "B. The first starters will be the last finishers.", "C. Unlike those who start first, you will come last.", "D. First, start with those who will come last."], correctIndex: 1 },
-            { id: "q43", section: "1.2. TIẾNG ANH", text: "Câu 43: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Which of the following best restates the given sentence?\nI felt unhappy when Tim said some bad words last night.", options: ["A. Unless Tim said good words, I would feel unhappy.", "B. If Tim does not say bad words, I will feel very happy.", "C. If Tim had not said some bad words the night before, I would not have felt unhappy.", "D. If Tim did not say some bad words the night before, I would not feel unhappy."], correctIndex: 2 },
-            { id: "q44", section: "1.2. TIẾNG ANH", text: "Câu 44: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Which of the following best restates the given sentence?\nA police officer said to a teenager, “Don’t walk alone down this street at night. It’s not safe!”", options: ["A. A police officer reminded a teenager not to walk alone down this street at night because it was not safe.", "B. A police officer said a teenager should not walk alone down this street at night because it wasn’t safe.", "C. A police officer told a teenager not to walk alone down that street at night because it was not safe.", "D. A police officer told a teenager don’t walk alone down that street at night because it was not safe."], correctIndex: 2 },
-            { id: "q45", section: "1.2. TIẾNG ANH", text: "Câu 45: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Which of the following best restates the given sentence?\nFrequent meetings discourage the new manager considerably.", options: ["A. The new manager is considerably discouraged by frequent meetings.", "B. The new manager considerably discourages frequent meetings.", "C. The new manager’s frequent meetings are considerably discouraging.", "D. Frequent meetings are considered as a discouragement by the new manager."], correctIndex: 0 },
-
-            // Reading Group 46-52
-            {
-                id: "reading_46_52_d2",
-                section: "1.2. TIẾNG ANH",
-                type: "reading_group",
-                passage: "<strong>Question 46-52: Read the passage carefully.</strong><br><br>1. Renewable energy comes from natural sources like the sun, wind, and water. These sources can be replaced faster than they are used. Renewable energy, when produced and used responsibly, is an effective solution and a long-lasting strategy to fight climate change. It helps reduce pollution and create energy systems that can last. However, we still need new technology to make them work even better.<br>2. Solar power turns sunlight into electricity using solar panels. In the past 10 years, the cost of solar energy has dropped a lot, making it cheaper. New solar panels are lighter and can even work in low sunlight. Solar power is growing fast, and countries like India, Brazil, and the U.S. are planning to double their solar energy by 2028.<br>3. Wind power has been used for many years and is a clean way to make energy. Wind turbines, which can be on land or in the ocean, turn wind into electricity. Wind farms in the ocean catch stronger winds, making more energy. The US plans to add a lot of wind power by 2030, enough to power 10 million homes. Using new technology like artificial intelligence (AI) helps predict how much wind energy will be made, which makes power sources more reliable.<br>4. Hydropower uses moving water to spin turbines and make electricity. It is the largest renewable energy source today. New technology, like small hydropower systems, is helping bring energy to rural areas without hurting the environment. Better materials, like recyclable turbines, are also making hydropower more efficient and environmentally friendly.<br>5. Other renewable energy sources are geothermal energy and bioenergy. Geothermal energy uses heat from inside the Earth, and bioenergy is made from plants and other natural materials. New ideas and improved production methods are making bioenergy cleaner, more efficient, and better for the environment. Scientists are also developing ways to turn agricultural waste and food waste into energy, which helps reduce the amount of rubbish while producing electricity and fuel. bioenergy better for the environment. These energy sources are helping to create a cleaner and greener future.",
-                subQuestions: [
-                    { id: "q46", text: "Câu 46: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] What is the passage mainly about?", options: ["A. Providing reasons renewable energy is good for users.", "B. Comparing traditional and renewable energy resources.", "C. Describing some types of efficient renewable energy.", "D. Listing some technologies used to produce green energy."], correctIndex: 2 },
-                    { id: "q47", text: "Câu 47: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] What does the word “It” in paragraph 1 refer to?", options: ["A. Solution", "B. Strategy", "C. Renewable energy", "D. Climate change"], correctIndex: 2 },
-                    { id: "q48", text: "Câu 48: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] In paragraph 2, what can be inferred about solar power?", options: ["A. It is the most efficient out of renewable energy.", "B. Its solar panels can be used to replace lighters.", "C. It needs a lot of investment in new technology.", "D. It was much more expensive ten years ago."], correctIndex: 3 },
-                    { id: "q49", text: "Câu 49: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] In paragraph 3, which of the following is NOT stated about the production of wind energy?", options: ["A. The US will be producing a lot of wind power.", "B. Wind energy is not a new type of renewable energy.", "C. The production is best controlled by AI applications.", "D. Wind farms in the ocean are more productive."], correctIndex: 2 },
-                    { id: "q50", text: "Câu 50: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] In paragraph 4, what is mentioned about hydropower?", options: ["A. Even small hydropower systems harm the environment.", "B. Its production is better in the ocean than in rivers.", "C. It is now the biggest supply of renewable energy.", "D. It turns water into electricity, which turns turbines."], correctIndex: 2 },
-                    { id: "q51", text: "Câu 51: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] What is the word “recyclable” in paragraph 4 closest in meaning to?", options: ["A. Reusable", "B. Moveable", "C. Savable", "D. Reducible"], correctIndex: 0 },
-                    { id: "q52", text: "Câu 52: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] In paragraph 5, what does the author say about bioenergy?", options: ["A. It is available in more places due to new ideas and inventions.", "B. It is the main source of energy for a cleaner and greener future.", "C. Its input materials include plants and other materials found in nature.", "D. It uses heat from inside the Earth; therefore, it is totally natural."], correctIndex: 2 }
-                ]
-            },
-
-            // Reading Group 53-60
-            {
-                id: "reading_53_60_d2",
-                section: "1.2. TIẾNG ANH",
-                type: "reading_group",
-                passage: "<strong>Question 53-60: Read the passage carefully.</strong><br><br>1. High-rise buildings are now central features of many urban landscapes, offering efficient use of land and convenient access to services. However, their height, density, and complex internal structures increase fire risks. As a result, it is essential to strengthen fire-prevention practices and redesign everyday habits to create safer living environments.<br>2. Reducing fire accidents starts inside each apartment. Electrical devices are a common cause of ignition when they are damaged, cheaply made, or used carelessly. Residents have a direct duty to check wires and plugs, stop overloading sockets, replace poor-quality chargers, and unplug appliances that are not in use. Kitchens require the same level of care. Cooking should be treated as focused work, with clear surfaces and full attention. When residents adopt these habits, they create the first and strongest barrier against fire.<br>3. Building infrastructure is the next layer of protection, and it is the clear responsibility of building management. Smoke alarms, extinguishers, and emergency lighting systems must be installed correctly and tested on a regular schedule. These systems exist in many high-rise buildings, but they lose their value when inspections are delayed or problems are ignored. Elevators may fail during a fire, so managers must ensure that stairwells stay open, well lit, and free of storage items. Management should also organise regular safety checks and drills so that evacuation procedures are practical and effective.<br>4. Local governments and fire authorities hold responsibility at a wider level. Regular inspections backed by real penalties push owners and managers to maintain safe conditions. Public information campaigns can teach residents how to prevent fires and respond safely when alarms sound. When authorities take this role seriously, they create a framework in which responsible residents and managers can truly protect their buildings.<br>5. Fires have devastating consequences, but they are also preventable. When residents commit to careful daily habits and insist on properly maintained safety systems, risks can be significantly reduced. Safer behavior in tall buildings is not an optional extra or a polite suggestion; it is a duty to oneself, one’s family, and every neighbor who shares the same walls, corridors, and stairwells.",
-                subQuestions: [
-                    { id: "q53", text: "Câu 53: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] The best title of the passage can be _______.", options: ["A. Solutions to Safety Problems in High-Rise Buildings.", "B. Reducing Fire Risks in High-Rise Buildings.", "C. Common Causes of Fires in High-Rise Buildings.", "D. Why People Avoid Living in High-Rise Buildings."], correctIndex: 1 },
-                    { id: "q54", text: "Câu 54: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] The word their in paragraph 1 refers to _______.", options: ["A. buildings", "B. features", "C. services", "D. landscapes"], correctIndex: 0 },
-                    { id: "q55", text: "Câu 55: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] In paragraph 2, the word duty is closest in meaning to _______.", options: ["A. responsibility", "B. force", "C. permission", "D. tax"], correctIndex: 0 },
-                    { id: "q56", text: "Câu 56: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] According to paragraph 2, cooking is advised as an activity that _______.", options: ["A. requires full attention and unoccupied areas.", "B. needs protective equipment to ensure safety.", "C. can be left unattended if the heat is low.", "D. should be done quickly to avoid accidents."], correctIndex: 0 },
-                    { id: "q57", text: "Câu 57: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] In paragraph 3, it is NOT mentioned that _______.", options: ["A. stairwells need to remain unlocked and unblocked.", "B. emergency lighting must be checked on a regular basis.", "C. elevators must be upgraded to prevent fire damage.", "D. smoke alarms and extinguishers must be fixed properly."], correctIndex: 2 },
-                    { id: "q58", text: "Câu 58: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] In paragraph 3, the author uses the phrase so that in order to _______.", options: ["A. offer a solution", "B. confirm a cause", "C. indicate a result", "D. support a point"], correctIndex: 2 },
-                    { id: "q59", text: "Câu 59: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] It can be inferred from paragraph 4 that public information _______.", options: ["A. can completely replace the need for inspections and penalties.", "B. mainly benefits building managers rather than residents.", "C. can guarantee that destructive fires will never happen.", "D. helps residents become more proactive in preventing fires."], correctIndex: 3 },
-                    { id: "q60", text: "Câu 60: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Paragraphs 2, 3, and 4 present ________ respectively as the agents to prevent fires.", options: ["A. residents, building management, and local authorities.", "B. residents, building management, and security guards.", "C. building management, residents, and local authorities.", "D. building management, residents, and national fire fighters."], correctIndex: 0 }
-                ]
-            },
-
-            // 61 - 72 (Toán)
-            { id: "q61", section: "PHẦN 2. TOÁN HỌC", text: "Câu 61: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Tập nghiệm của bất phương trình |2x - 3| > x + 1 là:", options: ["A. R.", "B. (-∞; 4/3).", "C. (2; +∞).", "D. (-∞; 2/3) ∪ (4; +∞)."], correctIndex: 3 },
-            { id: "q62", section: "PHẦN 2. TOÁN HỌC", text: "Câu 62: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Gọi S là tập nghiệm của bất phương trình (x² + x + 3)/(x² - 4) ≥ 1. Tìm S ∩ (-2; 2).", options: ["A. ∅.", "B. (-2; 1).", "C. (-2; 2).", "D. (1; 2)."], correctIndex: 0 },
-            { id: "q63", section: "PHẦN 2. TOÁN HỌC", text: "Câu 63: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Cho số thực x, y ≥ 1, ta có: log_x (y^(5x)) = log_y (x^(8y)) = 20. Tích xy là:", options: ["A. 2.", "B. 4.", "C. 10.", "D. 40."], correctIndex: 2 },
-            { id: "q64", section: "PHẦN 2. TOÁN HỌC", text: "Câu 64: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Tìm tham số m để bất phương trình log_(1/5) m > log_5 (2x + 3) có đúng 3 nghiệm nguyên.", options: ["A. 1/7 < m < 1/5.", "B. 0 < m < 1.", "C. 1/7 < m < 1/3.", "D. 7/5 < m < 1/3."], correctIndex: 0 },
-            { id: "q65", section: "PHẦN 2. TOÁN HỌC", text: "Câu 65: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Có 6 đỉnh A, B, C, D, E, F được vẽ như hình. Một người xuất phát từ điểm E và đi qua các đỉnh rồi kết thúc ở F. Tìm số cách người đó đi được:", options: ["A. 1.", "B. 2.", "C. 3.", "D. 4."], correctIndex: 1 },
-            { id: "q66", section: "PHẦN 2. TOÁN HỌC", text: "Câu 66: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Một phân tử gồm có 8 nguyên tử liên kết. Biết phân tử này có 8 liên kết. Các nhà khoa học đã tìm được số liên kết của 7 nguyên tử đầu tiên là 4;2;2;1;1;1;1. Số liên kết nguyên tử thứ 8 là:", options: ["A. 1.", "B. 2.", "C. 3.", "D. 4."], correctIndex: 3 },
-            { id: "q67", section: "PHẦN 2. TOÁN HỌC", text: "Câu 67: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Cho tam giác ABC thỏa mãn tan B / tan C = sin² B / sin² C. Tam giác ABC là tam giác gì:", options: ["A. Tam giác vuông.", "B. Tam giác cân.", "C. Tam giác đều.", "D. Tam giác có thể vuông hoặc cân."], correctIndex: 1 },
-            { id: "q68", section: "PHẦN 2. TOÁN HỌC", text: "Câu 68: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Cho tam giác có độ dài các cạnh là 5; 6; 7. Hỏi đường cao ứng với cạnh 6 có độ dài là bao nhiêu?", options: ["A. √2.", "B. 2√6.", "C. √6.", "D. 3."], correctIndex: 1 },
-            { id: "q69", section: "PHẦN 2. TOÁN HỌC", text: "Câu 69: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Cho ∫₁³ [(m + 1)xᵐ + 1] dx = 28. Giá trị của tham số m là:", options: ["A. Không tồn tại.", "B. m ∈ [1; 3].", "C. m ∈ (-1; 2).", "D. m ∈ [-1; 2)."], correctIndex: 1 },
-            { id: "q70", section: "PHẦN 2. TOÁN HỌC", text: "Câu 70: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Cho khu vườn có dạng hình cong giới hạn bởi 2 đường thẳng y = (1/2)x² và y = √(2x). Tính diện tích khu vườn.", options: ["A. 4/3.", "B. 2/3.", "C. 5/8.", "D. 2/7."], correctIndex: 0 },
-            { id: "q71", section: "PHẦN 2. TOÁN HỌC", text: "Câu 71: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Cho hàm số y = (6 - 4x)/(2x + 3) có đồ thị (C) có 2 đường tiệm cận cắt các trục tọa độ tạo thành hình chữ nhật. Tính diện tích hình chữ nhật.", options: ["A. 2.", "B. 4/3.", "C. 5/8.", "D. 3."], correctIndex: 3 },
-            { id: "q72", section: "PHẦN 2. TOÁN HỌC", text: "Câu 72: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Cho hàm số f(x) = √(x² - x + 5) - √(x² + 2x + 2), trong đó f(x) là hàm lợi nhuận của công ty, x là số năm. Nếu x tăng trưởng đến vô hạn thì lợi nhuận của công ty là:", options: ["A. Công ty thua lỗ.", "B. Công ty hòa vốn.", "C. Công ty lời.", "D. Không tính được."], correctIndex: 0 },
-
-            // Reading Groups 73-90
-            {
-                id: "reading_73_74_d2",
-                section: "PHẦN 2. TOÁN HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 73 đến câu 74</strong><br><br>Một xưởng sử dụng 2 loại nguyên liệu X và Y để sản xuất các loại mỹ phẩm. Biết khối lượng nguyên liệu không vượt quá 8 tạ. Sản xuất mỗi tạ nguyên liệu loại X cần 20 ngày công và lời 3 tỷ đồng. Sản xuất mỗi tạ loại Y cần 30 ngày công và lời 4 tỷ đồng. Tổng số ngày công không vượt quá 180 ngày. Gọi x là khối lượng (tạ) nguyên liệu X, và y là khối lượng (tạ) nguyên liệu Y.",
-                subQuestions: [
-                    { id: "q73", text: "Câu 73: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Bất phương trình thỏa mãn số ngày công là:", options: ["A. 2x + 3y ≤ 18.", "B. x + y ≤ 8.", "C. x + y ≥ 8.", "D. 2x + 3y ≥ 18."], correctIndex: 0 },
-                    { id: "q74", text: "Câu 74: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Số tiền mà công ty thu được cao nhất là:", options: ["A. 24 tỷ.", "B. 26 tỷ.", "C. 28 tỷ.", "D. 30 tỷ."], correctIndex: 1 }
-                ]
-            },
-            {
-                id: "reading_75_76_d2",
-                section: "PHẦN 2. TOÁN HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 75 đến câu 76</strong><br><br>Một quả bóng rơi xuống đất theo thanh ngang có độ cao 10m. Mỗi lần quả bóng rơi xuống chạm đất sẽ nảy lên độ cao bằng 3/4 độ cao trước đó.",
-                subQuestions: [
-                    { id: "q75", text: "Câu 75: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Sau 5 lần chạm đất, độ cao của quả bóng là:", options: ["A. 1,78.", "B. 2,37.", "C. 3,72.", "D. 4,25."], correctIndex: 1 },
-                    { id: "q76", text: "Câu 76: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Tổng quãng đường quả bóng đi được cho đến khi dừng hẳn là:", options: ["A. 10.", "B. 40.", "C. 70.", "D. 80."], correctIndex: 2 }
-                ]
-            },
-            {
-                id: "reading_77_78_d2",
-                section: "PHẦN 2. TOÁN HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 77 đến câu 78</strong><br><br>Trong không gian Oxyz cho điểm A(1;1;1), B(2;0;2), C(-2;2;4).",
-                subQuestions: [
-                    { id: "q77", text: "Câu 77: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Độ dài đoạn thẳng AB là:", options: ["A. √2.", "B. 2√6.", "C. 2.", "D. √3."], correctIndex: 3 },
-                    { id: "q78", text: "Câu 78: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Mặt phẳng (ABC) cắt trục Ox tại điểm có tọa độ là:", options: ["A. (1;0;0).", "B. (0;0;0).", "C. (3;0;0).", "D. (2;0;0)."], correctIndex: 2 }
-                ]
-            },
-            {
-                id: "reading_79_81_d2",
-                section: "PHẦN 2. TOÁN HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 79 đến câu 81</strong><br><br>Lớp A có 3 học sinh, B có 2 học sinh và lớp C có 1 học sinh. Xếp 6 học sinh ngẫu nhiên này vào 1 hàng ngang 6 ghế.",
-                subQuestions: [
-                    { id: "q79", text: "Câu 79: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Số cách sắp xếp 6 học sinh là:", options: ["A. 6!.", "B. 6! - 1.", "C. C₆⁴.", "D. A₆⁴."], correctIndex: 0 },
-                    { id: "q80", text: "Câu 80: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Số cách sắp xếp 2 học sinh B luôn đứng đầu hàng là:", options: ["A. 48.", "B. 60.", "C. 70.", "D. 50."], correctIndex: 0 },
-                    { id: "q81", text: "Câu 81: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Xác suất để học sinh lớp C chỉ ngồi cạnh học sinh lớp B là:", options: ["A. 1/5.", "B. 1/6.", "C. 2/15.", "D. 3/30."], correctIndex: 0 }
-                ]
-            },
-            {
-                id: "reading_82_84_d2",
-                section: "PHẦN 2. TOÁN HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 82 đến câu 84</strong><br><br>Trong mặt phẳng Oxy, cho các điểm A(1;2), B(-1;1), C(3;-1).",
-                subQuestions: [
-                    { id: "q82", text: "Câu 82: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Tọa độ điểm M trung điểm BC là:", options: ["A. (1;0).", "B. (0;1).", "C. (-1;0).", "D. (0; 3/2)."], correctIndex: 0 },
-                    { id: "q83", text: "Câu 83: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Phương trình tổng quát đường cao AH là:", options: ["A. 2x - y = 0.", "B. x + 2y - 5 = 0.", "C. 2x + y - 3 = 0.", "D. 2x - y - 5 = 0."], correctIndex: 0 },
-                    { id: "q84", text: "Câu 84: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Gọi I là tâm đường tròn ngoại tiếp tam giác ABC. Tổng hoành độ và tung độ điểm I là:", options: ["A. 3.", "B. 8.", "C. 5/8.", "D. 4/3."], correctIndex: 2 }
-                ]
-            },
-            {
-                id: "reading_85_87_d2",
-                section: "PHẦN 2. TOÁN HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 85 đến câu 87</strong><br><br>Cho hình chóp S.ABCD có ABCD là hình vuông cạnh a. Tam giác SAB đều và nằm trong mặt phẳng vuông góc với mặt phẳng đáy. Gọi O là giao điểm của AC và BD, H là trung điểm cạnh AB, N là trung điểm cạnh AD.",
-                subQuestions: [
-                    { id: "q85", text: "Câu 85: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Hình chiếu vuông góc của S lên mặt phẳng đáy là:", options: ["A. O.", "B. A.", "C. H.", "D. N."], correctIndex: 2 },
-                    { id: "q86", text: "Câu 86: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Khẳng định nào sau đây là sai:", options: ["A. d(D, (SAC)) = d(H, (SAC)).", "B. d(D, (SAC)) = d(B, (SAC)).", "C. V_(S.ABCD) = a³√3 / 6.", "D. SH = a√3 / 2."], correctIndex: 0 },
-                    { id: "q87", text: "Câu 87: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Tính khoảng cách từ D đến mặt phẳng (SAC).", options: ["A. a√21 / 7.", "B. a√2 / 2.", "C. a√21 / 14.", "D. a√25 / 48."], correctIndex: 1 }
-                ]
-            },
-            {
-                id: "reading_88_90_d2",
-                section: "PHẦN 2. TOÁN HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 88 đến câu 90</strong><br><br>Cho hàm số y = (-mx + 1)/(x - m), với m là tham số.",
-                subQuestions: [
-                    { id: "q88", text: "Câu 88: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Khi m = 2 hàm số có giá trị lớn nhất trên đoạn [3; 5] là:", options: ["A. 3.", "B. -3.", "C. 0.", "D. 2."], correctIndex: 1 },
-                    { id: "q89", text: "Câu 89: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Với giá trị nào của tham số m để hàm số luôn đồng biến trên từng khoảng xác định?", options: ["A. m < -1 hay m > 1.", "B. m ≤ -1 hay m ≥ 1.", "C. m ≤ -2 hay m > 1.", "D. m ≤ -2 hay m ≥ 1."], correctIndex: 0 },
-                    { id: "q90", text: "Câu 90: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Với giá trị của m luôn tăng trên (3; +∞), đồ thị hàm số luôn đi qua bao nhiêu điểm cố định?", options: ["A. 1 điểm cố định.", "B. 2 điểm cố định.", "C. Vô số điểm.", "D. Không có điểm nào cố định."], correctIndex: 1 }
-                ]
-            },
-
-            // Reading Group 91-93
-            {
-                id: "reading_91_93_d2",
-                section: "PHẦN 3. TƯ DUY KHOA HỌC",
-                type: "reading_group",
-                passage: "<strong>3.1 LOGIC, PHÂN TÍCH SỐ LIỆU</strong><br><strong>Dựa vào đoạn thông tin sau trả lời từ câu 91 đến câu 93</strong><br><br>Một biên tập viên sẽ biên tập 7 bài viết, mỗi lần một bài. Có ba bài viết là G, H, J thuộc chủ đề tài chính, ba bài viết Q, R, S thuộc chủ đề dinh dưỡng và Y là bài viết thuộc chủ đề động vật hoang dã. Thứ tự biên tập các bài viết phải tuân theo các điều kiện sau:<br>- Các bài viết liên tiếp không được thuộc cùng một chủ đề.<br>- S chỉ có thể được biên tập trước Q nếu Q là bài viết thứ ba được biên tập.<br>- S phải được biên tập trước Y.<br>- J phải được biên tập trước G và G phải được biên tập trước R.",
-                subQuestions: [
-                    { id: "q91", text: "Câu 91: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Đâu có thể là thứ tự biên tập đúng?", options: ["A. Q, J, S, H, Y, G, R.", "B. Q, G, S, H, Y, J, R.", "C. J, Q, S, G, H, Y, R.", "D. Q, J, Y, H, S, G, R."], correctIndex: 0 },
-                    { id: "q92", text: "Câu 92: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Nếu G là bài viết thứ tư được biên tập, khẳng định nào dưới đây có thể đúng?", options: ["A. Y là bài viết thứ sáu được biên tập.", "B. Q là bài viết thứ hai được biên tập.", "C. S là bài viết thứ năm được biên tập.", "D. J là bài viết thứ nhất được biên tập."], correctIndex: 0 },
-                    { id: "q93", text: "Câu 93: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Thứ tự biên tập có thể được xác định hoàn toàn nếu như:", options: ["A. H là bài viết thứ tư được biên tập.", "B. R là bài viết thứ bảy được biên tập.", "C. H là bài viết thứ sáu được biên tập.", "D. R là bài viết thứ tư được biên tập."], correctIndex: 0 }
-                ]
-            },
-
-            // Reading Group 94-96
-            {
-                id: "reading_94_96_d2",
-                section: "PHẦN 3. TƯ DUY KHOA HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào đoạn thông tin sau trả lời từ câu 94 đến câu 96</strong><br><br>Một công ty sắp xếp cho 5 nhân viên M, N, P, Q, R tham gia các khóa huấn luyện trong 7 ngày từ ngày thứ nhất đến ngày thứ bảy. Mỗi nhân viên sẽ được huấn luyện trong một ngày, hai nhân viên khác nhau sẽ được huấn luyện trong hai ngày khác nhau. Ngoài ra việc tổ chức tuân thủ theo các điều kiện sau đây:<br>- Không có nhân viên nào tham gia huấn luyện ở ngày thứ sáu.<br>- R được tham gia huấn luyện trước N.<br>- M phải được huấn luyện ở ngày ngay trước ngày mà Q được huấn luyện.<br>- P là người thứ ba được huấn luyện.",
-                subQuestions: [
-                    { id: "q94", text: "Câu 94: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Nếu P được huấn luyện vào ngày thứ tư, điều nào sau đây phải đúng?", options: ["A. M được huấn luyện ở ngày thứ nhất.", "B. Không có ai huấn luyện vào ngày thứ ba.", "C. M được huấn luyện vào ngày thứ hai.", "D. R được huấn luyện vào ngày thứ năm."], correctIndex: 1 },
-                    { id: "q95", text: "Câu 95: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Nhân viên R có thể được huấn luyện vào ngày thứ mấy dưới đây?", options: ["A. Ngày thứ bảy.", "B. Ngày thứ hai.", "C. Ngày thứ ba.", "D. Ngày thứ tư."], correctIndex: 3 },
-                    { id: "q96", text: "Câu 96: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Ngày nào dưới đây bắt buộc phải có một nhân viên được huấn luyện?", options: ["A. Ngày thứ hai.", "B. Ngày thứ ba.", "C. Ngày thứ tư.", "D. Ngày thứ nhất."], correctIndex: 1 }
-                ]
-            },
-
-            // Reading Group 97-99
-            {
-                id: "reading_97_99_d2",
-                section: "PHẦN 3. TƯ DUY KHOA HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào đoạn thông tin sau trả lời từ câu 97 đến câu 99</strong><br><br>Bảng sau thể hiện sản lượng mía của một công ty mía có 6 nông trường M, N, P, Q, R, S.<br><table class=\"table table-bordered text-center\" style=\"width:auto; margin:10px auto\"><tr><th>Nông trường / Năm</th><th>M</th><th>N</th><th>P</th><th>Q</th><th>R</th><th>S</th></tr><tr><td>2016</td><td>150</td><td>75</td><td>58</td><td>48</td><td>49</td><td>32</td></tr><tr><td>2017</td><td>137</td><td>68</td><td>67</td><td>61</td><td>45</td><td>28</td></tr><tr><td>2018</td><td>160</td><td>65</td><td>82</td><td>59</td><td>46</td><td>37</td></tr><tr><td>2019</td><td>168</td><td>70</td><td>45</td><td>75</td><td>43</td><td>35</td></tr><tr><td>2020</td><td>180</td><td>55</td><td>80</td><td>67</td><td>47</td><td>28</td></tr></table>",
-                subQuestions: [
-                    { id: "q97", text: "Câu 97: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Trong giai đoạn 2016-2020, năm nào có tổng sản lượng cao nhất?", options: ["A. 2016.", "B. 2018.", "C. 2019.", "D. 2020."], correctIndex: 3 },
-                    { id: "q98", text: "Câu 98: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Tổng sản lượng của công ty năm 2020 tăng bao nhiêu phần trăm so với năm 2016?", options: ["A. 7%.", "B. 9,1%.", "C. 10,9%.", "D. 13,3%."], correctIndex: 2 },
-                    { id: "q99", text: "Câu 99: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Từ năm 2016 đến 2020, nông trường nào tỷ lệ sản lượng tăng cao nhất?", options: ["A. M.", "B. S.", "C. Q.", "D. P."], correctIndex: 2 }
-                ]
-            },
-
-            // Reading Group 100-102
-            {
-                id: "reading_100_102_d2",
-                section: "PHẦN 3. TƯ DUY KHOA HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào đoạn thông tin sau trả lời từ câu 100 đến câu 102</strong><br><br>Biểu đồ dưới đây cho biết giá trị xuất nhập khẩu của công ty X trong giai đoạn từ 1995-2000 (đơn vị: triệu USD).<br><table class=\"table table-bordered text-center\" style=\"width:auto; margin:10px auto\"><tr><th>Năm</th><th>Nhập khẩu (triệu USD)</th><th>Xuất khẩu (triệu USD)</th></tr><tr><td>1995</td><td>120</td><td>200</td></tr><tr><td>1996</td><td>225</td><td>300</td></tr><tr><td>1997</td><td>375</td><td>500</td></tr><tr><td>1998</td><td>330</td><td>400</td></tr><tr><td>1999</td><td>525</td><td>610</td></tr><tr><td>2000</td><td>420</td><td>460</td></tr></table>",
-                subQuestions: [
-                    { id: "q100", text: "Câu 100: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Trong các năm 1995, 1996, 1998, 1999, năm nào có độ chênh lệch giữa giá trị xuất khẩu và nhập khẩu lớn nhất?", options: ["A. 1995.", "B. 1996.", "C. 1998.", "D. 1999."], correctIndex: 3 },
-                    { id: "q101", text: "Câu 101: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Tổng trị giá xuất khẩu trong năm 1999 xấp xỉ bao nhiêu phần trăm tổng trị giá hàng nhập khẩu trong các năm 1997, 1998 và 1999?", options: ["A. 33%.", "B. 35%.", "C. 47,5%.", "D. 49%."], correctIndex: 3 },
-                    { id: "q102", text: "Câu 102: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Trong các năm từ 1996 đến năm 1999, tổng trị giá xuất - nhập khẩu của năm nào có tỷ lệ phần trăm tăng nhiều nhất so với năm trước đó?", options: ["A. 1996.", "B. 1997.", "C. 1998.", "D. 1999."], correctIndex: 1 }
-                ]
-            },
-
-            // Reading Group 103-105
-            {
-                id: "reading_103_105_d2",
-                section: "PHẦN 3. TƯ DUY KHOA HỌC",
-                type: "reading_group",
-                passage: "<strong>3.2. SUY LUẬN KHOA HỌC</strong><br><strong>Dựa vào đoạn thông tin sau trả lời từ câu 103 đến câu 105</strong><br><br>Trong quá trình truyền tải điện năng đi xa, hiện tượng tỏa nhiệt trên đường dây gây ra sự hao hụt một lượng lớn điện năng. Để giải quyết vấn đề này một cách hiệu quả và tiết kiệm, biện pháp tốt nhất là dùng máy biến áp nhằm nâng cao điện áp trước lúc truyền tải. Nguyên tắc hoạt động của máy biến áp dựa trên hiện tượng cảm ứng điện từ. Mối liên hệ giữa điện áp ở cuộn thứ cấp U₂ và cuộn sơ cấp U₁ được thể hiện qua tỷ lệ: U₂/U₁ = N₂/N₁, trong đó N₁ và N₂ tương ứng là số vòng dây của cuộn sơ cấp và thứ cấp.<br><br>Mặc dù vậy, khi hoạt động, nhiệt lượng phát sinh có nguy cơ làm thiết bị quá nhiệt và dẫn đến cháy nổ. Do đó, thay vì dùng lõi thép khối đặc, người ta chế tạo lõi máy biến áp bằng cách ghép nhiều lá thép mỏng cách điện với nhau. Cấu tạo này giúp thiết bị vận hành an toàn và gia tăng tuổi thọ. Khi truyền tải điện, máy biến áp thường được đặt ở trạm phát để tăng áp. Ở điều kiện lý tưởng, nếu điện áp tăng n lần thì công suất hao phí sẽ giảm n² lần. Tuy nhiên, trong thực tế, do điện trở của đường dây dài và sự thất thoát nhiệt ra môi trường, hiệu suất truyền tải không thể nào đạt tới mức 100%.<br><br>Xét một hệ thống thực tế đang sử dụng một máy biến áp với cuộn sơ cấp gồm 10.000 vòng và cuộn thứ cấp gồm 50.000 vòng.",
-                subQuestions: [
-                    { id: "q103", text: "Câu 103: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Giả sử hiệu điện thế đặt vào hai đầu cuộn sơ cấp là 1500V, hỏi điện áp thu được ở hai đầu cuộn thứ cấp bằng bao nhiêu?", options: ["A. 7500V.", "B. 5000V.", "C. 750V.", "D. 300V."], correctIndex: 0 },
-                    { id: "q104", text: "Câu 104: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Nếu hiệu suất truyền tải ban đầu (khi chưa qua máy biến áp) đạt 80%, thì sau khi được tăng áp bằng máy biến áp nói trên, hiệu suất truyền tải mới sẽ đạt mức:", options: ["A. 96,0%.", "B. 99,2%.", "C. 92,0%.", "D. 99,6%."], correctIndex: 1 },
-                    { id: "q105", text: "Câu 105: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Nhận định nào dưới đây không phải là tác dụng của việc sử dụng lõi thép ghép từ nhiều lá mỏng?", options: ["A. Làm giảm điện áp truyền tải trên đường dây.", "B. Kéo dài tuổi thọ hoạt động của thiết bị.", "C. Hạn chế rủi ro biến dạng và cháy nổ.", "D. Giảm bớt phần năng lượng hao hụt do tỏa nhiệt bên trong lõi."], correctIndex: 0 }
-                ]
-            },
-
-            // Reading Group 106-108
-            {
-                id: "reading_106_108_d2",
-                section: "PHẦN 3. TƯ DUY KHOA HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào đoạn thông tin sau trả lời từ câu 106 đến câu 108</strong><br><br>Theo các nghiên cứu sinh thái học, sự tăng trưởng của mọi quần thể đều chịu sự chi phối và giới hạn bởi sức chứa của môi trường. Giới hạn này được quyết định trực tiếp bởi các nhân tố như không gian sinh tồn, điều kiện khí hậu và nguồn dinh dưỡng. Khi kích thước quần thể đạt tới sức chứa tối đa (ngưỡng K), đà tăng trưởng mạnh sẽ chững lại, và số lượng cá thể chuyển sang duy trì trạng thái biến động nhẹ xung quanh mức cân bằng sinh thái.",
-                subQuestions: [
-                    { id: "q106", text: "Câu 106: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Trong giai đoạn từ 1820 đến 1940, số lượng cá thể tối đa của quần thể là:", options: ["A. 1.900.000.", "B. 2.200.000.", "C. 2.300.000.", "D. 1.800.000."], correctIndex: 1 },
-                    { id: "q107", text: "Câu 107: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Trong giai đoạn ổn định, số lượng cá thể dao động quanh khoảng nào?", options: ["A. 1.000.000 đến 1.300.000.", "B. 2.000.000 đến 2.200.000.", "C. 1.600.000 đến 1.700.000.", "D. 1.300.000 đến 1.600.000."], correctIndex: 3 },
-                    { id: "q108", text: "Câu 108: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Dựa vào biểu đồ, nhận định nào dưới đây là đúng?", options: ["A. Trong suốt giai đoạn từ 1850 đến 1920, kích thước quần thể luôn duy trì ở mức thấp hơn ngưỡng cân bằng sinh thái.", "B. Kể từ năm 1820 đến năm 1850, số lượng cá thể của quần thể liên tục có xu hướng gia tăng.", "C. Điều kiện thời tiết, khí hậu và nguồn dinh dưỡng là những nhân tố quyết định sức chứa K của môi trường.", "D. Quần thể ghi nhận sự biến động số lượng cá thể theo chiều hướng đi lên trong khoảng thời gian từ năm 1820 đến 1880."], correctIndex: 2 }
-                ]
-            },
-
-            // Reading Group 109-111
-            {
-                id: "reading_109_111_d2",
-                section: "PHẦN 3. TƯ DUY KHOA HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 109 đến 111</strong><br><br>Báo cáo của UBND tỉnh Quảng Ngãi cho biết, tốc độ tăng trưởng GRDP năm 2025 (tính theo giá so sánh 2010) đã bứt phá đạt mức 10,02% so với năm liền trước. Với quy mô nền kinh tế (GRDP) theo giá hiện hành chạm mốc 192.000 tỷ đồng, địa phương này không chỉ vượt chỉ tiêu tăng trưởng do Chính phủ giao phó mà còn vươn lên dẫn đầu toàn khu vực miền Trung và vinh dự xếp thứ 6/34 tỉnh thành trên cả nước về tốc độ tăng GRDP.<br><br>Việc góp mặt trong nhóm 6 địa phương có mức tăng GRDP vượt 10% đã tạo bước đệm vững chắc để tỉnh hiện thực hóa mục tiêu duy trì đà tăng trưởng hai chữ số trong nhiều năm liên tiếp theo định hướng của Trung ương. Nếu như năm 2024, mức tăng trưởng của Quảng Ngãi chỉ khiêm tốn ở mức 4,07% (nằm dưới mức bình quân 8,02% của cả nước), thì bước sang năm 2025, sự trỗi dậy mạnh mẽ của các lĩnh vực sản xuất công nghiệp, dịch vụ và xây dựng đã đưa địa phương bứt tốc lọt vào nhóm dẫn đầu. Đóng vai trò động lực chính là ngành luyện thép (giá trị sản xuất tăng gần 35%) và lọc hóa dầu (tăng 20%), hai lĩnh vực hạt nhân đóng góp tới hơn 73% giá trị của toàn ngành công nghiệp.",
-                subQuestions: [
-                    { id: "q109", text: "Câu 109: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Động lực tăng trưởng kinh tế của tỉnh Quảng Ngãi là:", options: ["A. Thu hút nguồn vốn đầu tư trực tiếp từ nước ngoài.", "B. Sự phát triển mạnh mẽ của sản xuất công nghiệp, xây dựng và dịch vụ.", "C. Chú trọng đầu tư vào hệ thống cơ sở hạ tầng trọng điểm.", "D. Mở rộng thị trường tiêu thụ cho các sản phẩm địa phương."], correctIndex: 1 },
-                    { id: "q110", text: "Câu 110: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Tình hình kinh tế của tỉnh Quảng Ngãi trong năm 2025 so với năm 2024 như thế nào?", options: ["A. Giữ vị trí thấp nhất về tăng trưởng tại khu vực miền Trung.", "B. Có mức tăng trưởng kinh tế thấp hơn trung bình chung của cả nước.", "C. Vươn lên trở thành một trong những địa phương dẫn đầu cả nước về tốc độ tăng trưởng.", "D. Tiếp tục duy trì tốc độ tăng trưởng kinh tế ở mức ổn định như cũ."], correctIndex: 2 },
-                    { id: "q111", text: "Câu 111: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Mục tiêu được Trung ương đặt ra là:", options: ["A. Đạt mức tăng trưởng kinh tế từ hai con số trở lên trong nhiều năm liên tiếp.", "B. Gia tăng tỷ trọng ngành công nghiệp và kéo giảm tỷ trọng ngành dịch vụ.", "C. Đưa quảng ngãi lọt top sáu tỉnh, thành có quy mô nền kinh tế (grdp) lớn nhất.", "D. Dồn trọng tâm đầu tư cho hai ngành mũi nhọn là luyện thép và lọc dầu."], correctIndex: 0 }
-                ]
-            },
-
-            // Reading Group 112-114
-            {
-                id: "reading_112_114_d2",
-                section: "PHẦN 3. TƯ DUY KHOA HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào đoạn thông tin sau trả lời từ câu 112 đến câu 114</strong><br><br>Là một doanh nghiệp hoạt động trong ngành sản xuất công nghiệp, Công ty A đã vi phạm quy định khi không đưa nước thải vào hệ thống xử lý tập trung của khu vực. Thay vào đó, doanh nghiệp này đã bí mật chôn lấp các đường ống ngầm nhằm xả trực tiếp lượng nước chưa qua xử lý ra hệ thống sông ngòi. Hậu quả là môi trường nước khu vực lân cận bị ô nhiễm nặng nề, thủy sản chết trắng hàng loạt, đồng thời đe dọa nghiêm trọng đến sức khỏe và tình hình canh tác nông nghiệp của cư dân xung quanh. Phát hiện những dấu hiệu bất thường, người dân địa phương đã chủ động theo dõi và tố giác sự việc lên cơ quan chức năng. Sau khi tiến hành xác minh tại hiện trường, chính quyền đã lập biên bản và ban hành quyết định phạt vi phạm hành chính 250 triệu đồng đối với Công ty A.",
-                subQuestions: [
-                    { id: "q112", text: "Câu 112: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Căn cứ vào các quy định pháp luật, nguyên nhân chính dẫn đến việc Công ty A chịu án phạt là hành vi nào sau đây?", options: ["A. Thiếu minh bạch trong việc công khai các báo cáo về môi trường và quá trình xả thải.", "B. Trực tiếp xả nguồn nước chưa qua hệ thống xử lý đạt chuẩn ra môi trường tự nhiên.", "C. Không tuân thủ các quy định về đảm bảo an toàn lao động tại cơ sở sản xuất.", "D. Trốn tránh nghĩa vụ nộp các khoản phí bảo vệ môi trường đối với hoạt động xả thải."], correctIndex: 1 },
-                    { id: "q113", text: "Câu 113: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Mức tiền phạt 250 triệu đồng được cơ quan nhà nước căn cứ chủ yếu vào yếu tố nào?", options: ["A. Dựa trên doanh thu hằng năm của công ty A và lợi nhuận của công ty có được từ việc xả nước thải trực tiếp thay cho việc xây dựng hệ thống xử lý nước thải.", "B. Đánh giá tác động của hành vi xả nước thải đối sức khỏe cộng đồng và môi trường.", "C. Lượng nước thải không qua xử lý đã được công ty A xả ra môi trường.", "D. Thời gian hoạt động của công ty và khoảng thời gian công ty xả nước thải trái quy định."], correctIndex: 1 },
-                    { id: "q114", text: "Câu 114: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Cơ quan quản lý nhà nước chủ yếu dựa trên cơ sở nào để đưa ra mức phạt hành chính 250 triệu đồng?", options: ["A. Khối lượng nước thải chưa được xử lý đạt chuẩn mà doanh nghiệp này đã xả ra môi trường.", "B. Quá trình hoạt động của doanh nghiệp và tổng thời gian diễn ra hành vi xả thải trái phép.", "C. Mức doanh thu hàng năm của doanh nghiệp kết hợp với những hậu quả do việc xả thải gây ra.", "D. Mức độ tác động tiêu cực của hành vi xả thải đối với hệ sinh thái môi trường và sức khỏe cộng đồng."], correctIndex: 3 }
-                ]
-            },
-
-            // Reading Group 115-117
-            {
-                id: "reading_115_117_d2",
-                section: "PHẦN 3. TƯ DUY KHOA HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào đoạn thông tin sau trả lời từ câu 115 đến câu 117</strong><br><br>Thời kỳ trị vì của vua Lê Thánh Tông được xem là một trong những giai đoạn cường thịnh bậc nhất, mở ra kỷ nguyên vàng son của nhà nước phong kiến Việt Nam. Nền tảng then chốt tạo nên sự phồn vinh này nằm ở các chính sách cải tổ mạnh mẽ về cơ cấu chính quyền và hệ thống pháp luật. Suốt thời gian cầm quyền (1460 – 1497), ông đã xây dựng nên một mạng lưới hành chính quy củ, chặt chẽ từ cấp trung ương xuống tận cơ sở, kết hợp với việc ban hành các luật lệ đậm đà bản sắc dân tộc và giàu giá trị nhân đạo. Qua những bước đi đột phá đó, triều đình đã kiến tạo một nền chính trị vững chắc, thúc đẩy nền kinh tế thăng hoa và bảo vệ trọn vẹn chủ quyền lãnh thổ quốc gia.",
-                subQuestions: [
-                    { id: "q115", text: "Câu 115: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Vua Lê Thánh Tông là vị quân vương trị vì trong giai đoạn nào của lịch sử nước ta?", options: ["A. Lê Trung Hưng.", "B. Lê sơ.", "C. Tiền Lê.", "D. Lê Mạt."], correctIndex: 1 },
-                    { id: "q116", text: "Câu 116: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Yếu tố cốt lõi nào đã dẫn đến sự phồn vinh dưới thời vua Lê Thánh Tông?", options: ["A. Những bước đột phá trong lĩnh vực văn hóa và đời sống xã hội.", "B. Việc thay đổi, kiện toàn lại cơ cấu chính quyền và đội ngũ quan lại.", "C. Các chính sách cải tổ sâu rộng đối với cơ cấu bộ máy nhà nước và luật pháp.", "D. Những cải tổ nhằm xây dựng một hệ thống pháp luật hoàn chỉnh nhất."], correctIndex: 2 },
-                    { id: "q117", text: "Câu 117: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Đâu là tên của bộ luật được soạn thảo và ban hành dưới thời kỳ trị vì của vị vua này?", options: ["A. Bộ luật Hình Luật.", "B. Bộ luật Hình thư.", "C. Bộ luật Gia Long.", "D. Bộ luật Hồng Đức."], correctIndex: 3 }
-                ]
-            },
-
-            // Reading Group 118-120
-            {
-                id: "reading_118_120_d2",
-                section: "PHẦN 3. TƯ DUY KHOA HỌC",
-                type: "reading_group",
-                passage: "<strong>Dựa vào đoạn thông tin sau trả lời từ câu 118 đến câu 120</strong><br><br>Khi tốc độ bay hơi của các phân tử chất lỏng cân bằng chính xác với tốc độ ngưng tụ của các phân tử từ dạng hơi quay trở lại pha lỏng, một trạng thái cân bằng động sẽ được thiết lập. Lúc này, lớp hơi tích tụ ở phía trên bề mặt chất lỏng được gọi là hơi bão hòa, và áp suất do nó tác dụng lên hệ thống đạt đến một giá trị cực đại, được gọi là áp suất hơi bão hòa. Đại lượng này là thước đo đặc trưng cho tính dễ bay hơi của chất lỏng và tỉ lệ thuận với nhiệt độ. Tại điểm mà áp suất hơi bão hòa bằng áp suất khí quyển thì điểm đó chính là nhiệt độ sôi của chất đó. Đối với một hỗn hợp dung dịch tại điều kiện lý tưởng, áp suất hơi bão hòa của hỗn hợp dung dịch sẽ được tính bằng tổng các áp suất hơi riêng phần của từng cấu tử thành phần tạo nên dung dịch đó.<br><br><table class=\"table table-bordered text-center\" style=\"width:auto; margin:10px auto\"><tr><th>Dung dịch</th><th>n-heptane (mol)</th><th>n-octane (mol)</th><th>Áp suất hơi bão hòa ở 25°C (mmHg)</th></tr><tr><td>1</td><td>0,2</td><td>0,8</td><td>20,4</td></tr><tr><td>2</td><td>0,3</td><td>0,7</td><td>23,6</td></tr><tr><td>3</td><td>0,4</td><td>0,6</td><td>26,8</td></tr><tr><td>4</td><td>0,5</td><td>0,5</td><td>30,0</td></tr><tr><td>5</td><td>0,6</td><td>0,4</td><td>33,2</td></tr><tr><td>6</td><td>0,8</td><td>0,2</td><td>39,6</td></tr><tr><td>7</td><td>0,9</td><td>0,1</td><td>42,8</td></tr></table>",
-                subQuestions: [
-                    { id: "q118", text: "Câu 118: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Xét một dung dịch lý tưởng được pha trộn từ 0,6 mol octan và 0,5 mol heptan, giá trị áp suất hơi bão hòa của dung dịch này sẽ rơi vào khoảng:", options: ["A. Từ 30 đến 33,2.", "B. Trên 33,2.", "C. Dưới 26,8.", "D. Từ 26,8 đến 30."], correctIndex: 3 },
-                    { id: "q119", text: "Câu 119: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Phát biểu nào sau đây là sai khi đánh giá về tính chất áp suất hơi bão hòa của hệ hỗn hợp chứa n-heptane và n-octane?", options: ["A. Giá trị áp suất hơi bão hòa của hỗn hợp luôn nằm ở mức trung gian: cao hơn của n-octane nhưng thấp hơn của n-heptane.", "B. Sự thay đổi tỷ lệ thành phần giữa n-heptane và n-octane hoàn toàn không làm ảnh hưởng đến áp suất hơi bão hòa của hỗn hợp.", "C. Trong hệ hỗn hợp này, n-heptane thể hiện khả năng bay hơi kém hơn so với lúc nó ở trạng thái tinh khiết.", "D. Áp suất hơi bão hòa của toàn hệ thống sẽ tăng lên nếu ta gia tăng số mol của thành phần n-heptane."], correctIndex: 1 },
-                    { id: "q120", text: "Câu 120: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Phát biểu nào dưới đây mô tả chính xác nhất bản chất quy luật về áp suất hơi bão hòa áp dụng cho các dung dịch?", options: ["A. Ở điều kiện áp suất 760 mmHg, do có áp suất hơi bão hòa thấp hơn và khó bay hơi hơn nên n-heptane có nhiệt độ sôi cao hơn n-octane.", "B. Sự gia tăng tỷ lệ n-octane trong hỗn hợp làm cho áp suất hơi bão hòa của hệ tăng lên, từ đó dẫn đến sự suy giảm nhiệt độ sôi của toàn hỗn hợp.", "C. Khi áp suất khí quyển giảm xuống, chất lỏng trở nên dễ bay hơi hơn do áp suất hơi giảm, kéo theo sự gia tăng nhiệt độ sôi của n-heptane.", "D. Tại mức áp suất khí quyển 760 mmHg, nhiệt độ sôi của hệ hỗn hợp n-heptane và n-octane sẽ mang một giá trị nằm giữa khoảng nhiệt độ sôi của hai chất thành phần."], correctIndex: 3 }
-                ]
-            }
-        ]
-    },
-    {
-        id: "de_thi_thu_thptqg_anh",
-        title: "Đề thi thử THPTQG môn Tiếng Anh",
-        category: "anh",
-        subject: "Tiếng Anh",
-        description: "Đề thi thử THPT Quốc Gia môn Tiếng Anh - gồm các dạng: điền vào đoạn văn, sắp xếp hội thoại/đoạn văn, đọc hiểu đoạn văn",
-        scoreScale: 10,
-        scorePerQuestion: 0.25,
-        questions: [
-            // Reading Group 1-6: Admissions Open (Alley University)
-            {
-                id: "reading_1_6_anh_thtpt",
-                section: "TIẾNG ANH",
-                type: "reading_group",
-                passage: "<strong>Read the following leaflet and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 1 to 6.</strong><br><br><strong>ADMISSIONS OPEN FOR 2025 - 2026</strong><br><br>Are you looking for (1) _______ prestigious public university in Georgia? Consider Alley University, where we pride ourselves (2) _______ preparing the leaders of tomorrow. With over 90% of our graduates (3) _______ top jobs in fields as (4) _______ as the law, politics, medicine and journalism, your future starts here!<br><br><strong>Alley University provides:</strong><ul><li>State-of-the-art education delivered by qualified lecturers</li><li>Modern facilities designed to provide an engaging and innovative learning environment</li><li>Tuition grant and Scholarships making higher education accessible to everyone</li></ul>Visit our website https://alleyuniversity.com for more details or (5) _______ you have any questions, please (6) _______ to our Office of Admission Affairs.<ul><li><strong>Email:</strong> admission@alley.edu.ge</li><li><strong>Address:</strong> 99 Green Street, Georgia</li></ul>Register today and take the first step toward your future!",
-                subQuestions: [
-                    { id: "q1_anh_thtpt", text: "Question 1:", options: ["A. a", "B. an", "C. the", "D. Ø (no article)"], correctIndex: 0 },
-                    { id: "q2_anh_thtpt", text: "Question 2:", options: ["A. in", "B. on", "C. of", "D. with"], correctIndex: 1 },
-                    { id: "q3_anh_thtpt", text: "Question 3:", options: ["A. which landed", "B. landing", "C. is landed", "D. landed"], correctIndex: 1 },
-                    { id: "q4_anh_thtpt", text: "Question 4:", options: ["A. diversity", "B. diversify", "C. diversely", "D. diverse"], correctIndex: 3 },
-                    { id: "q5_anh_thtpt", text: "Question 5:", options: ["A. will", "B. can", "C. should", "D. may"], correctIndex: 2 },
-                    { id: "q6_anh_thtpt", text: "Question 6:", options: ["A. give up", "B. check in", "C. reach out", "D. turn down"], correctIndex: 2 }
-                ]
-            },
-
-            // Reading Group 7-12: Prom Night (JOIN US FOR AN UNFORGETTABLE PROM NIGHT)
-            {
-                id: "reading_7_12_anh_thtpt",
-                section: "TIẾNG ANH",
-                type: "reading_group",
-                passage: "<strong>Read the following leaflet and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 7 to 12.</strong><br><br><strong>JOIN US FOR AN UNFORGETTABLE PROM NIGHT!</strong><br><br><strong>Date:</strong> Saturday, 12 May &nbsp;|&nbsp; <strong>Time:</strong> 7:00 p.m. - 11:00 p.m. &nbsp;|&nbsp; <strong>Location:</strong> Grand Ballroom, Rex Hotel<br><br>Get ready for a magical evening filled with laughter, dancing, and memories! Our prom theme this year is &quot;Enchanted Evening&quot;, (7) _______ dress to impress in your finest attire.<br><br>Evening (8) _______:<ul><li><strong>Red Carpet Arrival:</strong> (9) _______ the moment with photos as you step into the spotlight!</li><li><strong>Live DJ:</strong> Dance the night away to your favourite hits.</li><li><strong>Delicious Dinner:</strong> Enjoy a gourmet meal and sweet treats.</li><li><strong>Awards &amp; Prizes:</strong> Celebrate with fun categories and surprises!</li><li><strong>Tickets:</strong> $50 per person, available at the student office.</li><li><strong>Special Promotion:</strong> Purchase your tickets by 15 April and receive (10) _______!</li><li>Don't miss out on this special night! For more information, please (11) _______ our website at https://promnight25.com</li><li>Let's (12) _______ this a night to remember!</li></ul>",
-                subQuestions: [
-                    { id: "q7_anh_thtpt", text: "Question 7:", options: ["A. but", "B. so", "C. therefore", "D. because"], correctIndex: 1 },
-                    { id: "q8_anh_thtpt", text: "Question 8:", options: ["A. Highlights", "B. Occasions", "C. Elements", "D. Principles"], correctIndex: 0 },
-                    { id: "q9_anh_thtpt", text: "Question 9:", options: ["A. Capture", "B. Take", "C. Gather", "D. Seize"], correctIndex: 0 },
-                    { id: "q10_anh_thtpt", text: "Question 10:", options: ["A. $10 discount", "B. a $10 discount", "C. discount $10", "D. a discount $10"], correctIndex: 1 },
-                    { id: "q11_anh_thtpt", text: "Question 11:", options: ["A. look", "B. come", "C. go", "D. visit"], correctIndex: 3 },
-                    { id: "q12_anh_thtpt", text: "Question 12:", options: ["A. make", "B. made", "C. making", "D. to make"], correctIndex: 0 }
-                ]
-            },
-
-            // Questions 13-17: Sentence/Utterance Arrangement
-            { id: "q13_anh_thtpt", section: "TIẾNG ANH", text: "Question 13:\na. Lily: I know! I'm excited for the next episode to see what happens!\nb. Lily: Did you watch the latest episode of that new series? The twist at the end was shocking!\nc. Mark: Yes! I couldn't believe it. The writing just keeps getting better, and that character's choice was unexpected.", options: ["A. a – b – c", "B. b – c – a", "C. b – a – c", "D. a – c – b"], correctIndex: 1 },
-            { id: "q14_anh_thtpt", section: "TIẾNG ANH", text: "Question 14:\na. Ben: Yes! I can't wait. I love that band.\nb. Ava: Same here! I've been listening to their new album nonstop.\nc. Ben: Me too! Are you going with anyone?\nd. Ava: I am thinking of going with you!\ne. Ava: Have you heard about the concert next week?", options: ["A. d – c – b – a – e", "B. d – a – b – c – e", "C. e – a – b – c – d", "D. e – c – b – a – d"], correctIndex: 2 },
-            { id: "q15_anh_thtpt", section: "TIẾNG ANH", text: "Question 15: Hi Anna,\na. Hope you are doing well! Last time, you told me that uniforms should be banned from high schools, but I don't think so.\nb. Indeed, when they are wearing the same clothes, they don't have to feel insecure about their appearance and social status.\nc. Additionally, students can save a lot of time by wearing uniforms.\nd. Personally, I think school uniforms are expected to help hide any social differences among students.\ne. They don't need to spend time planning their outfits to wear to school every day. What do you think?\nWrite back soon,\nJohn", options: ["A. a – e – b – c – d", "B. a – b – d – e – c", "C. a – c – d – e – b", "D. a – d – b – c – e"], correctIndex: 3 },
-            { id: "q16_anh_thtpt", section: "TIẾNG ANH", text: "Question 16:\na. Students who lack English proficiency risk missing significant opportunities that could shape their careers and limit their potential for success in such an interconnected world.\nb. Learning English is really important for students today.\nc. Companies also prioritise candidates with strong English skills because English serves as the primary language for international business, allowing for effective communication with clients and colleagues worldwide.\nd. In short, mastering English can ultimately enhance both personal and professional growth.\ne. It grants access to better educational opportunities at prestigious universities, enabling students to further their studies and expand their knowledge.", options: ["A. a – b – c – e – d", "B. a – c – e – b – d", "C. b – a – e – c – d", "D. b – e – c – a – d"], correctIndex: 3 },
-            { id: "q17_anh_thtpt", section: "TIẾNG ANH", text: "Question 17:\na. Many young individuals believe that showcasing their successes will enhance their social status and attract attention.\nb. Platforms like Facebook, Instagram, and TikTok encourage them to share curated versions of their lives, highlighting achievements, fashion and experiences.\nc. However, this trend can also result in pressure and anxiety as the quest for likes and followers often overshadows genuine connections and personal fulfilment.\nd. This desire for validation can lead to a constant comparison with peers, fostering a competitive mindset.\ne. Younger people today often feel the need to show off, driven largely by social media culture.", options: ["A. a – e – d – b – c", "B. a – c – b – d – e", "C. e – b – d – a – c", "D. e – d – b – c – a"], correctIndex: 2 },
-
-            // Reading Group 18-22: Overuse of Smartphones
-            {
-                id: "reading_18_22_anh_thtpt",
-                section: "TIẾNG ANH",
-                type: "reading_group",
-                passage: "<strong>Read the following passage about the overuse of smartphones and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 18 to 22.</strong><br><br>The overuse of smartphones has become a significant concern regarding children's development and well-being. Excessive screen time can lead to social isolation (18) _______. This can hinder the development of crucial social skills and emotional intelligence, making it difficult for them to engage effectively in real-world relationships.<br><br>(19) _______, contributing to issues such as obesity, poor posture, and eye strain. The addictive nature of smartphones also disrupts sleep patterns, significantly affecting cognitive function and overall mood. (20) _______ may find it challenging to concentrate in school, leading to diminished academic performance. Furthermore, unrestricted access to online content poses safety risks, exposing children to offensive materials, cyberbullying, and online predators.<br><br>(21) _______. Setting clear boundaries on screen time, promoting outdoor activities, and encouraging physical play are essential steps to mitigate the adverse consequences of children's overuse of smartphones. Open communication about digital literacy and online safety can also empower children to navigate the digital landscape more responsibly.<br><br>In conclusion, while smartphones offer benefits in terms of connectivity and learning, their overuse necessitates proactive measures to safeguard children's physical, social, and emotional well-being in today's digital era. (22) _______,",
-                subQuestions: [
-                    { id: "q18_anh_thtpt", text: "Question 18:", options: ["A. because many children now prefer virtual interactions on face-to-face communication", "B. as many children now prefer virtual interactions on face-to-face communication", "C. since many children now prefer offline interactions over online communication", "D. though many children now prefer offline interactions over online communication"], correctIndex: 1 },
-                    { id: "q19_anh_thtpt", text: "Question 19:", options: ["A. In addition, many experts recommend limiting children's screen time", "B. Additionally, the limitation of screen time is essential for children's physical health", "C. Another fact is that prolonged use of smartphones negatively impacts physical health", "D. Other fact is that excessive use of smartphones does harm to physical health"], correctIndex: 2 },
-                    { id: "q20_anh_thtpt", text: "Question 20:", options: ["A. Children who are constantly plugged into their devices", "B. Children always overuse their smartphones", "C. Children having difficulty in using their smartphones", "D. Children whom struggle to utilise their mobile devices"], correctIndex: 0 },
-                    { id: "q21_anh_thtpt", text: "Question 21:", options: ["A. The problems caused by the overuse of smartphones are too many to be solved", "B. The use of smartphones should be encouraged for children to look for effective learning materials", "C. A focused strategy involving only parents will be sufficient for effective change", "D. Addressing these problems requires a collaborative effort from parents, educators, and policymakers"], correctIndex: 3 },
-                    { id: "q22_anh_thtpt", text: "Question 22:", options: ["A. By fostering a balanced approach to technology use, we can help children thrive both online and offline", "B. As a result, it is important that children should be banned from using smartphones at school", "C. Therefore, the invention of smartphones is a nightmare for human beings, greatly affecting children's academic performance", "D. Without the appropriate use of smartphones, children can develop more comprehensively in their social skills and emotional intelligence"], correctIndex: 0 }
-                ]
-            },
-
-            // Reading Group 23-30: Tet Holiday in Vietnam
-            {
-                id: "reading_23_30_anh_thtpt",
-                section: "TIẾNG ANH",
-                type: "reading_group",
-                passage: "<strong>Read the following passage about Tet and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the following questions from 23 to 30.</strong><br><br><em>Tet</em>, also known as <em>Tet Nguyen Dan</em>, is the most important and beloved holiday in Vietnam. It normally takes place in January or February to mark the arrival of the Lunar New Year. <em>Tet</em> is an occasion for family reunions, cultural traditions and joyful celebrations throughout the country.<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Typically, <em>Tet</em> is celebrated over three days, but preparations for it begin weeks <strong>in advance</strong>. Families clean and decorate their homes with vibrant flowers like yellow apricot blossoms, peach blossoms and kumquat trees, symbolising <strong>prosperity</strong> and good fortune. Lanterns and couplets are also commonly used. Streets are adorned with red and yellow decorations, creating a festive vibe.<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Food plays a central role during <em>Tet</em>. Traditional dishes are inevitable such as <em>Banh Chung</em>, a square-shaped sticky rice cake representing the Earth, and <em>Banh Tet</em>, a cylindrical-shaped one representing the Moon. Other favourites are <em>Mut</em> (a variety of candied fruits), melon seeds among others which are served to guests as a symbol of sweet beginnings for the new year.<br><br>&nbsp;&nbsp;&nbsp;&nbsp;The atmosphere at <em>Tet</em> is filled with excitement and happiness. People wear new clothes, which is believed to bring good luck for the entire year. Elders give children <u>lucky money</u> in red envelopes to pass on blessings and good wishes. Parents and grandparents also often receive lucky money from their children as wishes for good health. Many families visit temples to pray for various blessings such as health, happiness and success. They also visit teachers, friends and extended family to exchange greetings and gifts.<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Overall, <em>Tet</em> holiday in Vietnam is a time of cultural pride and cherished traditions, bringing people together to celebrate their heritage and look forward to a prosperous new year ahead. <strong><u>It showcases the warmth of Vietnamese hospitality and the deep-rooted values of family and community.</u></strong>",
-                subQuestions: [
-                    { id: "q23_anh_thtpt", text: "Question 23: The word It in paragraph 1 refers to _______.", options: ["A. Tet", "B. holiday", "C. Vietnam", "D. arrival"], correctIndex: 0 },
-                    { id: "q24_anh_thtpt", text: "Question 24: The word <strong>in advance</strong> in paragraph 2 is OPPOSITE in meaning to _______.", options: ["A. before", "B. after", "C. forward", "D. earlier"], correctIndex: 1 },
-                    { id: "q25_anh_thtpt", text: "Question 25: The word <strong>prosperity</strong> in paragraph 2 could be best replaced by _______.", options: ["A. benefit", "B. luck", "C. wealth", "D. hardship"], correctIndex: 2 },
-                    { id: "q26_anh_thtpt", text: "Question 26: What do families do to prepare for <em>Tet</em>, according to the passage?", options: ["A. Visit temples to pray for health, happiness and success", "B. Tidy up their homes and decorate them with flowers and trees", "C. Take a walk around the streets to enjoy the festive atmosphere", "D. Buy new clothes for their pet and prepare special meals for it"], correctIndex: 1 },
-                    { id: "q27_anh_thtpt", text: "Question 27: Which of the following is NOT mentioned as a thing people do at <em>Tet</em>?", options: ["A. Put on new clothes", "B. Give and receive lucky money", "C. Go to temples", "D. Exchange gifts with strangers"], correctIndex: 3 },
-                    { id: "q28_anh_thtpt", text: "Question 28: Which of the following best paraphrases the underlined sentence in paragraph 5?", options: ["A. It illustrates the tradition of Vietnamese family and community as well as the richness of local festivals.", "B. It highlights the enduring values of family and community along with the friendliness of Vietnamese people.", "C. It emphasises the lasting values of Vietnamese community and the beauty of Vietnamese people.", "D. It reflects the warmth of Vietnamese family and community and their adaptation to global trends."], correctIndex: 1 },
-                    { id: "q29_anh_thtpt", text: "Question 29: Which paragraph mentions the significance of traditional cuisine at <em>Tet</em>?", options: ["A. Paragraph 1", "B. Paragraph 2", "C. Paragraph 3", "D. Paragraph 4"], correctIndex: 2 },
-                    { id: "q30_anh_thtpt", text: "Question 30: Which would be the best title for the passage?", options: ["A. Preparations for Tet in Vietnam", "B. Traditional Foods at Vietnamese Tet", "C. The Exciting Atmosphere at Vietnamese Tet", "D. Tet Holiday in Vietnam"], correctIndex: 3 }
-                ]
-            },
-
-            // Reading Group 31-40: Artificial Intelligence
-            {
-                id: "reading_31_40_anh_thtpt",
-                section: "TIẾNG ANH",
-                type: "reading_group",
-                passage: "<strong>Read the following passage about artificial intelligence and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the following questions from 31 to 40.</strong><br><br>Artificial Intelligence (AI) has rapidly evolved over the past few decades, transforming a theoretical concept into a <strong><u>powerful</u></strong> technology that impacts numerous aspects of daily life. The development of AI can be traced back to the mid-20th century when scientists started investigating the possibility of creating machines capable of performing tasks that typically require human intelligence.<br><br>&nbsp;&nbsp;&nbsp;&nbsp;[I] One of the key milestones in AI history was the <strong>advent</strong> of expert systems in the 1970s and 1980s. [II] They were widely used in fields like medicine, finance and engineering for tasks such as diagnosis, financial analysis and design optimisation. In the early 2000s, the rise of big data and advances in computing power promoted the growth of AI research, particularly deep learning. [III] Deep learning models, inspired by the structure and function of the human brain, use neural networks with multiple layers to analyse and learn from extensive datasets. [IV] This approach has led to breakthroughs in areas including image and speech recognition, natural language processing and autonomous systems.<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Today, AI technologies are integrated into various aspects of our lives, from virtual assistants like Siri and Alexa to recommendation systems on autonomous vehicles. AI is also changing industries such as healthcare by aiding in medical imaging analysis and personalised medicine, and finance by optimising trading strategies and detecting fraudulent activities. In the future, AI has potential for significant progress. Researchers are exploring areas such as reinforcement learning which enables AI agents to learn through interaction with environments, and explainable AI which aims to make AI systems more transparent and understandable to humans.<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Although AI provides opportunities for innovation and efficiency, <u>it</u> raises important ethical and social concerns. Issues such as bias in algorithms, data privacy, job displacement due to automation and the responsible use of AI in decision-making remain subjects of ongoing research and debate.<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<strong><u>In summary, the development of AI has been a journey marked by continuous innovation, breakthroughs, and societal challenges.</u></strong> As AI technologies evolve, they hold the potential to enhance human capabilities, improve efficiency and address complex global challenges while raising important questions about ethics, regulation and the future of employment in an AI-driven world.",
-                subQuestions: [
-                    { id: "q31_anh_thtpt", text: "Question 31: The word <strong>powerful</strong> in paragraph 1 is OPPOSITE in meaning to _______.", options: ["A. potent", "B. dominant", "C. influential", "D. insignificant"], correctIndex: 3 },
-                    { id: "q32_anh_thtpt", text: "Question 32: The word <strong>advent</strong> in paragraph 2 is CLOSEST in meaning to _______.", options: ["A. departure", "B. leaving", "C. arrival", "D. end"], correctIndex: 2 },
-                    { id: "q33_anh_thtpt", text: "Question 33: Where in paragraph 2 does the following sentence best fit?<br><em>\"These systems utilised rules and logic to replicate the knowledge and reasoning of human experts in specific domains.\"</em>", options: ["A. [I]", "B. [II]", "C. [III]", "D. [IV]"], correctIndex: 1 },
-                    { id: "q34_anh_thtpt", text: "Question 34: Which of the following is NOT stated about deep learning?", options: ["A. Deep learning models draw inspiration from the human brain.", "B. Deep learning uses rule-based algorithms to process data.", "C. Deep learning has revolutionised image and speech recognition.", "D. Deep learning has transformed natural language processing capabilities."], correctIndex: 1 },
-                    { id: "q35_anh_thtpt", text: "Question 35: Which of the following best summarises paragraph 3?", options: ["A. Siri and Alexa are one of the best virtual assistants which contribute to changing industries.", "B. AI technologies are improving various sectors such as healthcare and finance.", "C. AI technologies are being developed rapidly, but the growth rate may reduce in the future.", "D. AI is being widely used and transforming industries, with potential major advancements."], correctIndex: 3 },
-                    { id: "q36_anh_thtpt", text: "Question 36: The word <em>it</em> in paragraph 4 refers to _______.", options: ["A. explainable AI", "B. AI", "C. innovation", "D. efficiency"], correctIndex: 1 },
-                    { id: "q37_anh_thtpt", text: "Question 37: Which of the following best paraphrases the underlined sentence in paragraph 5?", options: ["A. In summary, the progress of AI has been characterised by lasting advancements, accidental discoveries, and societal challenges.", "B. In conclusion, AI has developed through a series of steady improvements, minor innovations, and societal obstacles.", "C. To sum up, the growth of AI has involved constant change, notable achievements, and various societal support.", "D. Overall, there have been ongoing innovations, significant discoveries, and societal issues throughout the evolution of AI."], correctIndex: 3 },
-                    { id: "q38_anh_thtpt", text: "Question 38: According to the passage, the advancement of AI technologies raises concerns primarily about _______.", options: ["A. the potential for AI to surpass human intelligence", "B. the ethical implications of AI in decision-making processes", "C. the affordability and accessibility of AI technologies", "D. the integration of AI into various aspects of our lives"], correctIndex: 1 },
-                    { id: "q39_anh_thtpt", text: "Question 39: It can be inferred from the passage that the development of AI has had a profound impact on society by ...", options: ["A. revolutionising industries and enhancing efficiency", "B. eliminating the need for human expertise in technical fields", "C. completely replacing human decision-making with automated systems", "D. decreasing the complexity of global challenges through advanced technology"], correctIndex: 0 },
-                    { id: "q40_anh_thtpt", text: "Question 40: Which of the following could be the best title for the passage?", options: ["A. The Use of Artificial Intelligence", "B. The Development of Artificial Intelligence", "C. The Advantages of Artificial Intelligence", "D. The Disadvantages of Artificial Intelligence"], correctIndex: 1 }
-                ]
-            }
-        ]
-    },
-        // === ĐỀ ÔN TẬP GIỮA KÌ I - HÓA HỌC 12 ===
-    {
-        id: "on_tap_giua_ki_1_hoa_12",
-        title: "Ôn tập giữa kì I - Hóa học 12",
-        category: "hoa",
-        subject: "Hóa học",
-        description: "Bộ đề ôn tập kiểm tra giữa kì I môn Hóa học 12 theo cấu trúc mới: I. Trắc nghiệm (Chương 1, 2, 3) | II. Đúng/Sai | III. Trả lời ngắn (Tự chọn phần ôn linh hoạt)",
-        scoreScale: 10,
-        scorePerQuestion: 0.25,
-        selectableSections: [
-                {
-                        id: "part1_c1",
-                        group: "I. Trắc nghiệm nhiều lựa chọn",
-                        name: "Chương 1: Ester - Lipid",
-                        label: "Chương 1: Ester - Lipid (15 câu)",
-                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
-                        count: 15,
-                        type: "multiple_choice"
-                },
-                {
-                        id: "part1_c2",
-                        group: "I. Trắc nghiệm nhiều lựa chọn",
-                        name: "Chương 2: Carbohydrate",
-                        label: "Chương 2: Carbohydrate (17 câu)",
-                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
-                        count: 17,
-                        type: "multiple_choice"
-                },
-                {
-                        id: "part1_c3",
-                        group: "I. Trắc nghiệm nhiều lựa chọn",
-                        name: "Chương 3: Hợp chất chứa Nitrogen",
-                        label: "Chương 3: Hợp chất chứa Nitrogen (15 câu)",
-                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
-                        count: 15,
-                        type: "multiple_choice"
-                },
-                {
-                        id: "part2_tf",
-                        group: "II. Đúng / Sai",
-                        name: "II. Đúng / Sai",
-                        label: "II. Đúng / Sai (8 câu - 32 ý hỏi)",
-                        section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
-                        count: 8,
-                        type: "true_false_group"
-                },
-                {
-                        id: "part3_sa",
-                        group: "III. Trả lời ngắn",
-                        name: "III. Trả lời ngắn",
-                        label: "III. Trả lời ngắn (13 câu)",
-                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
-                        count: 13,
-                        type: "short_answer"
-                }
-        ],
-        presets: [
-                {
-                        id: "all",
-                        label: "✨ Toàn bộ đề (68 câu)",
-                        sectionIds: ["part1_c1", "part1_c2", "part1_c3", "part2_tf", "part3_sa"]
-                },
-                {
-                        id: "part1",
-                        label: "📝 Cả 3 chương Trắc nghiệm (47 câu)",
-                        sectionIds: ["part1_c1", "part1_c2", "part1_c3"]
-                },
-                {
-                        id: "c1",
-                        label: "🧪 Chương 1: Ester - Lipid (15 câu)",
-                        sectionIds: ["part1_c1"]
-                },
-                {
-                        id: "c2",
-                        label: "🌾 Chương 2: Carbohydrate (17 câu)",
-                        sectionIds: ["part1_c2"]
-                },
-                {
-                        id: "c3",
-                        label: "🧬 Chương 3: Nitrogen (15 câu)",
-                        sectionIds: ["part1_c3"]
-                },
-                {
-                        id: "tf",
-                        label: "⚖️ II. Đúng / Sai (8 câu)",
-                        sectionIds: ["part2_tf"]
-                },
-                {
-                        id: "sa",
-                        label: "✏️ III. Trả lời ngắn (13 câu)",
-                        sectionIds: ["part3_sa"]
-                }
-        ],
-        questions: [
-                {
-                        id: "gk1_c1_q1",
-                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
-                        text: "Câu 1: Chất nào sau đây thuộc loại ester?",
-                        options: [
-                                "A. CH₃COOCH₃.",
-                                "B. CH₃COOH.",
-                                "C. HCOOH.",
-                                "D. CH₃COCH₃."
-                        ],
-                        correctIndex: 0
-                },
-                {
-                        id: "gk1_c1_q2",
-                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
-                        text: "Câu 2: Chất nào sau đây không phải là ester?",
-                        options: [
-                                "A. CH₃COOCH₃.",
-                                "B. HCOOCH₃.",
-                                "C. CH₃COOH.",
-                                "D. C₆H₅COOCH₃."
-                        ],
-                        correctIndex: 2
-                },
-                {
-                        id: "gk1_c1_q3",
-                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
-                        text: "Câu 3: Công thức của methyl formate là",
-                        options: [
-                                "A. HCOOCH₃.",
-                                "B. CH₃COOC₂H₅.",
-                                "C. HCOOC₂H₅.",
-                                "D. CH₃COOCH₃."
-                        ],
-                        correctIndex: 0
-                },
-                {
-                        id: "gk1_c1_q4",
-                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
-                        text: "Câu 4: Ester ethyl acetate có công thức cấu tạo là",
-                        options: [
-                                "A. COOCH₃.",
-                                "B. CH₃COOC₂H₅.",
-                                "C. HCOOC₂H₅.",
-                                "D. CH₃COOCH₃."
-                        ],
-                        correctIndex: 1
-                },
-                {
-                        id: "gk1_c1_q5",
-                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
-                        text: "Câu 5: Acid nào sau đây thuộc loại acid béo no thường gặp trong mỡ động vật?",
-                        options: [
-                                "A. Formic acid.",
-                                "B. Acetic acid.",
-                                "C. Stearic acid.",
-                                "D. Oleic acid."
-                        ],
-                        correctIndex: 2
-                },
-                {
-                        id: "gk1_c1_q6",
-                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
-                        text: "Câu 6: “Chất béo là triester của… (1)… với các… (2)… gọi chung là các triglyceride.” Nội dung phù hợp trong ô trống (1), (2) lần lượt là",
-                        options: [
-                                "A. glycerol, acetic acid.",
-                                "B. glycerol, acid béo.",
-                                "C. ethylene glycol, acid béo.",
-                                "D. methyl alcohol, acid béo."
-                        ],
-                        correctIndex: 1
-                },
-                {
-                        id: "gk1_c1_q7",
-                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
-                        text: "Câu 7: Thành phần chính của xà phòng thông thường là muối nào sau đây?",
-                        options: [
-                                "A. C₆H₅COONa.",
-                                "B. C₁₇H₃₅COONa.",
-                                "C. CH₃[CH₂]₁₁OSO₃Na.",
-                                "D. C₂H₅COONa."
-                        ],
-                        correctIndex: 1
-                },
-                {
-                        id: "gk1_c1_q8",
-                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
-                        text: "Câu 8: Thủy phân methyl propanoate trong môi trường acid thu được sản phẩm gồm",
-                        options: [
-                                "A. CH₃COOH và C₂H₅OH.",
-                                "B. C₂H₅COOH và CH₃OH.",
-                                "C. C₂H₅COOH và C₂H₅OH.",
-                                "D. CH₃COOH và C₃H₇OH."
-                        ],
-                        correctIndex: 1
-                },
-                {
-                        id: "gk1_c1_q9",
-                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
-                        text: "Câu 9: Thực hiện phản ứng xà phòng hóa hoàn toàn 8,9 gam tripalmitin bằng dung dịch NaOH vừa đủ. Khối lượng glycerol thu được là",
-                        options: [
-                                "A. 0,92 gram.",
-                                "B. 1,84 gram.",
-                                "C. 2,76 gram.",
-                                "D. 0,46 gram."
-                        ],
-                        correctIndex: 0
-                },
-                {
-                        id: "gk1_c1_q10",
-                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
-                        text: "Câu 10: Chất béo lỏng như triolein có thể chuyển hóa thành chất béo rắn (mỡ nhân tạo) bằng phản ứng nào sau đây?",
-                        options: [
-                                "A. Xà phòng hóa.",
-                                "B. Hydrogen hóa (xúc tác, t°, p).",
-                                "C. Thủy phân trong môi trường acid.",
-                                "D. Oxi hóa bằng dung dịch KMnO₄."
-                        ],
-                        correctIndex: 1
-                },
-                {
-                        id: "gk1_c1_q11",
-                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
-                        text: "Câu 11: Ưu điểm vượt trội của chất giặt rửa tổng hợp so với xà phòng thông thường là",
-                        options: [
-                                "A. Dễ bị phân hủy sinh học hơn.",
-                                "B. Không tạo kết tủa và giặt rửa tốt trong nước cứng chứa ion Ca²⁺, Mg²⁺.",
-                                "C. Được sản xuất hoàn toàn từ mỡ động vật.",
-                                "D. Không làm hại da tay khi sử dụng."
-                        ],
-                        correctIndex: 1
-                },
-                {
-                        id: "gk1_c1_q12",
-                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
-                        text: "Câu 12: Từ isoamyl alcohol và acetic acid, với xúc tác H₂SO₄ đặc, đun nóng người ta điều chế được isoamyl acetate có mùi thơm đặc trưng của",
-                        options: [
-                                "A. Quả chín dứa.",
-                                "B. Quả chuối chín.",
-                                "C. Quả táo.",
-                                "D. Hoa nhài."
-                        ],
-                        correctIndex: 1
-                },
-                {
-                        id: "gk1_c1_q13",
-                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
-                        text: "Câu 13: Linoleic acid (có cấu tạo như hình bên dưới) là một trong những acid béo có lợi cho sức khỏe tim mạch, ngăn ngừa các bệnh về tim, động mạch vành. Phát biểu nào sau đây sai?",
-                        diagramCode: "<div style=\"text-align:center; padding:10px 0;\"><svg viewBox=\"0 0 540 90\" style=\"max-width:100%; height:auto;\"><path d=\"M 15 45 L 45 65 L 75 45 L 105 65 L 135 45 L 165 65 L 195 45 L 225 65 L 255 45 L 285 65 L 315 45 L 345 65 L 375 45 L 405 65 L 435 45 L 465 65 L 495 45\" fill=\"none\" stroke=\"#4F46E5\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"165\" y1=\"58\" x2=\"195\" y2=\"38\" stroke=\"#4F46E5\" stroke-width=\"2.5\"/><line x1=\"255\" y1=\"38\" x2=\"285\" y2=\"58\" stroke=\"#4F46E5\" stroke-width=\"2.5\"/><text x=\"500\" y=\"49\" fill=\"#EF4444\" font-weight=\"700\" font-size=\"14\" font-family=\"sans-serif\">COOH</text><text x=\"5\" y=\"49\" fill=\"#10B981\" font-weight=\"700\" font-size=\"13\" font-family=\"sans-serif\">CH₃</text></svg><div style=\"font-size:0.85rem; color:var(--text-muted); margin-top:4px;\">Cấu trúc hóa học của Linoleic acid (C₁₇H₃₁COOH - có 2 liên kết đôi C=C và 1 nhóm -COOH, tổng cộng 3 liên kết $\\pi$)</div></div>",
-                        options: [
-                                "A. Trong phân tử linoleic acid có 2 liên kết $\\pi$.",
-                                "B. Ở điều kiện thích hợp, 1 mol trilinolein tác dụng được tối đa với 6 mol H₂.",
-                                "C. Trilinolein có công thức phân tử là C₅₇H₉₈O₆.",
-                                "D. Linoleic acid thuộc loại acid béo omega-6."
-                        ],
-                        correctIndex: 0
-                },
-                {
-                        id: "gk1_c1_q14",
-                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
-                        text: "Câu 14: Đun nóng 12,0 gam acetic acid với 11,5 gam ethanol có H₂SO₄ đặc làm xúc tác. Đến khi phản ứng đạt trạng thái cân bằng thu được 11,44 gam ethyl acetate. Hiệu suất của phản ứng ester hóa là",
-                        options: [
-                                "A. 60,0%.",
-                                "B. 65,0%.",
-                                "C. 70,0%.",
-                                "D. 75,0%."
-                        ],
-                        correctIndex: 1
-                },
-                {
-                        id: "gk1_c1_q15",
-                        section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
-                        text: "Câu 15: Xà phòng hóa hoàn toàn 17,8 gam triglyceride X bằng dung dịch KOH dư thu được 1,84 gam glycerol và m gam hỗn hợp muối potassium của các acid béo. Giá trị của m là",
-                        options: [
-                                "A. 19,68 gram.",
-                                "B. 18,32 gram.",
-                                "C. 20,16 gram.",
-                                "D. 19,12 gram."
-                        ],
-                        correctIndex: 1
-                },
-                {
-                        id: "gk1_c2_q1",
-                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
-                        text: "Câu 1: Chất nào sau đây không có phản ứng thủy phân?",
-                        options: [
-                                "A. Fructose.",
-                                "B. Amylose.",
-                                "C. Cellulose.",
-                                "D. Amylopectin."
-                        ],
-                        correctIndex: 0
-                },
-                {
-                        id: "gk1_c2_q2",
-                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
-                        text: "Câu 2: Chất nào sau đây thuộc loại polysaccharide?",
-                        options: [
-                                "A. Fructose.",
-                                "B. Glucose.",
-                                "C. Maltose.",
-                                "D. Cellulose."
-                        ],
-                        correctIndex: 3
-                },
-                {
-                        id: "gk1_c2_q3",
-                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
-                        text: "Câu 3: Chất nào sau đây thuộc loại monosaccharide?",
-                        options: [
-                                "A. Cellulose.",
-                                "B. Tinh bột.",
-                                "C. Saccharose.",
-                                "D. Fructose."
-                        ],
-                        correctIndex: 3
-                },
-                {
-                        id: "gk1_c2_q4",
-                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
-                        text: "Câu 4: Công thức cấu tạo dạng mạch vòng $\\alpha$ - glucose là",
-                        imageSrc: "images/q4_chuong2.png",
-                        options: [
-                                "A. Hình A.",
-                                "B. Hình B.",
-                                "C. Hình C.",
-                                "D. Hình D."
-                        ],
-                        correctIndex: 0
-                },
-                {
-                        id: "gk1_c2_q5",
-                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
-                        text: "Câu 5: Dung dịch chất nào sau đây được dùng làm dịch truyền y tế để cung cấp năng lượng cho cơ thể suy nhược?",
-                        options: [
-                                "A. Glucose 5%.",
-                                "B. Saccharose 10%.",
-                                "C. Fructose 5%.",
-                                "D. Glycerol 5%."
-                        ],
-                        correctIndex: 0
-                },
-                {
-                        id: "gk1_c2_q6",
-                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
-                        text: "Câu 6: Thuốc thử dùng để nhận biết hồ tinh bột ở nhiệt độ thường là",
-                        options: [
-                                "A. Dung dịch AgNO₃/NH₃.",
-                                "B. Dung dịch iodine (I₂).",
-                                "C. Cu(OH)₂.",
-                                "D. Dung dịch nước bromine."
-                        ],
-                        correctIndex: 1
-                },
-                {
-                        id: "gk1_c2_q7",
-                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
-                        text: "Câu 7: Mỗi đơn vị glucose cấu thành phân tử cellulose có chứa bao nhiêu nhóm -OH tự do?",
-                        options: [
-                                "A. 1.",
-                                "B. 2.",
-                                "C. 3.",
-                                "D. 4."
-                        ],
-                        correctIndex: 2
-                },
-                {
-                        id: "gk1_c2_q8",
-                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
-                        text: "Câu 8: Phát biểu nào sau đây đúng về fructose?",
-                        options: [
-                                "A. Fructose không có khả năng tham gia phản ứng tráng bạc.",
-                                "B. Trong dung dịch kiềm, fructose và glucose có thể chuyển hóa qua lại cho nhau.",
-                                "C. Fructose làm mất màu dung dịch nước bromine tương tự glucose.",
-                                "D. Fructose là polysaccharide có trong củ mài."
-                        ],
-                        correctIndex: 1
-                },
-                {
-                        id: "gk1_c2_q9",
-                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
-                        text: "Câu 9: Glucose có thể lên men tạo lactic acid có trong sữa chua qua phản ứng nào sau đây?",
-                        options: [
-                                "A. CH₂OH-[CHOH]₄-CHO + Br₂ + H₂O → CH₂OH-[CHOH]₄-COOH + 2HBr.",
-                                "B. 2C₆H₁₂O₆ + Cu(OH)₂ → (C₆H₁₁O₆)₂Cu + 2H₂O.",
-                                "C. C₆H₁₂O₆ → 2CH₃CH(OH)COOH.",
-                                "D. C₆H₁₂O₆ → 2C₂H₅OH + 2CO₂."
-                        ],
-                        correctIndex: 2
-                },
-                {
-                        id: "gk1_c2_q10",
-                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
-                        text: "Câu 10: Cho các chất: glucose, fructose, saccharose, tinh bột, cellulose. Số chất tham gia phản ứng hòa tan Cu(OH)₂ khi đun nóng tạo kết tủa đỏ gạch là",
-                        options: [
-                                "A. 2.",
-                                "B. 3.",
-                                "C. 4.",
-                                "D. 5."
-                        ],
-                        correctIndex: 0
-                },
-                {
-                        id: "gk1_c2_q11",
-                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
-                        text: "Câu 11: Hiện tượng xảy ra khi đun nóng glucose với dung dịch AgNO₃ trong NH₃ dư là",
-                        options: [
-                                "A. Xuất hiện kết tủa màu xanh lam.",
-                                "B. Có khí không màu thoát ra.",
-                                "C. Xuất hiện lớp kim loại bạc sáng bám vào thành ống nghiệm.",
-                                "D. Dung dịch đổi sang màu đỏ gạch."
-                        ],
-                        correctIndex: 2
-                },
-                {
-                        id: "gk1_c2_q12",
-                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
-                        text: "Câu 12: Phản ứng nào sau đây chứng minh dạng mạch vòng của Glucose có nhóm -OH hemiacetal?",
-                        options: [
-                                "A. Phản ứng với Cu(OH)₂ tạo dung dịch xanh lam.",
-                                "B. Phản ứng tráng bạc với AgNO₃/NH₃.",
-                                "C. Phản ứng với CH₃OH khi có mặt khí HCl khan.",
-                                "D. Phản ứng lên men rượu."
-                        ],
-                        correctIndex: 2
-                },
-                {
-                        id: "gk1_c2_q13",
-                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
-                        text: "Câu 13: Khi thủy phân hoàn toàn tinh bột hoặc cellulose trong môi trường acid thu được monosaccharide duy nhất là",
-                        options: [
-                                "A. Fructose.",
-                                "B. Glucose.",
-                                "C. Galactose.",
-                                "D. Maltose."
-                        ],
-                        correctIndex: 1
-                },
-                {
-                        id: "gk1_c2_q14",
-                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
-                        text: "Câu 14: Khác biệt cấu trúc cơ bản giữa amylose và amylopectin trong tinh bột là",
-                        options: [
-                                "A. Amylose phân nhánh, amylopectin không phân nhánh.",
-                                "B. Amylose không phân nhánh (chỉ liên kết α-1,4), amylopectin phân nhánh (liên kết α-1,4 và α-1,6).",
-                                "C. Amylose gồm các gốc β-glucose, amylopectin gồm α-glucose.",
-                                "D. Amylose tan tốt trong nước lạnh, amylopectin không tan."
-                        ],
-                        correctIndex: 1
-                },
-                {
-                        id: "gk1_c2_q15",
-                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
-                        text: "Câu 15: Chất nào sau đây phản ứng với HNO₃ đặc (xúc tác H₂SO₄ đặc, đun nóng) tạo thành chất nổ thuốc súng không khói?",
-                        options: [
-                                "A. Tinh bột.",
-                                "B. Glucose.",
-                                "C. Cellulose.",
-                                "D. Saccharose."
-                        ],
-                        correctIndex: 2
-                },
-                {
-                        id: "gk1_c2_q16",
-                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
-                        text: "Câu 16: Thủy phân hoàn toàn 3,42 gam saccharose trong dung dịch H₂SO₄ loãng thu được dung dịch X. Cho X tác dụng với lượng dư dung dịch AgNO₃ trong NH₃ đun nóng thu được m gam Ag. Giá trị m là",
-                        options: [
-                                "A. 1,08 gram.",
-                                "B. 2,16 gram.",
-                                "C. 4,32 gram.",
-                                "D. 3,24 gram."
-                        ],
-                        correctIndex: 2
-                },
-                {
-                        id: "gk1_c2_q17",
-                        section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
-                        text: "Câu 17: Đun nóng 18,0 gam glucose với dung dịch AgNO₃ trong NH₃ dư thu được m gam Ag kim loại. Biết hiệu suất phản ứng tráng bạc đạt 90%. Giá trị của m là",
-                        options: [
-                                "A. 21,60 gram.",
-                                "B. 19,44 gram.",
-                                "C. 10,80 gram.",
-                                "D. 17,50 gram."
-                        ],
-                        correctIndex: 1
-                },
-                {
-                        id: "gk1_c3_q1",
-                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
-                        text: "Câu 1: Amine nào sau đây thuộc loại amine bậc hai?",
-                        options: [
-                                "A. CH₃NH₂.",
-                                "B. CH₃-NH-C₂H₅.",
-                                "C. (CH₃)₃N.",
-                                "D. C₆H₅NH₂."
-                        ],
-                        correctIndex: 1
-                },
-                {
-                        id: "gk1_c3_q2",
-                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
-                        text: "Câu 2: Ở điều kiện thường, amine nào sau đây là chất khí, có mùi khai tương tự ammonia?",
-                        options: [
-                                "A. Dimethylamine.",
-                                "B. Aniline.",
-                                "C. Propylamine.",
-                                "D. Phenylamine."
-                        ],
-                        correctIndex: 0
-                },
-                {
-                        id: "gk1_c3_q3",
-                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
-                        text: "Câu 3: Tên gốc-chức của amine có công thức cấu tạo CH₃-CH₂-NH₂ là",
-                        options: [
-                                "A. ethylamine.",
-                                "B. N-methylethylamine.",
-                                "C. methylethanamine.",
-                                "D. diethylamine."
-                        ],
-                        correctIndex: 0
-                },
-                {
-                        id: "gk1_c3_q4",
-                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
-                        text: "Câu 4: Dung dịch chất nào sau đây làm quỳ tím chuyển sang màu xanh?",
-                        options: [
-                                "A. Aniline.",
-                                "B. Methylamine.",
-                                "C. Glycine.",
-                                "D. Phenol."
-                        ],
-                        correctIndex: 1
-                },
-                {
-                        id: "gk1_c3_q5",
-                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
-                        text: "Câu 5: Hiện tượng xảy ra khi nhỏ vài giọt nước bromine vào dung dịch aniline là",
-                        options: [
-                                "A. Xuất hiện kết tủa màu đỏ gạch.",
-                                "B. Xuất hiện kết tủa màu trắng.",
-                                "C. Dung dịch chuyển sang màu xanh lam.",
-                                "D. Khí không màu thoát ra."
-                        ],
-                        correctIndex: 1
-                },
-                {
-                        id: "gk1_c3_q6",
-                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
-                        text: "Câu 6: Amino acid là hợp chất hữu cơ tạp chức chứa đồng thời hai nhóm chức nào?",
-                        options: [
-                                "A. Nhóm -OH và -COOH.",
-                                "B. Nhóm -NH₂ và -COOH.",
-                                "C. Nhóm -CHO và -NH₂.",
-                                "D. Nhóm -CO- và -NH₂."
-                        ],
-                        correctIndex: 1
-                },
-                {
-                        id: "gk1_c3_q7",
-                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
-                        text: "Câu 7: Amino acid X có tên thường là alanine. Công thức cấu tạo của X là",
-                        options: [
-                                "A. H₂N-C(CH₃)₂-COOH.",
-                                "B. H₂N-CH₂-COOH.",
-                                "C. CH₃-CH(NH₂)-COOH.",
-                                "D. H₂N-CH₂-CH₂-COOH."
-                        ],
-                        correctIndex: 2
-                },
-                {
-                        id: "gk1_c3_q8",
-                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
-                        text: "Câu 8: Ở điều kiện thường, các amino acid tồn tại chủ yếu ở dạng cấu tạo nào?",
-                        options: [
-                                "A. Phân tử trung hòa.",
-                                "B. Cation mang điện dương.",
-                                "C. Ion lưỡng cực.",
-                                "D. Anion mang điện âm."
-                        ],
-                        correctIndex: 2
-                },
-                {
-                        id: "gk1_c3_q9",
-                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
-                        text: "Câu 9: Quá trình di chuyển của các amino acid trong điện trường dưới tác dụng của hiệu điện thế được gọi là",
-                        options: [
-                                "A. Sự điện li.",
-                                "B. Sự điện di.",
-                                "C. Sự điện phân.",
-                                "D. Sự điện giải."
-                        ],
-                        correctIndex: 1
-                },
-                {
-                        id: "gk1_c3_q10",
-                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
-                        text: "Câu 10: Liên kết được hình thành giữa hai đơn vị α-amino acid qua nhóm -CO-NH- gọi là",
-                        options: [
-                                "A. Liên kết glycoside.",
-                                "B. Liên kết peptide.",
-                                "C. Liên kết ester.",
-                                "D. Liên kết hydrogen."
-                        ],
-                        correctIndex: 1
-                },
-                {
-                        id: "gk1_c3_q11",
-                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
-                        text: "Câu 11: Thuốc thử Cu(OH)₂ trong môi trường kiềm tác dụng với chất nào sau đây tạo hợp chất màu tím đặc trưng (phản ứng biuret)?",
-                        options: [
-                                "A. Dipeptide Gly-Ala.",
-                                "B. Tripeptide Gly-Ala-Val.",
-                                "C. Glucose.",
-                                "D. Glycerol."
-                        ],
-                        correctIndex: 1
-                },
-                {
-                        id: "gk1_c3_q12",
-                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
-                        text: "Câu 12: Để nhận biết dung dịch chứa peptide có từ 2 liên kết peptide trở lên (tripeptide trở lên), người ta dùng thuốc thử nào?",
-                        options: [
-                                "A. Dung dịch Iodine.",
-                                "B. Dung dịch Cu(OH)₂ trong môi trường kiềm.",
-                                "C. Dung dịch AgNO₃/NH₃.",
-                                "D. Quỳ tím."
-                        ],
-                        correctIndex: 1
-                },
-                {
-                        id: "gk1_c3_q13",
-                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
-                        text: "Câu 13: Khi pha sữa bằng nước nóng thấy xuất hiện vón cục là do",
-                        options: [
-                                "A. Sự đông tụ của protein bởi nhiệt độ.",
-                                "B. Sự đông tụ của protein bởi acid.",
-                                "C. Sự đông tụ của protein bởi base.",
-                                "D. Sự đông tụ của protein do kim loại nặng."
-                        ],
-                        correctIndex: 0
-                },
-                {
-                        id: "gk1_c3_q14",
-                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
-                        text: "Câu 14: Tên gọi theo danh pháp thay thế của amine CH₃-CH₂-CH₂-NH₂ là",
-                        options: [
-                                "A. Propan-1-amine.",
-                                "B. Propan-2-amine.",
-                                "C. Propylamine.",
-                                "D. Isopropylamine."
-                        ],
-                        correctIndex: 0
-                },
-                {
-                        id: "gk1_c3_q15",
-                        section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
-                        text: "Câu 15: Dung dịch amino acid nào sau đây làm quỳ tím chuyển sang màu đỏ (môi trường acid)?",
-                        options: [
-                                "A. Glycine.",
-                                "B. Alanine.",
-                                "C. Lysine.",
-                                "D. Glutamic acid."
-                        ],
-                        correctIndex: 3
-                },
-                {
-                        id: "gk1_tf_q1",
-                        section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
-                        type: "true_false_group",
-                        text: "<strong>Câu 1:</strong> Isoamyl acetate có mùi chuối chín nên được dùng làm hương liệu nhân tạo. Trong ngành sơn, isoamyl acetate được dùng làm dung môi vecni, dung môi sơn mài,... Isoamyl acetate được điều chế theo các bước sau:<br><strong>Bước 1:</strong> Cho vào bình cầu 15 mL isoamyl alcohol (d = 0,81 g/mL), 10 mL acetic acid (d = 1,049 g/mL) và 7 mL H₂SO₄ đậm đặc, cho thêm vào bình vài viên đá bọt. Lắp ống sinh hàn hồi lưu thẳng đứng. Đun hồi lưu khoảng 1 giờ.<br><strong>Bước 2:</strong> Để nguội rồi rót sản phẩm vào phễu chiết, lắc đều rồi để yên 5 phút, chất lỏng tách thành hai lớp, loại bỏ lớp dưới, lấy lớp trên.<br><strong>Bước 3:</strong> Cho từ từ dung dịch Na₂CO₃ 10% vào phần chất lỏng ở bước 2 và lắc đều đến khi hết bọt khí, thêm tiếp 20 mL dung dịch NaCl bão hòa rồi để yên cho tách lớp. Chiết lấy phần chất lỏng phía trên, làm khan thu được isoamyl acetate.",
-                        subQuestions: [
-                                {
-                                        id: "a",
-                                        text: "a) Isoamyl acetate rất ít tan trong nước và có khối lượng riêng nhỏ hơn khối lượng riêng của nước.",
-                                        correctAnswer: "Đúng"
-                                },
-                                {
-                                        id: "b",
-                                        text: "b) Thêm dung dịch Na₂CO₃ ở bước 3 nhằm mục đích loại bỏ acid lẫn trong isoamyl acetate.",
-                                        correctAnswer: "Đúng"
-                                },
-                                {
-                                        id: "c",
-                                        text: "c) Ở bước 1, xảy ra phản ứng thế nhóm -OH của (CH₃)₂CHCH₂CH₂OH bằng gốc CH₃COO⁻.",
-                                        correctAnswer: "Sai"
-                                },
-                                {
-                                        id: "d",
-                                        text: "d) Nếu hiệu suất phản ứng ester hóa là 60% và lượng isoamyl acetate bị hao hụt mất 5% thì khối lượng isoamyl acetate thu được là 10,23 gam. (Kết quả làm tròn đến hàng phần trăm).",
-                                        correctAnswer: "Đúng"
-                                }
-                        ]
-                },
-                {
-                        id: "gk1_tf_q2",
-                        section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
-                        type: "true_false_group",
-                        text: "<strong>Câu 2:</strong> Một học sinh tiến hành tổng hợp isoamyl acetate (thành phần chính của dầu chuối) từ acetic acid và isoamyl alcohol theo phương trình hóa học sau:<br>$$CH_3COOH + HO-CH_2-CH_2-CH(CH_3)_2 \\xrightarrow{H_2SO_4, t^\\circ} CH_3COOCH_2-CH_2-CH(CH_3)_2 + H_2O$$Cho biết số sóng hấp thụ đặc trưng của một số liên kết trên phổ hồng ngoại (IR):<br>• Liên kết O-H (alcohol): 3650 - 3200 cm⁻¹<br>• Liên kết O-H (carboxylic acid): 3300 - 2500 cm⁻¹<br>• Liên kết C=O (ester, carboxylic acid): 1780 - 1650 cm⁻¹",
-                        subQuestions: [
-                                {
-                                        id: "a",
-                                        text: "a) Tách isoamyl acetate từ hỗn hợp sau phản ứng có thể thực hiện bằng phương pháp chiết.",
-                                        correctAnswer: "Đúng"
-                                },
-                                {
-                                        id: "b",
-                                        text: "b) Isoamyl acetate là ester no, đơn chức, mạch hở.",
-                                        correctAnswer: "Đúng"
-                                },
-                                {
-                                        id: "c",
-                                        text: "c) Phổ hồng ngoại có số sóng hấp thụ ở 3350 cm⁻¹ là phổ của acetic acid.",
-                                        correctAnswer: "Sai"
-                                },
-                                {
-                                        id: "d",
-                                        text: "d) Thực hiện phản ứng giữa 9,0 gam acetic acid và 8,8 gam isoamyl alcohol, với hiệu suất phản ứng là 60% thì thu được 7,8 gam isoamyl acetate.",
-                                        correctAnswer: "Đúng"
-                                }
-                        ]
-                },
-                {
-                        id: "gk1_tf_q3",
-                        section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
-                        type: "true_false_group",
-                        text: "<strong>Câu 3:</strong> Ethyl acetate là một ester được sử dụng làm dung môi để tách, chiết chất hữu cơ. Hợp chất này được điều chế từ acetic acid, ethanol theo phản ứng:<br>$$CH_3COOH + C_2H_5OH \\xrightleftharpoons{H_2SO_4 \\text{ đặc}, t^\\circ} CH_3COOC_2H_5 + H_2O \\quad (*)$$Biết nhiệt độ trong bình cầu phản ứng giữ ở mức 65 - 70°C, nhiệt độ trong ống sinh hàn duy trì ở 25°C. Nhiệt độ sôi của các hợp chất: C₂H₅OH (78,3°C), CH₃COOH (118°C), H₂O (100°C), CH₃COOC₂H₅ (77°C), H₂SO₄ (337°C).",
-                        subQuestions: [
-                                {
-                                        id: "a",
-                                        text: "a) Khi thực hiện đun nóng 6,0 gam acetic acid với 6,0 gam ethanol có H₂SO₄ đặc làm xúc tác. Khối lượng ester tạo thành với hiệu suất phản ứng 60% là 6,9 gam.",
-                                        correctAnswer: "Sai"
-                                },
-                                {
-                                        id: "b",
-                                        text: "b) Chất lỏng trong bình hứng có ethyl acetate. Vai trò của ống sinh hàn để ngưng tụ hơi, nước làm lạnh đi vào ở đầu thấp và đi ra ở đầu cao.",
-                                        correctAnswer: "Đúng"
-                                },
-                                {
-                                        id: "c",
-                                        text: "c) Ban đầu bình cầu chứa acetic acid, ethanol và sulfuric acid đặc. Nếu nhiệt độ phản ứng ở bình cầu càng cao thì hiệu suất phản ứng điều chế ethyl acetate càng cao.",
-                                        correctAnswer: "Sai"
-                                },
-                                {
-                                        id: "d",
-                                        text: "d) Trong phản ứng (*) phân tử H₂O tạo nên từ -OH trong nhóm -COOH của acetic acid và H trong nhóm -OH của ethanol.",
-                                        correctAnswer: "Đúng"
-                                }
-                        ]
-                },
-                {
-                        id: "gk1_tf_q4",
-                        section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
-                        type: "true_false_group",
-                        text: "<strong>Câu 4:</strong> Tiến hành thí nghiệm theo trình tự các bước như sau:<br><strong>Bước 1:</strong> Cho vào bát sứ nhỏ khoảng 1 gam mỡ (hoặc dầu thực vật) và 2 - 2,5 mL dung dịch NaOH 40%.<br><strong>Bước 2:</strong> Đun hỗn hợp sôi nhẹ và liên tục khuấy đều bằng đũa thủy tinh trong 8 - 10 phút. Thỉnh thoảng thêm vài giọt nước cất để giữ cho thể tích hỗn hợp không đổi.<br><strong>Bước 3:</strong> Sau 8 - 10 phút, rót thêm vào hỗn hợp 4 - 5 mL dung dịch NaCl bão hòa nóng, khuấy nhẹ rồi để nguội.",
-                        subQuestions: [
-                                {
-                                        id: "a",
-                                        text: "a) Phản ứng xảy ra trong thí nghiệm được gọi là phản ứng xà phòng hoá.",
-                                        correctAnswer: "Đúng"
-                                },
-                                {
-                                        id: "b",
-                                        text: "b) Sau bước 2, hỗn hợp trở thành đồng nhất.",
-                                        correctAnswer: "Đúng"
-                                },
-                                {
-                                        id: "c",
-                                        text: "c) Sau bước 3, có lớp chất rắn màu trắng nhẹ nổi lên trên.",
-                                        correctAnswer: "Đúng"
-                                },
-                                {
-                                        id: "d",
-                                        text: "d) Vai trò của NaCl bão hoà ở bước 3 là để trung hoà kiềm dư sau phản ứng.",
-                                        correctAnswer: "Sai"
-                                }
-                        ]
-                },
-                {
-                        id: "gk1_tf_q5",
-                        section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
-                        type: "true_false_group",
-                        text: "<strong>Câu 5:</strong> Tiến hành thí nghiệm xà phòng hóa chất béo: Cho vào bát sứ nhỏ 1 gam mỡ lợn (chứa tristearin) và 2,5 mL dung dịch NaOH 40%. Đun sôi nhẹ hỗn hợp và khuấy đều trong 10 - 15 phút, thỉnh thoảng thêm nước cất. Sau đó, rót thêm 5 mL dung dịch NaCl bão hòa nóng, khuấy nhẹ rồi để nguội.",
-                        subQuestions: [
-                                {
-                                        id: "a",
-                                        text: "a) Phản ứng xà phòng hóa tristearin bằng dung dịch NaOH là phản ứng thuận nghịch (hai chiều).",
-                                        correctAnswer: "Sai"
-                                },
-                                {
-                                        id: "b",
-                                        text: "b) Việc thêm dung dịch NaCl bão hòa ở bước cuối làm tăng khối lượng riêng dung dịch và giảm độ tan của muối sodium stearate, giúp xà phòng tách ra nổi lên trên.",
-                                        correctAnswer: "Đúng"
-                                },
-                                {
-                                        id: "c",
-                                        text: "c) Nếu thay mỡ lợn bằng dầu ăn thực vật chứa triolein thì sau thí nghiệm vẫn thu được xà phòng.",
-                                        correctAnswer: "Đúng"
-                                },
-                                {
-                                        id: "d",
-                                        text: "d) Trong công nghiệp, phản ứng xà phòng hóa chất béo được dùng để sản xuất xà phòng và glycerol.",
-                                        correctAnswer: "Đúng"
-                                }
-                        ]
-                },
-                {
-                        id: "gk1_tf_q6",
-                        section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
-                        type: "true_false_group",
-                        text: "<strong>Câu 6:</strong> Valine là một amino acid thiết yếu, tham gia vào nhiều chức năng của cơ thể, thúc đẩy quá trình phát triển cơ bắp và phục hồi mô. Công thức cấu tạo của valine là $(CH_3)_2CH-CH(NH_2)-COOH$.",
-                        subQuestions: [
-                                {
-                                        id: "a",
-                                        text: "a) Công thức phân tử của valine là C₅H₁₀NO₂.",
-                                        correctAnswer: "Sai"
-                                },
-                                {
-                                        id: "b",
-                                        text: "b) Ở điều kiện thường, valine là chất rắn màu trắng, không tan trong nước, có vị ngọt.",
-                                        correctAnswer: "Sai"
-                                },
-                                {
-                                        id: "c",
-                                        text: "c) Khi cho valine tác dụng với acid HCl thu được muối có công thức phân tử là C₅H₁₂NO₂Cl.",
-                                        correctAnswer: "Đúng"
-                                },
-                                {
-                                        id: "d",
-                                        text: "d) Valine là hợp chất hữu cơ đa chức.",
-                                        correctAnswer: "Sai"
-                                }
-                        ]
-                },
-                {
-                        id: "gk1_tf_q7",
-                        section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
-                        type: "true_false_group",
-                        text: "<strong>Câu 7:</strong> Glutamic acid được sử dụng bởi hầu hết các sinh vật sống trong quá trình sinh tổng hợp protein. Công thức cấu tạo của glutamic acid là $HOOC-CH_2-CH_2-CH(NH_2)-COOH$.",
-                        subQuestions: [
-                                {
-                                        id: "a",
-                                        text: "a) Glutamic acid là một hợp chất hữu cơ đa chức có công thức phân tử là C₅H₉O₄N.",
-                                        correctAnswer: "Sai"
-                                },
-                                {
-                                        id: "b",
-                                        text: "b) Tên bán hệ thống của glutamic acid là 2-aminopentane-1,5-dioic acid.",
-                                        correctAnswer: "Sai"
-                                },
-                                {
-                                        id: "c",
-                                        text: "c) Glutamic acid là hợp chất lưỡng tính, vừa tác dụng với acid mạnh tạo muối ammonium vừa tác dụng với base mạnh tạo muối carboxylate.",
-                                        correctAnswer: "Đúng"
-                                },
-                                {
-                                        id: "d",
-                                        text: "d) Cho 22,05 gam glutamic acid tác dụng với dung dịch NaOH dư, thu được 28,65 gam muối.",
-                                        correctAnswer: "Đúng"
-                                }
-                        ]
-                },
-                {
-                        id: "gk1_tf_q8",
-                        section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
-                        type: "true_false_group",
-                        text: "<strong>Câu 8:</strong> Lysine là amino acid thiết yếu ($H_2N-(CH_2)_4-CH(NH_2)-COOH$) có điểm đẳng điện pI = 9,7 (pI là giá trị pH mà nồng độ ion lưỡng cực đạt cực đại. Khi pH < pI amino acid tồn tại chủ yếu ở dạng cation; khi pH > pI tồn tại chủ yếu ở dạng anion).",
-                        subQuestions: [
-                                {
-                                        id: "a",
-                                        text: "a) Lysine có 6 nguyên tử C trong phân tử.",
-                                        correctAnswer: "Đúng"
-                                },
-                                {
-                                        id: "b",
-                                        text: "b) Lysine vừa tác dụng với dung dịch HCl, vừa tác dụng với dung dịch NaOH.",
-                                        correctAnswer: "Đúng"
-                                },
-                                {
-                                        id: "c",
-                                        text: "c) Trong phân tử peptide Lys-Gly-Ala, amino acid đầu N là Lys.",
-                                        correctAnswer: "Đúng"
-                                },
-                                {
-                                        id: "d",
-                                        text: "d) Trong dung dịch pH = 6, có thể tách hỗn hợp gồm lysine và glutamic acid (pI = 3,2) bằng phương pháp điện di.",
-                                        correctAnswer: "Đúng"
-                                }
-                        ]
-                },
-                {
-                        id: "gk1_sa_q1",
-                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
-                        type: "short_answer",
-                        text: "Câu 1: Cho các chất sau: saccharose, glucose, fructose, cellulose. Số chất có phản ứng với thuốc thử Tollens (đun nóng) là ____.",
-                        correctAnswer: "2"
-                },
-                {
-                        id: "gk1_sa_q2",
-                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
-                        type: "short_answer",
-                        text: "Câu 2: Cho dãy các dung dịch: glucose, saccharose, fructose, tinh bột, cellulose. Có bao nhiêu dung dịch trong dãy phản ứng được với Cu(OH)₂ ở nhiệt độ thường tạo thành dung dịch có màu xanh lam?",
-                        correctAnswer: "3"
-                },
-                {
-                        id: "gk1_sa_q3",
-                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
-                        type: "short_answer",
-                        text: "Câu 3: Cho các chất: Ala-Gly-Ala (1), glucose (2), glycine (3), triolein (4), methyl formate (5) và tinh bột (6). Gắn số thứ tự theo chiều tăng dần các chất bị thủy phân trong môi trường acid ở điều kiện thích hợp (VD: 123; 146; 2356;...):",
-                        correctAnswer: "1456"
-                },
-                {
-                        id: "gk1_sa_q4",
-                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
-                        type: "short_answer",
-                        text: "Câu 4: Cho aniline lần lượt tác dụng với dung dịch HCl, dung dịch NaOH, dung dịch Br₂, HNO₂/HCl ở điều kiện (0 - 5°C). Có bao nhiêu trường hợp xảy ra phản ứng?",
-                        correctAnswer: "3"
-                },
-                {
-                        id: "gk1_sa_q5",
-                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
-                        type: "short_answer",
-                        text: "Câu 5: Cho ethylamine lần lượt vào dung dịch FeCl₃ (1); dung dịch HCl (2); Cu(OH)₂ (3); dung dịch NaCl (4); dung dịch Br₂ (5); HNO₂ ở điều kiện thường (6). Ethylamine phản ứng được với các chất nào, gắn số thứ tự theo chiều tăng dần các chất (VD: 123; 146; 2356;...):",
-                        correctAnswer: "1236"
-                },
-                {
-                        id: "gk1_sa_q6",
-                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
-                        type: "short_answer",
-                        text: "Câu 6: Cho các chất: methylamine, glycine, alanine, ethylacetate, glutamic acid. Có bao nhiêu chất phản ứng với dung dịch HCl tạo muối?",
-                        correctAnswer: "4"
-                },
-                {
-                        id: "gk1_sa_q7",
-                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
-                        type: "short_answer",
-                        text: "Câu 7: Cho các phát biểu sau:<br>(1) Glycine phản ứng được với dung dịch HCl.<br>(2) Phân tử lysine có hai nguyên tử nitrogen.<br>(3) Trong môi trường acid, dạng tồn tại chủ yếu của alanine là dạng cation.<br>(4) Protein là một trong những nguồn thức ăn bổ sung các amino acid thiết yếu cho cơ thể.<br>(5) “Gạch cua” nổi lên khi nấu riêu cua là hiện tượng đông tụ protein.<br>(6) Số liên kết peptide có trong một phân tử Ala-Gly-Val-Gly-Ala là 5.<br>Liệt kê các phát biểu đúng theo thứ tự từ nhỏ đến lớn (Ví dụ: 1234,...):",
-                        correctAnswer: "12345"
-                },
-                {
-                        id: "gk1_sa_q8",
-                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
-                        type: "short_answer",
-                        text: "Câu 8: Cho các phát biểu sau:<br>(1) Sự đông tụ của protein chỉ xảy ra khi đun nóng dung dịch protein.<br>(2) Các amino acid thiên nhiên kiến tạo nên protein của cơ thể sống hầu hết là α-amino acid.<br>(3) Nhỏ vài giọt nước bromine vào ống nghiệm đựng dung dịch aniline sẽ thấy xuất hiện kết tủa trắng.<br>(4) Dung dịch methylamine tác dụng với Cu(OH)₂ trong môi trường kiềm, đun nóng thì thu được kết tủa màu đỏ gạch.<br>(5) Hemoglobin là protein hình sợi nên tan được trong nước tạo dung dịch keo.<br>(6) Cho vài giọt dung dịch HNO₃ đặc vào ống nghiệm đựng dung dịch lòng trắng trứng thấy xuất hiện kết tủa màu vàng.<br>Liệt kê các phát biểu sai theo thứ tự tăng dần (Ví dụ: 1234, 1346,...):",
-                        correctAnswer: "145"
-                },
-                {
-                        id: "gk1_sa_q9",
-                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
-                        type: "short_answer",
-                        text: "Câu 9: Một nhóm học sinh muốn thử nghiệm phản ứng tráng bạc lên kính bằng nguyên liệu đầu là glucose. Giả sử lớp bạc có diện tích là 100 cm² và độ dày là 0,5 μm. Biết rằng khối lượng riêng của bạc là 10,49 g/cm³ và khối lượng mol của glucose là 180 g/mol. Tính lượng glucose cần dùng (gam) với giả thiết hiệu suất phản ứng là 100% (làm tròn đến 4 chữ số thập phân):",
-                        correctAnswer: "0,0437 | 0.0437 | 0.044 | 0,044"
-                },
-                {
-                        id: "gk1_sa_q10",
-                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
-                        type: "short_answer",
-                        text: "Câu 10: Cho 0,1 mol butanoic acid tác dụng với 0,1 mol methyl alcohol có mặt H₂SO₄ đặc làm xúc tác. Tính khối lượng ester tạo thành (gam), biết giả thiết 65% alcohol chuyển hoá thành ester:",
-                        correctAnswer: "6,63 | 6.63"
-                },
-                {
-                        id: "gk1_sa_q11",
-                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
-                        type: "short_answer",
-                        text: "Câu 11: Số miligam KOH dùng để xà phòng hoá hết lượng triglyceride có trong 1 g chất béo được gọi là chỉ số ester hoá của loại chất béo đó. Tính chỉ số ester của một loại chất béo chứa 65% tristearin và 23% triolein (làm tròn đến hàng đơn vị)?",
-                        correctAnswer: "166"
-                },
-                {
-                        id: "gk1_sa_q12",
-                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
-                        type: "short_answer",
-                        text: "Câu 12: Chỉ số xà phòng hoá là số miligam KOH dùng để xà phòng hoá hết triglycerid và trung hoà hết lượng acid tự do trong 1 g chất béo. Một chất béo chứa 3,55% stearic acid và 89% tristearin về khối lượng, còn lại là các chất không tham gia phản ứng với KOH. Tính chỉ số xà phòng hoá của chất béo trên (làm tròn đến hàng đơn vị):",
-                        correctAnswer: "175"
-                },
-                {
-                        id: "gk1_sa_q13",
-                        section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
-                        type: "short_answer",
-                        text: "Câu 13: Một loại chất béo có chứa 80% tristearin về khối lượng. Để sản xuất 2 triệu chai nước rửa tay (có chứa chất dưỡng ẩm glycerol) cần dùng tối thiểu x tấn loại chất béo trên cho phản ứng với dung dịch NaOH, đun nóng. Biết rằng trong mỗi chai nước rửa tay có chứa 7 gam glycerol. Tính giá trị của x (tấn, làm tròn đến hàng đơn vị)?",
-                        correctAnswer: "169"
-                }
-        ]
-},
-    {
-        id: "de_chuong_1_ester_lipid",
-        title: "Chương 1: Ester - Lipid",
-        category: "hoa",
-        subject: "Hóa học",
-        description: "Hệ thống bài tập Chương 1: Ester - Lipid (Phần I. Lựa chọn: 24 câu | Phần II. Đúng/Sai: 6 câu | Phần III. Trả lời ngắn: 6 câu | Phần IV. Tự luận: 4 câu)",
-        scoreScale: 10,
-        scorePerQuestion: 0.25,
-        questions: [
-            { id: "q1_chuong1_el", text: "Câu 1: Ester nào sau đây có công thức phân tử C₂H₄O₂?", options: ["A. Methyl acetate.", "B. Ethyl formate.", "C. Methyl formate.", "D. Ethyl acetate."], correctIndex: 2 },
-            { id: "q2_chuong1_el", text: "Câu 2: Chất nào sau đây thuộc loại ester?", options: ["A. CH₃COOH.", "B. CH₃COOCH₃.", "C. C₂H₅OH.", "D. CH₃CHO."], correctIndex: 1 },
-            { id: "q3_chuong1_el", text: "Câu 3: Ester CH₃COOC₂H₅ có tên gọi là", options: ["A. methyl acetate.", "B. ethyl acetate.", "C. ethyl formate.", "D. methyl formate."], correctIndex: 1 },
-            { id: "q4_chuong1_el", text: "Câu 4: Tên gọi của ester HCOOCH₃ là", options: ["A. methyl formate.", "B. ethyl formate.", "C. methyl acetate.", "D. propyl formate."], correctIndex: 0 },
-            { id: "q5_chuong1_el", text: "Câu 5: Thủy phân ester CH₃COOCH₃ trong dung dịch NaOH đun nóng, thu được muối có công thức là", options: ["A. HCOONa.", "B. CH₃COONa.", "C. C₂H₅COONa.", "D. CH₃COOK."], correctIndex: 1 },
-            { id: "q6_chuong1_el", text: "Câu 6: Đun nóng ester HCOOC₂H₅ với dung dịch NaOH vừa đủ, sản phẩm thu được gồm", options: ["A. HCOONa và CH₃OH.", "B. CH₃COONa và C₂H₅OH.", "C. HCOONa và C₂H₅OH.", "D. CH₃COONa và CH₃OH."], correctIndex: 2 },
-            { id: "q7_chuong1_el", text: "Câu 7: Phản ứng thủy phân ester trong môi trường acid là phản ứng", options: ["A. một chiều.", "B. không thuận nghịch.", "C. thuận nghịch.", "D. Oxi hóa - khử."], correctIndex: 2 },
-            { id: "q8_chuong1_el", text: "Câu 8: Đun nóng ester RCOOR' trong dung dịch NaOH thu được sản phẩm là", options: ["A. RCOOH và R'OH.", "B. RCOONa và R'OH.", "C. RCOONa và R'COOH.", "D. RCOOH và R'Na."], correctIndex: 1 },
-            { id: "q9_chuong1_el", text: "Câu 9: Phản ứng giữa alcohol và acid carboxylic tạo thành ester được gọi là phản ứng", options: ["A. xà phòng hóa.", "B. tráng bạc.", "C. ester hóa.", "D. trùng hợp."], correctIndex: 2 },
-            { id: "q10_chuong1_el", text: "Câu 10: Chất béo là triester của glycerol với", options: ["A. acid mineral.", "B. acid béo.", "C. alcohol đơn chức.", "D. acid acetic."], correctIndex: 1 },
-            { id: "q11_chuong1_el", text: "Câu 11: Công thức của tripalmitin là", options: ["A. (C₁₇H₃₅COO)₃C₃H₅.", "B. (C₁₅H₃₁COO)₃C₃H₅.", "C. (C₁₇H₃₃COO)₃C₃H₅.", "D. (C₂H₅COO)₃C₃H₅."], correctIndex: 1 },
-            { id: "q12_chuong1_el", text: "Câu 12: Công thức của tristearin là", options: ["A. (C₁₇H₃₅COO)₃C₃H₅.", "B. (C₁₅H₃₁COO)₃C₃H₅.", "C. (C₁₇H₃₃COO)₃C₃H₅.", "D. (C₁₇H₃₁COO)₃C₃H₅."], correctIndex: 0 },
-            { id: "q13_chuong1_el", text: "Câu 13: Ở nhiệt độ thường, chất béo nào sau đây ở trạng thái lỏng?", options: ["A. Tristearin.", "B. Tripalmitin.", "C. Triolein.", "D. Mỡ lợn."], correctIndex: 2 },
-            { id: "q14_chuong1_el", text: "Câu 14: Ở nhiệt độ thường, chất béo nào sau đây ở trạng thái rắn?", options: ["A. Triolein.", "B. Tristearin.", "C. Dầu đậu nành.", "D. Dầu mè."], correctIndex: 1 },
-            { id: "q15_chuong1_el", text: "Câu 15: Thủy phân hoàn toàn chất béo trong dung dịch NaOH luôn thu được", options: ["A. ethanol.", "B. glycerol.", "C. ethylene glycol.", "D. methanol."], correctIndex: 1 },
-            { id: "q16_chuong1_el", text: "Câu 16: Cho chất béo triolein phản ứng với dung dịch NaOH đun nóng, muối thu được là", options: ["A. C₁₇H₃₅COONa.", "B. C₁₅H₃₁COONa.", "C. C₁₇H₃₃COONa.", "D. CH₃COONa."], correctIndex: 2 },
-            { id: "q17_chuong1_el", text: "Câu 17: Ester nào sau đây có mùi thơm của chuối chín?", options: ["A. Isoamyl acetate.", "B. Benzyl acetate.", "C. Ethyl butyrate.", "D. Geranyl acetate."], correctIndex: 0 },
-            { id: "q18_chuong1_el", text: "Câu 18: Phát biểu nào sau đây là SAI?", options: ["A. Ester ít tan trong nước.", "B. Nhiệt độ sôi của ester thấp hơn acid carboxylic có cùng số nguyên tử C.", "C. Phản ứng xà phòng hóa ester là phản ứng thuận nghịch.", "D. Chất béo không tan trong nước nhưng tan nhiều trong dầu hỏa."], correctIndex: 2 },
-            { id: "q19_chuong1_el", text: "Câu 19: Đốt cháy hoàn toàn một ester no, đơn chức, mạch hở thu được CO₂ và H₂O theo tỉ lệ mol là", options: ["A. 1 : 2.", "B. 2 : 1.", "C. 1 : 1.", "D. 1 : 3."], correctIndex: 2 },
-            { id: "q20_chuong1_el", text: "Câu 20: Cho 4,4 gram ester CH₃COOC₂H₅ tác dụng vừa đủ với dung dịch NaOH. Khối lượng NaOH đã phản ứng là (Biết M_CH₃COOC₂H₅ = 88, M_NaOH = 40)", options: ["A. 4,0 gram.", "B. 2,0 gram.", "C. 8,0 gram.", "D. 1,6 gram."], correctIndex: 1 },
-            { id: "q21_chuong1_el", text: "Câu 21: Xà phòng hóa hoàn toàn 8,9 gram tristearin (C₁₇H₃₅COO)₃C₃H₅ (M = 890) bằng dung dịch NaOH vừa đủ. Khối lượng glycerol (M = 92) thu được là", options: ["A. 0,92 gram.", "B. 1,84 gram.", "C. 0,46 gram.", "D. 9,20 gram."], correctIndex: 0 },
-            { id: "q22_chuong1_el", text: "Câu 22: Để chuyển hóa chất béo lỏng (như dầu thực vật) thành chất béo rắn (như bơ nhân tạo), người ta tiến hành phản ứng", options: ["A. xà phòng hóa.", "B. hydrogen hóa (Cộng H₂).", "C. thủy phân trong môi trường acid.", "D. dehalogen hóa."], correctIndex: 1 },
-            { id: "q23_chuong1_el", text: "Câu 23: Phát biểu nào sau đây đúng về ứng dụng của chất béo?", options: ["A. Chất béo là nguồn cung cấp năng lượng cho cơ thể con người.", "B. Chất béo dùng để sản xuất dung dịch tráng bạc.", "C. Chất béo được dùng để điều chế chất plastic.", "D. Chất béo không có vai trò gì trong ngành công nghiệp thực phẩm."], correctIndex: 0 },
-            { id: "q24_chuong1_el", text: "Câu 24: Dung dịch nào sau đây làm đổi màu quỳ tím sang đỏ?", options: ["A. CH₃COOCH₃.", "B. CH₃COOH.", "C. C₂H₅OH.", "D. C₃H₅(OH)₃."], correctIndex: 1 },
-
-            // PHẦN II: CÂU TRẮC NGHIỆM ĐÚNG/SAI (6 câu)
-            {
-                id: "q25_chuong1_el",
-                type: "true_false_group",
-                text: "<strong>PHẦN II. CÂU TRẮC NGHIỆM ĐÚNG/SAI</strong><br>Câu 25: Cho công thức cấu tạo của ester X: CH₃COOC₂H₅.",
-                subQuestions: [
-                    { id: "a", text: "a) X là ester no, đơn chức, mạch hở.", correctAnswer: "Đúng" },
-                    { id: "b", text: "b) Tên gọi của X là methyl acetate.", correctAnswer: "Sai" },
-                    { id: "c", text: "c) Thủy phân X trong môi trường acid là phản ứng một chiều.", correctAnswer: "Sai" },
-                    { id: "d", text: "d) Đốt cháy hoàn toàn 1 mol X thu được số mol CO₂ bằng số mol H₂O.", correctAnswer: "Đúng" }
-                ]
-            },
-            {
-                id: "q26_chuong1_el",
-                type: "true_false_group",
-                text: "Câu 26: Tiến hành thí nghiệm thủy phân triolein (C₁₇H₃₃COO)₃C₃H₅ trong dung dịch NaOH, đun nóng.",
-                subQuestions: [
-                    { id: "a", text: "a) Phản ứng xảy ra là phản ứng xà phòng hóa.", correctAnswer: "Đúng" },
-                    { id: "b", text: "b) Sản phẩm thu được gồm glycerol và muối sodium oleate.", correctAnswer: "Đúng" },
-                    { id: "c", text: "c) Sau phản ứng thu được hỗn hợp đồng nhất.", correctAnswer: "Đúng" },
-                    { id: "d", text: "d) Triolein là chất béo rắn ở nhiệt độ thường.", correctAnswer: "Sai" }
-                ]
-            },
-            {
-                id: "q27_chuong1_el",
-                type: "true_false_group",
-                text: "Câu 27: Xét các tính chất vật lí của ester và chất béo:",
-                subQuestions: [
-                    { id: "a", text: "a) Ester và chất béo đều nhẹ hơn nước và rất ít tan trong nước.", correctAnswer: "Đúng" },
-                    { id: "b", text: "b) Các ester thường có mùi thơm đặc trưng của các loại hoa quả.", correctAnswer: "Đúng" },
-                    { id: "c", text: "c) Nhiệt độ sôi của ester cao hơn nhiệt độ sôi của alcohol có cùng số nguyên tử carbon.", correctAnswer: "Sai" },
-                    { id: "d", text: "d) Mỡ lợn, mỡ bò có thành phần chính là các chất béo chứa gốc acid béo không no.", correctAnswer: "Sai" }
-                ]
-            },
-            {
-                id: "q28_chuong1_el",
-                type: "true_false_group",
-                text: "Câu 28: Cho các chất có công thức sau: (1) HCOOCH₃; (2) CH₃COOH; (3) C₂H₅OH; (4) (C₁₅H₃₁COO)₃C₃H₅.",
-                subQuestions: [
-                    { id: "a", text: "a) Chất (1) và chất (4) đều thuộc loại ester.", correctAnswer: "Đúng" },
-                    { id: "b", text: "b) Thủy phân chất (1) và chất (4) trong dung dịch NaOH đun nóng đều thu được C₃H₅(OH)₃.", correctAnswer: "Sai" },
-                    { id: "c", text: "c) Chất (2) có phản ứng tráng bạc.", correctAnswer: "Sai" },
-                    { id: "d", text: "d) Nhiệt độ sôi của chất (2) cao hơn chất (3).", correctAnswer: "Đúng" }
-                ]
-            },
-            {
-                id: "q29_chuong1_el",
-                type: "true_false_group",
-                text: "Câu 29: Tiến hành thí nghiệm điều chế ethyl acetate trong phòng thí nghiệm từ CH₃COOH, C₂H₅OH và H₂SO₄ đặc.",
-                subQuestions: [
-                    { id: "a", text: "a) H₂SO₄ đặc đóng vai trò là chất xúc tác và hút nước để chuyển dịch cân bằng.", correctAnswer: "Đúng" },
-                    { id: "b", text: "b) Phản ứng xảy ra là phản ứng một chiều.", correctAnswer: "Sai" },
-                    { id: "c", text: "c) Sản phẩm ethyl acetate thu được là chất lỏng, nhẹ hơn nước và nổi lên trên.", correctAnswer: "Đúng" },
-                    { id: "d", text: "d) Có thể thay H₂SO₄ đặc bằng HCl đặc mà hiệu suất phản ứng không thay đổi.", correctAnswer: "Sai" }
-                ]
-            },
-            {
-                id: "q30_chuong1_el",
-                type: "true_false_group",
-                text: "Câu 30: Về ứng dụng của xà phòng và chất béo:",
-                subQuestions: [
-                    { id: "a", text: "a) Xà phòng được sản xuất bằng cách đun chất béo với dung dịch kiềm (NaOH hoặc KOH).", correctAnswer: "Đúng" },
-                    { id: "b", text: "b) Dầu mỡ động thực vật bị ôi thiu là do các liên kết đôi C = C ở gốc acid béo bị oxi hóa bởi không khí.", correctAnswer: "Đúng" },
-                    { id: "c", text: "c) Thức ăn chứa chất béo giúp cơ thể hấp thụ các vitamin tan trong chất béo như A, D, E, K.", correctAnswer: "Đúng" },
-                    { id: "d", text: "d) Dầu mỡ bôi trơn máy móc có cùng thành phần hóa học với dầu ăn.", correctAnswer: "Sai" }
-                ]
-            },
-
-            // PHẦN III: CÂU TRẮC NGHIỆM TRẢ LỜI NGẮN
-            {
-                id: "q31_chuong1_el",
-                type: "short_answer",
-                text: "<strong>PHẦN III. CÂU TRẮC NGHIỆM TRẢ LỜI NGẮN</strong><br>Câu 31: Cho các chất sau: CH₃COOCH₃, C₂H₅OH, HCOOCH₃, CH₃COOH. Số chất thuộc loại ester là ____.",
-                correctAnswer: "2"
-            },
-            {
-                id: "q32_chuong1_el",
-                type: "short_answer",
-                text: "Câu 32: Ester được tạo thành từ acid CH₃COOH và alcohol C₂H₅OH có công thức phân tử là C_xH_yO₂. Giá trị của x là ____.",
-                correctAnswer: "4"
-            },
-            {
-                id: "q33_chuong1_el",
-                type: "short_answer",
-                text: "Câu 33: Phân tử khối của tripalmitin (C₁₅H₃₁COO)₃C₃H₅ là ____ amu.",
-                correctAnswer: "806"
-            },
-            {
-                id: "q34_chuong1_el",
-                type: "short_answer",
-                text: "Câu 34: Để xà phòng hóa hoàn toàn 0,1 mol methyl acetate CH₃COOCH₃ cần dùng vừa đủ V mL dung dịch NaOH 1M. Giá trị của V là ____ mL.",
-                correctAnswer: "100"
-            },
-            {
-                id: "q35_chuong1_el",
-                type: "short_answer",
-                text: "Câu 35: Đốt cháy hoàn toàn 0,1 mol một ester no, đơn chức, mạch hở X thu được 0,3 mol CO₂. Số nguyên tử carbon trong phân tử X là ____.",
-                correctAnswer: "3"
-            },
-            {
-                id: "q36_chuong1_el",
-                type: "short_answer",
-                text: "Câu 36: Cho 6,0 gram acetic acid CH₃COOH tác dụng với lượng dư ethanol C₂H₅OH (xúc tác H₂SO₄ đặc, đun nóng). Thu được 6,6 gram ethyl acetate. Hiệu suất của phản ứng ester hóa là ____ % (Làm tròn đến hàng đơn vị).",
-                correctAnswer: "75"
-            },
-
-            // PHẦN IV: CÂU HỎI TỰ LUẬN NGHĨA HẸP (4 câu)
-            {
-                id: "q37_chuong1_el",
-                type: "essay_group",
-                text: "<strong>PHẦN IV. CÂU HỎI TỰ LUẬN NGHĨA HẸP</strong><br>Câu 37: Viết phương trình hóa học của các phản ứng sau (ghi rõ điều kiện nếu có):",
-                subQuestions: [
-                    { id: "a", text: "a) Thủy phân CH₃COOC₂H₅ trong dung dịch NaOH, đun nóng.", correctAnswer: "CH3COOC2H5 + NaOH -t°-> CH3COONa + C2H5OH" },
-                    { id: "b", text: "b) Thủy phân tristearin (C₁₇H₃₅COO)₃C₃H₅ trong dung dịch NaOH, đun nóng.", correctAnswer: "(C17H35COO)3C3H5 + 3NaOH -t°-> 3C17H35COONa + C3H5(OH)3" }
-                ]
-            },
-            {
-                id: "q38_chuong1_el",
-                type: "essay",
-                text: "Câu 38: Hãy phân biệt hai khái niệm: Dầu ăn (dầu thực vật) và Dầu mỡ bôi trơn máy móc về thành phần hóa học.",
-                correctAnswer: "Dầu ăn có thành phần chính là chất béo (triester của glycerol và acid béo). Dầu mỡ bôi trơn máy móc có thành phần là hỗn hợp các hydrocarbon (dầu mỡ mỏ)."
-            },
-            {
-                id: "q39_chuong1_el",
-                type: "essay_group",
-                text: "Câu 39: Đun nóng 8,8 gram ethyl acetate (CH₃COOC₂H₅) với 150 mL dung dịch NaOH 1M đến khi phản ứng xảy ra hoàn toàn.",
-                subQuestions: [
-                    { id: "a", text: "a) Tính số mol ethyl acetate và số mol NaOH ban đầu.", correctAnswer: "n_ester = 8.8 / 88 = 0.1 mol; n_NaOH = 0.15 x 1 = 0.15 mol." },
-                    { id: "b", text: "b) Cho biết chất nào còn dư sau phản ứng?", correctAnswer: "NaOH dư (0.15 mol > 0.1 mol)." },
-                    { id: "c", text: "c) Cô cạn dung dịch sau phản ứng, thu được bao nhiêu gram chất rắn khô?", correctAnswer: "m_rắn = m_CH3COONa + m_NaOH_dư = (0.1 x 82) + (0.05 x 40) = 8.2 + 2 = 10.2 gram." }
-                ]
-            },
-            {
-                id: "q40_chuong1_el",
-                type: "essay",
-                text: "Câu 40: Tại sao khi rán (chiên) thức ăn bằng dầu ăn, nếu dùng lại dầu ăn đã chiên đi chiên lại nhiều lần ở nhiệt độ cao thì không tốt cho sức khỏe?",
-                correctAnswer: "Khi đun nóng ở nhiệt độ cao nhiều lần, liên kết đôi trong chất béo bị oxi hóa tạo thành các aldehyde, peroxide độc hại, đồng thời phân hủy tạo ra các chất có nguy cơ gây ung thư."
-            }
-        ]
-    },
-    {
-        id: "de_chuong_2_carbohydrate",
-        title: "Chương 2: Carbohydrate",
-        category: "hoa",
-        subject: "Hóa học",
-        description: "Hệ thống bài tập Ôn tập Chương 2: Carbohydrate (Phần I. Trắc nghiệm: 18 câu | Phần II. Đúng/Sai: 5 câu | Phần III. Trả lời ngắn: 7 câu)",
-        scoreScale: 10,
-        scorePerQuestion: 0.33,
-        questions: [
-            // PHẦN I. CÂU HỎI TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN (18 câu)
-            {
-                id: "q1_chuong2_carb",
-                text: "<strong>PHẦN I. CÂU HỎI TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN</strong><br>Câu 1: Chất nào sau đây thuộc loại monosaccharide?",
-                options: ["A. Tinh bột.", "B. Cellulose.", "C. Fructose.", "D. Saccharose."],
-                correctIndex: 2
-            },
-            {
-                id: "q2_chuong2_carb",
-                text: "Câu 2: Glucose là một loại monosaccharide có nhiều trong quả nho chín. Công thức phân tử của glucose là",
-                options: ["A. C₂H₄O₂.", "B. (C₆H₁₀O₅)ₙ.", "C. C₁₂H₂₂O₁₁.", "D. C₆H₁₂O₆."],
-                correctIndex: 3
-            },
-            {
-                id: "q3_chuong2_carb",
-                text: "Câu 3: Cellulose thuộc loại polysaccharide, là thành phần chính tạo nên màng tế bào thực vật, có nhiều trong gỗ, bông gòn. Công thức của cellulose là",
-                options: ["A. (C₆H₁₀O₅)ₙ.", "B. C₁₂H₂₂O₁₁.", "C. C₆H₁₂O₆.", "D. C₂H₄O₂."],
-                correctIndex: 0
-            },
-            {
-                id: "q4_chuong2_carb",
-                text: "Câu 4: Công thức cấu tạo dạng mạch vòng $\\alpha$ - glucose là",
-                imageSrc: "images/q4_chuong2.png",
-                options: [
-                    "A. Hình A.",
-                    "B. Hình B.",
-                    "C. Hình C.",
-                    "D. Hình D."
-                ],
-                correctIndex: 0
-            },
-            {
-                id: "q5_chuong2_carb",
-                text: "Câu 5: Carbohydrate có hàm lượng nhiều nhất (chiếm tới 40%) và làm cho mật ong có vị ngọt sắc là",
-                options: ["A. glucose.", "B. fructose.", "C. cellulose.", "D. saccharose."],
-                correctIndex: 1
-            },
-            {
-                id: "q6_chuong2_carb",
-                text: "Câu 6: Glucose tham gia phản ứng với Cu(OH)₂/OH⁻, đun nóng tạo kết tủa đỏ gạch Cu₂O. Trong phản ứng này chứng minh tính chất của nhóm chức nào trong phân tử glucose?",
-                options: ["A. Tính chất của polyalcohol.", "B. Tính chất của aldehyde.", "C. Tính chất ketone.", "D. Tính chất nhóm -OH hemiacetal."],
-                correctIndex: 1
-            },
-            {
-                id: "q7_chuong2_carb",
-                text: "Câu 7: Saccharose là một loại disaccharide có nhiều trong cây mía, hoa thốt nốt, củ cải đường. Công thức phân tử của saccharose là",
-                options: ["A. C₆H₁₂O₆.", "B. (C₆H₁₀O₅)ₙ.", "C. C₁₂H₂₂O₁₁.", "D. C₂H₄O₂."],
-                correctIndex: 2
-            },
-            {
-                id: "q8_chuong2_carb",
-                text: "Câu 8: Một phân tử maltose có",
-                options: ["A. một đơn vị β-glucose và một đơn vị β-fructose.", "B. một đơn vị β-glucose và một đơn vị α-fructose.", "C. hai đơn vị α-glucose.", "D. một đơn vị α-glucose và một đơn vị β-fructose."],
-                correctIndex: 2
-            },
-            {
-                id: "q9_chuong2_carb",
-                text: "Câu 9: Carbohydrate nào dưới đây không có nhóm -OH hemiacetal (hoặc hemiketal)?",
-                options: ["A. Glucose.", "B. Fructose.", "C. Saccharose.", "D. Maltose."],
-                correctIndex: 2
-            },
-            {
-                id: "q10_chuong2_carb",
-                text: "Câu 10: Phát biểu nào sau đây đúng?",
-                options: ["A. Dung dịch saccharose hòa tan được Cu(OH)₂.", "B. Dung dịch saccharose có phản ứng tráng bạc.", "C. Glucose bị thủy phân trong môi trường acid.", "D. Fructose có phản ứng với nước Br₂."],
-                correctIndex: 0
-            },
-            {
-                id: "q11_chuong2_carb",
-                text: "Câu 11: Phát biểu nào sau đây sai?",
-                options: ["A. Glucose và saccharose đều là carbohydrate.", "B. Glucose và fructose đều hòa tan được Cu(OH)₂.", "C. Glucose và saccharose đều có phản ứng tráng bạc.", "D. Glucose và fructose là đồng phân của nhau."],
-                correctIndex: 2
-            },
-            {
-                id: "q12_chuong2_carb",
-                text: "Câu 12: Phát biểu nào sau đây đúng?",
-                options: ["A. Maltose không có nhóm -OH hemiacetal.", "B. Một phân tử saccharose gồm hai đơn vị α-glucose.", "C. Hai đơn vị α-glucose trong maltose liên kết với nhau bằng liên kết α-1,2-glycoside.", "D. Saccharose và maltose có cùng công thức phân tử."],
-                correctIndex: 3
-            },
-            {
-                id: "q13_chuong2_carb",
-                text: "Câu 13: Polime nào sau đây có cấu trúc mạch phân nhánh?",
-                options: ["A. Amylose.", "B. Cellulose.", "C. Amylopectin.", "D. Polyethylene."],
-                correctIndex: 2
-            },
-            {
-                id: "q14_chuong2_carb",
-                text: "Câu 14: Cặp chất nào sau đây đều có khả năng thủy phân trong môi trường acid, đun nóng?",
-                options: ["A. Fructose và tinh bột.", "B. Saccharose và cellulose.", "C. Glucose và saccharose.", "D. Glucose và fructose."],
-                correctIndex: 1
-            },
-            {
-                id: "q15_chuong2_carb",
-                text: "Câu 15: Phát biểu nào sau đây sai?",
-                options: ["A. Thủy phân hoàn toàn cellulose thu được glucose.", "B. Amylopectin có cấu trúc mạch phân nhánh.", "C. Fructose và glucose là đồng phân của nhau.", "D. Fructose là sản phẩm của phản ứng thủy phân tinh bột."],
-                correctIndex: 3
-            },
-            {
-                id: "q16_chuong2_carb",
-                text: "Câu 16: Chất rắn X dạng sợi, màu trắng, không tan trong nước ngay cả khi đun nóng. Thủy phân hoàn toàn X nhờ xúc tác acid hoặc enzyme thu được chất Y. Hai chất X và Y lần lượt là",
-                options: ["A. cellulose và glucose.", "B. cellulose và saccharose.", "C. tinh bột và saccharose.", "D. tinh bột và glucose."],
-                correctIndex: 0
-            },
-            {
-                id: "q17_chuong2_carb",
-                text: "Câu 17: Các gốc β-glucose trong phân tử cellulose tạo dạng mạch không phân nhánh, xoắn liên kết với nhau bởi liên kết",
-                options: ["A. β-1,4-glycoside.", "B. α-1,3-glycoside.", "C. α-1,6-glycoside.", "D. β-1,2-glycoside."],
-                correctIndex: 0
-            },
-            {
-                id: "q18_chuong2_carb",
-                text: "Câu 18: Chất nào sau đây bị thủy phân khi đun nóng trong môi trường acid?",
-                options: ["A. Glycerol.", "B. Fructose.", "C. Glucose.", "D. Cellulose."],
-                correctIndex: 3
-            },
-
-            // PHẦN II. CÂU TRẮC NGHIỆM ĐÚNG/SAI (5 câu)
-            {
-                id: "q19_chuong2_carb",
-                type: "true_false_group",
-                text: "<strong>PHẦN II. CÂU TRẮC NGHIỆM ĐÚNG/SAI</strong><br>Câu 1: Tiến hành thí nghiệm theo các bước sau:<br>— Bước 1: Cho 1 mL dung dịch AgNO₃ 1% vào ống nghiệm sạch.<br>— Bước 2: Thêm từ từ từng giọt dung dịch NH₃, lắc đều cho đến khi kết tủa tan hết.<br>— Bước 3: Thêm tiếp khoảng 1 mL dung dịch glucose 1% vào ống nghiệm, đun nóng nhẹ.",
-                subQuestions: [
-                    { id: "a", text: "a) Trong phản ứng trên glucose đóng vai trò là chất oxi hóa.", correctAnswer: "Sai" },
-                    { id: "b", text: "b) Thí nghiệm trên chứng minh glucose có tính chất của polyalcohol.", correctAnswer: "Sai" },
-                    { id: "c", text: "c) Sau bước 3, có lớp bạc kim loại bám trên thành ống nghiệm.", correctAnswer: "Đúng" },
-                    { id: "d", text: "d) Ở bước 3, có thể thay việc đun nóng nhẹ bằng cách ngâm ống nghiệm trong nước nóng.", correctAnswer: "Đúng" }
-                ]
-            },
-            {
-                id: "q20_chuong2_carb",
-                type: "true_false_group",
-                text: "Câu 2: Maltose là thành phần chính của đường mạch nha. Trong dung dịch nước, maltose tồn tại chủ yếu ở hai dạng cấu tạo (I) và (II). Các dạng này tồn tại trong cân bằng sau:<br><div style=\"text-align:center; margin:14px 0;\"><svg viewBox=\"0 0 540 130\" style=\"max-width:100%; height:auto; background:#ffffff; border:1px solid #cbd5e1; border-radius:8px; padding:10px; box-shadow:0 2px 4px rgba(0,0,0,0.04);\"><text x=\"110\" y=\"22\" font-size=\"12\" fill=\"#1e293b\" text-anchor=\"middle\" font-weight=\"bold\">Dạng vòng (I)</text><path d=\"M 40,55 L 75,35 L 135,35 L 165,55 L 135,75 L 75,75 Z\" fill=\"none\" stroke=\"#2563eb\" stroke-width=\"2\"/><text x=\"135\" y=\"50\" font-size=\"12\" fill=\"#ef4444\" font-weight=\"bold\">O</text><text x=\"75\" y=\"30\" font-size=\"10\" fill=\"#475569\">CH₂OH</text><text x=\"75\" y=\"90\" font-size=\"10\" fill=\"#475569\">OH</text><text x=\"105\" y=\"90\" font-size=\"10\" fill=\"#475569\">OH</text><text x=\"145\" y=\"70\" font-size=\"11\" fill=\"#059669\" font-weight=\"bold\">O</text><path d=\"M 152,65 L 180,65\" stroke=\"#059669\" stroke-width=\"2\"/><path d=\"M 180,55 L 215,35 L 275,35 L 305,55 L 275,75 L 215,75 Z\" fill=\"none\" stroke=\"#2563eb\" stroke-width=\"2\"/><text x=\"275\" y=\"50\" font-size=\"12\" fill=\"#ef4444\" font-weight=\"bold\">O</text><text x=\"215\" y=\"30\" font-size=\"10\" fill=\"#475569\">CH₂OH</text><text x=\"310\" y=\"60\" font-size=\"11\" fill=\"#d97706\" font-weight=\"bold\">-OH (hemiacetal)</text><text x=\"245\" y=\"90\" font-size=\"10\" fill=\"#475569\">OH</text><text x=\"340\" y=\"60\" font-size=\"18\" fill=\"#334155\" font-weight=\"bold\">⇌</text><text x=\"440\" y=\"22\" font-size=\"12\" fill=\"#1e293b\" text-anchor=\"middle\" font-weight=\"bold\">Dạng mở vòng (II)</text><path d=\"M 370,55 L 395,40 L 435,40 L 455,55 L 435,70 L 395,70 Z\" fill=\"none\" stroke=\"#2563eb\" stroke-width=\"1.8\"/><text x=\"435\" y=\"50\" font-size=\"11\" fill=\"#ef4444\">O</text><path d=\"M 445,63 L 465,63\" stroke=\"#059669\" stroke-width=\"1.8\"/><path d=\"M 465,63 L 485,55 L 505,65 L 525,55\" fill=\"none\" stroke=\"#64748b\" stroke-width=\"1.8\"/><text x=\"505\" y=\"80\" font-size=\"11\" fill=\"#dc2626\" font-weight=\"bold\">-CH=O</text></svg></div>Maltose thủy phân trong môi trường acid hoặc enzyme tạo thành glucose.",
-                subQuestions: [
-                    { id: "a", text: "a) Liên kết giữa hai đơn vị monosaccharide trong phân tử maltose là liên kết β-1,4-glycoside.", correctAnswer: "Sai" },
-                    { id: "b", text: "b) Maltose và saccharose là đồng phân cấu tạo của nhau.", correctAnswer: "Đúng" },
-                    { id: "c", text: "c) Maltose có phản ứng tráng gương và phản ứng với nước bromine.", correctAnswer: "Đúng" },
-                    { id: "d", text: "d) Dạng (I) có một nhóm -OH hemiacetal.", correctAnswer: "Đúng" }
-                ]
-            },
-            {
-                id: "q21_chuong2_carb",
-                type: "true_false_group",
-                text: "Câu 3: Cho các phát biểu về cellulose:",
-                subQuestions: [
-                    { id: "a", text: "a) Cellulose có thể tạo thành cellulose nitrate khi phản ứng với HNO₃.", correctAnswer: "Đúng" },
-                    { id: "b", text: "b) Phản ứng thuỷ phân của cellulose tạo ra fructose.", correctAnswer: "Sai" },
-                    { id: "c", text: "c) Thuỷ phân hoàn toàn tinh bột và cellulose đều tạo thành glucose.", correctAnswer: "Đúng" },
-                    { id: "d", text: "d) Cellulose tạo ra màu xanh lam khi phản ứng với nước Schweizer.", correctAnswer: "Đúng" }
-                ]
-            },
-            {
-                id: "q22_chuong2_carb",
-                type: "true_false_group",
-                text: "Câu 4: Cho các phát biểu sau:",
-                subQuestions: [
-                    { id: "a", text: "a) Saccharose là một monosaccharide.", correctAnswer: "Sai" },
-                    { id: "b", text: "b) Saccharose là chất rắn, vị ngọt, tan tốt trong nước ở điều kiện thường.", correctAnswer: "Đúng" },
-                    { id: "c", text: "c) Maltose là đồng phân của saccharose.", correctAnswer: "Đúng" },
-                    { id: "d", text: "d) Saccharose và maltose đều có cấu tạo dạng mạch hở và mạch vòng.", correctAnswer: "Sai" }
-                ]
-            },
-            {
-                id: "q23_chuong2_carb",
-                type: "true_false_group",
-                text: "Câu 5: Cho các phát biểu sau:",
-                subQuestions: [
-                    { id: "a", text: "a) Tinh bột được sử dụng làm chất kết dính trong công nghiệp giấy.", correctAnswer: "Đúng" },
-                    { id: "b", text: "b) Tinh bột là nguồn lương thực chính của con người.", correctAnswer: "Đúng" },
-                    { id: "c", text: "c) Cellulose có thể được sử dụng làm nguyên liệu trong sản xuất ethanol.", correctAnswer: "Đúng" },
-                    { id: "d", text: "d) Tinh bột được tiêu hoá bởi enzyme α-amylase trong nước bọt.", correctAnswer: "Đúng" }
-                ]
-            },
-
-            // PHẦN III. CÂU TRẮC NGHIỆM TRẢ LỜI NGẮN (7 câu)
-            {
-                id: "q24_chuong2_carb",
-                type: "short_answer",
-                text: "<strong>PHẦN III. CÂU TRẮC NGHIỆM TRẢ LỜI NGẮN</strong><br>Câu 1: Cho phương trình hóa học của các phản ứng được đánh số thứ tự từ 1 tới 4 dưới đây:<br>(1) (C₆H₁₀O₅)ₙ (tinh bột) + nH₂O —(H⁺, t°)→ nC₆H₁₂O₆ (glucose)<br>(2) C₆H₁₂O₆ (glucose) —(enzyme)→ 2C₂H₅OH + 2CO₂<br>(3) C₆H₁₂O₆ (glucose) —(enzyme)→ 2CH₃CH(OH)COOH<br>(4) C₆H₁₂O₆ (glucose) + 2[Ag(NH₃)₂]OH —(t°)→ CH₂OH(CHOH)₄COONH₄ + 2Ag + 3NH₃ + H₂O<br>Gán số thứ tự phương trình hoá học của các phản ứng theo tên gọi: <i>lên men rượu, thủy phân, lên men lactic, tráng gương</i> và sắp xếp theo trình tự thành dãy bốn số (ví dụ: 1234, 4321,... ).",
-                correctAnswer: "2134"
-            },
-            {
-                id: "q25_chuong2_carb",
-                type: "short_answer",
-                text: "Câu 2: Cho 4 carbohydrate: (1) glucose, (2) fructose, (3) saccharose, (4) maltose. Hãy sắp xếp những carbohydrate có nhóm -OH hemiacetal trong phân tử theo số thứ tự tăng dần (ví dụ: 12, 134, ...).",
-                correctAnswer: "124"
-            },
-            {
-                id: "q26_chuong2_carb",
-                type: "short_answer",
-                text: "Câu 3: Thuỷ phân 100 gam saccharose thu được 104,5 gam hỗn hợp gồm glucose, fructose và saccharose còn dư. Hiệu suất của phản ứng thuỷ phân saccharose bằng bao nhiêu %? (Kết quả làm tròn đến phần chục).",
-                correctAnswer: "85.5|85,5"
-            },
-            {
-                id: "q27_chuong2_carb",
-                type: "short_answer",
-                text: "Câu 4: Trong số 6 carbohydrate sau: glucose, fructose, saccharose, maltose, tinh bột và cellulose, số carbohydrate cho được phản ứng thuỷ phân là ____.",
-                correctAnswer: "4"
-            },
-            {
-                id: "q28_chuong2_carb",
-                type: "short_answer",
-                text: "Câu 5: Cho 13,00 gam glucose tác dụng với lượng dư dung dịch AgNO₃ trong NH₃, đun nóng (hiệu suất phản ứng tráng bạc (silver) đạt 80%), khối lượng kết tủa silver (gam) thu được là ____ gam.",
-                correctAnswer: "12.48|12,48"
-            },
-            {
-                id: "q29_chuong2_carb",
-                type: "short_answer",
-                text: "Câu 6: Cho các phát biểu sau:<br>(1) Saccharose, tinh bột và cellulose đều tham gia phản ứng thủy phân trong môi trường acid đun nóng.<br>(2) Tinh bột và cellulose đều có công thức là (C₆H₁₀O₅)ₙ và là đồng phân của nhau.<br>(3) Cellulose được tạo bởi các gốc β-glucose liên kết với nhau bởi liên kết β-1,4-glycoside.<br>(4) Có thể phân biệt glucose và fructose bằng thuốc thử Tollens.<br>(5) Các dung dịch glucose, maltose, saccharose, fructose đều hoà tan được Cu(OH)₂ tạo dung dịch xanh lam.<br>Liệt kê các phát biểu đúng theo số thứ tự tăng dần.",
-                correctAnswer: "135"
-            },
-            {
-                id: "q30_chuong2_carb",
-                type: "short_answer",
-                text: "Câu 7: Cho một số tính chất: có dạng sợi (1); tan trong nước (2); tan trong nước Schweizer (3); phản ứng với nitric acid đặc (xúc tác Sulfuric acid đặc) (4); bị oxi hóa bởi thuốc thử Tollens (5); bị thuỷ phân trong dung dịch acid đun nóng (6). Liệt kê các tính chất của cellulose theo số thứ tự tăng dần.",
-                correctAnswer: "1346"
-            }
-        ]
-    },
-    {
-        id: "de_4_advertisement",
-        title: "4 advertisement",
-        category: "anh",
-        subject: "Tiếng Anh",
-        description: "4 bài đọc quảng cáo Tiếng Anh (Điền từ vào chỗ trống - 24 câu hỏi)",
-        scoreScale: 10,
-        scorePerQuestion: 0.42,
-        questions: [
-            // Advertisement 1
-            {
-                id: "reading_adv_1",
-                section: "TIẾNG ANH",
-                type: "reading_group",
-                passage: "<strong>ADVERTISEMENT 1</strong><br><br><h3 style=\"margin:6px 0;\">🌐 The Boom of Online Media 📰</h3><br>✨ In today's fast-paced world, media is changing more rapidly than ever before!<br><br>📊 Media within the country is evolving fast because of the growth of digital platforms.<br><br><strong>From Traditional to Digital</strong><br>💻 (1) _____, such as newspapers and TV, are increasingly being replaced by online channels where information can be accessed instantly.<br><br>💡 This shift in format allows for more interactive and (2) _____ content.<br><br>🎯 People expect (3) _____ news that aligns with their interests and preferences.<br><br><strong>Real-Time Updates, Real Impact</strong><br>⏰ Thanks to the availability of real-time updates through digital media, many users, (4) _____ accustomed to immediate access, no longer rely on conventional sources.<br><br><strong>Faster News, Greater Influence</strong><br>🚀 As a result, online platforms are (5) _____ the news faster than ever before, providing instant reactions to global events.<br><br>📈 The rise in demand for timely and relevant content has a significant impact on the future of media (6) _____ the digital age.<br><br><em>(Adapted from: Pew Research Center and Reuters Institute reports on digital media trends.)</em>",
-                subQuestions: [
-                    { id: "q1_adv1", text: "Question 1 (Blank 1):", options: ["A. Traditional media outlets", "B. Media outlets traditional", "C. Traditional outlets media", "D. Media traditional outlets"], correctIndex: 0 },
-                    { id: "q2_adv1", text: "Question 2 (Blank 2):", options: ["A. person", "B. personalization", "C. personalized", "D. personal"], correctIndex: 2 },
-                    { id: "q3_adv1", text: "Question 3 (Blank 3):", options: ["A. to receiving", "B. to receive", "C. receive", "D. to be received"], correctIndex: 1 },
-                    { id: "q4_adv1", text: "Question 4 (Blank 4):", options: ["A. who became", "B. become", "C. was become", "D. having become"], correctIndex: 3 },
-                    { id: "q5_adv1", text: "Question 5 (Blank 5):", options: ["A. exacerbating", "B. breaking", "C. amplifying", "D. dominating"], correctIndex: 1 },
-                    { id: "q6_adv1", text: "Question 6 (Blank 6):", options: ["A. with", "B. on", "C. in", "D. without"], correctIndex: 2 }
-                ]
-            },
-
-            // Advertisement 2
-            {
-                id: "reading_adv_2",
-                section: "TIẾNG ANH",
-                type: "reading_group",
-                passage: "<strong>ADVERTISEMENT 2</strong><br><br><h3 style=\"margin:6px 0;\">🎓 Education for Tomorrow's Generation 🌍</h3><br>✨ In today's ever-changing world, the future of education offers young people an exciting range of opportunities.<br><br>🚀 Students can choose (1) _____ or step into innovative fields such as artificial intelligence or environmental science—opening doors to limitless potential.<br><br><strong>Explore Global Opportunities</strong><br>🌍 With these diverse options, more and more students are choosing to study abroad, (2) _____ valuable international experiences that enrich their perspectives and prepare them for a global future.<br><br><strong>Flexible & Modern Learning</strong><br>💻 Today's education system is more flexible than ever, combining online and in-person learning to better support individual needs.<br><br>🎯 This approach is especially beneficial (3) _____ those who (4) _____ flexible schedules.<br><br><strong>Plan for Success</strong><br>🎨 Looking ahead, young people are strongly encouraged to (5) _____ ahead and plan carefully for their academic journey.<br><br>📊 Notably, recent research shows that students who pursue STEM majors tend (6) _____ higher-paying jobs, making them a smart choice for future success.<br><br><em>(Adapted from: UNESCO reports on global education trends; OECD (2023), Education at a Glance.)</em>",
-                subQuestions: [
-                    { id: "q7_adv2", text: "Question 7 (Blank 1):", options: ["A. conventional academic paths", "B. conventional paths academic", "C. academic paths conventional", "D. paths conventional academic"], correctIndex: 0 },
-                    { id: "q8_adv2", text: "Question 8 (Blank 2):", options: ["A. gained", "B. having gained", "C. that gained", "D. gaining"], correctIndex: 3 },
-                    { id: "q9_adv2", text: "Question 9 (Blank 3):", options: ["A. at", "B. on", "C. for", "D. into"], correctIndex: 2 },
-                    { id: "q10_adv2", text: "Question 10 (Blank 4):", options: ["A. required", "B. require", "C. requiring", "D. requirement"], correctIndex: 1 },
-                    { id: "q11_adv2", text: "Question 11 (Blank 5):", options: ["A. plan", "B. reinforce", "C. sustain", "D. allocate"], correctIndex: 0 },
-                    { id: "q12_adv2", text: "Question 12 (Blank 6):", options: ["A. found", "B. to find", "C. find", "D. to be founded"], correctIndex: 1 }
-                ]
-            },
-
-            // Advertisement 3
-            {
-                id: "reading_adv_3",
-                section: "TIẾNG ANH",
-                type: "reading_group",
-                passage: "<strong>ADVERTISEMENT 3</strong><br><br><h3 style=\"margin:6px 0;\">📢 Unleash the Excitement of Live Concerts! 🎶</h3><br>💥 Some moments stay with us forever—and last weekend was truly one of them.<br><br>🎸 I had the chance (1) _____ a live concert of my favorite band, and it was nothing short of amazing.<br><br><strong>Feel the Energy</strong><br>🔥 From the (2) _____ energy of the crowd to the (3) _____ filled with dazzling lights and powerful music, every second was unforgettable.<br><br>🌟 The performance (4) _____ by the lead singer was deeply moving, leaving the entire audience completely captivated.<br><br><strong>Live the Moment</strong><br>🎶 Throughout the night, everyone was dancing and singing along, creating an incredible atmosphere.<br><br>💖 I felt truly part of something special, connected (5) _____ everyone around me.<br><br><strong>Recharge & Celebrate</strong><br>🌈 It was the perfect way to (6) _____ an end to a stressful week—an experience that refreshed my spirit and lifted my mood.<br><br><em>(Adapted from: general descriptions of live music experiences and concert reviews.)</em>",
-                subQuestions: [
-                    { id: "q13_adv3", text: "Question 13 (Blank 1):", options: ["A. attended", "B. attending", "C. to attend", "D. attend"], correctIndex: 2 },
-                    { id: "q14_adv3", text: "Question 14 (Blank 2):", options: ["A. electrifying", "B. electrify", "C. electrified", "D. electricity"], correctIndex: 0 },
-                    { id: "q15_adv3", text: "Question 15 (Blank 3):", options: ["A. incredible stage design", "B. incredible design stage", "C. stage incredible design", "D. design incredible stage"], correctIndex: 0 },
-                    { id: "q16_adv3", text: "Question 16 (Blank 4):", options: ["A. given", "B. which give", "C. giving", "D. that given"], correctIndex: 0 },
-                    { id: "q17_adv3", text: "Question 17 (Blank 5):", options: ["A. from", "B. to", "C. at", "D. for"], correctIndex: 1 },
-                    { id: "q18_adv3", text: "Question 18 (Blank 6):", options: ["A. refute", "B. enhance", "C. put", "D. consolidate"], correctIndex: 2 }
-                ]
-            },
-
-            // Advertisement 4
-            {
-                id: "reading_adv_4",
-                section: "TIẾNG ANH",
-                type: "reading_group",
-                passage: "<strong>ADVERTISEMENT 4</strong><br><br><h3 style=\"margin:6px 0;\">⏰ Why Your Break Time Is Essential</h3><br>🍱 Boost Your Day with a Better Lunch Break!<br><br>⚡ Take a moment to recharge during your busy workday!<br><br>💼 (1) _____ is very important—it's your chance to relax and enjoy some food.<br><br>🕒 My break, (2) _____ at 12:30, allows me to step away from my tasks for a while and refresh my mind.<br><br><strong>Quick and Easy Meal Choices</strong><br>🍲 Looking for something simple and satisfying?<br><br>🥪 I am often fond of sandwiches or salads because they are easy to eat—perfect (3) _____ a fast yet enjoyable meal.<br><br><strong>Make the Most of Your Time</strong><br>⏳ Time is limited, so make every minute count!<br><br>🏃 Sometimes, I need to hurry (4) _____ where to go for lunch.<br><br>⏱️ In about 15 minutes, I have to (5) _____ quickly.<br><br>☕ Whether I eat at my desk or go to a nearby café, this short break helps me feel (6) _____ and more focused for the rest of the day.<br><br><strong>Small Break, Big Impact</strong><br>💡 Make the most of your lunch break—it's a small moment that can make a big difference in your day!<br><br><em>(Adapted from: general lifestyle tips and articles on workplace productivity and healthy habits.)</em>",
-                subQuestions: [
-                    { id: "q19_adv4", text: "Question 19 (Blank 1):", options: ["A. A lunch quick break", "B. A break quick lunch", "C. A quick lunch break", "D. A quick break lunch"], correctIndex: 2 },
-                    { id: "q20_adv4", text: "Question 20 (Blank 2):", options: ["A. starting", "B. which started", "C. started", "D. that starts"], correctIndex: 0 },
-                    { id: "q21_adv4", text: "Question 21 (Blank 3):", options: ["A. in", "B. at", "C. for", "D. on"], correctIndex: 2 },
-                    { id: "q22_adv4", text: "Question 22 (Blank 4):", options: ["A. choosing", "B. to choose", "C. to choosing", "D. choose"], correctIndex: 1 },
-                    { id: "q23_adv4", text: "Question 23 (Blank 5):", options: ["A. get things done", "B. meet a deadline", "C. gain hands-on experience", "D. weigh my options"], correctIndex: 0 },
-                    { id: "q24_adv4", text: "Question 24 (Blank 6):", options: ["A. refreshed", "B. refresh", "C. refreshing", "D. refreshment"], correctIndex: 0 }
-                ]
-            }
-        ]
-    },
-
-    // ==========================================================================
-    // ÔN TẬP GIỮA KÌ I - TIẾNG ANH 12 (60 CÂU: PHẦN A & B)
-    // ==========================================================================
-    {
-        id: "on_tap_giua_ki_1_tieng_anh_12",
-        title: "Ôn tập Giữa kì I - Tiếng Anh 12",
-        category: "anh",
-        subject: "Tiếng Anh",
-        description: "Đề cương ôn tập kiểm tra giữa kì I môn Tiếng Anh 12 (60 câu). Cấu trúc gồm Phần A (30 câu) & Phần B (30 câu): Kiến thức ngôn ngữ, Đọc hiểu (Helen Keller, A Multicultural World, Marie Curie, Green Living) & Viết câu.",
-        scoreScale: 10,
-        scorePerQuestion: 0.17,
-        selectableSections: [
-            {
-                id: "part_a_mcq",
-                group: "Phần A (Câu 1 - 30)",
-                name: "I. Trắc nghiệm (Language & Reading)",
-                label: "Trắc nghiệm (25 câu: 1 - 25)",
-                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
-                count: 25,
-                type: "multiple_choice"
-            },
-            {
-                id: "part_a_writing",
-                group: "Phần A (Câu 1 - 30)",
-                name: "II. Viết câu (Writing)",
-                label: "Viết câu (5 câu: 26 - 30)",
-                section: "PHẦN A: WRITING",
-                count: 5,
-                type: "short_answer"
-            },
-            {
-                id: "part_b_mcq",
-                group: "Phần B (Câu 31 - 60)",
-                name: "I. Trắc nghiệm (Language & Reading)",
-                label: "Trắc nghiệm (25 câu: 31 - 55)",
-                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
-                count: 25,
-                type: "multiple_choice"
-            },
-            {
-                id: "part_b_writing",
-                group: "Phần B (Câu 31 - 60)",
-                name: "II. Viết câu (Writing)",
-                label: "Viết câu (5 câu: 56 - 60)",
-                section: "PHẦN B: WRITING",
-                count: 5,
-                type: "short_answer"
-            }
-        ],
-    presets: [
         {
-            id: "all",
-            label: "✨ Toàn bộ đề (60 câu)",
-            sectionIds: ["part_a_mcq", "part_a_writing", "part_b_mcq", "part_b_writing"]
-        },
-        {
-            id: "part_a",
-            label: "📖 Phần A (30 câu)",
-            sectionIds: ["part_a_mcq", "part_a_writing"]
-        },
-        {
-            id: "part_b",
-            label: "📚 Phần B (30 câu)",
-            sectionIds: ["part_b_mcq", "part_b_writing"]
-        },
-        {
-            id: "all_mcq",
-            label: "📝 Tất cả Trắc nghiệm (50 câu)",
-            sectionIds: ["part_a_mcq", "part_b_mcq"]
-        },
-        {
-            id: "all_writing",
-            label: "✏️ Tất cả Viết câu (10 câu)",
-            sectionIds: ["part_a_writing", "part_b_writing"]
+                id: "de_1_dgnl",
+                title: "Đề 1 (120/120 câu)",
+                category: "vnu",
+                subject: "VNU-ĐGNL",
+                description: "Phần 1: Tiếng Việt, Tiếng Anh (60 câu) & Phần 2: Toán (30 câu) & Phần 3: Tư duy KH (30 câu)",
+                questions: [
+                        // Questions 1-20
+                        { id: "q1", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 1: Thị Phương là nhân vật trong vở chèo Trương Viên. Thời bình, nàng động viên chồng học hành thi cử. Thời chiến, nàng chăm sóc, bảo vệ mẹ chồng và lặn lội tìm chồng.\n“Thị Phương:\nMẹ ơi, giặc đã kéo đến đây\nCon xin dắt mẹ vào ngay trong rừng\nKẻo con chút phận má hồng\nNữa gặp gian hùng, lỗi đạo tào khang.\nTrước là thất tiết cùng chàng\nSau con bỏ mẹ giữa đàng ai nuôi”.\n(Trần Việt Ngữ sưu tầm, Trương Viên chèo cổ)\nNhân vật Thị Phương là loại nhân vật gì?", options: ["A. Kép.", "B. Lão.", "C. Đào lẳng.", "D. Đào thương."], correctIndex: 3 },
+                        { id: "q2", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 2: “Bị cướp vợ và chiến đấu giành lại vợ” là mô típ (motif) phổ biến trong thể loại nào của văn học dân gian Việt Nam?", options: ["A. Thần thoại.", "B. Sử thi.", "C. Tuồng, chèo.", "D. Truyện thơ."], correctIndex: 1 },
+                        { id: "q3", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 3: “Sau đó vài tháng, Hà Nhân tiếp được tin nhà gửi đến kinh đô, nói cha mẹ ở nhà đã hỏi vợ cho, giục Sinh nên về mau để làm lễ cưới. Sinh bối rối quanh co, lòng rất không nỡ, hai nàng đoán biết được tình ý, bảo Sinh rằng:\n- Bọn chúng em thân bồ vóc liễu, không thể cáng đáng được việc tần tảo ở gia đình. Vả ngôi chủ phụ trong nhà, tất phải là người trong nền nếp trâm anh như Tống Tử, Tề Khương, chúng em đâu dám chòi mòi đến. Chỉ mong chàng sau buổi về quê, tình cũ sẽ vấn vương không dứt, sớm dẹp lòng quyến luyến hương thổ để lại tính kế tìm hoa.”\n(Nguyễn Dữ, Chuyện kỳ ngộ ở Trại Tây)\nDòng nào sau đây nêu không đúng đặc điểm của lời nhân vật trong đoạn trích trên?", options: ["A. Sử dụng lối nói chuộng ngôn từ hoa mỹ.", "B. Sử dụng lối nói dùng nhiều điển tích, điển cố.", "C. Sử dụng lối nói dùng hình ảnh so sánh, ẩn dụ.", "D. Sử dụng lối nói gần với lời ăn tiếng nói hằng ngày."], correctIndex: 3 },
+                        { id: "q4", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 4:\n“Khắc khoải sầu đưa giọng lửng lơ,\nẤy hồn Thục đế thác bao giờ?\nNăm canh máu chảy đêm hè vắng,\nSáu khắc hồn tan bóng nguyệt mờ.\nCó phải tiếc xuân mà đứng gọi,\nHay là nhớ nước vẫn nằm mơ?\nThâu đêm ròng rã kêu ai đó,\nGiục khách giang hồ dạ ngẩn ngơ”.\n(Nguyễn Khuyến, Cuốc kêu cảm hứng)\nBài thơ thể hiện nỗi niềm gì của chủ thể trữ tình?", options: ["A. Thương tiếc mùa xuân trôi qua mất.", "B. Thương tiếc nước mất vào tay giặc.", "C. Thương tiếc máu xương của người yêu nước.", "D. Thương tiếc nước bị chia cắt."], correctIndex: 1 },
+                        { id: "q5", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 5: Khi Thúy Kiều lại một lần nữa bị lừa bán vào lầu xanh, Nguyễn Du đã viết:\n“Nghĩ đời mà ngán cho đời\nTài tình chi lắm, cho trời đất ghen.\nTiếc thay nước đã đánh phèn\nMà cho bùn lại vẩn lên mấy lần!\nHồng quân với khách hồng quần\nĐã xoay đến thế, còn vần chưa tha”.\n(Nguyễn Du, Truyện Kiều)\nHai từ “hồng quân” và “hồng quần” có ý nghĩa:", options: ["A. Người lính trong quân đội và người con gái đẹp.", "B. Vị vua anh minh with người tì thiếp đẹp.", "C. Đấng tạo hóa with người ca kỹ đẹp.", "D. Đấng tạo hóa and người con gái đẹp."], correctIndex: 3 },
+                        { id: "q6", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 6: “Cuộc xua đuổi đã kéo dài hàng tiếng đồng hồ. Lão Khúng đã mệt nhoài nhưng vẫn chưa chịu cho vật dừng lại. Nó phải đi thật xa, phải bắt nó vào thật sâu giữa rừng thẳm, để không còn lối nào trở lại with lão. Rồi thì mai đây khi trở về nhà, lão nghĩ, lão sẽ nói thật with mụ Huệ, lão đã không đem xuống chợ Giát để bán mà trên dọc đường đã giải thoát cho nó, trả lại cho nó cuộc đời tự do, lão đã xua nó vào rừng, vào giữa giang sơn của một bầy bò hoang... Chắc hẳn mụ Huệ cũng không mè nheo lão. Mụ sẽ thông cảm with lão, with việc làm của lão”.\n(Nguyễn Minh Châu, Phiên chợ Giát)\nHành động xua con vật đi thật xa vào rừng thẳm thể hiện điều gì?", options: ["A. Sự mệt nhoài của lão khi đem con vật xuống chợ Giát để bán.", "B. Sự quyết tâm giải thoát con vật, trả lại cho nó cuộc đời tự do.", "C. Sự mong mỏi được trở về nhà và được vợ của lão cảm thông.", "D. Sự cảm thông with con vật và sự tự dằn vặt bản thân ở lão."], correctIndex: 1 },
+                        { id: "q7", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 7: “Tôi hát bài hát về cố hương tôi\nTrong ánh sáng đèn dầu\nNgọn đèn đó ông bà tôi để lại\nĐẹp và buồn hơn tất cả những ngọn đèn\nThuở tôi vừa sinh ra\nMẹ đã đặt ngọn đèn trước mặt tôi\nĐể tôi nhìn mặt đèn mà biết buồn, biết yêu và biết khóc”.\n(Nguyễn Quang Thiều, Bài hát về cố hương)\nDòng nào dưới đây không thể hiện ý nghĩa biểu đạt của hình ảnh “ánh sáng đèn dầu” trong đoạn thơ trên?", options: ["A. Ánh sáng của không gian ấu thơ.", "B. Ánh sáng của không gian gia đình.", "C. Ánh sáng của thời gian ký ức.", "D. Ánh sáng của quá khứ đau thương, mất mát."], correctIndex: 3 },
+                        { id: "q8", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 8:\nTrung tá Nam hồi tưởng về cuộc trò chuyện with hạ sĩ Lãm:\n“Trong đầu anh bỗng hiện lên hình ảnh người hạ sĩ quê ở Hà Nội có cái nhìn lì lợm ngày nào…\nLãm! - Này, bây giờ ta nói chuyện tình anh em, đừng trên dưới gì hết - Vâng, tôi cũng nghĩ như thế -\nNghe nói thời kỳ chốt chặn ở biên giới, cậu là một tay súng tốt? - Vâng, thưa thủ trưởng, cũng có lẽ như thế - Nhưng chỉ im tiếng súng có mấy tháng thôi, người ta phản ảnh with tôi cậu đã không còn giữ được phẩm chất ấy nữa? - Vâng, nếu gọi như thế là phẩm chất - Tôi yêu cầu cậu chuyện trò with tôi chân thành và dễ hiểu hơn một chút, và trước hết là xin cậu hãy bỏ giúp đẫn mía trên tay kia đi cho tôi nhờ - Dạ… Thưa, tôi vẫn luôn luôn chân thành và dễ hiểu đấy chứ ạ!”\n(Chu Lai, Phố)\nĐoạn hội thoại trên cho thấy điều gì về hạ sĩ Lãm?", options: ["A. Có tài và ngang tàng.", "B. Bất tài và ngang ngược.", "C. Có tài và khiêm cung.", "D. Bất tài và chân thành."], correctIndex: 0 },
+                        { id: "q9", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 9: LÊ TƯƠNG DỰC - Vua cần đến thì thần nhân phải xả thân làm việc kỳ đến chết thì thôi.\nVŨ NHƯ TÔ - Nhưng xử đãi thế thì ai muốn trau dồi nghề nghiệp? Kính sĩ mới đắc sĩ...\nLÊ TƯƠNG DỰC - Kính sĩ đắc sĩ, mi là sĩ đấy ư: Mi dám tự phụ là sĩ thảo nào mi không sợ chết.\nVŨ NHƯ TÔ - Sĩ mà không có chân tài thì tiện nhân không bàn. Anh em tiện nhân còn có những nguyện vọng sâu xa hơn đối with nước. Hoàng thượng quá nhầm về chữ sĩ. Một ông quan trị dân, with một người thợ giỏi, xây những lâu đài tráng quan, điểm xuyết cho đất nước, tiện nhân chưa biết người nào mới đáng gọi là sĩ.\n(Nguyễn Huy Tưởng, Vũ Như Tô)\nÝ nào phù hợp with tính cách Vũ Như Tô được thể hiện trong đoạn trích?", options: ["A. Không bao giờ bằng lòng with thực tại, khát khó sự sáng tạo.", "B. Trọng danh dự, muốn đem tài năng phụng sự đất nước.", "C. Coi thường vương quyền, muốn có những kẻ sĩ chân tài.", "D. Trọng danh dự, muốn có những kẻ sĩ chân tài."], correctIndex: 1 },
+                        { id: "q10", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 10: “Năm 1975, khi tấm lưng của bà Chắt Chu đã bắt đầu còng xuống thì o Nhị - Lê Thị Nhị - con gái bà mới trở về. Lúc đó, o đã 29 tuổi. Phụ nữ làng chài thường lấy chồng rất sớm. Cái tuổi của o khi đó, làng đã toan gọi… gái già. O cứ ở vậy, gánh cá, gánh tấp đốt thuyền thuê, rồi làm nghề dệt thảm len ngoài Hợp tác xã Hải Đằng nuôi mẹ mà không chịu lấy chồng. Ai hỏi thì o cười, nửa thật nửa đùa, rằng “nỏ có ai chịu lấy”.\nNăm 1967, đang là một vận động viên bóng chuyền, o Nhị xung phong nhập ngũ, vào Thanh niên xung phong lấp hố bom, bạt núi mở đường, làm cọc tiêu dẫn xe, qua ngầm, vượt hố trong những đêm trời tối không đèn. Đi qua chiến tranh, sức khỏe và nhan sắc của o gửi hết ở chiến trường. Dệt thảm khá nhanh tay, lành nghề, nhưng tấm thảm đời o thì cứ rối nùi, chẳng biết đâu mà gỡ.[…]\nĐùng một cái, cả xã Thạch Kim sôi sục. Chẳng hiểu từ đâu báo chí bỗng phát hiện ra, o Lê Thị Nhị chính là nguyên mẫu của cô thanh niên xung phong trong bài thơ “Gửi em, cô Thanh niên xung phong” của nhà thơ Phạm Tiến Duật”.\n(Nguyễn Hồng Lam, Vu vơ sợi khói đốt thuyền)\nĐoạn trích có chứa đựng yếu tố:", options: ["A. Hư cấu.", "B. Phi hư cấu.", "C. Tự truyện.", "D. Tự thuật."], correctIndex: 1 },
+                        { id: "q11", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 11:\nTình thiên\n“Sự vật tuần hoàn nguyên hữu định,\nVũ thiên chi hậu tất tình thiên;\nPhiến thì vũ trụ giải lâm phục,\nVạn lý sơn hà sái cẩm chiên;\nNhật noãn phong thanh hoa đới tiếu,\nThụ cao chi nhuận điểu tranh ngôn;\nNhân hòa vạn vật đô hưng phấn,\nKhổ tận cam lai, lý tự nhiên”.\n(Hồ Chí Minh, Nhật ký trong tù)\nTrời hửng\n“Sự vật vần xoay đà định sẵn,\nHết mưa là nắng hửng lên thôi;\nĐất trời một thoáng thu màn ướt,\nSông núi muôn trùng trải gấm phơi;\nTrời ấm, hoa cười chào gió nhẹ,\nCây cao, chim hót rộn cành tươi;\nNgười cùng vạn vật đều phơi phới,\nHết khổ là vui vốn lẽ đời”.\n(Nam Trân dịch)\nBài thơ “Tình thiên” thể hiện đặc điểm nổi bật nào trong phong cách sáng tác của Hồ Chí Minh?", options: ["A. Sử dụng hình ảnh thiên nhiên để ẩn dụ cho tình cảm và tâm tư của con người.", "B. Thể hiện sâu sắc tư tưởng phương Tây bằng lối diễn đạt gần gũi, giản dị.", "C. Miêu tả cảnh vật thiên nhiên thuần túy, không mang thông điệp triết lý.", "D. Đề cao hình mẫu cá nhân, khẳng định cá tính độc đáo của nhân vật trữ tình."], correctIndex: 0 },
+                        { id: "q12", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 12: “Thi pháp _____ đề cao sự đổi mới, sáng tạo của cá tính nghệ sĩ, tôn vinh “cái riêng biệt”, “cái mới lạ”, theo xu hướng vượt ra khỏi mô hình chung, ký ức thể loại. Trong khi đó, thi pháp _____ chấp nhận “cái quen thuộc”, “cái lặp lại” đã trở thành sở hữu chung của mỗi thành viên trong cộng đồng, và hơn thế nó đã trở thành kỷ niệm riêng của cả một dân tộc”.\n(Vũ Anh Tuấn, Vai trò thể loại trong khoa học văn học dân gian và vấn đề phân tích tác phẩm văn học dân gian từ góc nhìn thể loại)\nChọn cụm từ phù hợp để điền vào các chỗ trống:", options: ["A. văn học trung đại - văn học hiện đại.", "B. văn học dân gian - văn học viết.", "C. văn học viết - văn học dân gian.", "D. văn học hiện đại - văn học viết."], correctIndex: 2 },
+                        { id: "q13", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 13: Trường hợp nào sau đây viết đúng chính tả?", options: ["A. Sỗ sàng, súc tích, trau chuốt.", "B. Sỗ sàng, xúc tích, trau chuốt.", "C. Sỗ sàng, súc tích, trao chuốt.", "D. Sổ sàng, súc tích, trau chuốt."], correctIndex: 0 },
+                        { id: "q14", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 14: Câu nào sau đây viết đúng?", options: ["A. Trong gia đình, nó là đứa bị đối xử khắc khe nhất.", "B. Gió làm cây cối trong vườn xào xạc suốt đêm.", "C. Có gì đâu mà suốt ngày cứ dành giật with nhau.", "D. Kết quả chuẩn đoán của tôi không đáng lo."], correctIndex: 1 },
+                        { id: "q15", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 15: “Anh ấy không nói gì, vô hình trung, tôi bị những người đứng quanh đó hiểu lầm”.\n“Vô hình trung” trong câu trên có nghĩa gì?", options: ["A. Vô tình, không ý thức được cảm xúc của người khác.", "B. Có chủ ý mang đến kết quả từ hành động của chủ thể.", "C. Tuy không có chủ định, không cố tình nhưng lại thành ra như vậy.", "D. Vì thiếu suy nghĩ nên đôi khi tạo ra ảnh hưởng tiêu cực."], correctIndex: 2 },
+                        { id: "q16", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 16: Từ “mỗi” trong câu nào được dùng with nghĩa nhấn mạnh số lượng ít của sự vật?", options: ["A. Ngày xưa, thường cũng chỉ học một thầy, cùng lắm là vài ba thầy, chứ không như ngày nay, mỗi năm một lớp rồi mỗi môn một thầy.", "B. Mỗi người nghĩ một phách, mỗi người làm một nẻo, mạnh ai người nấy lo, còn thì “sống chết mặc bay”.", "C. Các cuộc thi bơi được tiến hành trong bể bơi có 6-10 đường bơi, mỗi một đường bơi rộng 2-2.5 m, được ngăn cách bằng dây phao.", "D. Thiết kế đặc biệt ở đây khiến ta dù nhắm tịt mắt hay giương to mắt thì cũng như nhau, bởi chỉ nhìn thấy có mỗi một màu đen."], correctIndex: 3 },
+                        { id: "q17", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 17: “Sống có nghị lực mạnh mẽ sẽ giúp chúng ta vượt qua mọi thử thách, mọi trở ngại của hoàn cảnh và đạt được điều chúng ta mong ước; bởi vậy do đó, mỗi người cần giữ vững tinh thần, luôn hướng đến mục tiêu và nỗ lực hoàn thành mục tiêu”.\nCâu trên mắc lỗi gì?", options: ["A. Thiếu thành phần vị ngữ.", "B. Dùng sai từ ngữ liên kết.", "C. Thiếu thành phần chủ ngữ.", "D. Dùng từ sai về từ loại."], correctIndex: 1 },
+                        { id: "q18", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 18:\nCâu “Nhờ kinh nghiệm nghiên cứu khoa học từ thời còn là sinh viên của Minh đã gây ấn tượng tốt with hội đồng đánh giá.” là câu sai, nên được sửa thành câu nào sau đây?", options: ["A. Nhờ kinh nghiệm nghiên cứu khoa học từ thời còn là sinh viên, Minh đã gây ấn tượng tốt with hội đồng đánh giá.", "B. Từ thời còn là sinh viên, nhờ kinh nghiệm nghiên cứu khoa học của Minh đã gây ấn tượng tốt with hội đồng đánh giá.", "C. Nhờ kinh nghiệm nghiên cứu khoa học từ thời còn là sinh viên, hội đồng đánh giá đã có ấn tượng tốt with Minh.", "D. Từ lúc còn là sinh viên, hội đồng đánh giá đã có ấn tượng tốt về kinh nghiệm nghiên cứu khoa học của Minh."], correctIndex: 0 },
+                        { id: "q19", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 19: Câu nào sau đây thể hiện phong cách ngôn ngữ sinh hoạt?", options: ["A. Về công tác đào tạo đội ngũ làm báo, Chủ tịch Hồ Chí Minh luôn nhấn mạnh đến tầm quan trọng của việc giáo dục đạo đức, bồi dưỡng tài năng.", "B. Từ điển tiếng Việt giải nghĩa “diễn đàn là nơi để nhiều người có thể phát biểu ý kiến một cách công khai và rộng rãi”.", "C. Xem lại những quan điểm mà tôi đã trình bày trong báo cáo hơn 20 trang in đó, thì thấy cơ bản đến nay vẫn đúng.", "D. Trong xã hội hiện đại, báo chí là kênh truyền thông hữu hiệu, kết nối mọi thành viên trong cộng đồng."], correctIndex: 2 },
+                        { id: "q20", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 20: “Thằng em thì hay hỏi\nKhông kể chuyện như anh\n(Tuy con, má chẳng sinh\nCon vẫn quen gọi má)\n- Má ơi ai sinh cá\nAi làm ra cái kem\nĐêm sao lại màu đen\nBan ngày sao màu trắng?…”.\n(Xuân Quỳnh, Cắt nghĩa)\nTại sao nhà thơ lại lựa chọn sử dụng cụm từ chêm xen thay vì viết dưới dạng một câu riêng biệt?", options: ["A. Để làm gián đoạn mạch kể chuyện chính.", "B. Để làm nổi bật tầm quan trọng của mối quan hệ giữa má và con.", "C. Để thể hiện triết lý sống đề cao tính nhân văn.", "D. Để bổ sung thông tin và tạo cảm giác tự nhiên, gần gũi."], correctIndex: 3 },
+
+                        // Reading Group 1
+                        {
+                                id: "reading_21_25",
+                                section: "SỬ DỤNG NGÔN NGỮ",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời câu từ 21 đến 25</strong><br><br>(1) Chạy dọc theo kênh Tàu Hủ, bến Bình Đông xưa, nhờ giao thông thủy lộ thuận tiện, cộng with cư dân bản địa và làng Minh Hương phát triển sầm uất, đã thành nơi tụ hội ghe thuyền từ khắp các tỉnh miền Tây và cả Nam Bộ, khiến khu vực này dần cực thịnh trong buôn bán và xuất khẩu lúa gạo.<br><br>(2) Dựa theo những ghi chép thì tên gọi kênh Tàu Hủ có khá nhiều lý giải. “Ký ức lịch sử về Sài Gòn và vùng phụ cận” của Trương Vĩnh Ký (Nguyễn Đình Đầu dịch, NXB Trẻ) có đoạn: “Hai bên bờ rạch Chợ Lớn là hai dãy phố lớn bằng gạch gọi là Tàu khậu, để cho người Hoa từ Trung Quốc hằng năm đi ghe biển tới thuê. Họ đem hàng hóa chứa trong các phố đó, hoặc để bán sỉ, bán lẻ khi lưu trú tại Sài Gòn”. “Tàu khậu” ở đây là ngữ âm của người Triều Châu, nghĩa là “nhà gạch” (thổ khố), phương ngữ “tàu khậu” bị biến âm dần trở thành “tàu hủ”. Một lý giải khác bắt nguồn từ hình dáng của dòng kênh, do có những đoạn thắt như cổ hũ, đọc lâu dần trại ra thành âm “tàu hũ, tàu hủ” như ngày nay.<br><br>(3) Nhắc đến bến Bình Đông, không thể không đề cập đến các kho, vựa - chành (phương ngữ của người Triều Châu, nghĩa là bến, bãi), nhà máy tên tuổi như kho Hữu Thành with sáu cửa, nhà máy xay lúa Phong Thạnh with công suất lên đến 500 tấn/ngày.<br><br>(4) Còn về diện mạo phố xá, kiến trúc nhà ở đặc trưng ở bến Bình Đông mang hình thái thuộc địa with các chi tiết trang trí chạy chỉ nổi thạch cao, lan can sắt mỹ nghệ, ngói tây, cửa lá sách… có công năng dùng để buôn bán (tầng trệt) và cư ngụ (tầng trên). Với sự phát triển của nhịp sống đô thị, cả bến Bình Đông hiện chỉ còn sót lại lác đác dãy nhà cổ liên kế gồm từng cụm ba gian, năm gian, bảy gian… nằm cách nhau một khoảng trống bằng with bề ngang của từng gian nhà gần chân cầu Máy Rượu.<br><br>(5) Qua thời gian, những cư dân gốc của dãy phố này cũng lần lượt ra đi. Những khoảng trống giữa các dãy nhà được người đến sau tận dụng, xây nối thành những căn nhà phố mới with kiến trúc “phá bĩnh” - giữa các dãy nhà ngói đỏ điểm xuyết một “gạch nối” là căn nhà hiện đại, mái đúc - chẳng ăn nhập gì with những căn nhà vốn mang nét cổ kính từ hàng trăm năm nay.<br><i>(Nguyễn Đình, Chuyện nhỏ ở Chợ Lớn)</i>",
+                                subQuestions: [
+                                        { id: "q21", text: "Câu 21: Thông tin của đoạn (2) được tổ chức theo kiểu gì?", options: ["A. Theo trật tự thời gian.", "B. Theo trật tự không gian.", "C. Theo kiểu quan hệ nhân quả.", "D. Theo kiểu liệt kê đối tượng."], correctIndex: 3 },
+                                        { id: "q22", text: "Câu 22: Việc đề cập đến các kho, vựa, nhà máy tên tuổi ở đoạn (3) có vai trò gì trong việc thể hiện nội dung chính của văn bản?", options: ["A. Góp phần làm rõ đặc trưng của hoạt động sản xuất ở bến Bình Đông.", "B. Góp phần làm rõ đặc trưng của hoạt động kinh tế ở bến Bình Đông.", "C. Góp phần làm rõ đặc trưng của hoạt động giao thông ở bến Bình Đông.", "D. Góp phần làm rõ đặc trưng của hoạt động nghề nghiệp của người dân ở bến Bình Đông."], correctIndex: 1 },
+                                        { id: "q23", text: "Câu 23: Thái độ của tác giả thể hiện trong đoạn (5) là gì?", options: ["A. Tỏ ra khách quan vì những giá trị xưa, cũ sẽ dần bị thay thế theo thời gian.", "B. Tiếc nuối vì sự mai một của những kiến trúc cổ theo thời gian.", "C. Thích thú vì những căn nhà hiện đại là sự điểm xuyết cho kiến trúc cổ.", "D. Tiếc nhớ những cư dân gốc của dãy phố ở bến Bình Đông."], correctIndex: 1 },
+                                        { id: "q24", text: "Câu 24: Nhận định nào sau đây là phù hợp khi nói về chủ đề của văn bản trên?", options: ["A. Vai trò của bến Bình Đông trong không gian Chợ Lớn.", "B. Nguồn gốc hình thành bến Bình Đông trong lịch sử.", "C. Đặc điểm của bến Bình Đông trong quá khứ.", "D. Vị trí địa lý giúp bến Bình Đông thành nơi mua bán lúa gạo sầm uất."], correctIndex: 0 },
+                                        { id: "q25", text: "Câu 25: Dòng nào dưới đây không trình bày tác động mà văn bản có thể mang đến cho người đọc?", options: ["A. Nhận thức rõ hơn về giá trị văn hóa, lịch sử của bến Bình Đông.", "B. Trân trọng những giá trị di sản mà cha ông đã để lại.", "C. Hoài niệm, tiếc nuối with những giá trị xưa cũ đang dần mai một.", "D. Hiểu rõ hơn về những thách thức của công tác bảo tồn văn hóa."], correctIndex: 3 }
+                                ]
+                        },
+
+                        // Reading Group 2
+                        {
+                                id: "reading_26_30",
+                                section: "SỬ DỤNG NGÔN NGỮ",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời câu từ 26 đến 30</strong><br><br>(1) Học văn là học tha nhân mà cũng đồng thời là học bản thân ta. Ta học bảng tuần hoàn Mendeleev là học tri thức do nhà bác học cung cấp. Còn ta học tác phẩm của L. Tolstoi là vừa học những tâm hồn Nga yêu chuộng hòa bình, chán ghét chiến tranh, vừa học tiếng vang của nó vào tâm hồn ta, xem cách ta bắt lấy và đón nhận tín hiệu từ tác phẩm đó. Nếu ta chỉ thâu nhận nội dung và các thủ pháp nghệ thuật trong tiểu thuyết như các nguyên tố hóa học của bảng tuần hoàn thì mãi mãi ta không hiểu gì văn học mà cũng không hiểu gì bản thân ta.<br><br>(2) Học văn là học kinh nghiệm làm người ở đời để chính mình tự quyết lấy cuộc đời mình. Vì không ai có thể thay ta đưa ra lời giải bài toán cuộc đời ta. Người học văn vì tiếp xúc with nhiều cuộc đời trong sách vở nên có thể lúng túng, lưỡng lự, phân vân và băn khoăn khi va chạm with cuộc đời thực tế. Ta tham khảo từ những cuộc đời đó để rồi đưa ra giải pháp của riêng ta.<br><br>(3) Học văn là học cách ứng xử with quá khứ, đối mặt with hiện tại và dự báo cho tương lai. Vì vậy mà chúng ta cần cả văn chương dấn thân lẫn văn chương viễn mơ, cần cả tiểu thuyết lịch sử, tiểu thuyết hiện thực lẫn tiểu thuyết viễn tưởng. Học văn là để mở rộng chiều kích cuộc đời ta, để ta không biến thành “con người một chiều kích” như Herbert Marcuse cảnh báo từ những năm 60 thế kỷ trước.<br><br>(4) Học văn là học sống ở đời giữa muôn người cũng đồng thời là học làm người tự do lựa chọn. Theo tinh thần của Jean-Paul Sartre, con người bị buộc phải tự do, có tự do mới có lựa chọn. Lựa chọn chỉ có ý nghĩa khi lựa chọn trong tự do. Nhưng tự do của ta không đối lập with tự do của người khác, tự do của ta chỉ có ý nghĩa khi hiện hữu cùng tự do của người khác.<br><i>(Huỳnh Như Phương, Hồi âm từ phương Nam)</i>",
+                                subQuestions: [
+                                        { id: "q26", text: "Câu 26: Trong đoạn (2), câu nào chứa luận điểm?", options: ["A. Học văn là học kinh nghiệm làm người ở đời để chính mình tự quyết lấy cuộc đời mình.", "B. Vì không ai có thể thay ta đưa ra lời giải bài toán cuộc đời ta.", "C. Người học văn vì tiếp xúc with nhiều cuộc đời trong sách vở nên có thể lúng túng, lưỡng lự, phân vân và băn khoăn khi va chạm with cuộc đời thực tế.", "D. Ta tham khảo từ những cuộc đời đó để rồi đưa ra giải pháp của riêng ta."], correctIndex: 0 },
+                                        { id: "q27", text: "Câu 27: Trong đoạn (3), cụm từ “con người một chiều kích” được sử dụng theo biện pháp tu từ nào?", options: ["A. Nhân hóa.", "B. So sánh.", "C. Ẩn dụ.", "D. Nói quá."], correctIndex: 2 },
+                                        { id: "q28", text: "Câu 28: Việc tác giả nhắc đến các tên tuổi “L. Tolstoi, Herbert Marcuse” ở đoạn (1) và đoạn (3) nhằm mục đích gì?", options: ["A. Giới thiệu vấn đề.", "B. Giải thích vấn đề.", "C. Chứng minh vấn đề.", "D. Phản biện vấn đề."], correctIndex: 2 },
+                                        { id: "q29", text: "Câu 29: Tác giả thể hiện quan điểm nào trong bài viết?", options: ["A. Việc học môn văn cũng giống như việc học môn hóa, bồi đắp lòng hiếu tri nơi người học.", "B. Sự lúng túng, lưỡng lự và băn khoăn của người học văn khi va chạm with cuộc đời là điều cần tránh.", "C. Hình mẫu “con người một chiều kích” là đối tượng siêu việt mà người học văn cần trở thành.", "D. Học văn là hành trình kết hợp giữa tri nhận, phản tư và điều chỉnh để hoàn thiện con người."], correctIndex: 3 },
+                                        { id: "q30", text: "Câu 30: Ý nghĩa nào của việc học văn không được đề cập trong văn bản?", options: ["A. Mở ra cho con người một hành trình tự hiểu biết bản thân và người khác.", "B. Bồi đắp con người sự hiểu biết và mẫn tiệp của tâm hồn phong phú.", "C. Giữ vai trò như một nghi lễ bắt buộc, đánh dấu sự trưởng thành của con người.", "D. Hướng đến sự hình thành ý thức tự do của mỗi người."], correctIndex: 2 }
+                                ]
+                        },
+                        // Questions 31-45
+                        { id: "q31", section: "1.2. TIẾNG ANH", text: "Câu 31: Jane was careful. She didn't start the test until she _____ all the instructions.", options: ["A. read", "B. reads", "C. had read", "D. had been reading"], correctIndex: 2 },
+                        { id: "q32", section: "1.2. TIẾNG ANH", text: "Câu 32: The organizers had to call _____ the concert because of insufficient attendance.", options: ["A. on", "B. off", "C. out", "D. in"], correctIndex: 1 },
+                        { id: "q33", section: "1.2. TIẾNG ANH", text: "Câu 33: Typhoon Yagi slammed Asia in August 2024 with _____ rain, causing severe flooding.", options: ["A. too much", "B. too many", "C. plentiful of", "D. a large number of"], correctIndex: 0 },
+                        { id: "q34", section: "1.2. TIẾNG ANH", text: "Câu 34: The weather today is _____ than yesterday, so you should wear a jacket if you go out.", options: ["A. cold", "B. much cold", "C. more cold", "D. colder"], correctIndex: 3 },
+                        { id: "q35", section: "1.2. TIẾNG ANH", text: "Câu 35: We need more _____ teachers to improve the quality of education.", options: ["A. qualify", "B. qualified", "C. qualifying", "D. qualification"], correctIndex: 1 },
+                        { id: "q36", section: "1.2. TIẾNG ANH", text: "Câu 36: Each of the following sentences has one error (A, B, C, or D). Find it.\nMathematics, <u>which</u> many students believe <u>is</u> too difficult, actually <u>require</u> logical thinking <u>rather than</u> memorization.", options: ["A. which", "B. is", "C. require", "D. rather than"], correctIndex: 2 },
+                        { id: "q37", section: "1.2. TIẾNG ANH", text: "Câu 37: My class visited <u>the</u> museum in Paris <u>which</u> is famous <u>for</u> its <u>collection</u> of ancient paintings.", options: ["A. the", "B. which", "C. for", "D. collection"], correctIndex: 1 },
+                        { id: "q38", section: "1.2. TIẾNG ANH", text: "Câu 38: Ms. Brown <u>is worried</u> <u>about</u> her <u>students's</u> ability to pass the <u>coming</u> graduation exams.", options: ["A. is worried", "B. about", "C. students's", "D. coming"], correctIndex: 0 },
+                        { id: "q39", section: "1.2. TIẾNG ANH", text: "Câu 39: Elephants, <u>that</u> <u>are</u> my niece's favorite animal, are <u>among</u> the <u>smartest</u> animals.", options: ["A. that", "B. are", "C. among", "D. smartest"], correctIndex: 0 },
+                        { id: "q40", section: "1.2. TIẾNG ANH", text: "Câu 40: Jane <u>said</u> that her parents wanted <u>hers</u> to marry someone <u>that</u> they <u>trusted</u>.", options: ["A. said", "B. hers", "C. that", "D. trusted"], correctIndex: 1 },
+                        { id: "q41", section: "1.2. TIẾNG ANH", text: "Câu 41: Which of the following best restates each of the given sentences?\nThe shop is currently crowded possibly because its new products are very popular.", options: ["A. The shop's large number of customers is definitely the result of its new products.", "B. It is certain that customers always love the shop's new and popular products.", "C. The popularity of the shop's new products might be attracting many customers.", "D. Customers visit the shop because it is always filled with popular products."], correctIndex: 2 },
+                        { id: "q42", section: "1.2. TIẾNG ANH", text: "Câu 42: The meeting was delayed because the marketing manager arrived late.", options: ["A. The meeting would not be rescheduled if the marketing manager had not arrived late.", "B. The meeting would have been delayed if the marketing manager had not arrived on time.", "C. Unless the marketing manager arrived late, the meeting would not have been postponed.", "D. The meeting would have started on time if the marketing manager had not been late."], correctIndex: 3 },
+                        { id: "q43", section: "1.2. TIẾNG ANH", text: "Câu 43: This film is interesting, but the other two films are much more interesting.", options: ["A. This is the least interesting film out of the three.", "B. Of the three films, this film is the most interesting.", "C. This film is more boring than the other two films.", "D. The other two films are less boring than this one."], correctIndex: 0 },
+                        { id: "q44", section: "1.2. TIẾNG ANH", text: "Câu 44: Close the windows to prevent the documents from being blown away.", options: ["A. The documents would be blown away if the windows had not been closed.", "B. If you don't close the windows, you cannot find the blown documents.", "C. The windows should be closed so that the documents are not blown away.", "D. By closing the windows, the documents will not be blown away slowly."], correctIndex: 2 },
+                        { id: "q45", section: "1.2. TIẾNG ANH", text: "Câu 45: Jane said to her husband, \"Don't forget to lock the door before you go to bed.\"", options: ["A. Jane's husband asked her not to forget to lock the door before going to bed.", "B. Jane reminded her husband to lock the door before he went to bed.", "C. Jane said to her husband that he must lock the door before going to bed.", "D. Jane told her husband not to leave the door locked before he went to bed."], correctIndex: 1 },
+                        {
+                                id: "reading_46_52",
+                                section: "1.2. TIẾNG ANH",
+                                type: "reading_group",
+                                passage: "<strong>Questions 46-52: Read the passage carefully.</strong><br><br>1 A former teacher, Butler, wanted a change in her life. After many years of working in the U.S., she dreamed of living somewhere quiet, peaceful, and affordable. She discovered Latronico, a small mountain village in southern Italy's Basilicata region. <b>There</b>, she was able to buy a charming old house at a very low price compared to what she would pay in a big city. For her, this was the beginning of a new chapter filled with hope and peace.<br>2 Buying the house was easier than she had expected. Latronico has a special program called “La Tua Casa a Latronico” (Your Home in Latronico). The program helps people purchase and restore empty houses that once belonged to families who moved away. This made the process simple and welcoming for newcomers. It is part of a wider trend across Italy, where small towns invite people to settle and stop villages from becoming empty.<br>3 After moving in, Butler began to work on her house. Many of these old houses need improvements, and hers was no different. She <b>fixed</b> the floors, painted the walls, and hired local workers to upgrade the kitchen and bathrooms. With each improvement, the house felt more like home. She enjoyed the process because it allowed her to be creative while also supporting local workers. In this way, she was not just fixing her house but also joining the community.<br>4 Life in Latronico soon became more than just home renovations. She loved walking through the quiet streets, greeting neighbors, and visiting small shops. People in the village were warm and friendly, making her feel part of the community very quickly. Simple moments – like buying bread at the bakery or sitting in the town square – became joyful experiences. She felt that her new life was slower, healthier, and more connected compared to her old stressful, fast-paced city life. Her story shows how affordable housing programs can give people a second chance.",
+                                subQuestions: [
+                                        { id: "q46", text: "Câu 46: What is the passage mainly about?", options: ["A. A former teacher's new life in an Italian village", "B. “La Tua Casa a Latronico,” a housing program", "C. How to fix old houses in an Italian village", "D. Life in Latronico for Italians who love peace"], correctIndex: 0 },
+                                        { id: "q47", text: "Câu 47: According to paragraph 1, what does the word <b>There</b> refer to?", options: ["A. mountain", "B. Italy", "C. Latronico", "D. southern Basilicata"], correctIndex: 2 },
+                                        { id: "q48", text: "Câu 48: In paragraph 2, which of the following is NOT a characteristic of “La Tua Casa a Latronico”?", options: ["A. It sells the houses that are no longer resided in.", "B. It provides easy opportunities for newcomers.", "C. It started a new housing trend all over Italy.", "D. It keeps some villages from being deserted."], correctIndex: 2 },
+                                        { id: "q49", text: "Câu 49: What word can best replace <b>fixed</b> as used in paragraph 3?", options: ["A. strengthened", "B. repaired", "C. changed", "D. polished"], correctIndex: 1 },
+                                        { id: "q50", text: "Câu 50: In paragraph 3, what can be inferred about the way Butler supported local workers?", options: ["A. She helped them to be creative.", "B. She joined their local community.", "C. She created repair jobs for them.", "D. She improved their building skills."], correctIndex: 2 },
+                                        { id: "q51", text: "Câu 51: In paragraph 4, what is stated about people in Latronico?", options: ["A. They were kind and welcoming.", "B. They were quiet but friendly.", "C. They loved greeting their neighbors.", "D. They were quick at making friends."], correctIndex: 0 },
+                                        { id: "q52", text: "Câu 52: In paragraph 4, what did Butler say about her life before she came to Latronico?", options: ["A. It was totally carefree.", "B. It was quick-moving.", "C. It suited old people more.", "D. It had nothing but stress."], correctIndex: 1 }
+                                ]
+                        },
+                        {
+                                id: "reading_53_60",
+                                section: "1.2. TIẾNG ANH",
+                                type: "reading_group",
+                                passage: "<strong>Questions 53-60: Read the passage carefully.</strong><br><br>1. Climate change is making the world's weather more extreme. Scientists say that regions with hotter air can hold more water, and warmer seas give storms extra strength. This means storms today are often stronger, wetter, and more dangerous than <b>those</b> in the past. These changes are not just predictions for the future - they are already happening and affecting millions of people.<br>2. One big effect is the increase in rainfall and flooding. Typhoons no longer bring only strong winds; they now <b>dump</b> record amounts of water. In 2023, Typhoon Haikui hit Taiwan and later Hong Kong, where it caused the heaviest rainfall in 140 years. Streets, subways, and homes were flooded, and daily life was stopped for many people. This shows how climate change turns storms into water disasters, especially in crowded cities that do not have strong drainage systems.<br>3. Another effect is that typhoons now cause more economic damage. The bigger and more developed cities are, the more expensive it is to repair. Typhoon Doksuri in 2023 is a clear example. It flooded Beijing and other parts of China, destroying homes and farmland. The cost reached more than 28 billion dollars, making it the most expensive typhoon in China's history. Climate change makes such storms more frequent, and urban growth makes the damage higher, a dangerous mix for modern societies.<br>4. A third effect is that storms are stronger than they would be due to climate change. In 2024, <b>scientists</b> studied Typhoon Gaemi and found that its winds were about 9 mph stronger and rainfall 14% heavier because of hotter oceans. They also said climate change made storms like Gaemi 30% more likely. This proves climate change is not just a background factor; it directly increases the power of storms.<br>5. Finally, climate change is making typhoons intensify faster, which gives people less time to prepare. In 2025, Typhoon Kajiki grew very quickly before striking Vietnam. Nearly 600,000 people had to evacuate, and many cities, including Hanoi, were badly flooded. This rapid growth shows how climate change makes storms more dangerous by reducing warning time.<br>6. Countries now need stronger plans, better evacuation systems, and more climate action to protect people in the years ahead.",
+                                subQuestions: [
+                                        { id: "q53", text: "Câu 53: The best title of the passage can be _____.", options: ["A. How Typhoons Are Increasing Climate Change", "B. Climate Change and the Rising Power of Storms", "C. Rising Seas, Rising Typhoons: Only in Asia", "D. How the World Is Suffering from Extreme Weathers"], correctIndex: 1 },
+                                        { id: "q54", text: "Câu 54: The word <b>those</b> in paragraph 1 refers to _____.", options: ["A. scientists", "B. regions", "C. seas", "D. storms"], correctIndex: 3 },
+                                        { id: "q55", text: "Câu 55: In paragraph 2, the word <b>dump</b> is closest in meaning to _____.", options: ["A. throw away as garbage", "B. drop or release suddenly", "C. pour now and again", "D. sell at a cheap price"], correctIndex: 1 },
+                                        { id: "q56", text: "Câu 56: According to paragraph 2, crowded cities without strong drainage systems _____.", options: ["A. cause many water disasters for their populations", "B. can develop storms into deadly typhoons", "C. may be the most vulnerable to climate change", "D. suffer from serious flooding caused by storms"], correctIndex: 3 },
+                                        { id: "q57", text: "Câu 57: In paragraph 3, it is NOT mentioned that _____.", options: ["A. Typhoon Doksuri flooded the entire mainland China", "B. Typhoon Doksuri caused huge economic losses to China", "C. storms similar to Typhoon Doksuri occur more often now", "D. storms are more damaging due to increased urbanization"], correctIndex: 0 },
+                                        { id: "q58", text: "Câu 58: In paragraph 4, the author mentions <b>scientists</b> in order to _____.", options: ["A. confirm another viewpoint", "B. present two perspectives", "C. validate his/her claim", "D. illustrate a public opinion"], correctIndex: 2 },
+                                        { id: "q59", text: "Câu 59: It can be inferred from paragraph 4 that Typhoon Gaemi and similar storms _____.", options: ["A. pose higher risks of flooding", "B. are more serious in desert areas", "C. cause huge shortages of power", "D. are a factor of global warming"], correctIndex: 0 },
+                                        { id: "q60", text: "Câu 60: Paragraphs 2, 3, 4, and 5 present _____ respectively as changes to storms due to climate change.", options: ["A. higher economic losses, serious floods, greater intensity, and higher speed", "B. higher speed, serious floods, higher economic losses, and greater intensity", "C. serious floods, higher economic losses, greater intensity, and higher speed", "D. serious floods, higher speed, higher economic losses, and greater intensity"], correctIndex: 2 }
+                                ]
+                        },
+                        // Questions 61-90
+                        { id: "q61", section: "PHẦN 2. TOÁN HỌC", text: "Câu 61: Một hình chữ nhật và một hình vuông có cùng chu vi là 24 (đơn vị dài). Biết rằng diện tích hình vuông lớn hơn diện tích hình chữ nhật là 4 (đơn vị diện tích). Hiệu giữa chiều dài và chiều rộng của hình chữ nhật là:", options: ["A. 2.", "B. 4.", "C. 6.", "D. 8."], correctIndex: 1 },
+                        { id: "q62", section: "PHẦN 2. TOÁN HỌC", text: "Câu 62: Cho phương trình \\(\\sqrt{-x^2+mx} = 2x-1\\) with \\(m\\) là tham số thực. Tập hợp tất cả giá trị của \\(m\\) để phương trình trên vô nghiệm là:", options: ["A. \\(\\left( \\frac{1}{2}; \\infty \\right)\\).", "B. \\(\\left( \\frac{1}{2}; 2 \\right]\\).", "C. \\(\\left( -\\infty; \\frac{1}{2} \\right)\\).", "D. \\((-\\infty; 2)\\)."], correctIndex: 2 },
+                        { id: "q63", section: "PHẦN 2. TOÁN HỌC", text: "Câu 63: Anh Hùng muốn gửi tiết kiệm để sau 3 năm có 800 triệu đồng mua xe. Biết lãi suất hàng tháng là 0,6%, tiền lãi sinh ra hàng tháng được nhập vào tiền vốn, số tiền gửi hàng tháng là như nhau. Anh Hùng phải gửi ngân hàng mỗi tháng số tiền gần nhất with số tiền nào sau đây:", options: ["A. 19.785.000 đồng.", "B. 19.895.000 đồng.", "C. 19.975.000 đồng.", "D. 19.665.000 đồng."], correctIndex: 1 },
+                        { id: "q64", section: "PHẦN 2. TOÁN HỌC", text: "Câu 64: Cho \\(a = \\log_2 5\\), \\(b = \\log_5 3\\). Biết \\(\\log_{24} 15 = \\frac{ma+ab}{n+ab}\\) with \\(m\\), \\(n\\) là các số nguyên. Giá trị \\(S = m^2+n^2\\) là:", options: ["A. 2.", "B. 5.", "C. 13.", "D. 10."], correctIndex: 3 },
+                        { id: "q65", section: "PHẦN 2. TOÁN HỌC", text: "Câu 65: Có 6 thị trấn A, B, C, D, E và F được kết nối with nhau bởi một số tuyến đường. Độ dài tính bằng kilômét của các tuyến đường kết nối giữa các thị trấn được cho kèm theo bảng sau.<br><table class=\"table table-bordered text-center\" style=\"width:auto; margin:10px auto\"><tr><td></td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td></tr><tr><td>A</td><td>0</td><td>1</td><td>0</td><td>8</td><td>4</td><td>1</td></tr><tr><td>B</td><td>1</td><td>0</td><td>2</td><td>0</td><td>0</td><td>0</td></tr><tr><td>C</td><td>0</td><td>2</td><td>0</td><td>3</td><td>0</td><td>0</td></tr><tr><td>D</td><td>8</td><td>0</td><td>3</td><td>0</td><td>5</td><td>0</td></tr><tr><td>E</td><td>4</td><td>0</td><td>0</td><td>5</td><td>0</td><td>1</td></tr><tr><td>F</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr></table>Tổng số tuyến đường kết nối các thị trấn with nhau là:", options: ["A. 8.", "B. 6.", "C. 10.", "D. 9."], correctIndex: 3 },
+                        { id: "q66", section: "PHẦN 2. TOÁN HỌC", text: "Câu 66: Một công ty viễn thông đang lên kế hoạch mở rộng mạng lưới dịch vụ của mình tại một khu vực gồm sáu thị trấn: A, B, C, D, E và F. Để cung cấp dịch vụ internet và điện thoại đến từng thị trấn, công ty cần phải kéo cáp ngầm nối các thị trấn with nhau. Mỗi đoạn cáp nối hai thị trấn có một chi phí nhất định, tùy thuộc vào khoảng cách địa lý và điều kiện địa hình. Sơ đồ dưới đây thể hiện các tuyến cáp có thể xây dựng, cùng with chi phí đi kèm (tính bằng nghìn đô la) cho từng tuyến.<br><br><b>Sơ đồ tuyến cáp (thị trấn: chi phí nghìn đô la):<img src=\"https://i.ibb.co/twSqV6SV/Screenshot-2026-05-14-223438.png\"></b><br>Chi phí tối thiểu (nghìn đô la) mà công ty phải bỏ ra để xây dựng hệ thống cáp sao cho tất cả sáu thị trấn đều được kết nối with nhau là:", options: ["A. 780.", "B. 820.", "C. 760.", "D. 800."], correctIndex: 0 },
+                        { id: "q67", section: "PHẦN 2. TOÁN HỌC", text: "Câu 67: Tập nghiệm của phương trình \\(\\cos 2x + 3 \\sin x - 2 = 0\\) là:", options: ["A. \\(S = \\left\\{ \\frac{\\pi}{2} + k2\\pi; \\frac{\\pi}{6} + k2\\pi; \\frac{5\\pi}{6} + k2\\pi, k \\in \\mathbb{Z} \\right\\}\\).", "B. \\(S = \\left\\{ \\frac{\\pi}{6} + k2\\pi; \\frac{5\\pi}{6} + k2\\pi, k \\in \\mathbb{Z} \\right\\}\\).", "C. \\(S = \\left\\{ \\frac{\\pi}{2} + k2\\pi; \\frac{\\pi}{3} + k2\\pi; \\frac{2\\pi}{3} + k2\\pi, k \\in \\mathbb{Z} \\right\\}\\).", "D. \\(S = \\left\\{ \\frac{\\pi}{3} + k2\\pi; \\frac{2\\pi}{3} + k2\\pi, k \\in \\mathbb{Z} \\right\\}\\)."], correctIndex: 0 },
+                        { id: "q68", section: "PHẦN 2. TOÁN HỌC", text: "Câu 68: Cho tam giác ABC có a, b, c lần lượt là độ dài các cạnh đối diện with các đỉnh A, B, C. Biết \\(b(b^2-a^2)=c(a^2-c^2)\\), khi đó số đo của góc A bằng:", options: ["A. \\(30^\\circ\\).", "B. \\(45^\\circ\\).", "C. \\(60^\\circ\\).", "D. \\(120^\\circ\\)."], correctIndex: 2 },
+                        { id: "q69", section: "PHẦN 2. TOÁN HỌC", text: "Câu 69: Cho hàm số \\(f(x) = \\begin{cases} \\frac{x^2-4}{x-2}, & x \\neq 2 \\\\ m+1, & x = 2 \\end{cases}\\) with m là tham số thực. Giá trị của m để hàm số liên tục tại \\(x_0 = 2\\) là:", options: ["A. \\(m=3\\).", "B. \\(m=2\\).", "C. \\(m=4\\).", "D. \\(m=1\\)."], correctIndex: 0 },
+                        { id: "q70", section: "PHẦN 2. TOÁN HỌC", text: "Câu 70: Cho hàm số \\(y = x.e^x\\). Tập nghiệm của bất phương trình \\(y'' - y' - y > 0\\) là:", options: ["A. \\((-1; +\\infty)\\).", "B. \\((-\\infty; 1)\\).", "C. \\((1; +\\infty)\\).", "D. \\((-\\infty; -1)\\)."], correctIndex: 1 },
+                        { id: "q71", section: "PHẦN 2. TOÁN HỌC", text: "Câu 71: Cho hàm số \\(f(x)\\) liên tục trên \\([0; 2]\\) và thoả mãn \\(\\int_{0}^{2} f(x)dx = 7\\). Tính giá trị \\(\\int_{0}^{2} (f(x)-x)dx\\).", options: ["A. 5.", "B. -5.", "C. -3.", "D. 3."], correctIndex: 1 },
+                        { id: "q72", section: "PHẦN 2. TOÁN HỌC", text: "Câu 72: Xét hàm số \\(y = f(x)\\) có \\(f'(x) = 3x(x-2)\\) và đồ thị \\((C)\\) của nó thì đi qua gốc tọa độ. Tính diện tích phần hình phẳng giới hạn bởi \\((C)\\) và trục hoành.", options: ["A. 0.", "B. \\(-\\frac{27}{4}\\).", "C. 4.", "D. \\(\\frac{27}{4}\\)."], correctIndex: 3 },
+                        {
+                                id: "reading_73_74",
+                                section: "PHẦN 2. TOÁN HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 73 đến 74</strong><br><br>Để sản xuất mỗi cái bánh loại A cần 200 g bột và 25 g thịt, để sản xuất mỗi bánh loại B cần 100 g bột và 50 g thịt. Số nguyên liệu có sẵn gồm 5 kg bột và 1 kg thịt.",
+                                subQuestions: [
+                                        { id: "q73", text: "Câu 73: Gọi \\(x\\) là số bánh loại A và \\(y\\) là số bánh loại B. Hệ bất phương trình biểu diễn các ràng buộc nguyên liệu là:", options: ["A. \\(\\begin{cases} 200x + 100y \\le 5000 \\\\ 25x + 50y \\le 1000 \\\\ x, y \\ge 0 \\end{cases}\\)", "B. \\(\\begin{cases} 200x + 100y \\le 1000 \\\\ 25x + 50y \\le 5000 \\\\ x, y \\ge 0 \\end{cases}\\)", "C. \\(\\begin{cases} 200x + 25y \\le 5000 \\\\ 100x + 50y \\le 1000 \\\\ x, y \\ge 0 \\end{cases}\\)", "D. \\(\\begin{cases} 200x + 25y \\le 1000 \\\\ 100x + 50y \\le 5000 \\\\ x, y \\ge 0 \\end{cases}\\)"], correctIndex: 0 },
+                                        { id: "q74", text: "Câu 74: Giả sử lợi nhuận thu được từ mỗi chiếc bánh loại A là 10 nghìn đồng và từ loại B là 15 nghìn đồng. Lợi nhuận tối đa (nghìn đồng) có thể thu được là:", options: ["A. 250.", "B. 300.", "C. 350.", "D. 400."], correctIndex: 2 }
+                                ]
+                        },
+                        {
+                                id: "reading_75_76",
+                                section: "PHẦN 2. TOÁN HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 75 đến 76</strong><br><br>Cho cấp số cộng \\((u_n)\\) xác định bởi:<br>\\(\\begin{cases} u_1 + u_5 = 12 \\\\ u_2 + u_6 = 16 \\end{cases}\\)",
+                                subQuestions: [
+                                        { id: "q75", text: "Câu 75: Công sai \\(d\\) của cấp số cộng \\((u_n)\\) là:", options: ["A. \\(d=1\\).", "B. \\(d=2\\).", "C. \\(d=3\\).", "D. \\(d=4\\)."], correctIndex: 1 },
+                                        { id: "q76", text: "Câu 76: Tính giá trị giới hạn \\(\\lim_{n \\to +\\infty} \\frac{5u_n - 3}{n + 2}\\).", options: ["A. 0.", "B. 5.", "C. 10.", "D. \\(+\\infty\\)."], correctIndex: 2 }
+                                ]
+                        },
+                        {
+                                id: "reading_77_78",
+                                section: "PHẦN 2. TOÁN HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 77 đến 78</strong><br><br>Trong không gian tọa độ \\(Oxyz\\), cho điểm \\(A(2; 2; -3)\\) và hai mặt phẳng \\((P): 2x + y - 2z = 0\\), \\((Q): 2x - y + z = 0\\).",
+                                subQuestions: [
+                                        { id: "q77", text: "Câu 77: Khoảng cách từ điểm A đến mặt phẳng (P) bằng:", options: ["A. 3.", "B. 4.", "C. 2.", "D. 6."], correctIndex: 1 },
+                                        { id: "q78", text: "Câu 78: Mặt phẳng đi qua A và vuông góc with (P) và (Q) có phương trình:", options: ["A. \\(x + 6y + 4z - 2 = 0\\).", "B. \\(x - 6y - 4z - 2 = 0\\).", "C. \\(x - 6y + 4z + 22 = 0\\).", "D. \\(x + 6y - 4z - 26 = 0\\)."], correctIndex: 0 }
+                                ]
+                        },
+                        {
+                                id: "reading_79_81",
+                                section: "PHẦN 2. TOÁN HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 79 đến 81</strong><br><br>Cho hàm số \\(y = x^3 - 3x + m\\).",
+                                subQuestions: [
+                                        { id: "q79", text: "Câu 79: Với \\(m = 1\\), giá trị lớn của hàm số trên đoạn \\([-2; 2]\\) là:", options: ["A. 4.", "B. 3.", "C. 2.", "D. 1."], correctIndex: 1 },
+                                        { id: "q80", text: "Câu 80: Tất cả giá trị của \\(m\\) để hàm số nghịch biến trên tập xác định là:", options: ["A. \\(m \\in [-1; 3]\\).", "B. \\(m = 1\\).", "C. \\(m \\in \\left[-\\frac{1}{2}; 4\\right]\\).", "D. \\(m \\in \\varnothing\\)."], correctIndex: 3 },
+                                        { id: "q81", text: "Câu 81: Tính tổng tất cả giá trị nguyên của tham số \\(m\\) sao cho phương trình \\(-x^3 + 3x = m\\) có 3 nghiệm thực phân biệt.", options: ["A. -1.", "B. 2.", "C. 1.", "D. 0."], correctIndex: 3 }
+                                ]
+                        },
+                        {
+                                id: "reading_82_84",
+                                section: "PHẦN 2. TOÁN HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 82 đến 84</strong><br><br>Một nhà máy có hai lô hàng cần kiểm tra. Lô A có 10 sản phẩm, trong đó có 7 sản phẩm tốt và 3 sản phẩm lỗi. Lô B có 15 sản phẩm, trong đó có 10 sản phẩm tốt và 5 sản phẩm lỗi.",
+                                subQuestions: [
+                                        { id: "q82", text: "Câu 82: Từ lô hàng A chọn ngẫu nhiên đồng thời 2 sản phẩm, xác suất để người đó lấy được 2 sản phẩm tốt là:", options: ["A. \\(\\frac{7}{15}\\).", "B. \\(\\frac{1}{5}\\).", "C. \\(\\frac{7}{30}\\).", "D. \\(\\frac{11}{90}\\)."], correctIndex: 0 },
+                                        { id: "q83", text: "Câu 83: Chọn ngẫu nhiên một lô hàng, rồi từ lô hàng đó chọn ra 2 sản phẩm. Xác suất để lấy được 2 sản phẩm tốt là:", options: ["A. \\(\\frac{94}{105}\\).", "B. \\(\\frac{23}{94}\\).", "C. \\(\\frac{47}{105}\\).", "D. \\(\\frac{49}{94}\\)."], correctIndex: 2 },
+                                        { id: "q84", text: "Câu 84: Chọn ngẫu nhiên một lô hàng, rồi từ lô hàng đó chọn ra 1 sản phẩm. Biết sản phẩm được chọn là sản phẩm lỗi. Xác suất để lô được chọn là lô B là:", options: ["A. \\(\\frac{9}{19}\\).", "B. \\(\\frac{10}{19}\\).", "C. \\(\\frac{1}{2}\\).", "D. \\(\\frac{3}{5}\\)."], correctIndex: 1 }
+                                ]
+                        },
+                        {
+                                id: "reading_85_87",
+                                section: "PHẦN 2. TOÁN HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 85 đến 87</strong><br><br>Trong mặt phẳng tọa độ \\(Oxy\\), cho tam giác \\(ABC\\) có tọa độ các đỉnh lần lượt là \\(A(-5; 1)\\), \\(B(1; 5)\\), \\(C(7; -3)\\).",
+                                subQuestions: [
+                                        { id: "q85", text: "Câu 85: Gọi \\(G\\) là trọng tâm của tam giác \\(ABC\\). Khoảng cách \\(OG\\) là:", options: ["A. \\(\\sqrt{2}\\).", "B. \\(\\sqrt{3}\\).", "C. 1.", "D. 2."], correctIndex: 0 },
+                                        { id: "q86", text: "Câu 86: Gọi \\(M\\) là trung điểm cạnh \\(AC\\). Gọi \\(N\\) là điểm sao cho \\(BMCN\\) là hình bình hành. Tổng hoành độ và tung độ của \\(N\\) bằng:", options: ["A. 7.", "B. 8.", "C. 9.", "D. 10."], correctIndex: 3 },
+                                        { id: "q87", text: "Câu 87: Gọi \\(D\\) là điểm nằm trên cạnh \\(BC\\) sao cho đường tròn đường kính \\(DB\\) tiếp xúc trục tung. Hiệu hoành độ và tung độ của \\(D\\) là:", options: ["A. 2.", "B. 2,5.", "C. 3.", "D. 3,5."], correctIndex: 2 }
+                                ]
+                        },
+                        {
+                                id: "reading_88_90",
+                                section: "PHẦN 2. TOÁN HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 88 đến 90</strong><br><br>Cho hình chóp \\(S.ABCD\\) có đáy là hình vuông cạnh \\(a\\). Hình chiếu vuông góc \\(H\\) của \\(S\\) lên mặt đáy \\((ABCD)\\) là trung điểm của \\(AB\\). Biết \\(SH = a\\).",
+                                subQuestions: [
+                                        { id: "q88", text: "Câu 88: Thể tích hình chóp \\(S.BHD\\) là:", options: ["A. \\(\\frac{1}{6}a^3\\).", "B. \\(\\frac{1}{12}a^3\\).", "C. \\(\\frac{\\sqrt{2}}{12}a^3\\).", "D. \\(\\frac{\\sqrt{3}}{12}a^3\\)."], correctIndex: 1 },
+                                        { id: "q89", text: "Câu 89: Chu vi tam giác \\(SBD\\) là:", options: ["A. \\(\\frac{2\\sqrt{2}+3+\\sqrt{5}}{2}a\\).", "B. \\(\\frac{2\\sqrt{2}+\\sqrt{3}+\\sqrt{5}}{2}a\\).", "C. \\(\\frac{2\\sqrt{2}+2\\sqrt{5}}{2}a\\).", "D. \\(\\frac{2\\sqrt{2}+\\sqrt{3}+5}{2}a\\)."], correctIndex: 0 },
+                                        { id: "q90", text: "Câu 90: Khoảng cách từ \\(H\\) đến mặt phẳng \\((SBD)\\) xấp xỉ:", options: ["A. 0,5a.", "B. 0,66a.", "C. 0,33a.", "D. 0,25a."], correctIndex: 2 }
+                                ]
+                        },
+                        // Questions 91-120
+                        {
+                                id: "reading_91_93",
+                                section: "PHẦN 3. TƯ DUY KHOA HỌC",
+                                type: "reading_group",
+                                passage: "<strong>3.1. LOGIC, PHÂN TÍCH SỐ LIỆU</strong><br><strong>Dựa vào thông tin dưới đây để trả lời các câu từ 91 đến 93</strong><br><br>Nhân dịp tổ chức buổi lễ 20/11, đội văn nghệ của trường định sẽ biểu diễn 5 tiết mục là: đơn ca nam, đơn ca nữ, song ca nam nữ, tốp ca học sinh và tốp ca giáo viên. Thứ tự các tiết mục tuân theo các ràng buộc sau đây:<br>- Song ca nam nữ phải được biểu diễn trước đơn ca nữ.<br>- Tốp ca học sinh phải được biểu diễn trước tốp ca giáo viên.<br>- Đơn ca nam và tốp ca học sinh phải được biểu diễn liền kề nhau.",
+                                subQuestions: [
+                                        { id: "q91", text: "Câu 91: Có bao nhiêu tiết mục có thể biểu diễn ở vị trí thứ hai?", options: ["A. năm.", "B. bốn.", "C. ba.", "D. hai."], correctIndex: 2 },
+                                        { id: "q92", text: "Câu 92: Nếu tốp ca giáo viên được biểu diễn trước đơn ca nữ thì điều nào sau đây không đúng?", options: ["A. Đơn ca nam được biểu diễn ở vị trí thứ hai.", "B. Đơn ca nữ được biểu diễn ở vị trí thứ tư.", "C. Song ca nam nữ được biểu diễn đầu tiên.", "D. Tốp ca học sinh được biểu diễn đầu tiên."], correctIndex: 1 },
+                                        { id: "q93", text: "Câu 93: Nếu đơn ca nữ và tốp ca giáo viên không được biểu diễn kề nhau thì điều nào sau đây có thể đúng?", options: ["A. Đơn ca nam được biểu diễn cuối cùng.", "B. Đơn ca nữ được biểu diễn thứ tư.", "C. Song ca nam nữ biểu diễn thứ ba.", "D. Tốp ca học sinh biểu diễn thứ hai."], correctIndex: 3 }
+                                ]
+                        },
+                        {
+                                id: "reading_94_96",
+                                section: "PHẦN 3. TƯ DUY KHOA HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 94 đến 96</strong><br><br>Ban cán sự của lớp sẽ được thành lập gồm đúng năm đại diện, trong đó có một người giữ vai trò lớp trưởng. Các thành viên này được lựa chọn từ hai nhóm: nhóm học sinh nam gồm F, G, J, K, M và nhóm học sinh nữ gồm P, Q, R, S. Các điều kiện lựa chọn ban cán sự phải được thỏa mãn như sau:<br>- Trong mỗi nhóm (nam và nữ) phải có ít nhất 2 đại diện.<br>- Lớp trưởng phải thuộc nhóm có đúng 2 đại diện trong ban cán sự.<br>- Nếu F được chọn thì Q cũng phải được chọn.<br>- Nếu G được chọn thì K cũng phải được chọn.<br>- Nếu J hoặc M được chọn thì người kia cũng phải được chọn.<br>- M và P không thể cùng được chọn.",
+                                subQuestions: [
+                                        { id: "q94", text: "Câu 94: Trong số các lựa chọn dưới đây, tổ hợp nào là một lựa chọn hợp lệ các đại diện cho ban cán sự lớp?", options: ["A. F, G, Q, R, S.", "B. F, P, Q, R, S.", "C. J, K, M, Q, S.", "D. J, M, P, Q, S."], correctIndex: 2 },
+                                        { id: "q95", text: "Câu 95: Nếu cả F lẫn K đều không được chọn, thì điều nào sau đây có thể đúng?", options: ["A. G được chọn.", "B. P được chọn.", "C. J là lớp trưởng.", "D. Q là lớp trưởng."], correctIndex: 2 },
+                                        { id: "q96", text: "Câu 96: Nếu lớp trưởng là một nữ sinh, thì điều nào sau đây phải đúng?", options: ["A. Nếu G được chọn thì Q cũng được chọn.", "B. Nếu G được chọn thì R cũng được chọn.", "C. Nếu J được chọn thì F cũng được chọn.", "D. Nếu J được chọn thì Q cũng được chọn."], correctIndex: 0 }
+                                ]
+                        },
+                        {
+                                id: "reading_97_99",
+                                section: "PHẦN 3. TƯ DUY KHOA HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 97 đến 99</strong><br><br>Hai biểu đồ tròn dưới đây cung cấp thông tin về thị phần điện thoại của công ty X và Y trong các năm 2015 và 2025.<br><br><b>Biểu đồ 1 (2015):</b> X: 38%, Y: 20%, Khác: 42%<br><b>Biểu đồ 2 (2025):</b> X: 66%, Y: 28%, Khác: 6%<br><br>Biết rằng tổng số điện thoại bán ra năm 2015 là 50 triệu sản phẩm và năm 2025 là 95 triệu sản phẩm.",
+                                subQuestions: [
+                                        { id: "q97", text: "Câu 97: Số lượng điện thoại công ty X bán ra năm 2025 tăng bao nhiêu phần trăm so with năm 2015?", options: ["A. 180%.", "B. 205%.", "C. 230%.", "D. 250%."], correctIndex: 2 },
+                                        { id: "q98", text: "Câu 98: Giả sử số lượng điện thoại công ty X bán ra tăng theo tốc độ tăng trưởng kép hằng năm (CAGR) không đổi trong giai đoạn 2015-2025. Biết công thức CAGR là \\(CAGR = \\left(\\frac{\\text{Giá trị cuối kỳ}}{\\text{Giá trị đầu kỳ}}\\right)^{\\frac{1}{n}} - 1\\) with n là số năm. CAGR của công ty X xấp xỉ:", options: ["A. 10,3%/năm.", "B. 11,7%/năm.", "C. 12,7%/năm.", "D. 14,1%/năm."], correctIndex: 2 },
+                                        { id: "q99", text: "Câu 99: Giả sử từ năm 2024 đến năm 2025, tổng số điện thoại bán ra trên thị trường tăng 11%, và số lượng điện thoại công ty Y bán ra tăng 5%. Thị phần công ty Y trong năm 2024 bằng xấp xỉ bao nhiêu phần trăm:", options: ["A. 26,4%.", "B. 29,6%.", "C. 31,1%.", "D. 36,4%."], correctIndex: 1 }
+                                ]
+                        },
+                        {
+                                id: "reading_100_102",
+                                section: "PHẦN 3. TƯ DUY KHOA HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 100 đến 102</strong><br><br>Bảng tần số cân nặng khi sinh (đơn vị kilôgam) của 1.500 trẻ sơ sinh được cho như sau:<br><table class=\"table table-bordered text-center\" style=\"width:auto; margin:10px auto\"><tr><th>Khoảng cân nặng (kg)</th><th>Tần số f</th></tr><tr><td>0,0-1,0</td><td>1</td></tr><tr><td>1,0-2,0</td><td>6</td></tr><tr><td>2,0-2,5</td><td>60</td></tr><tr><td>2,5-3,0</td><td>280</td></tr><tr><td>3,0-3,5</td><td>820</td></tr><tr><td>3,5-4,0</td><td>320</td></tr><tr><td>4,0-5,0</td><td>10</td></tr><tr><td>5,0-6,0</td><td>3</td></tr></table>",
+                                subQuestions: [
+                                        { id: "q100", text: "Câu 100: Khoảng chứa trung vị là:", options: ["A. 2,0-2,5.", "B. 2,5-3,0.", "C. 3,0-3,5.", "D. 3,5-4,0."], correctIndex: 2 },
+                                        { id: "q101", text: "Câu 101: Trung vị cân nặng (kg) của 1.500 trẻ sơ sinh xấp xỉ:", options: ["A. 3,18.", "B. 3,23.", "C. 3,25.", "D. 3,30."], correctIndex: 2 },
+                                        { id: "q102", text: "Câu 102: Cho \\(\\overline{x}\\) và \\(s\\) lần lượt là trung bình mẫu và độ lệch chuẩn mẫu của cân nặng 1.500 trẻ sơ sinh. Giá trị (kg) của \\(\\overline{x} - s\\) xấp xỉ:", options: ["A. 2,80.", "B. 2,90.", "C. 3,00.", "D. 3,10."], correctIndex: 0 }
+                                ]
+                        },
+                        {
+                                id: "reading_103_105",
+                                section: "PHẦN 3. TƯ DUY KHOA HỌC",
+                                type: "reading_group",
+                                passage: "<strong>3.2. SUY LUẬN KHOA HỌC</strong><br><strong>Dựa vào thông tin dưới đây để trả lời các câu từ 103 đến 105</strong><br><br>Áp suất hơi bão hòa của chất lỏng dễ bay hơi là áp suất hơi của nó khi tốc độ bay hơi của chất lỏng bằng tốc độ ngưng tụ của hơi ở nhiệt độ nhất định. Chất càng dễ bay hơi thì áp suất hơi bão hòa cao và khi nhiệt độ tăng, áp suất hơi bão hòa cũng tăng. Liên hệ giữa áp suất hơi bão hòa của dung dịch (\\(P_A\\)) và áp suất hơi bão hòa của dung môi tinh chất \\(P_A^0\\) như sau:<br>\\(P_A = P_A^0 \\times \\frac{n_A}{n_A + n_B}\\)<br>Trong đó \\(n_A\\) và \\(n_B\\) lần lượt là số mol của dung môi A và chất tan B.<br>Hòa tan 24 gam urea \\((NH_2)_2CO\\) vào 200 gam nước được dung dịch X. Biết urea là chất tan không bay hơi và khối lượng phân tử của urea là 60 g/mol. Khối lượng phân tử của nước (\\(H_2O\\)) là 18 g/mol. Áp suất hơi bão hòa của nước nguyên chất ở \\(25^\\circ C\\) là 23,8 mmHg.",
+                                subQuestions: [
+                                        { id: "q103", text: "Câu 103: Nhận xét nào sau đây sai?", options: ["A. Áp suất hơi bão hòa của dung dịch X thấp hơn 23,52 mmHg.", "B. Khi nhiệt độ tăng, áp suất hơi bão hòa của dung dịch X tăng.", "C. Khi tăng nồng độ urea thì áp suất hơi bão hòa của dung dịch tăng.", "D. Áp suất hơi bão hòa của nước luôn lớn hơn áp suất hơi bão hòa của dung dịch X."], correctIndex: 2 },
+                                        { id: "q104", text: "Câu 104: Có bốn dung dịch \\(X_1, X_2, X_3\\) và \\(X_4\\) được điều chế bằng cách hòa tan cùng một khối lượng lần lượt các chất tan: saccharose (\\(C_{12}H_{22}O_{11}\\)), maltose (\\(C_{12}H_{22}O_{11}\\)), glycerol (\\(C_3H_8O_3\\)) và sorbitol (\\(C_6H_{14}O_6\\)) vào cùng một lượng nước. Gọi \\(P_1, P_2, P_3\\) và \\(P_4\\) lần lượt là áp suất hơi bão hòa của các dung dịch \\(X_1, X_2, X_3\\) và \\(X_4\\). Hãy chọn nhận xét đúng về mối quan hệ giữa \\(P_1, P_2, P_3\\) và \\(P_4\\).", options: ["A. \\(P_1 = P_2 < P_3 < P_4\\).", "B. \\(P_1 > P_2 > P_3 = P_4\\).", "C. \\(P_1 = P_2 = P_3 = P_4\\).", "D. \\(P_1 = P_2 > P_4 > P_3\\)."], correctIndex: 3 },
+                                        { id: "q105", text: "Câu 105: Cần hòa tan bao nhiêu gam glucose (\\(C_6H_{12}O_6\\)) vào 200 g nước để tạo thành dung dịch có áp suất hơi bão hòa bằng with áp suất hơi bão hòa của dung dịch X? Glucose là chất tan không bay hơi và khối lượng phân tử là 180 g/mol.", options: ["A. 8 gam.", "B. 24 gam.", "C. 36 gam.", "D. 72 gam."], correctIndex: 3 }
+                                ]
+                        },
+                        {
+                                id: "reading_106_108",
+                                section: "PHẦN 3. TƯ DUY KHOA HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 106 đến 108</strong><br><br>Trong thế kỷ XIX, nhiều nhà khoa học cho rằng ánh sáng cần một môi trường đặc biệt để lan truyền, gọi là ê-te (ether). Tuy nhiên, nhiều thí nghiệm, đặc biệt là thí nghiệm Michelson - Morley (1887) không xác nhận sự tồn tại của môi trường này. Theo lý thuyết trường điện từ Maxwell, ánh sáng có bản chất là sóng điện từ with tốc độ lan truyền trong chân không là \\(c = 3.10^8\\) m/s. Ngoài ra, thí nghiệm hiện tượng quang điện cho thấy ánh sáng còn mang tính hạt, with các hạt ánh sáng gọi là photon. Ngày nay, người ta thừa nhận ánh sáng có lưỡng tính sóng - hạt.<br>Mỗi ngày, Mặt Trời gửi đến Trái Đất nhiều loại bức xạ điện từ: ánh sáng khả kiến giúp chúng ta quan sát, tia cực tím có thể gây bỏng da (with bước sóng ngắn hơn 320 nm) nhưng cũng hỗ trợ tổng hợp vitamin D, tia hồng ngoại (bước sóng dài hơn 760 nm) giúp giữ ấm Trái Đất. Việc hiểu bản chất ánh sáng còn giúp khám phá vũ trụ nhờ các kính thiên văn hiện đại. Ví dụ, kính thiên văn James Webb thu nhận bức xạ có bước sóng trong chân không từ 0,60 \\(\\mu m\\) (màu da cam) đến 28,5 \\(\\mu m\\) (hồng ngoại trung), cho phép mở rộng khả năng quan sát vũ trụ.<br>Cho biết năng lượng của một photon ánh sáng \\(\\varepsilon\\) (J) được tính theo công thức:<br>\\(\\varepsilon = hf = \\frac{hc}{\\lambda}\\)<br>with \\(f\\) (Hz) và \\(\\lambda\\) (m) lần lượt là tần số và bước sóng của ánh sáng, \\(h = 6,625.10^{-34}\\) J.s được gọi là hằng số Planck, \\(1 eV = 1,6.10^{-19}\\) J.",
+                                subQuestions: [
+                                        { id: "q106", text: "Câu 106: Phát biểu nào sau đây đúng?", options: ["A. Ở thế kỷ XIX, các nhà khoa học cho rằng ánh sáng lan truyền trong môi trường ê-te.", "B. Thí nghiệm Michelson - Morley (1887) giúp khẳng định sự tồn tại của môi trường ê-te.", "C. Thí nghiệm Michelson - Morley (1887) giúp khẳng định ánh sáng có tính chất hạt.", "D. Ngay từ đầu các nhà khoa học đã khẳng định sóng ánh sáng có thể lan truyền trong môi trường chân không."], correctIndex: 0 },
+                                        { id: "q107", text: "Câu 107: Tần số ánh sáng nhỏ nhất mà kính thiên văn James Webb có thể thu được gần đúng là:", options: ["A. \\(1,1.10^{13}\\) Hz.", "B. \\(5,0.10^{14}\\) Hz.", "C. \\(9,4.10^{14}\\) Hz.", "D. \\(3,9.10^{14}\\) Hz."], correctIndex: 0 },
+                                        { id: "q108", text: "Câu 108: Cho các phát biểu sau:<br>(1) Năng lượng của mỗi photon tia cực tím có thể gây bỏng da chủ yếu lớn hơn 3,88 eV.<br>(2) Tia cực tím luôn có hại.<br>(3) Kính thiên văn James Webb chỉ quan sát ánh sáng trong vùng hồng ngoại.<br>(4) Ánh sáng là một dạng của sóng điện từ.<br>Các phát biểu đúng là:", options: ["A. (1), (4).", "B. (1), (3).", "C. (4).", "D. (2), (3), (4).."], correctIndex: 0 }
+                                ]
+                        },
+                        {
+                                id: "reading_109_111",
+                                section: "PHẦN 3. TƯ DUY KHOA HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 109 đến 111</strong><br><br>Để đánh giá ảnh hưởng của nước thải sinh hoạt đến tính thấm của màng tế bào sinh vật, sinh viên sử dụng 5 mẫu mô rễ củ cải đường giống nhau (có chứa sắc tố tím betacyanin) làm vật liệu thí nghiệm. Mỗi mẫu mô được rửa sạch và ngâm vào một ống nghiệm chứa 5 mL dung dịch tương ứng with một nghiệm thức. Nước thải sinh hoạt được pha loãng bằng nước máy sinh hoạt theo các tỷ lệ quy định trong bảng. Sau khi ủ trong 15 phút ở \\(25^\\circ C\\), độ hấp thụ của dung dịch được đo tại bước sóng 460 nm (A460). Giá trị độ hấp thụ ánh sáng phản ánh mức độ khuếch tán betacyanin qua màng tế bào, từ đó xác định sự thay đổi tính thấm của màng tế bào. Thí nghiệm được lặp lại 5 lần, số liệu thu được là giá trị trung bình của 5 lần đo.<br><table class=\"table table-bordered text-center\" style=\"width:auto; margin:10px auto\"><tr><th>Nghiệm thức (NT)</th><th>Dung dịch xử lý</th><th>Độ hấp thụ ánh sáng</th></tr><tr><td>NT 1</td><td>Nước máy sinh hoạt</td><td>0,090 \\(\\pm\\) 0,006</td></tr><tr><td>NT 2</td><td>Nước thải pha loãng 25%</td><td>0,150 \\(\\pm\\) 0,020</td></tr><tr><td>NT 3</td><td>Nước thải không pha loãng</td><td>0,400 \\(\\pm\\) 0,105</td></tr><tr><td>NT 4</td><td>Nước thải pha loãng 50% + than hoạt tính</td><td>0,130 \\(\\pm\\) 0,012</td></tr><tr><td>NT 5</td><td>Chất tẩy rửa 0,1%</td><td>0,520 \\(\\pm\\) 0,040</td></tr></table>",
+                                subQuestions: [
+                                        { id: "q109", text: "Câu 109: Dung dịch trong ống nghiệm có nồng độ betacyanin cao nhất ở nghiệm thức nào?", options: ["A. NT 1.", "B. NT 2.", "C. NT 3.", "D. NT 5."], correctIndex: 3 },
+                                        { id: "q110", text: "Câu 110: Từ kết quả thí nghiệm, giải pháp nào sau đây nên được ưu tiên sử dụng để xử lý nước thải sinh hoạt, đồng thời giảm thiểu tổn thương màng tế bào sinh vật?", options: ["A. Nước thải sinh hoạt có thể được xả trực tiếp mà không ảnh hưởng đến sinh vật.", "B. Pha loãng 25% thể tích nước thải with 75% thể tích nước máy sinh hoạt.", "C. Pha loãng 50% nước thải sinh hoạt with 50% nước máy và lọc qua than hoạt tính.", "D. Thêm dung dịch tẩy rửa 0,1% vào nước thải sinh hoạt theo tỷ lệ thể tích 1:1."], correctIndex: 2 },
+                                        { id: "q111", text: "Câu 111: Cho những nhận định sau:<br>I. Nước thải sinh hoạt không pha loãng làm giảm tính thấm màng tế bào.<br>II. Than hoạt tính làm tăng tính thấm của màng tế bào, đồng thời làm giảm mức độ khuếch tán sắc tố.<br>III. Kết quả ở nghiệm thức NT3 đáng tin cậy hơn nghiệm thức NT2 vì giá trị trung bình cao hơn.<br>IV. Khi tiến hành thí nghiệm ở \\(4^\\circ C\\), giá trị hấp thụ A460 của tất cả các nghiệm thức có thể thay đổi.<br>Những nhận định đúng là:", options: ["A. IV.", "B. I, II, IV.", "C. I, II, III, IV.", "D. III, IV."], correctIndex: 0 }
+                                ]
+                        },
+                        {
+                                id: "reading_112_114",
+                                section: "PHẦN 3. TƯ DUY KHOA HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 112 đến 114</strong><br><br>Báo The New York Times dẫn số liệu được Cục Thống kê dân số Hoa Kỳ công bố ngày 22/6/2023 cho thấy, độ tuổi trung vị (median age) của Hoa Kỳ trong năm 2022 đạt con số kỷ lục 38,9 tuổi. Tuổi trung vị là chỉ số quan trọng trong việc biểu thị sự phân bổ dân số theo độ tuổi (trên một đơn vị lãnh thổ), chia dân số thành hai nhóm with số lượng bằng nhau. Nói cách khác, with tuổi trung vị 38,9 thì Hoa Kỳ đang có số người dân trên 38,9 tuổi đúng bằng số người trẻ hơn mốc này.<br>Trong những năm qua, tuổi trung vị của Hoa Kỳ liên tục tăng. Năm 1980, chỉ số này chỉ dừng ở mức 30 tuổi. Đến năm 2000, tuổi trung vị của Hoa Kỳ đã tăng vọt lên 35. Tuổi trung vị gần 39 cho thấy, Hoa Kỳ đang có dân số già quá nhanh. Trong tương lai, điều này sẽ dẫn đến những thách thức to lớn with lực lượng lao động, nền kinh tế cũng như các chương trình xã hội.<br>Báo The New York Times dẫn nguồn nhiều chuyên gia khẳng định nguyên nhân chính dẫn đến sự gia tăng tuổi trung vị là tỷ lệ sinh thấp. Tại Hoa Kỳ, phụ nữ thuộc thế hệ Gen Y (sinh trong khoảng năm 1981-1996, phần lớn hiện nay trong độ tuổi sinh đẻ) có xu hướng ưu tiên học tập và làm việc khi còn trẻ. Điều này dẫn đến việc họ kết hôn muộn hơn và có ít con hơn. Yếu tố người nhập cư cũng góp phần làm tăng tuổi trung vị. Trước đây, hầu hết người nhập cư đến Hoa Kỳ là người trong độ tuổi lao động, thường có nhiều con hơn người đã ở Hoa Kỳ từ nhiều thế hệ. Tuy nhiên, từ năm 2016, số người nhập cư vào Hoa Kỳ đã giảm, thậm chí chạm đáy trong giai đoạn đại dịch COVID-19.<br><i>(Ngọc Đức, Vì sao dân số Mỹ già quá nhanh?)</i>",
+                                subQuestions: [
+                                        { id: "q112", text: "Câu 112: Nhận định nào sau đây phản ánh đúng về tuổi trung vị của dân số Hoa Kỳ?", options: ["A. Tuổi trung vị đạt mức kỷ lục tính đến năm 2022 phản ánh Hoa Kỳ có cơ cấu dân số già.", "B. Tuổi trung vị năm 2022 cho thấy số dân dưới 38,9 tuổi nhiều hơn số dân trên tuổi này.", "C. Tuổi trung vị năm 2000 có xu hướng giảm so with năm 1980.", "D. Tuổi trung vị chia dân số Hoa Kỳ thành hai nhóm with số lượng bằng nhau."], correctIndex: 0 },
+                                        { id: "q113", text: "Câu 113: Nhận định nào sau đây không phải là thách thức đối with Hoa Kỳ khi tuổi trung vị ngày càng gia tăng?", options: ["A. Sự suy giảm số người trong độ tuổi lao động.", "B. Sự già hóa dân số đang diễn ra.", "C. Sự gia tăng chi phí an sinh xã hội.", "D. Sự mất cân bằng về giới tính khi sinh."], correctIndex: 3 },
+                                        { id: "q114", text: "Câu 114: Yếu tố nào sau đây có ảnh hưởng sâu sắc đến sự gia tăng tuổi trung vị ở Hoa Kỳ?", options: ["A. Sự ưu tiên học tập và làm việc của phụ nữ thế hệ Gen Y dẫn đến kết hôn muộn và có ít con hơn.", "B. Tỷ lệ sinh giảm ở phụ nữ trước thế hệ Gen Y khiến cho dân số trẻ giảm dần.", "C. Sự gia tăng của các dịch vụ y tế giúp kéo dài tuổi thọ của người dân.", "D. Mức độ di cư từ các quốc gia phát triển vào Hoa Kỳ ngày càng tăng."], correctIndex: 0 }
+                                ]
+                        },
+                        {
+                                id: "reading_115_117",
+                                section: "PHẦN 3. TƯ DUY KHOA HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 115 đến 117</strong><br><br>Văn hóa Tây Âu thế kỷ V-X dựa trên nền tảng nền kinh tế tự cung tự cấp, sự giao lưu trao đổi rất hạn chế, văn hóa vì vậy cũng phát triển không đáng kể. Tới thế kỷ XIV, with sự phát triển kinh tế công thương ở các thành thị, quan hệ sản xuất tư bản chủ nghĩa dần dần hình thành và ngày càng lớn mạnh. Các nhà tư tưởng của giai cấp tư sản không còn chịu chấp nhận những giáo lí phong kiến lỗi thời, họ vận động khôi phục lại sự huy hoàng của văn hóa Tây Âu thời cổ đại. Họ tìm thấy trong nền văn hóa cổ đại những yếu tố phù hợp with mình, có lợi cho mình để đấu tranh chống lại những trói buộc của nền văn hóa trung cổ. Phong trào Văn hóa Phục hưng xuất hiện đầu tiên ở Ý, vì ở đây đã xuất hiện các thành thị tự do như những quốc gia nhỏ. Quan hệ sản xuất tư bản đã chiếm địa vị chi phối đời sống văn hóa. Ý lại là trung tâm của đế quốc Rôma cổ đại, vì vậy ở đây còn giữ lại nhiều di sản văn hóa cổ đại của Hy Lạp - Rôma. Hơn ai hết, các nhà văn hóa Ý có điều kiện khôi phục lại nền văn hóa trước tiên khi có điều kiện. Từ Ý, phong trào lan sang Anh, Pháp, Tây Ban Nha, Đức...<br><i>(Vũ Dương Ninh, Lịch sử văn minh thế giới)</i>",
+                                subQuestions: [
+                                        { id: "q115", text: "Câu 115: Phong trào Văn hóa Phục hưng ở Tây Âu thời trung đại ra đời trong bối cảnh nào?", options: ["A. Quan hệ sản xuất tư bản chủ nghĩa hình thành ở các nước Tây Âu.", "B. Các chính quyền phong kiến tìm cách đổi mới về văn hóa, tư tưởng.", "C. Những thành tựu văn hóa Hy Lạp - Rôma cổ đại được đề cao.", "D. Giai cấp tư sản đã nắm chính quyền ở hầu hết các nước châu Âu."], correctIndex: 0 },
+                                        { id: "q116", text: "Câu 116: Phong trào Văn hóa Phục hưng do giai cấp nào lãnh đạo?", options: ["A. Tư sản.", "B. Vô sản.", "C. Quý tộc.", "D. Tăng lữ."], correctIndex: 0 },
+                                        { id: "q117", text: "Câu 117: Vì sao phong trào Văn hóa Phục hưng ở châu Âu vừa mang tính “kế thừa” vừa mang tính “cách mạng”?", options: ["A. Vì nó khôi phục toàn bộ văn hóa Hy Lạp - Rôma cổ đại, phát triển lên một tầm cao mới.", "B. Vì nó kế thừa tinh hoa văn hóa Hy Lạp - Rôma cổ đại, phát triển lên một tầm cao mới.", "C. Vì nó khôi phục toàn bộ văn hóa thế giới cổ đại, phát triển lên một tầm cao mới.", "D. Vì nó kế thừa tinh hoa văn hóa thế giới cổ đại, phát triển lên một tầm cao mới."], correctIndex: 1 }
+                                ]
+                        },
+                        {
+                                id: "reading_118_120",
+                                section: "PHẦN 3. TƯ DUY KHOA HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 118 đến 120</strong><br><br>An và Khang quyết định khởi nghiệp with ý tưởng mở một cửa hàng bánh ngọt kết hợp quán cà phê. Sau khi lên ý tưởng, họ đã thiết kế thực đơn bao gồm nhiều loại bánh ngọt và đồ uống đa dạng, with giá cả phù hợp cho nhóm khách hàng mục tiêu là giới trẻ. Trong quá trình chuẩn bị, An đảm nhận việc quảng bá và tuyển dụng nhân sự, trong khi Khang lo phần tài chính và quản lý nguồn nguyên liệu. Họ dự định sử dụng bao bì và vật dụng thân thiện with môi trường như túi giấy và ống hút tre như là một hành động bảo vệ môi trường. With niềm tin vào ý tưởng độc đáo và lượng khách hàng tiềm năng, An và Khang tin rằng họ sẽ dễ dàng nhận được nguồn vốn vay từ ngân hàng để thực hiện hoạt động kinh doanh.",
+                                subQuestions: [
+                                        { id: "q118", text: "Câu 118: Việc sử dụng túi giấy và ống hút tre là biểu hiện của trách nhiệm xã hội nào?", options: ["A. Trách nhiệm pháp lý.", "B. Trách nhiệm đạo đức.", "C. Trách nhiệm kinh tế.", "D. Trách nhiệm nhân văn."], correctIndex: 1 },
+                                        { id: "q119", text: "Câu 119: Yếu tố nào quan trọng nhất để ngân hàng đồng ý cấp tín dụng cho dự án khởi nghiệp của An và Khang?", options: ["A. Ý tưởng kinh doanh độc đáo sẽ thu hút sự quan tâm của ngân hàng.", "B. Quy mô cửa hàng và số lượng khách tiềm năng.", "C. Kế hoạch kinh doanh chi tiết khả thi, đáp ứng các yêu cầu của ngân hàng.", "D. Quan hệ đối tác uy tín giúp tăng độ tin cậy của dự án."], correctIndex: 2 },
+                                        { id: "q120", text: "Câu 120: Theo tình huống trên, bước nào trong quá trình lập kế hoạch kinh doanh đã được An và Khang thực hiện?", options: ["A. Xác định mục tiêu và chiến lược kinh doanh.", "B. Đánh giá cơ hội, rủi ro và biện pháp xử lý kinh doanh.", "C. Phân tích điều kiện thực hiện ý tưởng kinh doanh.", "D. Tóm tắt tổng kết kế hoạch kinh doanh."], correctIndex: 0 }
+                                ]
+                        }
+                ]
         }
-    ],
-        questions: [
-            // ==========================================
-            // PHẦN A: CÂU 1 - 30
-            // ==========================================
-            
-            // --- I. LANGUAGE KNOWLEDGE (Câu 1 - 15) ---
-            {
-                id: "gk1_eng_q1",
-                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 1. Many students regard Dr. Hoa as a role _____ because she never gives up.",
-                options: ["A. player", "B. model", "C. part", "D. play"],
-                correctIndex: 1
-            },
-            {
-                id: "gk1_eng_q2",
-                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 2. Using public transport is one way to reduce our carbon _____.",
-                options: ["A. step", "B. mark", "C. footprint", "D. print"],
-                correctIndex: 2
-            },
-            {
-                id: "gk1_eng_q3",
-                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 3. Viet Nam has great cultural _____ because 54 ethnic groups live together here.",
-                options: ["A. diversity", "B. division", "C. difference", "D. distance"],
-                correctIndex: 0
-            },
-            {
-                id: "gk1_eng_q4",
-                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 4. Mark the letter A, B, C or D to indicate the word CLOSEST in meaning to the underlined word.\nThe young man showed great <u>courage</u> when he saved the child from the fire.",
-                options: ["A. fear", "B. kindness", "C. bravery", "D. patience"],
-                correctIndex: 2
-            },
-            {
-                id: "gk1_eng_q5",
-                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 5. Mark the letter A, B, C or D to indicate the word OPPOSITE in meaning to the underlined word.\nPlastic waste is <u>harmful</u> to marine life.",
-                options: ["A. dangerous", "B. beneficial", "C. poisonous", "D. damaging"],
-                correctIndex: 1
-            },
-            {
-                id: "gk1_eng_q6",
-                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 6. Although she grew up in a poor family, her _____ to become a doctor never weakened.",
-                options: ["A. generosity", "B. politeness", "C. curiosity", "D. determination"],
-                correctIndex: 3
-            },
-            {
-                id: "gk1_eng_q7",
-                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 7. Mother Teresa _____ the Nobel Peace Prize in 1979.",
-                options: ["A. wins", "B. has won", "C. won", "D. was winning"],
-                correctIndex: 2
-            },
-            {
-                id: "gk1_eng_q8",
-                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 8. Viet Nam has _____ rich cultural heritage.",
-                options: ["A. a", "B. an", "C. the", "D. no article"],
-                correctIndex: 0
-            },
-            {
-                id: "gk1_eng_q9",
-                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 9. Our school encourages students to participate _____ green activities.",
-                options: ["A. at", "B. of", "C. in", "D. with"],
-                correctIndex: 2
-            },
-            {
-                id: "gk1_eng_q10",
-                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 10. My brother often buys second-hand clothes, _____ helps him save money and reduce waste.",
-                options: ["A. who", "B. that", "C. when", "D. which"],
-                correctIndex: 3
-            },
-            {
-                id: "gk1_eng_q11",
-                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 11. At 8 p.m. last Friday, my parents and I _____ a documentary about a famous Vietnamese scientist.",
-                options: ["A. watched", "B. were watching", "C. had watched", "D. watch"],
-                correctIndex: 1
-            },
-            {
-                id: "gk1_eng_q12",
-                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 12. Which of the following sentences is grammatically correct?",
-                options: [
-                    "A. The Nile is longest river in the world.",
-                    "B. We visited an ethnic village and the guide told us many stories about its traditions.",
-                    "C. She wants to become a engineer in the future.",
-                    "D. Sun rises in the east every morning."
-                ],
-                correctIndex: 1
-            },
-            {
-                id: "gk1_eng_q13",
-                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 13. Read the sign and answer the question:\n<div style=\"border:2px solid var(--border);border-radius:10px;padding:14px 18px;margin:12px 0;background:rgba(255,255,255,0.04);text-align:center;\"><strong style=\"font-size:1.1rem;display:block;margin-bottom:6px;color:var(--text-main);\">NO PLASTIC BAGS</strong><p style=\"margin:4px 0;\">Please bring your own reusable bag.</p><p style=\"margin:4px 0;font-style:italic;color:#10b981;\">Thank you for helping us protect the planet!</p></div>What does the sign tell customers to do?",
-                options: [
-                    "A. Buy plastic bags at the counter.",
-                    "B. Throw away used bags here.",
-                    "C. Recycle plastic bottles.",
-                    "D. Use their own bags."
-                ],
-                correctIndex: 3
-            },
-            {
-                id: "gk1_eng_q14",
-                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 14. Read the advertisement and answer the question:\n<div style=\"border:2px solid var(--border);border-radius:10px;padding:14px 18px;margin:12px 0;background:rgba(255,255,255,0.04);text-align:center;\"><strong style=\"font-size:1.1rem;display:block;margin-bottom:6px;color:#10b981;\">GREEN CLUB NEEDS YOU!</strong><p style=\"margin:4px 0;font-weight:600;\">Join our clean-up day</p><p style=\"margin:4px 0;\">Every Saturday, 7 a.m. – Riverside Park</p><p style=\"margin:4px 0;color:#3b82f6;font-weight:600;\">Free T-shirts and drinks for all volunteers</p><p style=\"margin:4px 0;font-size:0.9rem;\">Contact: greenclub@school.edu.vn</p></div>What will volunteers receive?",
-                options: [
-                    "A. Certificates and books.",
-                    "B. Free T-shirts and drinks.",
-                    "C. Free lunch.",
-                    "D. Bicycles."
-                ],
-                correctIndex: 1
-            },
-            {
-                id: "gk1_eng_q15",
-                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 15. Read the notice and answer the question:\n<div style=\"border:2px solid var(--border);border-radius:10px;padding:14px 18px;margin:12px 0;background:rgba(255,255,255,0.04);\"><strong style=\"font-size:1.1rem;display:block;margin-bottom:8px;text-align:center;color:var(--text-main);\">NOTICE</strong><p style=\"margin:4px 0;line-height:1.6;\">Because of the heavy rain, the Multicultural Festival has been moved to next Sunday. Tickets that have already been bought are still valid. Students who cannot attend on the new date may get their money back at the Student Office before Friday.</p></div>What can be understood from the notice?",
-                options: [
-                    "A. The festival has been cancelled.",
-                    "B. Students must buy new tickets.",
-                    "C. Students who cannot come on the new date can ask for a refund.",
-                    "D. The festival will be held in the rain next Sunday."
-                ],
-                correctIndex: 2
-            },
-    
-            // --- II. READING (Câu 16 - 25) ---
-            // Task 1: LIFE STORY OF HELEN KELLER (Câu 16 - 20)
-            {
-                id: "reading_gk1_helen_keller",
-                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
-                type: "reading_group",
-                passage: "<strong>Task 1. Read the following passage and mark the letter A, B, C or D to indicate the correct option that best fits each of the numbered blanks from 16 to 20.</strong><br><br><h3 style=\"text-align:center;margin:10px 0;color:var(--text-main);\">LIFE STORY OF HELEN KELLER</h3><br>Helen Keller was born in Alabama, the USA, in 1880. When she was only 19 months old, she fell seriously ill and <b>(16) _____</b>. As a result, she could not communicate with other people, and her childhood was full of anger and loneliness.<br><br>Everything changed in 1887 when a young teacher named Anne Sullivan came to live with the family. Sullivan was a very patient teacher. <b>(17) _____</b>, she spelled words into Helen's hand until the girl understood that everything around her had a name. Helen was curious about the world and loved to touch, smell and learn about everything. She soon learned to read Braille, to write, and later to speak.<br><br>In 1904, Helen graduated from Radcliffe College, <b>(18) _____</b>. After that, she wrote many books and <b>(19) _____</b>. She also met leaders from many countries and encouraged them to support disabled people. Although she faced countless difficulties, she never gave up. Her life story shows that <b>(20) _____</b>. Today, millions of people around the world still admire her courage and strong will.",
-                subQuestions: [
-                    {
-                        id: "gk1_eng_q16",
-                        text: "Question 16: Choose the best option for blank (16).",
-                        options: [
-                            "A. lost her sight and hearing",
-                            "B. won a famous prize",
-                            "C. moved to another country",
-                            "D. began to study at university"
-                        ],
-                        correctIndex: 0
-                    },
-                    {
-                        id: "gk1_eng_q17",
-                        text: "Question 17: Choose the best option for blank (17).",
-                        options: [
-                            "A. Because she was angry",
-                            "B. As soon as she left",
-                            "C. Day after day",
-                            "D. Unless Helen refused"
-                        ],
-                        correctIndex: 2
-                    },
-                    {
-                        id: "gk1_eng_q18",
-                        text: "Question 18: Choose the best option for blank (18).",
-                        options: [
-                            "A. but she did not enjoy reading",
-                            "B. which made her the first deaf-blind person to earn a university degree",
-                            "C. so she could see the world clearly",
-                            "D. because she wanted to be a pilot"
-                        ],
-                        correctIndex: 1
-                    },
-                    {
-                        id: "gk1_eng_q19",
-                        text: "Question 19: Choose the best option for blank (19).",
-                        options: [
-                            "A. spent her life campaigning for people with disabilities",
-                            "B. refused to meet other people",
-                            "C. forgot her teacher completely",
-                            "D. stayed at home all her life"
-                        ],
-                        correctIndex: 0
-                    },
-                    {
-                        id: "gk1_eng_q20",
-                        text: "Question 20: Choose the best option for blank (20).",
-                        options: [
-                            "A. disabled people cannot be successful",
-                            "B. determination can help people overcome serious difficulties",
-                            "C. only rich people can go to university",
-                            "D. life is easy for everyone"
-                        ],
-                        correctIndex: 1
-                    }
+        ,
+        {
+                id: "de_2_dgnl",
+                title: "Đề 2: Đề chính thức Đợt 1 - 2026 (120/120 câu)",
+                category: "vnu",
+                subject: "VNU-ĐGNL",
+                description: "Phần 1: Ngôn ngữ (60 câu) & Phần 2: Toán học (30 câu) & Phần 3: Tư duy khoa học (30 câu)",
+                questions: [
+                        // 1 - 20 (Tiếng Việt)
+                        { id: "q1", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 1: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] “Toàn thân nàng biến thành một thân cây, chân như cắm sâu xuống đất và các ngón chân vươn dài ra thành những rễ lớn rễ nhỏ. Mái tóc đẹp đẽ của nàng biến thành những lá cây. Apollon chạy đến nơi thì nàng trinh nữ xinh đẹp Daphné đã biến thành một cây nguyệt quế xanh tươi, tự nhiên như đã mọc lên từ ngàn xưa và từ ngàn xưa vốn tự nhiên và xanh tươi như vậy.”\n(Nguyễn Văn Khỏa, Thần thoại Hy Lạp)\nNgoại hình của nàng Daphné được miêu tả bởi những biện pháp tu từ nào?", options: ["A. Ẩn dụ, hoán dụ.", "B. Liệt kê, nhân hóa.", "C. Nhân hóa, hoán dụ.", "D. So sánh, liệt kê."], correctIndex: 3 },
+                        { id: "q2", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 2: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] “Ngày ấy thú vật hãy còn làm chủ mặt đất chưa có dấu tích con người. Một hôm có một cây si bị bão đổ xuống trong đó bay ra hai con chim lớn gọi là Áccác Ùaquê (hay Ay và Ua). Chúng đến làm tổ ở động Hào và đẻ trăm trứng trong đó có 3 cái to lớn dị thường. Nhờ được thần bày cho cách ấp, sau 50 ngày 97 trứng nở ra người: 50 người đi về mạn đồng bằng thành người Kinh, còn 47 người lần lên mạn ngược sau trở thành tổ tiên các dân Lào, Mường, Mán, Thổ,... Còn lại ba trứng ấp đủ 100 ngày nở ra ba người hai trai một gái. Đại ca, anh cả được tộc trưởng người Kinh và người Mường Mán rước về làm Lang, nhưng bị yêu tinh đón đường ăn thịt”.\n(Nguyễn Đổng Chi, Tác phẩm được tặng giải thưởng Hồ Chí Minh)\nĐoạn trích trên thuộc thể loại văn học dân gian nào?", options: ["A. Sử thi.", "B. Thần thoại.", "C. Truyền thuyết.", "D. Truyện truyền kỳ."], correctIndex: 1 },
+                        { id: "q3", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 3: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] \n“Tam nguyệt xuân thì trưởng đậu miêu,\nHoàng hồ phì mãn, bạch hồ kiêu.\nChủ nhân tại lữ bất quy khứ,\nKhả tích Hồng sơn thuộc vãn tiều”.\nDịch thơ:\n“Tiết tháng ba xuân đậu nảy đều,\nCầy vàng béo mập, trắng sinh kiêu.\nChủ nhân vắng mãi chưa về được,\nPhó thác Hồng sơn mặc chú tiều”.\n(Nguyễn Du, Ngẫu hứng I)\nCác câu thơ nào niêm với nhau trong bài thơ thất ngôn tứ tuyệt trên?", options: ["A. Câu 1 niêm với câu 3, câu 2 niêm với câu 4.", "B. Câu 1 niêm với câu 2, câu 3 niêm với câu 4.", "C. Câu 1 niêm với câu 4, câu 2 niêm với câu 3.", "D. Cả bốn câu đều không niêm với nhau."], correctIndex: 2 },
+                        { id: "q4", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 4: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] \n“Gõ cửa làm chi quấy cả ngày,\nHỏi ra mới biết lão ăn mày.\nĂn mày chớ có ăn tao nhé\nGạo kém, đồng khô thế mới rầy”.\n(Nguyễn Khuyến, Ăn mày)\nBiện pháp tu từ nào đã được tác giả sử dụng trong dòng thơ thứ ba?", options: ["A. Chêm xen.", "B. Nhân hóa.", "C. Liệt kê.", "D. Chơi chữ."], correctIndex: 3 },
+                        { id: "q5", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 5: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] \n“Yêu thay miền thôn tịch!\nCư xử dầu lòng, Ngao du mặc thích.\nKhéo chiều người mến cảnh yên hà;\nDễ mến khách vui miền tuyền thạch”.\n(Nguyễn Hàng, Tịch cư ninh thể phủ)\nNội dung chính được thể hiện trong đoạn trích trên là gì?", options: ["A. Khí phách ngang tàng của bậc anh hùng tráng sĩ giữa tự nhiên rộng lớn, mang chiều kích vũ trụ.", "B. Tình yêu và niềm vui thích của nhân vật trữ tình dành cho miền thôn quê u tịch, tiêu điều, nghèo khó.", "C. Đời sống cư dân thôn quê mang vẻ đẹp thanh bình, nhộn nhịp được miêu tả qua lối viết giàu nhạc tính.", "D. Lòng yêu thích sự tự do, không ràng buộc của kẻ ẩn sĩ giữa cảnh thôn dã thênh thang, rộng rãi."], correctIndex: 3 },
+                        { id: "q6", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 6: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026]\n“Những ngày hè, ngọn lửa rơm cứ táp vào mặt nóng hầm hập, để nấu xong nồi cơm như thể phải “đổ mồ hôi, sôi nước mắt”. Vậy nhưng chưa bao giờ tôi nghe người dân làng tôi than thở một lời về cái bếp rơm cực nhọc đấy. Ngược lại, chúng tôi đã quá thân quen với cái mùi rơm thơm nồng và cái ngọn khói no ấm này. Những năm mất mùa, rơm nhiều mà lúa ít, cái bếp ở góc sân hay sau hè nãy cứ lạnh tanh. Từ ngoài đồng nhìn vào làng, những mái nhà tranh vắng đi ngọn khói chiều của những bếp rơm, không thấy bụng đói cồn cào nữa mà chỉ thấy một nỗi buồn dâng lên từ bốn phía.”\n(Minh Tự, Củi lửa)\nNhận xét nào sau đây là phù hợp nhất khi nói về sự thể hiện cái “tôi” nhà văn trong đoạn trích trên?", options: ["A. Cái “tôi” nhà văn mang tính trung lập, đóng vai trò thu thập thông tin và ghi chép các tập quán và sự kiện diễn ra trong đời sống người Huế.", "B. Cái “tôi” nhà văn giàu trải nghiệm thể hiện sự gắn bó với làng quê, đồng cảm sâu sắc với nỗi buồn của con người xứ Huế.", "C. Cái “tôi” nhà văn đại diện cho tầng lớp trí thức, đóng vai trò nhân chứng nhằm phát hiện và ca ngợi vẻ đẹp của con người xứ Huế.", "D. Cái “tôi” nhà văn đã được hư cấu để tái hiện khách quan những sự kiện lịch sử đã qua của cộng đồng người dân xứ Huế."], correctIndex: 1 },
+                        { id: "q7", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 7: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026]\n“VŨ NHƯ TÔ - Xây Cửu Trùng Đài cho một tên bạo chúa, một tên thoán nghịch, cho một lũ gái dâm ô? Tôi không thể đem tài ra làm một việc ô uế, muôn năm làm bia miệng cho người đời được.\nĐAN THIỀM - Ông biết một mà không biết hai. Ông có tài, tài ấy phải đem cống hiến cho non sông, không nên để mục nát với cỏ cây. Ông không có tiền, ông không có thể dựng lấy một tòa đài như ý nguyện. Chấp kinh, phải tòng quyền. Đây là lúc ông nên mượn tay vua Hồng Thuận mà thực hành cái mộng lớn của ông... Ông khẽ tiếng. Đó là tiểu tiết. Ông cứ xây lấy một tòa đài cao cả. Vua Hồng Thuận và lũ cung nữ kia rồi mất đi nhưng sự nghiệp của ông còn lại về muôn đời. Dân ta nghìn thu được hãnh diện, không thẹn với những cung điện đẹp của nước ngoài, thế là đủ. Hậu thế sẽ xét công cho ông, và nhớ ơn ông mãi mãi. [...]”\n(Nguyễn Huy Tưởng, Vũ Như Tô)\nNhận xét nào sau đây phù hợp với nhân vật Đan Thiềm trong đoạn trích trên?", options: ["A. Đan Thiềm là người biết khích lệ người tài thực hiện những khát khao sáng tạo bị kìm nén.", "B. Đan Thiềm là một cung nữ tài sắc vẹn toàn, có lương tâm và trách nhiệm.", "C. Đan Thiềm là người có tài năng không thua kém Vũ Như Tô, xứng đáng được lưu danh.", "D. Đan Thiềm là người có sự trải đời, ý thức được những mánh khóe để tồn tại trong cung."], correctIndex: 0 },
+                        { id: "q8", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 8: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026]\n“rồi chúng ta sẽ trở thành những ông già và những bà già trong một thế giới trẻ trung luôn đổi khác\n[...] những người trẻ đi qua ta không hề quen biết họ cười nói râm ran trong ánh nắng tưng bừng lễ phép chào ta nhưng trong bụng xót thương “ai nói chuyện với người già lâu được”\n[...] họ lạ lùng thấy ta cam chịu những đau khổ ta mang, họ không còn hiểu được\nnhư lúa gặt, chỉ còn cuống rạ nằm im lìm dưới những đám mây bay tan vào trong quên lãng ngàn đời như con vờ, như que diêm vụt tắt như viên sỏi dưới hè, như giọt nắng trong bài ca bất tận của cuộc đời.”\n(Lưu Quang Vũ, Không đề)\nNhận định nào sau đây thể hiện khái quát giá trị nhận thức của việc xây dựng hình ảnh đối lập giữa hình ảnh tuổi già và tuổi trẻ trong đoạn thơ?", options: ["A. Tuổi già nhất định sẽ dẫn đến sự cô độc và mất giá trị trong thế giới hiện đại, chúng ta phải tìm cách chống lại bi kịch thời gian bằng cách sống hết mình với chiều kích tối đa của đời", "B. Con người rất mong manh, dù từng là chủ nhân huy hoàng của thời đại mình, đến một ngày rồi sẽ bị giảm giá trị, mọi thành tựu, dấu ấn rồi sẽ lùi lại trước bước đi của lịch sử.", "C. Người trẻ không nên lặp lại bi kịch của thế hệ trước bằng cách giữ vững những giá trị nhân văn và loại bỏ những yếu tố cũ kỹ, lạc hậu để đón nhận tất cả những giá trị và mất mát của đời sống mới.", "D. Mặc dù thân xác tan biến vào hư vô, nhưng con người vẫn có sự hòa nhập vĩnh viễn của linh hồn vào sự sống chung của vũ trụ trong từng khoảnh khắc."], correctIndex: 1 },
+                        { id: "q9", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 9: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026]\n“Nhưng tôi biết cái màu đỏ ấy\nCái màu đỏ như cái màu đỏ ấy\nSẽ là bông hoa chuối đỏ tươi\nTrên đỉnh dốc cao vẫy gọi đoàn người”.\n(Nguyễn Mỹ, Cuộc chia ly màu đỏ)\n“Ta về, mình có nhớ ta\nTa về, ta nhớ những hoa cùng người.\nRừng xanh hoa chuối đỏ tươi\nĐèo cao nắng ánh dao gài thắt lưng”.\n(Tố Hữu, Việt Bắc)\nHình ảnh “hoa chuối đỏ” trong hai đoạn thơ đều thể hiện:", options: ["A. Tinh thần kiên cường, quyết chiến đấu chống giặc ngoại xâm.", "B. Sức sống, vẻ đẹp của thiên nhiên trong những cuộc kháng chiến.", "C. Sự hy sinh thầm lặng của những người phụ nữ ở hậu phương.", "D. Màu máu và sự hy sinh của những người chiến sĩ nơi tiền tuyến."], correctIndex: 1 },
+                        { id: "q10", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 10: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026]\n“Chú mải mê nhìn nên không nghe thấy những tiếng gõ lanh canh trên đường tàu từ xa đã đến gần.\nPíp...rù...ù...ù.\nCậu bé giật mình quay lại: một người đàn ông trẻ, khỏe mạnh, trên môi còn rung rung vì hồi còi mồm. Bộ quần áo xanh thợ nham nhở những vết gỉ sắt vàng khè hơi chật so với đôi vai rất nở. Bàn tay to bè xách chiếc búa. Khuôn mặt cởi mở và đôi mắt nom chẳng có vẻ gì là nghiêm khắc khiến chú bé mạnh dạn hẳn lên:\nChào chú!\nChào bạn!- Người đàn ông đáp lại, giọng oang oang- Bạn làm gì ở đấy?”\n(Nguyễn Thị Như Trang, Cây cúc tần)\nDòng nào dưới đây chỉ chứa những từ tượng thanh, tượng hình xuất hiện trong đoạn trích trên?", options: ["A. lanh canh, chào chú, chào bạn.", "B. oang oang, gỉ sắt, nham nhở.", "C. lanh canh, rung rung, cởi mở.", "D. oang oang, rung rung, lanh canh."], correctIndex: 3 },
+                        { id: "q11", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 11: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026]\n“Một tối bầu trời đắm sắc mây,\nCây tìm nghiêng xuống nhánh hoa gầy,\nHoa nghiêng xuống cỏ, trong khi cỏ\nNghiêng xuống làn rêu, một tối đầy.\nNhững lời huyền bí tỏa lên trăng,\nNhững ý bao la rủ xuống trần,\nNhững tiếng ân tình hoa bảo gió,\nGió đào thỏ thẻ bảo hoa xuân”.\n(Xuân Diệu, Với bàn tay ấy...)\nNhững hình tượng trong hai khổ thơ trên bộc lộ:", options: ["A. Sự chia lìa, mất mát của vạn vật, gợi lên niềm cô đơn trong đêm vắng quạnh quẽ.", "B. Sự quấn quyện, đan hòa của vạn vật, gợi lên niềm khao khát tương giao.", "C. Sự đối lập, tách biệt của vạn vật, gợi lên nỗi tịch liêu và sự chia cắt.", "D. Sự bí ẩn, thâm u của vạn vật, gợi lên những dự cảm về sự mất mát, hoang tàn."], correctIndex: 1 },
+                        { id: "q12", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 12: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026]\n“Bạch Tuyết thấy chồng thương cảm, thừa dịp nói rằng:\n- Mình đừng kêu tôi bằng cô nữa chớ. Tiếng cô nghe vô tình quá.\n- Thì em cũng đừng kêu qua bằng thầy nữa.\n- Hai người cười với nhau rồi kề vai nằm ngủ”.\n(Hồ Biểu Chánh, Ai làm được)\nPhương ngữ Nam Bộ trong đoạn trích trên không thể hiện điều gì?", options: ["A. Bản sắc địa phương của ngôn ngữ tiểu thuyết.", "B. Tính chân thực trong nghệ thuật kể chuyện.", "C. Tình cảm và quan hệ giữa các nhân vật.", "D. Sự trào phúng, đả kích các nhân vật."], correctIndex: 3 },
+                        { id: "q13", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 13: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Một công ty quảng bá sản phẩm sử dụng từ “thanh toán không chạm” thay vì “contactless payment”. Cách làm này có tác dụng gì?", options: ["A. Thuật ngữ tiếng Việt làm nổi bật tính tiên phong của sản phẩm trong lĩnh vực công nghệ.", "B. Thuật ngữ tiếng Việt tạo cảm giác gần gũi, dễ hiểu cho người tiêu dùng trong nước.", "C. Thuật ngữ tiếng Việt phản ánh đầy đủ tính chất của hình thức thanh toán này.", "D. Thuật ngữ tiếng Việt tạo cảm giác hiện đại, mới mẻ cho người tiêu dùng trong nước."], correctIndex: 1 },
+                        { id: "q14", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 14: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Trong các câu sau, câu nào đúng ngữ pháp?", options: ["A. Trong khi quá vui sướng và bất ngờ vì món quà anh tặng bởi vì tôi không biết làm sao để bày tỏ lòng biết ơn.", "B. Ngày hôm qua, chị vừa về đến nhà thì nhìn thấy đôi chim sổ lồng, tung cánh bay vút lên bầu trời mênh mông, xanh biếc.", "C. Trên dòng sông có những cánh buồm trắng nên thơ, những con thuyền nằm mơ mộng về vùng trời khác lạ, những gợn sóng nhỏ lăn tăn ấy.", "D. Với chị vào những ngày hè gió thổi hây hẩy trên những vòm cây lá lao xao, ở miền quê ngoại có triền đê xanh mướt cỏ non trải dài tít tắp như chạm vào chân trời."], correctIndex: 1 },
+                        { id: "q15", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 15: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] “Bàn về cách nhìn nhận và đánh giá con người, cố nhân có câu “họa hổ họa bì nan họa cốt, tri nhân tri diện bất tri tâm”, nghĩa là vẽ hổ có thể vẽ được da, khó vẽ được xương; biết người chỉ biết mặt, khó biết lòng”.\nCâu trên mắc lỗi gì?", options: ["A. Sai ngữ pháp.", "B. Sai logic.", "C. Sai dùng từ.", "D. Sai phong cách."], correctIndex: 1 },
+                        { id: "q16", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 16: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Cụm từ nào sau đây viết đúng chính tả?", options: ["A. Quẩn trí, nghĩ quẫn, túng quẫn.", "B. Quẩn trí, nghĩ quẩn, túng quẫn.", "C. Quẫn trí, nghĩ quẩn, túng quẫn.", "D. Quẫn trí, nghĩ quẫn, túng quần."], correctIndex: 0 },
+                        { id: "q17", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 17: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Câu nào sau đây có từ sai chính tả?", options: ["A. Anh bàng hoàng, ngơ ngác nhìn quanh như vừa tỉnh giấc mộng.", "B. Treo cờ rũ là nghi thức đặc biệt, chỉ thực hiện khi có quốc tang.", "C. Các cầu thủ ủ rũ rời sân, cúi đầu bước chậm vào đường hầm sau trận đấu.", "D. Từ điển tiếng Việt giải nghĩa “bàn hoàn” là nghĩ quanh quẩn, không dứt ra được."], correctIndex: 1 },
+                        { id: "q18", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 18: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Từ “chịu” trong câu nào sau đây có thể được hiểu theo nghĩa “tiếp nhận một tác động từ bên ngoài”?", options: ["A. Việt Nam đứng thứ 6 trong số các quốc gia chịu ảnh hưởng nặng nề từ sự biến đổi khí hậu trên thế giới.", "B. Mua hàng không kiểm tra kỹ, nhận về sản phẩm lỗi thì đành bụng làm dạ chịu, không thể trách người bán.", "C. Khi các công ty tăng cường thực hiện chính sách bán chịu thì sẽ làm tăng khả năng sinh lợi của công ty.", "D. Cuộc tranh chấp bản quyền truyền hình vẫn chưa đi đến hồi kết, khi các bên đều cho rằng mình có lý và không ai chịu ai."], correctIndex: 0 },
+                        { id: "q19", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 19: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] “Lục” trong câu nào sau đây không cùng nghĩa với “lục” trong các câu còn lại?", options: ["A. Lục quân hai nước đã phối hợp chặt chẽ, thực hiện huấn luyện đúng kế hoạch, bảo đảm an toàn tuyệt đối.", "B. Diệp lục là hợp chất tự nhiên làm cho lá cây có màu xanh, đóng vai trò chính trong quá trình quang hợp.", "C. U23 Việt Nam đang tạo nên cơn địa chấn tại đấu trường châu lục sau khi giành trọn vẹn 6 điểm sau hai lượt trận mở màn.", "D. Khi phần lớn, thậm chí toàn bộ các khối đất liền trên hành tinh hợp thành một cấu trúc, siêu lục địa sẽ hình thành."], correctIndex: 2 },
+                        { id: "q20", section: "SỬ DỤNG NGÔN NGỮ", text: "Câu 20: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Câu nào sau đây có sử dụng biện pháp lặp cấu trúc?", options: ["A. Đắc nhân tâm là một cuốn sách kinh điển, một cuốn sách gối đầu giường.", "B. Đa nghĩa, đồng nghĩa, đồng âm là phương tiện tạo ra các nghĩa hình tượng.", "C. Ngôn từ thi ca khác văn xuôi bởi quan hệ đặc biệt giữa từ ngữ với tư duy.", "D. Gương mặt kịch nghệ không được vẽ ra (bằng cách đánh phấn), nó được viết."], correctIndex: 0 },
+
+                        // Reading Group 21-25
+                        {
+                                id: "reading_21_25_d2",
+                                section: "SỬ DỤNG NGÔN NGỮ",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 21 đến 25</strong><br><br>“(1) Con người thường cảm thấy vui sướng khi nhận ra bản thân mình đang dần trưởng thành. Ví dụ trong một trò game có tính gây nghiện, những người thiết kế game đều phải cài đặt những bước “trưởng thành” cho game thủ ở những yếu tố quan trọng như level, rank,... để khiến họ càng đắm chìm hơn trong game.<br><br>(2) Nếu trong trò giải trí, trưởng thành là cội nguồn của niềm vui, thì trong công việc, điều này còn cần thiết hơn. Vì sự trưởng thành trong công việc sẽ khiến chúng ta thấy yêu thích công việc đó. Ví dụ khi làm thêm ở cửa hàng tiện lợi, cả ngày phải đứng quét mã vạch hàng hóa, chắc sẽ không ai định làm công việc này cả đời vì chẳng có gì thú vị, mà cũng chẳng kiếm được bao nhiêu. Vì vậy, đa số chỉ tranh thủ làm thêm để kiếm chút tiền công nhật. Nhưng nếu nghĩ khác đi thì công việc này mang lại nhiều giá trị hơn so với chỗ tiền công ấy. Chẳng hạn chúng ta có thể hiểu thêm về hành vi mua sắm của người tiêu dùng, nắm được đặc điểm vị trí của cửa hàng, học được phương pháp quản lý kho khi nhận hàng mới. Nhờ vậy, chúng ta có thể tận hưởng niềm vui “học hỏi và trưởng thành” mỗi ngày, và có thể điềm nhiên nói rằng mình yêu công việc đó. Rồi khi sự nghiệp của bản thân mở ra, quá trình trưởng thành trên sẽ là nền tảng dẫn dắt sự nghiệp đó đến thành công lớn. Điều quan trọng là tập trung vào điều mình quan tâm, và khát khao học hỏi, tích lũy kinh nghiệm từ những điều nhỏ nhất.<br><br>(3) Đương nhiên, tiền cũng là bằng chứng cho thấy giá trị công việc và sức lao động của mình. Nếu bạn kiếm tiền vì trách nhiệm với bản thân và gia đình, bạn sẽ thấy thiết tha với công việc và có động lực làm việc tốt hơn. Nhưng nếu bị giam hãm trong suy nghĩ phải kiếm thật nhiều tiền, chúng ta sẽ trở thành tù nhân của công việc. Điều thật sự quan trọng không phải là thu nhập nhiều hay ít, mà là niềm vui của sự trưởng thành và tình yêu trong công việc. Cứ thế, lúc bạn từng bước tiến gần hơn đến “hình ảnh hoàn thiện nhất” của bản thân, tiền sẽ tự nhiên đi theo bạn.”<br><i>(Theo Random Kim, Trưởng thành sau ngàn lần tranh đấu)</i>",
+                                subQuestions: [
+                                        { id: "q21", text: "Câu 21: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Xác định bằng chứng được sử dụng trong văn bản trên.", options: ["A. Cách những người thiết kế game tạo ra niềm khao khát chinh phục ở người chơi.", "B. Cách mà đồng tiền chứng minh cho giá trị công việc và sức lao động của bản thân.", "C. Cách một người làm thêm ở cửa hàng tiện lợi tìm thấy niềm yêu thích trong công việc.", "D. Cách đồng tiền giam hãm chúng ta và biến chúng ta thành tù nhân của công việc."], correctIndex: 2 },
+                                        { id: "q22", text: "Câu 22: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Dòng nào dưới đây nêu đúng cách sắp xếp, trình bày luận điểm, lý lẽ và bằng chứng trong văn bản?", options: ["A. Triển khai luận điểm thành các lý lẽ, bằng chứng, sau đó tổng hợp, mở rộng luận điểm.", "B. Nêu các lý lẽ, bằng chứng cụ thể, sau đó khái quát, tổng hợp thành luận điểm.", "C. Nêu luận điểm, sau đó triển khai thành các lý lẽ, bằng chứng cụ thể.", "D. Trình bày các lý lẽ, bằng chứng tương đối độc lập và hướng đến luận điểm ẩn."], correctIndex: 2 },
+                                        { id: "q23", text: "Câu 23: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Dòng nào dưới đây có thể khái quát nhất tác động của văn bản đến quan niệm sống của người đọc?", options: ["A. Quan tâm nhiều hơn đến những giá trị mà chúng ta có thể nhận về từ những hoạt động quen thuộc.", "B. Nhận ra sự trưởng thành đem đến niềm vui cho con người trong cả công việc lẫn cuộc sống.", "C. Cần chuyên chú ngay từ những việc nhỏ nhặt vì nó giúp con người sống có mục tiêu cụ thể hơn.", "D. Tránh cái nhìn thờ ơ, đơn giản vì cuộc sống vốn phức tạp và chứa đựng nhiều cơ hội học tập."], correctIndex: 1 },
+                                        { id: "q24", text: "Câu 24: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Câu chuyện về việc làm thêm tại cửa hàng tiện lợi có vai trò gì trong văn bản?", options: ["A. Nêu sự việc cho thấy cách nhìn nhận cuộc sống thay đổi có thể khiến công việc dễ thành công hơn.", "B. Nêu sự việc cho thấy quá trình học hỏi và trưởng thành có thể đến từ những việc bình thường nhất.", "C. Nêu sự việc cho thấy cách chúng ta có thể tạo dựng sự nghiệp thành công từ những việc nhỏ nhặt.", "D. Nêu sự việc cho thấy sự chuyên chú, thay đổi tư duy là yếu tố tiên quyết đưa đến sự thành công."], correctIndex: 1 },
+                                        { id: "q25", text: "Câu 25: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Văn bản có đề cập đến quan điểm: Điều thật sự quan trọng không phải là thu nhập nhiều hay ít, mà là niềm vui của sự trưởng thành và tình yêu trong công việc.\nĐánh giá nào dưới đây thể hiện cách nhìn phê phán phù hợp đối với quan điểm trên?", options: ["A. Quan điểm trên hoàn toàn đúng vì trong mọi công việc, chúng ta cần đặt niềm vui và sự thoải mái lên hàng đầu, đó là nền tảng dẫn dắt sự nghiệp đến thành công.", "B. Quan điểm trên chưa phù hợp với thực tế vì trong công việc, mỗi người cần phải ưu tiên thu nhập trước để có thể hoàn thành trách nhiệm với bản thân và gia đình họ.", "C. Quan điểm trên còn phiến diện vì chỉ tập trung nhấn mạnh vào niềm vui của sự trưởng thành mà chưa quan tâm đến những khó khăn nảy sinh trong môi trường công việc.", "D. Quan điểm trên có ý nghĩa tích cực khi nhấn mạnh giá trị học hỏi do công việc mang lại, nhưng trên thực tế cần cân bằng giữa sự phát triển bản thân và giá trị thu nhập từ công việc."], correctIndex: 3 }
+                                ]
+                        },
+
+                        // Reading Group 26-30
+                        {
+                                id: "reading_26_30_d2",
+                                section: "SỬ DỤNG NGÔN NGỮ",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 26 đến 30</strong><br><br>“(1) Dân trí tài chính là mức độ hiểu biết, kỹ năng, thái độ để đưa ra các quyết định tài chính đúng đắn và quản lý tài chính cá nhân hiệu quả. Nó có thể được đo qua: (i) mức độ hiểu biết kiến thức tài chính; (ii) khả năng quản lý tài chính cá nhân và ra quyết định tài chính; (iii) mức độ tiếp cận và sử dụng dịch vụ tài chính. Tại Việt Nam, cách thứ ba thường được sử dụng và cho thấy thực trạng dân trí tài chính còn khá thấp. Theo Ngân hàng Thế giới (2021), tỷ lệ người Việt Nam có tài khoản ngân hàng chỉ đạt 69%, thấp hơn các nước phát triển (80-100%). Hoặc theo Ủy ban Chứng khoán Nhà nước (2023), số lượng tài khoản chứng khoán tại Việt Nam chỉ chiếm hơn 7% quy mô dân số.<br><br>(2) Dân trí tài chính thấp có thể dẫn đến những hệ quả như mất tiền trong các vụ lừa đảo tài chính, đầu tư sai, mất vốn, khủng hoảng nợ cá nhân, thiếu chuẩn bị cho tương lai tài chính.<br><br>(3) Khảo sát của nhóm nghiên cứu cho thấy gần 75% số người được hỏi cho rằng giáo dục tài chính cho trẻ em là cần thiết. Điều này rất quan trọng vì: – Trẻ em và thanh thiếu niên thường tiếp xúc với gia đình, nhà trường, xã hội và các chính sách nhà nước, nên có cơ hội tiếp nhận sự giáo dục tài chính từ nhiều phía. – Khi được giáo dục tài chính sớm, kiến thức và thói quen tài chính tốt không chỉ ảnh hưởng đến các em mà còn có thể tạo ra những tác động tích cực, bền vững cho toàn xã hội. – Tuổi thiếu niên thuộc giai đoạn đầu của vòng đời tài chính, khi các em bắt đầu tiếp thu những kiến thức cơ bản về tài chính. Sau đó là giai đoạn tích lũy tài sản. Để tích lũy hiệu quả, các cá nhân cần có hiểu biết và kỹ năng để lập kế hoạch tài chính, đầu tư và quản lý nợ, chuẩn bị tốt hơn cho những giai đoạn tiếp theo của cuộc đời (bảo vệ tài sản và tiêu dùng trong hưu trí).<br><br>(4) Như vậy, giáo dục tài chính cho trẻ em là yêu cầu cấp bách, góp phần nâng cao dân trí tài chính, giảm thiểu rủi ro và cải thiện khả năng đạt các mục tiêu tài chính dài hạn.”<br><i>(Theo Phạm Thị Thành - Lê Hoàng Gia Bảo, trích Giáo dục tài chính cho trẻ em)</i>",
+                                subQuestions: [
+                                        { id: "q26", text: "Câu 26: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Văn bản trên đã sử dụng những cách trình bày thông tin nào sau đây?", options: ["A. Liệt kê, vấn đề và cách giải quyết.", "B. Liệt kê, quan hệ nhân - quả.", "C. Liệt kê, phân loại đối tượng.", "D. Liệt kê, so sánh và đối chiếu."], correctIndex: 0 },
+                                        { id: "q27", text: "Câu 27: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Việc trích dẫn số liệu của ngân hàng thế giới (2021) và Ủy ban Chứng khoán Nhà nước (2023) có tác dụng gì?", options: ["A. Cung cấp minh chứng cụ thể đáng tin cậy cho thấy biểu hiện của thực trạng dân dân trí tài chính ở Việt Nam giai đoạn 2021-2023.", "B. Cung cấp minh chứng cụ thể về tỉ lệ người Việt Nam được tiếp cận với các dịch vụ tài chính trong giai đoạn 2021-2023.", "C. Cung cấp minh chứng cụ thể cho thấy khả năng khai thác các dịch vụ tài chính ở Việt Nam còn thấp so với quy mô dân số.", "D. Cung cấp minh chứng củng cố cho nhận định về thực trạng dân trí tài chính ở Việt Nam và cách thức đo lường thực trạng ấy."], correctIndex: 3 },
+                                        { id: "q28", text: "Câu 28: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Quan điểm chính của người viết được thể hiện qua văn bản là gì?", options: ["A. Cảnh báo thực trạng người Việt có hiểu biết kỹ năng và thái độ với lĩnh vực tài chính còn thấp và hệ quả.", "B. Khẳng định thực trạng dân trí tài chính của Việt Nam còn ở mức thấp và tính khách quan của các nhận định.", "C. Nhận định thực trạng dân trí tài chính ở Việt Nam của nước ta thấp và cần thiết giáo dục tài chính cho trẻ em.", "D. Khách quan cung cấp thông tin về cách đo lường dân trí tài chính và lý do cần giáo dục tài chính cho trẻ em."], correctIndex: 2 },
+                                        { id: "q29", text: "Câu 29: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Việc mở đầu đoạn (3) bằng một kết quả khảo sát có tác dụng gì?", options: ["A. Cung cấp bằng chứng khách quan, khẳng định sự đồng thuận giữa ý kiến của tác giả với số đông.", "B. Cung cấp tín hiệu chuyển tiếp tự nhiên, gắn kết với thực tiễn từ phần nêu thực trạng đến đề xuất giải pháp.", "C. Cung cấp kết quả khảo sát thực tế, tạo hứng thú cho người đọc bằng một bằng chứng ấn tượng.", "D. Cung cấp kết quả khảo sát thực tế, tạo tính xác thực, khách quan cho lập luận và dẫn dắt vào những lý do tiếp theo."], correctIndex: 3 },
+                                        { id: "q30", text: "Câu 30: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Dòng nào dưới đây không thể hiện ý nghĩa mà văn bản có thể đem đến cho người đọc?", options: ["A. Nhận thức đầy đủ, rõ ràng hơn về khái niệm dân trí tài chính và thực trạng ấy ở Việt Nam.", "B. Nâng cao nhận thức của người đọc về tầm quan trọng của việc giáo dục tài chính cho trẻ em.", "C. Trang bị cho người đọc hiểu biết về các kỹ năng tài chính và biểu hiện lừa đảo tài chính.", "D. Cần có hành động tích cực, tự chủ trong việc tìm hiểu kiến thức tài chính từ khi còn nhỏ."], correctIndex: 2 }
+                                ]
+                        },
+
+                        // 31 - 45 (Tiếng Anh)
+                        { id: "q31", section: "1.2. TIẾNG ANH", text: "Câu 31: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Business people look _______ selling as many of their products as possible.", options: ["A. ahead", "B. forward to", "C. out for", "D. into"], correctIndex: 2 },
+                        { id: "q32", section: "1.2. TIẾNG ANH", text: "Câu 32: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Being used in nearly all walks of life, QR codes bring us _______ convenience.", options: ["A. desirable", "B. desirability", "C. desire", "D. desirably"], correctIndex: 0 },
+                        { id: "q33", section: "1.2. TIẾNG ANH", text: "Câu 33: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Don’t rush. We still have _______ time to make an impressive presentation by the end of April.", options: ["A. a lot", "B. most", "C. many of", "D. plenty of"], correctIndex: 3 },
+                        { id: "q34", section: "1.2. TIẾNG ANH", text: "Câu 34: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Most employers look for critical thinking skills, so I _______ hard for them now that I’m in college.", options: ["A. was training", "B. trained", "C. would have trained", "D. am training"], correctIndex: 3 },
+                        { id: "q35", section: "1.2. TIẾNG ANH", text: "Câu 35: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Small handmade gifts are often considered _______ store-bought gifts or money gifts.", options: ["A. the most meaningful", "B. as meaningful", "C. more meaningful", "D. as meaningful as"], correctIndex: 2 },
+                        { id: "q36", section: "1.2. TIẾNG ANH", text: "Câu 36: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Find the error:\nWhen <u>my</u> friends and I <u>plan</u> a trip, our teacher always gives <u>them</u> useful advice about <u>staying safe</u>.", options: ["A. staying safe", "B. plan", "C. them", "D. my"], correctIndex: 2 },
+                        { id: "q37", section: "1.2. TIẾNG ANH", text: "Câu 37: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Find the error:\n<u>As a</u> professional dancer, Laura makes beautiful <u>moves</u>, but her singing <u>are</u> not <u>as attractive</u>.", options: ["A. as attractive", "B. are", "C. moves", "D. As a"], correctIndex: 1 },
+                        { id: "q38", section: "1.2. TIẾNG ANH", text: "Câu 38: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Find the error:\n<u>Mary’s picture’s</u> in <u>her</u> school brochure shows that <u>She</u> is leading a <u>group discussion</u>.", options: ["A. her", "B. Mary’s picture’s", "C. group discussion", "D. She"], correctIndex: 1 },
+                        { id: "q39", section: "1.2. TIẾNG ANH", text: "Câu 39: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Find the error:\nThe student, <u>who</u> hard work impressed <u>all the</u> teachers, <u>was</u> finally rewarded <u>with</u> some scholarships.", options: ["A. with", "B. was", "C. all the", "D. who"], correctIndex: 3 },
+                        { id: "q40", section: "1.2. TIẾNG ANH", text: "Câu 40: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Find the error:\nThere was <u>the football match</u> in <u>the neighborhood</u>, but <u>the event</u> attracted <u>too few</u> spectators.", options: ["A. the event", "B. too few", "C. the football match", "D. the neighborhood"], correctIndex: 2 },
+                        { id: "q41", section: "1.2. TIẾNG ANH", text: "Câu 41: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Which of the following best restates the given sentence?\nMini is obviously the cutest poodle on the puppy farm I’ve just visited.", options: ["A. As a cute poodle I’ve just visited, Mini is definitely the most beautiful of all the puppies.", "B. It is a matter of fact that no puppy is as cute as Mini on the poodle farm I’ve just visited.", "C. As the cutest puppy on the farm I’ve just visited, Mini is certainly a beautiful poodle.", "D. It is for sure that no other poodle on the puppy farm I’ve just visited is cuter than Mini."], correctIndex: 3 },
+                        { id: "q42", section: "1.2. TIẾNG ANH", text: "Câu 42: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Which of the following best restates the given sentence?\nThose who start first will come last.", options: ["A. Start first or you will come last.", "B. The first starters will be the last finishers.", "C. Unlike those who start first, you will come last.", "D. First, start with those who will come last."], correctIndex: 1 },
+                        { id: "q43", section: "1.2. TIẾNG ANH", text: "Câu 43: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Which of the following best restates the given sentence?\nI felt unhappy when Tim said some bad words last night.", options: ["A. Unless Tim said good words, I would feel unhappy.", "B. If Tim does not say bad words, I will feel very happy.", "C. If Tim had not said some bad words the night before, I would not have felt unhappy.", "D. If Tim did not say some bad words the night before, I would not feel unhappy."], correctIndex: 2 },
+                        { id: "q44", section: "1.2. TIẾNG ANH", text: "Câu 44: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Which of the following best restates the given sentence?\nA police officer said to a teenager, “Don’t walk alone down this street at night. It’s not safe!”", options: ["A. A police officer reminded a teenager not to walk alone down this street at night because it was not safe.", "B. A police officer said a teenager should not walk alone down this street at night because it wasn’t safe.", "C. A police officer told a teenager not to walk alone down that street at night because it was not safe.", "D. A police officer told a teenager don’t walk alone down that street at night because it was not safe."], correctIndex: 2 },
+                        { id: "q45", section: "1.2. TIẾNG ANH", text: "Câu 45: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Which of the following best restates the given sentence?\nFrequent meetings discourage the new manager considerably.", options: ["A. The new manager is considerably discouraged by frequent meetings.", "B. The new manager considerably discourages frequent meetings.", "C. The new manager’s frequent meetings are considerably discouraging.", "D. Frequent meetings are considered as a discouragement by the new manager."], correctIndex: 0 },
+
+                        // Reading Group 46-52
+                        {
+                                id: "reading_46_52_d2",
+                                section: "1.2. TIẾNG ANH",
+                                type: "reading_group",
+                                passage: "<strong>Question 46-52: Read the passage carefully.</strong><br><br>1. Renewable energy comes from natural sources like the sun, wind, and water. These sources can be replaced faster than they are used. Renewable energy, when produced and used responsibly, is an effective solution and a long-lasting strategy to fight climate change. It helps reduce pollution and create energy systems that can last. However, we still need new technology to make them work even better.<br>2. Solar power turns sunlight into electricity using solar panels. In the past 10 years, the cost of solar energy has dropped a lot, making it cheaper. New solar panels are lighter and can even work in low sunlight. Solar power is growing fast, and countries like India, Brazil, and the U.S. are planning to double their solar energy by 2028.<br>3. Wind power has been used for many years and is a clean way to make energy. Wind turbines, which can be on land or in the ocean, turn wind into electricity. Wind farms in the ocean catch stronger winds, making more energy. The US plans to add a lot of wind power by 2030, enough to power 10 million homes. Using new technology like artificial intelligence (AI) helps predict how much wind energy will be made, which makes power sources more reliable.<br>4. Hydropower uses moving water to spin turbines and make electricity. It is the largest renewable energy source today. New technology, like small hydropower systems, is helping bring energy to rural areas without hurting the environment. Better materials, like recyclable turbines, are also making hydropower more efficient and environmentally friendly.<br>5. Other renewable energy sources are geothermal energy and bioenergy. Geothermal energy uses heat from inside the Earth, and bioenergy is made from plants and other natural materials. New ideas and improved production methods are making bioenergy cleaner, more efficient, and better for the environment. Scientists are also developing ways to turn agricultural waste and food waste into energy, which helps reduce the amount of rubbish while producing electricity and fuel. bioenergy better for the environment. These energy sources are helping to create a cleaner and greener future.",
+                                subQuestions: [
+                                        { id: "q46", text: "Câu 46: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] What is the passage mainly about?", options: ["A. Providing reasons renewable energy is good for users.", "B. Comparing traditional and renewable energy resources.", "C. Describing some types of efficient renewable energy.", "D. Listing some technologies used to produce green energy."], correctIndex: 2 },
+                                        { id: "q47", text: "Câu 47: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] What does the word “It” in paragraph 1 refer to?", options: ["A. Solution", "B. Strategy", "C. Renewable energy", "D. Climate change"], correctIndex: 2 },
+                                        { id: "q48", text: "Câu 48: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] In paragraph 2, what can be inferred about solar power?", options: ["A. It is the most efficient out of renewable energy.", "B. Its solar panels can be used to replace lighters.", "C. It needs a lot of investment in new technology.", "D. It was much more expensive ten years ago."], correctIndex: 3 },
+                                        { id: "q49", text: "Câu 49: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] In paragraph 3, which of the following is NOT stated about the production of wind energy?", options: ["A. The US will be producing a lot of wind power.", "B. Wind energy is not a new type of renewable energy.", "C. The production is best controlled by AI applications.", "D. Wind farms in the ocean are more productive."], correctIndex: 2 },
+                                        { id: "q50", text: "Câu 50: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] In paragraph 4, what is mentioned about hydropower?", options: ["A. Even small hydropower systems harm the environment.", "B. Its production is better in the ocean than in rivers.", "C. It is now the biggest supply of renewable energy.", "D. It turns water into electricity, which turns turbines."], correctIndex: 2 },
+                                        { id: "q51", text: "Câu 51: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] What is the word “recyclable” in paragraph 4 closest in meaning to?", options: ["A. Reusable", "B. Moveable", "C. Savable", "D. Reducible"], correctIndex: 0 },
+                                        { id: "q52", text: "Câu 52: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] In paragraph 5, what does the author say about bioenergy?", options: ["A. It is available in more places due to new ideas and inventions.", "B. It is the main source of energy for a cleaner and greener future.", "C. Its input materials include plants and other materials found in nature.", "D. It uses heat from inside the Earth; therefore, it is totally natural."], correctIndex: 2 }
+                                ]
+                        },
+
+                        // Reading Group 53-60
+                        {
+                                id: "reading_53_60_d2",
+                                section: "1.2. TIẾNG ANH",
+                                type: "reading_group",
+                                passage: "<strong>Question 53-60: Read the passage carefully.</strong><br><br>1. High-rise buildings are now central features of many urban landscapes, offering efficient use of land and convenient access to services. However, their height, density, and complex internal structures increase fire risks. As a result, it is essential to strengthen fire-prevention practices and redesign everyday habits to create safer living environments.<br>2. Reducing fire accidents starts inside each apartment. Electrical devices are a common cause of ignition when they are damaged, cheaply made, or used carelessly. Residents have a direct duty to check wires and plugs, stop overloading sockets, replace poor-quality chargers, and unplug appliances that are not in use. Kitchens require the same level of care. Cooking should be treated as focused work, with clear surfaces and full attention. When residents adopt these habits, they create the first and strongest barrier against fire.<br>3. Building infrastructure is the next layer of protection, and it is the clear responsibility of building management. Smoke alarms, extinguishers, and emergency lighting systems must be installed correctly and tested on a regular schedule. These systems exist in many high-rise buildings, but they lose their value when inspections are delayed or problems are ignored. Elevators may fail during a fire, so managers must ensure that stairwells stay open, well lit, and free of storage items. Management should also organise regular safety checks and drills so that evacuation procedures are practical and effective.<br>4. Local governments and fire authorities hold responsibility at a wider level. Regular inspections backed by real penalties push owners and managers to maintain safe conditions. Public information campaigns can teach residents how to prevent fires and respond safely when alarms sound. When authorities take this role seriously, they create a framework in which responsible residents and managers can truly protect their buildings.<br>5. Fires have devastating consequences, but they are also preventable. When residents commit to careful daily habits and insist on properly maintained safety systems, risks can be significantly reduced. Safer behavior in tall buildings is not an optional extra or a polite suggestion; it is a duty to oneself, one’s family, and every neighbor who shares the same walls, corridors, and stairwells.",
+                                subQuestions: [
+                                        { id: "q53", text: "Câu 53: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] The best title of the passage can be _______.", options: ["A. Solutions to Safety Problems in High-Rise Buildings.", "B. Reducing Fire Risks in High-Rise Buildings.", "C. Common Causes of Fires in High-Rise Buildings.", "D. Why People Avoid Living in High-Rise Buildings."], correctIndex: 1 },
+                                        { id: "q54", text: "Câu 54: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] The word their in paragraph 1 refers to _______.", options: ["A. buildings", "B. features", "C. services", "D. landscapes"], correctIndex: 0 },
+                                        { id: "q55", text: "Câu 55: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] In paragraph 2, the word duty is closest in meaning to _______.", options: ["A. responsibility", "B. force", "C. permission", "D. tax"], correctIndex: 0 },
+                                        { id: "q56", text: "Câu 56: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] According to paragraph 2, cooking is advised as an activity that _______.", options: ["A. requires full attention and unoccupied areas.", "B. needs protective equipment to ensure safety.", "C. can be left unattended if the heat is low.", "D. should be done quickly to avoid accidents."], correctIndex: 0 },
+                                        { id: "q57", text: "Câu 57: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] In paragraph 3, it is NOT mentioned that _______.", options: ["A. stairwells need to remain unlocked and unblocked.", "B. emergency lighting must be checked on a regular basis.", "C. elevators must be upgraded to prevent fire damage.", "D. smoke alarms and extinguishers must be fixed properly."], correctIndex: 2 },
+                                        { id: "q58", text: "Câu 58: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] In paragraph 3, the author uses the phrase so that in order to _______.", options: ["A. offer a solution", "B. confirm a cause", "C. indicate a result", "D. support a point"], correctIndex: 2 },
+                                        { id: "q59", text: "Câu 59: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] It can be inferred from paragraph 4 that public information _______.", options: ["A. can completely replace the need for inspections and penalties.", "B. mainly benefits building managers rather than residents.", "C. can guarantee that destructive fires will never happen.", "D. helps residents become more proactive in preventing fires."], correctIndex: 3 },
+                                        { id: "q60", text: "Câu 60: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Paragraphs 2, 3, and 4 present ________ respectively as the agents to prevent fires.", options: ["A. residents, building management, and local authorities.", "B. residents, building management, and security guards.", "C. building management, residents, and local authorities.", "D. building management, residents, and national fire fighters."], correctIndex: 0 }
+                                ]
+                        },
+
+                        // 61 - 72 (Toán)
+                        { id: "q61", section: "PHẦN 2. TOÁN HỌC", text: "Câu 61: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Tập nghiệm của bất phương trình |2x - 3| > x + 1 là:", options: ["A. R.", "B. (-∞; 4/3).", "C. (2; +∞).", "D. (-∞; 2/3) ∪ (4; +∞)."], correctIndex: 3 },
+                        { id: "q62", section: "PHẦN 2. TOÁN HỌC", text: "Câu 62: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Gọi S là tập nghiệm của bất phương trình (x² + x + 3)/(x² - 4) ≥ 1. Tìm S ∩ (-2; 2).", options: ["A. ∅.", "B. (-2; 1).", "C. (-2; 2).", "D. (1; 2)."], correctIndex: 0 },
+                        { id: "q63", section: "PHẦN 2. TOÁN HỌC", text: "Câu 63: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Cho số thực x, y ≥ 1, ta có: log_x (y^(5x)) = log_y (x^(8y)) = 20. Tích xy là:", options: ["A. 2.", "B. 4.", "C. 10.", "D. 40."], correctIndex: 2 },
+                        { id: "q64", section: "PHẦN 2. TOÁN HỌC", text: "Câu 64: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Tìm tham số m để bất phương trình log_(1/5) m > log_5 (2x + 3) có đúng 3 nghiệm nguyên.", options: ["A. 1/7 < m < 1/5.", "B. 0 < m < 1.", "C. 1/7 < m < 1/3.", "D. 7/5 < m < 1/3."], correctIndex: 0 },
+                        { id: "q65", section: "PHẦN 2. TOÁN HỌC", text: "Câu 65: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Có 6 đỉnh A, B, C, D, E, F được vẽ như hình. Một người xuất phát từ điểm E và đi qua các đỉnh rồi kết thúc ở F. Tìm số cách người đó đi được:", options: ["A. 1.", "B. 2.", "C. 3.", "D. 4."], correctIndex: 1 },
+                        { id: "q66", section: "PHẦN 2. TOÁN HỌC", text: "Câu 66: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Một phân tử gồm có 8 nguyên tử liên kết. Biết phân tử này có 8 liên kết. Các nhà khoa học đã tìm được số liên kết của 7 nguyên tử đầu tiên là 4;2;2;1;1;1;1. Số liên kết nguyên tử thứ 8 là:", options: ["A. 1.", "B. 2.", "C. 3.", "D. 4."], correctIndex: 3 },
+                        { id: "q67", section: "PHẦN 2. TOÁN HỌC", text: "Câu 67: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Cho tam giác ABC thỏa mãn tan B / tan C = sin² B / sin² C. Tam giác ABC là tam giác gì:", options: ["A. Tam giác vuông.", "B. Tam giác cân.", "C. Tam giác đều.", "D. Tam giác có thể vuông hoặc cân."], correctIndex: 1 },
+                        { id: "q68", section: "PHẦN 2. TOÁN HỌC", text: "Câu 68: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Cho tam giác có độ dài các cạnh là 5; 6; 7. Hỏi đường cao ứng với cạnh 6 có độ dài là bao nhiêu?", options: ["A. √2.", "B. 2√6.", "C. √6.", "D. 3."], correctIndex: 1 },
+                        { id: "q69", section: "PHẦN 2. TOÁN HỌC", text: "Câu 69: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Cho ∫₁³ [(m + 1)xᵐ + 1] dx = 28. Giá trị của tham số m là:", options: ["A. Không tồn tại.", "B. m ∈ [1; 3].", "C. m ∈ (-1; 2).", "D. m ∈ [-1; 2)."], correctIndex: 1 },
+                        { id: "q70", section: "PHẦN 2. TOÁN HỌC", text: "Câu 70: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Cho khu vườn có dạng hình cong giới hạn bởi 2 đường thẳng y = (1/2)x² và y = √(2x). Tính diện tích khu vườn.", options: ["A. 4/3.", "B. 2/3.", "C. 5/8.", "D. 2/7."], correctIndex: 0 },
+                        { id: "q71", section: "PHẦN 2. TOÁN HỌC", text: "Câu 71: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Cho hàm số y = (6 - 4x)/(2x + 3) có đồ thị (C) có 2 đường tiệm cận cắt các trục tọa độ tạo thành hình chữ nhật. Tính diện tích hình chữ nhật.", options: ["A. 2.", "B. 4/3.", "C. 5/8.", "D. 3."], correctIndex: 3 },
+                        { id: "q72", section: "PHẦN 2. TOÁN HỌC", text: "Câu 72: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Cho hàm số f(x) = √(x² - x + 5) - √(x² + 2x + 2), trong đó f(x) là hàm lợi nhuận của công ty, x là số năm. Nếu x tăng trưởng đến vô hạn thì lợi nhuận của công ty là:", options: ["A. Công ty thua lỗ.", "B. Công ty hòa vốn.", "C. Công ty lời.", "D. Không tính được."], correctIndex: 0 },
+
+                        // Reading Groups 73-90
+                        {
+                                id: "reading_73_74_d2",
+                                section: "PHẦN 2. TOÁN HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 73 đến câu 74</strong><br><br>Một xưởng sử dụng 2 loại nguyên liệu X và Y để sản xuất các loại mỹ phẩm. Biết khối lượng nguyên liệu không vượt quá 8 tạ. Sản xuất mỗi tạ nguyên liệu loại X cần 20 ngày công và lời 3 tỷ đồng. Sản xuất mỗi tạ loại Y cần 30 ngày công và lời 4 tỷ đồng. Tổng số ngày công không vượt quá 180 ngày. Gọi x là khối lượng (tạ) nguyên liệu X, và y là khối lượng (tạ) nguyên liệu Y.",
+                                subQuestions: [
+                                        { id: "q73", text: "Câu 73: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Bất phương trình thỏa mãn số ngày công là:", options: ["A. 2x + 3y ≤ 18.", "B. x + y ≤ 8.", "C. x + y ≥ 8.", "D. 2x + 3y ≥ 18."], correctIndex: 0 },
+                                        { id: "q74", text: "Câu 74: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Số tiền mà công ty thu được cao nhất là:", options: ["A. 24 tỷ.", "B. 26 tỷ.", "C. 28 tỷ.", "D. 30 tỷ."], correctIndex: 1 }
+                                ]
+                        },
+                        {
+                                id: "reading_75_76_d2",
+                                section: "PHẦN 2. TOÁN HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 75 đến câu 76</strong><br><br>Một quả bóng rơi xuống đất theo thanh ngang có độ cao 10m. Mỗi lần quả bóng rơi xuống chạm đất sẽ nảy lên độ cao bằng 3/4 độ cao trước đó.",
+                                subQuestions: [
+                                        { id: "q75", text: "Câu 75: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Sau 5 lần chạm đất, độ cao của quả bóng là:", options: ["A. 1,78.", "B. 2,37.", "C. 3,72.", "D. 4,25."], correctIndex: 1 },
+                                        { id: "q76", text: "Câu 76: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Tổng quãng đường quả bóng đi được cho đến khi dừng hẳn là:", options: ["A. 10.", "B. 40.", "C. 70.", "D. 80."], correctIndex: 2 }
+                                ]
+                        },
+                        {
+                                id: "reading_77_78_d2",
+                                section: "PHẦN 2. TOÁN HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 77 đến câu 78</strong><br><br>Trong không gian Oxyz cho điểm A(1;1;1), B(2;0;2), C(-2;2;4).",
+                                subQuestions: [
+                                        { id: "q77", text: "Câu 77: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Độ dài đoạn thẳng AB là:", options: ["A. √2.", "B. 2√6.", "C. 2.", "D. √3."], correctIndex: 3 },
+                                        { id: "q78", text: "Câu 78: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Mặt phẳng (ABC) cắt trục Ox tại điểm có tọa độ là:", options: ["A. (1;0;0).", "B. (0;0;0).", "C. (3;0;0).", "D. (2;0;0)."], correctIndex: 2 }
+                                ]
+                        },
+                        {
+                                id: "reading_79_81_d2",
+                                section: "PHẦN 2. TOÁN HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 79 đến câu 81</strong><br><br>Lớp A có 3 học sinh, B có 2 học sinh và lớp C có 1 học sinh. Xếp 6 học sinh ngẫu nhiên này vào 1 hàng ngang 6 ghế.",
+                                subQuestions: [
+                                        { id: "q79", text: "Câu 79: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Số cách sắp xếp 6 học sinh là:", options: ["A. 6!.", "B. 6! - 1.", "C. C₆⁴.", "D. A₆⁴."], correctIndex: 0 },
+                                        { id: "q80", text: "Câu 80: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Số cách sắp xếp 2 học sinh B luôn đứng đầu hàng là:", options: ["A. 48.", "B. 60.", "C. 70.", "D. 50."], correctIndex: 0 },
+                                        { id: "q81", text: "Câu 81: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Xác suất để học sinh lớp C chỉ ngồi cạnh học sinh lớp B là:", options: ["A. 1/5.", "B. 1/6.", "C. 2/15.", "D. 3/30."], correctIndex: 0 }
+                                ]
+                        },
+                        {
+                                id: "reading_82_84_d2",
+                                section: "PHẦN 2. TOÁN HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 82 đến câu 84</strong><br><br>Trong mặt phẳng Oxy, cho các điểm A(1;2), B(-1;1), C(3;-1).",
+                                subQuestions: [
+                                        { id: "q82", text: "Câu 82: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Tọa độ điểm M trung điểm BC là:", options: ["A. (1;0).", "B. (0;1).", "C. (-1;0).", "D. (0; 3/2)."], correctIndex: 0 },
+                                        { id: "q83", text: "Câu 83: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Phương trình tổng quát đường cao AH là:", options: ["A. 2x - y = 0.", "B. x + 2y - 5 = 0.", "C. 2x + y - 3 = 0.", "D. 2x - y - 5 = 0."], correctIndex: 0 },
+                                        { id: "q84", text: "Câu 84: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Gọi I là tâm đường tròn ngoại tiếp tam giác ABC. Tổng hoành độ và tung độ điểm I là:", options: ["A. 3.", "B. 8.", "C. 5/8.", "D. 4/3."], correctIndex: 2 }
+                                ]
+                        },
+                        {
+                                id: "reading_85_87_d2",
+                                section: "PHẦN 2. TOÁN HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 85 đến câu 87</strong><br><br>Cho hình chóp S.ABCD có ABCD là hình vuông cạnh a. Tam giác SAB đều và nằm trong mặt phẳng vuông góc với mặt phẳng đáy. Gọi O là giao điểm của AC và BD, H là trung điểm cạnh AB, N là trung điểm cạnh AD.",
+                                subQuestions: [
+                                        { id: "q85", text: "Câu 85: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Hình chiếu vuông góc của S lên mặt phẳng đáy là:", options: ["A. O.", "B. A.", "C. H.", "D. N."], correctIndex: 2 },
+                                        { id: "q86", text: "Câu 86: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Khẳng định nào sau đây là sai:", options: ["A. d(D, (SAC)) = d(H, (SAC)).", "B. d(D, (SAC)) = d(B, (SAC)).", "C. V_(S.ABCD) = a³√3 / 6.", "D. SH = a√3 / 2."], correctIndex: 0 },
+                                        { id: "q87", text: "Câu 87: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Tính khoảng cách từ D đến mặt phẳng (SAC).", options: ["A. a√21 / 7.", "B. a√2 / 2.", "C. a√21 / 14.", "D. a√25 / 48."], correctIndex: 1 }
+                                ]
+                        },
+                        {
+                                id: "reading_88_90_d2",
+                                section: "PHẦN 2. TOÁN HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 88 đến câu 90</strong><br><br>Cho hàm số y = (-mx + 1)/(x - m), với m là tham số.",
+                                subQuestions: [
+                                        { id: "q88", text: "Câu 88: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Khi m = 2 hàm số có giá trị lớn nhất trên đoạn [3; 5] là:", options: ["A. 3.", "B. -3.", "C. 0.", "D. 2."], correctIndex: 1 },
+                                        { id: "q89", text: "Câu 89: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Với giá trị nào của tham số m để hàm số luôn đồng biến trên từng khoảng xác định?", options: ["A. m < -1 hay m > 1.", "B. m ≤ -1 hay m ≥ 1.", "C. m ≤ -2 hay m > 1.", "D. m ≤ -2 hay m ≥ 1."], correctIndex: 0 },
+                                        { id: "q90", text: "Câu 90: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Với giá trị của m luôn tăng trên (3; +∞), đồ thị hàm số luôn đi qua bao nhiêu điểm cố định?", options: ["A. 1 điểm cố định.", "B. 2 điểm cố định.", "C. Vô số điểm.", "D. Không có điểm nào cố định."], correctIndex: 1 }
+                                ]
+                        },
+
+                        // Reading Group 91-93
+                        {
+                                id: "reading_91_93_d2",
+                                section: "PHẦN 3. TƯ DUY KHOA HỌC",
+                                type: "reading_group",
+                                passage: "<strong>3.1 LOGIC, PHÂN TÍCH SỐ LIỆU</strong><br><strong>Dựa vào đoạn thông tin sau trả lời từ câu 91 đến câu 93</strong><br><br>Một biên tập viên sẽ biên tập 7 bài viết, mỗi lần một bài. Có ba bài viết là G, H, J thuộc chủ đề tài chính, ba bài viết Q, R, S thuộc chủ đề dinh dưỡng và Y là bài viết thuộc chủ đề động vật hoang dã. Thứ tự biên tập các bài viết phải tuân theo các điều kiện sau:<br>- Các bài viết liên tiếp không được thuộc cùng một chủ đề.<br>- S chỉ có thể được biên tập trước Q nếu Q là bài viết thứ ba được biên tập.<br>- S phải được biên tập trước Y.<br>- J phải được biên tập trước G và G phải được biên tập trước R.",
+                                subQuestions: [
+                                        { id: "q91", text: "Câu 91: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Đâu có thể là thứ tự biên tập đúng?", options: ["A. Q, J, S, H, Y, G, R.", "B. Q, G, S, H, Y, J, R.", "C. J, Q, S, G, H, Y, R.", "D. Q, J, Y, H, S, G, R."], correctIndex: 0 },
+                                        { id: "q92", text: "Câu 92: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Nếu G là bài viết thứ tư được biên tập, khẳng định nào dưới đây có thể đúng?", options: ["A. Y là bài viết thứ sáu được biên tập.", "B. Q là bài viết thứ hai được biên tập.", "C. S là bài viết thứ năm được biên tập.", "D. J là bài viết thứ nhất được biên tập."], correctIndex: 0 },
+                                        { id: "q93", text: "Câu 93: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Thứ tự biên tập có thể được xác định hoàn toàn nếu như:", options: ["A. H là bài viết thứ tư được biên tập.", "B. R là bài viết thứ bảy được biên tập.", "C. H là bài viết thứ sáu được biên tập.", "D. R là bài viết thứ tư được biên tập."], correctIndex: 0 }
+                                ]
+                        },
+
+                        // Reading Group 94-96
+                        {
+                                id: "reading_94_96_d2",
+                                section: "PHẦN 3. TƯ DUY KHOA HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào đoạn thông tin sau trả lời từ câu 94 đến câu 96</strong><br><br>Một công ty sắp xếp cho 5 nhân viên M, N, P, Q, R tham gia các khóa huấn luyện trong 7 ngày từ ngày thứ nhất đến ngày thứ bảy. Mỗi nhân viên sẽ được huấn luyện trong một ngày, hai nhân viên khác nhau sẽ được huấn luyện trong hai ngày khác nhau. Ngoài ra việc tổ chức tuân thủ theo các điều kiện sau đây:<br>- Không có nhân viên nào tham gia huấn luyện ở ngày thứ sáu.<br>- R được tham gia huấn luyện trước N.<br>- M phải được huấn luyện ở ngày ngay trước ngày mà Q được huấn luyện.<br>- P là người thứ ba được huấn luyện.",
+                                subQuestions: [
+                                        { id: "q94", text: "Câu 94: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Nếu P được huấn luyện vào ngày thứ tư, điều nào sau đây phải đúng?", options: ["A. M được huấn luyện ở ngày thứ nhất.", "B. Không có ai huấn luyện vào ngày thứ ba.", "C. M được huấn luyện vào ngày thứ hai.", "D. R được huấn luyện vào ngày thứ năm."], correctIndex: 1 },
+                                        { id: "q95", text: "Câu 95: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Nhân viên R có thể được huấn luyện vào ngày thứ mấy dưới đây?", options: ["A. Ngày thứ bảy.", "B. Ngày thứ hai.", "C. Ngày thứ ba.", "D. Ngày thứ tư."], correctIndex: 3 },
+                                        { id: "q96", text: "Câu 96: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Ngày nào dưới đây bắt buộc phải có một nhân viên được huấn luyện?", options: ["A. Ngày thứ hai.", "B. Ngày thứ ba.", "C. Ngày thứ tư.", "D. Ngày thứ nhất."], correctIndex: 1 }
+                                ]
+                        },
+
+                        // Reading Group 97-99
+                        {
+                                id: "reading_97_99_d2",
+                                section: "PHẦN 3. TƯ DUY KHOA HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào đoạn thông tin sau trả lời từ câu 97 đến câu 99</strong><br><br>Bảng sau thể hiện sản lượng mía của một công ty mía có 6 nông trường M, N, P, Q, R, S.<br><table class=\"table table-bordered text-center\" style=\"width:auto; margin:10px auto\"><tr><th>Nông trường / Năm</th><th>M</th><th>N</th><th>P</th><th>Q</th><th>R</th><th>S</th></tr><tr><td>2016</td><td>150</td><td>75</td><td>58</td><td>48</td><td>49</td><td>32</td></tr><tr><td>2017</td><td>137</td><td>68</td><td>67</td><td>61</td><td>45</td><td>28</td></tr><tr><td>2018</td><td>160</td><td>65</td><td>82</td><td>59</td><td>46</td><td>37</td></tr><tr><td>2019</td><td>168</td><td>70</td><td>45</td><td>75</td><td>43</td><td>35</td></tr><tr><td>2020</td><td>180</td><td>55</td><td>80</td><td>67</td><td>47</td><td>28</td></tr></table>",
+                                subQuestions: [
+                                        { id: "q97", text: "Câu 97: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Trong giai đoạn 2016-2020, năm nào có tổng sản lượng cao nhất?", options: ["A. 2016.", "B. 2018.", "C. 2019.", "D. 2020."], correctIndex: 3 },
+                                        { id: "q98", text: "Câu 98: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Tổng sản lượng của công ty năm 2020 tăng bao nhiêu phần trăm so với năm 2016?", options: ["A. 7%.", "B. 9,1%.", "C. 10,9%.", "D. 13,3%."], correctIndex: 2 },
+                                        { id: "q99", text: "Câu 99: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Từ năm 2016 đến 2020, nông trường nào tỷ lệ sản lượng tăng cao nhất?", options: ["A. M.", "B. S.", "C. Q.", "D. P."], correctIndex: 2 }
+                                ]
+                        },
+
+                        // Reading Group 100-102
+                        {
+                                id: "reading_100_102_d2",
+                                section: "PHẦN 3. TƯ DUY KHOA HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào đoạn thông tin sau trả lời từ câu 100 đến câu 102</strong><br><br>Biểu đồ dưới đây cho biết giá trị xuất nhập khẩu của công ty X trong giai đoạn từ 1995-2000 (đơn vị: triệu USD).<br><table class=\"table table-bordered text-center\" style=\"width:auto; margin:10px auto\"><tr><th>Năm</th><th>Nhập khẩu (triệu USD)</th><th>Xuất khẩu (triệu USD)</th></tr><tr><td>1995</td><td>120</td><td>200</td></tr><tr><td>1996</td><td>225</td><td>300</td></tr><tr><td>1997</td><td>375</td><td>500</td></tr><tr><td>1998</td><td>330</td><td>400</td></tr><tr><td>1999</td><td>525</td><td>610</td></tr><tr><td>2000</td><td>420</td><td>460</td></tr></table>",
+                                subQuestions: [
+                                        { id: "q100", text: "Câu 100: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Trong các năm 1995, 1996, 1998, 1999, năm nào có độ chênh lệch giữa giá trị xuất khẩu và nhập khẩu lớn nhất?", options: ["A. 1995.", "B. 1996.", "C. 1998.", "D. 1999."], correctIndex: 3 },
+                                        { id: "q101", text: "Câu 101: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Tổng trị giá xuất khẩu trong năm 1999 xấp xỉ bao nhiêu phần trăm tổng trị giá hàng nhập khẩu trong các năm 1997, 1998 và 1999?", options: ["A. 33%.", "B. 35%.", "C. 47,5%.", "D. 49%."], correctIndex: 3 },
+                                        { id: "q102", text: "Câu 102: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Trong các năm từ 1996 đến năm 1999, tổng trị giá xuất - nhập khẩu của năm nào có tỷ lệ phần trăm tăng nhiều nhất so với năm trước đó?", options: ["A. 1996.", "B. 1997.", "C. 1998.", "D. 1999."], correctIndex: 1 }
+                                ]
+                        },
+
+                        // Reading Group 103-105
+                        {
+                                id: "reading_103_105_d2",
+                                section: "PHẦN 3. TƯ DUY KHOA HỌC",
+                                type: "reading_group",
+                                passage: "<strong>3.2. SUY LUẬN KHOA HỌC</strong><br><strong>Dựa vào đoạn thông tin sau trả lời từ câu 103 đến câu 105</strong><br><br>Trong quá trình truyền tải điện năng đi xa, hiện tượng tỏa nhiệt trên đường dây gây ra sự hao hụt một lượng lớn điện năng. Để giải quyết vấn đề này một cách hiệu quả và tiết kiệm, biện pháp tốt nhất là dùng máy biến áp nhằm nâng cao điện áp trước lúc truyền tải. Nguyên tắc hoạt động của máy biến áp dựa trên hiện tượng cảm ứng điện từ. Mối liên hệ giữa điện áp ở cuộn thứ cấp U₂ và cuộn sơ cấp U₁ được thể hiện qua tỷ lệ: U₂/U₁ = N₂/N₁, trong đó N₁ và N₂ tương ứng là số vòng dây của cuộn sơ cấp và thứ cấp.<br><br>Mặc dù vậy, khi hoạt động, nhiệt lượng phát sinh có nguy cơ làm thiết bị quá nhiệt và dẫn đến cháy nổ. Do đó, thay vì dùng lõi thép khối đặc, người ta chế tạo lõi máy biến áp bằng cách ghép nhiều lá thép mỏng cách điện với nhau. Cấu tạo này giúp thiết bị vận hành an toàn và gia tăng tuổi thọ. Khi truyền tải điện, máy biến áp thường được đặt ở trạm phát để tăng áp. Ở điều kiện lý tưởng, nếu điện áp tăng n lần thì công suất hao phí sẽ giảm n² lần. Tuy nhiên, trong thực tế, do điện trở của đường dây dài và sự thất thoát nhiệt ra môi trường, hiệu suất truyền tải không thể nào đạt tới mức 100%.<br><br>Xét một hệ thống thực tế đang sử dụng một máy biến áp với cuộn sơ cấp gồm 10.000 vòng và cuộn thứ cấp gồm 50.000 vòng.",
+                                subQuestions: [
+                                        { id: "q103", text: "Câu 103: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Giả sử hiệu điện thế đặt vào hai đầu cuộn sơ cấp là 1500V, hỏi điện áp thu được ở hai đầu cuộn thứ cấp bằng bao nhiêu?", options: ["A. 7500V.", "B. 5000V.", "C. 750V.", "D. 300V."], correctIndex: 0 },
+                                        { id: "q104", text: "Câu 104: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Nếu hiệu suất truyền tải ban đầu (khi chưa qua máy biến áp) đạt 80%, thì sau khi được tăng áp bằng máy biến áp nói trên, hiệu suất truyền tải mới sẽ đạt mức:", options: ["A. 96,0%.", "B. 99,2%.", "C. 92,0%.", "D. 99,6%."], correctIndex: 1 },
+                                        { id: "q105", text: "Câu 105: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Nhận định nào dưới đây không phải là tác dụng của việc sử dụng lõi thép ghép từ nhiều lá mỏng?", options: ["A. Làm giảm điện áp truyền tải trên đường dây.", "B. Kéo dài tuổi thọ hoạt động của thiết bị.", "C. Hạn chế rủi ro biến dạng và cháy nổ.", "D. Giảm bớt phần năng lượng hao hụt do tỏa nhiệt bên trong lõi."], correctIndex: 0 }
+                                ]
+                        },
+
+                        // Reading Group 106-108
+                        {
+                                id: "reading_106_108_d2",
+                                section: "PHẦN 3. TƯ DUY KHOA HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào đoạn thông tin sau trả lời từ câu 106 đến câu 108</strong><br><br>Theo các nghiên cứu sinh thái học, sự tăng trưởng của mọi quần thể đều chịu sự chi phối và giới hạn bởi sức chứa của môi trường. Giới hạn này được quyết định trực tiếp bởi các nhân tố như không gian sinh tồn, điều kiện khí hậu và nguồn dinh dưỡng. Khi kích thước quần thể đạt tới sức chứa tối đa (ngưỡng K), đà tăng trưởng mạnh sẽ chững lại, và số lượng cá thể chuyển sang duy trì trạng thái biến động nhẹ xung quanh mức cân bằng sinh thái.",
+                                subQuestions: [
+                                        { id: "q106", text: "Câu 106: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Trong giai đoạn từ 1820 đến 1940, số lượng cá thể tối đa của quần thể là:", options: ["A. 1.900.000.", "B. 2.200.000.", "C. 2.300.000.", "D. 1.800.000."], correctIndex: 1 },
+                                        { id: "q107", text: "Câu 107: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Trong giai đoạn ổn định, số lượng cá thể dao động quanh khoảng nào?", options: ["A. 1.000.000 đến 1.300.000.", "B. 2.000.000 đến 2.200.000.", "C. 1.600.000 đến 1.700.000.", "D. 1.300.000 đến 1.600.000."], correctIndex: 3 },
+                                        { id: "q108", text: "Câu 108: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Dựa vào biểu đồ, nhận định nào dưới đây là đúng?", options: ["A. Trong suốt giai đoạn từ 1850 đến 1920, kích thước quần thể luôn duy trì ở mức thấp hơn ngưỡng cân bằng sinh thái.", "B. Kể từ năm 1820 đến năm 1850, số lượng cá thể của quần thể liên tục có xu hướng gia tăng.", "C. Điều kiện thời tiết, khí hậu và nguồn dinh dưỡng là những nhân tố quyết định sức chứa K của môi trường.", "D. Quần thể ghi nhận sự biến động số lượng cá thể theo chiều hướng đi lên trong khoảng thời gian từ năm 1820 đến 1880."], correctIndex: 2 }
+                                ]
+                        },
+
+                        // Reading Group 109-111
+                        {
+                                id: "reading_109_111_d2",
+                                section: "PHẦN 3. TƯ DUY KHOA HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào thông tin dưới đây để trả lời các câu từ 109 đến 111</strong><br><br>Báo cáo của UBND tỉnh Quảng Ngãi cho biết, tốc độ tăng trưởng GRDP năm 2025 (tính theo giá so sánh 2010) đã bứt phá đạt mức 10,02% so với năm liền trước. Với quy mô nền kinh tế (GRDP) theo giá hiện hành chạm mốc 192.000 tỷ đồng, địa phương này không chỉ vượt chỉ tiêu tăng trưởng do Chính phủ giao phó mà còn vươn lên dẫn đầu toàn khu vực miền Trung và vinh dự xếp thứ 6/34 tỉnh thành trên cả nước về tốc độ tăng GRDP.<br><br>Việc góp mặt trong nhóm 6 địa phương có mức tăng GRDP vượt 10% đã tạo bước đệm vững chắc để tỉnh hiện thực hóa mục tiêu duy trì đà tăng trưởng hai chữ số trong nhiều năm liên tiếp theo định hướng của Trung ương. Nếu như năm 2024, mức tăng trưởng của Quảng Ngãi chỉ khiêm tốn ở mức 4,07% (nằm dưới mức bình quân 8,02% của cả nước), thì bước sang năm 2025, sự trỗi dậy mạnh mẽ của các lĩnh vực sản xuất công nghiệp, dịch vụ và xây dựng đã đưa địa phương bứt tốc lọt vào nhóm dẫn đầu. Đóng vai trò động lực chính là ngành luyện thép (giá trị sản xuất tăng gần 35%) và lọc hóa dầu (tăng 20%), hai lĩnh vực hạt nhân đóng góp tới hơn 73% giá trị của toàn ngành công nghiệp.",
+                                subQuestions: [
+                                        { id: "q109", text: "Câu 109: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Động lực tăng trưởng kinh tế của tỉnh Quảng Ngãi là:", options: ["A. Thu hút nguồn vốn đầu tư trực tiếp từ nước ngoài.", "B. Sự phát triển mạnh mẽ của sản xuất công nghiệp, xây dựng và dịch vụ.", "C. Chú trọng đầu tư vào hệ thống cơ sở hạ tầng trọng điểm.", "D. Mở rộng thị trường tiêu thụ cho các sản phẩm địa phương."], correctIndex: 1 },
+                                        { id: "q110", text: "Câu 110: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Tình hình kinh tế của tỉnh Quảng Ngãi trong năm 2025 so với năm 2024 như thế nào?", options: ["A. Giữ vị trí thấp nhất về tăng trưởng tại khu vực miền Trung.", "B. Có mức tăng trưởng kinh tế thấp hơn trung bình chung của cả nước.", "C. Vươn lên trở thành một trong những địa phương dẫn đầu cả nước về tốc độ tăng trưởng.", "D. Tiếp tục duy trì tốc độ tăng trưởng kinh tế ở mức ổn định như cũ."], correctIndex: 2 },
+                                        { id: "q111", text: "Câu 111: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Mục tiêu được Trung ương đặt ra là:", options: ["A. Đạt mức tăng trưởng kinh tế từ hai con số trở lên trong nhiều năm liên tiếp.", "B. Gia tăng tỷ trọng ngành công nghiệp và kéo giảm tỷ trọng ngành dịch vụ.", "C. Đưa quảng ngãi lọt top sáu tỉnh, thành có quy mô nền kinh tế (grdp) lớn nhất.", "D. Dồn trọng tâm đầu tư cho hai ngành mũi nhọn là luyện thép và lọc dầu."], correctIndex: 0 }
+                                ]
+                        },
+
+                        // Reading Group 112-114
+                        {
+                                id: "reading_112_114_d2",
+                                section: "PHẦN 3. TƯ DUY KHOA HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào đoạn thông tin sau trả lời từ câu 112 đến câu 114</strong><br><br>Là một doanh nghiệp hoạt động trong ngành sản xuất công nghiệp, Công ty A đã vi phạm quy định khi không đưa nước thải vào hệ thống xử lý tập trung của khu vực. Thay vào đó, doanh nghiệp này đã bí mật chôn lấp các đường ống ngầm nhằm xả trực tiếp lượng nước chưa qua xử lý ra hệ thống sông ngòi. Hậu quả là môi trường nước khu vực lân cận bị ô nhiễm nặng nề, thủy sản chết trắng hàng loạt, đồng thời đe dọa nghiêm trọng đến sức khỏe và tình hình canh tác nông nghiệp của cư dân xung quanh. Phát hiện những dấu hiệu bất thường, người dân địa phương đã chủ động theo dõi và tố giác sự việc lên cơ quan chức năng. Sau khi tiến hành xác minh tại hiện trường, chính quyền đã lập biên bản và ban hành quyết định phạt vi phạm hành chính 250 triệu đồng đối với Công ty A.",
+                                subQuestions: [
+                                        { id: "q112", text: "Câu 112: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Căn cứ vào các quy định pháp luật, nguyên nhân chính dẫn đến việc Công ty A chịu án phạt là hành vi nào sau đây?", options: ["A. Thiếu minh bạch trong việc công khai các báo cáo về môi trường và quá trình xả thải.", "B. Trực tiếp xả nguồn nước chưa qua hệ thống xử lý đạt chuẩn ra môi trường tự nhiên.", "C. Không tuân thủ các quy định về đảm bảo an toàn lao động tại cơ sở sản xuất.", "D. Trốn tránh nghĩa vụ nộp các khoản phí bảo vệ môi trường đối với hoạt động xả thải."], correctIndex: 1 },
+                                        { id: "q113", text: "Câu 113: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Mức tiền phạt 250 triệu đồng được cơ quan nhà nước căn cứ chủ yếu vào yếu tố nào?", options: ["A. Dựa trên doanh thu hằng năm của công ty A và lợi nhuận của công ty có được từ việc xả nước thải trực tiếp thay cho việc xây dựng hệ thống xử lý nước thải.", "B. Đánh giá tác động của hành vi xả nước thải đối sức khỏe cộng đồng và môi trường.", "C. Lượng nước thải không qua xử lý đã được công ty A xả ra môi trường.", "D. Thời gian hoạt động của công ty và khoảng thời gian công ty xả nước thải trái quy định."], correctIndex: 1 },
+                                        { id: "q114", text: "Câu 114: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Cơ quan quản lý nhà nước chủ yếu dựa trên cơ sở nào để đưa ra mức phạt hành chính 250 triệu đồng?", options: ["A. Khối lượng nước thải chưa được xử lý đạt chuẩn mà doanh nghiệp này đã xả ra môi trường.", "B. Quá trình hoạt động của doanh nghiệp và tổng thời gian diễn ra hành vi xả thải trái phép.", "C. Mức doanh thu hàng năm của doanh nghiệp kết hợp với những hậu quả do việc xả thải gây ra.", "D. Mức độ tác động tiêu cực của hành vi xả thải đối với hệ sinh thái môi trường và sức khỏe cộng đồng."], correctIndex: 3 }
+                                ]
+                        },
+
+                        // Reading Group 115-117
+                        {
+                                id: "reading_115_117_d2",
+                                section: "PHẦN 3. TƯ DUY KHOA HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào đoạn thông tin sau trả lời từ câu 115 đến câu 117</strong><br><br>Thời kỳ trị vì của vua Lê Thánh Tông được xem là một trong những giai đoạn cường thịnh bậc nhất, mở ra kỷ nguyên vàng son của nhà nước phong kiến Việt Nam. Nền tảng then chốt tạo nên sự phồn vinh này nằm ở các chính sách cải tổ mạnh mẽ về cơ cấu chính quyền và hệ thống pháp luật. Suốt thời gian cầm quyền (1460 – 1497), ông đã xây dựng nên một mạng lưới hành chính quy củ, chặt chẽ từ cấp trung ương xuống tận cơ sở, kết hợp với việc ban hành các luật lệ đậm đà bản sắc dân tộc và giàu giá trị nhân đạo. Qua những bước đi đột phá đó, triều đình đã kiến tạo một nền chính trị vững chắc, thúc đẩy nền kinh tế thăng hoa và bảo vệ trọn vẹn chủ quyền lãnh thổ quốc gia.",
+                                subQuestions: [
+                                        { id: "q115", text: "Câu 115: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Vua Lê Thánh Tông là vị quân vương trị vì trong giai đoạn nào của lịch sử nước ta?", options: ["A. Lê Trung Hưng.", "B. Lê sơ.", "C. Tiền Lê.", "D. Lê Mạt."], correctIndex: 1 },
+                                        { id: "q116", text: "Câu 116: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Yếu tố cốt lõi nào đã dẫn đến sự phồn vinh dưới thời vua Lê Thánh Tông?", options: ["A. Những bước đột phá trong lĩnh vực văn hóa và đời sống xã hội.", "B. Việc thay đổi, kiện toàn lại cơ cấu chính quyền và đội ngũ quan lại.", "C. Các chính sách cải tổ sâu rộng đối với cơ cấu bộ máy nhà nước và luật pháp.", "D. Những cải tổ nhằm xây dựng một hệ thống pháp luật hoàn chỉnh nhất."], correctIndex: 2 },
+                                        { id: "q117", text: "Câu 117: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Đâu là tên của bộ luật được soạn thảo và ban hành dưới thời kỳ trị vì của vị vua này?", options: ["A. Bộ luật Hình Luật.", "B. Bộ luật Hình thư.", "C. Bộ luật Gia Long.", "D. Bộ luật Hồng Đức."], correctIndex: 3 }
+                                ]
+                        },
+
+                        // Reading Group 118-120
+                        {
+                                id: "reading_118_120_d2",
+                                section: "PHẦN 3. TƯ DUY KHOA HỌC",
+                                type: "reading_group",
+                                passage: "<strong>Dựa vào đoạn thông tin sau trả lời từ câu 118 đến câu 120</strong><br><br>Khi tốc độ bay hơi của các phân tử chất lỏng cân bằng chính xác với tốc độ ngưng tụ của các phân tử từ dạng hơi quay trở lại pha lỏng, một trạng thái cân bằng động sẽ được thiết lập. Lúc này, lớp hơi tích tụ ở phía trên bề mặt chất lỏng được gọi là hơi bão hòa, và áp suất do nó tác dụng lên hệ thống đạt đến một giá trị cực đại, được gọi là áp suất hơi bão hòa. Đại lượng này là thước đo đặc trưng cho tính dễ bay hơi của chất lỏng và tỉ lệ thuận với nhiệt độ. Tại điểm mà áp suất hơi bão hòa bằng áp suất khí quyển thì điểm đó chính là nhiệt độ sôi của chất đó. Đối với một hỗn hợp dung dịch tại điều kiện lý tưởng, áp suất hơi bão hòa của hỗn hợp dung dịch sẽ được tính bằng tổng các áp suất hơi riêng phần của từng cấu tử thành phần tạo nên dung dịch đó.<br><br><table class=\"table table-bordered text-center\" style=\"width:auto; margin:10px auto\"><tr><th>Dung dịch</th><th>n-heptane (mol)</th><th>n-octane (mol)</th><th>Áp suất hơi bão hòa ở 25°C (mmHg)</th></tr><tr><td>1</td><td>0,2</td><td>0,8</td><td>20,4</td></tr><tr><td>2</td><td>0,3</td><td>0,7</td><td>23,6</td></tr><tr><td>3</td><td>0,4</td><td>0,6</td><td>26,8</td></tr><tr><td>4</td><td>0,5</td><td>0,5</td><td>30,0</td></tr><tr><td>5</td><td>0,6</td><td>0,4</td><td>33,2</td></tr><tr><td>6</td><td>0,8</td><td>0,2</td><td>39,6</td></tr><tr><td>7</td><td>0,9</td><td>0,1</td><td>42,8</td></tr></table>",
+                                subQuestions: [
+                                        { id: "q118", text: "Câu 118: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Xét một dung dịch lý tưởng được pha trộn từ 0,6 mol octan và 0,5 mol heptan, giá trị áp suất hơi bão hòa của dung dịch này sẽ rơi vào khoảng:", options: ["A. Từ 30 đến 33,2.", "B. Trên 33,2.", "C. Dưới 26,8.", "D. Từ 26,8 đến 30."], correctIndex: 3 },
+                                        { id: "q119", text: "Câu 119: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Phát biểu nào sau đây là sai khi đánh giá về tính chất áp suất hơi bão hòa của hệ hỗn hợp chứa n-heptane và n-octane?", options: ["A. Giá trị áp suất hơi bão hòa của hỗn hợp luôn nằm ở mức trung gian: cao hơn của n-octane nhưng thấp hơn của n-heptane.", "B. Sự thay đổi tỷ lệ thành phần giữa n-heptane và n-octane hoàn toàn không làm ảnh hưởng đến áp suất hơi bão hòa của hỗn hợp.", "C. Trong hệ hỗn hợp này, n-heptane thể hiện khả năng bay hơi kém hơn so với lúc nó ở trạng thái tinh khiết.", "D. Áp suất hơi bão hòa của toàn hệ thống sẽ tăng lên nếu ta gia tăng số mol của thành phần n-heptane."], correctIndex: 1 },
+                                        { id: "q120", text: "Câu 120: [ĐỀ CHÍNH THỨC ĐỢT 1 - 2026] Phát biểu nào dưới đây mô tả chính xác nhất bản chất quy luật về áp suất hơi bão hòa áp dụng cho các dung dịch?", options: ["A. Ở điều kiện áp suất 760 mmHg, do có áp suất hơi bão hòa thấp hơn và khó bay hơi hơn nên n-heptane có nhiệt độ sôi cao hơn n-octane.", "B. Sự gia tăng tỷ lệ n-octane trong hỗn hợp làm cho áp suất hơi bão hòa của hệ tăng lên, từ đó dẫn đến sự suy giảm nhiệt độ sôi của toàn hỗn hợp.", "C. Khi áp suất khí quyển giảm xuống, chất lỏng trở nên dễ bay hơi hơn do áp suất hơi giảm, kéo theo sự gia tăng nhiệt độ sôi của n-heptane.", "D. Tại mức áp suất khí quyển 760 mmHg, nhiệt độ sôi của hệ hỗn hợp n-heptane và n-octane sẽ mang một giá trị nằm giữa khoảng nhiệt độ sôi của hai chất thành phần."], correctIndex: 3 }
+                                ]
+                        }
                 ]
-            },
-    
-            // Task 2: A MULTICULTURAL WORLD (Câu 21 - 25)
-            {
-                id: "reading_gk1_multicultural_world",
-                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
-                type: "reading_group",
-                passage: "<strong>Task 2. Read the following passage and mark the letter A, B, C or D to indicate the correct answer to each of the questions from 21 to 25.</strong><br><br><h3 style=\"text-align:center;margin:10px 0;color:var(--text-main);\">A MULTICULTURAL WORLD</h3><br>A multicultural society is one where people of different cultures, languages and traditions live together. Today, many countries around the world, including Viet Nam, are multicultural. Viet Nam has 54 ethnic groups, and each group has its own customs, costumes and festivals.<br><br>Living in a multicultural society brings many benefits. People can learn about different ways of life, try new foods and enjoy colourful festivals. Students who study with classmates from other backgrounds often become more open-minded and better at communicating with others. In addition, cultural diversity can make the economy stronger because it attracts tourists from other countries.<br><br>However, multicultural societies also face some challenges. Language differences can cause misunderstandings, and people may judge others by stereotypes instead of getting to know them. Some people also worry that traditional cultures may disappear when young people follow global trends.<br><br>To build a harmonious multicultural community, people need to respect cultural differences. Schools can organise cultural exchange activities, and families can encourage children to learn about other traditions. Most importantly, everyone should keep an open mind and avoid prejudice. When people accept and celebrate their differences, they can live together in peace and learn from one another.",
-                subQuestions: [
-                    {
-                        id: "gk1_eng_q21",
-                        text: "Question 21: According to paragraph 1, how many ethnic groups does Viet Nam have?",
-                        options: ["A. 45", "B. 54", "C. 64", "D. 15"],
-                        correctIndex: 1
-                    },
-                    {
-                        id: "gk1_eng_q22",
-                        text: "Question 22: The word \"challenges\" in paragraph 3 is closest in meaning to _____.",
-                        options: ["A. difficulties", "B. chances", "C. rewards", "D. choices"],
-                        correctIndex: 0
-                    },
-                    {
-                        id: "gk1_eng_q23",
-                        text: "Question 23: According to paragraph 2, how can cultural diversity help the economy?",
-                        options: [
-                            "A. It reduces the cost of food.",
-                            "B. It encourages people to work abroad.",
-                            "C. It brings in visitors from other countries.",
-                            "D. It creates new languages."
-                        ],
-                        correctIndex: 2
-                    },
-                    {
-                        id: "gk1_eng_q24",
-                        text: "Question 24: It can be inferred from paragraph 3 that _____.",
-                        options: [
-                            "A. all traditional cultures have already disappeared",
-                            "B. language differences can lead to misunderstanding between cultural groups",
-                            "C. young people never respect traditions",
-                            "D. cultural diversity always causes conflict"
-                        ],
-                        correctIndex: 1
-                    },
-                    {
-                        id: "gk1_eng_q25",
-                        text: "Question 25: Which of the following best summarises the main idea of the passage?",
-                        options: [
-                            "A. Respect and an open mind are needed to enjoy the benefits of a multicultural society.",
-                            "B. Traditional cultures are more important than global trends.",
-                            "C. Students should only study with classmates from the same background.",
-                            "D. Tourism is the most important benefit of cultural diversity."
-                        ],
-                        correctIndex: 0
-                    }
+        },
+        {
+                id: "de_thi_thu_thptqg_anh",
+                title: "Đề thi thử THPTQG môn Tiếng Anh",
+                category: "anh",
+                subject: "Tiếng Anh",
+                description: "Đề thi thử THPT Quốc Gia môn Tiếng Anh - gồm các dạng: điền vào đoạn văn, sắp xếp hội thoại/đoạn văn, đọc hiểu đoạn văn",
+                scoreScale: 10,
+                scorePerQuestion: 0.25,
+                questions: [
+                        // Reading Group 1-6: Admissions Open (Alley University)
+                        {
+                                id: "reading_1_6_anh_thtpt",
+                                section: "TIẾNG ANH",
+                                type: "reading_group",
+                                passage: "<strong>Read the following leaflet and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 1 to 6.</strong><br><br><strong>ADMISSIONS OPEN FOR 2025 - 2026</strong><br><br>Are you looking for (1) _______ prestigious public university in Georgia? Consider Alley University, where we pride ourselves (2) _______ preparing the leaders of tomorrow. With over 90% of our graduates (3) _______ top jobs in fields as (4) _______ as the law, politics, medicine and journalism, your future starts here!<br><br><strong>Alley University provides:</strong><ul><li>State-of-the-art education delivered by qualified lecturers</li><li>Modern facilities designed to provide an engaging and innovative learning environment</li><li>Tuition grant and Scholarships making higher education accessible to everyone</li></ul>Visit our website https://alleyuniversity.com for more details or (5) _______ you have any questions, please (6) _______ to our Office of Admission Affairs.<ul><li><strong>Email:</strong> admission@alley.edu.ge</li><li><strong>Address:</strong> 99 Green Street, Georgia</li></ul>Register today and take the first step toward your future!",
+                                subQuestions: [
+                                        { id: "q1_anh_thtpt", text: "Question 1:", options: ["A. a", "B. an", "C. the", "D. Ø (no article)"], correctIndex: 0 },
+                                        { id: "q2_anh_thtpt", text: "Question 2:", options: ["A. in", "B. on", "C. of", "D. with"], correctIndex: 1 },
+                                        { id: "q3_anh_thtpt", text: "Question 3:", options: ["A. which landed", "B. landing", "C. is landed", "D. landed"], correctIndex: 1 },
+                                        { id: "q4_anh_thtpt", text: "Question 4:", options: ["A. diversity", "B. diversify", "C. diversely", "D. diverse"], correctIndex: 3 },
+                                        { id: "q5_anh_thtpt", text: "Question 5:", options: ["A. will", "B. can", "C. should", "D. may"], correctIndex: 2 },
+                                        { id: "q6_anh_thtpt", text: "Question 6:", options: ["A. give up", "B. check in", "C. reach out", "D. turn down"], correctIndex: 2 }
+                                ]
+                        },
+
+                        // Reading Group 7-12: Prom Night (JOIN US FOR AN UNFORGETTABLE PROM NIGHT)
+                        {
+                                id: "reading_7_12_anh_thtpt",
+                                section: "TIẾNG ANH",
+                                type: "reading_group",
+                                passage: "<strong>Read the following leaflet and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 7 to 12.</strong><br><br><strong>JOIN US FOR AN UNFORGETTABLE PROM NIGHT!</strong><br><br><strong>Date:</strong> Saturday, 12 May &nbsp;|&nbsp; <strong>Time:</strong> 7:00 p.m. - 11:00 p.m. &nbsp;|&nbsp; <strong>Location:</strong> Grand Ballroom, Rex Hotel<br><br>Get ready for a magical evening filled with laughter, dancing, and memories! Our prom theme this year is &quot;Enchanted Evening&quot;, (7) _______ dress to impress in your finest attire.<br><br>Evening (8) _______:<ul><li><strong>Red Carpet Arrival:</strong> (9) _______ the moment with photos as you step into the spotlight!</li><li><strong>Live DJ:</strong> Dance the night away to your favourite hits.</li><li><strong>Delicious Dinner:</strong> Enjoy a gourmet meal and sweet treats.</li><li><strong>Awards &amp; Prizes:</strong> Celebrate with fun categories and surprises!</li><li><strong>Tickets:</strong> $50 per person, available at the student office.</li><li><strong>Special Promotion:</strong> Purchase your tickets by 15 April and receive (10) _______!</li><li>Don't miss out on this special night! For more information, please (11) _______ our website at https://promnight25.com</li><li>Let's (12) _______ this a night to remember!</li></ul>",
+                                subQuestions: [
+                                        { id: "q7_anh_thtpt", text: "Question 7:", options: ["A. but", "B. so", "C. therefore", "D. because"], correctIndex: 1 },
+                                        { id: "q8_anh_thtpt", text: "Question 8:", options: ["A. Highlights", "B. Occasions", "C. Elements", "D. Principles"], correctIndex: 0 },
+                                        { id: "q9_anh_thtpt", text: "Question 9:", options: ["A. Capture", "B. Take", "C. Gather", "D. Seize"], correctIndex: 0 },
+                                        { id: "q10_anh_thtpt", text: "Question 10:", options: ["A. $10 discount", "B. a $10 discount", "C. discount $10", "D. a discount $10"], correctIndex: 1 },
+                                        { id: "q11_anh_thtpt", text: "Question 11:", options: ["A. look", "B. come", "C. go", "D. visit"], correctIndex: 3 },
+                                        { id: "q12_anh_thtpt", text: "Question 12:", options: ["A. make", "B. made", "C. making", "D. to make"], correctIndex: 0 }
+                                ]
+                        },
+
+                        // Questions 13-17: Sentence/Utterance Arrangement
+                        { id: "q13_anh_thtpt", section: "TIẾNG ANH", text: "Question 13:\na. Lily: I know! I'm excited for the next episode to see what happens!\nb. Lily: Did you watch the latest episode of that new series? The twist at the end was shocking!\nc. Mark: Yes! I couldn't believe it. The writing just keeps getting better, and that character's choice was unexpected.", options: ["A. a – b – c", "B. b – c – a", "C. b – a – c", "D. a – c – b"], correctIndex: 1 },
+                        { id: "q14_anh_thtpt", section: "TIẾNG ANH", text: "Question 14:\na. Ben: Yes! I can't wait. I love that band.\nb. Ava: Same here! I've been listening to their new album nonstop.\nc. Ben: Me too! Are you going with anyone?\nd. Ava: I am thinking of going with you!\ne. Ava: Have you heard about the concert next week?", options: ["A. d – c – b – a – e", "B. d – a – b – c – e", "C. e – a – b – c – d", "D. e – c – b – a – d"], correctIndex: 2 },
+                        { id: "q15_anh_thtpt", section: "TIẾNG ANH", text: "Question 15: Hi Anna,\na. Hope you are doing well! Last time, you told me that uniforms should be banned from high schools, but I don't think so.\nb. Indeed, when they are wearing the same clothes, they don't have to feel insecure about their appearance and social status.\nc. Additionally, students can save a lot of time by wearing uniforms.\nd. Personally, I think school uniforms are expected to help hide any social differences among students.\ne. They don't need to spend time planning their outfits to wear to school every day. What do you think?\nWrite back soon,\nJohn", options: ["A. a – e – b – c – d", "B. a – b – d – e – c", "C. a – c – d – e – b", "D. a – d – b – c – e"], correctIndex: 3 },
+                        { id: "q16_anh_thtpt", section: "TIẾNG ANH", text: "Question 16:\na. Students who lack English proficiency risk missing significant opportunities that could shape their careers and limit their potential for success in such an interconnected world.\nb. Learning English is really important for students today.\nc. Companies also prioritise candidates with strong English skills because English serves as the primary language for international business, allowing for effective communication with clients and colleagues worldwide.\nd. In short, mastering English can ultimately enhance both personal and professional growth.\ne. It grants access to better educational opportunities at prestigious universities, enabling students to further their studies and expand their knowledge.", options: ["A. a – b – c – e – d", "B. a – c – e – b – d", "C. b – a – e – c – d", "D. b – e – c – a – d"], correctIndex: 3 },
+                        { id: "q17_anh_thtpt", section: "TIẾNG ANH", text: "Question 17:\na. Many young individuals believe that showcasing their successes will enhance their social status and attract attention.\nb. Platforms like Facebook, Instagram, and TikTok encourage them to share curated versions of their lives, highlighting achievements, fashion and experiences.\nc. However, this trend can also result in pressure and anxiety as the quest for likes and followers often overshadows genuine connections and personal fulfilment.\nd. This desire for validation can lead to a constant comparison with peers, fostering a competitive mindset.\ne. Younger people today often feel the need to show off, driven largely by social media culture.", options: ["A. a – e – d – b – c", "B. a – c – b – d – e", "C. e – b – d – a – c", "D. e – d – b – c – a"], correctIndex: 2 },
+
+                        // Reading Group 18-22: Overuse of Smartphones
+                        {
+                                id: "reading_18_22_anh_thtpt",
+                                section: "TIẾNG ANH",
+                                type: "reading_group",
+                                passage: "<strong>Read the following passage about the overuse of smartphones and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 18 to 22.</strong><br><br>The overuse of smartphones has become a significant concern regarding children's development and well-being. Excessive screen time can lead to social isolation (18) _______. This can hinder the development of crucial social skills and emotional intelligence, making it difficult for them to engage effectively in real-world relationships.<br><br>(19) _______, contributing to issues such as obesity, poor posture, and eye strain. The addictive nature of smartphones also disrupts sleep patterns, significantly affecting cognitive function and overall mood. (20) _______ may find it challenging to concentrate in school, leading to diminished academic performance. Furthermore, unrestricted access to online content poses safety risks, exposing children to offensive materials, cyberbullying, and online predators.<br><br>(21) _______. Setting clear boundaries on screen time, promoting outdoor activities, and encouraging physical play are essential steps to mitigate the adverse consequences of children's overuse of smartphones. Open communication about digital literacy and online safety can also empower children to navigate the digital landscape more responsibly.<br><br>In conclusion, while smartphones offer benefits in terms of connectivity and learning, their overuse necessitates proactive measures to safeguard children's physical, social, and emotional well-being in today's digital era. (22) _______,",
+                                subQuestions: [
+                                        { id: "q18_anh_thtpt", text: "Question 18:", options: ["A. because many children now prefer virtual interactions on face-to-face communication", "B. as many children now prefer virtual interactions on face-to-face communication", "C. since many children now prefer offline interactions over online communication", "D. though many children now prefer offline interactions over online communication"], correctIndex: 1 },
+                                        { id: "q19_anh_thtpt", text: "Question 19:", options: ["A. In addition, many experts recommend limiting children's screen time", "B. Additionally, the limitation of screen time is essential for children's physical health", "C. Another fact is that prolonged use of smartphones negatively impacts physical health", "D. Other fact is that excessive use of smartphones does harm to physical health"], correctIndex: 2 },
+                                        { id: "q20_anh_thtpt", text: "Question 20:", options: ["A. Children who are constantly plugged into their devices", "B. Children always overuse their smartphones", "C. Children having difficulty in using their smartphones", "D. Children whom struggle to utilise their mobile devices"], correctIndex: 0 },
+                                        { id: "q21_anh_thtpt", text: "Question 21:", options: ["A. The problems caused by the overuse of smartphones are too many to be solved", "B. The use of smartphones should be encouraged for children to look for effective learning materials", "C. A focused strategy involving only parents will be sufficient for effective change", "D. Addressing these problems requires a collaborative effort from parents, educators, and policymakers"], correctIndex: 3 },
+                                        { id: "q22_anh_thtpt", text: "Question 22:", options: ["A. By fostering a balanced approach to technology use, we can help children thrive both online and offline", "B. As a result, it is important that children should be banned from using smartphones at school", "C. Therefore, the invention of smartphones is a nightmare for human beings, greatly affecting children's academic performance", "D. Without the appropriate use of smartphones, children can develop more comprehensively in their social skills and emotional intelligence"], correctIndex: 0 }
+                                ]
+                        },
+
+                        // Reading Group 23-30: Tet Holiday in Vietnam
+                        {
+                                id: "reading_23_30_anh_thtpt",
+                                section: "TIẾNG ANH",
+                                type: "reading_group",
+                                passage: "<strong>Read the following passage about Tet and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the following questions from 23 to 30.</strong><br><br><em>Tet</em>, also known as <em>Tet Nguyen Dan</em>, is the most important and beloved holiday in Vietnam. It normally takes place in January or February to mark the arrival of the Lunar New Year. <em>Tet</em> is an occasion for family reunions, cultural traditions and joyful celebrations throughout the country.<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Typically, <em>Tet</em> is celebrated over three days, but preparations for it begin weeks <strong>in advance</strong>. Families clean and decorate their homes with vibrant flowers like yellow apricot blossoms, peach blossoms and kumquat trees, symbolising <strong>prosperity</strong> and good fortune. Lanterns and couplets are also commonly used. Streets are adorned with red and yellow decorations, creating a festive vibe.<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Food plays a central role during <em>Tet</em>. Traditional dishes are inevitable such as <em>Banh Chung</em>, a square-shaped sticky rice cake representing the Earth, and <em>Banh Tet</em>, a cylindrical-shaped one representing the Moon. Other favourites are <em>Mut</em> (a variety of candied fruits), melon seeds among others which are served to guests as a symbol of sweet beginnings for the new year.<br><br>&nbsp;&nbsp;&nbsp;&nbsp;The atmosphere at <em>Tet</em> is filled with excitement and happiness. People wear new clothes, which is believed to bring good luck for the entire year. Elders give children <u>lucky money</u> in red envelopes to pass on blessings and good wishes. Parents and grandparents also often receive lucky money from their children as wishes for good health. Many families visit temples to pray for various blessings such as health, happiness and success. They also visit teachers, friends and extended family to exchange greetings and gifts.<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Overall, <em>Tet</em> holiday in Vietnam is a time of cultural pride and cherished traditions, bringing people together to celebrate their heritage and look forward to a prosperous new year ahead. <strong><u>It showcases the warmth of Vietnamese hospitality and the deep-rooted values of family and community.</u></strong>",
+                                subQuestions: [
+                                        { id: "q23_anh_thtpt", text: "Question 23: The word It in paragraph 1 refers to _______.", options: ["A. Tet", "B. holiday", "C. Vietnam", "D. arrival"], correctIndex: 0 },
+                                        { id: "q24_anh_thtpt", text: "Question 24: The word <strong>in advance</strong> in paragraph 2 is OPPOSITE in meaning to _______.", options: ["A. before", "B. after", "C. forward", "D. earlier"], correctIndex: 1 },
+                                        { id: "q25_anh_thtpt", text: "Question 25: The word <strong>prosperity</strong> in paragraph 2 could be best replaced by _______.", options: ["A. benefit", "B. luck", "C. wealth", "D. hardship"], correctIndex: 2 },
+                                        { id: "q26_anh_thtpt", text: "Question 26: What do families do to prepare for <em>Tet</em>, according to the passage?", options: ["A. Visit temples to pray for health, happiness and success", "B. Tidy up their homes and decorate them with flowers and trees", "C. Take a walk around the streets to enjoy the festive atmosphere", "D. Buy new clothes for their pet and prepare special meals for it"], correctIndex: 1 },
+                                        { id: "q27_anh_thtpt", text: "Question 27: Which of the following is NOT mentioned as a thing people do at <em>Tet</em>?", options: ["A. Put on new clothes", "B. Give and receive lucky money", "C. Go to temples", "D. Exchange gifts with strangers"], correctIndex: 3 },
+                                        { id: "q28_anh_thtpt", text: "Question 28: Which of the following best paraphrases the underlined sentence in paragraph 5?", options: ["A. It illustrates the tradition of Vietnamese family and community as well as the richness of local festivals.", "B. It highlights the enduring values of family and community along with the friendliness of Vietnamese people.", "C. It emphasises the lasting values of Vietnamese community and the beauty of Vietnamese people.", "D. It reflects the warmth of Vietnamese family and community and their adaptation to global trends."], correctIndex: 1 },
+                                        { id: "q29_anh_thtpt", text: "Question 29: Which paragraph mentions the significance of traditional cuisine at <em>Tet</em>?", options: ["A. Paragraph 1", "B. Paragraph 2", "C. Paragraph 3", "D. Paragraph 4"], correctIndex: 2 },
+                                        { id: "q30_anh_thtpt", text: "Question 30: Which would be the best title for the passage?", options: ["A. Preparations for Tet in Vietnam", "B. Traditional Foods at Vietnamese Tet", "C. The Exciting Atmosphere at Vietnamese Tet", "D. Tet Holiday in Vietnam"], correctIndex: 3 }
+                                ]
+                        },
+
+                        // Reading Group 31-40: Artificial Intelligence
+                        {
+                                id: "reading_31_40_anh_thtpt",
+                                section: "TIẾNG ANH",
+                                type: "reading_group",
+                                passage: "<strong>Read the following passage about artificial intelligence and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the following questions from 31 to 40.</strong><br><br>Artificial Intelligence (AI) has rapidly evolved over the past few decades, transforming a theoretical concept into a <strong><u>powerful</u></strong> technology that impacts numerous aspects of daily life. The development of AI can be traced back to the mid-20th century when scientists started investigating the possibility of creating machines capable of performing tasks that typically require human intelligence.<br><br>&nbsp;&nbsp;&nbsp;&nbsp;[I] One of the key milestones in AI history was the <strong>advent</strong> of expert systems in the 1970s and 1980s. [II] They were widely used in fields like medicine, finance and engineering for tasks such as diagnosis, financial analysis and design optimisation. In the early 2000s, the rise of big data and advances in computing power promoted the growth of AI research, particularly deep learning. [III] Deep learning models, inspired by the structure and function of the human brain, use neural networks with multiple layers to analyse and learn from extensive datasets. [IV] This approach has led to breakthroughs in areas including image and speech recognition, natural language processing and autonomous systems.<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Today, AI technologies are integrated into various aspects of our lives, from virtual assistants like Siri and Alexa to recommendation systems on autonomous vehicles. AI is also changing industries such as healthcare by aiding in medical imaging analysis and personalised medicine, and finance by optimising trading strategies and detecting fraudulent activities. In the future, AI has potential for significant progress. Researchers are exploring areas such as reinforcement learning which enables AI agents to learn through interaction with environments, and explainable AI which aims to make AI systems more transparent and understandable to humans.<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Although AI provides opportunities for innovation and efficiency, <u>it</u> raises important ethical and social concerns. Issues such as bias in algorithms, data privacy, job displacement due to automation and the responsible use of AI in decision-making remain subjects of ongoing research and debate.<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<strong><u>In summary, the development of AI has been a journey marked by continuous innovation, breakthroughs, and societal challenges.</u></strong> As AI technologies evolve, they hold the potential to enhance human capabilities, improve efficiency and address complex global challenges while raising important questions about ethics, regulation and the future of employment in an AI-driven world.",
+                                subQuestions: [
+                                        { id: "q31_anh_thtpt", text: "Question 31: The word <strong>powerful</strong> in paragraph 1 is OPPOSITE in meaning to _______.", options: ["A. potent", "B. dominant", "C. influential", "D. insignificant"], correctIndex: 3 },
+                                        { id: "q32_anh_thtpt", text: "Question 32: The word <strong>advent</strong> in paragraph 2 is CLOSEST in meaning to _______.", options: ["A. departure", "B. leaving", "C. arrival", "D. end"], correctIndex: 2 },
+                                        { id: "q33_anh_thtpt", text: "Question 33: Where in paragraph 2 does the following sentence best fit?<br><em>\"These systems utilised rules and logic to replicate the knowledge and reasoning of human experts in specific domains.\"</em>", options: ["A. [I]", "B. [II]", "C. [III]", "D. [IV]"], correctIndex: 1 },
+                                        { id: "q34_anh_thtpt", text: "Question 34: Which of the following is NOT stated about deep learning?", options: ["A. Deep learning models draw inspiration from the human brain.", "B. Deep learning uses rule-based algorithms to process data.", "C. Deep learning has revolutionised image and speech recognition.", "D. Deep learning has transformed natural language processing capabilities."], correctIndex: 1 },
+                                        { id: "q35_anh_thtpt", text: "Question 35: Which of the following best summarises paragraph 3?", options: ["A. Siri and Alexa are one of the best virtual assistants which contribute to changing industries.", "B. AI technologies are improving various sectors such as healthcare and finance.", "C. AI technologies are being developed rapidly, but the growth rate may reduce in the future.", "D. AI is being widely used and transforming industries, with potential major advancements."], correctIndex: 3 },
+                                        { id: "q36_anh_thtpt", text: "Question 36: The word <em>it</em> in paragraph 4 refers to _______.", options: ["A. explainable AI", "B. AI", "C. innovation", "D. efficiency"], correctIndex: 1 },
+                                        { id: "q37_anh_thtpt", text: "Question 37: Which of the following best paraphrases the underlined sentence in paragraph 5?", options: ["A. In summary, the progress of AI has been characterised by lasting advancements, accidental discoveries, and societal challenges.", "B. In conclusion, AI has developed through a series of steady improvements, minor innovations, and societal obstacles.", "C. To sum up, the growth of AI has involved constant change, notable achievements, and various societal support.", "D. Overall, there have been ongoing innovations, significant discoveries, and societal issues throughout the evolution of AI."], correctIndex: 3 },
+                                        { id: "q38_anh_thtpt", text: "Question 38: According to the passage, the advancement of AI technologies raises concerns primarily about _______.", options: ["A. the potential for AI to surpass human intelligence", "B. the ethical implications of AI in decision-making processes", "C. the affordability and accessibility of AI technologies", "D. the integration of AI into various aspects of our lives"], correctIndex: 1 },
+                                        { id: "q39_anh_thtpt", text: "Question 39: It can be inferred from the passage that the development of AI has had a profound impact on society by ...", options: ["A. revolutionising industries and enhancing efficiency", "B. eliminating the need for human expertise in technical fields", "C. completely replacing human decision-making with automated systems", "D. decreasing the complexity of global challenges through advanced technology"], correctIndex: 0 },
+                                        { id: "q40_anh_thtpt", text: "Question 40: Which of the following could be the best title for the passage?", options: ["A. The Use of Artificial Intelligence", "B. The Development of Artificial Intelligence", "C. The Advantages of Artificial Intelligence", "D. The Disadvantages of Artificial Intelligence"], correctIndex: 1 }
+                                ]
+                        }
                 ]
-            },
-    
-            // --- III. WRITING (Câu 26 - 30) ---
-            {
-                id: "gk1_eng_q26",
-                section: "PHẦN A: WRITING",
-                type: "short_answer",
-                text: "Question 26 (Rearrange): Sắp xếp các từ/cụm từ sau thành câu hoàn chỉnh (không thay đổi hoặc thêm từ):\n<strong>is / famous / the scientist / for / and / courage / his / determination</strong>",
-                correctAnswer: "The scientist is famous for his courage and determination. | The scientist is famous for his courage and determination | The scientist is famous for his determination and courage. | The scientist is famous for his determination and courage"
-            },
-            {
-                id: "gk1_eng_q27",
-                section: "PHẦN A: WRITING",
-                type: "short_answer",
-                text: "Question 27 (Rearrange): Sắp xếp các từ/cụm từ sau thành câu hoàn chỉnh (không thay đổi hoặc thêm từ):\n<strong>the multicultural festival / many visitors / attracts / from / different countries / every year</strong>",
-                correctAnswer: "The multicultural festival attracts many visitors from different countries every year. | The multicultural festival attracts many visitors from different countries every year"
-            },
-            {
-                id: "gk1_eng_q28",
-                section: "PHẦN A: WRITING",
-                type: "short_answer",
-                text: "Question 28 (Rearrange): Sắp xếp các từ/cụm từ sau thành câu hoàn chỉnh (không thay đổi hoặc thêm từ):\n<strong>many people / bring / reusable bags / to / reduce / when shopping / plastic waste</strong>",
-                correctAnswer: "Many people bring reusable bags to reduce plastic waste when shopping. | Many people bring reusable bags to reduce plastic waste when shopping | Many people bring reusable bags when shopping to reduce plastic waste. | Many people bring reusable bags when shopping to reduce plastic waste"
-            },
-            {
-                id: "gk1_eng_q29",
-                section: "PHẦN A: WRITING",
-                type: "short_answer",
-                text: "Question 29 (Combine): Kết hợp cặp câu sau thành một câu, sử dụng từ gợi ý trong ngoặc:\nAt 9 p.m. yesterday, I was reading a biography. My sister came home at that time.\n<strong>→ (Dùng \"when\"):</strong>",
-                correctAnswer: "I was reading a biography when my sister came home. | I was reading a biography when my sister came home | When my sister came home, I was reading a biography. | When my sister came home, I was reading a biography | I was reading a biography when my sister came home yesterday. | When my sister came home yesterday, I was reading a biography."
-            },
-            {
-                id: "gk1_eng_q30",
-                section: "PHẦN A: WRITING",
-                type: "short_answer",
-                text: "Question 30 (Combine): Kết hợp cặp câu sau thành một câu, sử dụng từ gợi ý trong ngoặc:\nPlastic bags take hundreds of years to decompose. This makes them a serious threat to the environment.\n<strong>→ (Dùng \"which\"):</strong>",
-                correctAnswer: "Plastic bags take hundreds of years to decompose, which makes them a serious threat to the environment. | Plastic bags take hundreds of years to decompose, which makes them a serious threat to the environment"
-            },
-    
-            // ==========================================
-            // PHẦN B: CÂU 31 - 60
-            // ==========================================
-    
-            // --- I. LANGUAGE KNOWLEDGE (Câu 31 - 45) ---
-            {
-                id: "gk1_eng_q31",
-                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 31. Nelson Mandela is remembered for his great _____ in the fight against inequality.",
-                options: ["A. achievements", "B. advertisements", "C. arrangements", "D. advantages"],
-                correctIndex: 0
-            },
-            {
-                id: "gk1_eng_q32",
-                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 32. Students from different ethnic groups often wear their traditional _____ at the school festival.",
-                options: ["A. customers", "B. customs", "C. costumes", "D. custodies"],
-                correctIndex: 2
-            },
-            {
-                id: "gk1_eng_q33",
-                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 33. Reusing old jars and bottles is a simple way to cut down on household _____.",
-                options: ["A. waste", "B. waist", "C. wage", "D. weight"],
-                correctIndex: 0
-            },
-            {
-                id: "gk1_eng_q34",
-                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 34. Mark the letter A, B, C or D to indicate the word CLOSEST in meaning to the underlined word.\nMany people <u>admire</u> the nurse who worked day and night to save lives during the outbreak.",
-                options: ["A. respect", "B. blame", "C. forget", "D. warn"],
-                correctIndex: 0
-            },
-            {
-                id: "gk1_eng_q35",
-                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 35. Mark the letter A, B, C or D to indicate the word OPPOSITE in meaning to the underlined word.\nWe should be <u>open-minded</u> when we learn about other cultures.",
-                options: ["A. narrow-minded", "B. kind-hearted", "C. well-informed", "D. easy-going"],
-                correctIndex: 0
-            },
-            {
-                id: "gk1_eng_q36",
-                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 36. Many supermarkets now sell _____ products that do not harm the environment.",
-                options: ["A. eco-friendly", "B. harmful", "C. disposable", "D. fashionable"],
-                correctIndex: 0
-            },
-            {
-                id: "gk1_eng_q37",
-                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 37. The young inventor _____ his first robot when he was only fifteen.",
-                options: ["A. builds", "B. built", "C. has built", "D. was building"],
-                correctIndex: 1
-            },
-            {
-                id: "gk1_eng_q38",
-                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 38. Hoi An is _____ ancient town where many cultures have met for centuries.",
-                options: ["A. a", "B. an", "C. the", "D. no article"],
-                correctIndex: 1
-            },
-            {
-                id: "gk1_eng_q39",
-                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 39. The villagers are very proud _____ their traditional festivals.",
-                options: ["A. in", "B. at", "C. of", "D. on"],
-                correctIndex: 2
-            },
-            {
-                id: "gk1_eng_q40",
-                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 40. Reusable bags, _____ are strong and washable, help reduce plastic waste.",
-                options: ["A. that", "B. which", "C. who", "D. what"],
-                correctIndex: 1
-            },
-            {
-                id: "gk1_eng_q41",
-                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 41. When the reporter called, the mayor _____ a speech at a green festival.",
-                options: ["A. gave", "B. was giving", "C. has given", "D. gives"],
-                correctIndex: 1
-            },
-            {
-                id: "gk1_eng_q42",
-                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 42. Which of the following sentences is grammatically correct?",
-                options: [
-                    "A. Marie Curie was a first woman who won a Nobel Prize.",
-                    "B. The students who joined the clean-up day were given free T-shirts.",
-                    "C. We went to the zoo and I saw an elephant which it was very big.",
-                    "D. She is the person whose I admire most."
+        },
+        // === ĐỀ ÔN TẬP GIỮA KÌ I - HÓA HỌC 12 ===
+        {
+                id: "on_tap_giua_ki_1_hoa_12",
+                title: "Ôn tập giữa kì I - Hóa học 12",
+                category: "hoa",
+                subject: "Hóa học",
+                description: "Bộ đề ôn tập kiểm tra giữa kì I môn Hóa học 12 theo cấu trúc mới: I. Trắc nghiệm (Chương 1, 2, 3) | II. Đúng/Sai | III. Trả lời ngắn (Tự chọn phần ôn linh hoạt)",
+                scoreScale: 10,
+                scorePerQuestion: 0.25,
+                selectableSections: [
+                        {
+                                id: "part1_c1",
+                                group: "I. Trắc nghiệm nhiều lựa chọn",
+                                name: "Chương 1: Ester - Lipid",
+                                label: "Chương 1: Ester - Lipid (15 câu)",
+                                section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                                count: 15,
+                                type: "multiple_choice"
+                        },
+                        {
+                                id: "part1_c2",
+                                group: "I. Trắc nghiệm nhiều lựa chọn",
+                                name: "Chương 2: Carbohydrate",
+                                label: "Chương 2: Carbohydrate (17 câu)",
+                                section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                                count: 17,
+                                type: "multiple_choice"
+                        },
+                        {
+                                id: "part1_c3",
+                                group: "I. Trắc nghiệm nhiều lựa chọn",
+                                name: "Chương 3: Hợp chất chứa Nitrogen",
+                                label: "Chương 3: Hợp chất chứa Nitrogen (15 câu)",
+                                section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                                count: 15,
+                                type: "multiple_choice"
+                        },
+                        {
+                                id: "part2_tf",
+                                group: "II. Đúng / Sai",
+                                name: "II. Đúng / Sai",
+                                label: "II. Đúng / Sai (8 câu - 32 ý hỏi)",
+                                section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
+                                count: 8,
+                                type: "true_false_group"
+                        },
+                        {
+                                id: "part3_sa",
+                                group: "III. Trả lời ngắn",
+                                name: "III. Trả lời ngắn",
+                                label: "III. Trả lời ngắn (13 câu)",
+                                section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                                count: 13,
+                                type: "short_answer"
+                        }
                 ],
-                correctIndex: 1
-            },
-            {
-                id: "gk1_eng_q43",
-                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 43. Read the sign and answer the question:\n<div style=\"border:2px solid var(--border);border-radius:10px;padding:14px 18px;margin:12px 0;background:rgba(255,255,255,0.04);text-align:center;\"><strong style=\"font-size:1.1rem;display:block;margin-bottom:6px;color:var(--text-main);\">RECYCLING POINT</strong><p style=\"margin:4px 0;\">Please put paper, glass and cans in the correct bins.</p><p style=\"margin:4px 0;font-weight:600;color:#10b981;\">Keep our school clean and green!</p></div>What should people do according to the sign?",
-                options: [
-                    "A. Throw all rubbish into one bin.",
-                    "B. Sort their waste into the right bins.",
-                    "C. Take cans home with them.",
-                    "D. Buy more paper and glass."
+                presets: [
+                        {
+                                id: "all",
+                                label: "✨ Toàn bộ đề (68 câu)",
+                                sectionIds: ["part1_c1", "part1_c2", "part1_c3", "part2_tf", "part3_sa"]
+                        },
+                        {
+                                id: "part1",
+                                label: "📝 Cả 3 chương Trắc nghiệm (47 câu)",
+                                sectionIds: ["part1_c1", "part1_c2", "part1_c3"]
+                        },
+                        {
+                                id: "c1",
+                                label: "🧪 Chương 1: Ester - Lipid (15 câu)",
+                                sectionIds: ["part1_c1"]
+                        },
+                        {
+                                id: "c2",
+                                label: "🌾 Chương 2: Carbohydrate (17 câu)",
+                                sectionIds: ["part1_c2"]
+                        },
+                        {
+                                id: "c3",
+                                label: "🧬 Chương 3: Nitrogen (15 câu)",
+                                sectionIds: ["part1_c3"]
+                        },
+                        {
+                                id: "tf",
+                                label: "⚖️ II. Đúng / Sai (8 câu)",
+                                sectionIds: ["part2_tf"]
+                        },
+                        {
+                                id: "sa",
+                                label: "✏️ III. Trả lời ngắn (13 câu)",
+                                sectionIds: ["part3_sa"]
+                        }
                 ],
-                correctIndex: 1
-            },
-            {
-                id: "gk1_eng_q44",
-                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 44. Read the announcement and answer the question:\n<div style=\"border:2px solid var(--border);border-radius:10px;padding:14px 18px;margin:12px 0;background:rgba(255,255,255,0.04);text-align:center;\"><strong style=\"font-size:1.1rem;display:block;margin-bottom:6px;color:#3b82f6;\">INTERNATIONAL CULTURE WEEK</strong><p style=\"margin:4px 0;\">Enjoy traditional food, music and dances from 10 countries.</p><p style=\"margin:4px 0;font-weight:500;\">15 – 19 November, School Hall</p><p style=\"margin:4px 0;color:#10b981;font-weight:600;\">Free entry for students</p><p style=\"margin:4px 0;font-size:0.9rem;\">Register at the Youth Union Office.</p></div>Who can get into the event for free?",
-                options: [
-                    "A. All visitors",
-                    "B. Teachers only",
-                    "C. Students",
-                    "D. Performers only"
-                ],
-                correctIndex: 2
-            },
-            {
-                id: "gk1_eng_q45",
-                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
-                text: "Question 45. Read the notice and answer the question:\n<div style=\"border:2px solid var(--border);border-radius:10px;padding:14px 18px;margin:12px 0;background:rgba(255,255,255,0.04);\"><strong style=\"font-size:1.1rem;display:block;margin-bottom:8px;text-align:center;color:var(--text-main);\">NOTICE</strong><p style=\"margin:4px 0;line-height:1.6;\">The talk “Women Who Changed the World” has been moved from Room 12 to the Library because many students have registered. The talk will still start at 2 p.m. on Thursday. Students without a registration card should see Ms. Hoa before Wednesday.</p></div>What can be understood from the notice?",
-                options: [
-                    "A. The talk has been cancelled.",
-                    "B. The talk will take place in a different place.",
-                    "C. The talk will begin later than planned.",
-                    "D. Students no longer need to register."
-                ],
-                correctIndex: 1
-            },
-    
-            // --- II. READING (Câu 46 - 55) ---
-            // Task 1: LIFE STORY OF MARIE CURIE (Câu 46 - 50)
-            {
-                id: "reading_gk1_marie_curie",
-                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
-                type: "reading_group",
-                passage: "<strong>Task 1. Read the following passage and mark the letter A, B, C or D to indicate the correct option that best fits each of the numbered blanks from 46 to 50.</strong><br><br><h3 style=\"text-align:center;margin:10px 0;color:var(--text-main);\">LIFE STORY OF MARIE CURIE</h3><br>Marie Curie was born in Warsaw, Poland, in 1867. As a child, she was very bright and loved reading, but women in her country <b>(46) _____</b>. In 1891, she moved to Paris to study at the Sorbonne. Life there was not easy. <b>(47) _____</b>, she often had very little money and food, yet she never stopped studying.<br><br>She later married Pierre Curie, a French scientist, and together they discovered two new elements, polonium and radium. In 1903, she shared the Nobel Prize in Physics, and in 1911 she won another Nobel Prize, this time in Chemistry, <b>(48) _____</b>. During World War I, she <b>(49) _____</b> and helped save the lives of many wounded soldiers. She died in 1934. Her life story shows that <b>(50) _____</b>. Today, people around the world still see her as an inspiring role model for young scientists.",
-                subQuestions: [
-                    {
-                        id: "gk1_eng_q46",
-                        text: "Question 46: Choose the best option for blank (46).",
-                        options: [
-                            "A. were not allowed to attend university",
-                            "B. could study anything they wanted",
-                            "C. often became famous scientists",
-                            "D. had many chances to study abroad"
-                        ],
-                        correctIndex: 0
-                    },
-                    {
-                        id: "gk1_eng_q47",
-                        text: "Question 47: Choose the best option for blank (47).",
-                        options: [
-                            "A. However",
-                            "B. For example",
-                            "C. Therefore",
-                            "D. Although"
-                        ],
-                        correctIndex: 1
-                    },
-                    {
-                        id: "gk1_eng_q48",
-                        text: "Question 48: Choose the best option for blank (48).",
-                        options: [
-                            "A. which made her the first person to win Nobel Prizes in two different sciences",
-                            "B. but she did not like science anymore",
-                            "C. because she wanted to become a teacher only",
-                            "D. so she stopped working in laboratories"
-                        ],
-                        correctIndex: 0
-                    },
-                    {
-                        id: "gk1_eng_q49",
-                        text: "Question 49: Choose the best option for blank (49).",
-                        options: [
-                            "A. developed mobile X-ray units",
-                            "B. left France forever",
-                            "C. stopped all her research",
-                            "D. worked as a singer"
-                        ],
-                        correctIndex: 0
-                    },
-                    {
-                        id: "gk1_eng_q50",
-                        text: "Question 50: Choose the best option for blank (50).",
-                        options: [
-                            "A. women cannot succeed in science",
-                            "B. hard work and passion can lead to great achievements",
-                            "C. money is the only way to succeed",
-                            "D. education is not important"
-                        ],
-                        correctIndex: 1
-                    }
+                questions: [
+                        {
+                                id: "gk1_c1_q1",
+                                section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                                text: "Câu 1: Chất nào sau đây thuộc loại ester?",
+                                options: [
+                                        "A. CH₃COOCH₃.",
+                                        "B. CH₃COOH.",
+                                        "C. HCOOH.",
+                                        "D. CH₃COCH₃."
+                                ],
+                                correctIndex: 0
+                        },
+                        {
+                                id: "gk1_c1_q2",
+                                section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                                text: "Câu 2: Chất nào sau đây không phải là ester?",
+                                options: [
+                                        "A. CH₃COOCH₃.",
+                                        "B. HCOOCH₃.",
+                                        "C. CH₃COOH.",
+                                        "D. C₆H₅COOCH₃."
+                                ],
+                                correctIndex: 2
+                        },
+                        {
+                                id: "gk1_c1_q3",
+                                section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                                text: "Câu 3: Công thức của methyl formate là",
+                                options: [
+                                        "A. HCOOCH₃.",
+                                        "B. CH₃COOC₂H₅.",
+                                        "C. HCOOC₂H₅.",
+                                        "D. CH₃COOCH₃."
+                                ],
+                                correctIndex: 0
+                        },
+                        {
+                                id: "gk1_c1_q4",
+                                section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                                text: "Câu 4: Ester ethyl acetate có công thức cấu tạo là",
+                                options: [
+                                        "A. COOCH₃.",
+                                        "B. CH₃COOC₂H₅.",
+                                        "C. HCOOC₂H₅.",
+                                        "D. CH₃COOCH₃."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_c1_q5",
+                                section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                                text: "Câu 5: Acid nào sau đây thuộc loại acid béo no thường gặp trong mỡ động vật?",
+                                options: [
+                                        "A. Formic acid.",
+                                        "B. Acetic acid.",
+                                        "C. Stearic acid.",
+                                        "D. Oleic acid."
+                                ],
+                                correctIndex: 2
+                        },
+                        {
+                                id: "gk1_c1_q6",
+                                section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                                text: "Câu 6: “Chất béo là triester của… (1)… với các… (2)… gọi chung là các triglyceride.” Nội dung phù hợp trong ô trống (1), (2) lần lượt là",
+                                options: [
+                                        "A. glycerol, acetic acid.",
+                                        "B. glycerol, acid béo.",
+                                        "C. ethylene glycol, acid béo.",
+                                        "D. methyl alcohol, acid béo."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_c1_q7",
+                                section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                                text: "Câu 7: Thành phần chính của xà phòng thông thường là muối nào sau đây?",
+                                options: [
+                                        "A. C₆H₅COONa.",
+                                        "B. C₁₇H₃₅COONa.",
+                                        "C. CH₃[CH₂]₁₁OSO₃Na.",
+                                        "D. C₂H₅COONa."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_c1_q8",
+                                section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                                text: "Câu 8: Thủy phân methyl propanoate trong môi trường acid thu được sản phẩm gồm",
+                                options: [
+                                        "A. CH₃COOH và C₂H₅OH.",
+                                        "B. C₂H₅COOH và CH₃OH.",
+                                        "C. C₂H₅COOH và C₂H₅OH.",
+                                        "D. CH₃COOH và C₃H₇OH."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_c1_q9",
+                                section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                                text: "Câu 9: Thực hiện phản ứng xà phòng hóa hoàn toàn 8,9 gam tripalmitin bằng dung dịch NaOH vừa đủ. Khối lượng glycerol thu được là",
+                                options: [
+                                        "A. 0,92 gram.",
+                                        "B. 1,84 gram.",
+                                        "C. 2,76 gram.",
+                                        "D. 0,46 gram."
+                                ],
+                                correctIndex: 0
+                        },
+                        {
+                                id: "gk1_c1_q10",
+                                section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                                text: "Câu 10: Chất béo lỏng như triolein có thể chuyển hóa thành chất béo rắn (mỡ nhân tạo) bằng phản ứng nào sau đây?",
+                                options: [
+                                        "A. Xà phòng hóa.",
+                                        "B. Hydrogen hóa (xúc tác, t°, p).",
+                                        "C. Thủy phân trong môi trường acid.",
+                                        "D. Oxi hóa bằng dung dịch KMnO₄."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_c1_q11",
+                                section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                                text: "Câu 11: Ưu điểm vượt trội của chất giặt rửa tổng hợp so với xà phòng thông thường là",
+                                options: [
+                                        "A. Dễ bị phân hủy sinh học hơn.",
+                                        "B. Không tạo kết tủa và giặt rửa tốt trong nước cứng chứa ion Ca²⁺, Mg²⁺.",
+                                        "C. Được sản xuất hoàn toàn từ mỡ động vật.",
+                                        "D. Không làm hại da tay khi sử dụng."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_c1_q12",
+                                section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                                text: "Câu 12: Từ isoamyl alcohol và acetic acid, với xúc tác H₂SO₄ đặc, đun nóng người ta điều chế được isoamyl acetate có mùi thơm đặc trưng của",
+                                options: [
+                                        "A. Quả chín dứa.",
+                                        "B. Quả chuối chín.",
+                                        "C. Quả táo.",
+                                        "D. Hoa nhài."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_c1_q13",
+                                section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                                text: "Câu 13: Linoleic acid (có cấu tạo như hình bên dưới) là một trong những acid béo có lợi cho sức khỏe tim mạch, ngăn ngừa các bệnh về tim, động mạch vành. Phát biểu nào sau đây sai?",
+                                diagramCode: "<div style=\"text-align:center; padding:10px 0;\"><svg viewBox=\"0 0 540 90\" style=\"max-width:100%; height:auto;\"><path d=\"M 15 45 L 45 65 L 75 45 L 105 65 L 135 45 L 165 65 L 195 45 L 225 65 L 255 45 L 285 65 L 315 45 L 345 65 L 375 45 L 405 65 L 435 45 L 465 65 L 495 45\" fill=\"none\" stroke=\"#4F46E5\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"165\" y1=\"58\" x2=\"195\" y2=\"38\" stroke=\"#4F46E5\" stroke-width=\"2.5\"/><line x1=\"255\" y1=\"38\" x2=\"285\" y2=\"58\" stroke=\"#4F46E5\" stroke-width=\"2.5\"/><text x=\"500\" y=\"49\" fill=\"#EF4444\" font-weight=\"700\" font-size=\"14\" font-family=\"sans-serif\">COOH</text><text x=\"5\" y=\"49\" fill=\"#10B981\" font-weight=\"700\" font-size=\"13\" font-family=\"sans-serif\">CH₃</text></svg><div style=\"font-size:0.85rem; color:var(--text-muted); margin-top:4px;\">Cấu trúc hóa học của Linoleic acid (C₁₇H₃₁COOH - có 2 liên kết đôi C=C và 1 nhóm -COOH, tổng cộng 3 liên kết $\\pi$)</div></div>",
+                                options: [
+                                        "A. Trong phân tử linoleic acid có 2 liên kết $\\pi$.",
+                                        "B. Ở điều kiện thích hợp, 1 mol trilinolein tác dụng được tối đa với 6 mol H₂.",
+                                        "C. Trilinolein có công thức phân tử là C₅₇H₉₈O₆.",
+                                        "D. Linoleic acid thuộc loại acid béo omega-6."
+                                ],
+                                correctIndex: 0
+                        },
+                        {
+                                id: "gk1_c1_q14",
+                                section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                                text: "Câu 14: Đun nóng 12,0 gam acetic acid với 11,5 gam ethanol có H₂SO₄ đặc làm xúc tác. Đến khi phản ứng đạt trạng thái cân bằng thu được 11,44 gam ethyl acetate. Hiệu suất của phản ứng ester hóa là",
+                                options: [
+                                        "A. 60,0%.",
+                                        "B. 65,0%.",
+                                        "C. 70,0%.",
+                                        "D. 75,0%."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_c1_q15",
+                                section: "PHẦN I. CHƯƠNG 1: ESTER - LIPID",
+                                text: "Câu 15: Xà phòng hóa hoàn toàn 17,8 gam triglyceride X bằng dung dịch NaOH dư thu được 1,84 gam glycerol và m gam hỗn hợp muối potassium của các acid béo. Giá trị của m là",
+                                options: [
+                                        "A. 19,68 gram.",
+                                        "B. 18,32 gram.",
+                                        "C. 20,16 gram.",
+                                        "D. 19,12 gram."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_c2_q1",
+                                section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                                text: "Câu 1: Chất nào sau đây không có phản ứng thủy phân?",
+                                options: [
+                                        "A. Fructose.",
+                                        "B. Amylose.",
+                                        "C. Cellulose.",
+                                        "D. Amylopectin."
+                                ],
+                                correctIndex: 0
+                        },
+                        {
+                                id: "gk1_c2_q2",
+                                section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                                text: "Câu 2: Chất nào sau đây thuộc loại polysaccharide?",
+                                options: [
+                                        "A. Fructose.",
+                                        "B. Glucose.",
+                                        "C. Maltose.",
+                                        "D. Cellulose."
+                                ],
+                                correctIndex: 3
+                        },
+                        {
+                                id: "gk1_c2_q3",
+                                section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                                text: "Câu 3: Chất nào sau đây thuộc loại monosaccharide?",
+                                options: [
+                                        "A. Cellulose.",
+                                        "B. Tinh bột.",
+                                        "C. Saccharose.",
+                                        "D. Fructose."
+                                ],
+                                correctIndex: 3
+                        },
+                        {
+                                id: "gk1_c2_q4",
+                                section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                                text: "Câu 4: Công thức cấu tạo dạng mạch vòng $\\alpha$ - glucose là",
+                                imageSrc: "images/q4_chuong2.png",
+                                options: [
+                                        "A. Hình A.",
+                                        "B. Hình B.",
+                                        "C. Hình C.",
+                                        "D. Hình D."
+                                ],
+                                correctIndex: 0
+                        },
+                        {
+                                id: "gk1_c2_q5",
+                                section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                                text: "Câu 5: Dung dịch chất nào sau đây được dùng làm dịch truyền y tế để cung cấp năng lượng cho cơ thể suy nhược?",
+                                options: [
+                                        "A. Glucose 5%.",
+                                        "B. Saccharose 10%.",
+                                        "C. Fructose 5%.",
+                                        "D. Glycerol 5%."
+                                ],
+                                correctIndex: 0
+                        },
+                        {
+                                id: "gk1_c2_q6",
+                                section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                                text: "Câu 6: Thuốc thử dùng để nhận biết hồ tinh bột ở nhiệt độ thường là",
+                                options: [
+                                        "A. Dung dịch AgNO₃/NH₃.",
+                                        "B. Dung dịch iodine (I₂).",
+                                        "C. Cu(OH)₂.",
+                                        "D. Dung dịch nước bromine."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_c2_q7",
+                                section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                                text: "Câu 7: Mỗi đơn vị glucose cấu thành phân tử cellulose có chứa bao nhiêu nhóm -OH tự do?",
+                                options: [
+                                        "A. 1.",
+                                        "B. 2.",
+                                        "C. 3.",
+                                        "D. 4."
+                                ],
+                                correctIndex: 2
+                        },
+                        {
+                                id: "gk1_c2_q8",
+                                section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                                text: "Câu 8: Phát biểu nào sau đây đúng về fructose?",
+                                options: [
+                                        "A. Fructose không có khả năng tham gia phản ứng tráng bạc.",
+                                        "B. Trong dung dịch kiềm, fructose và glucose có thể chuyển hóa qua lại cho nhau.",
+                                        "C. Fructose làm mất màu dung dịch nước bromine tương tự glucose.",
+                                        "D. Fructose là polysaccharide có trong củ mài."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_c2_q9",
+                                section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                                text: "Câu 9: Glucose có thể lên men tạo lactic acid có trong sữa chua qua phản ứng nào sau đây?",
+                                options: [
+                                        "A. CH₂OH-[CHOH]₄-CHO + Br₂ + H₂O → CH₂OH-[CHOH]₄-COOH + 2HBr.",
+                                        "B. 2C₆H₁₂O₆ + Cu(OH)₂ → (C₆H₁₁O₆)₂Cu + 2H₂O.",
+                                        "C. C₆H₁₂O₆ → 2CH₃CH(OH)COOH.",
+                                        "D. C₆H₁₂O₆ → 2C₂H₅OH + 2CO₂."
+                                ],
+                                correctIndex: 2
+                        },
+                        {
+                                id: "gk1_c2_q10",
+                                section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                                text: "Câu 10: Cho các chất: glucose, fructose, saccharose, tinh bột, cellulose. Số chất tham gia phản ứng hòa tan Cu(OH)₂ khi đun nóng tạo kết tủa đỏ gạch là",
+                                options: [
+                                        "A. 2.",
+                                        "B. 3.",
+                                        "C. 4.",
+                                        "D. 5."
+                                ],
+                                correctIndex: 0
+                        },
+                        {
+                                id: "gk1_c2_q11",
+                                section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                                text: "Câu 11: Hiện tượng xảy ra khi đun nóng glucose với dung dịch AgNO₃ trong NH₃ dư là",
+                                options: [
+                                        "A. Xuất hiện kết tủa màu xanh lam.",
+                                        "B. Có khí không màu thoát ra.",
+                                        "C. Xuất hiện lớp kim loại bạc sáng bám vào thành ống nghiệm.",
+                                        "D. Dung dịch đổi sang màu đỏ gạch."
+                                ],
+                                correctIndex: 2
+                        },
+                        {
+                                id: "gk1_c2_q12",
+                                section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                                text: "Câu 12: Phản ứng nào sau đây chứng minh dạng mạch vòng của Glucose có nhóm -OH hemiacetal?",
+                                options: [
+                                        "A. Phản ứng với Cu(OH)₂ tạo dung dịch xanh lam.",
+                                        "B. Phản ứng tráng bạc với AgNO₃/NH₃.",
+                                        "C. Phản ứng với CH₃OH khi có mặt khí HCl khan.",
+                                        "D. Phản ứng lên men rượu."
+                                ],
+                                correctIndex: 2
+                        },
+                        {
+                                id: "gk1_c2_q13",
+                                section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                                text: "Câu 13: Khi thủy phân hoàn toàn tinh bột hoặc cellulose trong môi trường acid thu được monosaccharide duy nhất là",
+                                options: [
+                                        "A. Fructose.",
+                                        "B. Glucose.",
+                                        "C. Galactose.",
+                                        "D. Maltose."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_c2_q14",
+                                section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                                text: "Câu 14: Khác biệt cấu trúc cơ bản giữa amylose và amylopectin trong tinh bột là",
+                                options: [
+                                        "A. Amylose phân nhánh, amylopectin không phân nhánh.",
+                                        "B. Amylose không phân nhánh (chỉ liên kết α-1,4), amylopectin phân nhánh (liên kết α-1,4 và α-1,6).",
+                                        "C. Amylose gồm các gốc β-glucose, amylopectin gồm α-glucose.",
+                                        "D. Amylose tan tốt trong nước lạnh, amylopectin không tan."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_c2_q15",
+                                section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                                text: "Câu 15: Chất nào sau đây phản ứng với HNO₃ đặc (xúc tác H₂SO₄ đặc, đun nóng) tạo thành chất nổ thuốc súng không khói?",
+                                options: [
+                                        "A. Tinh bột.",
+                                        "B. Glucose.",
+                                        "C. Cellulose.",
+                                        "D. Saccharose."
+                                ],
+                                correctIndex: 2
+                        },
+                        {
+                                id: "gk1_c2_q16",
+                                section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                                text: "Câu 16: Thủy phân hoàn toàn 3,42 gam saccharose trong dung dịch H₂SO₄ loãng thu được dung dịch X. Cho X tác dụng với lượng dư dung dịch AgNO₃ trong NH₃ đun nóng thu được m gam Ag. Giá trị m là",
+                                options: [
+                                        "A. 1,08 gram.",
+                                        "B. 2,16 gram.",
+                                        "C. 4,32 gram.",
+                                        "D. 3,24 gram."
+                                ],
+                                correctIndex: 2
+                        },
+                        {
+                                id: "gk1_c2_q17",
+                                section: "PHẦN I. CHƯƠNG 2: CARBOHYDRATE",
+                                text: "Câu 17: Đun nóng 18,0 gam glucose với dung dịch AgNO₃ trong NH₃ dư thu được m gam Ag kim loại. Biết hiệu suất phản ứng tráng bạc đạt 90%. Giá trị của m là",
+                                options: [
+                                        "A. 21,60 gram.",
+                                        "B. 19,44 gram.",
+                                        "C. 10,80 gram.",
+                                        "D. 17,50 gram."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_c3_q1",
+                                section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                                text: "Câu 1: Amine nào sau đây thuộc loại amine bậc hai?",
+                                options: [
+                                        "A. CH₃NH₂.",
+                                        "B. CH₃-NH-C₂H₅.",
+                                        "C. (CH₃)₃N.",
+                                        "D. C₆H₅NH₂."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_c3_q2",
+                                section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                                text: "Câu 2: Ở điều kiện thường, amine nào sau đây là chất khí, có mùi khai tương tự ammonia?",
+                                options: [
+                                        "A. Dimethylamine.",
+                                        "B. Aniline.",
+                                        "C. Propylamine.",
+                                        "D. Phenylamine."
+                                ],
+                                correctIndex: 0
+                        },
+                        {
+                                id: "gk1_c3_q3",
+                                section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                                text: "Câu 3: Tên gốc-chức của amine có công thức cấu tạo CH₃-CH₂-NH₂ là",
+                                options: [
+                                        "A. ethylamine.",
+                                        "B. N-methylethylamine.",
+                                        "C. methylethanamine.",
+                                        "D. diethylamine."
+                                ],
+                                correctIndex: 0
+                        },
+                        {
+                                id: "gk1_c3_q4",
+                                section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                                text: "Câu 4: Dung dịch chất nào sau đây làm quỳ tím chuyển sang màu xanh?",
+                                options: [
+                                        "A. Aniline.",
+                                        "B. Methylamine.",
+                                        "C. Glycine.",
+                                        "D. Phenol."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_c3_q5",
+                                section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                                text: "Câu 5: Hiện tượng xảy ra khi nhỏ vài giọt nước bromine vào dung dịch aniline là",
+                                options: [
+                                        "A. Xuất hiện kết tủa màu đỏ gạch.",
+                                        "B. Xuất hiện kết tủa màu trắng.",
+                                        "C. Dung dịch chuyển sang màu xanh lam.",
+                                        "D. Khí không màu thoát ra."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_c3_q6",
+                                section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                                text: "Câu 6: Amino acid là hợp chất hữu cơ tạp chức chứa đồng thời hai nhóm chức nào?",
+                                options: [
+                                        "A. Nhóm -OH và -COOH.",
+                                        "B. Nhóm -NH₂ và -COOH.",
+                                        "C. Nhóm -CHO và -NH₂.",
+                                        "D. Nhóm -CO- và -NH₂."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_c3_q7",
+                                section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                                text: "Câu 7: Amino acid X có tên thường là alanine. Công thức cấu tạo của X là",
+                                options: [
+                                        "A. H₂N-C(CH₃)₂-COOH.",
+                                        "B. H₂N-CH₂-COOH.",
+                                        "C. CH₃-CH(NH₂)-COOH.",
+                                        "D. H₂N-CH₂-CH₂-COOH."
+                                ],
+                                correctIndex: 2
+                        },
+                        {
+                                id: "gk1_c3_q8",
+                                section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                                text: "Câu 8: Ở điều kiện thường, các amino acid tồn tại chủ yếu ở dạng cấu tạo nào?",
+                                options: [
+                                        "A. Phân tử trung hòa.",
+                                        "B. Cation mang điện dương.",
+                                        "C. Ion lưỡng cực.",
+                                        "D. Anion mang điện âm."
+                                ],
+                                correctIndex: 2
+                        },
+                        {
+                                id: "gk1_c3_q9",
+                                section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                                text: "Câu 9: Quá trình di chuyển của các amino acid trong điện trường dưới tác dụng của hiệu điện thế được gọi là",
+                                options: [
+                                        "A. Sự điện li.",
+                                        "B. Sự điện di.",
+                                        "C. Sự điện phân.",
+                                        "D. Sự điện giải."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_c3_q10",
+                                section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                                text: "Câu 10: Liên kết được hình thành giữa hai đơn vị α-amino acid qua nhóm -CO-NH- gọi là",
+                                options: [
+                                        "A. Liên kết glycoside.",
+                                        "B. Liên kết peptide.",
+                                        "C. Liên kết ester.",
+                                        "D. Liên kết hydrogen."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_c3_q11",
+                                section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                                text: "Câu 11: Thuốc thử Cu(OH)₂ trong môi trường kiềm tác dụng với chất nào sau đây tạo hợp chất màu tím đặc trưng (phản ứng biuret)?",
+                                options: [
+                                        "A. Dipeptide Gly-Ala.",
+                                        "B. Tripeptide Gly-Ala-Val.",
+                                        "C. Glucose.",
+                                        "D. Glycerol."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_c3_q12",
+                                section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                                text: "Câu 12: Để nhận biết dung dịch chứa peptide có từ 2 liên kết peptide trở lên (tripeptide trở lên), người ta dùng thuốc thử nào?",
+                                options: [
+                                        "A. Dung dịch Iodine.",
+                                        "B. Dung dịch Cu(OH)₂ trong môi trường kiềm.",
+                                        "C. Dung dịch AgNO₃/NH₃.",
+                                        "D. Quỳ tím."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_c3_q13",
+                                section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                                text: "Câu 13: Khi pha sữa bằng nước nóng thấy xuất hiện vón cục là do",
+                                options: [
+                                        "A. Sự đông tụ của protein bởi nhiệt độ.",
+                                        "B. Sự đông tụ của protein bởi acid.",
+                                        "C. Sự đông tụ của protein bởi base.",
+                                        "D. Sự đông tụ của protein do kim loại nặng."
+                                ],
+                                correctIndex: 0
+                        },
+                        {
+                                id: "gk1_c3_q14",
+                                section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                                text: "Câu 14: Tên gọi theo danh pháp thay thế của amine CH₃-CH₂-CH₂-NH₂ là",
+                                options: [
+                                        "A. Propan-1-amine.",
+                                        "B. Propan-2-amine.",
+                                        "C. Propylamine.",
+                                        "D. Isopropylamine."
+                                ],
+                                correctIndex: 0
+                        },
+                        {
+                                id: "gk1_c3_q15",
+                                section: "PHẦN I. CHƯƠNG 3: HỢP CHẤT CHỨA NITROGEN",
+                                text: "Câu 15: Dung dịch amino acid nào sau đây làm quỳ tím chuyển sang màu đỏ (môi trường acid)?",
+                                options: [
+                                        "A. Glycine.",
+                                        "B. Alanine.",
+                                        "C. Lysine.",
+                                        "D. Glutamic acid."
+                                ],
+                                correctIndex: 3
+                        },
+                        {
+                                id: "gk1_tf_q1",
+                                section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
+                                type: "true_false_group",
+                                text: "<strong>Câu 1:</strong> Isoamyl acetate có mùi chuối chín nên được dùng làm hương liệu nhân tạo. Trong ngành sơn, isoamyl acetate được dùng làm dung môi vecni, dung môi sơn mài,... Isoamyl acetate được điều chế theo các bước sau:<br><strong>Bước 1:</strong> Cho vào bình cầu 15 mL isoamyl alcohol (d = 0,81 g/mL), 10 mL acetic acid (d = 1,049 g/mL) và 7 mL H₂SO₄ đậm đặc, cho thêm vào bình vài viên đá bọt. Lắp ống sinh hàn hồi lưu thẳng đứng. Đun hồi lưu khoảng 1 giờ.<br><strong>Bước 2:</strong> Để nguội rồi rót sản phẩm vào phễu chiết, lắc đều rồi để yên 5 phút, chất lỏng tách thành hai lớp, loại bỏ lớp dưới, lấy lớp trên.<br><strong>Bước 3:</strong> Cho từ từ dung dịch Na₂CO₃ 10% vào phần chất lỏng ở bước 2 và lắc đều đến khi hết bọt khí, thêm tiếp 20 mL dung dịch NaCl bão hòa rồi để yên cho tách lớp. Chiết lấy phần chất lỏng phía trên, làm khan thu được isoamyl acetate.",
+                                subQuestions: [
+                                        {
+                                                id: "a",
+                                                text: "a) Isoamyl acetate rất ít tan trong nước và có khối lượng riêng nhỏ hơn khối lượng riêng của nước.",
+                                                correctAnswer: "Đúng"
+                                        },
+                                        {
+                                                id: "b",
+                                                text: "b) Thêm dung dịch Na₂CO₃ ở bước 3 nhằm mục đích loại bỏ acid lẫn trong isoamyl acetate.",
+                                                correctAnswer: "Đúng"
+                                        },
+                                        {
+                                                id: "c",
+                                                text: "c) Ở bước 1, xảy ra phản ứng thế nhóm -OH của (CH₃)₂CHCH₂CH₂OH bằng gốc CH₃COO⁻.",
+                                                correctAnswer: "Sai"
+                                        },
+                                        {
+                                                id: "d",
+                                                text: "d) Nếu hiệu suất phản ứng ester hóa là 60% và lượng isoamyl acetate bị hao hụt mất 5% thì khối lượng isoamyl acetate thu được là 10,23 gam. (Kết quả làm tròn đến hàng phần trăm).",
+                                                correctAnswer: "Đúng"
+                                        }
+                                ]
+                        },
+                        {
+                                id: "gk1_tf_q2",
+                                section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
+                                type: "true_false_group",
+                                text: "<strong>Câu 2:</strong> Một học sinh tiến hành tổng hợp isoamyl acetate (thành phần chính của dầu chuối) từ acetic acid và isoamyl alcohol theo phương trình hóa học sau:<br>$$CH_3COOH + HO-CH_2-CH_2-CH(CH_3)_2 \\xrightarrow{H_2SO_4, t^\\circ} CH_3COOCH_2-CH_2-CH(CH_3)_2 + H_2O$$Cho biết số sóng hấp thụ đặc trưng của một số liên kết trên phổ hồng ngoại (IR):<br>• Liên kết O-H (alcohol): 3650 - 3200 cm⁻¹<br>• Liên kết O-H (carboxylic acid): 3300 - 2500 cm⁻¹<br>• Liên kết C=O (ester, carboxylic acid): 1780 - 1650 cm⁻¹",
+                                subQuestions: [
+                                        {
+                                                id: "a",
+                                                text: "a) Tách isoamyl acetate từ hỗn hợp sau phản ứng có thể thực hiện bằng phương pháp chiết.",
+                                                correctAnswer: "Đúng"
+                                        },
+                                        {
+                                                id: "b",
+                                                text: "b) Isoamyl acetate là ester no, đơn chức, mạch hở.",
+                                                correctAnswer: "Đúng"
+                                        },
+                                        {
+                                                id: "c",
+                                                text: "c) Phổ hồng ngoại có số sóng hấp thụ ở 3350 cm⁻¹ là phổ của acetic acid.",
+                                                correctAnswer: "Sai"
+                                        },
+                                        {
+                                                id: "d",
+                                                text: "d) Thực hiện phản ứng giữa 9,0 gam acetic acid và 8,8 gam isoamyl alcohol, với hiệu suất phản ứng là 60% thì thu được 7,8 gam isoamyl acetate.",
+                                                correctAnswer: "Đúng"
+                                        }
+                                ]
+                        },
+                        {
+                                id: "gk1_tf_q3",
+                                section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
+                                type: "true_false_group",
+                                text: "<strong>Câu 3:</strong> Ethyl acetate là một ester được sử dụng làm dung môi để tách, chiết chất hữu cơ. Hợp chất này được điều chế từ acetic acid, ethanol theo phản ứng:<br>$$CH_3COOH + C_2H_5OH \\xrightleftharpoons{H_2SO_4 \\text{ đặc}, t^\\circ} CH_3COOC_2H_5 + H_2O \\quad (*)$$Biết nhiệt độ trong bình cầu phản ứng giữ ở mức 65 - 70°C, nhiệt độ trong ống sinh hàn duy trì ở 25°C. Nhiệt độ sôi của các hợp chất: C₂H₅OH (78,3°C), CH₃COOH (118°C), H₂O (100°C), CH₃COOC₂H₅ (77°C), H₂SO₄ (337°C).",
+                                subQuestions: [
+                                        {
+                                                id: "a",
+                                                text: "a) Khi thực hiện đun nóng 6,0 gam acetic acid với 6,0 gam ethanol có H₂SO₄ đặc làm xúc tác. Khối lượng ester tạo thành với hiệu suất phản ứng 60% là 6,9 gam.",
+                                                correctAnswer: "Sai"
+                                        },
+                                        {
+                                                id: "b",
+                                                text: "b) Chất lỏng trong bình hứng có ethyl acetate. Vai trò của ống sinh hàn để ngưng tụ hơi, nước làm lạnh đi vào ở đầu thấp và đi ra ở đầu cao.",
+                                                correctAnswer: "Đúng"
+                                        },
+                                        {
+                                                id: "c",
+                                                text: "c) Ban đầu bình cầu chứa acetic acid, ethanol và sulfuric acid đặc. Nếu nhiệt độ phản ứng ở bình cầu càng cao thì hiệu suất phản ứng điều chế ethyl acetate càng cao.",
+                                                correctAnswer: "Sai"
+                                        },
+                                        {
+                                                id: "d",
+                                                text: "d) Trong phản ứng (*) phân tử H₂O tạo nên từ -OH trong nhóm -COOH của acetic acid và H trong nhóm -OH của ethanol.",
+                                                correctAnswer: "Đúng"
+                                        }
+                                ]
+                        },
+                        {
+                                id: "gk1_tf_q4",
+                                section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
+                                type: "true_false_group",
+                                text: "<strong>Câu 4:</strong> Tiến hành thí nghiệm theo trình tự các bước như sau:<br><strong>Bước 1:</strong> Cho vào bát sứ nhỏ khoảng 1 gam mỡ (hoặc dầu thực vật) và 2 - 2,5 mL dung dịch NaOH 40%.<br><strong>Bước 2:</strong> Đun hỗn hợp sôi nhẹ và liên tục khuấy đều bằng đũa thủy tinh trong 8 - 10 phút. Thỉnh thoảng thêm vài giọt nước cất để giữ cho thể tích hỗn hợp không đổi.<br><strong>Bước 3:</strong> Sau 8 - 10 phút, rót thêm vào hỗn hợp 4 - 5 mL dung dịch NaCl bão hòa nóng, khuấy nhẹ rồi để nguội.",
+                                subQuestions: [
+                                        {
+                                                id: "a",
+                                                text: "a) Phản ứng xảy ra trong thí nghiệm được gọi là phản ứng xà phòng hoá.",
+                                                correctAnswer: "Đúng"
+                                        },
+                                        {
+                                                id: "b",
+                                                text: "b) Sau bước 2, hỗn hợp trở thành đồng nhất.",
+                                                correctAnswer: "Đúng"
+                                        },
+                                        {
+                                                id: "c",
+                                                text: "c) Sau bước 3, có lớp chất rắn màu trắng nhẹ nổi lên trên.",
+                                                correctAnswer: "Đúng"
+                                        },
+                                        {
+                                                id: "d",
+                                                text: "d) Vai trò của NaCl bão hoà ở bước 3 là để trung hoà kiềm dư sau phản ứng.",
+                                                correctAnswer: "Sai"
+                                        }
+                                ]
+                        },
+                        {
+                                id: "gk1_tf_q5",
+                                section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
+                                type: "true_false_group",
+                                text: "<strong>Câu 5:</strong> Tiến hành thí nghiệm xà phòng hóa chất béo: Cho vào bát sứ nhỏ 1 gam mỡ lợn (chứa tristearin) và 2,5 mL dung dịch NaOH 40%. Đun sôi nhẹ hỗn hợp và khuấy đều trong 10 - 15 phút, thỉnh thoảng thêm nước cất. Sau đó, rót thêm 5 mL dung dịch NaCl bão hòa nóng, khuấy nhẹ rồi để nguội.",
+                                subQuestions: [
+                                        {
+                                                id: "a",
+                                                text: "a) Phản ứng xà phòng hóa tristearin bằng dung dịch NaOH là phản ứng thuận nghịch (hai chiều).",
+                                                correctAnswer: "Sai"
+                                        },
+                                        {
+                                                id: "b",
+                                                text: "b) Việc thêm dung dịch NaCl bão hòa ở bước cuối làm tăng khối lượng riêng dung dịch và giảm độ tan của muối sodium stearate, giúp xà phòng tách ra nổi lên trên.",
+                                                correctAnswer: "Đúng"
+                                        },
+                                        {
+                                                id: "c",
+                                                text: "c) Nếu thay mỡ lợn bằng dầu ăn thực vật chứa triolein thì sau thí nghiệm vẫn thu được xà phòng.",
+                                                correctAnswer: "Đúng"
+                                        },
+                                        {
+                                                id: "d",
+                                                text: "d) Trong công nghiệp, phản ứng xà phòng hóa chất béo được dùng để sản xuất xà phòng và glycerol.",
+                                                correctAnswer: "Đúng"
+                                        }
+                                ]
+                        },
+                        {
+                                id: "gk1_tf_q6",
+                                section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
+                                type: "true_false_group",
+                                text: "<strong>Câu 6:</strong> Valine là một amino acid thiết yếu, tham gia vào nhiều chức năng của cơ thể, thúc đẩy quá trình phát triển cơ bắp và phục hồi mô. Công thức cấu tạo của valine là $(CH_3)_2CH-CH(NH_2)-COOH$.",
+                                subQuestions: [
+                                        {
+                                                id: "a",
+                                                text: "a) Công thức phân tử của valine là C₅H₁₀NO₂.",
+                                                correctAnswer: "Sai"
+                                        },
+                                        {
+                                                id: "b",
+                                                text: "b) Ở điều kiện thường, valine là chất rắn màu trắng, không tan trong nước, có vị ngọt.",
+                                                correctAnswer: "Sai"
+                                        },
+                                        {
+                                                id: "c",
+                                                text: "c) Khi cho valine tác dụng với acid HCl thu được muối có công thức phân tử là C₅H₁₂NO₂Cl.",
+                                                correctAnswer: "Đúng"
+                                        },
+                                        {
+                                                id: "d",
+                                                text: "d) Valine là hợp chất hữu cơ đa chức.",
+                                                correctAnswer: "Sai"
+                                        }
+                                ]
+                        },
+                        {
+                                id: "gk1_tf_q7",
+                                section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
+                                type: "true_false_group",
+                                text: "<strong>Câu 7:</strong> Glutamic acid được sử dụng bởi hầu hết các sinh vật sống trong quá trình sinh tổng hợp protein. Công thức cấu tạo của glutamic acid là $HOOC-CH_2-CH_2-CH(NH_2)-COOH$.",
+                                subQuestions: [
+                                        {
+                                                id: "a",
+                                                text: "a) Glutamic acid là một hợp chất hữu cơ đa chức có công thức phân tử là C₅H₉O₄N.",
+                                                correctAnswer: "Sai"
+                                        },
+                                        {
+                                                id: "b",
+                                                text: "b) Tên bán hệ thống của glutamic acid là 2-aminopentane-1,5-dioic acid.",
+                                                correctAnswer: "Sai"
+                                        },
+                                        {
+                                                id: "c",
+                                                text: "c) Glutamic acid là hợp chất lưỡng tính, vừa tác dụng với acid mạnh tạo muối ammonium vừa tác dụng với base mạnh tạo muối carboxylate.",
+                                                correctAnswer: "Đúng"
+                                        },
+                                        {
+                                                id: "d",
+                                                text: "d) Cho 22,05 gam glutamic acid tác dụng với dung dịch NaOH dư, thu được 28,65 gam muối.",
+                                                correctAnswer: "Đúng"
+                                        }
+                                ]
+                        },
+                        {
+                                id: "gk1_tf_q8",
+                                section: "PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI",
+                                type: "true_false_group",
+                                text: "<strong>Câu 8:</strong> Lysine là amino acid thiết yếu ($H_2N-(CH_2)_4-CH(NH_2)-COOH$) có điểm đẳng điện pI = 9,7 (pI là giá trị pH mà nồng độ ion lưỡng cực đạt cực đại. Khi pH < pI amino acid tồn tại chủ yếu ở dạng cation; khi pH > pI tồn tại chủ yếu ở dạng anion).",
+                                subQuestions: [
+                                        {
+                                                id: "a",
+                                                text: "a) Lysine có 6 nguyên tử C trong phân tử.",
+                                                correctAnswer: "Đúng"
+                                        },
+                                        {
+                                                id: "b",
+                                                text: "b) Lysine vừa tác dụng với dung dịch HCl, vừa tác dụng với dung dịch NaOH.",
+                                                correctAnswer: "Đúng"
+                                        },
+                                        {
+                                                id: "c",
+                                                text: "c) Trong phân tử peptide Lys-Gly-Ala, amino acid đầu N là Lys.",
+                                                correctAnswer: "Đúng"
+                                        },
+                                        {
+                                                id: "d",
+                                                text: "d) Trong dung dịch pH = 6, có thể tách hỗn hợp gồm lysine và glutamic acid (pI = 3,2) bằng phương pháp điện di.",
+                                                correctAnswer: "Đúng"
+                                        }
+                                ]
+                        },
+                        {
+                                id: "gk1_sa_q1",
+                                section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                                type: "short_answer",
+                                text: "Câu 1: Cho các chất sau: saccharose, glucose, fructose, cellulose. Số chất có phản ứng với thuốc thử Tollens (đun nóng) là ____.",
+                                correctAnswer: "2"
+                        },
+                        {
+                                id: "gk1_sa_q2",
+                                section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                                type: "short_answer",
+                                text: "Câu 2: Cho dãy các dung dịch: glucose, saccharose, fructose, tinh bột, cellulose. Có bao nhiêu dung dịch trong dãy phản ứng được với Cu(OH)₂ ở nhiệt độ thường tạo thành dung dịch có màu xanh lam?",
+                                correctAnswer: "3"
+                        },
+                        {
+                                id: "gk1_sa_q3",
+                                section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                                type: "short_answer",
+                                text: "Câu 3: Cho các chất: Ala-Gly-Ala (1), glucose (2), glycine (3), triolein (4), methyl formate (5) và tinh bột (6). Gắn số thứ tự theo chiều tăng dần các chất bị thủy phân trong môi trường acid ở điều kiện thích hợp (VD: 123; 146; 2356;...):",
+                                correctAnswer: "1456"
+                        },
+                        {
+                                id: "gk1_sa_q4",
+                                section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                                type: "short_answer",
+                                text: "Câu 4: Cho aniline lần lượt tác dụng với dung dịch HCl, dung dịch NaOH, dung dịch Br₂, HNO₂/HCl ở điều kiện (0 - 5°C). Có bao nhiêu trường hợp xảy ra phản ứng?",
+                                correctAnswer: "3"
+                        },
+                        {
+                                id: "gk1_sa_q5",
+                                section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                                type: "short_answer",
+                                text: "Câu 5: Cho ethylamine lần lượt vào dung dịch FeCl₃ (1); dung dịch HCl (2); Cu(OH)₂ (3); dung dịch NaCl (4); dung dịch Br₂ (5); HNO₂ ở điều kiện thường (6). Ethylamine phản ứng được với các chất nào, gắn số thứ tự theo chiều tăng dần các chất (VD: 123; 146; 2356;...):",
+                                correctAnswer: "1236"
+                        },
+                        {
+                                id: "gk1_sa_q6",
+                                section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                                type: "short_answer",
+                                text: "Câu 6: Cho các chất: methylamine, glycine, alanine, ethylacetate, glutamic acid. Có bao nhiêu chất phản ứng với dung dịch HCl tạo muối?",
+                                correctAnswer: "4"
+                        },
+                        {
+                                id: "gk1_sa_q7",
+                                section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                                type: "short_answer",
+                                text: "Câu 7: Cho các phát biểu sau:<br>(1) Glycine phản ứng được với dung dịch HCl.<br>(2) Phân tử lysine có hai nguyên tử nitrogen.<br>(3) Trong môi trường acid, dạng tồn tại chủ yếu của alanine là dạng cation.<br>(4) Protein là một trong những nguồn thức ăn bổ sung các amino acid thiết yếu cho cơ thể.<br>(5) “Gạch cua” nổi lên khi nấu riêu cua là hiện tượng đông tụ protein.<br>(6) Số liên kết peptide có trong một phân tử Ala-Gly-Val-Gly-Ala là 5.<br>Liệt kê các phát biểu đúng theo thứ tự từ nhỏ đến lớn (Ví dụ: 1234,...):",
+                                correctAnswer: "12345"
+                        },
+                        {
+                                id: "gk1_sa_q8",
+                                section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                                type: "short_answer",
+                                text: "Câu 8: Cho các phát biểu sau:<br>(1) Sự đông tụ của protein chỉ xảy ra khi đun nóng dung dịch protein.<br>(2) Các amino acid thiên nhiên kiến tạo nên protein của cơ thể sống hầu hết là α-amino acid.<br>(3) Nhỏ vài giọt nước bromine vào ống nghiệm đựng dung dịch aniline sẽ thấy xuất hiện kết tủa trắng.<br>(4) Dung dịch methylamine tác dụng với Cu(OH)₂ trong môi trường kiềm, đun nóng thì thu được kết tủa màu đỏ gạch.<br>(5) Hemoglobin là protein hình sợi nên tan được trong nước tạo dung dịch keo.<br>(6) Cho vài giọt dung dịch HNO₃ đặc vào ống nghiệm đựng dung dịch lòng trắng trứng thấy xuất hiện kết tủa màu vàng.<br>Liệt kê các phát biểu sai theo thứ tự tăng dần (Ví dụ: 1234, 1346,...):",
+                                correctAnswer: "145"
+                        },
+                        {
+                                id: "gk1_sa_q9",
+                                section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                                type: "short_answer",
+                                text: "Câu 9: Một nhóm học sinh muốn thử nghiệm phản ứng tráng bạc lên kính bằng nguyên liệu đầu là glucose. Giả sử lớp bạc có diện tích là 100 cm² và độ dày là 0,5 μm. Biết rằng khối lượng riêng của bạc là 10,49 g/cm³ và khối lượng mol của glucose là 180 g/mol. Tính lượng glucose cần dùng (gam) với giả thiết hiệu suất phản ứng là 100% (làm tròn đến 4 chữ số thập phân):",
+                                correctAnswer: "0,0437 | 0.0437 | 0.044 | 0,044"
+                        },
+                        {
+                                id: "gk1_sa_q10",
+                                section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                                type: "short_answer",
+                                text: "Câu 10: Cho 0,1 mol butanoic acid tác dụng với 0,1 mol methyl alcohol có mặt H₂SO₄ đặc làm xúc tác. Tính khối lượng ester tạo thành (gam), biết giả thiết 65% alcohol chuyển hoá thành ester:",
+                                correctAnswer: "6,63 | 6.63"
+                        },
+                        {
+                                id: "gk1_sa_q11",
+                                section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                                type: "short_answer",
+                                text: "Câu 11: Số miligam KOH dùng để xà phòng hoá hết lượng triglyceride có trong 1 g chất béo được gọi là chỉ số ester hoá của loại chất béo đó. Tính chỉ số ester của một loại chất béo chứa 65% tristearin và 23% triolein (làm tròn đến hàng đơn vị)?",
+                                correctAnswer: "166"
+                        },
+                        {
+                                id: "gk1_sa_q12",
+                                section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                                type: "short_answer",
+                                text: "Câu 12: Chỉ số xà phòng hoá là số miligam KOH dùng để xà phòng hoá hết triglycerid và trung hoà hết lượng acid tự do trong 1 g chất béo. Một chất béo chứa 3,55% stearic acid và 89% tristearin về khối lượng, còn lại là các chất không tham gia phản ứng với KOH. Tính chỉ số xà phòng hoá của chất béo trên (làm tròn đến hàng đơn vị):",
+                                correctAnswer: "175"
+                        },
+                        {
+                                id: "gk1_sa_q13",
+                                section: "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+                                type: "short_answer",
+                                text: "Câu 13: Một loại chất béo có chứa 80% tristearin về khối lượng. Để sản xuất 2 triệu chai nước rửa tay (có chứa chất dưỡng ẩm glycerol) cần dùng tối thiểu x tấn loại chất béo trên cho phản ứng với dung dịch NaOH, đun nóng. Biết rằng trong mỗi chai nước rửa tay có chứa 7 gam glycerol. Tính giá trị của x (tấn, làm tròn đến hàng đơn vị)?",
+                                correctAnswer: "169"
+                        }
                 ]
-            },
-    
-            // Task 2: GREEN LIVING (Câu 51 - 55)
-            {
-                id: "reading_gk1_green_living",
-                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
-                type: "reading_group",
-                passage: "<strong>Task 2. Read the following passage and mark the letter A, B, C or D to indicate the correct answer to each of the questions from 51 to 55.</strong><br><br><h3 style=\"text-align:center;margin:10px 0;color:var(--text-main);\">GREEN LIVING</h3><br>Green living means making choices that protect the environment and use natural resources wisely. In recent years, more and more people, especially young people, have started to adopt this lifestyle.<br><br>There are many simple ways to live green. Instead of using private cars, people can walk, cycle or take public transport to reduce carbon emissions. At home, we can switch off lights and electrical devices when we do not need them, which saves both energy and money. Many families also separate their rubbish and recycle paper, glass and plastic so that less waste goes to landfills.<br><br>Shopping habits are also important. Customers can bring reusable bags, buy local products with less packaging, and choose second-hand items instead of new ones. Although eco-friendly products are sometimes more expensive, they usually last longer and cause less damage to the planet.<br><br>Of course, living green is not always easy. Some people think that one person cannot make a difference, and others find it inconvenient to change old habits. However, if each person makes small changes every day, the combined effect can be enormous. Schools, companies and governments can help by raising awareness and providing recycling facilities. Only when everyone takes action can we protect our planet for future generations.",
-                subQuestions: [
-                    {
-                        id: "gk1_eng_q51",
-                        text: "Question 51: According to paragraph 2, why do many families separate their rubbish?",
-                        options: [
-                            "A. So that less waste goes to landfills.",
-                            "B. So that they can sell it for money.",
-                            "C. So that they can buy fewer things.",
-                            "D. So that they can use more electricity."
-                        ],
-                        correctIndex: 0
-                    },
-                    {
-                        id: "gk1_eng_q52",
-                        text: "Question 52: The word “enormous” in paragraph 4 is closest in meaning to _____.",
-                        options: ["A. tiny", "B. huge", "C. slight", "D. temporary"],
-                        correctIndex: 1
-                    },
-                    {
-                        id: "gk1_eng_q53",
-                        text: "Question 53: According to paragraph 3, why are eco-friendly products worth buying?",
-                        options: [
-                            "A. They are always cheaper than other products.",
-                            "B. They usually last longer and cause less damage to the planet.",
-                            "C. They are made only from plastic.",
-                            "D. They are sold only in supermarkets."
-                        ],
-                        correctIndex: 1
-                    },
-                    {
-                        id: "gk1_eng_q54",
-                        text: "Question 54: It can be inferred from paragraph 4 that _____.",
-                        options: [
-                            "A. doubts about their own influence may discourage some people from living green",
-                            "B. all people have already given up their old habits",
-                            "C. governments never help people to live green",
-                            "D. recycling facilities are useless"
-                        ],
-                        correctIndex: 0
-                    },
-                    {
-                        id: "gk1_eng_q55",
-                        text: "Question 55: Which of the following best summarises the main idea of the passage?",
-                        options: [
-                            "A. Green living is a lifestyle that everyone can follow through small, regular actions.",
-                            "B. Shopping is the only way to protect the environment.",
-                            "C. Eco-friendly products are too expensive for most families.",
-                            "D. Governments should stop people from using cars."
-                        ],
-                        correctIndex: 0
-                    }
+        },
+        {
+                id: "de_chuong_1_ester_lipid",
+                title: "Chương 1: Ester - Lipid",
+                category: "hoa",
+                subject: "Hóa học",
+                description: "Hệ thống bài tập Chương 1: Ester - Lipid (Phần I. Lựa chọn: 24 câu | Phần II. Đúng/Sai: 6 câu | Phần III. Trả lời ngắn: 6 câu | Phần IV. Tự luận: 4 câu)",
+                scoreScale: 10,
+                scorePerQuestion: 0.25,
+                questions: [
+                        { id: "q1_chuong1_el", text: "Câu 1: Ester nào sau đây có công thức phân tử C₂H₄O₂?", options: ["A. Methyl acetate.", "B. Ethyl formate.", "C. Methyl formate.", "D. Ethyl acetate."], correctIndex: 2 },
+                        { id: "q2_chuong1_el", text: "Câu 2: Chất nào sau đây thuộc loại ester?", options: ["A. CH₃COOH.", "B. CH₃COOCH₃.", "C. C₂H₅OH.", "D. CH₃CHO."], correctIndex: 1 },
+                        { id: "q3_chuong1_el", text: "Câu 3: Ester CH₃COOC₂H₅ có tên gọi là", options: ["A. methyl acetate.", "B. ethyl acetate.", "C. ethyl formate.", "D. methyl formate."], correctIndex: 1 },
+                        { id: "q4_chuong1_el", text: "Câu 4: Tên gọi của ester HCOOCH₃ là", options: ["A. methyl formate.", "B. ethyl formate.", "C. methyl acetate.", "D. propyl formate."], correctIndex: 0 },
+                        { id: "q5_chuong1_el", text: "Câu 5: Thủy phân ester CH₃COOCH₃ trong dung dịch NaOH đun nóng, thu được muối có công thức là", options: ["A. HCOONa.", "B. CH₃COONa.", "C. C₂H₅COONa.", "D. CH₃COOK."], correctIndex: 1 },
+                        { id: "q6_chuong1_el", text: "Câu 6: Đun nóng ester HCOOC₂H₅ với dung dịch NaOH vừa đủ, sản phẩm thu được gồm", options: ["A. HCOONa và CH₃OH.", "B. CH₃COONa và C₂H₅OH.", "C. HCOONa và C₂H₅OH.", "D. CH₃COONa và CH₃OH."], correctIndex: 2 },
+                        { id: "q7_chuong1_el", text: "Câu 7: Phản ứng thủy phân ester trong môi trường acid là phản ứng", options: ["A. một chiều.", "B. không thuận nghịch.", "C. thuận nghịch.", "D. Oxi hóa - khử."], correctIndex: 2 },
+                        { id: "q8_chuong1_el", text: "Câu 8: Đun nóng ester RCOOR' trong dung dịch NaOH thu được sản phẩm là", options: ["A. RCOOH và R'OH.", "B. RCOONa và R'OH.", "C. RCOONa và R'COOH.", "D. RCOOH và R'Na."], correctIndex: 1 },
+                        { id: "q9_chuong1_el", text: "Câu 9: Phản ứng giữa alcohol và acid carboxylic tạo thành ester được gọi là phản ứng", options: ["A. xà phòng hóa.", "B. tráng bạc.", "C. ester hóa.", "D. trùng hợp."], correctIndex: 2 },
+                        { id: "q10_chuong1_el", text: "Câu 10: Chất béo là triester của glycerol với", options: ["A. acid mineral.", "B. acid béo.", "C. alcohol đơn chức.", "D. acid acetic."], correctIndex: 1 },
+                        { id: "q11_chuong1_el", text: "Câu 11: Công thức của tripalmitin là", options: ["A. (C₁₇H₃₅COO)₃C₃H₅.", "B. (C₁₅H₃₁COO)₃C₃H₅.", "C. (C₁₇H₃₃COO)₃C₃H₅.", "D. (C₂H₅COO)₃C₃H₅."], correctIndex: 1 },
+                        { id: "q12_chuong1_el", text: "Câu 12: Công thức của tristearin là", options: ["A. (C₁₇H₃₅COO)₃C₃H₅.", "B. (C₁₅H₃₁COO)₃C₃H₅.", "C. (C₁₇H₃₃COO)₃C₃H₅.", "D. (C₁₇H₃₁COO)₃C₃H₅."], correctIndex: 0 },
+                        { id: "q13_chuong1_el", text: "Câu 13: Ở nhiệt độ thường, chất béo nào sau đây ở trạng thái lỏng?", options: ["A. Tristearin.", "B. Tripalmitin.", "C. Triolein.", "D. Mỡ lợn."], correctIndex: 2 },
+                        { id: "q14_chuong1_el", text: "Câu 14: Ở nhiệt độ thường, chất béo nào sau đây ở trạng thái rắn?", options: ["A. Triolein.", "B. Tristearin.", "C. Dầu đậu nành.", "D. Dầu mè."], correctIndex: 1 },
+                        { id: "q15_chuong1_el", text: "Câu 15: Thủy phân hoàn toàn chất béo trong dung dịch NaOH luôn thu được", options: ["A. ethanol.", "B. glycerol.", "C. ethylene glycol.", "D. methanol."], correctIndex: 1 },
+                        { id: "q16_chuong1_el", text: "Câu 16: Cho chất béo triolein phản ứng với dung dịch NaOH đun nóng, muối thu được là", options: ["A. C₁₇H₃₅COONa.", "B. C₁₅H₃₁COONa.", "C. C₁₇H₃₃COONa.", "D. CH₃COONa."], correctIndex: 2 },
+                        { id: "q17_chuong1_el", text: "Câu 17: Ester nào sau đây có mùi thơm của chuối chín?", options: ["A. Isoamyl acetate.", "B. Benzyl acetate.", "C. Ethyl butyrate.", "D. Geranyl acetate."], correctIndex: 0 },
+                        { id: "q18_chuong1_el", text: "Câu 18: Phát biểu nào sau đây là SAI?", options: ["A. Ester ít tan trong nước.", "B. Nhiệt độ sôi của ester thấp hơn acid carboxylic có cùng số nguyên tử C.", "C. Phản ứng xà phòng hóa ester là phản ứng thuận nghịch.", "D. Chất béo không tan trong nước nhưng tan nhiều trong dầu hỏa."], correctIndex: 2 },
+                        { id: "q19_chuong1_el", text: "Câu 19: Đốt cháy hoàn toàn một ester no, đơn chức, mạch hở thu được CO₂ và H₂O theo tỉ lệ mol là", options: ["A. 1 : 2.", "B. 2 : 1.", "C. 1 : 1.", "D. 1 : 3."], correctIndex: 2 },
+                        { id: "q20_chuong1_el", text: "Câu 20: Cho 4,4 gram ester CH₃COOC₂H₅ tác dụng vừa đủ với dung dịch NaOH. Khối lượng NaOH đã phản ứng là (Biết M_CH₃COOC₂H₅ = 88, M_NaOH = 40)", options: ["A. 4,0 gram.", "B. 2,0 gram.", "C. 8,0 gram.", "D. 1,6 gram."], correctIndex: 1 },
+                        { id: "q21_chuong1_el", text: "Câu 21: Xà phòng hóa hoàn toàn 8,9 gram tristearin (C₁₇H₃₅COO)₃C₃H₅ (M = 890) bằng dung dịch NaOH vừa đủ. Khối lượng glycerol (M = 92) thu được là", options: ["A. 0,92 gram.", "B. 1,84 gram.", "C. 0,46 gram.", "D. 9,20 gram."], correctIndex: 0 },
+                        { id: "q22_chuong1_el", text: "Câu 22: Để chuyển hóa chất béo lỏng (như dầu thực vật) thành chất béo rắn (như bơ nhân tạo), người ta tiến hành phản ứng", options: ["A. xà phòng hóa.", "B. hydrogen hóa (Cộng H₂).", "C. thủy phân trong môi trường acid.", "D. dehalogen hóa."], correctIndex: 1 },
+                        { id: "q23_chuong1_el", text: "Câu 23: Phát biểu nào sau đây đúng về ứng dụng của chất béo?", options: ["A. Chất béo là nguồn cung cấp năng lượng cho cơ thể con người.", "B. Chất béo dùng để sản xuất dung dịch tráng bạc.", "C. Chất béo được dùng để điều chế chất plastic.", "D. Chất béo không có vai trò gì trong ngành công nghiệp thực phẩm."], correctIndex: 0 },
+                        { id: "q24_chuong1_el", text: "Câu 24: Dung dịch nào sau đây làm đổi màu quỳ tím sang đỏ?", options: ["A. CH₃COOCH₃.", "B. CH₃COOH.", "C. C₂H₅OH.", "D. C₃H₅(OH)₃."], correctIndex: 1 },
+
+                        // PHẦN II: CÂU TRẮC NGHIỆM ĐÚNG/SAI (6 câu)
+                        {
+                                id: "q25_chuong1_el",
+                                type: "true_false_group",
+                                text: "<strong>PHẦN II. CÂU TRẮC NGHIỆM ĐÚNG/SAI</strong><br>Câu 25: Cho công thức cấu tạo của ester X: CH₃COOC₂H₅.",
+                                subQuestions: [
+                                        { id: "a", text: "a) X là ester no, đơn chức, mạch hở.", correctAnswer: "Đúng" },
+                                        { id: "b", text: "b) Tên gọi của X là methyl acetate.", correctAnswer: "Sai" },
+                                        { id: "c", text: "c) Thủy phân X trong môi trường acid là phản ứng một chiều.", correctAnswer: "Sai" },
+                                        { id: "d", text: "d) Đốt cháy hoàn toàn 1 mol X thu được số mol CO₂ bằng số mol H₂O.", correctAnswer: "Đúng" }
+                                ]
+                        },
+                        {
+                                id: "q26_chuong1_el",
+                                type: "true_false_group",
+                                text: "Câu 26: Tiến hành thí nghiệm thủy phân triolein (C₁₇H₃₃COO)₃C₃H₅ trong dung dịch NaOH, đun nóng.",
+                                subQuestions: [
+                                        { id: "a", text: "a) Phản ứng xảy ra là phản ứng xà phòng hóa.", correctAnswer: "Đúng" },
+                                        { id: "b", text: "b) Sản phẩm thu được gồm glycerol và muối sodium oleate.", correctAnswer: "Đúng" },
+                                        { id: "c", text: "c) Sau phản ứng thu được hỗn hợp đồng nhất.", correctAnswer: "Đúng" },
+                                        { id: "d", text: "d) Triolein là chất béo rắn ở nhiệt độ thường.", correctAnswer: "Sai" }
+                                ]
+                        },
+                        {
+                                id: "q27_chuong1_el",
+                                type: "true_false_group",
+                                text: "Câu 27: Xét các tính chất vật lí của ester và chất béo:",
+                                subQuestions: [
+                                        { id: "a", text: "a) Ester và chất béo đều nhẹ hơn nước và rất ít tan trong nước.", correctAnswer: "Đúng" },
+                                        { id: "b", text: "b) Các ester thường có mùi thơm đặc trưng của các loại hoa quả.", correctAnswer: "Đúng" },
+                                        { id: "c", text: "c) Nhiệt độ sôi của ester cao hơn nhiệt độ sôi của alcohol có cùng số nguyên tử carbon.", correctAnswer: "Sai" },
+                                        { id: "d", text: "d) Mỡ lợn, mỡ bò có thành phần chính là các chất béo chứa gốc acid béo không no.", correctAnswer: "Sai" }
+                                ]
+                        },
+                        {
+                                id: "q28_chuong1_el",
+                                type: "true_false_group",
+                                text: "Câu 28: Cho các chất có công thức sau: (1) HCOOCH₃; (2) CH₃COOH; (3) C₂H₅OH; (4) (C₁₅H₃₁COO)₃C₃H₅.",
+                                subQuestions: [
+                                        { id: "a", text: "a) Chất (1) và chất (4) đều thuộc loại ester.", correctAnswer: "Đúng" },
+                                        { id: "b", text: "b) Thủy phân chất (1) và chất (4) trong dung dịch NaOH đun nóng đều thu được C₃H₅(OH)₃.", correctAnswer: "Sai" },
+                                        { id: "c", text: "c) Chất (2) có phản ứng tráng bạc.", correctAnswer: "Sai" },
+                                        { id: "d", text: "d) Nhiệt độ sôi của chất (2) cao hơn chất (3).", correctAnswer: "Đúng" }
+                                ]
+                        },
+                        {
+                                id: "q29_chuong1_el",
+                                type: "true_false_group",
+                                text: "Câu 29: Tiến hành thí nghiệm điều chế ethyl acetate trong phòng thí nghiệm từ CH₃COOH, C₂H₅OH và H₂SO₄ đặc.",
+                                subQuestions: [
+                                        { id: "a", text: "a) H₂SO₄ đặc đóng vai trò là chất xúc tác và hút nước để chuyển dịch cân bằng.", correctAnswer: "Đúng" },
+                                        { id: "b", text: "b) Phản ứng xảy ra là phản ứng một chiều.", correctAnswer: "Sai" },
+                                        { id: "c", text: "c) Sản phẩm ethyl acetate thu được là chất lỏng, nhẹ hơn nước và nổi lên trên.", correctAnswer: "Đúng" },
+                                        { id: "d", text: "d) Có thể thay H₂SO₄ đặc bằng HCl đặc mà hiệu suất phản ứng không thay đổi.", correctAnswer: "Sai" }
+                                ]
+                        },
+                        {
+                                id: "q30_chuong1_el",
+                                type: "true_false_group",
+                                text: "Câu 30: Về ứng dụng của xà phòng và chất béo:",
+                                subQuestions: [
+                                        { id: "a", text: "a) Xà phòng được sản xuất bằng cách đun chất béo với dung dịch kiềm (NaOH hoặc KOH).", correctAnswer: "Đúng" },
+                                        { id: "b", text: "b) Dầu mỡ động thực vật bị ôi thiu là do các liên kết đôi C = C ở gốc acid béo bị oxi hóa bởi không khí.", correctAnswer: "Đúng" },
+                                        { id: "c", text: "c) Thức ăn chứa chất béo giúp cơ thể hấp thụ các vitamin tan trong chất béo như A, D, E, K.", correctAnswer: "Đúng" },
+                                        { id: "d", text: "d) Dầu mỡ bôi trơn máy móc có cùng thành phần hóa học với dầu ăn.", correctAnswer: "Sai" }
+                                ]
+                        },
+
+                        // PHẦN III: CÂU TRẮC NGHIỆM TRẢ LỜI NGẮN
+                        {
+                                id: "q31_chuong1_el",
+                                type: "short_answer",
+                                text: "<strong>PHẦN III. CÂU TRẮC NGHIỆM TRẢ LỜI NGẮN</strong><br>Câu 31: Cho các chất sau: CH₃COOCH₃, C₂H₅OH, HCOOCH₃, CH₃COOH. Số chất thuộc loại ester là ____.",
+                                correctAnswer: "2"
+                        },
+                        {
+                                id: "q32_chuong1_el",
+                                type: "short_answer",
+                                text: "Câu 32: Ester được tạo thành từ acid CH₃COOH và alcohol C₂H₅OH có công thức phân tử là C_xH_yO₂. Giá trị của x là ____.",
+                                correctAnswer: "4"
+                        },
+                        {
+                                id: "q33_chuong1_el",
+                                type: "short_answer",
+                                text: "Câu 33: Phân tử khối của tripalmitin (C₁₅H₃₁COO)₃C₃H₅ là ____ amu.",
+                                correctAnswer: "806"
+                        },
+                        {
+                                id: "q34_chuong1_el",
+                                type: "short_answer",
+                                text: "Câu 34: Để xà phòng hóa hoàn toàn 0,1 mol methyl acetate CH₃COOCH₃ cần dùng vừa đủ V mL dung dịch NaOH 1M. Giá trị của V là ____ mL.",
+                                correctAnswer: "100"
+                        },
+                        {
+                                id: "q35_chuong1_el",
+                                type: "short_answer",
+                                text: "Câu 35: Đốt cháy hoàn toàn 0,1 mol một ester no, đơn chức, mạch hở X thu được 0,3 mol CO₂. Số nguyên tử carbon trong phân tử X là ____.",
+                                correctAnswer: "3"
+                        },
+                        {
+                                id: "q36_chuong1_el",
+                                type: "short_answer",
+                                text: "Câu 36: Cho 6,0 gram acetic acid CH₃COOH tác dụng với lượng dư ethanol C₂H₅OH (xúc tác H₂SO₄ đặc, đun nóng). Thu được 6,6 gram ethyl acetate. Hiệu suất của phản ứng ester hóa là ____ % (Làm tròn đến hàng đơn vị).",
+                                correctAnswer: "75"
+                        },
+
+                        // PHẦN IV: CÂU HỎI TỰ LUẬN NGHĨA HẸP (4 câu)
+                        {
+                                id: "q37_chuong1_el",
+                                type: "essay_group",
+                                text: "<strong>PHẦN IV. CÂU HỎI TỰ LUẬN NGHĨA HẸP</strong><br>Câu 37: Viết phương trình hóa học của các phản ứng sau (ghi rõ điều kiện nếu có):",
+                                subQuestions: [
+                                        { id: "a", text: "a) Thủy phân CH₃COOC₂H₅ trong dung dịch NaOH, đun nóng.", correctAnswer: "CH3COOC2H5 + NaOH -t°-> CH3COONa + C2H5OH" },
+                                        { id: "b", text: "b) Thủy phân tristearin (C₁₇H₃₅COO)₃C₃H₅ trong dung dịch NaOH, đun nóng.", correctAnswer: "(C17H35COO)3C3H5 + 3NaOH -t°-> 3C17H35COONa + C3H5(OH)3" }
+                                ]
+                        },
+                        {
+                                id: "q38_chuong1_el",
+                                type: "essay",
+                                text: "Câu 38: Hãy phân biệt hai khái niệm: Dầu ăn (dầu thực vật) và Dầu mỡ bôi trơn máy móc về thành phần hóa học.",
+                                correctAnswer: "Dầu ăn có thành phần chính là chất béo (triester của glycerol và acid béo). Dầu mỡ bôi trơn máy móc có thành phần là hỗn hợp các hydrocarbon (dầu mỡ mỏ)."
+                        },
+                        {
+                                id: "q39_chuong1_el",
+                                type: "essay_group",
+                                text: "Câu 39: Đun nóng 8,8 gram ethyl acetate (CH₃COOC₂H₅) với 150 mL dung dịch NaOH 1M đến khi phản ứng xảy ra hoàn toàn.",
+                                subQuestions: [
+                                        { id: "a", text: "a) Tính số mol ethyl acetate và số mol NaOH ban đầu.", correctAnswer: "n_ester = 8.8 / 88 = 0.1 mol; n_NaOH = 0.15 x 1 = 0.15 mol." },
+                                        { id: "b", text: "b) Cho biết chất nào còn dư sau phản ứng?", correctAnswer: "NaOH dư (0.15 mol > 0.1 mol)." },
+                                        { id: "c", text: "c) Cô cạn dung dịch sau phản ứng, thu được bao nhiêu gram chất rắn khô?", correctAnswer: "m_rắn = m_CH3COONa + m_NaOH_dư = (0.1 x 82) + (0.05 x 40) = 8.2 + 2 = 10.2 gram." }
+                                ]
+                        },
+                        {
+                                id: "q40_chuong1_el",
+                                type: "essay",
+                                text: "Câu 40: Tại sao khi rán (chiên) thức ăn bằng dầu ăn, nếu dùng lại dầu ăn đã chiên đi chiên lại nhiều lần ở nhiệt độ cao thì không tốt cho sức khỏe?",
+                                correctAnswer: "Khi đun nóng ở nhiệt độ cao nhiều lần, liên kết đôi trong chất béo bị oxi hóa tạo thành các aldehyde, peroxide độc hại, đồng thời phân hủy tạo ra các chất có nguy cơ gây ung thư."
+                        }
                 ]
-            },
-    
-            // --- III. WRITING (Câu 56 - 60) ---
-            {
-                id: "gk1_eng_q56",
-                section: "PHẦN B: WRITING",
-                type: "short_answer",
-                text: "Question 56 (Rearrange): Sắp xếp các từ/cụm từ sau thành câu hoàn chỉnh (không thay đổi hoặc thêm từ):\n<strong>the young volunteer / is / for / and / admired / her / generosity / kindness</strong>",
-                correctAnswer: "The young volunteer is admired for her kindness and generosity. | The young volunteer is admired for her kindness and generosity | The young volunteer is admired for her generosity and kindness. | The young volunteer is admired for her generosity and kindness"
-            },
-            {
-                id: "gk1_eng_q57",
-                section: "PHẦN B: WRITING",
-                type: "short_answer",
-                text: "Question 57 (Rearrange): Sắp xếp các từ/cụm từ sau thành câu hoàn chỉnh (không thay đổi hoặc thêm từ):\n<strong>the cultural exchange programme / helps / students / understand / better / different traditions</strong>",
-                correctAnswer: "The cultural exchange programme helps students understand different traditions better. | The cultural exchange programme helps students understand different traditions better | The cultural exchange programme helps students understand better different traditions. | The cultural exchange programme helps students understand better different traditions"
-            },
-            {
-                id: "gk1_eng_q58",
-                section: "PHẦN B: WRITING",
-                type: "short_answer",
-                text: "Question 58 (Rearrange): Sắp xếp các từ/cụm từ sau thành câu hoàn chỉnh (không thay đổi hoặc thêm từ):\n<strong>using public transport / helps / air pollution / reduce / in big cities</strong>",
-                correctAnswer: "Using public transport helps reduce air pollution in big cities. | Using public transport helps reduce air pollution in big cities"
-            },
-            {
-                id: "gk1_eng_q59",
-                section: "PHẦN B: WRITING",
-                type: "short_answer",
-                text: "Question 59 (Combine): Kết hợp cặp câu sau thành một câu, sử dụng từ gợi ý trong ngoặc:\nWe were visiting a village of the Tay ethnic group. Heavy rain started at that time.\n<strong>→ (Dùng \"when\"):</strong>",
-                correctAnswer: "We were visiting a village of the Tay ethnic group when heavy rain started. | We were visiting a village of the Tay ethnic group when heavy rain started | We were visiting a village of the Tay ethnic group when heavy rain began. | When heavy rain started, we were visiting a village of the Tay ethnic group."
-            },
-            {
-                id: "gk1_eng_q60",
-                section: "PHẦN B: WRITING",
-                type: "short_answer",
-                text: "Question 60 (Combine): Kết hợp cặp câu sau thành một câu, sử dụng từ gợi ý trong ngoặc:\nNguyen Thi Hoa is a young entrepreneur. Her recycled-paper products are popular with students.\n<strong>→ (Dùng \"whose\"):</strong>",
-                correctAnswer: "Nguyen Thi Hoa, whose recycled-paper products are popular with students, is a young entrepreneur. | Nguyen Thi Hoa, whose recycled-paper products are popular with students, is a young entrepreneur"
-            }
-        ]
-    },
-    {
-        "id": "on_tap_giua_ki_1_vat_ly_12",
-        "title": "Ôn tập GKI - Vật lí 12",
-        "category": "ly",
-        "subject": "Vật lí",
-        "description": "Trọn bộ 3 đề ôn tập kiểm tra Giữa kì I môn Vật lí 12 (Nhiệt học & Vật lí nhiệt). Gồm 3 đề hoàn chỉnh theo cấu trúc chuẩn: Trắc nghiệm 4 lựa chọn, Đúng/Sai, Trả lời ngắn và Tự luận.",
-        "presets": [
-                {
-                        "id": "all",
-                        "label": "✨ Toàn bộ cả 3 đề (60 câu/bài)",
-                        "sectionIds": [
-                                "de1_mcq",
-                                "de1_tf",
-                                "de1_sa",
-                                "de1_essay",
-                                "de2_mcq",
-                                "de2_tf",
-                                "de2_sa",
-                                "de2_essay",
-                                "de3_mcq",
-                                "de3_tf",
-                                "de3_sa",
-                                "de3_essay"
-                        ]
-                },
-                {
-                        "id": "de1",
-                        "label": "📘 Trọn vẹn Đề 1 (20 câu/bài)",
-                        "sectionIds": [
-                                "de1_mcq",
-                                "de1_tf",
-                                "de1_sa",
-                                "de1_essay"
-                        ]
-                },
-                {
-                        "id": "de2",
-                        "label": "📗 Trọn vẹn Đề 2 (20 câu/bài)",
-                        "sectionIds": [
-                                "de2_mcq",
-                                "de2_tf",
-                                "de2_sa",
-                                "de2_essay"
-                        ]
-                },
-                {
-                        "id": "de3",
-                        "label": "📙 Trọn vẹn Đề 3 (20 câu/bài)",
-                        "sectionIds": [
-                                "de3_mcq",
-                                "de3_tf",
-                                "de3_sa",
-                                "de3_essay"
-                        ]
-                },
-                {
-                        "id": "all_mcq",
-                        "label": "📝 Tất cả Trắc nghiệm (36 câu)",
-                        "sectionIds": [
-                                "de1_mcq",
-                                "de2_mcq",
-                                "de3_mcq"
-                        ]
-                },
-                {
-                        "id": "all_tf",
-                        "label": "⚖️ Tất cả Đúng / Sai (6 câu - 24 ý)",
-                        "sectionIds": [
-                                "de1_tf",
-                                "de2_tf",
-                                "de3_tf"
-                        ]
-                },
-                {
-                        "id": "all_sa",
-                        "label": "✏️ Tất cả Trả lời ngắn (12 câu)",
-                        "sectionIds": [
-                                "de1_sa",
-                                "de2_sa",
-                                "de3_sa"
-                        ]
-                },
-                {
-                        "id": "all_essay",
-                        "label": "📋 Tất cả Tự luận (6 bài)",
-                        "sectionIds": [
-                                "de1_essay",
-                                "de2_essay",
-                                "de3_essay"
-                        ]
-                }
-        ],
-        "selectableSections": [
-                {
-                        "id": "de1_mcq",
-                        "group": "Đề số 1 (20 câu/bài)",
-                        "name": "I. Trắc nghiệm 4 lựa chọn",
-                        "label": "Đề 1 - Trắc nghiệm (12 câu: 1 - 12)",
-                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
-                        "count": 12,
-                        "type": "multiple_choice"
-                },
-                {
-                        "id": "de1_tf",
-                        "group": "Đề số 1 (20 câu/bài)",
-                        "name": "II. Trắc nghiệm Đúng / Sai",
-                        "label": "Đề 1 - Đúng / Sai (2 câu: 1 - 2)",
-                        "section": "ĐỀ SỐ 1 - II. ĐÚNG / SAI",
-                        "count": 2,
-                        "type": "true_false_group"
-                },
-                {
-                        "id": "de1_sa",
-                        "group": "Đề số 1 (20 câu/bài)",
-                        "name": "III. Trắc nghiệm Trả lời ngắn",
-                        "label": "Đề 1 - Trả lời ngắn (4 câu: 1 - 4)",
-                        "section": "ĐỀ SỐ 1 - III. TRẢ LỜI NGẮN",
-                        "count": 4,
-                        "type": "short_answer"
-                },
-                {
-                        "id": "de1_essay",
-                        "group": "Đề số 1 (20 câu/bài)",
-                        "name": "IV. Tự luận",
-                        "label": "Đề 1 - Tự luận (2 bài: 1 - 2)",
-                        "section": "ĐỀ SỐ 1 - IV. TỰ LUẬN",
-                        "count": 2,
-                        "type": "essay_group"
-                },
-                {
-                        "id": "de2_mcq",
-                        "group": "Đề số 2 (20 câu/bài)",
-                        "name": "I. Trắc nghiệm 4 lựa chọn",
-                        "label": "Đề 2 - Trắc nghiệm (12 câu: 1 - 12)",
-                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
-                        "count": 12,
-                        "type": "multiple_choice"
-                },
-                {
-                        "id": "de2_tf",
-                        "group": "Đề số 2 (20 câu/bài)",
-                        "name": "II. Trắc nghiệm Đúng / Sai",
-                        "label": "Đề 2 - Đúng / Sai (2 câu: 1 - 2)",
-                        "section": "ĐỀ SỐ 2 - II. ĐÚNG / SAI",
-                        "count": 2,
-                        "type": "true_false_group"
-                },
-                {
-                        "id": "de2_sa",
-                        "group": "Đề số 2 (20 câu/bài)",
-                        "name": "III. Trắc nghiệm Trả lời ngắn",
-                        "label": "Đề 2 - Trả lời ngắn (4 câu: 1 - 4)",
-                        "section": "ĐỀ SỐ 2 - III. TRẢ LỜI NGẮN",
-                        "count": 4,
-                        "type": "short_answer"
-                },
-                {
-                        "id": "de2_essay",
-                        "group": "Đề số 2 (20 câu/bài)",
-                        "name": "IV. Tự luận",
-                        "label": "Đề 2 - Tự luận (2 bài: 1 - 2)",
-                        "section": "ĐỀ SỐ 2 - IV. TỰ LUẬN",
-                        "count": 2,
-                        "type": "essay_group"
-                },
-                {
-                        "id": "de3_mcq",
-                        "group": "Đề số 3 (20 câu/bài)",
-                        "name": "I. Trắc nghiệm 4 lựa chọn",
-                        "label": "Đề 3 - Trắc nghiệm (12 câu: 1 - 12)",
-                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
-                        "count": 12,
-                        "type": "multiple_choice"
-                },
-                {
-                        "id": "de3_tf",
-                        "group": "Đề số 3 (20 câu/bài)",
-                        "name": "II. Trắc nghiệm Đúng / Sai",
-                        "label": "Đề 3 - Đúng / Sai (2 câu: 1 - 2)",
-                        "section": "ĐỀ SỐ 3 - II. ĐÚNG / SAI",
-                        "count": 2,
-                        "type": "true_false_group"
-                },
-                {
-                        "id": "de3_sa",
-                        "group": "Đề số 3 (20 câu/bài)",
-                        "name": "III. Trắc nghiệm Trả lời ngắn",
-                        "label": "Đề 3 - Trả lời ngắn (4 câu: 1 - 4)",
-                        "section": "ĐỀ SỐ 3 - III. TRẢ LỜI NGẮN",
-                        "count": 4,
-                        "type": "short_answer"
-                },
-                {
-                        "id": "de3_essay",
-                        "group": "Đề số 3 (20 câu/bài)",
-                        "name": "IV. Tự luận",
-                        "label": "Đề 3 - Tự luận (2 bài: 1 - 2)",
-                        "section": "ĐỀ SỐ 3 - IV. TỰ LUẬN",
-                        "count": 2,
-                        "type": "essay_group"
-                }
-        ],
-        "questions": [
-                {
-                        "id": "gk1_vl12_de1_q1",
-                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
-                        "text": "Câu 1. Phát biểu nào sau đây đúng với mô hình động học phân tử?",
-                        "options": [
-                                "A. Các phân tử cấu tạo nên vật luôn đứng yên tại vị trí cân bằng.",
-                                "B. Các phân tử chuyển động càng nhanh thì nhiệt độ của vật càng cao.",
-                                "C. Giữa các phân tử chỉ tồn tại lực đẩy, không có lực hút.",
-                                "D. Khoảng cách giữa các phân tử ở thể khí rất nhỏ so với kích thước phân tử."
-                        ],
-                        "correctIndex": 1
-                },
-                {
-                        "id": "gk1_vl12_de1_q2",
-                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
-                        "text": "Câu 2. Quá trình chuyển từ thể lỏng sang thể rắn của một chất gọi là",
-                        "options": [
-                                "A. sự bay hơi.",
-                                "B. sự nóng chảy.",
-                                "C. sự ngưng tụ.",
-                                "D. sự đông đặc."
-                        ],
-                        "correctIndex": 3
-                },
-                {
-                        "id": "gk1_vl12_de1_q3",
-                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
-                        "text": "Câu 3. Nội năng của một vật phụ thuộc vào",
-                        "options": [
-                                "A. nhiệt độ và thể tích của vật.",
-                                "B. khối lượng và tốc độ chuyển động của cả vật.",
-                                "C. độ cao của vật so với mặt đất và khối lượng của vật.",
-                                "D. nhiệt lượng và công mà vật trao đổi trong mọi quá trình."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "gk1_vl12_de1_q4",
-                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
-                        "text": "Câu 4. Theo quy ước dấu của Nguyên lý I Nhiệt động lực học ($\\Delta U = Q + A$), biểu thức mô tả đúng trường hợp khối khí nhận nhiệt lượng và thực hiện công ra bên ngoài là",
-                        "options": [
-                                "A. $\\Delta U = Q + A$ với $Q > 0$ và $A > 0$.",
-                                "B. $\\Delta U = Q + A$ với $Q < 0$ và $A > 0$.",
-                                "C. $\\Delta U = Q + A$ với $Q > 0$ và $A < 0$.",
-                                "D. $\\Delta U = Q + A$ với $Q < 0$ và $A < 0$."
-                        ],
-                        "correctIndex": 2
-                },
-                {
-                        "id": "gk1_vl12_de1_q5",
-                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
-                        "text": "Câu 5. Trong thang nhiệt độ Celsius, ở áp suất tiêu chuẩn, nhiệt độ tan chảy của nước tinh khiết đóng băng và nhiệt độ sôi của nước tinh khiết lần lượt là",
-                        "options": [
-                                "A. 0 °C và 100 °C.",
-                                "B. 273 °C và 373 °C.",
-                                "C. 32 °C và 212 °C.",
-                                "D. 0 °C và 80 °C."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "gk1_vl12_de1_q6",
-                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
-                        "text": "Câu 6. Nhiệt độ không tuyệt đối (0 K) ứng với giá trị nào trong thang nhiệt độ Celsius?",
-                        "options": [
-                                "A. 0 °C.",
-                                "B. -273,15 °C.",
-                                "C. 273,15 °C.",
-                                "D. -100 °C."
-                        ],
-                        "correctIndex": 1
-                },
-                {
-                        "id": "gk1_vl12_de1_q7",
-                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
-                        "text": "Câu 7. Nhiệt dung riêng của một chất có đơn vị đo trong hệ SI là",
-                        "options": [
-                                "A. J/(kg·K).",
-                                "B. J/kg.",
-                                "C. J/K.",
-                                "D. W/kg."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "gk1_vl12_de1_q8",
-                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
-                        "text": "Câu 8. Đại lượng cho biết nhiệt lượng cần cung cấp để 1 kg chất rắn kết tinh chuyển hoàn toàn sang thể lỏng ở nhiệt độ nóng chảy gọi là",
-                        "options": [
-                                "A. nhiệt dung riêng.",
-                                "B. nhiệt nóng chảy riêng.",
-                                "C. nhiệt hóa hơi riêng.",
-                                "D. nội năng."
-                        ],
-                        "correctIndex": 1
-                },
-                {
-                        "id": "gk1_vl12_de1_q9",
-                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
-                        "text": "Câu 9. Khi truyền cùng một nhiệt lượng Q cho hai vật có cùng khối lượng m làm từ hai chất khác nhau (không xảy ra sự chuyển thể), vật nào có nhiệt dung riêng c nhỏ hơn thì",
-                        "options": [
-                                "A. có độ tăng nhiệt độ lớn hơn.",
-                                "B. có độ tăng nhiệt độ nhỏ hơn.",
-                                "C. có nhiệt độ ban đầu cao hơn.",
-                                "D. có nhiệt độ nóng chảy thấp hơn."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "gk1_vl12_de1_q10",
-                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
-                        "text": "Câu 10. Công thức tính nhiệt lượng Q cần cung cấp cho vật có khối lượng m, nhiệt dung riêng c để nhiệt độ của vật tăng thêm $\\Delta T$ (không xảy ra sự chuyển thể) là",
-                        "options": [
-                                "A. $Q = \\lambda m$.",
-                                "B. $Q = \\lambda / m$.",
-                                "C. $Q = mc\\Delta T$.",
-                                "D. $Q = Lm$."
-                        ],
-                        "correctIndex": 2
-                },
-                {
-                        "id": "gk1_vl12_de1_q11",
-                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
-                        "text": "Câu 11. Đơn vị đo của nhiệt hóa hơi riêng trong hệ SI là",
-                        "options": [
-                                "A. J/(kg·K).",
-                                "B. J/kg.",
-                                "C. J/K.",
-                                "D. kJ/mol."
-                        ],
-                        "correctIndex": 1
-                },
-                {
-                        "id": "gk1_vl12_de1_q12",
-                        "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
-                        "text": "Câu 12. Công thức tính nhiệt lượng Q tỏa ra khi khối lượng m hơi chất lỏng ngưng tụ hoàn toàn ở nhiệt độ sôi (với L là nhiệt hóa hơi riêng) là",
-                        "options": [
-                                "A. $Q = Lm$.",
-                                "B. $Q = \\lambda m$.",
-                                "C. $Q = L/m$.",
-                                "D. $Q = mc\\Delta T$."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "gk1_vl12_de1_tf1",
-                        "section": "ĐỀ SỐ 1 - II. ĐÚNG / SAI",
-                        "type": "true_false_group",
-                        "text": "<strong>Câu 1.</strong> Một nhóm học sinh làm thí nghiệm đun một khối đá tinh khiết lấy ra từ tủ đông (nhiệt độ ban đầu -15 °C) trong một ca nhôm với công suất nhiệt không đổi. Họ quan sát và ghi nhận quá trình tăng nhiệt độ và chuyển thể của nước đá. Biết $T(\\text{K}) = t(^\\circ\\text{C}) + 273$.",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Nhiệt độ ban đầu của khối nước đá trong thang nhiệt độ Kelvin là 258 K.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Trong suốt quá trình đá đang tan ở 0 °C, động năng chuyển động nhiệt trung bình của các phân tử không đổi, còn thế năng tương tác phân tử tăng lên.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Khoảng cách trung bình giữa các phân tử nước ở thể hơi nhỏ hơn rất nhiều so với ở thể rắn.",
-                                        "correctAnswer": "Sai"
-                                },
-                                {
-                                        "id": "d",
-                                        "text": "d) Khi nước sôi ở 100 °C, sự hóa hơi diễn ra đồng thời cả ở trong lòng và trên bề mặt chất lỏng.",
-                                        "correctAnswer": "Đúng"
-                                }
-                        ]
-                },
-                {
-                        "id": "gk1_vl12_de1_tf2",
-                        "section": "ĐỀ SỐ 1 - II. ĐÚNG / SAI",
-                        "type": "true_false_group",
-                        "text": "<strong>Câu 2.</strong> Một nhóm học sinh bố trí thí nghiệm xác định nhiệt hóa hơi riêng của nước. Dùng dây đun điện trở hoạt động với công suất không đổi $P = 40\\text{ W}$ làm nóng nước trong một cốc thủy tinh đặt trên đĩa cân điện tử. Khi nước trong cốc sôi ở 100 °C, nhóm ghi nhận số chỉ khối lượng hiển thị trên cân giảm dần theo thời gian $\\Delta t$:<br>• Tại thời điểm $t_1 = 0\\text{ s}$: số chỉ cân $m_1 = 160,20\\text{ g}$.<br>• Tại thời điểm $t_2 = 450\\text{ s}$: số chỉ cân $m_2 = 152,40\\text{ g}$.",
-                        "imageSrc": "images/thi_nghiem_nhiet_hoa_hoi_nuoc.png",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Cân điện tử trong thí nghiệm này có vai trò xác định khối lượng nước đã hóa hơi trong khoảng thời gian $\\Delta t = 450\\text{ s}$.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Khối lượng nước đã hóa hơi trong thời gian 450 s là $\\Delta m = 7,80\\text{ g}$.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Bỏ qua sự mất mát nhiệt ra môi trường, nhiệt lượng do dây đun cung cấp cho nước trong thời gian $\\Delta t = 450\\text{ s}$ là $Q = 16000\\text{ J}$.",
-                                        "correctAnswer": "Sai"
-                                },
-                                {
-                                        "id": "d",
-                                        "text": "d) Giá trị nhiệt hóa hơi riêng của nước thu được từ thí nghiệm trên là $L \\approx 2,31 \\cdot 10^6\\text{ J/kg}$.",
-                                        "correctAnswer": "Đúng"
-                                }
-                        ]
-                },
-                {
-                        "id": "gk1_vl12_de1_sa1",
-                        "section": "ĐỀ SỐ 1 - III. TRẢ LỜI NGẮN",
-                        "type": "short_answer",
-                        "text": "<strong>Câu 1.</strong> Biết nhiệt dung riêng của nước là $c = 4180\\text{ J/(kg}\\cdot\\text{K)}$. Tính nhiệt lượng tỏa ra khi làm lạnh 300 g nước từ 85 °C xuống 25 °C theo đơn vị kiloJoule (kJ). (Kết quả viết làm tròn đến chữ số hàng phần mười).",
-                        "correctAnswer": "75,2 | 75.2"
-                },
-                {
-                        "id": "gk1_vl12_de1_sa2",
-                        "section": "ĐỀ SỐ 1 - III. TRẢ LỜI NGẮN",
-                        "type": "short_answer",
-                        "text": "<strong>Câu 2.</strong> Một khối chất rắn kết tinh có khối lượng 1,8 kg đang ở nhiệt độ nóng chảy. Cung cấp một nhiệt lượng $Q = 612\\text{ kJ}$ thì khối chất rắn đó nóng chảy hoàn toàn. Nhiệt nóng chảy riêng của chất đó có giá trị bằng $x \\cdot 10^5\\text{ J/kg}$. Tìm x (Kết quả viết làm tròn đến chữ số hàng phần mười).",
-                        "correctAnswer": "3,4 | 3.4"
-                },
-                {
-                        "id": "gk1_vl12_de1_sa3",
-                        "section": "ĐỀ SỐ 1 - III. TRẢ LỜI NGẮN",
-                        "type": "short_answer",
-                        "text": "<strong>Câu 3.</strong> Cho 0,02 kg hơi nước ở 100 °C ngưng tụ hoàn toàn trong bình nhiệt lượng kế chứa 0,4 kg nước ở 15 °C. Nhiệt độ của hệ khi đạt cân bằng nhiệt là 45 °C. Cho nhiệt dung riêng của nước là $c = 4180\\text{ J/(kg}\\cdot\\text{K)}$, bỏ qua sự trao đổi nhiệt với bình và môi trường. Nhiệt hóa hơi riêng của nước tính được từ thí nghiệm có dạng $x \\cdot 10^6\\text{ J/kg}$. Tìm x (Kết quả làm tròn đến chữ số hàng phần trăm).",
-                        "correctAnswer": "2,28 | 2.28"
-                },
-                {
-                        "id": "gk1_vl12_de1_sa4",
-                        "section": "ĐỀ SỐ 1 - III. TRẢ LỜI NGẮN",
-                        "type": "short_answer",
-                        "text": "<strong>Câu 4.</strong> Một lượng khí trong cylinder kín nhận nhiệt lượng 950 J từ nguồn nhiệt, khí nở ra và thực hiện một công 320 J đẩy piston dịch chuyển. Độ biến thiên nội năng $\\Delta U$ của khối khí có giá trị bằng bao nhiêu Joule (J)? (Kết quả làm tròn đến chữ số hàng đơn vị).",
-                        "correctAnswer": "630"
-                },
-                {
-                        "id": "gk1_vl12_de1_essay1",
-                        "section": "ĐỀ SỐ 1 - IV. TỰ LUẬN",
-                        "type": "essay_group",
-                        "text": "<strong>Bài 1. (1,5 điểm)</strong> Một cylinder kín chứa 0,20 kg chất khí lí tưởng ở nhiệt độ ban đầu 25 °C. Người ta đun nóng cylinder, cung cấp cho chất khí một nhiệt lượng $Q = 1500\\text{ J}$. Khối khí giãn nở đẳng áp đẩy piston đi một đoạn làm khí thực hiện một công có độ lớn 550 J.",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Nêu quy ước về dấu của nhiệt lượng Q và công A trong công thức $\\Delta U = Q + A$ của Nguyên lý I Nhiệt động lực học.",
-                                        "correctAnswer": "Q > 0: hệ nhận nhiệt lượng; Q < 0: hệ truyền nhiệt lượng.\nA > 0: hệ nhận công; A < 0: hệ thực hiện công."
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Tính độ biến thiên nội năng $\\Delta U$ của khối khí trong quá trình biến đổi trên.",
-                                        "correctAnswer": "Khí nhận nhiệt: Q = +1500 J; Khí thực hiện công: A = -550 J.\nΔU = Q + A = 1500 - 550 = 950 J."
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Giả sử toàn bộ độ biến thiên nội năng $\\Delta U$ này dùng để làm tăng nhiệt độ của khối khí. Biết nhiệt dung riêng của khối khí trong quá trình này là $c = 1000\\text{ J/(kg}\\cdot\\text{K)}$. Tính nhiệt độ cuối cùng của khối khí theo thang đo Celsius (°C).",
-                                        "correctAnswer": "ΔU = m·c·(t_cuối - t_đầu) => 950 = 0,20·1000·(t_cuối - 25) => 200·(t_cuối - 25) = 950 => t_cuối - 25 = 4,75 => t_cuối = 29,75 °C."
-                                }
-                        ]
-                },
-                {
-                        "id": "gk1_vl12_de1_essay2",
-                        "section": "ĐỀ SỐ 1 - IV. TỰ LUẬN",
-                        "type": "essay_group",
-                        "text": "<strong>Bài 2. (1,5 điểm)</strong> Để xác định nhiệt nóng chảy riêng của nước đá, một học sinh thả $m_1 = 0,15\\text{ kg}$ nước đá ở 0 °C vào bình nhiệt lượng kế chứa $m_2 = 0,5\\text{ kg}$ nước ở nhiệt độ $t_2 = 44\\text{ }^\\circ\\text{C}$. Bỏ qua khối lượng của bình và sự trao đổi nhiệt với môi trường. Biết nhiệt dung riêng của nước là $c = 4200\\text{ J/(kg}\\cdot\\text{K)}$. Khi hệ đạt cân bằng nhiệt, nước đá đã tan hoàn toàn và nhiệt độ chung của hệ là $t = 16\\text{ }^\\circ\\text{C}$.",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Tính độ lớn nhiệt lượng do 0,5 kg nước tỏa ra khi hạ nhiệt độ từ 44 °C xuống 16 °C.",
-                                        "correctAnswer": "Q_tỏa = m2·c·(t2 - t) = 0,5·4200·(44 - 16) = 0,5·4200·28 = 58800 J = 58,8 kJ."
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Trong thí nghiệm trên, nước đá thu nhiệt hay tỏa nhiệt?",
-                                        "correctAnswer": "Nước đá thu nhiệt lượng từ nước nóng để tan chảy hoàn toàn ở 0 °C và ấm lên đến 16 °C."
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Tính giá trị nhiệt nóng chảy riêng $\\lambda$ của nước đá thu được từ thí nghiệm trên.",
-                                        "correctAnswer": "Q_thu = m1·λ + m1·c·(t - 0) = 0,15·λ + 0,15·4200·16 = 0,15·λ + 10080 J.\nTheo PT cân bằng nhiệt: Q_thu = Q_tỏa => 0,15·λ + 10080 = 58800 => 0,15·λ = 48720 => λ = 324800 J/kg = 3,248·10^5 J/kg."
-                                }
-                        ]
-                },
-                {
-                        "id": "gk1_vl12_de2_q1",
-                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
-                        "text": "Câu 1. Phát biểu nào sau đây không đúng khi nói về cấu tạo chất theo mô hình động học phân tử?",
-                        "options": [
-                                "A. Các chất được cấu tạo từ các hạt riêng biệt là phân tử, nguyên tử.",
-                                "B. Các phân tử chuyển động nhiệt hỗn loạn không ngừng.",
-                                "C. Ở thể rắn, các phân tử có thể di chuyển tự do khắp mọi phía mà không có vị trí cân bằng.",
-                                "D. Giữa các phân tử có lực hút và lực đẩy gọi chung là lực liên kết phân tử."
-                        ],
-                        "correctIndex": 2
-                },
-                {
-                        "id": "gk1_vl12_de2_q2",
-                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
-                        "text": "Câu 2. Quá trình chuyển từ thể hơi sang thể lỏng của một chất gọi là",
-                        "options": [
-                                "A. sự bay hơi.",
-                                "B. sự nóng chảy.",
-                                "C. sự ngưng tụ.",
-                                "D. sự đông đặc."
-                        ],
-                        "correctIndex": 2
-                },
-                {
-                        "id": "gk1_vl12_de2_q3",
-                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
-                        "text": "Câu 3. Hai cách làm thay đổi nội năng của một vật là",
-                        "options": [
-                                "A. thực hiện công và truyền nhiệt.",
-                                "B. nâng vật lên cao và làm vật chuyển động nhanh hơn.",
-                                "C. giữ nguyên nhiệt độ và giữ nguyên thể tích.",
-                                "D. bức xạ ánh sáng và phản xạ âm thanh."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "gk1_vl12_de2_q4",
-                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
-                        "text": "Câu 4. Theo quy ước dấu của Nguyên lý I Nhiệt động lực học ($\\Delta U = Q + A$), biểu thức mô tả đúng trường hợp khối khí truyền nhiệt lượng ra môi trường nhưng nhận công từ bên ngoài là",
-                        "options": [
-                                "A. $\\Delta U = Q + A$ với $Q > 0$ và $A > 0$.",
-                                "B. $\\Delta U = Q + A$ với $Q < 0$ và $A > 0$.",
-                                "C. $\\Delta U = Q + A$ với $Q > 0$ và $A < 0$.",
-                                "D. $\\Delta U = Q + A$ với $Q < 0$ và $A < 0$."
-                        ],
-                        "correctIndex": 1
-                },
-                {
-                        "id": "gk1_vl12_de2_q5",
-                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
-                        "text": "Câu 5. Công thức chuyển đổi từ thang nhiệt độ Celsius (t) sang thang nhiệt độ Kelvin (T) là",
-                        "options": [
-                                "A. $T(\\text{K}) = t(^\\circ\\text{C}) + 273$.",
-                                "B. $T(\\text{K}) = t(^\\circ\\text{C}) - 273$.",
-                                "C. $T(\\text{K}) = 1,8 \\cdot t(^\\circ\\text{C}) + 32$.",
-                                "D. $T(\\text{K}) = t(^\\circ\\text{C}) + 100$."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "gk1_vl12_de2_q6",
-                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
-                        "text": "Câu 6. Trong thang nhiệt độ Kelvin, khoảng cách giữa nhiệt độ nước đá đang tan và nhiệt độ sôi của nước tinh khiết ở áp suất tiêu chuẩn bằng",
-                        "options": [
-                                "A. 100 K.",
-                                "B. 273 K.",
-                                "C. 373 K.",
-                                "D. 180 K."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "gk1_vl12_de2_q7",
-                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
-                        "text": "Câu 7. Nhiệt nóng chảy riêng của một chất rắn kết tinh là",
-                        "options": [
-                                "A. nhiệt lượng cần cung cấp cho một đơn vị khối lượng chất đó để nhiệt độ của nó tăng thêm 1 K.",
-                                "B. nhiệt lượng cần cung cấp để 1 kg chất đó chuyển hoàn toàn từ thể rắn sang thể lỏng ở nhiệt độ nóng chảy.",
-                                "C. nhiệt lượng tỏa ra khi 1 kg chất đó hóa hơi hoàn toàn ở nhiệt độ sôi.",
-                                "D. tổng nhiệt lượng vật thu vào khi nhiệt độ tăng thêm 100 °C."
-                        ],
-                        "correctIndex": 1
-                },
-                {
-                        "id": "gk1_vl12_de2_q8",
-                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
-                        "text": "Câu 8. Biết nhiệt nóng chảy riêng của nước đá là $\\lambda = 3,34 \\cdot 10^5\\text{ J/kg}$. Ý nghĩa của con số này là",
-                        "options": [
-                                "A. Cần cung cấp nhiệt lượng $3,34 \\cdot 10^5\\text{ J}$ để làm nóng chảy hoàn toàn 1 kg nước đá ở 0 °C.",
-                                "B. Cần cung cấp nhiệt lượng $3,34 \\cdot 10^5\\text{ J}$ để làm 1 kg nước đá tăng thêm 1 °C.",
-                                "C. Cần cung cấp nhiệt lượng $3,34 \\cdot 10^5\\text{ J}$ để làm 1 kg nước hóa hơi hoàn toàn ở 100 °C.",
-                                "D. Khối nước đá bất kỳ khi tan chảy đều tỏa ra nhiệt lượng $3,34 \\cdot 10^5\\text{ J}$."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "gk1_vl12_de2_q9",
-                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
-                        "text": "Câu 9. Hai vật có cùng khối lượng m, làm từ hai chất khác nhau có nhiệt dung riêng lần lượt là $c_1 > c_2$. Để cả hai vật cùng tăng thêm một độ tăng nhiệt độ $\\Delta T$ như nhau (không chuyển thể) thì nhiệt lượng cần cung cấp $Q_1$ và $Q_2$ thỏa mãn",
-                        "options": [
-                                "A. $Q_1 > Q_2$.",
-                                "B. $Q_1 < Q_2$.",
-                                "C. $Q_1 = Q_2$.",
-                                "D. $Q_1 \\le Q_2$."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "gk1_vl12_de2_q10",
-                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
-                        "text": "Câu 10. Công thức xác định nhiệt nóng chảy riêng $\\lambda$ của một khối chất rắn kết tinh có khối lượng m khi nhận nhiệt lượng Q để nóng chảy hoàn toàn ở nhiệt độ nóng chảy là",
-                        "options": [
-                                "A. $\\lambda = Q \\cdot m$.",
-                                "B. $\\lambda = Q / m$.",
-                                "C. $\\lambda = m / Q$.",
-                                "D. $\\lambda = Q / (m\\Delta T)$."
-                        ],
-                        "correctIndex": 1
-                },
-                {
-                        "id": "gk1_vl12_de2_q11",
-                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
-                        "text": "Câu 11. Sự sôi là quá trình hóa hơi xảy ra",
-                        "options": [
-                                "A. chỉ ở trên bề mặt thoáng của chất lỏng ở bất kỳ nhiệt độ nào.",
-                                "B. cả ở trong lòng và trên mặt thoáng của chất lỏng ở nhiệt độ sôi xác định.",
-                                "C. chỉ ở đáy bình chứa chất lỏng khi bắt đầu đun nóng.",
-                                "D. khi chất lỏng hạ nhiệt độ xuống dưới 0 °C."
-                        ],
-                        "correctIndex": 1
-                },
-                {
-                        "id": "gk1_vl12_de2_q12",
-                        "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
-                        "text": "Câu 12. Công thức xác định nhiệt hóa hơi riêng L của một khối chất lỏng có khối lượng m khi nhận nhiệt lượng Q để hóa hơi hoàn toàn ở nhiệt độ sôi là",
-                        "options": [
-                                "A. $L = Q / m$.",
-                                "B. $L = Q \\cdot m$.",
-                                "C. $L = m / Q$.",
-                                "D. $L = mc\\Delta T$."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "gk1_vl12_de2_tf1",
-                        "section": "ĐỀ SỐ 2 - II. ĐÚNG / SAI",
-                        "type": "true_false_group",
-                        "text": "<strong>Câu 1.</strong> Một nhóm học sinh theo dõi quá trình chuyển thể của một lượng nước đá tinh khiết từ -10 °C lên 50 °C.",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Ở nhiệt độ -10 °C, các phân tử nước chỉ dao động xung quanh vị trí cân bằng xác định.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Trong giai đoạn nước đá đang tan chảy ở 0 °C, nội năng của hệ tăng lên dù nhiệt độ không thay đổi.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Ở thể rắn, các phân tử nước đá không chuyển động nhiệt mà đứng yên hoàn toàn tại các nút mạng tinh thể.",
-                                        "correctAnswer": "Sai"
-                                },
-                                {
-                                        "id": "d",
-                                        "text": "d) Khi nước đá đã tan hết thành nước lỏng ở 0 °C và được đun nóng lên 50 °C, động năng chuyển động nhiệt trung bình của các phân tử nước tăng lên.",
-                                        "correctAnswer": "Đúng"
-                                }
-                        ]
-                },
-                {
-                        "id": "gk1_vl12_de2_tf2",
-                        "section": "ĐỀ SỐ 2 - II. ĐÚNG / SAI",
-                        "type": "true_false_group",
-                        "text": "<strong>Câu 2.</strong> Một nhóm học sinh bố trí thí nghiệm xác định nhiệt hóa hơi riêng của nước. Dùng dây đun điện trở hoạt động với công suất không đổi $P = 50\\text{ W}$ làm nóng nước trong một cốc thủy tinh đặt trên đĩa cân điện tử. Khi nước trong cốc sôi ở 100 °C, nhóm ghi nhận số chỉ khối lượng hiển thị trên cân giảm dần theo thời gian $\\Delta t$:<br>• Tại thời điểm $t_1 = 0\\text{ s}$: số chỉ cân $m_1 = 180,00\\text{ g}$.<br>• Tại thời điểm $t_2 = 480\\text{ s}$: số chỉ cân $m_2 = 169,50\\text{ g}$.",
-                        "imageSrc": "images/thi_nghiem_nhiet_hoa_hoi_nuoc.png",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Oát kế trong thí nghiệm dùng để đo công suất tiêu thụ điện của dây đun điện trở.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Khối lượng nước đã hóa hơi trong thời gian 480 s là $\\Delta m = 10,50\\text{ g}$.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Bỏ qua sự mất mát nhiệt ra môi trường, nhiệt lượng do dây đun cung cấp cho nước trong 480 s là $Q = 24000\\text{ J}$.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "d",
-                                        "text": "d) Giá trị nhiệt hóa hơi riêng của nước thu được từ thí nghiệm trên là $L \\approx 2,50 \\cdot 10^6\\text{ J/kg}$.",
-                                        "correctAnswer": "Sai"
-                                }
-                        ]
-                },
-                {
-                        "id": "gk1_vl12_de2_sa1",
-                        "section": "ĐỀ SỐ 2 - III. TRẢ LỜI NGẮN",
-                        "type": "short_answer",
-                        "text": "<strong>Câu 1.</strong> Biết nhiệt dung riêng của nước là $c = 4180\\text{ J/(kg}\\cdot\\text{K)}$. Tính nhiệt lượng tỏa ra khi làm lạnh 400 g nước từ 80 °C xuống 30 °C theo đơn vị kiloJoule (kJ). (Kết quả viết làm tròn đến chữ số hàng phần mười).",
-                        "correctAnswer": "83,6 | 83.6"
-                },
-                {
-                        "id": "gk1_vl12_de2_sa2",
-                        "section": "ĐỀ SỐ 2 - III. TRẢ LỜI NGẮN",
-                        "type": "short_answer",
-                        "text": "<strong>Câu 2.</strong> Một khối chất rắn kết tinh có khối lượng 1,5 kg đang ở nhiệt độ nóng chảy. Cung cấp một nhiệt lượng $Q = 495\\text{ kJ}$ thì khối chất rắn đó nóng chảy hoàn toàn. Nhiệt nóng chảy riêng của chất đó có giá trị bằng $x \\cdot 10^5\\text{ J/kg}$. Tìm x (Kết quả viết làm tròn đến chữ số hàng phần mười).",
-                        "correctAnswer": "3,3 | 3.3"
-                },
-                {
-                        "id": "gk1_vl12_de2_sa3",
-                        "section": "ĐỀ SỐ 2 - III. TRẢ LỜI NGẮN",
-                        "type": "short_answer",
-                        "text": "<strong>Câu 3.</strong> Cho 0,01 kg hơi nước ở 100 °C ngưng tụ hoàn toàn trong bình nhiệt lượng kế chứa 0,2 kg nước ở 20 °C. Nhiệt độ của hệ khi đạt cân bằng nhiệt là 50 °C. Cho nhiệt dung riêng của nước là $c = 4180\\text{ J/(kg}\\cdot\\text{K)}$, bỏ qua sự trao đổi nhiệt với bình và môi trường. Nhiệt hóa hơi riêng của nước tính được từ thí nghiệm có dạng $x \\cdot 10^6\\text{ J/kg}$. Tìm x (Kết quả làm tròn đến chữ số hàng phần trăm).",
-                        "correctAnswer": "2,30 | 2.30 | 2,3 | 2.3"
-                },
-                {
-                        "id": "gk1_vl12_de2_sa4",
-                        "section": "ĐỀ SỐ 2 - III. TRẢ LỜI NGẮN",
-                        "type": "short_answer",
-                        "text": "<strong>Câu 4.</strong> Một lượng khí trong cylinder kín nhận nhiệt lượng 1100 J từ nguồn nhiệt, khí nở ra và thực hiện một công 420 J đẩy piston dịch chuyển. Độ biến thiên nội năng $\\Delta U$ của khối khí có giá trị bằng bao nhiêu Joule (J)? (Kết quả làm tròn đến chữ số hàng đơn vị).",
-                        "correctAnswer": "680"
-                },
-                {
-                        "id": "gk1_vl12_de2_essay1",
-                        "section": "ĐỀ SỐ 2 - IV. TỰ LUẬN",
-                        "type": "essay_group",
-                        "text": "<strong>Bài 1. (1,5 điểm)</strong> Một cylinder kín chứa 0,25 kg chất khí lí tưởng ở nhiệt độ ban đầu 20 °C. Người ta đun nóng cylinder, cung cấp cho chất khí một nhiệt lượng $Q = 1800\\text{ J}$. Khối khí giãn nở đẳng áp đẩy piston đi một đoạn làm khí thực hiện một công có độ lớn 550 J.",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Nêu quy quy ước về dấu của nhiệt lượng Q và công A trong công thức $\\Delta U = Q + A$ của Nguyên lý I Nhiệt động lực học.",
-                                        "correctAnswer": "Q > 0: hệ nhận nhiệt lượng; Q < 0: hệ truyền nhiệt lượng.\nA > 0: hệ nhận công; A < 0: hệ thực hiện công."
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Tính độ biến thiên nội năng $\\Delta U$ của khối khí trong quá trình biến đổi trên.",
-                                        "correctAnswer": "Khí nhận nhiệt: Q = +1800 J; Khí thực hiện công: A = -550 J.\nΔU = Q + A = 1800 - 550 = 1250 J."
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Giả sử toàn bộ độ biến thiên nội năng $\\Delta U$ này dùng để làm tăng nhiệt độ của khối khí. Biết nhiệt dung riêng của khối khí trong quá trình này là $c = 1000\\text{ J/(kg}\\cdot\\text{K)}$. Tính nhiệt độ cuối cùng của khối khí theo thang đo Celsius (°C).",
-                                        "correctAnswer": "ΔU = m·c·(t_cuối - t_đầu) => 1250 = 0,25·1000·(t_cuối - 20) => 250·(t_cuối - 20) = 1250 => t_cuối - 20 = 5 => t_cuối = 25 °C."
-                                }
-                        ]
-                },
-                {
-                        "id": "gk1_vl12_de2_essay2",
-                        "section": "ĐỀ SỐ 2 - IV. TỰ LUẬN",
-                        "type": "essay_group",
-                        "text": "<strong>Bài 2. (1,5 điểm)</strong> Để xác định nhiệt nóng chảy riêng của nước đá, một học sinh thả $m_1 = 0,2\\text{ kg}$ nước đá ở 0 °C vào bình nhiệt lượng kế chứa $m_2 = 0,6\\text{ kg}$ nước ở nhiệt độ $t_2 = 50\\text{ }^\\circ\\text{C}$. Bỏ qua khối lượng của bình và sự trao đổi nhiệt với môi trường. Biết nhiệt dung riêng của nước là $c = 4200\\text{ J/(kg}\\cdot\\text{K)}$. Khi hệ đạt cân bằng nhiệt, nước đá đã tan hoàn toàn và nhiệt độ chung của hệ là $t = 17,5\\text{ }^\\circ\\text{C}$.",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Tính độ lớn nhiệt lượng do 0,6 kg nước tỏa ra khi hạ nhiệt độ từ 50 °C xuống 17,5 °C.",
-                                        "correctAnswer": "Q_tỏa = m2·c·(t2 - t) = 0,6·4200·(50 - 17,5) = 0,6·4200·32,5 = 81900 J = 81,9 kJ."
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Trong thí nghiệm trên, nước đá thu nhiệt hay tỏa nhiệt?",
-                                        "correctAnswer": "Nước đá thu nhiệt lượng từ nước nóng để tan chảy hoàn toàn ở 0 °C và ấm lên đến 17,5 °C."
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Tính giá trị nhiệt nóng chảy riêng $\\lambda$ của nước đá thu được từ thí nghiệm trên.",
-                                        "correctAnswer": "Q_thu = m1·λ + m1·c·(t - 0) = 0,2·λ + 0,2·4200·17,5 = 0,2·λ + 14700 J.\nTheo PT cân bằng nhiệt: Q_thu = Q_tỏa => 0,2·λ + 14700 = 81900 => 0,2·λ = 67200 => λ = 336000 J/kg = 3,36·10^5 J/kg."
-                                }
-                        ]
-                },
-                {
-                        "id": "gk1_vl12_de3_q1",
-                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
-                        "text": "Câu 1. Phát biểu nào sau đây đúng khi nói về cấu trúc của các chất ở thể rắn, thể lỏng và thể khí theo mô hình động học phân tử?",
-                        "options": [
-                                "A. Khoảng cách giữa các phân tử ở thể rắn lớn hơn rất nhiều so với ở thể khí.",
-                                "B. Lực tương tác giữa các phân tử ở thể khí là rất lớn nên chất khí không có hình dạng xác định.",
-                                "C. Ở thể lỏng, các phân tử dao động xung quanh các vị trí cân bằng có thể di chuyển được.",
-                                "D. Nhiệt độ của vật càng cao thì tốc độ chuyển động hỗn loạn của các phân tử càng giảm."
-                        ],
-                        "correctIndex": 2
-                },
-                {
-                        "id": "gk1_vl12_de3_q2",
-                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
-                        "text": "Câu 2. Quá trình chuyển từ thể lỏng sang thể khí (hơi) ở mặt thoáng của chất lỏng gọi là",
-                        "options": [
-                                "A. sự bay hơi.",
-                                "B. sự nóng chảy.",
-                                "C. sự ngưng tụ.",
-                                "D. sự đông đặc."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "gk1_vl12_de3_q3",
-                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
-                        "text": "Câu 3. Khi nhiệt độ của một vật tăng lên thì",
-                        "options": [
-                                "A. động năng chuyển động nhiệt của các phân tử cấu tạo nên vật tăng, làm nội năng của vật tăng.",
-                                "B. thế năng hấp dẫn của vật so với mặt đất luôn tăng lên.",
-                                "C. nội năng của vật luôn giữ nguyên không đổi.",
-                                "D. động năng của các phân tử giảm đi và thế năng tương tác phân tử bằng không."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "gk1_vl12_de3_q4",
-                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
-                        "text": "Câu 4. Theo quy ước dấu của Nguyên lý I Nhiệt động lực học, biểu thức mô tả đúng trường hợp khối khí vừa truyền nhiệt lượng ra môi trường ngoài vừa thực hiện công là",
-                        "options": [
-                                "A. $\\Delta U = Q + A$ với $Q > 0$ và $A > 0$.",
-                                "B. $\\Delta U = Q + A$ với $Q < 0$ và $A > 0$.",
-                                "C. $\\Delta U = Q + A$ với $Q > 0$ và $A < 0$.",
-                                "D. $\\Delta U = Q + A$ với $Q < 0$ và $A < 0$."
-                        ],
-                        "correctIndex": 3
-                },
-                {
-                        "id": "gk1_vl12_de3_q5",
-                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
-                        "text": "Câu 5. Một vật có nhiệt độ trong thang Celsius là 27 °C. Nhiệt độ của vật đó trong thang nhiệt độ Kelvin (lấy mốc $0\\text{ }^\\circ\\text{C} \\approx 273\\text{ K}$) là",
-                        "options": [
-                                "A. 300 K.",
-                                "B. 246 K.",
-                                "C. 273 K.",
-                                "D. 127 K."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "gk1_vl12_de3_q6",
-                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
-                        "text": "Câu 6. Đơn vị nào sau đây không phải là đơn vị đo năng lượng nhiệt hoặc nhiệt nóng chảy riêng hợp lệ?",
-                        "options": [
-                                "A. J/kg.",
-                                "B. kJ/kg.",
-                                "C. J.",
-                                "D. W·kg."
-                        ],
-                        "correctIndex": 3
-                },
-                {
-                        "id": "gk1_vl12_de3_q7",
-                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
-                        "text": "Câu 7. Công thức tính khối lượng m của chất lỏng đã hóa hơi hoàn toàn ở nhiệt độ sôi khi nhận nhiệt lượng Q (với L là nhiệt hóa hơi riêng) là",
-                        "options": [
-                                "A. $m = \\frac{Q}{L}$.",
-                                "B. $m = Q \\cdot L$.",
-                                "C. $m = \\frac{L}{Q}$.",
-                                "D. $m = \\frac{Q}{\\lambda}$."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "gk1_vl12_de3_q8",
-                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
-                        "text": "Câu 8. Điểm cố định dưới và điểm cố định trên dùng để xây dựng thang nhiệt độ Celsius ở áp suất tiêu chuẩn lần lượt là",
-                        "options": [
-                                "A. nhiệt độ đóng băng và nhiệt độ sôi của nước tinh khiết.",
-                                "B. nhiệt độ không tuyệt đối và nhiệt độ nóng chảy của nước đá.",
-                                "C. nhiệt độ cơ thể người và nhiệt độ sôi của rượu.",
-                                "D. nhiệt độ điểm ba của nước và nhiệt độ sôi của thủy ngân."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "gk1_vl12_de3_q9",
-                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
-                        "text": "Câu 9. Biết nhiệt dung riêng của đồng là $380\\text{ J/(kg}\\cdot\\text{K)}$. Điều này có nghĩa là",
-                        "options": [
-                                "A. cần cung cấp nhiệt lượng 380 J cho 1 kg đồng để nhiệt độ của nó tăng thêm 1 K.",
-                                "B. cần cung cấp nhiệt lượng 380 J để làm nóng chảy hoàn toàn 1 kg đồng ở nhiệt độ nóng chảy.",
-                                "C. 1 kg đồng khi hóa hơi hoàn toàn ở nhiệt độ sôi sẽ thu vào nhiệt lượng 380 J.",
-                                "D. cần cung cấp 380 J để 1 g đồng tăng nhiệt độ từ 0 °C lên 100 °C."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "gk1_vl12_de3_q10",
-                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
-                        "text": "Câu 10. Truyền cho hai vật đồng chất có khối lượng $m_1 = 2m_2$ cùng một nhiệt lượng Q (không xảy ra sự chuyển thể). Độ tăng nhiệt độ $\\Delta T_1$ và $\\Delta T_2$ của hai vật có mối liên hệ là",
-                        "options": [
-                                "A. $\\Delta T_1 = 0,5 \\cdot \\Delta T_2$.",
-                                "B. $\\Delta T_1 = 2 \\cdot \\Delta T_2$.",
-                                "C. $\\Delta T_1 = \\Delta T_2$.",
-                                "D. $\\Delta T_1 = 4 \\cdot \\Delta T_2$."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "gk1_vl12_de3_q11",
-                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
-                        "text": "Câu 11. Công thức tính khối lượng m của một chất rắn kết tinh đã nóng chảy hoàn toàn ở nhiệt độ nóng chảy khi nhận nhiệt lượng Q (với $\\lambda$ là nhiệt nóng chảy riêng) là",
-                        "options": [
-                                "A. $m = \\frac{Q}{\\lambda}$.",
-                                "B. $m = Q \\cdot \\lambda$.",
-                                "C. $m = \\frac{\\lambda}{Q}$.",
-                                "D. $m = \\frac{Q}{c \\cdot \\Delta T}$."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "gk1_vl12_de3_q12",
-                        "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
-                        "text": "Câu 12. Nhiệt hóa hơi riêng của một chất lỏng phụ thuộc vào",
-                        "options": [
-                                "A. bản chất của chất lỏng và nhiệt độ mà tại đó chất lỏng hóa hơi.",
-                                "B. khối lượng của lượng chất lỏng ban đầu.",
-                                "C. thể tích của bình chứa chất lỏng.",
-                                "D. công suất của nguồn nhiệt dùng để đun sôi chất lỏng."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "gk1_vl12_de3_tf1",
-                        "section": "ĐỀ SỐ 3 - II. ĐÚNG / SAI",
-                        "type": "true_false_group",
-                        "text": "<strong>Câu 1.</strong> Một học sinh quan sát sự chuyển thể của nước trong tự nhiên và trong đời sống hằng ngày:",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Khi nước đá tan chảy ở 0 °C, nhiệt độ không đổi vì nhiệt lượng cung cấp chuyển hóa hoàn toàn thành thế năng liên kết phân tử.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Trong quá trình nước đóng băng thành đá, nhiệt độ giảm dần và làm ngừng hoàn toàn chuyển động nhiệt của các phân tử.",
-                                        "correctAnswer": "Sai"
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Nước ở thể lỏng không có hình dạng riêng xác định mà có hình dạng của phần bình chứa nó.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "d",
-                                        "text": "d) Khi toàn bộ nước đá đã hóa lỏng và tiếp tục đun từ 0 °C đến 100 °C, trên bề mặt thoáng của nước vẫn liên tục diễn ra sự bay hơi.",
-                                        "correctAnswer": "Đúng"
-                                }
-                        ]
-                },
-                {
-                        "id": "gk1_vl12_de3_tf2",
-                        "section": "ĐỀ SỐ 3 - II. ĐÚNG / SAI",
-                        "type": "true_false_group",
-                        "text": "<strong>Câu 2.</strong> Một nhóm học sinh bố trí thí nghiệm xác định nhiệt hóa hơi riêng của nước. Dùng dây đun điện trở hoạt động với công suất không đổi $P = 36\\text{ W}$ làm nóng nước trong một cốc thủy tinh đặt trên đĩa cân điện tử (như hình vẽ bên dưới).<br>Khi nước trong cốc sôi ở 100 °C, nhóm ghi nhận số chỉ khối lượng hiển thị trên cân giảm dần theo thời gian $\\Delta t$:<br>• Tại thời điểm $t_1 = 0\\text{ s}$: số chỉ cân $m_1 = 155,40\\text{ g}$.<br>• Tại thời điểm $t_2 = 500\\text{ s}$: số chỉ cân $m_2 = 147,40\\text{ g}$.",
-                        "imageSrc": "images/thi_nghiem_nhiet_hoa_hoi_nuoc.png",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Nhiệt kế trong thí nghiệm dùng để kiểm tra và xác định thời điểm nước trong cốc đạt nhiệt độ sôi ổn định (100 °C).",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Khối lượng nước đã hóa hơi trong thời gian 500 s là $\\Delta m = 8,00\\text{ g}$.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Bỏ qua sự mất mát nhiệt ra môi trường, nhiệt lượng do dây đun cung cấp cho nước trong 500 s là $Q = 18000\\text{ J}$.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "d",
-                                        "text": "d) Giá trị nhiệt hóa hơi riêng của nước thực nghiệm thu được từ số liệu thí nghiệm trên là $L = 2,25 \\cdot 10^6\\text{ J/kg}$.",
-                                        "correctAnswer": "Đúng"
-                                }
-                        ]
-                },
-                {
-                        "id": "gk1_vl12_de3_sa1",
-                        "section": "ĐỀ SỐ 3 - III. TRẢ LỜI NGẮN",
-                        "type": "short_answer",
-                        "text": "<strong>Câu 1.</strong> Biết nhiệt dung riêng của nước là $c = 4180\\text{ J/(kg}\\cdot\\text{K)}$. Tính nhiệt lượng tỏa ra khi làm lạnh 250 g nước từ 95 °C xuống 25 °C theo đơn vị kiloJoule (kJ). (Kết quả viết làm tròn đến chữ số hàng phần mười).",
-                        "correctAnswer": "73,2 | 73.2"
-                },
-                {
-                        "id": "gk1_vl12_de3_sa2",
-                        "section": "ĐỀ SỐ 3 - III. TRẢ LỜI NGẮN",
-                        "type": "short_answer",
-                        "text": "<strong>Câu 2.</strong> Một khối chất rắn kết tinh có khối lượng 2,0 kg đang ở nhiệt độ nóng chảy. Cung cấp một nhiệt lượng $Q = 672\\text{ kJ}$ thì khối chất rắn đó nóng chảy hoàn toàn. Nhiệt nóng chảy riêng $\\lambda$ của chất đó có giá trị bằng $x \\cdot 10^5\\text{ J/kg}$. Tìm x (Kết quả viết làm tròn đến chữ số hàng phần trăm).",
-                        "correctAnswer": "3,36 | 3.36"
-                },
-                {
-                        "id": "gk1_vl12_de3_sa3",
-                        "section": "ĐỀ SỐ 3 - III. TRẢ LỜI NGẮN",
-                        "type": "short_answer",
-                        "text": "<strong>Câu 3.</strong> Cho 0,025 kg hơi nước ở 100 °C ngưng tụ hoàn toàn trong bình nhiệt lượng kế chứa 0,5 kg nước ở 20 °C. Nhiệt độ của hệ khi đạt cân bằng nhiệt là 48 °C. Cho nhiệt dung riêng của nước là $c = 4180\\text{ J/(kg}\\cdot\\text{K)}$, bỏ qua sự trao đổi nhiệt với bình và môi trường. Nhiệt hóa hơi riêng của nước tính được từ thí nghiệm có dạng $x \\cdot 10^6\\text{ J/kg}$. Tìm x (Kết quả làm tròn đến chữ số hàng phần trăm).",
-                        "correctAnswer": "2,12 | 2.12"
-                },
-                {
-                        "id": "gk1_vl12_de3_sa4",
-                        "section": "ĐỀ SỐ 3 - III. TRẢ LỜI NGẮN",
-                        "type": "short_answer",
-                        "text": "<strong>Câu 4.</strong> Một lượng khí trong cylinder kín nhận nhiệt lượng 1250 J từ nguồn nhiệt, khí nở ra và thực hiện một công 480 J đẩy piston dịch chuyển. Độ biến thiên nội năng $\\Delta U$ của khối khí có giá trị bằng bao nhiêu Joule (J)? (Kết quả làm tròn đến chữ số hàng đơn vị).",
-                        "correctAnswer": "770"
-                },
-                {
-                        "id": "gk1_vl12_de3_essay1",
-                        "section": "ĐỀ SỐ 3 - IV. TỰ LUẬN",
-                        "type": "essay_group",
-                        "text": "<strong>Bài 1. (1,5 điểm)</strong> Một cylinder kín chứa 0,30 kg chất khí lí tưởng ở nhiệt độ ban đầu 22 °C. Người ta đun nóng cylinder, cung cấp cho chất khí một nhiệt lượng $Q = 2100\\text{ J}$. Khối khí giãn nở đẳng áp đẩy piston đi một đoạn làm khí thực hiện một công có độ lớn 600 J.",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Nêu quy ước về dấu của nhiệt lượng Q và công A trong công thức $\\Delta U = Q + A$ của Nguyên lý I Nhiệt động lực học.",
-                                        "correctAnswer": "Q > 0: hệ nhận nhiệt lượng; Q < 0: hệ truyền nhiệt lượng.\nA > 0: hệ nhận công; A < 0: hệ thực hiện công."
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Tính độ biến thiên nội năng $\\Delta U$ của khối khí trong quá trình biến đổi trên.",
-                                        "correctAnswer": "Khí nhận nhiệt: Q = +2100 J; Khí thực hiện công: A = -600 J.\nΔU = Q + A = 2100 - 600 = 1500 J."
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Giả sử toàn bộ độ biến thiên nội năng $\\Delta U$ này dùng để làm tăng nhiệt độ của khối khí. Biết nhiệt dung riêng của khối khí trong quá trình này là $c = 1000\\text{ J/(kg}\\cdot\\text{K)}$. Tính nhiệt độ cuối cùng của khối khí theo thang đo Celsius (°C).",
-                                        "correctAnswer": "ΔU = m·c·(t_cuối - t_đầu) => 1500 = 0,30·1000·(t_cuối - 22) => 300·(t_cuối - 22) = 1500 => t_cuối - 22 = 5 => t_cuối = 27 °C."
-                                }
-                        ]
-                },
-                {
-                        "id": "gk1_vl12_de3_essay2",
-                        "section": "ĐỀ SỐ 3 - IV. TỰ LUẬN",
-                        "type": "essay_group",
-                        "text": "<strong>Bài 2. (1,5 điểm)</strong> Để xác định nhiệt nóng chảy riêng của nước đá, một học sinh thả $m_1 = 0,12\\text{ kg}$ nước đá ở 0 °C vào bình nhiệt lượng kế chứa $m_2 = 0,45\\text{ kg}$ nước ở nhiệt độ $t_2 = 45\\text{ }^\\circ\\text{C}$. Bỏ qua khối lượng của bình và sự trao đổi nhiệt với môi trường. Biết nhiệt dung riêng của nước là $c = 4200\\text{ J/(kg}\\cdot\\text{K)}$. Khi hệ đạt cân bằng nhiệt, nước đá đã tan hoàn toàn và nhiệt độ chung của hệ là $t = 20\\text{ }^\\circ\\text{C}$.",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Tính độ lớn nhiệt lượng do 0,45 kg nước tỏa ra khi hạ nhiệt độ từ 45 °C xuống 20 °C.",
-                                        "correctAnswer": "Q_tỏa = m2·c·(t2 - t) = 0,45·4200·(45 - 20) = 0,45·4200·25 = 47250 J = 47,25 kJ."
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Trong thí nghiệm trên, nước đá thu nhiệt hay tỏa nhiệt?",
-                                        "correctAnswer": "Nước đá thu nhiệt lượng từ nước nóng để tan chảy hoàn toàn ở 0 °C và ấm lên đến 20 °C."
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Tính giá trị nhiệt nóng chảy riêng $\\lambda$ của nước đá thu được từ thí nghiệm trên.",
-                                        "correctAnswer": "Q_thu = m1·λ + m1·c·(t - 0) = 0,12·λ + 0,12·4200·20 = 0,12·λ + 10080 J.\nTheo PT cân bằng nhiệt: Q_thu = Q_tỏa => 0,12·λ + 10080 = 47250 => 0,12·λ = 37170 => λ = 309750 J/kg ≈ 3,10·10^5 J/kg."
-                                }
-                        ]
-                }
-        ]
-}
+        },
+        {
+                id: "de_chuong_2_carbohydrate",
+                title: "Chương 2: Carbohydrate",
+                category: "hoa",
+                subject: "Hóa học",
+                description: "Hệ thống bài tập Ôn tập Chương 2: Carbohydrate (Phần I. Trắc nghiệm: 18 câu | Phần II. Đúng/Sai: 5 câu | Phần III. Trả lời ngắn: 7 câu)",
+                scoreScale: 10,
+                scorePerQuestion: 0.33,
+                questions: [
+                        // PHẦN I. CÂU HỎI TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN (18 câu)
+                        {
+                                id: "q1_chuong2_carb",
+                                text: "<strong>PHẦN I. CÂU HỎI TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN</strong><br>Câu 1: Chất nào sau đây thuộc loại monosaccharide?",
+                                options: ["A. Tinh bột.", "B. Cellulose.", "C. Fructose.", "D. Saccharose."],
+                                correctIndex: 2
+                        },
+                        {
+                                id: "q2_chuong2_carb",
+                                text: "Câu 2: Glucose là một loại monosaccharide có nhiều trong quả nho chín. Công thức phân tử của glucose là",
+                                options: ["A. C₂H₄O₂.", "B. (C₆H₁₀O₅)ₙ.", "C. C₁₂H₂₂O₁₁.", "D. C₆H₁₂O₆."],
+                                correctIndex: 3
+                        },
+                        {
+                                id: "q3_chuong2_carb",
+                                text: "Câu 3: Cellulose thuộc loại polysaccharide, là thành phần chính tạo nên màng tế bào thực vật, có nhiều trong gỗ, bông gòn. Công thức của cellulose là",
+                                options: ["A. (C₆H₁₀O₅)ₙ.", "B. C₁₂H₂₂O₁₁.", "C. C₆H₁₂O₆.", "D. C₂H₄O₂."],
+                                correctIndex: 0
+                        },
+                        {
+                                id: "q4_chuong2_carb",
+                                text: "Câu 4: Công thức cấu tạo dạng mạch vòng $\\alpha$ - glucose là",
+                                imageSrc: "images/q4_chuong2.png",
+                                options: [
+                                        "A. Hình A.",
+                                        "B. Hình B.",
+                                        "C. Hình C.",
+                                        "D. Hình D."
+                                ],
+                                correctIndex: 0
+                        },
+                        {
+                                id: "q5_chuong2_carb",
+                                text: "Câu 5: Carbohydrate có hàm lượng nhiều nhất (chiếm tới 40%) và làm cho mật ong có vị ngọt sắc là",
+                                options: ["A. glucose.", "B. fructose.", "C. cellulose.", "D. saccharose."],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "q6_chuong2_carb",
+                                text: "Câu 6: Glucose tham gia phản ứng với Cu(OH)₂/OH⁻, đun nóng tạo kết tủa đỏ gạch Cu₂O. Trong phản ứng này chứng minh tính chất của nhóm chức nào trong phân tử glucose?",
+                                options: ["A. Tính chất của polyalcohol.", "B. Tính chất của aldehyde.", "C. Tính chất ketone.", "D. Tính chất nhóm -OH hemiacetal."],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "q7_chuong2_carb",
+                                text: "Câu 7: Saccharose là một loại disaccharide có nhiều trong cây mía, hoa thốt nốt, củ cải đường. Công thức phân tử của saccharose là",
+                                options: ["A. C₆H₁₂O₆.", "B. (C₆H₁₀O₅)ₙ.", "C. C₁₂H₂₂O₁₁.", "D. C₂H₄O₂."],
+                                correctIndex: 2
+                        },
+                        {
+                                id: "q8_chuong2_carb",
+                                text: "Câu 8: Một phân tử maltose có",
+                                options: ["A. một đơn vị β-glucose và một đơn vị β-fructose.", "B. một đơn vị β-glucose và một đơn vị α-fructose.", "C. hai đơn vị α-glucose.", "D. một đơn vị α-glucose và một đơn vị β-fructose."],
+                                correctIndex: 2
+                        },
+                        {
+                                id: "q9_chuong2_carb",
+                                text: "Câu 9: Carbohydrate nào dưới đây không có nhóm -OH hemiacetal (hoặc hemiketal)?",
+                                options: ["A. Glucose.", "B. Fructose.", "C. Saccharose.", "D. Maltose."],
+                                correctIndex: 2
+                        },
+                        {
+                                id: "q10_chuong2_carb",
+                                text: "Câu 10: Phát biểu nào sau đây đúng?",
+                                options: ["A. Dung dịch saccharose hòa tan được Cu(OH)₂.", "B. Dung dịch saccharose có phản ứng tráng bạc.", "C. Glucose bị thủy phân trong môi trường acid.", "D. Fructose có phản ứng với nước Br₂."],
+                                correctIndex: 0
+                        },
+                        {
+                                id: "q11_chuong2_carb",
+                                text: "Câu 11: Phát biểu nào sau đây sai?",
+                                options: ["A. Glucose và saccharose đều là carbohydrate.", "B. Glucose và fructose đều hòa tan được Cu(OH)₂.", "C. Glucose và saccharose đều có phản ứng tráng bạc.", "D. Glucose và fructose là đồng phân của nhau."],
+                                correctIndex: 2
+                        },
+                        {
+                                id: "q12_chuong2_carb",
+                                text: "Câu 12: Phát biểu nào sau đây đúng?",
+                                options: ["A. Maltose không có nhóm -OH hemiacetal.", "B. Một phân tử saccharose gồm hai đơn vị α-glucose.", "C. Hai đơn vị α-glucose trong maltose liên kết với nhau bằng liên kết α-1,2-glycoside.", "D. Saccharose và maltose có cùng công thức phân tử."],
+                                correctIndex: 3
+                        },
+                        {
+                                id: "q13_chuong2_carb",
+                                text: "Câu 13: Polime nào sau đây có cấu trúc mạch phân nhánh?",
+                                options: ["A. Amylose.", "B. Cellulose.", "C. Amylopectin.", "D. Polyethylene."],
+                                correctIndex: 2
+                        },
+                        {
+                                id: "q14_chuong2_carb",
+                                text: "Câu 14: Cặp chất nào sau đây đều có khả năng thủy phân trong môi trường acid, đun nóng?",
+                                options: ["A. Fructose và tinh bột.", "B. Saccharose và cellulose.", "C. Glucose và saccharose.", "D. Glucose và fructose."],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "q15_chuong2_carb",
+                                text: "Câu 15: Phát biểu nào sau đây sai?",
+                                options: ["A. Thủy phân hoàn toàn cellulose thu được glucose.", "B. Amylopectin có cấu trúc mạch phân nhánh.", "C. Fructose và glucose là đồng phân của nhau.", "D. Fructose là sản phẩm của phản ứng thủy phân tinh bột."],
+                                correctIndex: 3
+                        },
+                        {
+                                id: "q16_chuong2_carb",
+                                text: "Câu 16: Chất rắn X dạng sợi, màu trắng, không tan trong nước ngay cả khi đun nóng. Thủy phân hoàn toàn X nhờ xúc tác acid hoặc enzyme thu được chất Y. Hai chất X và Y lần lượt là",
+                                options: ["A. cellulose và glucose.", "B. cellulose và saccharose.", "C. tinh bột và saccharose.", "D. tinh bột và glucose."],
+                                correctIndex: 0
+                        },
+                        {
+                                id: "q17_chuong2_carb",
+                                text: "Câu 17: Các gốc β-glucose trong phân tử cellulose tạo dạng mạch không phân nhánh, xoắn liên kết với nhau bởi liên kết",
+                                options: ["A. β-1,4-glycoside.", "B. α-1,3-glycoside.", "C. α-1,6-glycoside.", "D. β-1,2-glycoside."],
+                                correctIndex: 0
+                        },
+                        {
+                                id: "q18_chuong2_carb",
+                                text: "Câu 18: Chất nào sau đây bị thủy phân khi đun nóng trong môi trường acid?",
+                                options: ["A. Glycerol.", "B. Fructose.", "C. Glucose.", "D. Cellulose."],
+                                correctIndex: 3
+                        },
+
+                        // PHẦN II. CÂU TRẮC NGHIỆM ĐÚNG/SAI (5 câu)
+                        {
+                                id: "q19_chuong2_carb",
+                                type: "true_false_group",
+                                text: "<strong>PHẦN II. CÂU TRẮC NGHIỆM ĐÚNG/SAI</strong><br>Câu 1: Tiến hành thí nghiệm theo các bước sau:<br>— Bước 1: Cho 1 mL dung dịch AgNO₃ 1% vào ống nghiệm sạch.<br>— Bước 2: Thêm từ từ từng giọt dung dịch NH₃, lắc đều cho đến khi kết tủa tan hết.<br>— Bước 3: Thêm tiếp khoảng 1 mL dung dịch glucose 1% vào ống nghiệm, đun nóng nhẹ.",
+                                subQuestions: [
+                                        { id: "a", text: "a) Trong phản ứng trên glucose đóng vai trò là chất oxi hóa.", correctAnswer: "Sai" },
+                                        { id: "b", text: "b) Thí nghiệm trên chứng minh glucose có tính chất của polyalcohol.", correctAnswer: "Sai" },
+                                        { id: "c", text: "c) Sau bước 3, có lớp bạc kim loại bám trên thành ống nghiệm.", correctAnswer: "Đúng" },
+                                        { id: "d", text: "d) Ở bước 3, có thể thay việc đun nóng nhẹ bằng cách ngâm ống nghiệm trong nước nóng.", correctAnswer: "Đúng" }
+                                ]
+                        },
+                        {
+                                id: "q20_chuong2_carb",
+                                type: "true_false_group",
+                                text: "Câu 2: Maltose là thành phần chính của đường mạch nha. Trong dung dịch nước, maltose tồn tại chủ yếu ở hai dạng cấu tạo (I) và (II). Các dạng này tồn tại trong cân bằng sau:<br><div style=\"text-align:center; margin:14px 0;\"><svg viewBox=\"0 0 540 130\" style=\"max-width:100%; height:auto; background:#ffffff; border:1px solid #cbd5e1; border-radius:8px; padding:10px; box-shadow:0 2px 4px rgba(0,0,0,0.04);\"><text x=\"110\" y=\"22\" font-size=\"12\" fill=\"#1e293b\" text-anchor=\"middle\" font-weight=\"bold\">Dạng vòng (I)</text><path d=\"M 40,55 L 75,35 L 135,35 L 165,55 L 135,75 L 75,75 Z\" fill=\"none\" stroke=\"#2563eb\" stroke-width=\"2\"/><text x=\"135\" y=\"50\" font-size=\"12\" fill=\"#ef4444\" font-weight=\"bold\">O</text><text x=\"75\" y=\"30\" font-size=\"10\" fill=\"#475569\">CH₂OH</text><text x=\"75\" y=\"90\" font-size=\"10\" fill=\"#475569\">OH</text><text x=\"105\" y=\"90\" font-size=\"10\" fill=\"#475569\">OH</text><text x=\"145\" y=\"70\" font-size=\"11\" fill=\"#059669\" font-weight=\"bold\">O</text><path d=\"M 152,65 L 180,65\" stroke=\"#059669\" stroke-width=\"2\"/><path d=\"M 180,55 L 215,35 L 275,35 L 305,55 L 275,75 L 215,75 Z\" fill=\"none\" stroke=\"#2563eb\" stroke-width=\"2\"/><text x=\"275\" y=\"50\" font-size=\"12\" fill=\"#ef4444\" font-weight=\"bold\">O</text><text x=\"215\" y=\"30\" font-size=\"10\" fill=\"#475569\">CH₂OH</text><text x=\"310\" y=\"60\" font-size=\"11\" fill=\"#d97706\" font-weight=\"bold\">-OH (hemiacetal)</text><text x=\"245\" y=\"90\" font-size=\"10\" fill=\"#475569\">OH</text><text x=\"340\" y=\"60\" font-size=\"18\" fill=\"#334155\" font-weight=\"bold\">⇌</text><text x=\"440\" y=\"22\" font-size=\"12\" fill=\"#1e293b\" text-anchor=\"middle\" font-weight=\"bold\">Dạng mở vòng (II)</text><path d=\"M 370,55 L 395,40 L 435,40 L 455,55 L 435,70 L 395,70 Z\" fill=\"none\" stroke=\"#2563eb\" stroke-width=\"1.8\"/><text x=\"435\" y=\"50\" font-size=\"11\" fill=\"#ef4444\">O</text><path d=\"M 445,63 L 465,63\" stroke=\"#059669\" stroke-width=\"1.8\"/><path d=\"M 465,63 L 485,55 L 505,65 L 525,55\" fill=\"none\" stroke=\"#64748b\" stroke-width=\"1.8\"/><text x=\"505\" y=\"80\" font-size=\"11\" fill=\"#dc2626\" font-weight=\"bold\">-CH=O</text></svg></div>Maltose thủy phân trong môi trường acid hoặc enzyme tạo thành glucose.",
+                                subQuestions: [
+                                        { id: "a", text: "a) Liên kết giữa hai đơn vị monosaccharide trong phân tử maltose là liên kết β-1,4-glycoside.", correctAnswer: "Sai" },
+                                        { id: "b", text: "b) Maltose và saccharose là đồng phân cấu tạo của nhau.", correctAnswer: "Đúng" },
+                                        { id: "c", text: "c) Maltose có phản ứng tráng gương và phản ứng với nước bromine.", correctAnswer: "Đúng" },
+                                        { id: "d", text: "d) Dạng (I) có một nhóm -OH hemiacetal.", correctAnswer: "Đúng" }
+                                ]
+                        },
+                        {
+                                id: "q21_chuong2_carb",
+                                type: "true_false_group",
+                                text: "Câu 3: Cho các phát biểu về cellulose:",
+                                subQuestions: [
+                                        { id: "a", text: "a) Cellulose có thể tạo thành cellulose nitrate khi phản ứng với HNO₃.", correctAnswer: "Đúng" },
+                                        { id: "b", text: "b) Phản ứng thuỷ phân của cellulose tạo ra fructose.", correctAnswer: "Sai" },
+                                        { id: "c", text: "c) Thuỷ phân hoàn toàn tinh bột và cellulose đều tạo thành glucose.", correctAnswer: "Đúng" },
+                                        { id: "d", text: "d) Cellulose tạo ra màu xanh lam khi phản ứng với nước Schweizer.", correctAnswer: "Đúng" }
+                                ]
+                        },
+                        {
+                                id: "q22_chuong2_carb",
+                                type: "true_false_group",
+                                text: "Câu 4: Cho các phát biểu sau:",
+                                subQuestions: [
+                                        { id: "a", text: "a) Saccharose là một monosaccharide.", correctAnswer: "Sai" },
+                                        { id: "b", text: "b) Saccharose là chất rắn, vị ngọt, tan tốt trong nước ở điều kiện thường.", correctAnswer: "Đúng" },
+                                        { id: "c", text: "c) Maltose là đồng phân của saccharose.", correctAnswer: "Đúng" },
+                                        { id: "d", text: "d) Saccharose và maltose đều có cấu tạo dạng mạch hở và mạch vòng.", correctAnswer: "Sai" }
+                                ]
+                        },
+                        {
+                                id: "q23_chuong2_carb",
+                                type: "true_false_group",
+                                text: "Câu 5: Cho các phát biểu sau:",
+                                subQuestions: [
+                                        { id: "a", text: "a) Tinh bột được sử dụng làm chất kết dính trong công nghiệp giấy.", correctAnswer: "Đúng" },
+                                        { id: "b", text: "b) Tinh bột là nguồn lương thực chính của con người.", correctAnswer: "Đúng" },
+                                        { id: "c", text: "c) Cellulose có thể được sử dụng làm nguyên liệu trong sản xuất ethanol.", correctAnswer: "Đúng" },
+                                        { id: "d", text: "d) Tinh bột được tiêu hoá bởi enzyme α-amylase trong nước bọt.", correctAnswer: "Đúng" }
+                                ]
+                        },
+
+                        // PHẦN III. CÂU TRẮC NGHIỆM TRẢ LỜI NGẮN (7 câu)
+                        {
+                                id: "q24_chuong2_carb",
+                                type: "short_answer",
+                                text: "<strong>PHẦN III. CÂU TRẮC NGHIỆM TRẢ LỜI NGẮN</strong><br>Câu 1: Cho phương trình hóa học của các phản ứng được đánh số thứ tự từ 1 tới 4 dưới đây:<br>(1) (C₆H₁₀O₅)ₙ (tinh bột) + nH₂O —(H⁺, t°)→ nC₆H₁₂O₆ (glucose)<br>(2) C₆H₁₂O₆ (glucose) —(enzyme)→ 2C₂H₅OH + 2CO₂<br>(3) C₆H₁₂O₆ (glucose) —(enzyme)→ 2CH₃CH(OH)COOH<br>(4) C₆H₁₂O₆ (glucose) + 2[Ag(NH₃)₂]OH —(t°)→ CH₂OH(CHOH)₄COONH₄ + 2Ag + 3NH₃ + H₂O<br>Gán số thứ tự phương trình hoá học của các phản ứng theo tên gọi: <i>lên men rượu, thủy phân, lên men lactic, tráng gương</i> và sắp xếp theo trình tự thành dãy bốn số (ví dụ: 1234, 4321,... ).",
+                                correctAnswer: "2134"
+                        },
+                        {
+                                id: "q25_chuong2_carb",
+                                type: "short_answer",
+                                text: "Câu 2: Cho 4 carbohydrate: (1) glucose, (2) fructose, (3) saccharose, (4) maltose. Hãy sắp xếp những carbohydrate có nhóm -OH hemiacetal trong phân tử theo số thứ tự tăng dần (ví dụ: 12, 134, ...).",
+                                correctAnswer: "124"
+                        },
+                        {
+                                id: "q26_chuong2_carb",
+                                type: "short_answer",
+                                text: "Câu 3: Thuỷ phân 100 gam saccharose thu được 104,5 gam hỗn hợp gồm glucose, fructose và saccharose còn dư. Hiệu suất của phản ứng thuỷ phân saccharose bằng bao nhiêu %? (Kết quả làm tròn đến phần chục).",
+                                correctAnswer: "85.5|85,5"
+                        },
+                        {
+                                id: "q27_chuong2_carb",
+                                type: "short_answer",
+                                text: "Câu 4: Trong số 6 carbohydrate sau: glucose, fructose, saccharose, maltose, tinh bột và cellulose, số carbohydrate cho được phản ứng thuỷ phân là ____.",
+                                correctAnswer: "4"
+                        },
+                        {
+                                id: "q28_chuong2_carb",
+                                type: "short_answer",
+                                text: "Câu 5: Cho 13,00 gam glucose tác dụng với lượng dư dung dịch AgNO₃ trong NH₃, đun nóng (hiệu suất phản ứng tráng bạc (silver) đạt 80%), khối lượng kết tủa silver (gam) thu được là ____ gam.",
+                                correctAnswer: "12.48|12,48"
+                        },
+                        {
+                                id: "q29_chuong2_carb",
+                                type: "short_answer",
+                                text: "Câu 6: Cho các phát biểu sau:<br>(1) Saccharose, tinh bột và cellulose đều tham gia phản ứng thủy phân trong môi trường acid đun nóng.<br>(2) Tinh bột và cellulose đều có công thức là (C₆H₁₀O₅)ₙ và là đồng phân của nhau.<br>(3) Cellulose được tạo bởi các gốc β-glucose liên kết với nhau bởi liên kết β-1,4-glycoside.<br>(4) Có thể phân biệt glucose và fructose bằng thuốc thử Tollens.<br>(5) Các dung dịch glucose, maltose, saccharose, fructose đều hoà tan được Cu(OH)₂ tạo dung dịch xanh lam.<br>Liệt kê các phát biểu đúng theo số thứ tự tăng dần.",
+                                correctAnswer: "135"
+                        },
+                        {
+                                id: "q30_chuong2_carb",
+                                type: "short_answer",
+                                text: "Câu 7: Cho một số tính chất: có dạng sợi (1); tan trong nước (2); tan trong nước Schweizer (3); phản ứng với nitric acid đặc (xúc tác Sulfuric acid đặc) (4); bị oxi hóa bởi thuốc thử Tollens (5); bị thuỷ phân trong dung dịch acid đun nóng (6). Liệt kê các tính chất của cellulose theo số thứ tự tăng dần.",
+                                correctAnswer: "1346"
+                        }
+                ]
+        },
+        {
+                id: "de_4_advertisement",
+                title: "4 advertisement",
+                category: "anh",
+                subject: "Tiếng Anh",
+                description: "4 bài đọc quảng cáo Tiếng Anh (Điền từ vào chỗ trống - 24 câu hỏi)",
+                scoreScale: 10,
+                scorePerQuestion: 0.42,
+                questions: [
+                        // Advertisement 1
+                        {
+                                id: "reading_adv_1",
+                                section: "TIẾNG ANH",
+                                type: "reading_group",
+                                passage: "<strong>ADVERTISEMENT 1</strong><br><br><h3 style=\"margin:6px 0;\">🌐 The Boom of Online Media 📰</h3><br>✨ In today's fast-paced world, media is changing more rapidly than ever before!<br><br>📊 Media within the country is evolving fast because of the growth of digital platforms.<br><br><strong>From Traditional to Digital</strong><br>💻 (1) _____, such as newspapers and TV, are increasingly being replaced by online channels where information can be accessed instantly.<br><br>💡 This shift in format allows for more interactive and (2) _____ content.<br><br>🎯 People expect (3) _____ news that aligns with their interests and preferences.<br><br><strong>Real-Time Updates, Real Impact</strong><br>⏰ Thanks to the availability of real-time updates through digital media, many users, (4) _____ accustomed to immediate access, no longer rely on conventional sources.<br><br><strong>Faster News, Greater Influence</strong><br>🚀 As a result, online platforms are (5) _____ the news faster than ever before, providing instant reactions to global events.<br><br>📈 The rise in demand for timely and relevant content has a significant impact on the future of media (6) _____ the digital age.<br><br><em>(Adapted from: Pew Research Center and Reuters Institute reports on digital media trends.)</em>",
+                                subQuestions: [
+                                        { id: "q1_adv1", text: "Question 1 (Blank 1):", options: ["A. Traditional media outlets", "B. Media outlets traditional", "C. Traditional outlets media", "D. Media traditional outlets"], correctIndex: 0 },
+                                        { id: "q2_adv1", text: "Question 2 (Blank 2):", options: ["A. person", "B. personalization", "C. personalized", "D. personal"], correctIndex: 2 },
+                                        { id: "q3_adv1", text: "Question 3 (Blank 3):", options: ["A. to receiving", "B. to receive", "C. receive", "D. to be received"], correctIndex: 1 },
+                                        { id: "q4_adv1", text: "Question 4 (Blank 4):", options: ["A. who became", "B. become", "C. was become", "D. having become"], correctIndex: 3 },
+                                        { id: "q5_adv1", text: "Question 5 (Blank 5):", options: ["A. exacerbating", "B. breaking", "C. amplifying", "D. dominating"], correctIndex: 1 },
+                                        { id: "q6_adv1", text: "Question 6 (Blank 6):", options: ["A. with", "B. on", "C. in", "D. without"], correctIndex: 2 }
+                                ]
+                        },
+
+                        // Advertisement 2
+                        {
+                                id: "reading_adv_2",
+                                section: "TIẾNG ANH",
+                                type: "reading_group",
+                                passage: "<strong>ADVERTISEMENT 2</strong><br><br><h3 style=\"margin:6px 0;\">🎓 Education for Tomorrow's Generation 🌍</h3><br>✨ In today's ever-changing world, the future of education offers young people an exciting range of opportunities.<br><br>🚀 Students can choose (1) _____ or step into innovative fields such as artificial intelligence or environmental science—opening doors to limitless potential.<br><br><strong>Explore Global Opportunities</strong><br>🌍 With these diverse options, more and more students are choosing to study abroad, (2) _____ valuable international experiences that enrich their perspectives and prepare them for a global future.<br><br><strong>Flexible & Modern Learning</strong><br>💻 Today's education system is more flexible than ever, combining online and in-person learning to better support individual needs.<br><br>🎯 This approach is especially beneficial (3) _____ those who (4) _____ flexible schedules.<br><br><strong>Plan for Success</strong><br>🎨 Looking ahead, young people are strongly encouraged to (5) _____ ahead and plan carefully for their academic journey.<br><br>📊 Notably, recent research shows that students who pursue STEM majors tend (6) _____ higher-paying jobs, making them a smart choice for future success.<br><br><em>(Adapted from: UNESCO reports on global education trends; OECD (2023), Education at a Glance.)</em>",
+                                subQuestions: [
+                                        { id: "q7_adv2", text: "Question 7 (Blank 1):", options: ["A. conventional academic paths", "B. conventional paths academic", "C. academic paths conventional", "D. paths conventional academic"], correctIndex: 0 },
+                                        { id: "q8_adv2", text: "Question 8 (Blank 2):", options: ["A. gained", "B. having gained", "C. that gained", "D. gaining"], correctIndex: 3 },
+                                        { id: "q9_adv2", text: "Question 9 (Blank 3):", options: ["A. at", "B. on", "C. for", "D. into"], correctIndex: 2 },
+                                        { id: "q10_adv2", text: "Question 10 (Blank 4):", options: ["A. required", "B. require", "C. requiring", "D. requirement"], correctIndex: 1 },
+                                        { id: "q11_adv2", text: "Question 11 (Blank 5):", options: ["A. plan", "B. reinforce", "C. sustain", "D. allocate"], correctIndex: 0 },
+                                        { id: "q12_adv2", text: "Question 12 (Blank 6):", options: ["A. found", "B. to find", "C. find", "D. to be founded"], correctIndex: 1 }
+                                ]
+                        },
+
+                        // Advertisement 3
+                        {
+                                id: "reading_adv_3",
+                                section: "TIẾNG ANH",
+                                type: "reading_group",
+                                passage: "<strong>ADVERTISEMENT 3</strong><br><br><h3 style=\"margin:6px 0;\">📢 Unleash the Excitement of Live Concerts! 🎶</h3><br>💥 Some moments stay with us forever—and last weekend was truly one of them.<br><br>🎸 I had the chance (1) _____ a live concert of my favorite band, and it was nothing short of amazing.<br><br><strong>Feel the Energy</strong><br>🔥 From the (2) _____ energy of the crowd to the (3) _____ filled with dazzling lights and powerful music, every second was unforgettable.<br><br>🌟 The performance (4) _____ by the lead singer was deeply moving, leaving the entire audience completely captivated.<br><br><strong>Live the Moment</strong><br>🎶 Throughout the night, everyone was dancing and singing along, creating an incredible atmosphere.<br><br>💖 I felt truly part of something special, connected (5) _____ everyone around me.<br><br><strong>Recharge & Celebrate</strong><br>🌈 It was the perfect way to (6) _____ an end to a stressful week—an experience that refreshed my spirit and lifted my mood.<br><br><em>(Adapted from: general descriptions of live music experiences and concert reviews.)</em>",
+                                subQuestions: [
+                                        { id: "q13_adv3", text: "Question 13 (Blank 1):", options: ["A. attended", "B. attending", "C. to attend", "D. attend"], correctIndex: 2 },
+                                        { id: "q14_adv3", text: "Question 14 (Blank 2):", options: ["A. electrifying", "B. electrify", "C. electrified", "D. electricity"], correctIndex: 0 },
+                                        { id: "q15_adv3", text: "Question 15 (Blank 3):", options: ["A. incredible stage design", "B. incredible design stage", "C. stage incredible design", "D. design incredible stage"], correctIndex: 0 },
+                                        { id: "q16_adv3", text: "Question 16 (Blank 4):", options: ["A. given", "B. which give", "C. giving", "D. that given"], correctIndex: 0 },
+                                        { id: "q17_adv3", text: "Question 17 (Blank 5):", options: ["A. from", "B. to", "C. at", "D. for"], correctIndex: 1 },
+                                        { id: "q18_adv3", text: "Question 18 (Blank 6):", options: ["A. refute", "B. enhance", "C. put", "D. consolidate"], correctIndex: 2 }
+                                ]
+                        },
+
+                        // Advertisement 4
+                        {
+                                id: "reading_adv_4",
+                                section: "TIẾNG ANH",
+                                type: "reading_group",
+                                passage: "<strong>ADVERTISEMENT 4</strong><br><br><h3 style=\"margin:6px 0;\">⏰ Why Your Break Time Is Essential</h3><br>🍱 Boost Your Day with a Better Lunch Break!<br><br>⚡ Take a moment to recharge during your busy workday!<br><br>💼 (1) _____ is very important—it's your chance to relax and enjoy some food.<br><br>🕒 My break, (2) _____ at 12:30, allows me to step away from my tasks for a while and refresh my mind.<br><br><strong>Quick and Easy Meal Choices</strong><br>🍲 Looking for something simple and satisfying?<br><br>🥪 I am often fond of sandwiches or salads because they are easy to eat—perfect (3) _____ a fast yet enjoyable meal.<br><br><strong>Make the Most of Your Time</strong><br>⏳ Time is limited, so make every minute count!<br><br>🏃 Sometimes, I need to hurry (4) _____ where to go for lunch.<br><br>⏱️ In about 15 minutes, I have to (5) _____ quickly.<br><br>☕ Whether I eat at my desk or go to a nearby café, this short break helps me feel (6) _____ and more focused for the rest of the day.<br><br><strong>Small Break, Big Impact</strong><br>💡 Make the most of your lunch break—it's a small moment that can make a big difference in your day!<br><br><em>(Adapted from: general lifestyle tips and articles on workplace productivity and healthy habits.)</em>",
+                                subQuestions: [
+                                        { id: "q19_adv4", text: "Question 19 (Blank 1):", options: ["A. A lunch quick break", "B. A break quick lunch", "C. A quick lunch break", "D. A quick break lunch"], correctIndex: 2 },
+                                        { id: "q20_adv4", text: "Question 20 (Blank 2):", options: ["A. starting", "B. which started", "C. started", "D. that starts"], correctIndex: 0 },
+                                        { id: "q21_adv4", text: "Question 21 (Blank 3):", options: ["A. in", "B. at", "C. for", "D. on"], correctIndex: 2 },
+                                        { id: "q22_adv4", text: "Question 22 (Blank 4):", options: ["A. choosing", "B. to choose", "C. to choosing", "D. choose"], correctIndex: 1 },
+                                        { id: "q23_adv4", text: "Question 23 (Blank 5):", options: ["A. get things done", "B. meet a deadline", "C. gain hands-on experience", "D. weigh my options"], correctIndex: 0 },
+                                        { id: "q24_adv4", text: "Question 24 (Blank 6):", options: ["A. refreshed", "B. refresh", "C. refreshing", "D. refreshment"], correctIndex: 0 }
+                                ]
+                        }
+                ]
+        },
+
+        // ==========================================================================
+        // ÔN TẬP GIỮA KÌ I - TIẾNG ANH 12 (60 CÂU: PHẦN A & B)
+        // ==========================================================================
+        {
+                id: "on_tap_giua_ki_1_tieng_anh_12",
+                title: "Ôn tập Giữa kì I - Tiếng Anh 12",
+                category: "anh",
+                subject: "Tiếng Anh",
+                description: "Đề cương ôn tập kiểm tra giữa kì I môn Tiếng Anh 12 (60 câu). Cấu trúc gồm Phần A (30 câu) & Phần B (30 câu): Kiến thức ngôn ngữ, Đọc hiểu (Helen Keller, A Multicultural World, Marie Curie, Green Living) & Viết câu.",
+                scoreScale: 10,
+                scorePerQuestion: 0.17,
+                selectableSections: [
+                        {
+                                id: "part_a_mcq",
+                                group: "Phần A (Câu 1 - 30)",
+                                name: "I. Trắc nghiệm (Language & Reading)",
+                                label: "Trắc nghiệm (25 câu: 1 - 25)",
+                                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                                count: 25,
+                                type: "multiple_choice"
+                        },
+                        {
+                                id: "part_a_writing",
+                                group: "Phần A (Câu 1 - 30)",
+                                name: "II. Viết câu (Writing)",
+                                label: "Viết câu (5 câu: 26 - 30)",
+                                section: "PHẦN A: WRITING",
+                                count: 5,
+                                type: "short_answer"
+                        },
+                        {
+                                id: "part_b_mcq",
+                                group: "Phần B (Câu 31 - 60)",
+                                name: "I. Trắc nghiệm (Language & Reading)",
+                                label: "Trắc nghiệm (25 câu: 31 - 55)",
+                                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                                count: 25,
+                                type: "multiple_choice"
+                        },
+                        {
+                                id: "part_b_writing",
+                                group: "Phần B (Câu 31 - 60)",
+                                name: "II. Viết câu (Writing)",
+                                label: "Viết câu (5 câu: 56 - 60)",
+                                section: "PHẦN B: WRITING",
+                                count: 5,
+                                type: "short_answer"
+                        }
+                ],
+                presets: [
+                        {
+                                id: "all",
+                                label: "✨ Toàn bộ đề (60 câu)",
+                                sectionIds: ["part_a_mcq", "part_a_writing", "part_b_mcq", "part_b_writing"]
+                        },
+                        {
+                                id: "part_a",
+                                label: "📖 Phần A (30 câu)",
+                                sectionIds: ["part_a_mcq", "part_a_writing"]
+                        },
+                        {
+                                id: "part_b",
+                                label: "📚 Phần B (30 câu)",
+                                sectionIds: ["part_b_mcq", "part_b_writing"]
+                        },
+                        {
+                                id: "all_mcq",
+                                label: "📝 Tất cả Trắc nghiệm (50 câu)",
+                                sectionIds: ["part_a_mcq", "part_b_mcq"]
+                        },
+                        {
+                                id: "all_writing",
+                                label: "✏️ Tất cả Viết câu (10 câu)",
+                                sectionIds: ["part_a_writing", "part_b_writing"]
+                        }
+                ],
+                questions: [
+                        // ==========================================
+                        // PHẦN A: CÂU 1 - 30
+                        // ==========================================
+
+                        // --- I. LANGUAGE KNOWLEDGE (Câu 1 - 15) ---
+                        {
+                                id: "gk1_eng_q1",
+                                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 1. Many students regard Dr. Hoa as a role _____ because she never gives up.",
+                                options: ["A. player", "B. model", "C. part", "D. play"],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_eng_q2",
+                                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 2. Using public transport is one way to reduce our carbon _____.",
+                                options: ["A. step", "B. mark", "C. footprint", "D. print"],
+                                correctIndex: 2
+                        },
+                        {
+                                id: "gk1_eng_q3",
+                                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 3. Viet Nam has great cultural _____ because 54 ethnic groups live together here.",
+                                options: ["A. diversity", "B. division", "C. difference", "D. distance"],
+                                correctIndex: 0
+                        },
+                        {
+                                id: "gk1_eng_q4",
+                                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 4. Mark the letter A, B, C or D to indicate the word CLOSEST in meaning to the underlined word.\nThe young man showed great <u>courage</u> when he saved the child from the fire.",
+                                options: ["A. fear", "B. kindness", "C. bravery", "D. patience"],
+                                correctIndex: 2
+                        },
+                        {
+                                id: "gk1_eng_q5",
+                                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 5. Mark the letter A, B, C or D to indicate the word OPPOSITE in meaning to the underlined word.\nPlastic waste is <u>harmful</u> to marine life.",
+                                options: ["A. dangerous", "B. beneficial", "C. poisonous", "D. damaging"],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_eng_q6",
+                                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 6. Although she grew up in a poor family, her _____ to become a doctor never weakened.",
+                                options: ["A. generosity", "B. politeness", "C. curiosity", "D. determination"],
+                                correctIndex: 3
+                        },
+                        {
+                                id: "gk1_eng_q7",
+                                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 7. Mother Teresa _____ the Nobel Peace Prize in 1979.",
+                                options: ["A. wins", "B. has won", "C. won", "D. was winning"],
+                                correctIndex: 2
+                        },
+                        {
+                                id: "gk1_eng_q8",
+                                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 8. Viet Nam has _____ rich cultural heritage.",
+                                options: ["A. a", "B. an", "C. the", "D. no article"],
+                                correctIndex: 0
+                        },
+                        {
+                                id: "gk1_eng_q9",
+                                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 9. Our school encourages students to participate _____ green activities.",
+                                options: ["A. at", "B. of", "C. in", "D. with"],
+                                correctIndex: 2
+                        },
+                        {
+                                id: "gk1_eng_q10",
+                                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 10. My brother often buys second-hand clothes, _____ helps him save money and reduce waste.",
+                                options: ["A. who", "B. that", "C. when", "D. which"],
+                                correctIndex: 3
+                        },
+                        {
+                                id: "gk1_eng_q11",
+                                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 11. At 8 p.m. last Friday, my parents and I _____ a documentary about a famous Vietnamese scientist.",
+                                options: ["A. watched", "B. were watching", "C. had watched", "D. watch"],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_eng_q12",
+                                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 12. Which of the following sentences is grammatically correct?",
+                                options: [
+                                        "A. The Nile is longest river in the world.",
+                                        "B. We visited an ethnic village and the guide told us many stories about its traditions.",
+                                        "C. She wants to become a engineer in the future.",
+                                        "D. Sun rises in the east every morning."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_eng_q13",
+                                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 13. Read the sign and answer the question:\n<div style=\"border:2px solid var(--border);border-radius:10px;padding:14px 18px;margin:12px 0;background:rgba(255,255,255,0.04);text-align:center;\"><strong style=\"font-size:1.1rem;display:block;margin-bottom:6px;color:var(--text-main);\">NO PLASTIC BAGS</strong><p style=\"margin:4px 0;\">Please bring your own reusable bag.</p><p style=\"margin:4px 0;font-style:italic;color:#10b981;\">Thank you for helping us protect the planet!</p></div>What does the sign tell customers to do?",
+                                options: [
+                                        "A. Buy plastic bags at the counter.",
+                                        "B. Throw away used bags here.",
+                                        "C. Recycle plastic bottles.",
+                                        "D. Use their own bags."
+                                ],
+                                correctIndex: 3
+                        },
+                        {
+                                id: "gk1_eng_q14",
+                                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 14. Read the advertisement and answer the question:\n<div style=\"border:2px solid var(--border);border-radius:10px;padding:14px 18px;margin:12px 0;background:rgba(255,255,255,0.04);text-align:center;\"><strong style=\"font-size:1.1rem;display:block;margin-bottom:6px;color:#10b981;\">GREEN CLUB NEEDS YOU!</strong><p style=\"margin:4px 0;font-weight:600;\">Join our clean-up day</p><p style=\"margin:4px 0;\">Every Saturday, 7 a.m. – Riverside Park</p><p style=\"margin:4px 0;color:#3b82f6;font-weight:600;\">Free T-shirts and drinks for all volunteers</p><p style=\"margin:4px 0;font-size:0.9rem;\">Contact: greenclub@school.edu.vn</p></div>What will volunteers receive?",
+                                options: [
+                                        "A. Certificates and books.",
+                                        "B. Free T-shirts and drinks.",
+                                        "C. Free lunch.",
+                                        "D. Bicycles."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_eng_q15",
+                                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 15. Read the notice and answer the question:\n<div style=\"border:2px solid var(--border);border-radius:10px;padding:14px 18px;margin:12px 0;background:rgba(255,255,255,0.04);\"><strong style=\"font-size:1.1rem;display:block;margin-bottom:8px;text-align:center;color:var(--text-main);\">NOTICE</strong><p style=\"margin:4px 0;line-height:1.6;\">Because of the heavy rain, the Multicultural Festival has been moved to next Sunday. Tickets that have already been bought are still valid. Students who cannot attend on the new date may get their money back at the Student Office before Friday.</p></div>What can be understood from the notice?",
+                                options: [
+                                        "A. The festival has been cancelled.",
+                                        "B. Students must buy new tickets.",
+                                        "C. Students who cannot come on the new date can ask for a refund.",
+                                        "D. The festival will be held in the rain next Sunday."
+                                ],
+                                correctIndex: 2
+                        },
+
+                        // --- II. READING (Câu 16 - 25) ---
+                        // Task 1: LIFE STORY OF HELEN KELLER (Câu 16 - 20)
+                        {
+                                id: "reading_gk1_helen_keller",
+                                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                                type: "reading_group",
+                                passage: "<strong>Task 1. Read the following passage and mark the letter A, B, C or D to indicate the correct option that best fits each of the numbered blanks from 16 to 20.</strong><br><br><h3 style=\"text-align:center;margin:10px 0;color:var(--text-main);\">LIFE STORY OF HELEN KELLER</h3><br>Helen Keller was born in Alabama, the USA, in 1880. When she was only 19 months old, she fell seriously ill and <b>(16) _____</b>. As a result, she could not communicate with other people, and her childhood was full of anger and loneliness.<br><br>Everything changed in 1887 when a young teacher named Anne Sullivan came to live with the family. Sullivan was a very patient teacher. <b>(17) _____</b>, she spelled words into Helen's hand until the girl understood that everything around her had a name. Helen was curious about the world and loved to touch, smell and learn about everything. She soon learned to read Braille, to write, and later to speak.<br><br>In 1904, Helen graduated from Radcliffe College, <b>(18) _____</b>. After that, she wrote many books and <b>(19) _____</b>. She also met leaders from many countries and encouraged them to support disabled people. Although she faced countless difficulties, she never gave up. Her life story shows that <b>(20) _____</b>. Today, millions of people around the world still admire her courage and strong will.",
+                                subQuestions: [
+                                        {
+                                                id: "gk1_eng_q16",
+                                                text: "Question 16: Choose the best option for blank (16).",
+                                                options: [
+                                                        "A. lost her sight and hearing",
+                                                        "B. won a famous prize",
+                                                        "C. moved to another country",
+                                                        "D. began to study at university"
+                                                ],
+                                                correctIndex: 0
+                                        },
+                                        {
+                                                id: "gk1_eng_q17",
+                                                text: "Question 17: Choose the best option for blank (17).",
+                                                options: [
+                                                        "A. Because she was angry",
+                                                        "B. As soon as she left",
+                                                        "C. Day after day",
+                                                        "D. Unless Helen refused"
+                                                ],
+                                                correctIndex: 2
+                                        },
+                                        {
+                                                id: "gk1_eng_q18",
+                                                text: "Question 18: Choose the best option for blank (18).",
+                                                options: [
+                                                        "A. but she did not enjoy reading",
+                                                        "B. which made her the first deaf-blind person to earn a university degree",
+                                                        "C. so she could see the world clearly",
+                                                        "D. because she wanted to be a pilot"
+                                                ],
+                                                correctIndex: 1
+                                        },
+                                        {
+                                                id: "gk1_eng_q19",
+                                                text: "Question 19: Choose the best option for blank (19).",
+                                                options: [
+                                                        "A. spent her life campaigning for people with disabilities",
+                                                        "B. refused to meet other people",
+                                                        "C. forgot her teacher completely",
+                                                        "D. stayed at home all her life"
+                                                ],
+                                                correctIndex: 0
+                                        },
+                                        {
+                                                id: "gk1_eng_q20",
+                                                text: "Question 20: Choose the best option for blank (20).",
+                                                options: [
+                                                        "A. disabled people cannot be successful",
+                                                        "B. determination can help people overcome serious difficulties",
+                                                        "C. only rich people can go to university",
+                                                        "D. life is easy for everyone"
+                                                ],
+                                                correctIndex: 1
+                                        }
+                                ]
+                        },
+
+                        // Task 2: A MULTICULTURAL WORLD (Câu 21 - 25)
+                        {
+                                id: "reading_gk1_multicultural_world",
+                                section: "PHẦN A: LANGUAGE KNOWLEDGE & READING",
+                                type: "reading_group",
+                                passage: "<strong>Task 2. Read the following passage and mark the letter A, B, C or D to indicate the correct answer to each of the questions from 21 to 25.</strong><br><br><h3 style=\"text-align:center;margin:10px 0;color:var(--text-main);\">A MULTICULTURAL WORLD</h3><br>A multicultural society is one where people of different cultures, languages and traditions live together. Today, many countries around the world, including Viet Nam, are multicultural. Viet Nam has 54 ethnic groups, and each group has its own customs, costumes and festivals.<br><br>Living in a multicultural society brings many benefits. People can learn about different ways of life, try new foods and enjoy colourful festivals. Students who study with classmates from other backgrounds often become more open-minded and better at communicating with others. In addition, cultural diversity can make the economy stronger because it attracts tourists from other countries.<br><br>However, multicultural societies also face some challenges. Language differences can cause misunderstandings, and people may judge others by stereotypes instead of getting to know them. Some people also worry that traditional cultures may disappear when young people follow global trends.<br><br>To build a harmonious multicultural community, people need to respect cultural differences. Schools can organise cultural exchange activities, and families can encourage children to learn about other traditions. Most importantly, everyone should keep an open mind and avoid prejudice. When people accept and celebrate their differences, they can live together in peace and learn from one another.",
+                                subQuestions: [
+                                        {
+                                                id: "gk1_eng_q21",
+                                                text: "Question 21: According to paragraph 1, how many ethnic groups does Viet Nam have?",
+                                                options: ["A. 45", "B. 54", "C. 64", "D. 15"],
+                                                correctIndex: 1
+                                        },
+                                        {
+                                                id: "gk1_eng_q22",
+                                                text: "Question 22: The word \"challenges\" in paragraph 3 is closest in meaning to _____.",
+                                                options: ["A. difficulties", "B. chances", "C. rewards", "D. choices"],
+                                                correctIndex: 0
+                                        },
+                                        {
+                                                id: "gk1_eng_q23",
+                                                text: "Question 23: According to paragraph 2, how can cultural diversity help the economy?",
+                                                options: [
+                                                        "A. It reduces the cost of food.",
+                                                        "B. It encourages people to work abroad.",
+                                                        "C. It brings in visitors from other countries.",
+                                                        "D. It creates new languages."
+                                                ],
+                                                correctIndex: 2
+                                        },
+                                        {
+                                                id: "gk1_eng_q24",
+                                                text: "Question 24: It can be inferred from paragraph 3 that _____.",
+                                                options: [
+                                                        "A. all traditional cultures have already disappeared",
+                                                        "B. language differences can lead to misunderstanding between cultural groups",
+                                                        "C. young people never respect traditions",
+                                                        "D. cultural diversity always causes conflict"
+                                                ],
+                                                correctIndex: 1
+                                        },
+                                        {
+                                                id: "gk1_eng_q25",
+                                                text: "Question 25: Which of the following best summarises the main idea of the passage?",
+                                                options: [
+                                                        "A. Respect and an open mind are needed to enjoy the benefits of a multicultural society.",
+                                                        "B. Traditional cultures are more important than global trends.",
+                                                        "C. Students should only study with classmates from the same background.",
+                                                        "D. Tourism is the most important benefit of cultural diversity."
+                                                ],
+                                                correctIndex: 0
+                                        }
+                                ]
+                        },
+
+                        // --- III. WRITING (Câu 26 - 30) ---
+                        {
+                                id: "gk1_eng_q26",
+                                section: "PHẦN A: WRITING",
+                                type: "short_answer",
+                                text: "Question 26 (Rearrange): Sắp xếp các từ/cụm từ sau thành câu hoàn chỉnh (không thay đổi hoặc thêm từ):\n<strong>is / famous / the scientist / for / and / courage / his / determination</strong>",
+                                correctAnswer: "The scientist is famous for his courage and determination. | The scientist is famous for his courage and determination | The scientist is famous for his determination and courage. | The scientist is famous for his determination and courage"
+                        },
+                        {
+                                id: "gk1_eng_q27",
+                                section: "PHẦN A: WRITING",
+                                type: "short_answer",
+                                text: "Question 27 (Rearrange): Sắp xếp các từ/cụm từ sau thành câu hoàn chỉnh (không thay đổi hoặc thêm từ):\n<strong>the multicultural festival / many visitors / attracts / from / different countries / every year</strong>",
+                                correctAnswer: "The multicultural festival attracts many visitors from different countries every year. | The multicultural festival attracts many visitors from different countries every year"
+                        },
+                        {
+                                id: "gk1_eng_q28",
+                                section: "PHẦN A: WRITING",
+                                type: "short_answer",
+                                text: "Question 28 (Rearrange): Sắp xếp các từ/cụm từ sau thành câu hoàn chỉnh (không thay đổi hoặc thêm từ):\n<strong>many people / bring / reusable bags / to / reduce / when shopping / plastic waste</strong>",
+                                correctAnswer: "Many people bring reusable bags to reduce plastic waste when shopping. | Many people bring reusable bags to reduce plastic waste when shopping | Many people bring reusable bags when shopping to reduce plastic waste. | Many people bring reusable bags when shopping to reduce plastic waste"
+                        },
+                        {
+                                id: "gk1_eng_q29",
+                                section: "PHẦN A: WRITING",
+                                type: "short_answer",
+                                text: "Question 29 (Combine): Kết hợp cặp câu sau thành một câu, sử dụng từ gợi ý trong ngoặc:\nAt 9 p.m. yesterday, I was reading a biography. My sister came home at that time.\n<strong>→ (Dùng \"when\"):</strong>",
+                                correctAnswer: "I was reading a biography when my sister came home. | I was reading a biography when my sister came home | When my sister came home, I was reading a biography. | When my sister came home, I was reading a biography | I was reading a biography when my sister came home yesterday. | When my sister came home yesterday, I was reading a biography."
+                        },
+                        {
+                                id: "gk1_eng_q30",
+                                section: "PHẦN A: WRITING",
+                                type: "short_answer",
+                                text: "Question 30 (Combine): Kết hợp cặp câu sau thành một câu, sử dụng từ gợi ý trong ngoặc:\nPlastic bags take hundreds of years to decompose. This makes them a serious threat to the environment.\n<strong>→ (Dùng \"which\"):</strong>",
+                                correctAnswer: "Plastic bags take hundreds of years to decompose, which makes them a serious threat to the environment. | Plastic bags take hundreds of years to decompose, which makes them a serious threat to the environment"
+                        },
+
+                        // ==========================================
+                        // PHẦN B: CÂU 31 - 60
+                        // ==========================================
+
+                        // --- I. LANGUAGE KNOWLEDGE (Câu 31 - 45) ---
+                        {
+                                id: "gk1_eng_q31",
+                                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 31. Nelson Mandela is remembered for his great _____ in the fight against inequality.",
+                                options: ["A. achievements", "B. advertisements", "C. arrangements", "D. advantages"],
+                                correctIndex: 0
+                        },
+                        {
+                                id: "gk1_eng_q32",
+                                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 32. Students from different ethnic groups often wear their traditional _____ at the school festival.",
+                                options: ["A. customers", "B. customs", "C. costumes", "D. custodies"],
+                                correctIndex: 2
+                        },
+                        {
+                                id: "gk1_eng_q33",
+                                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 33. Reusing old jars and bottles is a simple way to cut down on household _____.",
+                                options: ["A. waste", "B. waist", "C. wage", "D. weight"],
+                                correctIndex: 0
+                        },
+                        {
+                                id: "gk1_eng_q34",
+                                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 34. Mark the letter A, B, C or D to indicate the word CLOSEST in meaning to the underlined word.\nMany people <u>admire</u> the nurse who worked day and night to save lives during the outbreak.",
+                                options: ["A. respect", "B. blame", "C. forget", "D. warn"],
+                                correctIndex: 0
+                        },
+                        {
+                                id: "gk1_eng_q35",
+                                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 35. Mark the letter A, B, C or D to indicate the word OPPOSITE in meaning to the underlined word.\nWe should be <u>open-minded</u> when we learn about other cultures.",
+                                options: ["A. narrow-minded", "B. kind-hearted", "C. well-informed", "D. easy-going"],
+                                correctIndex: 0
+                        },
+                        {
+                                id: "gk1_eng_q36",
+                                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 36. Many supermarkets now sell _____ products that do not harm the environment.",
+                                options: ["A. eco-friendly", "B. harmful", "C. disposable", "D. fashionable"],
+                                correctIndex: 0
+                        },
+                        {
+                                id: "gk1_eng_q37",
+                                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 37. The young inventor _____ his first robot when he was only fifteen.",
+                                options: ["A. builds", "B. built", "C. has built", "D. was building"],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_eng_q38",
+                                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 38. Hoi An is _____ ancient town where many cultures have met for centuries.",
+                                options: ["A. a", "B. an", "C. the", "D. no article"],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_eng_q39",
+                                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 39. The villagers are very proud _____ their traditional festivals.",
+                                options: ["A. in", "B. at", "C. of", "D. on"],
+                                correctIndex: 2
+                        },
+                        {
+                                id: "gk1_eng_q40",
+                                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 40. Reusable bags, _____ are strong and washable, help reduce plastic waste.",
+                                options: ["A. that", "B. which", "C. who", "D. what"],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_eng_q41",
+                                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 41. When the reporter called, the mayor _____ a speech at a green festival.",
+                                options: ["A. gave", "B. was giving", "C. has given", "D. gives"],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_eng_q42",
+                                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 42. Which of the following sentences is grammatically correct?",
+                                options: [
+                                        "A. Marie Curie was a first woman who won a Nobel Prize.",
+                                        "B. The students who joined the clean-up day were given free T-shirts.",
+                                        "C. We went to the zoo and I saw an elephant which it was very big.",
+                                        "D. She is the person whose I admire most."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_eng_q43",
+                                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 43. Read the sign and answer the question:\n<div style=\"border:2px solid var(--border);border-radius:10px;padding:14px 18px;margin:12px 0;background:rgba(255,255,255,0.04);text-align:center;\"><strong style=\"font-size:1.1rem;display:block;margin-bottom:6px;color:var(--text-main);\">RECYCLING POINT</strong><p style=\"margin:4px 0;\">Please put paper, glass and cans in the correct bins.</p><p style=\"margin:4px 0;font-weight:600;color:#10b981;\">Keep our school clean and green!</p></div>What should people do according to the sign?",
+                                options: [
+                                        "A. Throw all rubbish into one bin.",
+                                        "B. Sort their waste into the right bins.",
+                                        "C. Take cans home with them.",
+                                        "D. Buy more paper and glass."
+                                ],
+                                correctIndex: 1
+                        },
+                        {
+                                id: "gk1_eng_q44",
+                                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 44. Read the announcement and answer the question:\n<div style=\"border:2px solid var(--border);border-radius:10px;padding:14px 18px;margin:12px 0;background:rgba(255,255,255,0.04);text-align:center;\"><strong style=\"font-size:1.1rem;display:block;margin-bottom:6px;color:#3b82f6;\">INTERNATIONAL CULTURE WEEK</strong><p style=\"margin:4px 0;\">Enjoy traditional food, music and dances from 10 countries.</p><p style=\"margin:4px 0;font-weight:500;\">15 – 19 November, School Hall</p><p style=\"margin:4px 0;color:#10b981;font-weight:600;\">Free entry for students</p><p style=\"margin:4px 0;font-size:0.9rem;\">Register at the Youth Union Office.</p></div>Who can get into the event for free?",
+                                options: [
+                                        "A. All visitors",
+                                        "B. Teachers only",
+                                        "C. Students",
+                                        "D. Performers only"
+                                ],
+                                correctIndex: 2
+                        },
+                        {
+                                id: "gk1_eng_q45",
+                                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                                text: "Question 45. Read the notice and answer the question:\n<div style=\"border:2px solid var(--border);border-radius:10px;padding:14px 18px;margin:12px 0;background:rgba(255,255,255,0.04);\"><strong style=\"font-size:1.1rem;display:block;margin-bottom:8px;text-align:center;color:var(--text-main);\">NOTICE</strong><p style=\"margin:4px 0;line-height:1.6;\">The talk “Women Who Changed the World” has been moved from Room 12 to the Library because many students have registered. The talk will still start at 2 p.m. on Thursday. Students without a registration card should see Ms. Hoa before Wednesday.</p></div>What can be understood from the notice?",
+                                options: [
+                                        "A. The talk has been cancelled.",
+                                        "B. The talk will take place in a different place.",
+                                        "C. The talk will begin later than planned.",
+                                        "D. Students no longer need to register."
+                                ],
+                                correctIndex: 1
+                        },
+
+                        // --- II. READING (Câu 46 - 55) ---
+                        // Task 1: LIFE STORY OF MARIE CURIE (Câu 46 - 50)
+                        {
+                                id: "reading_gk1_marie_curie",
+                                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                                type: "reading_group",
+                                passage: "<strong>Task 1. Read the following passage and mark the letter A, B, C or D to indicate the correct option that best fits each of the numbered blanks from 46 to 50.</strong><br><br><h3 style=\"text-align:center;margin:10px 0;color:var(--text-main);\">LIFE STORY OF MARIE CURIE</h3><br>Marie Curie was born in Warsaw, Poland, in 1867. As a child, she was very bright and loved reading, but women in her country <b>(46) _____</b>. In 1891, she moved to Paris to study at the Sorbonne. Life there was not easy. <b>(47) _____</b>, she often had very little money and food, yet she never stopped studying.<br><br>She later married Pierre Curie, a French scientist, and together they discovered two new elements, polonium and radium. In 1903, she shared the Nobel Prize in Physics, and in 1911 she won another Nobel Prize, this time in Chemistry, <b>(48) _____</b>. During World War I, she <b>(49) _____</b> and helped save the lives of many wounded soldiers. She died in 1934. Her life story shows that <b>(50) _____</b>. Today, people around the world still see her as an inspiring role model for young scientists.",
+                                subQuestions: [
+                                        {
+                                                id: "gk1_eng_q46",
+                                                text: "Question 46: Choose the best option for blank (46).",
+                                                options: [
+                                                        "A. were not allowed to attend university",
+                                                        "B. could study anything they wanted",
+                                                        "C. often became famous scientists",
+                                                        "D. had many chances to study abroad"
+                                                ],
+                                                correctIndex: 0
+                                        },
+                                        {
+                                                id: "gk1_eng_q47",
+                                                text: "Question 47: Choose the best option for blank (47).",
+                                                options: [
+                                                        "A. However",
+                                                        "B. For example",
+                                                        "C. Therefore",
+                                                        "D. Although"
+                                                ],
+                                                correctIndex: 1
+                                        },
+                                        {
+                                                id: "gk1_eng_q48",
+                                                text: "Question 48: Choose the best option for blank (48).",
+                                                options: [
+                                                        "A. which made her the first person to win Nobel Prizes in two different sciences",
+                                                        "B. but she did not like science anymore",
+                                                        "C. because she wanted to become a teacher only",
+                                                        "D. so she stopped working in laboratories"
+                                                ],
+                                                correctIndex: 0
+                                        },
+                                        {
+                                                id: "gk1_eng_q49",
+                                                text: "Question 49: Choose the best option for blank (49).",
+                                                options: [
+                                                        "A. developed mobile X-ray units",
+                                                        "B. left France forever",
+                                                        "C. stopped all her research",
+                                                        "D. worked as a singer"
+                                                ],
+                                                correctIndex: 0
+                                        },
+                                        {
+                                                id: "gk1_eng_q50",
+                                                text: "Question 50: Choose the best option for blank (50).",
+                                                options: [
+                                                        "A. women cannot succeed in science",
+                                                        "B. hard work and passion can lead to great achievements",
+                                                        "C. money is the only way to succeed",
+                                                        "D. education is not important"
+                                                ],
+                                                correctIndex: 1
+                                        }
+                                ]
+                        },
+
+                        // Task 2: GREEN LIVING (Câu 51 - 55)
+                        {
+                                id: "reading_gk1_green_living",
+                                section: "PHẦN B: LANGUAGE KNOWLEDGE & READING",
+                                type: "reading_group",
+                                passage: "<strong>Task 2. Read the following passage and mark the letter A, B, C or D to indicate the correct answer to each of the questions from 51 to 55.</strong><br><br><h3 style=\"text-align:center;margin:10px 0;color:var(--text-main);\">GREEN LIVING</h3><br>Green living means making choices that protect the environment and use natural resources wisely. In recent years, more and more people, especially young people, have started to adopt this lifestyle.<br><br>There are many simple ways to live green. Instead of using private cars, people can walk, cycle or take public transport to reduce carbon emissions. At home, we can switch off lights and electrical devices when we do not need them, which saves both energy and money. Many families also separate their rubbish and recycle paper, glass and plastic so that less waste goes to landfills.<br><br>Shopping habits are also important. Customers can bring reusable bags, buy local products with less packaging, and choose second-hand items instead of new ones. Although eco-friendly products are sometimes more expensive, they usually last longer and cause less damage to the planet.<br><br>Of course, living green is not always easy. Some people think that one person cannot make a difference, and others find it inconvenient to change old habits. However, if each person makes small changes every day, the combined effect can be enormous. Schools, companies and governments can help by raising awareness and providing recycling facilities. Only when everyone takes action can we protect our planet for future generations.",
+                                subQuestions: [
+                                        {
+                                                id: "gk1_eng_q51",
+                                                text: "Question 51: According to paragraph 2, why do many families separate their rubbish?",
+                                                options: [
+                                                        "A. So that less waste goes to landfills.",
+                                                        "B. So that they can sell it for money.",
+                                                        "C. So that they can buy fewer things.",
+                                                        "D. So that they can use more electricity."
+                                                ],
+                                                correctIndex: 0
+                                        },
+                                        {
+                                                id: "gk1_eng_q52",
+                                                text: "Question 52: The word “enormous” in paragraph 4 is closest in meaning to _____.",
+                                                options: ["A. tiny", "B. huge", "C. slight", "D. temporary"],
+                                                correctIndex: 1
+                                        },
+                                        {
+                                                id: "gk1_eng_q53",
+                                                text: "Question 53: According to paragraph 3, why are eco-friendly products worth buying?",
+                                                options: [
+                                                        "A. They are always cheaper than other products.",
+                                                        "B. They usually last longer and cause less damage to the planet.",
+                                                        "C. They are made only from plastic.",
+                                                        "D. They are sold only in supermarkets."
+                                                ],
+                                                correctIndex: 1
+                                        },
+                                        {
+                                                id: "gk1_eng_q54",
+                                                text: "Question 54: It can be inferred from paragraph 4 that _____.",
+                                                options: [
+                                                        "A. doubts about their own influence may discourage some people from living green",
+                                                        "B. all people have already given up their old habits",
+                                                        "C. governments never help people to live green",
+                                                        "D. recycling facilities are useless"
+                                                ],
+                                                correctIndex: 0
+                                        },
+                                        {
+                                                id: "gk1_eng_q55",
+                                                text: "Question 55: Which of the following best summarises the main idea of the passage?",
+                                                options: [
+                                                        "A. Green living is a lifestyle that everyone can follow through small, regular actions.",
+                                                        "B. Shopping is the only way to protect the environment.",
+                                                        "C. Eco-friendly products are too expensive for most families.",
+                                                        "D. Governments should stop people from using cars."
+                                                ],
+                                                correctIndex: 0
+                                        }
+                                ]
+                        },
+
+                        // --- III. WRITING (Câu 56 - 60) ---
+                        {
+                                id: "gk1_eng_q56",
+                                section: "PHẦN B: WRITING",
+                                type: "short_answer",
+                                text: "Question 56 (Rearrange): Sắp xếp các từ/cụm từ sau thành câu hoàn chỉnh (không thay đổi hoặc thêm từ):\n<strong>the young volunteer / is / for / and / admired / her / generosity / kindness</strong>",
+                                correctAnswer: "The young volunteer is admired for her kindness and generosity. | The young volunteer is admired for her kindness and generosity | The young volunteer is admired for her generosity and kindness. | The young volunteer is admired for her generosity and kindness"
+                        },
+                        {
+                                id: "gk1_eng_q57",
+                                section: "PHẦN B: WRITING",
+                                type: "short_answer",
+                                text: "Question 57 (Rearrange): Sắp xếp các từ/cụm từ sau thành câu hoàn chỉnh (không thay đổi hoặc thêm từ):\n<strong>the cultural exchange programme / helps / students / understand / better / different traditions</strong>",
+                                correctAnswer: "The cultural exchange programme helps students understand different traditions better. | The cultural exchange programme helps students understand different traditions better | The cultural exchange programme helps students understand better different traditions. | The cultural exchange programme helps students understand better different traditions"
+                        },
+                        {
+                                id: "gk1_eng_q58",
+                                section: "PHẦN B: WRITING",
+                                type: "short_answer",
+                                text: "Question 58 (Rearrange): Sắp xếp các từ/cụm từ sau thành câu hoàn chỉnh (không thay đổi hoặc thêm từ):\n<strong>using public transport / helps / air pollution / reduce / in big cities</strong>",
+                                correctAnswer: "Using public transport helps reduce air pollution in big cities. | Using public transport helps reduce air pollution in big cities"
+                        },
+                        {
+                                id: "gk1_eng_q59",
+                                section: "PHẦN B: WRITING",
+                                type: "short_answer",
+                                text: "Question 59 (Combine): Kết hợp cặp câu sau thành một câu, sử dụng từ gợi ý trong ngoặc:\nWe were visiting a village of the Tay ethnic group. Heavy rain started at that time.\n<strong>→ (Dùng \"when\"):</strong>",
+                                correctAnswer: "We were visiting a village of the Tay ethnic group when heavy rain started. | We were visiting a village of the Tay ethnic group when heavy rain started | We were visiting a village of the Tay ethnic group when heavy rain began. | When heavy rain started, we were visiting a village of the Tay ethnic group."
+                        },
+                        {
+                                id: "gk1_eng_q60",
+                                section: "PHẦN B: WRITING",
+                                type: "short_answer",
+                                text: "Question 60 (Combine): Kết hợp cặp câu sau thành một câu, sử dụng từ gợi ý trong ngoặc:\nNguyen Thi Hoa is a young entrepreneur. Her recycled-paper products are popular with students.\n<strong>→ (Dùng \"whose\"):</strong>",
+                                correctAnswer: "Nguyen Thi Hoa, whose recycled-paper products are popular with students, is a young entrepreneur. | Nguyen Thi Hoa, whose recycled-paper products are popular with students, is a young entrepreneur"
+                        }
+                ]
+        },
+        {
+                "id": "on_tap_giua_ki_1_vat_ly_12",
+                "title": "Ôn tập GKI - Vật lí 12",
+                "category": "ly",
+                "subject": "Vật lí",
+                "description": "Trọn bộ 3 đề ôn tập kiểm tra Giữa kì I môn Vật lí 12 (Nhiệt học & Vật lí nhiệt). Gồm 3 đề hoàn chỉnh theo cấu trúc chuẩn: Trắc nghiệm 4 lựa chọn, Đúng/Sai, Trả lời ngắn và Tự luận.",
+                "presets": [
+                        {
+                                "id": "all",
+                                "label": "✨ Toàn bộ cả 3 đề (60 câu/bài)",
+                                "sectionIds": [
+                                        "de1_mcq",
+                                        "de1_tf",
+                                        "de1_sa",
+                                        "de1_essay",
+                                        "de2_mcq",
+                                        "de2_tf",
+                                        "de2_sa",
+                                        "de2_essay",
+                                        "de3_mcq",
+                                        "de3_tf",
+                                        "de3_sa",
+                                        "de3_essay"
+                                ]
+                        },
+                        {
+                                "id": "de1",
+                                "label": "📘 Trọn vẹn Đề 1 (20 câu/bài)",
+                                "sectionIds": [
+                                        "de1_mcq",
+                                        "de1_tf",
+                                        "de1_sa",
+                                        "de1_essay"
+                                ]
+                        },
+                        {
+                                "id": "de2",
+                                "label": "📗 Trọn vẹn Đề 2 (20 câu/bài)",
+                                "sectionIds": [
+                                        "de2_mcq",
+                                        "de2_tf",
+                                        "de2_sa",
+                                        "de2_essay"
+                                ]
+                        },
+                        {
+                                "id": "de3",
+                                "label": "📙 Trọn vẹn Đề 3 (20 câu/bài)",
+                                "sectionIds": [
+                                        "de3_mcq",
+                                        "de3_tf",
+                                        "de3_sa",
+                                        "de3_essay"
+                                ]
+                        },
+                        {
+                                "id": "all_mcq",
+                                "label": "📝 Tất cả Trắc nghiệm (36 câu)",
+                                "sectionIds": [
+                                        "de1_mcq",
+                                        "de2_mcq",
+                                        "de3_mcq"
+                                ]
+                        },
+                        {
+                                "id": "all_tf",
+                                "label": "⚖️ Tất cả Đúng / Sai (6 câu - 24 ý)",
+                                "sectionIds": [
+                                        "de1_tf",
+                                        "de2_tf",
+                                        "de3_tf"
+                                ]
+                        },
+                        {
+                                "id": "all_sa",
+                                "label": "✏️ Tất cả Trả lời ngắn (12 câu)",
+                                "sectionIds": [
+                                        "de1_sa",
+                                        "de2_sa",
+                                        "de3_sa"
+                                ]
+                        },
+                        {
+                                "id": "all_essay",
+                                "label": "📋 Tất cả Tự luận (6 bài)",
+                                "sectionIds": [
+                                        "de1_essay",
+                                        "de2_essay",
+                                        "de3_essay"
+                                ]
+                        }
+                ],
+                "selectableSections": [
+                        {
+                                "id": "de1_mcq",
+                                "group": "Đề số 1 (20 câu/bài)",
+                                "name": "I. Trắc nghiệm 4 lựa chọn",
+                                "label": "Đề 1 - Trắc nghiệm (12 câu: 1 - 12)",
+                                "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                                "count": 12,
+                                "type": "multiple_choice"
+                        },
+                        {
+                                "id": "de1_tf",
+                                "group": "Đề số 1 (20 câu/bài)",
+                                "name": "II. Trắc nghiệm Đúng / Sai",
+                                "label": "Đề 1 - Đúng / Sai (2 câu: 1 - 2)",
+                                "section": "ĐỀ SỐ 1 - II. ĐÚNG / SAI",
+                                "count": 2,
+                                "type": "true_false_group"
+                        },
+                        {
+                                "id": "de1_sa",
+                                "group": "Đề số 1 (20 câu/bài)",
+                                "name": "III. Trắc nghiệm Trả lời ngắn",
+                                "label": "Đề 1 - Trả lời ngắn (4 câu: 1 - 4)",
+                                "section": "ĐỀ SỐ 1 - III. TRẢ LỜI NGẮN",
+                                "count": 4,
+                                "type": "short_answer"
+                        },
+                        {
+                                "id": "de1_essay",
+                                "group": "Đề số 1 (20 câu/bài)",
+                                "name": "IV. Tự luận",
+                                "label": "Đề 1 - Tự luận (2 bài: 1 - 2)",
+                                "section": "ĐỀ SỐ 1 - IV. TỰ LUẬN",
+                                "count": 2,
+                                "type": "essay_group"
+                        },
+                        {
+                                "id": "de2_mcq",
+                                "group": "Đề số 2 (20 câu/bài)",
+                                "name": "I. Trắc nghiệm 4 lựa chọn",
+                                "label": "Đề 2 - Trắc nghiệm (12 câu: 1 - 12)",
+                                "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                                "count": 12,
+                                "type": "multiple_choice"
+                        },
+                        {
+                                "id": "de2_tf",
+                                "group": "Đề số 2 (20 câu/bài)",
+                                "name": "II. Trắc nghiệm Đúng / Sai",
+                                "label": "Đề 2 - Đúng / Sai (2 câu: 1 - 2)",
+                                "section": "ĐỀ SỐ 2 - II. ĐÚNG / SAI",
+                                "count": 2,
+                                "type": "true_false_group"
+                        },
+                        {
+                                "id": "de2_sa",
+                                "group": "Đề số 2 (20 câu/bài)",
+                                "name": "III. Trắc nghiệm Trả lời ngắn",
+                                "label": "Đề 2 - Trả lời ngắn (4 câu: 1 - 4)",
+                                "section": "ĐỀ SỐ 2 - III. TRẢ LỜI NGẮN",
+                                "count": 4,
+                                "type": "short_answer"
+                        },
+                        {
+                                "id": "de2_essay",
+                                "group": "Đề số 2 (20 câu/bài)",
+                                "name": "IV. Tự luận",
+                                "label": "Đề 2 - Tự luận (2 bài: 1 - 2)",
+                                "section": "ĐỀ SỐ 2 - IV. TỰ LUẬN",
+                                "count": 2,
+                                "type": "essay_group"
+                        },
+                        {
+                                "id": "de3_mcq",
+                                "group": "Đề số 3 (20 câu/bài)",
+                                "name": "I. Trắc nghiệm 4 lựa chọn",
+                                "label": "Đề 3 - Trắc nghiệm (12 câu: 1 - 12)",
+                                "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                                "count": 12,
+                                "type": "multiple_choice"
+                        },
+                        {
+                                "id": "de3_tf",
+                                "group": "Đề số 3 (20 câu/bài)",
+                                "name": "II. Trắc nghiệm Đúng / Sai",
+                                "label": "Đề 3 - Đúng / Sai (2 câu: 1 - 2)",
+                                "section": "ĐỀ SỐ 3 - II. ĐÚNG / SAI",
+                                "count": 2,
+                                "type": "true_false_group"
+                        },
+                        {
+                                "id": "de3_sa",
+                                "group": "Đề số 3 (20 câu/bài)",
+                                "name": "III. Trắc nghiệm Trả lời ngắn",
+                                "label": "Đề 3 - Trả lời ngắn (4 câu: 1 - 4)",
+                                "section": "ĐỀ SỐ 3 - III. TRẢ LỜI NGẮN",
+                                "count": 4,
+                                "type": "short_answer"
+                        },
+                        {
+                                "id": "de3_essay",
+                                "group": "Đề số 3 (20 câu/bài)",
+                                "name": "IV. Tự luận",
+                                "label": "Đề 3 - Tự luận (2 bài: 1 - 2)",
+                                "section": "ĐỀ SỐ 3 - IV. TỰ LUẬN",
+                                "count": 2,
+                                "type": "essay_group"
+                        }
+                ],
+                "questions": [
+                        {
+                                "id": "gk1_vl12_de1_q1",
+                                "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                                "text": "Câu 1. Phát biểu nào sau đây đúng với mô hình động học phân tử?",
+                                "options": [
+                                        "A. Các phân tử cấu tạo nên vật luôn đứng yên tại vị trí cân bằng.",
+                                        "B. Các phân tử chuyển động càng nhanh thì nhiệt độ của vật càng cao.",
+                                        "C. Giữa các phân tử chỉ tồn tại lực đẩy, không có lực hút.",
+                                        "D. Khoảng cách giữa các phân tử ở thể khí rất nhỏ so với kích thước phân tử."
+                                ],
+                                "correctIndex": 1
+                        },
+                        {
+                                "id": "gk1_vl12_de1_q2",
+                                "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                                "text": "Câu 2. Quá trình chuyển từ thể lỏng sang thể rắn của một chất gọi là",
+                                "options": [
+                                        "A. sự bay hơi.",
+                                        "B. sự nóng chảy.",
+                                        "C. sự ngưng tụ.",
+                                        "D. sự đông đặc."
+                                ],
+                                "correctIndex": 3
+                        },
+                        {
+                                "id": "gk1_vl12_de1_q3",
+                                "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                                "text": "Câu 3. Nội năng của một vật phụ thuộc vào",
+                                "options": [
+                                        "A. nhiệt độ và thể tích của vật.",
+                                        "B. khối lượng và tốc độ chuyển động của cả vật.",
+                                        "C. độ cao của vật so với mặt đất và khối lượng của vật.",
+                                        "D. nhiệt lượng và công mà vật trao đổi trong mọi quá trình."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "gk1_vl12_de1_q4",
+                                "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                                "text": "Câu 4. Theo quy ước dấu của Nguyên lý I Nhiệt động lực học ($\\Delta U = Q + A$), biểu thức mô tả đúng trường hợp khối khí nhận nhiệt lượng và thực hiện công ra bên ngoài là",
+                                "options": [
+                                        "A. $\\Delta U = Q + A$ với $Q > 0$ và $A > 0$.",
+                                        "B. $\\Delta U = Q + A$ với $Q < 0$ và $A > 0$.",
+                                        "C. $\\Delta U = Q + A$ với $Q > 0$ và $A < 0$.",
+                                        "D. $\\Delta U = Q + A$ với $Q < 0$ và $A < 0$."
+                                ],
+                                "correctIndex": 2
+                        },
+                        {
+                                "id": "gk1_vl12_de1_q5",
+                                "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                                "text": "Câu 5. Trong thang nhiệt độ Celsius, ở áp suất tiêu chuẩn, nhiệt độ tan chảy của nước tinh khiết đóng băng và nhiệt độ sôi của nước tinh khiết lần lượt là",
+                                "options": [
+                                        "A. 0 °C và 100 °C.",
+                                        "B. 273 °C và 373 °C.",
+                                        "C. 32 °C và 212 °C.",
+                                        "D. 0 °C và 80 °C."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "gk1_vl12_de1_q6",
+                                "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                                "text": "Câu 6. Nhiệt độ không tuyệt đối (0 K) ứng với giá trị nào trong thang nhiệt độ Celsius?",
+                                "options": [
+                                        "A. 0 °C.",
+                                        "B. -273,15 °C.",
+                                        "C. 273,15 °C.",
+                                        "D. -100 °C."
+                                ],
+                                "correctIndex": 1
+                        },
+                        {
+                                "id": "gk1_vl12_de1_q7",
+                                "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                                "text": "Câu 7. Nhiệt dung riêng của một chất có đơn vị đo trong hệ SI là",
+                                "options": [
+                                        "A. J/(kg·K).",
+                                        "B. J/kg.",
+                                        "C. J/K.",
+                                        "D. W/kg."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "gk1_vl12_de1_q8",
+                                "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                                "text": "Câu 8. Đại lượng cho biết nhiệt lượng cần cung cấp để 1 kg chất rắn kết tinh chuyển hoàn toàn sang thể lỏng ở nhiệt độ nóng chảy gọi là",
+                                "options": [
+                                        "A. nhiệt dung riêng.",
+                                        "B. nhiệt nóng chảy riêng.",
+                                        "C. nhiệt hóa hơi riêng.",
+                                        "D. nội năng."
+                                ],
+                                "correctIndex": 1
+                        },
+                        {
+                                "id": "gk1_vl12_de1_q9",
+                                "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                                "text": "Câu 9. Khi truyền cùng một nhiệt lượng Q cho hai vật có cùng khối lượng m làm từ hai chất khác nhau (không xảy ra sự chuyển thể), vật nào có nhiệt dung riêng c nhỏ hơn thì",
+                                "options": [
+                                        "A. có độ tăng nhiệt độ lớn hơn.",
+                                        "B. có độ tăng nhiệt độ nhỏ hơn.",
+                                        "C. có nhiệt độ ban đầu cao hơn.",
+                                        "D. có nhiệt độ nóng chảy thấp hơn."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "gk1_vl12_de1_q10",
+                                "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                                "text": "Câu 10. Công thức tính nhiệt lượng Q cần cung cấp cho vật có khối lượng m, nhiệt dung riêng c để nhiệt độ của vật tăng thêm $\\Delta T$ (không xảy ra sự chuyển thể) là",
+                                "options": [
+                                        "A. $Q = \\lambda m$.",
+                                        "B. $Q = \\lambda / m$.",
+                                        "C. $Q = mc\\Delta T$.",
+                                        "D. $Q = Lm$."
+                                ],
+                                "correctIndex": 2
+                        },
+                        {
+                                "id": "gk1_vl12_de1_q11",
+                                "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                                "text": "Câu 11. Đơn vị đo của nhiệt hóa hơi riêng trong hệ SI là",
+                                "options": [
+                                        "A. J/(kg·K).",
+                                        "B. J/kg.",
+                                        "C. J/K.",
+                                        "D. kJ/mol."
+                                ],
+                                "correctIndex": 1
+                        },
+                        {
+                                "id": "gk1_vl12_de1_q12",
+                                "section": "ĐỀ SỐ 1 - I. TRẮC NGHIỆM",
+                                "text": "Câu 12. Công thức tính nhiệt lượng Q tỏa ra khi khối lượng m hơi chất lỏng ngưng tụ hoàn toàn ở nhiệt độ sôi (với L là nhiệt hóa hơi riêng) là",
+                                "options": [
+                                        "A. $Q = Lm$.",
+                                        "B. $Q = \\lambda m$.",
+                                        "C. $Q = L/m$.",
+                                        "D. $Q = mc\\Delta T$."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "gk1_vl12_de1_tf1",
+                                "section": "ĐỀ SỐ 1 - II. ĐÚNG / SAI",
+                                "type": "true_false_group",
+                                "text": "<strong>Câu 1.</strong> Một nhóm học sinh làm thí nghiệm đun một khối đá tinh khiết lấy ra từ tủ đông (nhiệt độ ban đầu -15 °C) trong một ca nhôm với công suất nhiệt không đổi. Họ quan sát và ghi nhận quá trình tăng nhiệt độ và chuyển thể của nước đá. Biết $T(\\text{K}) = t(^\\circ\\text{C}) + 273$.",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Nhiệt độ ban đầu của khối nước đá trong thang nhiệt độ Kelvin là 258 K.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Trong suốt quá trình đá đang tan ở 0 °C, động năng chuyển động nhiệt trung bình của các phân tử không đổi, còn thế năng tương tác phân tử tăng lên.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Khoảng cách trung bình giữa các phân tử nước ở thể hơi nhỏ hơn rất nhiều so với ở thể rắn.",
+                                                "correctAnswer": "Sai"
+                                        },
+                                        {
+                                                "id": "d",
+                                                "text": "d) Khi nước sôi ở 100 °C, sự hóa hơi diễn ra đồng thời cả ở trong lòng và trên bề mặt chất lỏng.",
+                                                "correctAnswer": "Đúng"
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "gk1_vl12_de1_tf2",
+                                "section": "ĐỀ SỐ 1 - II. ĐÚNG / SAI",
+                                "type": "true_false_group",
+                                "text": "<strong>Câu 2.</strong> Một nhóm học sinh bố trí thí nghiệm xác định nhiệt hóa hơi riêng của nước. Dùng dây đun điện trở hoạt động với công suất không đổi $P = 40\\text{ W}$ làm nóng nước trong một cốc thủy tinh đặt trên đĩa cân điện tử. Khi nước trong cốc sôi ở 100 °C, nhóm ghi nhận số chỉ khối lượng hiển thị trên cân giảm dần theo thời gian $\\Delta t$:<br>• Tại thời điểm $t_1 = 0\\text{ s}$: số chỉ cân $m_1 = 160,20\\text{ g}$.<br>• Tại thời điểm $t_2 = 450\\text{ s}$: số chỉ cân $m_2 = 152,40\\text{ g}$.",
+                                "imageSrc": "images/thi_nghiem_nhiet_hoa_hoi_nuoc.png",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Cân điện tử trong thí nghiệm này có vai trò xác định khối lượng nước đã hóa hơi trong khoảng thời gian $\\Delta t = 450\\text{ s}$.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Khối lượng nước đã hóa hơi trong thời gian 450 s là $\\Delta m = 7,80\\text{ g}$.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Bỏ qua sự mất mát nhiệt ra môi trường, nhiệt lượng do dây đun cung cấp cho nước trong thời gian $\\Delta t = 450\\text{ s}$ là $Q = 16000\\text{ J}$.",
+                                                "correctAnswer": "Sai"
+                                        },
+                                        {
+                                                "id": "d",
+                                                "text": "d) Giá trị nhiệt hóa hơi riêng của nước thu được từ thí nghiệm trên là $L \\approx 2,31 \\cdot 10^6\\text{ J/kg}$.",
+                                                "correctAnswer": "Đúng"
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "gk1_vl12_de1_sa1",
+                                "section": "ĐỀ SỐ 1 - III. TRẢ LỜI NGẮN",
+                                "type": "short_answer",
+                                "text": "<strong>Câu 1.</strong> Biết nhiệt dung riêng của nước là $c = 4180\\text{ J/(kg}\\cdot\\text{K)}$. Tính nhiệt lượng tỏa ra khi làm lạnh 300 g nước từ 85 °C xuống 25 °C theo đơn vị kiloJoule (kJ). (Kết quả viết làm tròn đến chữ số hàng phần mười).",
+                                "correctAnswer": "75,2 | 75.2"
+                        },
+                        {
+                                "id": "gk1_vl12_de1_sa2",
+                                "section": "ĐỀ SỐ 1 - III. TRẢ LỜI NGẮN",
+                                "type": "short_answer",
+                                "text": "<strong>Câu 2.</strong> Một khối chất rắn kết tinh có khối lượng 1,8 kg đang ở nhiệt độ nóng chảy. Cung cấp một nhiệt lượng $Q = 612\\text{ kJ}$ thì khối chất rắn đó nóng chảy hoàn toàn. Nhiệt nóng chảy riêng của chất đó có giá trị bằng $x \\cdot 10^5\\text{ J/kg}$. Tìm x (Kết quả viết làm tròn đến chữ số hàng phần mười).",
+                                "correctAnswer": "3,4 | 3.4"
+                        },
+                        {
+                                "id": "gk1_vl12_de1_sa3",
+                                "section": "ĐỀ SỐ 1 - III. TRẢ LỜI NGẮN",
+                                "type": "short_answer",
+                                "text": "<strong>Câu 3.</strong> Cho 0,02 kg hơi nước ở 100 °C ngưng tụ hoàn toàn trong bình nhiệt lượng kế chứa 0,4 kg nước ở 15 °C. Nhiệt độ của hệ khi đạt cân bằng nhiệt là 45 °C. Cho nhiệt dung riêng của nước là $c = 4180\\text{ J/(kg}\\cdot\\text{K)}$, bỏ qua sự trao đổi nhiệt với bình và môi trường. Nhiệt hóa hơi riêng của nước tính được từ thí nghiệm có dạng $x \\cdot 10^6\\text{ J/kg}$. Tìm x (Kết quả làm tròn đến chữ số hàng phần trăm).",
+                                "correctAnswer": "2,28 | 2.28"
+                        },
+                        {
+                                "id": "gk1_vl12_de1_sa4",
+                                "section": "ĐỀ SỐ 1 - III. TRẢ LỜI NGẮN",
+                                "type": "short_answer",
+                                "text": "<strong>Câu 4.</strong> Một lượng khí trong cylinder kín nhận nhiệt lượng 950 J từ nguồn nhiệt, khí nở ra và thực hiện một công 320 J đẩy piston dịch chuyển. Độ biến thiên nội năng $\\Delta U$ của khối khí có giá trị bằng bao nhiêu Joule (J)? (Kết quả làm tròn đến chữ số hàng đơn vị).",
+                                "correctAnswer": "630"
+                        },
+                        {
+                                "id": "gk1_vl12_de1_essay1",
+                                "section": "ĐỀ SỐ 1 - IV. TỰ LUẬN",
+                                "type": "essay_group",
+                                "text": "<strong>Bài 1. (1,5 điểm)</strong> Một cylinder kín chứa 0,20 kg chất khí lí tưởng ở nhiệt độ ban đầu 25 °C. Người ta đun nóng cylinder, cung cấp cho chất khí một nhiệt lượng $Q = 1500\\text{ J}$. Khối khí giãn nở đẳng áp đẩy piston đi một đoạn làm khí thực hiện một công có độ lớn 550 J.",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Nêu quy ước về dấu của nhiệt lượng Q và công A trong công thức $\\Delta U = Q + A$ của Nguyên lý I Nhiệt động lực học.",
+                                                "correctAnswer": "Q > 0: hệ nhận nhiệt lượng; Q < 0: hệ truyền nhiệt lượng.\nA > 0: hệ nhận công; A < 0: hệ thực hiện công."
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Tính độ biến thiên nội năng $\\Delta U$ của khối khí trong quá trình biến đổi trên.",
+                                                "correctAnswer": "Khí nhận nhiệt: Q = +1500 J; Khí thực hiện công: A = -550 J.\nΔU = Q + A = 1500 - 550 = 950 J."
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Giả sử toàn bộ độ biến thiên nội năng $\\Delta U$ này dùng để làm tăng nhiệt độ của khối khí. Biết nhiệt dung riêng của khối khí trong quá trình này là $c = 1000\\text{ J/(kg}\\cdot\\text{K)}$. Tính nhiệt độ cuối cùng của khối khí theo thang đo Celsius (°C).",
+                                                "correctAnswer": "ΔU = m·c·(t_cuối - t_đầu) => 950 = 0,20·1000·(t_cuối - 25) => 200·(t_cuối - 25) = 950 => t_cuối - 25 = 4,75 => t_cuối = 29,75 °C."
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "gk1_vl12_de1_essay2",
+                                "section": "ĐỀ SỐ 1 - IV. TỰ LUẬN",
+                                "type": "essay_group",
+                                "text": "<strong>Bài 2. (1,5 điểm)</strong> Để xác định nhiệt nóng chảy riêng của nước đá, một học sinh thả $m_1 = 0,15\\text{ kg}$ nước đá ở 0 °C vào bình nhiệt lượng kế chứa $m_2 = 0,5\\text{ kg}$ nước ở nhiệt độ $t_2 = 44\\text{ }^\\circ\\text{C}$. Bỏ qua khối lượng của bình và sự trao đổi nhiệt với môi trường. Biết nhiệt dung riêng của nước là $c = 4200\\text{ J/(kg}\\cdot\\text{K)}$. Khi hệ đạt cân bằng nhiệt, nước đá đã tan hoàn toàn và nhiệt độ chung của hệ là $t = 16\\text{ }^\\circ\\text{C}$.",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Tính độ lớn nhiệt lượng do 0,5 kg nước tỏa ra khi hạ nhiệt độ từ 44 °C xuống 16 °C.",
+                                                "correctAnswer": "Q_tỏa = m2·c·(t2 - t) = 0,5·4200·(44 - 16) = 0,5·4200·28 = 58800 J = 58,8 kJ."
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Trong thí nghiệm trên, nước đá thu nhiệt hay tỏa nhiệt?",
+                                                "correctAnswer": "Nước đá thu nhiệt lượng từ nước nóng để tan chảy hoàn toàn ở 0 °C và ấm lên đến 16 °C."
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Tính giá trị nhiệt nóng chảy riêng $\\lambda$ của nước đá thu được từ thí nghiệm trên.",
+                                                "correctAnswer": "Q_thu = m1·λ + m1·c·(t - 0) = 0,15·λ + 0,15·4200·16 = 0,15·λ + 10080 J.\nTheo PT cân bằng nhiệt: Q_thu = Q_tỏa => 0,15·λ + 10080 = 58800 => 0,15·λ = 48720 => λ = 324800 J/kg = 3,248·10^5 J/kg."
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "gk1_vl12_de2_q1",
+                                "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                                "text": "Câu 1. Phát biểu nào sau đây không đúng khi nói về cấu tạo chất theo mô hình động học phân tử?",
+                                "options": [
+                                        "A. Các chất được cấu tạo từ các hạt riêng biệt là phân tử, nguyên tử.",
+                                        "B. Các phân tử chuyển động nhiệt hỗn loạn không ngừng.",
+                                        "C. Ở thể rắn, các phân tử có thể di chuyển tự do khắp mọi phía mà không có vị trí cân bằng.",
+                                        "D. Giữa các phân tử có lực hút và lực đẩy gọi chung là lực liên kết phân tử."
+                                ],
+                                "correctIndex": 2
+                        },
+                        {
+                                "id": "gk1_vl12_de2_q2",
+                                "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                                "text": "Câu 2. Quá trình chuyển từ thể hơi sang thể lỏng của một chất gọi là",
+                                "options": [
+                                        "A. sự bay hơi.",
+                                        "B. sự nóng chảy.",
+                                        "C. sự ngưng tụ.",
+                                        "D. sự đông đặc."
+                                ],
+                                "correctIndex": 2
+                        },
+                        {
+                                "id": "gk1_vl12_de2_q3",
+                                "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                                "text": "Câu 3. Hai cách làm thay đổi nội năng của một vật là",
+                                "options": [
+                                        "A. thực hiện công và truyền nhiệt.",
+                                        "B. nâng vật lên cao và làm vật chuyển động nhanh hơn.",
+                                        "C. giữ nguyên nhiệt độ và giữ nguyên thể tích.",
+                                        "D. bức xạ ánh sáng và phản xạ âm thanh."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "gk1_vl12_de2_q4",
+                                "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                                "text": "Câu 4. Theo quy ước dấu của Nguyên lý I Nhiệt động lực học ($\\Delta U = Q + A$), biểu thức mô tả đúng trường hợp khối khí truyền nhiệt lượng ra môi trường nhưng nhận công từ bên ngoài là",
+                                "options": [
+                                        "A. $\\Delta U = Q + A$ với $Q > 0$ và $A > 0$.",
+                                        "B. $\\Delta U = Q + A$ với $Q < 0$ và $A > 0$.",
+                                        "C. $\\Delta U = Q + A$ với $Q > 0$ và $A < 0$.",
+                                        "D. $\\Delta U = Q + A$ với $Q < 0$ và $A < 0$."
+                                ],
+                                "correctIndex": 1
+                        },
+                        {
+                                "id": "gk1_vl12_de2_q5",
+                                "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                                "text": "Câu 5. Công thức chuyển đổi từ thang nhiệt độ Celsius (t) sang thang nhiệt độ Kelvin (T) là",
+                                "options": [
+                                        "A. $T(\\text{K}) = t(^\\circ\\text{C}) + 273$.",
+                                        "B. $T(\\text{K}) = t(^\\circ\\text{C}) - 273$.",
+                                        "C. $T(\\text{K}) = 1,8 \\cdot t(^\\circ\\text{C}) + 32$.",
+                                        "D. $T(\\text{K}) = t(^\\circ\\text{C}) + 100$."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "gk1_vl12_de2_q6",
+                                "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                                "text": "Câu 6. Trong thang nhiệt độ Kelvin, khoảng cách giữa nhiệt độ nước đá đang tan và nhiệt độ sôi của nước tinh khiết ở áp suất tiêu chuẩn bằng",
+                                "options": [
+                                        "A. 100 K.",
+                                        "B. 273 K.",
+                                        "C. 373 K.",
+                                        "D. 180 K."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "gk1_vl12_de2_q7",
+                                "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                                "text": "Câu 7. Nhiệt nóng chảy riêng của một chất rắn kết tinh là",
+                                "options": [
+                                        "A. nhiệt lượng cần cung cấp cho một đơn vị khối lượng chất đó để nhiệt độ của nó tăng thêm 1 K.",
+                                        "B. nhiệt lượng cần cung cấp để 1 kg chất đó chuyển hoàn toàn từ thể rắn sang thể lỏng ở nhiệt độ nóng chảy.",
+                                        "C. nhiệt lượng tỏa ra khi 1 kg chất đó hóa hơi hoàn toàn ở nhiệt độ sôi.",
+                                        "D. tổng nhiệt lượng vật thu vào khi nhiệt độ tăng thêm 100 °C."
+                                ],
+                                "correctIndex": 1
+                        },
+                        {
+                                "id": "gk1_vl12_de2_q8",
+                                "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                                "text": "Câu 8. Biết nhiệt nóng chảy riêng của nước đá là $\\lambda = 3,34 \\cdot 10^5\\text{ J/kg}$. Ý nghĩa của con số này là",
+                                "options": [
+                                        "A. Cần cung cấp nhiệt lượng $3,34 \\cdot 10^5\\text{ J}$ để làm nóng chảy hoàn toàn 1 kg nước đá ở 0 °C.",
+                                        "B. Cần cung cấp nhiệt lượng $3,34 \\cdot 10^5\\text{ J}$ để làm 1 kg nước đá tăng thêm 1 °C.",
+                                        "C. Cần cung cấp nhiệt lượng $3,34 \\cdot 10^5\\text{ J}$ để làm 1 kg nước hóa hơi hoàn toàn ở 100 °C.",
+                                        "D. Khối nước đá bất kỳ khi tan chảy đều tỏa ra nhiệt lượng $3,34 \\cdot 10^5\\text{ J}$."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "gk1_vl12_de2_q9",
+                                "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                                "text": "Câu 9. Hai vật có cùng khối lượng m, làm từ hai chất khác nhau có nhiệt dung riêng lần lượt là $c_1 > c_2$. Để cả hai vật cùng tăng thêm một độ tăng nhiệt độ $\\Delta T$ như nhau (không chuyển thể) thì nhiệt lượng cần cung cấp $Q_1$ và $Q_2$ thỏa mãn",
+                                "options": [
+                                        "A. $Q_1 > Q_2$.",
+                                        "B. $Q_1 < Q_2$.",
+                                        "C. $Q_1 = Q_2$.",
+                                        "D. $Q_1 \\le Q_2$."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "gk1_vl12_de2_q10",
+                                "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                                "text": "Câu 10. Công thức xác định nhiệt nóng chảy riêng $\\lambda$ của một khối chất rắn kết tinh có khối lượng m khi nhận nhiệt lượng Q để nóng chảy hoàn toàn ở nhiệt độ nóng chảy là",
+                                "options": [
+                                        "A. $\\lambda = Q \\cdot m$.",
+                                        "B. $\\lambda = Q / m$.",
+                                        "C. $\\lambda = m / Q$.",
+                                        "D. $\\lambda = Q / (m\\Delta T)$."
+                                ],
+                                "correctIndex": 1
+                        },
+                        {
+                                "id": "gk1_vl12_de2_q11",
+                                "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                                "text": "Câu 11. Sự sôi là quá trình hóa hơi xảy ra",
+                                "options": [
+                                        "A. chỉ ở trên bề mặt thoáng của chất lỏng ở bất kỳ nhiệt độ nào.",
+                                        "B. cả ở trong lòng và trên mặt thoáng của chất lỏng ở nhiệt độ sôi xác định.",
+                                        "C. chỉ ở đáy bình chứa chất lỏng khi bắt đầu đun nóng.",
+                                        "D. khi chất lỏng hạ nhiệt độ xuống dưới 0 °C."
+                                ],
+                                "correctIndex": 1
+                        },
+                        {
+                                "id": "gk1_vl12_de2_q12",
+                                "section": "ĐỀ SỐ 2 - I. TRẮC NGHIỆM",
+                                "text": "Câu 12. Công thức xác định nhiệt hóa hơi riêng L của một khối chất lỏng có khối lượng m khi nhận nhiệt lượng Q để hóa hơi hoàn toàn ở nhiệt độ sôi là",
+                                "options": [
+                                        "A. $L = Q / m$.",
+                                        "B. $L = Q \\cdot m$.",
+                                        "C. $L = m / Q$.",
+                                        "D. $L = mc\\Delta T$."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "gk1_vl12_de2_tf1",
+                                "section": "ĐỀ SỐ 2 - II. ĐÚNG / SAI",
+                                "type": "true_false_group",
+                                "text": "<strong>Câu 1.</strong> Một nhóm học sinh theo dõi quá trình chuyển thể của một lượng nước đá tinh khiết từ -10 °C lên 50 °C.",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Ở nhiệt độ -10 °C, các phân tử nước chỉ dao động xung quanh vị trí cân bằng xác định.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Trong giai đoạn nước đá đang tan chảy ở 0 °C, nội năng của hệ tăng lên dù nhiệt độ không thay đổi.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Ở thể rắn, các phân tử nước đá không chuyển động nhiệt mà đứng yên hoàn toàn tại các nút mạng tinh thể.",
+                                                "correctAnswer": "Sai"
+                                        },
+                                        {
+                                                "id": "d",
+                                                "text": "d) Khi nước đá đã tan hết thành nước lỏng ở 0 °C và được đun nóng lên 50 °C, động năng chuyển động nhiệt trung bình của các phân tử nước tăng lên.",
+                                                "correctAnswer": "Đúng"
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "gk1_vl12_de2_tf2",
+                                "section": "ĐỀ SỐ 2 - II. ĐÚNG / SAI",
+                                "type": "true_false_group",
+                                "text": "<strong>Câu 2.</strong> Một nhóm học sinh bố trí thí nghiệm xác định nhiệt hóa hơi riêng của nước. Dùng dây đun điện trở hoạt động với công suất không đổi $P = 50\\text{ W}$ làm nóng nước trong một cốc thủy tinh đặt trên đĩa cân điện tử. Khi nước trong cốc sôi ở 100 °C, nhóm ghi nhận số chỉ khối lượng hiển thị trên cân giảm dần theo thời gian $\\Delta t$:<br>• Tại thời điểm $t_1 = 0\\text{ s}$: số chỉ cân $m_1 = 180,00\\text{ g}$.<br>• Tại thời điểm $t_2 = 480\\text{ s}$: số chỉ cân $m_2 = 169,50\\text{ g}$.",
+                                "imageSrc": "images/thi_nghiem_nhiet_hoa_hoi_nuoc.png",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Oát kế trong thí nghiệm dùng để đo công suất tiêu thụ điện của dây đun điện trở.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Khối lượng nước đã hóa hơi trong thời gian 480 s là $\\Delta m = 10,50\\text{ g}$.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Bỏ qua sự mất mát nhiệt ra môi trường, nhiệt lượng do dây đun cung cấp cho nước trong 480 s là $Q = 24000\\text{ J}$.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "d",
+                                                "text": "d) Giá trị nhiệt hóa hơi riêng của nước thu được từ thí nghiệm trên là $L \\approx 2,50 \\cdot 10^6\\text{ J/kg}$.",
+                                                "correctAnswer": "Sai"
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "gk1_vl12_de2_sa1",
+                                "section": "ĐỀ SỐ 2 - III. TRẢ LỜI NGẮN",
+                                "type": "short_answer",
+                                "text": "<strong>Câu 1.</strong> Biết nhiệt dung riêng của nước là $c = 4180\\text{ J/(kg}\\cdot\\text{K)}$. Tính nhiệt lượng tỏa ra khi làm lạnh 400 g nước từ 80 °C xuống 30 °C theo đơn vị kiloJoule (kJ). (Kết quả viết làm tròn đến chữ số hàng phần mười).",
+                                "correctAnswer": "83,6 | 83.6"
+                        },
+                        {
+                                "id": "gk1_vl12_de2_sa2",
+                                "section": "ĐỀ SỐ 2 - III. TRẢ LỜI NGẮN",
+                                "type": "short_answer",
+                                "text": "<strong>Câu 2.</strong> Một khối chất rắn kết tinh có khối lượng 1,5 kg đang ở nhiệt độ nóng chảy. Cung cấp một nhiệt lượng $Q = 495\\text{ kJ}$ thì khối chất rắn đó nóng chảy hoàn toàn. Nhiệt nóng chảy riêng của chất đó có giá trị bằng $x \\cdot 10^5\\text{ J/kg}$. Tìm x (Kết quả viết làm tròn đến chữ số hàng phần mười).",
+                                "correctAnswer": "3,3 | 3.3"
+                        },
+                        {
+                                "id": "gk1_vl12_de2_sa3",
+                                "section": "ĐỀ SỐ 2 - III. TRẢ LỜI NGẮN",
+                                "type": "short_answer",
+                                "text": "<strong>Câu 3.</strong> Cho 0,01 kg hơi nước ở 100 °C ngưng tụ hoàn toàn trong bình nhiệt lượng kế chứa 0,2 kg nước ở 20 °C. Nhiệt độ của hệ khi đạt cân bằng nhiệt là 50 °C. Cho nhiệt dung riêng của nước là $c = 4180\\text{ J/(kg}\\cdot\\text{K)}$, bỏ qua sự trao đổi nhiệt với bình và môi trường. Nhiệt hóa hơi riêng của nước tính được từ thí nghiệm có dạng $x \\cdot 10^6\\text{ J/kg}$. Tìm x (Kết quả làm tròn đến chữ số hàng phần trăm).",
+                                "correctAnswer": "2,30 | 2.30 | 2,3 | 2.3"
+                        },
+                        {
+                                "id": "gk1_vl12_de2_sa4",
+                                "section": "ĐỀ SỐ 2 - III. TRẢ LỜI NGẮN",
+                                "type": "short_answer",
+                                "text": "<strong>Câu 4.</strong> Một lượng khí trong cylinder kín nhận nhiệt lượng 1100 J từ nguồn nhiệt, khí nở ra và thực hiện một công 420 J đẩy piston dịch chuyển. Độ biến thiên nội năng $\\Delta U$ của khối khí có giá trị bằng bao nhiêu Joule (J)? (Kết quả làm tròn đến chữ số hàng đơn vị).",
+                                "correctAnswer": "680"
+                        },
+                        {
+                                "id": "gk1_vl12_de2_essay1",
+                                "section": "ĐỀ SỐ 2 - IV. TỰ LUẬN",
+                                "type": "essay_group",
+                                "text": "<strong>Bài 1. (1,5 điểm)</strong> Một cylinder kín chứa 0,25 kg chất khí lí tưởng ở nhiệt độ ban đầu 20 °C. Người ta đun nóng cylinder, cung cấp cho chất khí một nhiệt lượng $Q = 1800\\text{ J}$. Khối khí giãn nở đẳng áp đẩy piston đi một đoạn làm khí thực hiện một công có độ lớn 550 J.",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Nêu quy quy ước về dấu của nhiệt lượng Q và công A trong công thức $\\Delta U = Q + A$ của Nguyên lý I Nhiệt động lực học.",
+                                                "correctAnswer": "Q > 0: hệ nhận nhiệt lượng; Q < 0: hệ truyền nhiệt lượng.\nA > 0: hệ nhận công; A < 0: hệ thực hiện công."
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Tính độ biến thiên nội năng $\\Delta U$ của khối khí trong quá trình biến đổi trên.",
+                                                "correctAnswer": "Khí nhận nhiệt: Q = +1800 J; Khí thực hiện công: A = -550 J.\nΔU = Q + A = 1800 - 550 = 1250 J."
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Giả sử toàn bộ độ biến thiên nội năng $\\Delta U$ này dùng để làm tăng nhiệt độ của khối khí. Biết nhiệt dung riêng của khối khí trong quá trình này là $c = 1000\\text{ J/(kg}\\cdot\\text{K)}$. Tính nhiệt độ cuối cùng của khối khí theo thang đo Celsius (°C).",
+                                                "correctAnswer": "ΔU = m·c·(t_cuối - t_đầu) => 1250 = 0,25·1000·(t_cuối - 20) => 250·(t_cuối - 20) = 1250 => t_cuối - 20 = 5 => t_cuối = 25 °C."
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "gk1_vl12_de2_essay2",
+                                "section": "ĐỀ SỐ 2 - IV. TỰ LUẬN",
+                                "type": "essay_group",
+                                "text": "<strong>Bài 2. (1,5 điểm)</strong> Để xác định nhiệt nóng chảy riêng của nước đá, một học sinh thả $m_1 = 0,2\\text{ kg}$ nước đá ở 0 °C vào bình nhiệt lượng kế chứa $m_2 = 0,6\\text{ kg}$ nước ở nhiệt độ $t_2 = 50\\text{ }^\\circ\\text{C}$. Bỏ qua khối lượng của bình và sự trao đổi nhiệt với môi trường. Biết nhiệt dung riêng của nước là $c = 4200\\text{ J/(kg}\\cdot\\text{K)}$. Khi hệ đạt cân bằng nhiệt, nước đá đã tan hoàn toàn và nhiệt độ chung của hệ là $t = 17,5\\text{ }^\\circ\\text{C}$.",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Tính độ lớn nhiệt lượng do 0,6 kg nước tỏa ra khi hạ nhiệt độ từ 50 °C xuống 17,5 °C.",
+                                                "correctAnswer": "Q_tỏa = m2·c·(t2 - t) = 0,6·4200·(50 - 17,5) = 0,6·4200·32,5 = 81900 J = 81,9 kJ."
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Trong thí nghiệm trên, nước đá thu nhiệt hay tỏa nhiệt?",
+                                                "correctAnswer": "Nước đá thu nhiệt lượng từ nước nóng để tan chảy hoàn toàn ở 0 °C và ấm lên đến 17,5 °C."
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Tính giá trị nhiệt nóng chảy riêng $\\lambda$ của nước đá thu được từ thí nghiệm trên.",
+                                                "correctAnswer": "Q_thu = m1·λ + m1·c·(t - 0) = 0,2·λ + 0,2·4200·17,5 = 0,2·λ + 14700 J.\nTheo PT cân bằng nhiệt: Q_thu = Q_tỏa => 0,2·λ + 14700 = 81900 => 0,2·λ = 67200 => λ = 336000 J/kg = 3,36·10^5 J/kg."
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "gk1_vl12_de3_q1",
+                                "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                                "text": "Câu 1. Phát biểu nào sau đây đúng khi nói về cấu trúc của các chất ở thể rắn, thể lỏng và thể khí theo mô hình động học phân tử?",
+                                "options": [
+                                        "A. Khoảng cách giữa các phân tử ở thể rắn lớn hơn rất nhiều so với ở thể khí.",
+                                        "B. Lực tương tác giữa các phân tử ở thể khí là rất lớn nên chất khí không có hình dạng xác định.",
+                                        "C. Ở thể lỏng, các phân tử dao động xung quanh các vị trí cân bằng có thể di chuyển được.",
+                                        "D. Nhiệt độ của vật càng cao thì tốc độ chuyển động hỗn loạn của các phân tử càng giảm."
+                                ],
+                                "correctIndex": 2
+                        },
+                        {
+                                "id": "gk1_vl12_de3_q2",
+                                "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                                "text": "Câu 2. Quá trình chuyển từ thể lỏng sang thể khí (hơi) ở mặt thoáng của chất lỏng gọi là",
+                                "options": [
+                                        "A. sự bay hơi.",
+                                        "B. sự nóng chảy.",
+                                        "C. sự ngưng tụ.",
+                                        "D. sự đông đặc."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "gk1_vl12_de3_q3",
+                                "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                                "text": "Câu 3. Khi nhiệt độ của một vật tăng lên thì",
+                                "options": [
+                                        "A. động năng chuyển động nhiệt của các phân tử cấu tạo nên vật tăng, làm nội năng của vật tăng.",
+                                        "B. thế năng hấp dẫn của vật so với mặt đất luôn tăng lên.",
+                                        "C. nội năng của vật luôn giữ nguyên không đổi.",
+                                        "D. động năng của các phân tử giảm đi và thế năng tương tác phân tử bằng không."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "gk1_vl12_de3_q4",
+                                "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                                "text": "Câu 4. Theo quy ước dấu của Nguyên lý I Nhiệt động lực học, biểu thức mô tả đúng trường hợp khối khí vừa truyền nhiệt lượng ra môi trường ngoài vừa thực hiện công là",
+                                "options": [
+                                        "A. $\\Delta U = Q + A$ với $Q > 0$ và $A > 0$.",
+                                        "B. $\\Delta U = Q + A$ với $Q < 0$ và $A > 0$.",
+                                        "C. $\\Delta U = Q + A$ với $Q > 0$ và $A < 0$.",
+                                        "D. $\\Delta U = Q + A$ với $Q < 0$ và $A < 0$."
+                                ],
+                                "correctIndex": 3
+                        },
+                        {
+                                "id": "gk1_vl12_de3_q5",
+                                "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                                "text": "Câu 5. Một vật có nhiệt độ trong thang Celsius là 27 °C. Nhiệt độ của vật đó trong thang nhiệt độ Kelvin (lấy mốc $0\\text{ }^\\circ\\text{C} \\approx 273\\text{ K}$) là",
+                                "options": [
+                                        "A. 300 K.",
+                                        "B. 246 K.",
+                                        "C. 273 K.",
+                                        "D. 127 K."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "gk1_vl12_de3_q6",
+                                "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                                "text": "Câu 6. Đơn vị nào sau đây không phải là đơn vị đo năng lượng nhiệt hoặc nhiệt nóng chảy riêng hợp lệ?",
+                                "options": [
+                                        "A. J/kg.",
+                                        "B. kJ/kg.",
+                                        "C. J.",
+                                        "D. W·kg."
+                                ],
+                                "correctIndex": 3
+                        },
+                        {
+                                "id": "gk1_vl12_de3_q7",
+                                "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                                "text": "Câu 7. Công thức tính khối lượng m của chất lỏng đã hóa hơi hoàn toàn ở nhiệt độ sôi khi nhận nhiệt lượng Q (với L là nhiệt hóa hơi riêng) là",
+                                "options": [
+                                        "A. $m = \\frac{Q}{L}$.",
+                                        "B. $m = Q \\cdot L$.",
+                                        "C. $m = \\frac{L}{Q}$.",
+                                        "D. $m = \\frac{Q}{\\lambda}$."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "gk1_vl12_de3_q8",
+                                "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                                "text": "Câu 8. Điểm cố định dưới và điểm cố định trên dùng để xây dựng thang nhiệt độ Celsius ở áp suất tiêu chuẩn lần lượt là",
+                                "options": [
+                                        "A. nhiệt độ đóng băng và nhiệt độ sôi của nước tinh khiết.",
+                                        "B. nhiệt độ không tuyệt đối và nhiệt độ nóng chảy của nước đá.",
+                                        "C. nhiệt độ cơ thể người và nhiệt độ sôi của rượu.",
+                                        "D. nhiệt độ điểm ba của nước và nhiệt độ sôi của thủy ngân."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "gk1_vl12_de3_q9",
+                                "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                                "text": "Câu 9. Biết nhiệt dung riêng của đồng là $380\\text{ J/(kg}\\cdot\\text{K)}$. Điều này có nghĩa là",
+                                "options": [
+                                        "A. cần cung cấp nhiệt lượng 380 J cho 1 kg đồng để nhiệt độ của nó tăng thêm 1 K.",
+                                        "B. cần cung cấp nhiệt lượng 380 J để làm nóng chảy hoàn toàn 1 kg đồng ở nhiệt độ nóng chảy.",
+                                        "C. 1 kg đồng khi hóa hơi hoàn toàn ở nhiệt độ sôi sẽ thu vào nhiệt lượng 380 J.",
+                                        "D. cần cung cấp 380 J để 1 g đồng tăng nhiệt độ từ 0 °C lên 100 °C."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "gk1_vl12_de3_q10",
+                                "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                                "text": "Câu 10. Truyền cho hai vật đồng chất có khối lượng $m_1 = 2m_2$ cùng một nhiệt lượng Q (không xảy ra sự chuyển thể). Độ tăng nhiệt độ $\\Delta T_1$ và $\\Delta T_2$ của hai vật có mối liên hệ là",
+                                "options": [
+                                        "A. $\\Delta T_1 = 0,5 \\cdot \\Delta T_2$.",
+                                        "B. $\\Delta T_1 = 2 \\cdot \\Delta T_2$.",
+                                        "C. $\\Delta T_1 = \\Delta T_2$.",
+                                        "D. $\\Delta T_1 = 4 \\cdot \\Delta T_2$."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "gk1_vl12_de3_q11",
+                                "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                                "text": "Câu 11. Công thức tính khối lượng m của một chất rắn kết tinh đã nóng chảy hoàn toàn ở nhiệt độ nóng chảy khi nhận nhiệt lượng Q (với $\\lambda$ là nhiệt nóng chảy riêng) là",
+                                "options": [
+                                        "A. $m = \\frac{Q}{\\lambda}$.",
+                                        "B. $m = Q \\cdot \\lambda$.",
+                                        "C. $m = \\frac{\\lambda}{Q}$.",
+                                        "D. $m = \\frac{Q}{c \\cdot \\Delta T}$."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "gk1_vl12_de3_q12",
+                                "section": "ĐỀ SỐ 3 - I. TRẮC NGHIỆM",
+                                "text": "Câu 12. Nhiệt hóa hơi riêng của một chất lỏng phụ thuộc vào",
+                                "options": [
+                                        "A. bản chất của chất lỏng và nhiệt độ mà tại đó chất lỏng hóa hơi.",
+                                        "B. khối lượng của lượng chất lỏng ban đầu.",
+                                        "C. thể tích của bình chứa chất lỏng.",
+                                        "D. công suất của nguồn nhiệt dùng để đun sôi chất lỏng."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "gk1_vl12_de3_tf1",
+                                "section": "ĐỀ SỐ 3 - II. ĐÚNG / SAI",
+                                "type": "true_false_group",
+                                "text": "<strong>Câu 1.</strong> Một học sinh quan sát sự chuyển thể của nước trong tự nhiên và trong đời sống hằng ngày:",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Khi nước đá tan chảy ở 0 °C, nhiệt độ không đổi vì nhiệt lượng cung cấp chuyển hóa hoàn toàn thành thế năng liên kết phân tử.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Trong quá trình nước đóng băng thành đá, nhiệt độ giảm dần và làm ngừng hoàn toàn chuyển động nhiệt của các phân tử.",
+                                                "correctAnswer": "Sai"
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Nước ở thể lỏng không có hình dạng riêng xác định mà có hình dạng của phần bình chứa nó.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "d",
+                                                "text": "d) Khi toàn bộ nước đá đã hóa lỏng và tiếp tục đun từ 0 °C đến 100 °C, trên bề mặt thoáng của nước vẫn liên tục diễn ra sự bay hơi.",
+                                                "correctAnswer": "Đúng"
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "gk1_vl12_de3_tf2",
+                                "section": "ĐỀ SỐ 3 - II. ĐÚNG / SAI",
+                                "type": "true_false_group",
+                                "text": "<strong>Câu 2.</strong> Một nhóm học sinh bố trí thí nghiệm xác định nhiệt hóa hơi riêng của nước. Dùng dây đun điện trở hoạt động với công suất không đổi $P = 36\\text{ W}$ làm nóng nước trong một cốc thủy tinh đặt trên đĩa cân điện tử (như hình vẽ bên dưới).<br>Khi nước trong cốc sôi ở 100 °C, nhóm ghi nhận số chỉ khối lượng hiển thị trên cân giảm dần theo thời gian $\\Delta t$:<br>• Tại thời điểm $t_1 = 0\\text{ s}$: số chỉ cân $m_1 = 155,40\\text{ g}$.<br>• Tại thời điểm $t_2 = 500\\text{ s}$: số chỉ cân $m_2 = 147,40\\text{ g}$.",
+                                "imageSrc": "images/thi_nghiem_nhiet_hoa_hoi_nuoc.png",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Nhiệt kế trong thí nghiệm dùng để kiểm tra và xác định thời điểm nước trong cốc đạt nhiệt độ sôi ổn định (100 °C).",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Khối lượng nước đã hóa hơi trong thời gian 500 s là $\\Delta m = 8,00\\text{ g}$.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Bỏ qua sự mất mát nhiệt ra môi trường, nhiệt lượng do dây đun cung cấp cho nước trong 500 s là $Q = 18000\\text{ J}$.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "d",
+                                                "text": "d) Giá trị nhiệt hóa hơi riêng của nước thực nghiệm thu được từ số liệu thí nghiệm trên là $L = 2,25 \\cdot 10^6\\text{ J/kg}$.",
+                                                "correctAnswer": "Đúng"
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "gk1_vl12_de3_sa1",
+                                "section": "ĐỀ SỐ 3 - III. TRẢ LỜI NGẮN",
+                                "type": "short_answer",
+                                "text": "<strong>Câu 1.</strong> Biết nhiệt dung riêng của nước là $c = 4180\\text{ J/(kg}\\cdot\\text{K)}$. Tính nhiệt lượng tỏa ra khi làm lạnh 250 g nước từ 95 °C xuống 25 °C theo đơn vị kiloJoule (kJ). (Kết quả viết làm tròn đến chữ số hàng phần mười).",
+                                "correctAnswer": "73,2 | 73.2"
+                        },
+                        {
+                                "id": "gk1_vl12_de3_sa2",
+                                "section": "ĐỀ SỐ 3 - III. TRẢ LỜI NGẮN",
+                                "type": "short_answer",
+                                "text": "<strong>Câu 2.</strong> Một khối chất rắn kết tinh có khối lượng 2,0 kg đang ở nhiệt độ nóng chảy. Cung cấp một nhiệt lượng $Q = 672\\text{ kJ}$ thì khối chất rắn đó nóng chảy hoàn toàn. Nhiệt nóng chảy riêng $\\lambda$ của chất đó có giá trị bằng $x \\cdot 10^5\\text{ J/kg}$. Tìm x (Kết quả viết làm tròn đến chữ số hàng phần trăm).",
+                                "correctAnswer": "3,36 | 3.36"
+                        },
+                        {
+                                "id": "gk1_vl12_de3_sa3",
+                                "section": "ĐỀ SỐ 3 - III. TRẢ LỜI NGẮN",
+                                "type": "short_answer",
+                                "text": "<strong>Câu 3.</strong> Cho 0,025 kg hơi nước ở 100 °C ngưng tụ hoàn toàn trong bình nhiệt lượng kế chứa 0,5 kg nước ở 20 °C. Nhiệt độ của hệ khi đạt cân bằng nhiệt là 48 °C. Cho nhiệt dung riêng của nước là $c = 4180\\text{ J/(kg}\\cdot\\text{K)}$, bỏ qua sự trao đổi nhiệt với bình và môi trường. Nhiệt hóa hơi riêng của nước tính được từ thí nghiệm có dạng $x \\cdot 10^6\\text{ J/kg}$. Tìm x (Kết quả làm tròn đến chữ số hàng phần trăm).",
+                                "correctAnswer": "2,12 | 2.12"
+                        },
+                        {
+                                "id": "gk1_vl12_de3_sa4",
+                                "section": "ĐỀ SỐ 3 - III. TRẢ LỜI NGẮN",
+                                "type": "short_answer",
+                                "text": "<strong>Câu 4.</strong> Một lượng khí trong cylinder kín nhận nhiệt lượng 1250 J từ nguồn nhiệt, khí nở ra và thực hiện một công 480 J đẩy piston dịch chuyển. Độ biến thiên nội năng $\\Delta U$ của khối khí có giá trị bằng bao nhiêu Joule (J)? (Kết quả làm tròn đến chữ số hàng đơn vị).",
+                                "correctAnswer": "770"
+                        },
+                        {
+                                "id": "gk1_vl12_de3_essay1",
+                                "section": "ĐỀ SỐ 3 - IV. TỰ LUẬN",
+                                "type": "essay_group",
+                                "text": "<strong>Bài 1. (1,5 điểm)</strong> Một cylinder kín chứa 0,30 kg chất khí lí tưởng ở nhiệt độ ban đầu 22 °C. Người ta đun nóng cylinder, cung cấp cho chất khí một nhiệt lượng $Q = 2100\\text{ J}$. Khối khí giãn nở đẳng áp đẩy piston đi một đoạn làm khí thực hiện một công có độ lớn 600 J.",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Nêu quy ước về dấu của nhiệt lượng Q và công A trong công thức $\\Delta U = Q + A$ của Nguyên lý I Nhiệt động lực học.",
+                                                "correctAnswer": "Q > 0: hệ nhận nhiệt lượng; Q < 0: hệ truyền nhiệt lượng.\nA > 0: hệ nhận công; A < 0: hệ thực hiện công."
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Tính độ biến thiên nội năng $\\Delta U$ của khối khí trong quá trình biến đổi trên.",
+                                                "correctAnswer": "Khí nhận nhiệt: Q = +2100 J; Khí thực hiện công: A = -600 J.\nΔU = Q + A = 2100 - 600 = 1500 J."
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Giả sử toàn bộ độ biến thiên nội năng $\\Delta U$ này dùng để làm tăng nhiệt độ của khối khí. Biết nhiệt dung riêng của khối khí trong quá trình này là $c = 1000\\text{ J/(kg}\\cdot\\text{K)}$. Tính nhiệt độ cuối cùng của khối khí theo thang đo Celsius (°C).",
+                                                "correctAnswer": "ΔU = m·c·(t_cuối - t_đầu) => 1500 = 0,30·1000·(t_cuối - 22) => 300·(t_cuối - 22) = 1500 => t_cuối - 22 = 5 => t_cuối = 27 °C."
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "gk1_vl12_de3_essay2",
+                                "section": "ĐỀ SỐ 3 - IV. TỰ LUẬN",
+                                "type": "essay_group",
+                                "text": "<strong>Bài 2. (1,5 điểm)</strong> Để xác định nhiệt nóng chảy riêng của nước đá, một học sinh thả $m_1 = 0,12\\text{ kg}$ nước đá ở 0 °C vào bình nhiệt lượng kế chứa $m_2 = 0,45\\text{ kg}$ nước ở nhiệt độ $t_2 = 45\\text{ }^\\circ\\text{C}$. Bỏ qua khối lượng của bình và sự trao đổi nhiệt với môi trường. Biết nhiệt dung riêng của nước là $c = 4200\\text{ J/(kg}\\cdot\\text{K)}$. Khi hệ đạt cân bằng nhiệt, nước đá đã tan hoàn toàn và nhiệt độ chung của hệ là $t = 20\\text{ }^\\circ\\text{C}$.",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Tính độ lớn nhiệt lượng do 0,45 kg nước tỏa ra khi hạ nhiệt độ từ 45 °C xuống 20 °C.",
+                                                "correctAnswer": "Q_tỏa = m2·c·(t2 - t) = 0,45·4200·(45 - 20) = 0,45·4200·25 = 47250 J = 47,25 kJ."
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Trong thí nghiệm trên, nước đá thu nhiệt hay tỏa nhiệt?",
+                                                "correctAnswer": "Nước đá thu nhiệt lượng từ nước nóng để tan chảy hoàn toàn ở 0 °C và ấm lên đến 20 °C."
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Tính giá trị nhiệt nóng chảy riêng $\\lambda$ của nước đá thu được từ thí nghiệm trên.",
+                                                "correctAnswer": "Q_thu = m1·λ + m1·c·(t - 0) = 0,12·λ + 0,12·4200·20 = 0,12·λ + 10080 J.\nTheo PT cân bằng nhiệt: Q_thu = Q_tỏa => 0,12·λ + 10080 = 47250 => 0,12·λ = 37170 => λ = 309750 J/kg ≈ 3,10·10^5 J/kg."
+                                        }
+                                ]
+                        }
+                ]
+        }
 ];
