@@ -469,7 +469,8 @@ window.closeDeleteModal = function () {
 // --- NHẬT KÝ CẬP NHẬT (v41) ---
 window.showHelp = function (type) {
     const msgs = {
-        shuffle: '🔀 Tráo thứ tự:\nCâu hỏi sẽ được xáo trộn ngẫu nhiên mỗi lần làm bài, giúp bạn luyện tập hiệu quả hơn.',
+        shuffle: '🔀 Tráo thứ tự câu hỏi:\nCâu hỏi sẽ được xáo trộn ngẫu nhiên mỗi lần làm bài, giúp bạn luyện tập hiệu quả hơn.',
+        shuffleOptions: '🔀 Tráo thứ tự đáp án:\nCác phương án lựa chọn A, B, C, D của từng câu hỏi sẽ được xáo trộn ngẫu nhiên, giúp chống học vẹt và ghi nhớ vị trí đáp án.',
         mode: '📋 Chế độ làm bài:\n• Thi cử: Nộp bài mới thấy đáp án và kết quả.\n• Luyện tập: Hiển thị đáp án đúng/sai ngay sau khi bạn chọn.'
     };
     alert(msgs[type] || '');
@@ -539,6 +540,35 @@ function shuffleQuestionsBySection(questions) {
         });
     });
     return finalShuffled;
+}
+
+// === HÀM ĐẢO THỨ TỰ ĐÁP ÁN (A, B, C, D) ===
+function shuffleOptionsForQuestion(q) {
+    if ((q.type === 'multiple_choice' || !q.type) && Array.isArray(q.options) && q.options.length > 1) {
+        const origCorrectIndex = parseInt(q.correctIndex);
+        if (isNaN(origCorrectIndex) || origCorrectIndex < 0 || origCorrectIndex >= q.options.length) {
+            return;
+        }
+
+        const indexedOptions = q.options.map((opt, idx) => ({
+            opt,
+            originalIndex: idx,
+            isCorrect: idx === origCorrectIndex
+        }));
+
+        // Fisher-Yates shuffle
+        for (let i = indexedOptions.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [indexedOptions[i], indexedOptions[j]] = [indexedOptions[j], indexedOptions[i]];
+        }
+
+        q.options = indexedOptions.map(item => item.opt);
+        const newCorrectIdx = indexedOptions.findIndex(item => item.isCorrect);
+        if (newCorrectIdx !== -1) {
+            q.correctIndex = newCorrectIdx;
+        }
+        q._optOriginalIndices = indexedOptions.map(item => item.originalIndex);
+    }
 }
 
 // === BẮT ĐẦU LÀM BÀI ===
@@ -781,10 +811,12 @@ window.__confirmParticipant = function () {
 const btnConfirmStart = document.getElementById('btnConfirmStart');
 if (btnConfirmStart) {
     btnConfirmStart.onclick = async function () {
-        const isShuffle = document.getElementById('chkShuffle').checked;
+        const isShuffle = document.getElementById('chkShuffle')?.checked ?? false;
+        const isShuffleOptions = document.getElementById('chkShuffleOptions')?.checked ?? false;
         const quizMode = document.querySelector('input[name="quizMode"]:checked').value;
         quizForm.dataset.quizMode = quizMode;
         quizForm.dataset.isShuffle = isShuffle;
+        quizForm.dataset.isShuffleOptions = isShuffleOptions;
 
         // Cập nhật thông tin thí sinh từ ô nhập trên setupView
         const user = window.__currentUser || null;
@@ -830,6 +862,10 @@ if (btnConfirmStart) {
             }
         } else {
             currentQuizTitle.textContent = currentQuiz.title;
+        }
+
+        if (isShuffleOptions) {
+            flattenedQs.forEach(q => shuffleOptionsForQuestion(q));
         }
 
         if (isShuffle) {
@@ -1305,7 +1341,13 @@ if (quizForm) {
                     qs.forEach(q => {
                         if (!q) return;
                         const val = formData.get(`question_${q.id}`);
-                        if (val !== null && val !== undefined) answers[String(q.id)] = val;
+                        if (val !== null && val !== undefined) {
+                            if (q._optOriginalIndices && q._optOriginalIndices[parseInt(val)] !== undefined) {
+                                answers[String(q.id)] = String(q._optOriginalIndices[parseInt(val)]);
+                            } else {
+                                answers[String(q.id)] = val;
+                            }
+                        }
                     });
                     const subId = Date.now() + '_' + Math.random().toString(36).slice(2, 6);
                     const subRef = ref(dbRT, `submissions/${currentQuiz.id}/${subId}`);
