@@ -5765,5 +5765,1556 @@ export const mockQuizzes = [
                                 ]
                         }
                 ]
-        }
+        },
+{
+        "id": "on_tap_gki_cong_nghe_12",
+        "title": "Ôn tập GKI - Công nghệ 12",
+        "category": "khac",
+        "subject": "Công nghệ",
+        "description": "Bộ đề ôn tập kiểm tra Giữa kì I môn Công nghệ 12 (Kĩ thuật điện). Gồm 2 đề chuẩn bám sát chương trình: Trắc nghiệm 4 lựa chọn (ngành nghề, mạng điện hạ áp, hệ thống điện quốc gia, mạch điện xoay chiều ba pha) và Đúng/Sai.",
+        "presets": [
+                {
+                        "id": "all",
+                        "label": "✨ Toàn bộ cả 2 đề (56 câu)",
+                        "sectionIds": [
+                                "de1_mcq",
+                                "de1_tf",
+                                "de2_mcq",
+                                "de2_tf"
+                        ]
+                },
+                {
+                        "id": "de1",
+                        "label": "📘 Trọn vẹn Đề 1 (28 câu)",
+                        "sectionIds": [
+                                "de1_mcq",
+                                "de1_tf"
+                        ]
+                },
+                {
+                        "id": "de2",
+                        "label": "📗 Trọn vẹn Đề 2 (28 câu)",
+                        "sectionIds": [
+                                "de2_mcq",
+                                "de2_tf"
+                        ]
+                },
+                {
+                        "id": "all_mcq",
+                        "label": "🎯 Tất cả câu Trắc nghiệm 4 lựa chọn (48 câu)",
+                        "sectionIds": [
+                                "de1_mcq",
+                                "de2_mcq"
+                        ]
+                },
+                {
+                        "id": "all_tf",
+                        "label": "⚖️ Tất cả câu Đúng / Sai (8 câu)",
+                        "sectionIds": [
+                                "de1_tf",
+                                "de2_tf"
+                        ]
+                }
+        ],
+        "selectableSections": [
+                {
+                        "id": "de1_mcq",
+                        "name": "Đề 1 - Trắc nghiệm 4 lựa chọn (24 câu)",
+                        "section": "ĐỀ 1 - TRẮC NGHIỆM",
+                        "group": "Đề 1"
+                },
+                {
+                        "id": "de1_tf",
+                        "name": "Đề 1 - Đúng / Sai (4 câu)",
+                        "section": "ĐỀ 1 - ĐÚNG / SAI",
+                        "group": "Đề 1"
+                },
+                {
+                        "id": "de2_mcq",
+                        "name": "Đề 2 - Trắc nghiệm 4 lựa chọn (24 câu)",
+                        "section": "ĐỀ 2 - TRẮC NGHIỆM",
+                        "group": "Đề 2"
+                },
+                {
+                        "id": "de2_tf",
+                        "name": "Đề 2 - Đúng / Sai (4 câu)",
+                        "section": "ĐỀ 2 - ĐÚNG / SAI",
+                        "group": "Đề 2"
+                }
+        ],
+        "questions": [
+                {
+                        "id": "cn12_d1_q1",
+                        "section": "ĐỀ 1 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 1: Kĩ thuật điện là ngành",
+                        "options": [
+                                "A. kĩ thuật.",
+                                "B. chế tạo.",
+                                "C. gia công.",
+                                "D. tái chế."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "cn12_d1_q2",
+                        "section": "ĐỀ 1 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 2: Mục tiêu của sản xuất điện là",
+                        "options": [
+                                "A. tạo ra điện từ việc chuyển đổi các dạng năng lượng khác nhau thành năng lượng điện.",
+                                "B. đưa điện từ nguồn (nhà máy điện) tới nơi tiêu thụ thông qua lưới điện.",
+                                "C. nghiên cứu, thiết kế, chế tạo, sử dụng các thiết bị điện và các bộ điều khiển để biến đổi điện năng thành các dạng năng lượng khác phục vụ sản xuất và đời sống.",
+                                "D. nghiên cứu, chế tạo các loại vật liệu composite thích hợp để làm dây dẫn điện."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "cn12_d1_q3",
+                        "section": "ĐỀ 1 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 3: Phát triển sản xuất điện năng từ nguồn năng lượng tái tạo nhằm",
+                        "options": [
+                                "A. quản trị tối ưu việc truyền dẫn, phân phối, sử dụng điện năng; phát triển các hệ thống dự trữ năng lượng điện.",
+                                "B. giảm phụ thuộc vào nhiên liệu hóa thạch, giảm phát thải khí nhà kính trong lĩnh vực sản xuất điện.",
+                                "C. tạo các thiết bị điện có hiệu suất cao hơn, tiết kiệm năng lượng hơn và thân thiện với môi trường.",
+                                "D. tăng khả năng quản lí, giám sát sản xuất; tăng năng suất, giảm chi phí."
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "cn12_d1_q4",
+                        "section": "ĐỀ 1 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 4: Sản phẩm của công việc thiết kế là",
+                        "options": [
+                                "A. các bản vẽ sơ đồ mạch điện",
+                                "B. các tài liệu kĩ thuật mô tả hệ thống điện",
+                                "C. các bản vẽ sơ đồ mạch điện và các tài liệu kĩ thuật mô tả hệ thống điện",
+                                "D. các bản vẽ sơ đồ mạch điện hoặc các tài liệu kĩ thuật mô tả hệ thống điện."
+                        ],
+                        "correctIndex": 2
+                },
+                {
+                        "id": "cn12_d1_q5",
+                        "section": "ĐỀ 1 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 5: Nhiệm vụ của kĩ sư điện",
+                        "options": [
+                                "A. nghiên cứu, tư vấn và thiết kế hệ thống điện, thiết bị điện",
+                                "B. hỗ trợ nghiên cứu và phát triển các các thiết bị điện",
+                                "C. thiết kế hệ thống điện và mạch điện có độ phức tạp thấp",
+                                "D. lắp đặt hệ thống điện cho các hộ gia đình"
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "cn12_d1_q6",
+                        "section": "ĐỀ 1 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 6: Vai trò của kĩ thuật điện là",
+                        "options": [
+                                "A. cung cấp hệ thống điện, thiết bị điện cho các ngành kinh tế, công nghiệp, mĩ thuật, nông nghiệp",
+                                "B. cung cấp hệ thống điện, thiết bị điện cho các ngành kinh tế, công nghiệp, cơ sở hạ tầng và cuộc sống hàng ngày của chúng ta",
+                                "C. cung cấp hệ thống điện, thiết bị điện cho cuộc sống hàng ngày của chúng ta",
+                                "D. cung cấp hệ thống điện, thiết bị điện cho các ngành thuộc lĩnh vực kinh tế, chính trị"
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "cn12_d1_q7",
+                        "section": "ĐỀ 1 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 7: Dòng điện xoay chiều ba pha là",
+                        "options": [
+                                "A. hệ thống ba dòng điện xoay chiều có cùng tần số, cùng biên độ và có góc pha lệch nhau 120o giữa các pha.",
+                                "B. hệ thống ba dòng điện xoay chiều có cùng tần số, khác biên độ và có góc pha lệch nhau 120o giữa các pha.",
+                                "C. hệ thống ba dòng điện xoay chiều có cùng tần số, cùng biên độ và có góc pha lệch nhau 60o giữa các pha.",
+                                "D. hệ thống ba dòng điện xoay chiều có cùng tần số, khác biên độ và có góc pha lệch nhau 60o giữa các pha."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "cn12_d1_q8",
+                        "section": "ĐỀ 1 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 8: Dòng điện xoay chiều một pha là",
+                        "options": [
+                                "A. dòng điện biến thiên tuần hoàn theo dạng hình sin",
+                                "B. dòng điện có đồ thị là đường thẳng đi qua gốc tọa độ",
+                                "C. dòng điện có đồ thị là đường thẳng song song với trục tung",
+                                "D. dòng điện có đồ thị là đường thẳng song song với trục hoành"
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "cn12_d1_q9",
+                        "section": "ĐỀ 1 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 9: Quan sát hình sau và cho biết, tải ba pha được nối theo cách nào?",
+                        "options": [
+                                "A. nối hình sao",
+                                "B. nối hình tam giác",
+                                "C. nối hình sao có dây trung tính",
+                                "D. Không xác định"
+                        ],
+                        "correctIndex": 1,
+                        "imageSrc": "images/electric/image1.png"
+                },
+                {
+                        "id": "cn12_d1_q10",
+                        "section": "ĐỀ 1 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 10: Hệ thống điện quốc gia có thành phần nào sau đây?",
+                        "options": [
+                                "A. Nguồn điện, các lưới điện, các thiết bị điện",
+                                "B. Các lưới điện, các thiết bị điện, các hộ tiêu thụ điện",
+                                "C. Các hộ tiêu thụ điện, các lưới điện, các thiết bị điện",
+                                "D. Nguồn điện, các lưới điện, các hộ tiêu thụ điện"
+                        ],
+                        "correctIndex": 3
+                },
+                {
+                        "id": "cn12_d1_q11",
+                        "section": "ĐỀ 1 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 11: Tải tiêu thụ là",
+                        "options": [
+                                "A. tập hợp các thiết bị và phần mềm để giám sát và điều khiển lưới điện",
+                                "B. các thiết bị tiêu thụ điện, biến điện năng thành các dạng năng lượng khác",
+                                "C. thiết bị điều phối và đảm bảo an toàn hệ thống truyền tải điện",
+                                "D. các nhà máy điện có công suất phát điện khác nhau, phương pháp sản xuất điện khác nhau như thủy điện, nhiệt điện,... đấu nối vào lưới điện thông qua trạm biến áp"
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "cn12_d1_q12",
+                        "section": "ĐỀ 1 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 12: Vai trò của lưới điện",
+                        "options": [
+                                "A. tạo ra điện năng cung cấp cho hệ thống điện quốc gia.",
+                                "B. kết nối, truyền tải và phân phối điện năng từ nguồn đến nơi tiêu thụ trong phạm vi toàn quốc.",
+                                "C. chuyển đổi cấp điện áp từ điện áp thấp lên điện áp cao.",
+                                "D. biến điện năng thành dạng năng lượng khác."
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "cn12_d1_q13",
+                        "section": "ĐỀ 1 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 13: Nguồn năng lượng tái tạo được sử dụng để sản xuất điện năng là",
+                        "options": [
+                                "A. than đá.",
+                                "B. dầu mỏ.",
+                                "C. sóng biển.",
+                                "D. khí tự nhiên."
+                        ],
+                        "correctIndex": 2
+                },
+                {
+                        "id": "cn12_d1_q14",
+                        "section": "ĐỀ 1 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 14: Trong nhà máy nhiệt điện, tác nhân trực tiếp làm quay tuabin là",
+                        "options": [
+                                "A. nhiên liệu.",
+                                "B. nước.",
+                                "C. hơi nước.",
+                                "D. quạt gió."
+                        ],
+                        "correctIndex": 2
+                },
+                {
+                        "id": "cn12_d1_q15",
+                        "section": "ĐỀ 1 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 15: Ở nhà máy thủy điện",
+                        "options": [
+                                "A. nhiệt năng biến thành cơ năng, rồi thành điện năng.",
+                                "B. thế năng chuyển hóa thành động năng, rồi thành điện năng.",
+                                "C. quang năng biến thành điện năng.",
+                                "D. hóa năng biến thành điện năng."
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "cn12_d1_q16",
+                        "section": "ĐỀ 1 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 16: Mạng điện sản xuất quy mô nhỏ cấp điện cho tải tiêu thụ khoảng",
+                        "options": [
+                                "A. vài chục kW đến vài trăm kW.",
+                                "B. vài trăm kW đến vài nghìn kW.",
+                                "C. vài nghìn kW đến vài trăm nghìn kW.",
+                                "D. vài trăm nghìn kW đến vài triệu Kw."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "cn12_d1_q17",
+                        "section": "ĐỀ 1 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 17: Tải của mạng điện sản xuất quy mô nhỏ là:",
+                        "options": [
+                                "A. các loại động cơ điện, các thiết bị điện, các dụng cụ sửa chữa điện.",
+                                "B. các thiết bị điện, các dụng cụ sửa chữa điện, các thiết bị chiếu sáng.",
+                                "C. các thiết bị chiếu sáng, các loại động cơ điện, các dụng cụ sửa chữa điện.",
+                                "D. các loại động cơ điện, các thiết bị điện, các thiết bị chiếu sáng."
+                        ],
+                        "correctIndex": 3
+                },
+                {
+                        "id": "cn12_d1_q18",
+                        "section": "ĐỀ 1 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 18: Phát biểu nào sau đây sai?",
+                        "options": [
+                                "A. Tủ phân phối nhận điện từ trạm biến áp để phân chia tới các tủ động lực, tủ chiếu sáng của các phân xưởng.",
+                                "B. Tủ động lực nhận điện từ tủ phân phối cung cấp cho tủ chiếu sáng.",
+                                "C. Tủ chiếu sáng nhận điện từ tủ phân phối cung cấp cho mạch chiếu sáng của các phân xưởng.",
+                                "D. Trạm biến áp cấp điện cho cơ sở sản xuất."
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "cn12_d1_q19",
+                        "section": "ĐỀ 1 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 19: Cấp điện áp nào thường được sử dụng trong mạng điện hạ áp ở Việt Nam?",
+                        "options": [
+                                "A. 500V.",
+                                "B. 100V.",
+                                "C. 220V.",
+                                "D. 320V."
+                        ],
+                        "correctIndex": 2
+                },
+                {
+                        "id": "cn12_d1_q20",
+                        "section": "ĐỀ 1 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 20: Công suất của lưới điện tùy thuộc vào đâu?",
+                        "options": [
+                                "A. Sự chuyển động của mô men xung quanh động cơ.",
+                                "B. Điện áp định mức khi sản xuất năng lượng tiêu thụ.",
+                                "C. Sự chống tải và đóng hoặc cắt nguồn điện từ lưới hạ áp.",
+                                "D. Công suất của máy biến áp cấp điện cho khu vực."
+                        ],
+                        "correctIndex": 3
+                },
+                {
+                        "id": "cn12_d1_q21",
+                        "section": "ĐỀ 1 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 21: Vị trí làm việc của nhóm công việc thiết kế điện là gì?",
+                        "options": [
+                                "A. Kĩ sư nghiên cứu, tư vấn và thiết kế hệ thống điện, thiết bị điện",
+                                "B. Kĩ sư sản xuất và thợ sản xuất, chế tạo thiết bị điện",
+                                "C. Kĩ sư thi công điện và kĩ thuật viên lắp đặt điện",
+                                "D. Kĩ sư chỉ đạo, tổ chức vận hành hệ thống điện và kĩ thuật viên vận hành hệ thống điện"
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "cn12_d1_q22",
+                        "section": "ĐỀ 1 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 22: Quan sát sơ đồ mạch điện ba pha sau đây và cho biết mạch điện ba pha được nối theo kiểu gì?",
+                        "options": [
+                                "A. Nguồn nối hình sao (Y), tải hình tam giác ().",
+                                "B. Nối hình sao (Y) không dây trung tính.",
+                                "C. Nối hình sao (Y) có dây trung tính OO’.",
+                                "D. Nối hình tam giác ()."
+                        ],
+                        "correctIndex": 2,
+                        "imageSrc": "images/electric/image2.png"
+                },
+                {
+                        "id": "cn12_d1_q23",
+                        "section": "ĐỀ 1 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 23: Quan sát sơ đồ một hệ thống điện quốc gia sau\nTrạm tăng áp có trong sơ đồ là",
+                        "options": [
+                                "A. Từ 22kV lên 220kV và từ 22kV lên 110kV.",
+                                "B. Từ 0,4 kV lên 22kV và từ 22kV lên 110kV.",
+                                "C. Từ 0,4kV lên 110kV và từ 22kV lên 110kV.",
+                                "D. Từ 0,4 kV lên 22kV và từ 22kV lên 110kV."
+                        ],
+                        "correctIndex": 0,
+                        "imageSrc": "images/electric/image3.png"
+                },
+                {
+                        "id": "cn12_d1_q24",
+                        "section": "ĐỀ 1 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 24: Một tải ba pha gồm ba điện trở R = 10Ω, nối hình tam giác, đấu vào nguồn điện ba pha có Ud = 380V. Tính điện áp pha?",
+                        "options": [
+                                "A. Up = 380V.",
+                                "B. Up = 658,2V.",
+                                "C. Up = 219,4V.",
+                                "D. Up = 220V."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "cn12_d1_tf1",
+                        "section": "ĐỀ 1 - ĐÚNG / SAI",
+                        "type": "true_false_group",
+                        "text": "Câu 1: Nhận định nào sau đây đúng khi nói về các phương pháp sản xuất điện năng từ năng lượng gió",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Năng lượng của gió được chuyển hóa thành điện năng nhờ turbine gió.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Tốc độ quay rất chậm của cánh turbine sẽ được tăng cao nhờ máy biến áp và quay máy phát để phát điện.",
+                                        "correctAnswer": "Sai"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Hạn chế của phương pháp sản xuất điện năng từ năng lượng gió là công suất phát không ổn định do phụ thuộc vào tốc độ gió.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Nhà máy điện gió có thể được xây dựng ở nhiều khu vực khác nhau nên chi phí xây dựng nhà máy và đường truyền tải không gây nhiều tốn kém.",
+                                        "correctAnswer": "Sai"
+                                }
+                        ]
+                },
+                {
+                        "id": "cn12_d1_tf2",
+                        "section": "ĐỀ 1 - ĐÚNG / SAI",
+                        "type": "true_false_group",
+                        "text": "Câu 2: Nhận định nào sau đây đúng khi nói về đặc điểm của mạng điện hạ áp dùng trong sinh hoạt:",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Mạng điện hạ áp dùng trong sinh hoạt là mạng điện ba pha bốn dây có điện áp 380/110V cung cấp điện cho một khu dân cư hay các tòa nhà chung cư cao tầng.",
+                                        "correctAnswer": "Sai"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Mạng điện hạ áp dùng trong sinh hoạt thông thường được cấp bằng một máy biến áp từ lưới điện phân phối 500kV hoặc 220kV.",
+                                        "correctAnswer": "Sai"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Tải điện sinh hoạt thường phân bố rải rác, có những tải điện ở xa máy biến áp, đặc biệt ở vùng nông thôn, miền núi, hải đảo.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Tải điện sinh hoạt thường được chia làm hai loại: tải điện sinh hoạt cộng đồng và tải điện sinh hoạt gia đình.",
+                                        "correctAnswer": "Đúng"
+                                }
+                        ]
+                },
+                {
+                        "id": "cn12_d1_tf3",
+                        "section": "ĐỀ 1 - ĐÚNG / SAI",
+                        "type": "true_false_group",
+                        "text": "Câu 3: Động cơ điện xoay chiều ba pha có kí hiệu Y/Δ – 380/220 V; 12,5/15,5 A. Động cơ sử dụng điện lưới có điện áp dây là 220 V.",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Các pha của động cơ phải nối hình tam giác; dòng điện dây Id = 12,5 A và dòng điện pha Ip = 15,5 A.",
+                                        "correctAnswer": "Sai"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Các pha của động cơ phải nối hình sao; dòng điện dây Id = 12,5 A và dòng điện Ip = 15,5 A.",
+                                        "correctAnswer": "Sai"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Với kí hiệu Y/Δ – 380/220 V thì các pha (cuộn dây) của động cơ chỉ được nối hình sao khi điện lưới có điện áp dây là 380 V.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Kí hiệu 12,5/15,5 A để chỉ giá trị của dòng điện pha và dòng điện dây tương ứng của động cơ khi các pha của động cơ nối hình sao.",
+                                        "correctAnswer": "Sai"
+                                }
+                        ]
+                },
+                {
+                        "id": "cn12_d1_tf4",
+                        "section": "ĐỀ 1 - ĐÚNG / SAI",
+                        "type": "true_false_group",
+                        "text": "Câu 4: Trên nhãn gắn ở vỏ của động cơ điện xoay chiều ba pha có ghi: Y/Δ – 380/220 V – 12,4/8,3 A. Ý nghĩa các thông số đó là:",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) nếu nguồn ba pha có Ud = 220 V thì phải đấu dây của động cơ kiểu tam giác và dòng điện vào động cơ là 8,3 A.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) nếu nguồn ba pha có Ud = 220 V thì phải đấu dây của động cơ kiểu tam giác và dòng điện vào động cơ là 12,4 A.",
+                                        "correctAnswer": "Sai"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) nếu nguồn ba pha có Ud = 380 V thì phải đấu dây của động cơ hình sao và dòng điện vào động cơ là 8,3 A.",
+                                        "correctAnswer": "Sai"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) nếu nguồn ba pha có Ud = 380 V thì phải đấu dây của động cơ hình sao và dòng điện vào động cơ là 12,8 A.",
+                                        "correctAnswer": "Sai"
+                                }
+                        ]
+                },
+                {
+                        "id": "cn12_d2_q1",
+                        "section": "ĐỀ 2 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 1: Phát triển nguồn năng lượng điện tái tạo là triển vọng của kĩ thuật điện thể hiện trong",
+                        "options": [
+                                "A. phát triển sản xuất điện năng.",
+                                "B. đời sống sinh hoạt cộng đồng.",
+                                "C. phát triển vật liệu mới.",
+                                "D. phát triển cơ sở hạ tầng."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "cn12_d2_q2",
+                        "section": "ĐỀ 2 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 2: Vai trò của kĩ thuật điện đối với đời sống là",
+                        "options": [
+                                "A. Cải thiện mức thu nhập bình quân của con người.",
+                                "B. Thúc đẩy phát triển các sản phẩm chăn nuôi.",
+                                "C. Tăng sản lượng cây trồng.",
+                                "D. Nâng cao chất lượng cuộc sống con người."
+                        ],
+                        "correctIndex": 3
+                },
+                {
+                        "id": "cn12_d2_q3",
+                        "section": "ĐỀ 2 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 3: Phát triển vật liệu mới cho kĩ thuật điện nhằm",
+                        "options": [
+                                "A. tạo các thiết bị điện có hiệu suất cao hơn, tiết kiệm năng lượng hơn, thân thiện với môi trường.",
+                                "B. thúc đẩy phát triển kinh tế nông nghiệp.",
+                                "C. giảm năng suất, tăng chi phí, từ đó nâng cao chất lượng sản phẩm.",
+                                "D. phát triển các hệ thống bảo tồn năng lượng điện."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "cn12_d2_q4",
+                        "section": "ĐỀ 2 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 4: Nhiệm vụ của kĩ sư điện là gì?",
+                        "options": [
+                                "A. Nghiên cứu, tư vấn và thiết kế hệ thống điện, thiết bị điện.",
+                                "B. Hỗ trợ nghiên cứu và phát triển các các thiết bị điện.",
+                                "C. Thiết kế hệ thống điện và mạch điện có độ phức tạp thấp.",
+                                "D. Lắp đặt hệ thống điện cho các hộ gia đình."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "cn12_d2_q5",
+                        "section": "ĐỀ 2 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 5: Sửa chữa điện là:",
+                        "options": [
+                                "A. hoạt động thực hiện khi có sự cố nhằm phục hồi hệ thống điện, thiết bị điện trở lại trạng thái hoạt động bình thường.",
+                                "B. hoạt động thường kì nhằm duy trì hệ thống điện, thiết bị điện hoạt động bình thường, tránh hỏng hóc.",
+                                "C. thi công, lắp đặt, kế nối đường dây điện và thiết bị điện cho các hệ thống điện, công trình điện theo hồ sơ thiết kế, các quy chuẩn kĩ thuật và an toàn điện.",
+                                "D. các hoạt động nhằm duy trì chế độ làm việc bình thường của hệ thống điện đáp ứng các yêu cầu chất lượng, độ tin cậy và kinh tế ."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "cn12_d2_q6",
+                        "section": "ĐỀ 2 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 6: Công việc trong hình vẽ thuộc ngành nghề nào trong lĩnh vực kĩ thuật điện?",
+                        "options": [
+                                "A. Sản xuất và chế tạo thiết bị điện.",
+                                "B. Bảo dưỡng và sửa chữa điện.",
+                                "C. Lắp đặt điện.",
+                                "D. Thiết kế điện."
+                        ],
+                        "correctIndex": 0,
+                        "imageSrc": "images/electric/image4.png"
+                },
+                {
+                        "id": "cn12_d2_q7",
+                        "section": "ĐỀ 2 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 7: Nối hình sao là gì?",
+                        "options": [
+                                "A. Đầu pha này đối với cuối pha kia theo thứ tự pha.",
+                                "B. Ba điểm cuối của ba pha nối với nhau tạo thành điểm trung tính O",
+                                "C. Ba điểm đầu của ba pha nối với nhau tạo thành điểm trung tính O",
+                                "D. Đầu pha này nối với cuối pha kia không cần theo thứ tự pha."
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "cn12_d2_q8",
+                        "section": "ĐỀ 2 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 8: Dòng điện xoay chiều ba pha là:",
+                        "options": [
+                                "A. Hệ thống ba dòng điện xoay chiều có cùng tần số, cùng biên độ và có góc pha lệch nhau 120o giữa các pha.",
+                                "B. Hệ thống ba dòng điện xoay chiều có cùng tần số, khác biên độ và có góc pha lệch nhau 120o giữa các pha.",
+                                "C. Hệ thống ba dòng điện xoay chiều có cùng tần số, cùng biên độ và có góc pha lệch nhau 60o giữa các pha.",
+                                "D. Hệ thống ba dòng điện xoay chiều có cùng tần số, khác biên độ và có góc pha lệch nhau 60o giữa các pha."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "cn12_d2_q9",
+                        "section": "ĐỀ 2 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 9: Quan hệ giữa đại lượng dây và pha khi nối hình sao là :",
+                        "options": [
+                                "A. Id = 3Ip ; Ud = Up.",
+                                "B. Id = Ip ; Ud = 3Up.",
+                                "C. Id = √3Ip ; Ud = Up.",
+                                "D. Id = Ip ; Ud = √3Up."
+                        ],
+                        "correctIndex": 3
+                },
+                {
+                        "id": "cn12_d2_q10",
+                        "section": "ĐỀ 2 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 10: Tải tiêu thụ là gì?",
+                        "options": [
+                                "A. Tập hợp các thiết bị và phần mềm để giám sát và điều khiển lưới điện.",
+                                "B. Các thiết bị tiêu thụ điện, biến điện năng thành các dạng năng lượng khác.",
+                                "C. Thiết bị điều phối và đảm bảo an toàn hệ thống truyền tải điện.",
+                                "D. Các nhà máy điện có công suất phát điện khác nhau, phương pháp sản xuất điện khác nhau như thủy điện, nhiệt điện,... đấu nối vào lưới điện thông qua trạm biến áp."
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "cn12_d2_q11",
+                        "section": "ĐỀ 2 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 11: Nguồn điện là gì?",
+                        "options": [
+                                "A. Tập hợp các thiết bị và phần mềm để giám sát và điều khiển lưới điện.",
+                                "B. Các thiết bị tiêu thụ điện, biến điện năng thành các dạng năng lượng khác.",
+                                "C. Thiết bị điều phối và đảm bảo an toàn hệ thống truyền tải điện.",
+                                "D. Các nhà máy điện có công suất phát điện khác nhau, phương pháp sản xuất điện khác nhau như thủy điện, nhiệt điện,... đấu nối vào lưới điện thông qua trạm biến áp."
+                        ],
+                        "correctIndex": 3
+                },
+                {
+                        "id": "cn12_d2_q12",
+                        "section": "ĐỀ 2 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 12: Trong sinh hoạt thường ngày của các hộ gia đình, các thiết bị điện như tivi, tủ lạnh, đèn điện,…là loại",
+                        "options": [
+                                "A. tải điện sản xuất.",
+                                "B. tải điện sinh hoạt.",
+                                "C. tải điện một chiều.",
+                                "D. tải điện ba pha."
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "cn12_d2_q13",
+                        "section": "ĐỀ 2 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 13: Nguồn năng lượng không tái tạo được sử dụng để sản xuất điện năng là",
+                        "options": [
+                                "A. nước.",
+                                "B. dầu mỏ.",
+                                "C. mặt trời.",
+                                "D. gió."
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "cn12_d2_q14",
+                        "section": "ĐỀ 2 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 14: Ở nhà máy nhiệt điện",
+                        "options": [
+                                "A. nhiệt năng biến thành cơ năng, rồi thành điện năng.",
+                                "B. nhiệt năng biến thành điện năng, rồi thành cơ năng.",
+                                "C. quang năng biến thành điện năng.",
+                                "D. hóa năng biến thành điện năng."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "cn12_d2_q15",
+                        "section": "ĐỀ 2 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 15: : Bộ phận trong nhà máy thủy điện có nhiệm vụ biến đổi năng lượng của nước thành điện năng là:",
+                        "options": [
+                                "A. lò đốt than.",
+                                "B. nồi hơi.",
+                                "C. máy phát điện.",
+                                "D. tua bin."
+                        ],
+                        "correctIndex": 3
+                },
+                {
+                        "id": "cn12_d2_q16",
+                        "section": "ĐỀ 2 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 16: Mạng điện sản xuất quy mô nhỏ cấp điện cho tải tiêu thụ khoảng",
+                        "options": [
+                                "A. Vài chục kW đến vài trăm kW.",
+                                "B. Vài trăm kW đến vài nghìn kW.",
+                                "C. Vài nghìn kW đến vài trăm nghìn kW.",
+                                "D. Vài trăm nghìn kW đến vài triệu Kw."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "cn12_d2_q17",
+                        "section": "ĐỀ 2 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 17: Thiết bị nào là tải tiêu thụ của mạng điện sản xuất?",
+                        "options": [
+                                "A. Tủ điện động lực.",
+                                "B. Máy CNC.",
+                                "C. Máy hạ áp.",
+                                "D. Tủ điện phân phối nhánh."
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "cn12_d2_q18",
+                        "section": "ĐỀ 2 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 18: Vai trò của trạm biến áp là gì?",
+                        "options": [
+                                "A. Hạ áp từ lưới điện phân phối xuống điện áp hạ áp",
+                                "B. Lấy điện từ tủ điện phân phối tổng để phân phối tiếp cho các tủ điện động lực và tủ điện chiếu sáng trong phân xưởng.",
+                                "C. Lấy điện từ đường hạ áp 380/220V của máy biến áp để phân phối cho các tủ điện phân phối nhánh.",
+                                "D. Kết nối các thành phần của mạng điện (từ trạm biến áp đến các tủ điện và đến tải)."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "cn12_d2_q19",
+                        "section": "ĐỀ 2 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 19: Tủ điện phân phối tổng được đặt ở",
+                        "options": [
+                                "A. các khu cực dân cư",
+                                "B. trạm biến áp",
+                                "C. các hộ gia đình",
+                                "D. lưới điện phân phối"
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "cn12_d2_q20",
+                        "section": "ĐỀ 2 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 20: Tủ điện phân phối tổng không chứa các thiết bị nào dưới đây?",
+                        "options": [
+                                "A. Thiết bị đóng – cắt nguồn điện.",
+                                "B. Aptomat ba pha loại ACB.",
+                                "C. Aptomat ba pha loại MCCB.",
+                                "D. Aptomat ba pha loại MCB."
+                        ],
+                        "correctIndex": 3
+                },
+                {
+                        "id": "cn12_d2_q21",
+                        "section": "ĐỀ 2 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 21: Một người tốt nghiệp đại học, có kĩ năng sử dụng thành thạo các phần mềm Autocard, thiết kế điện,... và các phầm mềm ứng dụng trong công tác quản lí thiết kế điện thì phù hợp với công việc gì?",
+                        "options": [
+                                "A. Kĩ sư thiết kế điện.",
+                                "B. Kĩ thuật viên thiết kế điện.",
+                                "C. Kĩ thuật viên vận hành điện.",
+                                "D. Kĩ sư bảo dưỡng và sửa chữa điện."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "cn12_d2_q22",
+                        "section": "ĐỀ 2 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 22: Tại sao mạch điện ba pha không liên hệ ít được dùng trên thực tế?",
+                        "options": [
+                                "A. Các pha không có sự liên hệ về điện",
+                                "B. Tốn dây dẫn",
+                                "C. Mạch không hoạt động được",
+                                "D. Tốn dây và các pha không có sự liên hệ về điện"
+                        ],
+                        "correctIndex": 3
+                },
+                {
+                        "id": "cn12_d2_q23",
+                        "section": "ĐỀ 2 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 23: Cho sơ đồ lưới điện phân phối  ( 1 ) có điện áp 110 kV , ( 2 ) , ( 3 ) có điện áp 22kV như hình bên, thiết bị số 3 là",
+                        "options": [
+                                "A. máy biến áp 110/22 kV.",
+                                "B. máy biến áp 110/6 kV.",
+                                "C. máy biến áp 22/6 kV.",
+                                "D. máy biến áp 22/0,4 kV."
+                        ],
+                        "correctIndex": 3,
+                        "imageSrc": "images/electric/image5.png"
+                },
+                {
+                        "id": "cn12_d2_q24",
+                        "section": "ĐỀ 2 - TRẮC NGHIỆM",
+                        "type": "multiple_choice",
+                        "text": "Câu 24: Một máy phát điện ba pha có điện áp mỗi dây quấn pha là 220V. Tính điện áp dây nếu biết nối hình sao?",
+                        "options": [
+                                "A. Ud = 220V.",
+                                "B. Ud = 381V.",
+                                "C. Ud = 127,02V.",
+                                "D. Ud = 658,2V."
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "cn12_d2_tf1",
+                        "section": "ĐỀ 2 - ĐÚNG / SAI",
+                        "type": "true_false_group",
+                        "text": "Câu 1: Nhận định nào sau đây đúng khi nói về các phương pháp sản xuất điện năng từ năng lượng hạt nhân",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Nhiệt năng thu được từ phản ứng phân hạch hạt nhân của Uranium hoặc Plutonium được chuyển hóa thành điện năng trong nhà máy điện hạt nhân",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Nhiệt năng trong lò phản ứng sẽ đun sôi nước, biến nước thành hơi nước để quay turbine và quay máy phát điện để phát ra điện",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Ưu điểm của phương pháp sản xuất điện năng từ năng lượng hạt nhân là chi phí đầu tư, xây dựng và bảo hành không cao",
+                                        "correctAnswer": "Sai"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Nhược điểm của phương pháp sản xuất điện năng từ năng lượng hạt nhân là tạo ra nhiều khí thải và bụi ảnh hưởng đến sức khỏe con người",
+                                        "correctAnswer": "Sai"
+                                }
+                        ]
+                },
+                {
+                        "id": "cn12_d2_tf2",
+                        "section": "ĐỀ 2 - ĐÚNG / SAI",
+                        "type": "true_false_group",
+                        "text": "Câu 2: Nhận định nào sau đây đúng khi nói về đặc điểm của mạng điện hạ áp dùng trong sinh hoạt:",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Mạng điện hạ áp dùng trong sinh hoạt là mạng điện ba pha bốn dây có điện áp 380/110V cung cấp điện cho một khu dân cư hay các tòa nhà chung cư cao tầng.",
+                                        "correctAnswer": "Sai"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Mạng điện hạ áp dùng trong sinh hoạt thông thường được cấp bằng một máy biến áp từ lưới điện phân phối 500kV hoặc 220kV",
+                                        "correctAnswer": "Sai"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Tải điện sinh hoạt thường phân bố rải rác, có những tải điện ở xa máy biến áp, đặc biệt ở vùng nông thôn, miền núi, hải đảo",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Tải điện sinh hoạt thường được chia làm hai loại: tải điện sinh hoạt cộng đồng và tải điện sinh hoạt gia đình.",
+                                        "correctAnswer": "Đúng"
+                                }
+                        ]
+                },
+                {
+                        "id": "cn12_d2_tf3",
+                        "section": "ĐỀ 2 - ĐÚNG / SAI",
+                        "type": "true_false_group",
+                        "text": "Câu 3: Động cơ điện xoay chiều ba pha có kí hiệu Y/Δ – 380/220 V; 13,4/16,2A. Động cơ sử dụng điện lưới có điện áp dây là 220 V.",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Các pha của động cơ phải nối hình tam giác; dòng điện dây Id = 16,2 và dòng điện pha Ip = 13,4 A.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Các pha của động cơ phải nối hình sao; dòng điện dây Id = 16,2 A và dòng điện Ip = 13,4A.",
+                                        "correctAnswer": "Sai"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Với kí hiệu Y/Δ – 380/220 V thì các pha (cuộn dây) của động cơ chỉ được nối hình sao khi điện lưới có điện áp dây là 380 V.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Kí hiệu 13,4/16,2A để chỉ giá trị của dòng điện pha và dòng điện dây tương ứng của động cơ khi các pha của động cơ nối hình sao.",
+                                        "correctAnswer": "Sai"
+                                }
+                        ]
+                },
+                {
+                        "id": "cn12_d2_tf4",
+                        "section": "ĐỀ 2 - ĐÚNG / SAI",
+                        "type": "true_false_group",
+                        "text": "Câu 4: Trên nhãn gắn ở vỏ của động cơ điện xoay chiều ba pha có ghi: Y/Δ – 380/220 V – 15,8/9,6 A. Ý nghĩa các thông số đó là:",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) nếu nguồn ba pha có Ud = 220 V thì phải đấu dây của động cơ kiểu tam giác và dòng điện vào động cơ là 9,6 A.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) nếu nguồn ba pha có Ud = 220 V thì phải đấu dây của động cơ kiểu tam giác và dòng điện vào động cơ là 15,8 A.",
+                                        "correctAnswer": "Sai"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) nếu nguồn ba pha có Ud = 380 V thì phải đấu dây của động cơ hình sao và dòng điện vào động cơ là 9,6 A.",
+                                        "correctAnswer": "Sai"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) nếu nguồn ba pha có Ud = 380 V thì phải đấu dây của động cơ hình sao và dòng điện vào động cơ là 15,8 A.",
+                                        "correctAnswer": "Đúng"
+                                }
+                        ]
+                }
+        ]
+},
+{
+        "id": "on_tap_gki_sinh_hoc_12",
+        "title": "Ôn tập GKI - Sinh học 12",
+        "category": "sinh",
+        "subject": "Sinh học",
+        "description": "Đề ôn tập kiểm tra Giữa kì I môn Sinh học 12 theo cấu trúc mới chuẩn Bộ GD&ĐT: Phần I (30 câu Trắc nghiệm 4 lựa chọn), Phần II (5 câu Đúng/Sai - 20 ý) và Phần III (4 câu Trắc nghiệm trả lời ngắn).",
+        "presets": [
+                {
+                        "id": "all",
+                        "label": "✨ Toàn bộ đề thi (39 câu)",
+                        "sectionIds": [
+                                "sh12_p1",
+                                "sh12_p2",
+                                "sh12_p3"
+                        ]
+                },
+                {
+                        "id": "p1",
+                        "label": "🧬 Phần I: Trắc nghiệm 4 lựa chọn (30 câu)",
+                        "sectionIds": [
+                                "sh12_p1"
+                        ]
+                },
+                {
+                        "id": "p2",
+                        "label": "✅ Phần II: Trắc nghiệm Đúng / Sai (5 câu)",
+                        "sectionIds": [
+                                "sh12_p2"
+                        ]
+                },
+                {
+                        "id": "p3",
+                        "label": "✏️ Phần III: Trả lời ngắn (4 câu)",
+                        "sectionIds": [
+                                "sh12_p3"
+                        ]
+                }
+        ],
+        "selectableSections": [
+                {
+                        "id": "sh12_p1",
+                        "name": "Phần I: Trắc nghiệm 4 lựa chọn (30 câu)",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "group": "Phần I"
+                },
+                {
+                        "id": "sh12_p2",
+                        "name": "Phần II: Đúng / Sai (5 câu - 20 ý)",
+                        "section": "PHẦN II: TRẮC NGHIỆM ĐÚNG / SAI",
+                        "group": "Phần II"
+                },
+                {
+                        "id": "sh12_p3",
+                        "name": "Phần III: Trả lời ngắn (4 câu)",
+                        "section": "PHẦN III: TRẢ LỜI NGẮN",
+                        "group": "Phần III"
+                }
+        ],
+        "questions": [
+                {
+                        "id": "sh12_q1",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 1: Đơn phân cấu tạo nên phân tử DNA là",
+                        "options": [
+                                "A. amino acid.",
+                                "B. nucleotide.",
+                                "C. glucose.",
+                                "D. fatty acid."
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "sh12_q2",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 2: Trong quá trình tái bản DNA ở sinh vật nhân sơ, enzyme chính đảm nhận chức năng lắp ráp các nucleotide tự do theo nguyên tắc bổ sung để kéo dài mạch mới là",
+                        "options": [
+                                "A. RNA polymerase.",
+                                "B. DNA ligase.",
+                                "C. DNA polymerase.",
+                                "D. restriction enzyme."
+                        ],
+                        "correctIndex": 2
+                },
+                {
+                        "id": "sh12_q3",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 3: Trình tự nucleotide nằm ở đầu 3' trên mạch khuôn của gene mã hoá protein, nơi enzyme RNA polymerase bám vào để khởi đầu phiên mã được gọi là",
+                        "options": [
+                                "A. vùng kết thúc.",
+                                "B. vùng điều hoà (vùng promoter).",
+                                "C. vùng mã hoá.",
+                                "D. intron."
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "sh12_q4",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 4: Loại RNA nào sau đây đóng vai trò như 'người vận chuyển' mang amino acid đặc hiệu đến ribosome để tham gia quá trình dịch mã?",
+                        "options": [
+                                "A. mRNA.",
+                                "B. rRNA.",
+                                "C. tRNA.",
+                                "D. snRNA."
+                        ],
+                        "correctIndex": 2
+                },
+                {
+                        "id": "sh12_q5",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 5: Nguyên tắc 'bán bảo tồn' trong quá trình tái bản DNA có nghĩa là",
+                        "options": [
+                                "A. cả hai phân tử DNA con đều có 2 mạch hoàn toàn mới.",
+                                "B. trong mỗi phân tử DNA con thu được, có 1 mạch cũ từ DNA mẹ và 1 mạch mới tổng hợp.",
+                                "C. phân tử DNA con chỉ giữ lại một nửa số lượng nucleotide của DNA mẹ.",
+                                "D. quá trình tái bản chỉ diễn ra trên một mạch của phân tử DNA mẹ."
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "sh12_q6",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 6: Ở sinh vật nhân sơ, bộ ba 5'AUG3' trên mRNA quy định tổng hợp amino acid mở đầu nào cho chuỗi polypeptide?",
+                        "options": [
+                                "A. Methionine.",
+                                "B. Formylmethionine.",
+                                "C. Valine.",
+                                "D. Alanine."
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "sh12_q7",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 7: Trong mô hình cấu trúc của operon Lac ở vi khuẩn E. coli, thành phần nào sau đây KHÔNG thuộc cấu trúc của operon?",
+                        "options": [
+                                "A. Vùng khởi động (P).",
+                                "B. Vùng vận hành (O).",
+                                "C. Gene điều hoà (lacI).",
+                                "D. Các gene cấu trúc (lacZ, lacY, lacA)."
+                        ],
+                        "correctIndex": 2
+                },
+                {
+                        "id": "sh12_q8",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 8: Dạng đột biến điểm nào sau đây làm thay đổi thành phần nucleotide nhưng KHÔNG làm thay đổi chiều dài phân tử gene?",
+                        "options": [
+                                "A. Thêm 1 cặp nucleotide.",
+                                "B. Mất 1 cặp nucleotide.",
+                                "C. Thay thế 1 cặp nucleotide.",
+                                "D. Mất 2 cặp nucleotide."
+                        ],
+                        "correctIndex": 2
+                },
+                {
+                        "id": "sh12_q9",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 9: Chất hoá học 5-bromouracil (5-BU) khi thấm vào tế bào gây đột biến thay thế cặp A-T thành cặp G-C thông qua cơ chế phát sinh nào?",
+                        "options": [
+                                "A. Gây đứt gãy hai mạch phân tử DNA.",
+                                "B. Làm bắt cặp nhầm trong quá trình tái bản DNA (5-BU kết cặp với G).",
+                                "C. Cản trở hoạt động của enzyme RNA polymerase.",
+                                "D. Gắn vào vị trí cắt của restriction enzyme."
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "sh12_q10",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 10: Trong kĩ thuật tạo DNA tái tổ hợp, thể truyền (vector) phổ biến nhất được sử dụng để chuyển gene vào tế bào vi khuẩn là",
+                        "options": [
+                                "A. NST nhân thực.",
+                                "B. Plasmid.",
+                                "C. Phức hợp ribosome.",
+                                "D. Lưới nội chất."
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "sh12_q11",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 11: Gene là một đoạn trình tự nucleotide trên DNA mang thông tin di truyền:",
+                        "options": [
+                                "A. Mã hóa cho một chuỗi polypeptide hoặc một phân tử RNA.",
+                                "B. Quy định cơ chế di truyền.",
+                                "C. Quy định cấu trúc của một phân tử protein.",
+                                "D. Mã hóa các amino acid."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "sh12_q12",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 12: Vùng nào của gene quyết định cấu trúc phân tử prôtêin do nó quy định tổng hợp?",
+                        "options": [
+                                "A. Cả ba vùng của gene.",
+                                "B. Vùng điều hòa.",
+                                "C. Vùng mã hóa.",
+                                "D. Vùng kết thúc."
+                        ],
+                        "correctIndex": 2
+                },
+                {
+                        "id": "sh12_q13",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 13: Trong quá trình nhân đôi DNA, một trong những vai trò của enzyme DNA polymerase là:",
+                        "options": [
+                                "A. Bẻ gãy các liên kết hydrogen giữa hai mạch của phân tử DNA.",
+                                "B. Nối các đoạn Okazaki để tạo thành mạch liên tục.",
+                                "C. Tổng hợp mạch mới theo nguyên tắc bổ sung với mạch khuôn của DNA.",
+                                "D. Tháo xoắn và làm tách hai mạch của phân tử DNA."
+                        ],
+                        "correctIndex": 2
+                },
+                {
+                        "id": "sh12_q14",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 14: Tính đặc hiệu của mã di truyền được thể hiện như thế nào?",
+                        "options": [
+                                "A. Mọi loài sinh vật đều có chung một bộ mã di truyền.",
+                                "B. Mỗi axit amin thường được mã hóa bởi nhiều bộ ba.",
+                                "C. Mỗi bộ ba chỉ mã hóa cho một loại axit amin.",
+                                "D. Mã di truyền được đọc theo cụm nối tiếp, không gối nhau."
+                        ],
+                        "correctIndex": 2
+                },
+                {
+                        "id": "sh12_q15",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 15: Mạch khuôn của gene có đoạn 3' TATGGGXATGTA 5' thì mRNA được phiên mã từ mạch khuôn này có trình tự nucleotide là",
+                        "options": [
+                                "A. 3' AUAXXXGUAXAU 5'",
+                                "B. 5' AUAXXXGUAXAU 3'",
+                                "C. 3' AUAXXXGUAXAT 5'",
+                                "D. 5' AUAXXXGUAXAT 3'"
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "sh12_q16",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 16: Trình tự các thành phần cấu tạo của một operon là",
+                        "options": [
+                                "A. gen điều hòa – vùng vận hành – vùng khởi động – nhóm gen cấu trúc.",
+                                "B. vùng khởi động – vùng vận hành – nhóm gen cấu trúc.",
+                                "C. nhóm gen cấu trúc – vùng vận hành – vùng khởi động.",
+                                "D. nhóm gen cấu trúc – vùng khởi động – vùng vận hành."
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "sh12_q17",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 17: Trong cơ chế điều hòa hoạt động gene ở sinh vật nhân sơ, vai trò của gene điều hòa là:",
+                        "options": [
+                                "A. mang thông tin cho việc tổng hợp một protein ức chế tác động lên các gene cấu trúc.",
+                                "B. nơi gắn vào của protein ức chế để cản trở hoạt động của enzyme phiên mã.",
+                                "C. mang thông tin cho việc tổng hợp một protein ức chế tác động lên vùng vận hành.",
+                                "D. mang thông tin cho việc tổng hợp một protein ức chế tác động lên vùng khởi động."
+                        ],
+                        "correctIndex": 2
+                },
+                {
+                        "id": "sh12_q18",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 18: Đột biến điểm là những biến đổi trong cấu trúc của gene xảy ra tại:",
+                        "options": [
+                                "A. một điểm nào đó trên phân tử axit nucleic, liên quan tới một hoặc một vài cặp nucleotit.",
+                                "B. một điểm nào đó trên phân tử axit nucleic, liên quan tới một hoặc một vài nucleotit.",
+                                "C. nhiều điểm trên phân tử axit nucleic, liên quan tới một số cặp nucleotit.",
+                                "D. một điểm nào đó trên phân tử ADN, liên quan tới một cặp nucleotit."
+                        ],
+                        "correctIndex": 3
+                },
+                {
+                        "id": "sh12_q19",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 19: Ngành công nghệ sử dụng tế bào sống và các quá trình sinh học để tạo ra các sản phẩm sinh học cần thiết cho con người được gọi là gì?",
+                        "options": [
+                                "A. Công nghệ sinh học.",
+                                "B. Công nghệ gene.",
+                                "C. Công nghệ tế bào.",
+                                "D. Công nghệ chuyển nhân và phôi."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "sh12_q20",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 20: Trong cấu trúc siêu hiển vi của NST nhân thực, sợi cơ bản có đường kính bằng",
+                        "options": [
+                                "A. 2nm",
+                                "B. 11nm",
+                                "C. 20nm",
+                                "D. 30nm"
+                        ],
+                        "correctIndex": 1
+                },
+                {
+                        "id": "sh12_q21",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 21: Theo giai đoạn phát triển của cá thể và theo nhu cầu hoạt động sống của tế bào thì",
+                        "options": [
+                                "A. tất cả các gen trong tế bào đều hoạt động.",
+                                "B. tất cả các gen trong tế bào có lúc đồng loạt hoạt động, có khi đồng loạt dừng.",
+                                "C. chỉ có một số gen trong tế bào hoạt động.",
+                                "D. phần lớn các gen trong tế bào hoạt động."
+                        ],
+                        "correctIndex": 2
+                },
+                {
+                        "id": "sh12_q22",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 22: Giống cà chua này có gen sinh sản ra êtilen đã được làm bất hoạt, khiến cho quá trình chín của quả bị chậm lại nên có thể vận chuyển đi xa hoặc không bị hỏng là thành tựu của tạo giống:",
+                        "options": [
+                                "A. Bằng công nghệ gen.",
+                                "B. Công nghệ tế bào.",
+                                "C. Bằng phương pháp gây đột biến.",
+                                "D. Dựa trên nguồn biến dị tổ hợp."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "sh12_q23",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 23: Hệ gene là",
+                        "options": [
+                                "A. Một tập hợp thông tin di truyền hoàn chỉnh của sinh vật, còn được gọi là DNA.",
+                                "B. Một tập hợp thông tin di truyền hoàn chỉnh của sinh vật, còn được gọi là tính trạng.",
+                                "C. Thông tin di truyền của sinh vật.",
+                                "D. Toàn bộ đặc tính cơ thể sinh vật."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "sh12_q24",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 24: Phát biểu nào sau đây KHÔNG đúng trong một số thành tựu giải mã hệ gene người trong bảo vệ sức khoẻ con người?",
+                        "options": [
+                                "A. Điều chỉnh các chế độ dinh dưỡng, vận động, tập luyện, giấc ngủ sao cho hiệu quả nhất.",
+                                "B. Xác định được các gene liên quan đến nhiều bệnh di truyền.",
+                                "C. Sản xuất các chế phẩm từ gene để bảo vệ sức khỏe.",
+                                "D. Có số lượng gen tăng lên và tính trạng được biểu hiện rõ hơn."
+                        ],
+                        "correctIndex": 3
+                },
+                {
+                        "id": "sh12_q25",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 25: Các loại đột biến gene bao gồm:",
+                        "options": [
+                                "A. 2 loại: thêm và mất.",
+                                "B. 2 loại: mất và thay thế.",
+                                "C. 3 loại: thêm, mất và thay thế.",
+                                "D. 3 loại: thêm, mất và đảo."
+                        ],
+                        "correctIndex": 2
+                },
+                {
+                        "id": "sh12_q26",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 26: Hóa chất gây đột biến 5-BU thường gây đột biến gene dạng",
+                        "options": [
+                                "A. thay thế cặp G – X bằng T – A.",
+                                "B. thay thế cặp G – X bằng cặp X – G.",
+                                "C. thay thế cặp A – T bằng T – A.",
+                                "D. thay thế cặp A – T bằng G – X."
+                        ],
+                        "correctIndex": 3
+                },
+                {
+                        "id": "sh12_q27",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 27: Cấu trúc của NST sinh vật nhân thực có các mức xoắn theo trật tự:",
+                        "options": [
+                                "A. Phân tử ADN → đơn vị cơ bản nuclêôxôm → sợi cơ bản → sợi nhiễm sắc → crômatit.",
+                                "B. Phân tử ADN → sợi cơ bản → đơn vị cơ bản nuclêôxôm → sợi nhiễm sắc → crômatit.",
+                                "C. Phân tử ADN → đơn vị cơ bản nuclêôxôm → sợi nhiễm sắc → sợi cơ bản → crômatit.",
+                                "D. Phân tử ADN → sợi cơ bản → sợi nhiễm sắc → đơn vị cơ bản nuclêôxôm → crômatit."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "sh12_q28",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 28: NST được coi là cơ sở vật chất di truyền của tính di truyền ở cấp độ tế bào vì chúng",
+                        "options": [
+                                "A. NST là cấu trúc mang gen, mà gen là cơ sở vật chất di truyền ở cấp độ phân tử.",
+                                "B. Điều hòa hoạt động của các gen thông qua các mức xoắn cuộn của NST.",
+                                "C. Điều khiển tế bào phân chia đều vật chất di truyền ở phân bào.",
+                                "D. Tham gia vào mọi hoạt động sống của tế bào."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "sh12_q29",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 29: Dạng đột biến cấu trúc nhiễm sắc thể (NST) gây hậu quả nghiêm trọng nhất cho cơ thể là",
+                        "options": [
+                                "A. mất một đoạn lớn NST.",
+                                "B. lặp đoạn NST.",
+                                "C. đảo đoạn NST.",
+                                "D. chuyển đoạn nhỏ NST."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "sh12_q30",
+                        "section": "PHẦN I: TRẮC NGHIỆM 4 LỰA CHỌN",
+                        "type": "multiple_choice",
+                        "text": "Câu 30: Theo thí nghiệm trong mô hình operon Lac, vì sao protein ức chế bị mất tác dụng?",
+                        "options": [
+                                "A. Vì lactozo làm mất cấu hình không gian của nó.",
+                                "B. Vì protein ức chế bị phân hủy khi có lactozo.",
+                                "C. Vì lactozo làm gen điều hòa không hoạt động.",
+                                "D. Vì gen cấu trúc làm gen điều hòa bị bất hoạt."
+                        ],
+                        "correctIndex": 0
+                },
+                {
+                        "id": "sh12_tf1",
+                        "section": "PHẦN II: TRẮC NGHIỆM ĐÚNG / SAI",
+                        "type": "true_false_group",
+                        "text": "Câu 1: Khi nghiên cứu cơ chế điều hoà hoạt động của Operon Lac ở vi khuẩn E. coli và các dòng vi khuẩn đột biến thu được từ thí nghiệm của Monod và Jacob:",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Gene điều hoà (lacI) là một thành phần nằm trong cấu trúc của Operon Lac.",
+                                        "correctAnswer": "Sai"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Khi môi trường không có lactose, protein ức chế liên kết với vùng vận hành (operator) ngăn cản quá trình phiên mã của các gene cấu trúc.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Khi môi trường có lactose, phân tử đồng phân của lactose liên kết với protein ức chế làm thay đổi cấu hình không gian của protein này, làm nó không thể bám vào vùng O.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Nếu xảy ra đột biến mất đoạn ở vùng khởi động (promoter) làm enzyme RNA polymerase không liên kết được, các gene cấu trúc lacZ, lacY, lacA vẫn được phiên mã bình thường khi môi trường có lactose.",
+                                        "correctAnswer": "Sai"
+                                }
+                        ]
+                },
+                {
+                        "id": "sh12_tf2",
+                        "section": "PHẦN II: TRẮC NGHIỆM ĐÚNG / SAI",
+                        "type": "true_false_group",
+                        "text": "Câu 2: Xét thí nghiệm lai một cặp tính trạng của Mendel ở Đậu hà lan (P thuần chủng: Hoa tím × Hoa trắng):",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Ở thế hệ F1, toàn bộ các cây thu được đều có kiểu hình hoa tím.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Ở thế hệ F2, tỉ lệ phân li kiểu hình xấp xỉ 3 cây hoa tím : 1 cây hoa trắng.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Nếu cho tất cả các cây hoa tím F2 tự thụ phấn thì F3 thu được toàn cây hoa tím.",
+                                        "correctAnswer": "Sai"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Kết quả thí nghiệm chứng minh thuyết di truyền pha trộn là đúng.",
+                                        "correctAnswer": "Sai"
+                                }
+                        ]
+                },
+                {
+                        "id": "sh12_tf3",
+                        "section": "PHẦN II: TRẮC NGHIỆM ĐÚNG / SAI",
+                        "type": "true_false_group",
+                        "text": "Câu 3: Khi nói về bảng mã di truyền, các giai đoạn phiên mã, các phát biểu dưới đây là đúng hay sai?",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Mã di truyền là mã bộ ba: ba nucleotide (một codon) liền nhau theo chiều 5' → 3' trên mRNA mã hoá một amino acid; mã di truyền được đọc kế tiếp, không gối nhau.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Ba bộ ba: UAA, UAG và UGA là mã kết thúc.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Enzyme RNA polymerase trượt dọc theo mạch mã gốc trên gene theo chiều 3' – 5', để tổng hợp RNA có chiều 5' → 3'.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Ở sinh vật nhân thực, kết thúc phiên mã tạo ra mRNA có thể được dịch mã ngay.",
+                                        "correctAnswer": "Sai"
+                                }
+                        ]
+                },
+                {
+                        "id": "sh12_tf4",
+                        "section": "PHẦN II: TRẮC NGHIỆM ĐÚNG / SAI",
+                        "type": "true_false_group",
+                        "text": "Câu 4: Đột biến gene là những biến đổi liên quan đến cấu trúc của gene. Khi nói về nguyên nhân và cơ chế phát sinh đột biến gene, mỗi nhận định dưới đây là đúng hay sai?",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Đột biến gene tạo ra các allele mới làm phong phú vốn gene của quần thể.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Đột biến gene có thể có lợi, có hại hoặc trung tính đối với thể đột biến.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Đột biến gene xảy ra có thể do tác động lí, hóa, sinh hoặc do sự rối loạn trao đổi chất xảy ra trong tế bào.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Base hiếm có vị trí liên kết hydrogen bị thay đổi làm phát sinh đột biến mất cặp nucleotide trong quá trình nhân đôi DNA.",
+                                        "correctAnswer": "Sai"
+                                }
+                        ]
+                },
+                {
+                        "id": "sh12_tf5",
+                        "section": "PHẦN II: TRẮC NGHIỆM ĐÚNG / SAI",
+                        "type": "true_false_group",
+                        "text": "Câu 5: Khi nói về cơ chế di truyền cấp phân tử, nhận định nào là đúng, nhận định nào là sai?",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Khi ribosome tiếp xúc với bộ ba 5'UAA3' trên mRNA thì quá trình dịch mã dừng lại.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Trên mỗi phân tử mRNA có thể có nhiều ribosome cùng thực hiện quá trình dịch mã.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Khi dịch mã, ribosome chuyển dịch theo chiều 3'-5' trên phân tử mRNA.",
+                                        "correctAnswer": "Sai"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Mỗi phân tử tRNA có thể có một hoặc một số anticodon.",
+                                        "correctAnswer": "Sai"
+                                }
+                        ]
+                },
+                {
+                        "id": "sh12_sa1",
+                        "section": "PHẦN III: TRẢ LỜI NGẮN",
+                        "type": "short_answer",
+                        "text": "Câu 1: Một phân tử DNA ở vi khuẩn chứa 3000 nucleotide, trong đó số nucleotide loại Adenine (A) chiếm 30% tổng số nucleotide của phân tử. Tính số liên kết hydrogen của phân tử DNA này.",
+                        "correctAnswer": "3600"
+                },
+                {
+                        "id": "sh12_sa2",
+                        "section": "PHẦN III: TRẢ LỜI NGẮN",
+                        "type": "short_answer",
+                        "text": "Câu 2: Một đoạn gene cấu trúc ở sinh vật nhân sơ thực hiện phiên mã tạo ra 1 phân tử mRNA trưởng thành có 450 nucleotide (tính từ bộ ba mở đầu đến bộ ba kết thúc). Tính số amino acid trong chuỗi polypeptide hoàn chỉnh do phân tử mRNA này dịch mã tạo ra.",
+                        "correctAnswer": "148"
+                },
+                {
+                        "id": "sh12_sa3",
+                        "section": "PHẦN III: TRẢ LỜI NGẮN",
+                        "type": "short_answer",
+                        "text": "Câu 3: Trong kĩ thuật tạo DNA tái tổ hợp, người ta sử dụng enzyme cắt hạn chế EcoRI để cắt một phân tử plasmid dạng vòng. Biết phân tử plasmid này có 3 vị trí nhận biết và cắt của EcoRI. Sau khi phản ứng cắt diễn ra hoàn toàn, thu được bao nhiêu đoạn DNA?",
+                        "correctAnswer": "3"
+                },
+                {
+                        "id": "sh12_sa4",
+                        "section": "PHẦN III: TRẢ LỜI NGẮN",
+                        "type": "short_answer",
+                        "text": "Câu 4: Ở đậu Hà Lan, allele A quy định hạt vàng trội hoàn toàn so với allele a quy định hạt xanh; allele B quy định hạt tròn trội hoàn toàn so với allele b quy định hạt nhăn. Hai cặp gene này phân li độc lập. Thực hiện phép lai P: AaBb × Aabb. Tỉ lệ kiểu hình hạt xanh, trơn (aaB-) thu được ở đời F1 là bao nhiêu %?",
+                        "correctAnswer": "12.5% | 12,5% | 12.5 | 12,5"
+                }
+        ]
+}
 ];

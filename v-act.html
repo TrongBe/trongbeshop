@@ -165,7 +165,11 @@
         <button class="filter-tab active" data-filter="all" onclick="setFilterTab(this, 'all')">Tất cả</button>
         <button class="filter-tab" data-filter="vnu" onclick="setFilterTab(this, 'vnu')">VNU-ĐGNL</button>
         <button class="filter-tab" data-filter="toan" onclick="setFilterTab(this, 'toan')">📐 Toán</button>
+        <button class="filter-tab" data-filter="ly" onclick="setFilterTab(this, 'ly')">⚛️ Vật lí</button>
         <button class="filter-tab" data-filter="hoa" onclick="setFilterTab(this, 'hoa')">🧪 Hóa học</button>
+        <button class="filter-tab" data-filter="sinh" onclick="setFilterTab(this, 'sinh')">🧬 Sinh học</button>
+        <button class="filter-tab" data-filter="su" onclick="setFilterTab(this, 'su')">📜 Lịch sử</button>
+        <button class="filter-tab" data-filter="cong_nghe" onclick="setFilterTab(this, 'cong_nghe')">⚡ Công nghệ</button>
         <button class="filter-tab" data-filter="anh" onclick="setFilterTab(this, 'anh')">🇬🇧 Tiếng Anh</button>
         <button class="filter-tab" data-filter="custom" onclick="setFilterTab(this, 'custom')">✏️ Tự tạo</button>
       </div>
@@ -884,15 +888,23 @@
         const isCustom = card.dataset.quizId?.startsWith('gemini_');
         const isVnu = title.includes('đgnl') || title.includes('vnu') || title.includes('đánh giá năng lực');
         const isToan = title.includes('toán') || desc.includes('toán');
-        const isAnh = title.includes('anh') || desc.includes('tiếng anh') || (card.dataset.quizId || '').includes('adv');
+        const isLy = title.includes('vật lí') || desc.includes('vật lí') || title.includes('vật lý') || desc.includes('vật lý') || (card.dataset.quizId || '').includes('vat_ly');
         const isHoa = title.includes('hóa') || desc.includes('hóa') || title.includes('ester') || title.includes('lipid') || title.includes('carbohydrate') || (card.dataset.quizId || '').includes('chuong_');
+        const isSinh = title.includes('sinh học') || desc.includes('sinh học') || (card.dataset.quizId || '').includes('sinh_hoc');
+        const isSu = title.includes('lịch sử') || desc.includes('lịch sử') || (card.dataset.quizId || '').includes('lich_su');
+        const isCongNghe = title.includes('công nghệ') || desc.includes('công nghệ') || desc.includes('kĩ thuật điện') || (card.dataset.quizId || '').includes('cong_nghe');
+        const isAnh = title.includes('anh') || desc.includes('tiếng anh') || (card.dataset.quizId || '').includes('adv');
 
         const matchesSearch = !query || title.includes(query) || desc.includes(query);
         let matchesFilter = filter === 'all';
         if (filter === 'custom') matchesFilter = isCustom;
         else if (filter === 'vnu') matchesFilter = isVnu;
         else if (filter === 'toan') matchesFilter = isToan;
+        else if (filter === 'ly') matchesFilter = isLy;
         else if (filter === 'hoa') matchesFilter = isHoa;
+        else if (filter === 'sinh') matchesFilter = isSinh;
+        else if (filter === 'su') matchesFilter = isSu;
+        else if (filter === 'cong_nghe') matchesFilter = isCongNghe;
         else if (filter === 'anh') matchesFilter = isAnh;
 
         if (matchesSearch && matchesFilter) {
