@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261026_navbar_katex_fix">
+  <link rel="stylesheet" href="css/style.css?v=20261106">
 
   <!-- Dark Mode Script (Prevent flash on initial paint) -->
   <script>
@@ -733,7 +733,7 @@
     <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ef629dc6201fd.svg" alt="AI">
   </button>
 
-  <script type="module" src="js/app.js?v=93"></script>
+  <script type="module" src="js/app.js?v=94"></script>
   <script type="module" src="js/gemini.js?v=12"></script>
   <script type="module" src="js/tronex-ai.js?v=9"></script>
   <script type="module" src="js/auth.js?v=1"></script>
@@ -892,7 +892,7 @@
         const isHoa = title.includes('hóa') || desc.includes('hóa') || title.includes('ester') || title.includes('lipid') || title.includes('carbohydrate') || (card.dataset.quizId || '').includes('chuong_');
         const isSinh = title.includes('sinh học') || desc.includes('sinh học') || (card.dataset.quizId || '').includes('sinh_hoc');
         const isSu = title.includes('lịch sử') || desc.includes('lịch sử') || (card.dataset.quizId || '').includes('lich_su');
-        const isCongNghe = title.includes('công nghệ') || desc.includes('công nghệ') || desc.includes('kĩ thuật điện') || (card.dataset.quizId || '').includes('cong_nghe');
+        const isCongNghe = title.includes('công nghệ') || desc.includes('công nghệ') || desc.includes('kĩ thuật điện') || title.includes('cncn') || (card.dataset.quizId || '').includes('cong_nghe') || (card.dataset.quizId || '').includes('cncn');
         const isAnh = title.includes('anh') || desc.includes('tiếng anh') || (card.dataset.quizId || '').includes('adv');
 
         const matchesSearch = !query || title.includes(query) || desc.includes(query);

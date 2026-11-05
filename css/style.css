@@ -7965,6 +7965,14 @@ body.modern-saas-page {
     background: linear-gradient(90deg, #D97706 0%, #B45309 100%);
 }
 
+.quiz-card-accent-bar.accent-sinh {
+    background: linear-gradient(90deg, #10B981 0%, #059669 100%);
+}
+
+.quiz-card-accent-bar.accent-congnghe {
+    background: linear-gradient(90deg, #F59E0B 0%, #EA580C 100%);
+}
+
 .quiz-card-accent-bar.accent-default {
     background: linear-gradient(90deg, #6366F1 0%, #8B5CF6 100%);
 }
@@ -8044,6 +8052,28 @@ body.modern-saas-page {
 [data-theme="dark"] .quiz-pill-badge.badge-su {
     background: rgba(245, 158, 11, 0.2);
     color: #FCD34D;
+    border-color: rgba(245, 158, 11, 0.4);
+}
+
+.quiz-pill-badge.badge-sinh {
+    background: rgba(16, 185, 129, 0.12);
+    color: #059669;
+    border: 1px solid rgba(16, 185, 129, 0.28);
+}
+[data-theme="dark"] .quiz-pill-badge.badge-sinh {
+    background: rgba(16, 185, 129, 0.2);
+    color: #6EE7B7;
+    border-color: rgba(16, 185, 129, 0.4);
+}
+
+.quiz-pill-badge.badge-congnghe {
+    background: rgba(245, 158, 11, 0.12);
+    color: #D97706;
+    border: 1px solid rgba(245, 158, 11, 0.28);
+}
+[data-theme="dark"] .quiz-pill-badge.badge-congnghe {
+    background: rgba(245, 158, 11, 0.2);
+    color: #FBBF24;
     border-color: rgba(245, 158, 11, 0.4);
 }
 

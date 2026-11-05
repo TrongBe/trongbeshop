@@ -7316,5 +7316,944 @@ export const mockQuizzes = [
                         "correctAnswer": "12.5% | 12,5% | 12.5 | 12,5"
                 }
         ]
+},
+{
+        "id": "on_tap_gki_cncn_12_thay_phu",
+        "title": "Ôn tập GKI - CNCN 12 (Thầy Phú)",
+        "category": "cong_nghe",
+        "subject": "Công nghệ",
+        "description": "Bộ đề ôn tập kiểm tra Giữa kì I môn Công nghệ Công nghiệp 12 (Kĩ thuật điện) biên soạn bởi Thầy Phú. Bao gồm đầy đủ 3 phần chuẩn cấu trúc: 30 câu trắc nghiệm nhiều lựa chọn, 10 câu Đúng/Sai (40 ý) và 6 bài tập tự luận/tính toán mạch điện xoay chiều ba pha & hệ thống truyền tải điện.",
+        "presets": [
+                {
+                        "id": "all",
+                        "label": "✨ Toàn bộ đề ôn tập (46 câu)",
+                        "sectionIds": [
+                                "p1_mcq",
+                                "p2_tf",
+                                "p3_tl"
+                        ]
+                },
+                {
+                        "id": "p1",
+                        "label": "📝 Phần I: Trắc nghiệm 4 lựa chọn (30 câu)",
+                        "sectionIds": [
+                                "p1_mcq"
+                        ]
+                },
+                {
+                        "id": "p2",
+                        "label": "⚖️ Phần II: Đúng / Sai (10 câu - 40 ý)",
+                        "sectionIds": [
+                                "p2_tf"
+                        ]
+                },
+                {
+                        "id": "p3",
+                        "label": "⚡ Phần III: Bài tập & Tự luận (6 câu)",
+                        "sectionIds": [
+                                "p3_tl"
+                        ]
+                },
+                {
+                        "id": "mcq_tf",
+                        "label": "🎯 Trắc nghiệm + Đúng/Sai (40 câu)",
+                        "sectionIds": [
+                                "p1_mcq",
+                                "p2_tf"
+                        ]
+                }
+        ],
+        "selectableSections": [
+                {
+                        "id": "p1_mcq",
+                        "name": "Phần I - Trắc nghiệm 4 lựa chọn (30 câu)",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "group": "Trắc nghiệm"
+                },
+                {
+                        "id": "p2_tf",
+                        "name": "Phần II - Đúng / Sai (10 câu)",
+                        "section": "PHẦN II. TRẮC NGHIỆM ĐÚNG SAI",
+                        "group": "Đúng / Sai"
+                },
+                {
+                        "id": "p3_tl",
+                        "name": "Phần III - Tự luận & Bài tập tính toán (6 câu)",
+                        "section": "PHẦN III. TỰ LUẬN (BÀI TẬP & VẬN DỤNG)",
+                        "group": "Tự luận"
+                }
+        ],
+        "questions": [
+                {
+                        "id": "cncn12_p1_q1",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 1. Việc các thiết bị điện thông minh như nồi cơm điện, bình nóng lạnh, điều hòa nhiệt độ giúp cuộc sống con người ngày càng tiện nghi, hiện đại thể hiện vai trò của kĩ thuật điện trong",
+                        "options": [
+                                "A. xây dựng công trình giao thông vận tải.",
+                                "B. đời sống sinh hoạt gia đình.",
+                                "C. bảo vệ môi trường sinh thái.",
+                                "D. phát triển mạng lưới viễn thông quân sự."
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Các thiết bị điện gia dụng như nồi cơm điện, bình nóng lạnh, máy điều hòa... phục vụ trực tiếp các nhu cầu thiết yếu hàng ngày, thể hiện vai trò của kĩ thuật điện trong đời sống sinh hoạt gia đình."
+                },
+                {
+                        "id": "cncn12_p1_q2",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 2. Hoạt động nào sau đây không thể hiện vai trò của kĩ thuật điện đối với đời sống sinh hoạt gia đình?",
+                        "options": [
+                                "A. Cung cấp nguồn năng lượng cho tivi, quạt, máy giặt hoạt động.",
+                                "B. Tự động hóa hoàn toàn dây chuyền sản xuất lắp ráp ô tô trong nhà máy.",
+                                "C. Nâng cao tiện nghi sinh hoạt và chất lượng cuộc sống gia đình.",
+                                "D. Cải thiện điều kiện chiếu sáng và chăm sóc sức khỏe con người."
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Tự động hóa hoàn toàn dây chuyền sản xuất lắp ráp ô tô trong nhà máy thể hiện vai trò của kĩ thuật điện đối với sản xuất công nghiệp, không phải đối với đời sống sinh hoạt gia đình."
+                },
+                {
+                        "id": "cncn12_p1_q3",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 3. Việc sử dụng hệ thống đèn LED chiếu sáng công cộng và hệ thống bơm nước tưới tiêu tự động trong nông nghiệp thể hiện vai trò của kĩ thuật điện đối với",
+                        "options": [
+                                "A. nâng cao chất lượng phục vụ cộng đồng và sản xuất.",
+                                "B. nghiên cứu vũ trụ và thám hiểm đại dương.",
+                                "C. xây dựng nền tảng tài chính ngân hàng.",
+                                "D. chế tạo vũ khí quân sự."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Hệ thống đèn LED chiếu sáng công cộng và bơm tưới nông nghiệp thể hiện vai trò nâng cao chất lượng phục vụ cộng đồng và phát triển sản xuất."
+                },
+                {
+                        "id": "cncn12_p1_q4",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 4. Trong các vai trò sau, đâu là vai trò của kĩ thuật điện đối với quá trình sản xuất công nghiệp?",
+                        "options": [
+                                "A. Cung cấp nguồn năng lượng chạy các thiết bị gia dụng trong gia đình.",
+                                "B. Điều khiển, nâng cao năng suất và tự động hóa các quá trình sản xuất.",
+                                "C. Phục vụ nhu cầu giải trí và thông tin liên lạc của các thành viên gia đình.",
+                                "D. Giúp nâng cao tính tiện ích cho các hoạt động thể thao ngoài trời."
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Trong công nghiệp, kĩ thuật điện là nền tảng cốt lõi giúp cung cấp năng lượng động lực, điều khiển tự động hóa và nâng cao năng suất các dây chuyền sản xuất."
+                },
+                {
+                        "id": "cncn12_p1_q5",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 5. Các công nhân thực hiện công việc hàn, lắp ráp dây quấn và đấu nối linh kiện cơ khí điện trong nhà xưởng chế tạo máy biến áp thuộc ngành nghề nào?",
+                        "options": [
+                                "A. Vận hành hệ thống điện.",
+                                "B. Thiết kế hệ thống điện.",
+                                "C. Sản xuất và chế tạo thiết bị điện.",
+                                "D. Bảo dưỡng đường dây truyền tải điện."
+                        ],
+                        "correctIndex": 2,
+                        "explanation": "Công việc quấn dây, hàn lắp ráp linh kiện và lắp ráp máy biến áp trong nhà máy thuộc nhóm ngành sản xuất và chế tạo thiết bị điện."
+                },
+                {
+                        "id": "cncn12_p1_q6",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 6. Kĩ sư thực hiện nghiên cứu, ứng dụng lý thuyết và phương pháp tính toán để lập sơ đồ nguyên lý, lựa chọn thiết bị điện và tính toán tiết diện dây dẫn cho công trình thuộc ngành nghề nào?",
+                        "options": [
+                                "A. Thiết kế điện.",
+                                "B. Lắp đặt điện.",
+                                "C. Vận hành thiết bị điện.",
+                                "D. Sửa chữa điện dân dụng."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Kĩ sư thực hiện nghiên cứu, ứng dụng lý thuyết và phương pháp toán học, vật lý để khám phá và thử nghiệm giải pháp kĩ thuật mới thuộc nhóm nghề nghiên cứu và phát triển kĩ thuật điện."
+                },
+                {
+                        "id": "cncn12_p1_q7",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 7. Kĩ sư đảm nhận công việc trực vận hành, giám sát các thông số kĩ thuật (điện áp, dòng điện, công suất) tại trạm biến áp phân phối đòi hỏi trình độ học vấn nào?",
+                        "options": [
+                                "A. Trình độ sơ cấp nghề kĩ thuật điện.",
+                                "B. Trình độ trung cấp nghề kĩ thuật điện.",
+                                "C. Trình độ đại học chuyên ngành kĩ thuật điện.",
+                                "D. Trình độ chứng chỉ nghề phổ thông dưới 3 tháng."
+                        ],
+                        "correctIndex": 2,
+                        "explanation": "Kĩ sư theo dõi, phân tích dữ liệu, trực vận hành và giám sát hệ thống điện đảm bảo lưới điện hoạt động liên tục, an toàn thuộc nhóm nghề vận hành hệ thống điện."
+                },
+                {
+                        "id": "cncn12_p1_q8",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 8. Công việc đi dây cáp, gắn tủ bảng điện, lắp công tắc, ổ cắm và đèn chiếu sáng cho một ngôi nhà mới xây dựng thuộc nhóm ngành nghề nào?",
+                        "options": [
+                                "A. Lắp đặt điện.",
+                                "B. Thiết kế máy điện.",
+                                "C. Vận hành nhà máy nhiệt điện.",
+                                "D. Chế tạo linh kiện điện tử."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Công việc đi dây máng cáp, đặt ống luồn, lắp tủ bảng điện, công tắc và bóng đèn tại công trình là công việc của thợ/kĩ thuật viên lắp đặt hệ thống điện."
+                },
+                {
+                        "id": "cncn12_p1_q9",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 9. Hoạt động kiểm tra định kì, tra dầu mỡ, siết chặt các điểm đấu nối nhằm duy trì khả năng làm việc bình thường của động cơ điện thuộc nhóm ngành nghề nào?",
+                        "options": [
+                                "A. Sản xuất điện năng.",
+                                "B. Thiết kế hệ thống điện.",
+                                "C. Bảo dưỡng và sửa chữa điện.",
+                                "D. Thi công xây lắp trạm biến áp."
+                        ],
+                        "correctIndex": 2,
+                        "explanation": "Hoạt động kiểm tra định kì, siết ốc, đo điện trở cách điện, tra mỡ bôi trơn nhằm ngăn ngừa hỏng hóc thuộc nhóm công việc bảo dưỡng thiết bị và hệ thống điện."
+                },
+                {
+                        "id": "cncn12_p1_q10",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 10. Người trực tiếp thao tác đóng cắt các máy cắt cao áp, điều khiển phân phối tải tại phòng điều độ điện lực thuộc nhóm ngành nghề nào?",
+                        "options": [
+                                "A. Lắp ráp thiết bị điện.",
+                                "B. Vận hành điện.",
+                                "C. Chế tạo dây và cáp điện.",
+                                "D. Thiết kế tủ điện."
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Nhân viên điều độ hoặc trực vận hành trạm biến áp, thao tác đóng cắt máy cắt và dao cách ly thuộc nhóm nghề vận hành hệ thống điện."
+                },
+                {
+                        "id": "cncn12_p1_q11",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 11. Phần quay (rotor) của máy phát điện xoay chiều ba pha công nghiệp thường là",
+                        "options": [
+                                "A. nam châm điện (được kích từ bằng dòng một chiều).",
+                                "B. ba cuộn dây giống nhau đặt lệch nhau 120°.",
+                                "C. khối dây quấn ba pha nối hình sao.",
+                                "D. lõi thép cách điện không có từ tính."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Rotor của máy phát điện xoay chiều ba pha công nghiệp là phần quay, đóng vai trò là nam châm điện (được cấp điện một chiều qua chổi than) để tạo ra từ trường quay."
+                },
+                {
+                        "id": "cncn12_p1_q12",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 12. Phần tĩnh (stator) của máy phát điện xoay chiều ba pha bao gồm lõi thép có rãnh và",
+                        "options": [
+                                "A. nam châm vĩnh cửu công suất lớn.",
+                                "B. ba cuộn dây giống nhau đặt lệch nhau một góc 120° trên vành stator.",
+                                "C. trục quay bằng hợp kim thép chịu lực.",
+                                "D. hai vòng tiếp điện và chổi than."
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Stator là phần tĩnh gồm lõi thép có xẻ rãnh bên trong và đặt ba cuộn dây pha AX, BY, CZ giống hệt nhau về số vòng và kích thước, bố trí lệch nhau một góc 120° trong không gian."
+                },
+                {
+                        "id": "cncn12_p1_q13",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 13. Trong mạch điện xoay chiều ba pha đối xứng, ba suất điện động sinh ra có cùng tần số, cùng biên độ và lệch pha nhau từng đôi một một góc là",
+                        "options": [
+                                "A. 60°.",
+                                "B. 90°.",
+                                "C. 120°.",
+                                "D. 180°."
+                        ],
+                        "correctIndex": 2,
+                        "explanation": "Ba suất điện động xoay chiều do máy phát điện ba pha tạo ra là ba dao động điều hòa cùng biên độ, cùng tần số và đôi một lệch pha nhau một góc 2π/3 rad (120°)."
+                },
+                {
+                        "id": "cncn12_p1_q14",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 14. Nối nguồn ba pha theo hình sao (Y) là cách nối",
+                        "options": [
+                                "A. ba điểm cuối X, Y, Z của ba pha lại với nhau tạo thành điểm trung tính.",
+                                "B. điểm đầu pha này nối với điểm cuối pha kia (A nối Y, B nối Z, C nối X).",
+                                "C. ba điểm đầu A, B, C chập lại làm một và nối xuống đất.",
+                                "D. ba điểm đầu và ba điểm cuối cùng nối vào một thanh cái."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Nối nguồn theo hình sao (Y) là cách nối chụm ba điểm cuối X, Y, Z của ba cuộn dây lại với nhau tạo thành điểm trung tính (N)."
+                },
+                {
+                        "id": "cncn12_p1_q15",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 15. Nối tải ba pha theo hình tam giác (Δ) là cách nối mà",
+                        "options": [
+                                "A. ba điểm cuối của ba tải chập lại với nhau.",
+                                "B. điểm đầu của pha này nối với điểm cuối của pha kia.",
+                                "C. ba pha tải có chung một dây trung tính.",
+                                "D. các pha tải không có sự liên kết điện với nhau."
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Nối tải theo hình tam giác (Δ) là cách nối điểm đầu của pha này với điểm cuối của pha kia (A nối Z, B nối X, C nối Y hoặc ngược lại)."
+                },
+                {
+                        "id": "cncn12_p1_q16",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 16. Đại lượng Up (điện áp pha) trong mạch điện ba pha là điện áp đo được giữa",
+                        "options": [
+                                "A. hai dây pha bất kì (A và B, hoặc B và C).",
+                                "B. dây pha và dây trung tính (hoặc giữa điểm đầu và điểm cuối của một pha).",
+                                "C. vỏ máy phát và mặt đất.",
+                                "D. hai đầu của một cầu chì bảo vệ."
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Điện áp pha ($U_p$) là điện áp đo được giữa một dây pha và dây trung tính, hoặc giữa điểm đầu và điểm cuối của một cuộn dây pha."
+                },
+                {
+                        "id": "cncn12_p1_q17",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 17. Đại lượng Ud (điện áp dây) trong mạch điện ba pha là điện áp đo được giữa",
+                        "options": [
+                                "A. dây pha và dây trung tính.",
+                                "B. hai dây pha bất kì.",
+                                "C. dây trung tính và đất.",
+                                "D. điểm đầu và điểm cuối của cuộn dây pha."
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Điện áp dây ($U_d$) là điện áp đo được giữa hai dây pha bất kì trong hệ thống điện xoay chiều ba pha."
+                },
+                {
+                        "id": "cncn12_p1_q18",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 18. Khi tải ba pha đối xứng được nối theo hình sao (Y), mối liên hệ giữa dòng điện dây (Id) và dòng điện pha (Ip) là",
+                        "options": [
+                                "A. Id = √3.Ip.",
+                                "B. Id = Ip.",
+                                "C. Ip = √3.Id.",
+                                "D. Id = 3.Ip."
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Khi tải ba pha đối xứng nối hình sao (Y): Mối quan hệ là $U_d = \\sqrt{3} U_p$ và dòng điện dây bằng dòng điện pha $I_d = I_p$."
+                },
+                {
+                        "id": "cncn12_p1_q19",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 19. Khi tải ba pha đối xứng được nối theo hình tam giác (Δ), mối liên hệ giữa điện áp dây (Ud) và điện áp pha (Up) là",
+                        "options": [
+                                "A. Ud = √3.Up.",
+                                "B. Ud = Up.",
+                                "C. Up = √3.Ud.",
+                                "D. Ud = Up / √3."
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Khi tải ba pha đối xứng nối hình tam giác (Δ): Điện áp pha bằng điện áp dây $U_d = U_p$, và dòng điện dây bằng $\\sqrt{3}$ lần dòng điện pha $I_d = \\sqrt{3} I_p$."
+                },
+                {
+                        "id": "cncn12_p1_q20",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 20. Mạch điện ba pha 4 dây gồm có",
+                        "options": [
+                                "A. 4 dây pha có màu sắc khác nhau.",
+                                "B. 3 dây pha và 1 dây trung tính.",
+                                "C. 2 dây pha và 2 dây trung tính.",
+                                "D. 3 dây trung tính và 1 dây nối đất."
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Mạch điện ba pha 4 dây bao gồm 3 dây pha (dẫn dòng điện từ 3 pha của nguồn tới tải) và 1 dây trung tính (dây nối điểm trung tính của nguồn và tải)."
+                },
+                {
+                        "id": "cncn12_p1_q21",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 21. Hệ thống gồm nguồn điện, lưới điện và các hộ tiêu thụ điện được liên kết thống nhất trên phạm vi toàn quốc gọi là",
+                        "options": [
+                                "A. mạng điện khu vực.",
+                                "B. hệ thống điện quốc gia.",
+                                "C. mạng điện phân phối địa phương.",
+                                "D. hệ thống điện độc lập."
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Hệ thống điện quốc gia là một thể thống nhất bao gồm các nhà máy điện (nguồn), lưới điện (đường dây truyền tải và trạm biến áp) và các hộ tiêu thụ điện được liên kết trên toàn lãnh thổ."
+                },
+                {
+                        "id": "cncn12_p1_q22",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 22. Thành phần nào sau đây trong hệ thống điện quốc gia làm nhiệm vụ truyền dẫn và phân phối điện năng từ nhà máy điện đến nơi tiêu thụ?",
+                        "options": [
+                                "A. Lưới điện (đường dây và trạm biến áp).",
+                                "B. Nguồn điện (các nhà máy điện).",
+                                "C. Phụ tải điện (các thiết bị dùng điện).",
+                                "D. Trung tâm đo lường chất lượng."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Lưới điện bao gồm các đường dây dẫn điện và các trạm biến áp (tăng áp, hạ áp) làm nhiệm vụ truyền tải và phân phối điện năng từ nhà máy đến các hộ tiêu thụ."
+                },
+                {
+                        "id": "cncn12_p1_q23",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 23. Lưới điện truyền tải của hệ thống điện quốc gia Việt Nam đảm nhận cấp điện áp nào?",
+                        "options": [
+                                "A. Dưới 1 kV.",
+                                "B. Từ 6 kV đến 35 kV.",
+                                "C. Từ 110 kV trở lên (110 kV, 220 kV, 500 kV).",
+                                "D. Cấp điện áp sinh hoạt 220 V."
+                        ],
+                        "correctIndex": 2,
+                        "explanation": "Lưới điện truyền tải của Việt Nam gồm các cấp điện áp cao áp và siêu cao áp (110 kV, 220 kV, 500 kV), đảm nhận truyền tải lượng công suất lớn từ các trung tâm phát điện đi xa tới các trung tâm phụ tải."
+                },
+                {
+                        "id": "cncn12_p1_q24",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 24. Vai trò quan trọng nhất của việc xây dựng hệ thống điện quốc gia thống nhất là",
+                        "options": [
+                                "A. đảm bảo cung cấp điện an toàn, liên tục, tin cậy và tận dụng tối đa các nguồn điện trong cả nước.",
+                                "B. giúp giảm chi phí sản xuất đồ dùng điện gia đình xuống mức thấp nhất.",
+                                "C. loại bỏ hoàn toàn các trạm biến áp hạ thế trong khu dân cư.",
+                                "D. chuyển đổi toàn bộ thiết bị điện gia dụng sang dùng điện một chiều."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Hệ thống điện quốc gia thống nhất giúp vận hành kinh tế, điều hòa nguồn năng lượng giữa các vùng miền, và nâng cao độ tin cậy cung cấp điện an toàn, liên tục cho toàn xã hội."
+                },
+                {
+                        "id": "cncn12_p1_q25",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 25. Đâu không phải là đặc điểm của mạng điện sản xuất quy mô nhỏ?",
+                        "options": [
+                                "A. Tải phân bố tập trung trong phân xưởng.",
+                                "B. Lấy điện trực tiếp từ đường dây cao áp 220 kV.",
+                                "C. Thường sử dụng một trạm biến áp riêng hoặc cấp điện từ lưới phân phối.",
+                                "D. Mạng điện dùng để cấp nguồn cho các thiết bị sản xuất."
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Mạng điện sản xuất quy mô nhỏ thường tập trung trong phân xưởng, nhà máy có phạm vi địa lý hẹp; do đó đặc điểm phụ tải phân bố phân tán trên diện tích địa lý rất rộng lớn là không đúng."
+                },
+                {
+                        "id": "cncn12_p1_q26",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 26. Phụ tải chủ yếu trong mạng điện sản xuất quy mô nhỏ là",
+                        "options": [
+                                "A. các động cơ điện xoay chiều ba pha dẫn động máy công cụ, máy bơm, máy nén khí.",
+                                "B. các đồ dùng điện tử gia dụng công suất rất nhỏ.",
+                                "C. hệ thống chiếu sáng trang trí ngoài trời.",
+                                "D. các bình đun nước sinh hoạt cá nhân."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Trong các cơ sở sản xuất, phụ tải tiêu thụ điện chủ yếu và chiếm tỉ trọng công suất lớn nhất là các động cơ điện không đồng bộ ba pha dùng để truyền động máy móc."
+                },
+                {
+                        "id": "cncn12_p1_q27",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 27. Mạng điện sản xuất quy mô nhỏ thường sử dụng cấp điện áp hạ áp nào cấp trực tiếp cho máy móc sản xuất?",
+                        "options": [
+                                "A. 500 kV.",
+                                "B. 110 kV.",
+                                "C. 380/220 V.",
+                                "D. 12 V."
+                        ],
+                        "correctIndex": 2,
+                        "explanation": "Mạng điện sản xuất quy mô nhỏ lấy điện từ trạm biến áp phân phối hạ áp, thường có cấp điện áp định mức 380/220 V (điện áp dây 380 V dùng cho động cơ 3 pha, điện áp pha 220 V cho chiếu sáng, sinh hoạt)."
+                },
+                {
+                        "id": "cncn12_p1_q28",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 28. Đâu không phải là đặc điểm của mạng điện hạ áp dùng trong sinh hoạt gia đình?",
+                        "options": [
+                                "A. Lấy điện trực tiếp từ đường dây siêu cao áp mà không qua trạm biến áp.",
+                                "B. Số lượng hộ gia đình sử dụng điện rất lớn.",
+                                "C. Tải tiêu thụ điện có quy mô nhỏ và phân bố phân tán.",
+                                "D. Sử dụng mức điện áp thấp (380/220 V) đảm bảo an toàn hơn."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Mạng điện hạ áp sinh hoạt không thể lấy điện trực tiếp từ đường dây siêu cao áp (500 kV, 220 kV) mà bắt buộc phải qua các cấp biến áp truyền tải và phân phối hạ áp xuống 380/220 V."
+                },
+                {
+                        "id": "cncn12_p1_q29",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 29. Cấp điện áp định mức phổ biến của mạng điện hạ áp sinh hoạt ở nước ta là",
+                        "options": [
+                                "A. 220/380 V.",
+                                "B. 380/220 V.",
+                                "C. 110/220 V.",
+                                "D. 500/220 V."
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Cấp điện áp định mức chuẩn của mạng điện phân phối hạ áp sinh hoạt ở nước ta là 380/220 V (điện áp dây 380 V, điện áp pha 220 V)."
+                },
+                {
+                        "id": "cncn12_p1_q30",
+                        "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+                        "sectionId": "p1_mcq",
+                        "type": "multiple_choice",
+                        "text": "Câu 30. Tần số định mức của mạng điện hạ áp sinh hoạt tại Việt Nam là",
+                        "options": [
+                                "A. 50 Hz.",
+                                "B. 60 Hz.",
+                                "C. 100 Hz.",
+                                "D. 120 Hz."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Tần số danh định của hệ thống điện quốc gia Việt Nam là 50 Hz (dung sai cho phép bình thường trong khoảng ±0,2 Hz)."
+                },
+                {
+                        "id": "cncn12_p2_q1",
+                        "section": "PHẦN II. TRẮC NGHIỆM ĐÚNG SAI",
+                        "sectionId": "p2_tf",
+                        "type": "true_false_group",
+                        "text": "<strong>Câu 1.</strong> Hệ thống điện mặt trời hòa lưới (nối lưới) không lưu trữ được các hộ gia đình và doanh nghiệp lắp đặt ngày càng phổ biến.",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Giúp giảm chi phí tiền điện vào ban ngày và giảm áp lực phụ tải cho lưới điện quốc gia.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Có thể cung cấp điện năng liên tục và ổn định vào ban đêm hoặc những ngày mưa bão kéo dài.",
+                                        "correctAnswer": "Sai"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Yêu cầu trang bị bộ nghịch lưu (inverter) để chuyển đổi dòng điện một chiều (DC) từ pin thành dòng xoay chiều (AC) phù hợp với lưới điện.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Quá trình sản xuất các tấm pin quang điện và việc xử lý rác thải sau khi tấm pin hết hạn sử dụng không tiềm ẩn bất kì nguy cơ gây ô nhiễm nào.",
+                                        "correctAnswer": "Sai"
+                                }
+                        ],
+                        "explanation": "• a) Đúng vì dùng điện mặt trời trực tiếp giúp giảm điện lưới mua vào ban ngày.<br>• b) Sai vì hệ không lưu trữ phụ thuộc hoàn toàn vào nắng, không tự cung cấp điện ban đêm.<br>• c) Đúng vì dòng điện từ pin mặt trời là DC, phải qua Inverter thành AC để hòa lưới.<br>• d) Sai vì sản xuất và rác thải pin mặt trời chứa kim loại nặng, hóa chất gây hại nếu không thu hồi xử lý nghiêm ngặt."
+                },
+                {
+                        "id": "cncn12_p2_q2",
+                        "section": "PHẦN II. TRẮC NGHIỆM ĐÚNG SAI",
+                        "sectionId": "p2_tf",
+                        "type": "true_false_group",
+                        "text": "<strong>Câu 2.</strong> Quy ước kỹ thuật và chất lượng điện năng của mạng điện hạ áp sinh hoạt tại Việt Nam:",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Mức điện áp pha chuẩn cung cấp cho thiết bị điện 1 pha trong gia đình là 220 V.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Tần số tiêu chuẩn của hệ thống điện sinh hoạt là 60 Hz.",
+                                        "correctAnswer": "Sai"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Tỉ số 380/220 V thể hiện điện áp dây định mức là 380 V và điện áp pha định mức là 220 V.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Để thiết bị hoạt động an toàn và bền bỉ, độ lệch điện áp tại điểm mua bán điện trong điều kiện bình thường cho phép dao động trong phạm vi ±5% so với điện áp danh định.",
+                                        "correctAnswer": "Đúng"
+                                }
+                        ],
+                        "explanation": "• a) Đúng vì điện áp pha danh định tại Việt Nam là 220 V.<br>• b) Sai vì tần số tiêu chuẩn quốc gia là 50 Hz.<br>• c) Đúng vì 380 V là điện áp dây và 220 V là điện áp pha ($380 \\approx 220\\sqrt{3}$).<br>• d) Đúng vì theo quy chuẩn kĩ thuật điện, độ lệch điện áp cho phép bình thường là ±5%."
+                },
+                {
+                        "id": "cncn12_p2_q3",
+                        "section": "PHẦN II. TRẮC NGHIỆM ĐÚNG SAI",
+                        "sectionId": "p2_tf",
+                        "type": "true_false_group",
+                        "text": "<strong>Câu 3.</strong> Nhà máy nhiệt điện tua bin khí chu trình hỗn hợp sử dụng khí thiên nhiên hoặc dầu để phát điện:",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Khí cháy ở nhiệt độ, áp suất cao được dẫn trực tiếp vào làm quay tua bin khí để kéo máy phát điện sinh ra điện.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Nhiệt lượng của khí thải sau tua bin khí được tận dụng để đun sôi nước tạo hơi làm quay thêm tua bin hơi nước, giúp nâng cao hiệu suất phát điện.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Lượng khí phát thải gây hiệu ứng nhà kính và bụi than của nhà máy nhiệt điện khí cao hơn rất nhiều so với nhà máy nhiệt điện đốt than truyền thống.",
+                                        "correctAnswer": "Sai"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Chi phí nhiên liệu khí đốt chiếm tỉ trọng rất nhỏ và không làm thay đổi giá thành sản xuất điện.",
+                                        "correctAnswer": "Sai"
+                                }
+                        ],
+                        "explanation": "• a) Đúng vì khí cháy trực tiếp quay tua bin khí kéo máy phát điện.<br>• b) Đúng vì chu trình hỗn hợp tận dụng nhiệt khí xả để cấp cho lò hơi làm quay thêm tua bin hơi, tăng hiệu suất tổng thể.<br>• c) Sai vì điện khí sạch hơn than rất nhiều, phát thải CO₂ và bụi thấp hơn hẳn đốt than.<br>• d) Sai vì chi phí nhiên liệu khí chiếm tỉ trọng rất lớn (60-70%) trong giá thành."
+                },
+                {
+                        "id": "cncn12_p2_q4",
+                        "section": "PHẦN II. TRẮC NGHIỆM ĐÚNG SAI",
+                        "sectionId": "p2_tf",
+                        "type": "true_false_group",
+                        "text": "<strong>Câu 4.</strong> Công tác vận hành và bảo dưỡng mạng điện hạ áp trong các tòa nhà, khu dân cư:",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Hoạt động bảo dưỡng định kỳ giúp phát hiện kịp thời các mối nối lỏng, dây dẫn bị quá nhiệt để phòng tránh nguy cơ chập cháy điện.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Bảo dưỡng chỉ được tiến hành khi đã xảy ra sự cố cháy nổ hoặc đứt dây dẫn điện.",
+                                        "correctAnswer": "Sai"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Cần thường xuyên kiểm tra tình trạng cách điện của dây dẫn và khả năng tự động ngắt của aptomat (CB).",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Công tác sửa chữa, thay thế các thiết bị đóng cắt bị hỏng nhằm khôi phục lại khả năng cấp điện an toàn, ổn định của mạng điện.",
+                                        "correctAnswer": "Đúng"
+                                }
+                        ],
+                        "explanation": "• a) Đúng vì kiểm tra định kỳ phát hiện tiếp xúc kém, phát nhiệt để phòng cháy nổ kịp thời.<br>• b) Sai vì bảo dưỡng là hoạt động phòng ngừa chủ động, không đợi xảy ra sự cố.<br>• c) Đúng vì kiểm tra điện trở cách điện và tác động CB là cốt lõi an toàn.<br>• d) Đúng vì thay thế thiết bị hỏng giúp đảm bảo cấp điện liên tục và an toàn."
+                },
+                {
+                        "id": "cncn12_p2_q5",
+                        "section": "PHẦN II. TRẮC NGHIỆM ĐÚNG SAI",
+                        "sectionId": "p2_tf",
+                        "type": "true_false_group",
+                        "text": "<strong>Câu 5.</strong> Các chính sách phát triển năng lượng tái tạo (điện mặt trời, điện gió) tại nước ta:",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Khuyến khích mô hình điện mặt trời mái nhà tự sản, tự tiêu nhằm giảm bớt tổn thất trên đường dây truyền tải điện đi xa.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Nhà nước ban hành các khung giá ưu đãi và cơ chế pháp lý để khuyến khích tổ chức, cá nhân đầu tư hệ thống năng lượng sạch.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Nguồn điện gió và điện mặt trời có tính phát điện gián đoạn và phụ thuộc vào điều kiện tự nhiên nên gây khó khăn nhất định cho công tác điều độ lưới điện.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Mọi tấm pin mặt trời hỏng hóc đều có thể đốt bỏ trực tiếp ngoài tự nhiên như rác thải sinh hoạt thông thường.",
+                                        "correctAnswer": "Sai"
+                                }
+                        ],
+                        "explanation": "• a) Đúng vì tự dùng tại chỗ giúp giảm tải truyền tải và hao hụt đường dây xa.<br>• b) Đúng vì Nhà nước luôn có cơ chế khuyến khích năng lượng tái tạo phát triển.<br>• c) Đúng vì phụ thuộc thời tiết, nắng gió thất thường đòi hỏi điều độ linh hoạt.<br>• d) Sai vì pin mặt trời là chất thải nguy hại công nghiệp, tuyệt đối không được tự đốt bỏ."
+                },
+                {
+                        "id": "cncn12_p2_q6",
+                        "section": "PHẦN II. TRẮC NGHIỆM ĐÚNG SAI",
+                        "sectionId": "p2_tf",
+                        "type": "true_false_group",
+                        "text": "<strong>Câu 6.</strong> Một phụ tải sinh hoạt kết nối vào mạng điện hạ áp 380/220 V:",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Các thiết bị gia dụng có công suất nhỏ như đèn, quạt, tivi được nối song song giữa dây pha và dây trung tính (sử dụng điện áp 220 V).",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Nếu xảy ra sự cố đứt dây trung tính trong mạch ba pha tải không đối xứng, điện áp đưa vào một số đồ dùng điện một pha có thể tăng vọt gây cháy thiết bị.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Việc sai số điện áp vượt quá giới hạn 5% trong thời gian dài có thể làm giảm tuổi thọ hoặc gây hư hỏng thiết bị điện tử gia đình.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Toàn bộ thiết bị sinh hoạt gia đình bắt buộc phải sử dụng nguồn điện ba pha có điện áp định mức 380 V mới hoạt động được.",
+                                        "correctAnswer": "Sai"
+                                }
+                        ],
+                        "explanation": "• a) Đúng vì thiết bị 1 pha dân dụng dùng điện 220 V giữa pha và trung tính.<br>• b) Đúng vì đứt dây trung tính làm điện áp các pha lệch nghiêm trọng, pha tải nhẹ vọt áp làm cháy đồ dùng.<br>• c) Đúng vì quá áp hoặc sụt áp > 5% kéo dài làm hỏng linh kiện điện tử.<br>• d) Sai vì hầu hết đồ gia dụng chỉ cần nguồn 1 pha 220 V."
+                },
+                {
+                        "id": "cncn12_p2_q7",
+                        "section": "PHẦN II. TRẮC NGHIỆM ĐÚNG SAI",
+                        "sectionId": "p2_tf",
+                        "type": "true_false_group",
+                        "text": "<strong>Câu 7.</strong> Đặc điểm công nghệ của nhà máy nhiệt điện ngưng hơi đốt than:",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Có khả năng huy động công suất phát lớn và làm việc liên tục cả ngày lẫn đêm.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Quá trình vận hành cần tiêu thụ một lượng nước làm mát rất lớn cho bình ngưng tụ để làm nguội hơi nước sau khi qua tua bin.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Quá trình thi công xây dựng hệ thống lò hơi, ống khói và trạm xử lý tro xỉ đòi hỏi vốn đầu tư ban đầu rất lớn và thời gian kéo dài.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Chi phí mua nhiên liệu than đá là yếu tố mang tính quyết định trực tiếp tới giá thành sản xuất điện năng của nhà máy.",
+                                        "correctAnswer": "Đúng"
+                                }
+                        ],
+                        "explanation": "• a) Đúng vì nhà máy điện than là nguồn điện chạy nền (baseload) công suất lớn, liên tục 24/7.<br>• b) Đúng vì bình ngưng tua bin hơi nước cần nguồn nước làm mát cực lớn.<br>• c) Đúng vì lò hơi, lọc bụi tĩnh điện, xử lý tro xỉ đòi hỏi vốn đầu tư lớn và thời gian thi công dài.<br>• d) Đúng vì than chiếm phần lớn chi phí biến đổi cấu thành giá thành điện."
+                },
+                {
+                        "id": "cncn12_p2_q8",
+                        "section": "PHẦN II. TRẮC NGHIỆM ĐÚNG SAI",
+                        "sectionId": "p2_tf",
+                        "type": "true_false_group",
+                        "text": "<strong>Câu 8.</strong> Phân biệt giữa các hoạt động nghề nghiệp: 'Thiết kế', 'Lắp đặt', 'Bảo dưỡng' và 'Sửa chữa' trong ngành kỹ thuật điện:",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Lắp đặt điện là công việc thi công kéo rải dây dẫn, bố trí máng cáp và đấu nối tủ điện theo đúng bản vẽ thiết kế kỹ thuật.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Bảo dưỡng điện mang tính chủ động phòng ngừa, thực hiện theo kế hoạch định kỳ nhằm kéo dài tuổi thọ của thiết bị.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Sửa chữa điện là hoạt động kỹ thuật mang tính phản ứng, can thiệp xử lý khi thiết bị gặp lỗi, hỏng hóc nhằm khôi phục trạng thái hoạt động ban đầu.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Kỹ sư bảo dưỡng điện chỉ làm việc khi hệ thống xảy ra tai nạn cháy nổ.",
+                                        "correctAnswer": "Sai"
+                                }
+                        ],
+                        "explanation": "• a) Đúng vì lắp đặt là thi công theo đúng hồ sơ thiết kế kỹ thuật.<br>• b) Đúng vì bảo dưỡng mang tính chủ động phòng ngừa định kỳ.<br>• c) Đúng vì sửa chữa là can thiệp khắc phục lỗi hỏng khi có sự cố.<br>• d) Sai vì bảo dưỡng làm theo lịch định kì, không đợi cháy nổ."
+                },
+                {
+                        "id": "cncn12_p2_q9",
+                        "section": "PHẦN II. TRẮC NGHIỆM ĐÚNG SAI",
+                        "sectionId": "p2_tf",
+                        "type": "true_false_group",
+                        "text": "<strong>Câu 9.</strong> Tác động môi trường từ quá trình sản xuất điện năng:",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Nhà máy nhiệt điện đốt than là một trong những nguồn phát thải khí nhà kính (CO2), lưu huỳnh đioxit (SO2) và bụi mịn vào khí quyển.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Việc chôn lấp hoặc tái sử dụng tro xỉ từ nhà máy nhiệt điện làm vật liệu xây dựng (gạch không nung, phụ gia xi măng) giúp hạn chế nguy cơ ô nhiễm đất và nguồn nước ngầm.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Điện mặt trời áp mái hoàn toàn không tạo ra khí thải gây hiệu ứng nhà kính trong quá trình vận hành phát điện.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Các kim loại nặng và hóa chất trong tấm pin mặt trời hết hạn sử dụng không có nguy cơ gây độc hại tới đất và nguồn nước nếu vứt bỏ tự do ngoài môi trường.",
+                                        "correctAnswer": "Sai"
+                                }
+                        ],
+                        "explanation": "• a) Đúng vì đốt than thải CO₂, SO₂, NOₓ và tro xỉ bụi mịn.<br>• b) Đúng vì tái sử dụng tro xỉ làm gạch không nung vừa tiết kiệm tài nguyên vừa giảm ô nhiễm chôn lấp.<br>• c) Đúng vì quang điện phát điện trực tiếp từ ánh sáng, không đốt nhiên liệu nên 0 phát thải khi vận hành.<br>• d) Sai vì pin phế thải có chì, cadmium... gây độc hại nguồn nước nếu chôn lấp tự do."
+                },
+                {
+                        "id": "cncn12_p2_q10",
+                        "section": "PHẦN II. TRẮC NGHIỆM ĐÚNG SAI",
+                        "sectionId": "p2_tf",
+                        "type": "true_false_group",
+                        "text": "<strong>Câu 10.</strong> Lựa chọn phương tiện bảo vệ và an toàn trong bảo dưỡng, sửa chữa mạng điện hạ áp sinh hoạt:",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Trước khi tiến hành bảo dưỡng hoặc sửa chữa mạng điện trong nhà, người thợ phải ngắt aptomat tổng và dùng bút thử điện kiểm tra lại để chắc chắn không còn điện.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Trong quá trình sửa chữa điện, người thực hiện có thể thao tác khi đứng trên nền nhà ẩm ướt mà không cần đi giày, dép cách điện.",
+                                        "correctAnswer": "Sai"
+                                },
+                                {
+                                        "id": "c",
+                                        "text": "c) Hoạt động bảo dưỡng định kỳ hệ thống nối đất an toàn giúp đảm bảo chống điện giật khi thiết bị điện bị rò điện ra vỏ kim loại.",
+                                        "correctAnswer": "Đúng"
+                                },
+                                {
+                                        "id": "d",
+                                        "text": "d) Bảo dưỡng điện không cần tuân theo bất kì quy trình hay tiêu chuẩn an toàn lao động nào vì mạng điện gia đình có mức điện áp thấp.",
+                                        "correctAnswer": "Sai"
+                                }
+                        ],
+                        "explanation": "• a) Đúng vì phải cắt điện và thử không còn điện trước khi chạm vào mạch.<br>• b) Sai vì sàn ẩm ướt dẫn điện tốt, bắt buộc phải mang ủng, găng hoặc đứng trên thảm cách điện.<br>• c) Đúng vì dây tiếp địa nối đất giúp bảo vệ chống chạm vỏ rò điện giật người.<br>• d) Sai vì 220 V gây nguy hiểm tính mạng, phải tuyệt đối tuân thủ quy chuẩn an toàn lao động."
+                },
+                {
+                        "id": "cncn12_p3_q1",
+                        "section": "PHẦN III. TỰ LUẬN (BÀI TẬP & VẬN DỤNG)",
+                        "sectionId": "p3_tl",
+                        "type": "essay_group",
+                        "text": "<strong>Câu 1.</strong> Một tải ba pha đối xứng gồm 3 điện trở thuần giống nhau $R = 44\\ \\Omega$ được nối theo hình tam giác ($\\Delta$) vào nguồn điện ba pha có điện áp dây $U_d = 220\\text{ V}$.",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Tính điện áp pha đặt lên mỗi tải (Up) và dòng điện pha chạy qua mỗi tải (Ip).",
+                                        "correctAnswer": "Up = 220 V; Ip = 5 A"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Tính dòng điện dây (Id) chạy trên đường dây cấp cho tải.",
+                                        "correctAnswer": "Id = 8,66 A (hoặc 5√3 A)"
+                                }
+                        ],
+                        "explanation": "<strong>Lời giải chi tiết:</strong><br>a) Vì tải nối theo hình tam giác ($\\Delta$) nên điện áp pha bằng điện áp dây:<br>$$U_p = U_d = 220\\text{ V}$$<br>Dòng điện pha chạy qua mỗi tải điện trở:<br>$$I_p = \\frac{U_p}{R} = \\frac{220}{44} = 5\\text{ A}$$<br>b) Vì tải đối xứng nối hình tam giác nên dòng điện dây liên hệ với dòng điện pha theo hệ thức:<br>$$I_d = \\sqrt{3} \\cdot I_p = 5\\sqrt{3} \\approx 8,66\\text{ A}$$"
+                },
+                {
+                        "id": "cncn12_p3_q2",
+                        "section": "PHẦN III. TỰ LUẬN (BÀI TẬP & VẬN DỤNG)",
+                        "sectionId": "p3_tl",
+                        "type": "essay_group",
+                        "text": "<strong>Câu 2.</strong> Một tải ba pha đối xứng gồm 3 điện trở $R = 22\\ \\Omega$ nối theo hình sao (Y), nối vào nguồn điện ba pha có điện áp dây $U_d = 380\\text{ V}$.",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Tính điện áp pha (Up) đặt lên mỗi tải.",
+                                        "correctAnswer": "Up ≈ 220 V (hoặc 380/√3 V)"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Tính dòng điện pha (Ip) và dòng điện dây (Id) của mạch điện.",
+                                        "correctAnswer": "Id = Ip = 10 A"
+                                }
+                        ],
+                        "explanation": "<strong>Lời giải chi tiết:</strong><br>a) Vì tải nối theo hình sao (Y) nên điện áp pha liên hệ với điện áp dây theo hệ thức:<br>$$U_p = \\frac{U_d}{\\sqrt{3}} = \\frac{380}{\\sqrt{3}} \\approx 220\\text{ V}$$<br>b) Dòng điện pha chạy qua mỗi tải:<br>$$I_p = \\frac{U_p}{R} = \\frac{220}{22} = 10\\text{ A}$$<br>Vì mạch nối hình sao (Y) nên dòng điện dây bằng dòng điện pha:<br>$$I_d = I_p = 10\\text{ A}$$"
+                },
+                {
+                        "id": "cncn12_p3_q3",
+                        "section": "PHẦN III. TỰ LUẬN (BÀI TẬP & VẬN DỤNG)",
+                        "sectionId": "p3_tl",
+                        "type": "essay_group",
+                        "text": "<strong>Câu 3.</strong> Về việc sử dụng điện năng trong sinh hoạt dân dụng, em hãy cho biết:",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Mạng điện trong gia đình em hiện nay đang sử dụng nguồn điện xoay chiều một pha hay ba pha? Nêu mức điện áp danh định của nguồn điện đó.",
+                                        "correctAnswer": "Nguồn điện xoay chiều 1 pha, điện áp danh định 220 V"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Trong trường hợp nào một hộ gia đình hoặc cơ sở dân dụng cần đăng kí lắp đặt nguồn điện ba pha?",
+                                        "correctAnswer": "Khi có sử dụng thiết bị, động cơ điện ba pha (380 V) phục vụ sản xuất kinh doanh, thang máy, điều hòa trung tâm hoặc tổng công suất sử dụng rất lớn"
+                                }
+                        ],
+                        "explanation": "<strong>Lời giải chi tiết:</strong><br>a) Hầu hết các gia đình hiện nay đang sử dụng nguồn điện xoay chiều <strong>1 pha</strong>, có điện áp danh định là <strong>220 V</strong> (tần số 50 Hz).<br>b) Cần đăng kí lắp đặt nguồn điện <strong>3 pha</strong> trong các trường hợp:<br>• Gia đình hoặc hộ kinh doanh cá thể có sử dụng các động cơ điện 3 pha công suất lớn (máy xát gạo, máy bào, máy nén khí, xưởng cơ khí...).<br>• Tòa nhà hoặc biệt thự lắp đặt thang máy gia đình, hệ thống điều hòa không khí trung tâm (VRV/VRF).<br>• Tổng công suất tiêu thụ điện của gia đình quá lớn, nếu dùng nguồn 1 pha sẽ gây sụt áp nghiêm trọng và quá tải đường dây."
+                },
+                {
+                        "id": "cncn12_p3_q4",
+                        "section": "PHẦN III. TỰ LUẬN (BÀI TẬP & VẬN DỤNG)",
+                        "sectionId": "p3_tl",
+                        "type": "essay_group",
+                        "text": "<strong>Câu 4.</strong> Mạng điện hạ áp sinh hoạt thường là mạch bốn dây (3 dây pha và 1 dây trung tính).",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Hãy giải thích tại sao mạng điện sinh hoạt gia đình lại lấy điện từ một dây pha và một dây trung tính?",
+                                        "correctAnswer": "Để lấy đúng mức điện áp pha Up = 220 V phù hợp với điện áp định mức của đồ dùng gia đình và đảm bảo an toàn hơn"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Dây trung tính có vai trò gì trong việc ổn định điện áp cho các đồ dùng điện một pha khi phụ tải của ba pha không đều nhau?",
+                                        "correctAnswer": "Dây trung tính giúp cân bằng và giữ ổn định điện áp các pha luôn ở mức 220 V khi tải không đối xứng, tránh làm quá áp gây cháy hỏng thiết bị"
+                                }
+                        ],
+                        "explanation": "<strong>Lời giải chi tiết:</strong><br>a) Vì hầu hết các thiết bị điện gia dụng (đèn, quạt, tivi, tủ lạnh, máy giặt...) được chế tạo với điện áp định mức là 220 V. Việc lấy điện giữa một dây pha và một dây trung tính sẽ nhận được đúng điện áp pha $U_p = 220\\text{ V}$, vừa phù hợp thông số vừa an toàn hơn so với sử dụng trực tiếp điện áp dây 380 V.<br>b) Trong thực tế, các hộ gia đình dùng điện không đều nhau nên phụ tải ba pha luôn <strong>không đối xứng</strong>. Dây trung tính giúp dẫn dòng điện mất cân bằng về nguồn, triệt tiêu độ lệch thế điểm trung tính, nhờ đó giữ cho điện áp trên mỗi pha luôn ổn định ở mức xấp xỉ 220 V. Nếu bị đứt dây trung tính, pha có ít tải sẽ bị tăng vọt điện áp gây cháy nổ thiết bị."
+                },
+                {
+                        "id": "cncn12_p3_q5",
+                        "section": "PHẦN III. TỰ LUẬN (BÀI TẬP & VẬN DỤNG)",
+                        "sectionId": "p3_tl",
+                        "type": "essay_group",
+                        "text": "<strong>Câu 5.</strong> Quan sát sơ đồ đoạn lưới điện phân phối dưới đây:<br><div style=\"margin: 12px 0; padding: 14px; background: rgba(99,102,241,0.06); border: 1px dashed var(--border-color); border-radius: 8px; font-family: monospace; line-height: 1.6; text-align: center; color: var(--text-main);\">Lưới truyền tải 110 kV ──&gt; <strong>[TBA 110/22 kV]</strong> ──(Đường dây 22 kV)──&gt; <strong>[TBA 22/0,4 kV]</strong> ──(Đường dây 0,4 kV)──&gt; [Phụ tải: Khu dân cư / Nhà máy]</div>Dựa vào sơ đồ trên, em hãy:",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Cho biết sơ đồ trên thuộc lưới điện truyền tải hay lưới điện phân phối? Nêu rõ các cấp điện áp có mặt trong sơ đồ.",
+                                        "correctAnswer": "Lưới điện phân phối. Các cấp điện áp: 110 kV, 22 kV và 0,4 kV (380/220 V)"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Kể tên các thành phần chính và nêu chức năng của trạm biến áp 110/22 kV và trạm biến áp 22/0,4 kV.",
+                                        "correctAnswer": "Thành phần chính: đường dây dẫn điện (110 kV, 22 kV, 0,4 kV), các trạm biến áp (110/22 kV, 22/0,4 kV) và phụ tải tiêu thụ. Chức năng TBA 110/22 kV hạ áp xuống trung áp 22 kV; TBA 22/0,4 kV hạ áp xuống hạ áp 0,4 kV cấp điện trực tiếp cho phụ tải"
+                                }
+                        ],
+                        "explanation": "<strong>Lời giải chi tiết:</strong><br>a) • Sơ đồ thuộc <strong>lưới điện phân phối</strong> (làm nhiệm vụ phân phối điện từ trạm biến áp trung gian tới các hộ dùng điện).<br>• Các cấp điện áp có mặt trong sơ đồ gồm: <strong>110 kV</strong>, <strong>22 kV</strong> (cấp trung áp) và <strong>0,4 kV</strong> tức 380/220 V (cấp hạ áp).<br>b) • <strong>Các thành phần chính:</strong> Đường dây dẫn điện các cấp (110 kV, 22 kV, 0,4 kV), các trạm biến áp (110/22 kV và 22/0,4 kV) và phụ tải tiêu thụ điện (khu dân cư, nhà xưởng sản xuất).<br>• <strong>Chức năng TBA 110/22 kV:</strong> Biến đổi (hạ) điện áp từ cấp 110 kV xuống cấp điện áp phân phối trung áp 22 kV để truyền đi trong đô thị hoặc khu vực dân cư.<br>• <strong>Chức năng TBA 22/0,4 kV:</strong> Biến đổi (hạ) điện áp từ cấp trung áp 22 kV xuống cấp hạ áp 0,4 kV (380/220 V) để cấp điện trực tiếp an toàn cho đồ dùng điện gia đình và máy móc sản xuất."
+                },
+                {
+                        "id": "cncn12_p3_q6",
+                        "section": "PHẦN III. TỰ LUẬN (BÀI TẬP & VẬN DỤNG)",
+                        "sectionId": "p3_tl",
+                        "type": "essay_group",
+                        "text": "<strong>Câu 6.</strong> Trong sơ đồ cung cấp điện có trạm biến áp hạ áp ghi chỉ số <strong>22/0,4 kV</strong> cấp điện cho một cụm dân cư:",
+                        "subQuestions": [
+                                {
+                                        "id": "a",
+                                        "text": "a) Hãy cho biết điện áp sơ cấp (U1) và điện áp thứ cấp (U2) định mức của trạm biến áp này là bao nhiêu kV? Trạm này là trạm tăng áp hay trạm hạ áp?",
+                                        "correctAnswer": "Điện áp sơ cấp U1 = 22 kV; điện áp thứ cấp U2 = 0,4 kV. Đây là trạm hạ áp (vì U2 < U1)"
+                                },
+                                {
+                                        "id": "b",
+                                        "text": "b) Cấp điện áp 0,4 kV ở đầu ra tương ứng với điện áp dây và điện áp pha là bao nhiêu vôn (V)? Cấp điện áp này phục vụ cho loại tải tiêu thụ nào?",
+                                        "correctAnswer": "Điện áp dây Ud = 380 V (hoặc 400 V), điện áp pha Up = 220 V (hoặc 230 V). Phục vụ cho tải sinh hoạt dân dụng (220 V) và tải sản xuất quy mô nhỏ (380 V)"
+                                }
+                        ],
+                        "explanation": "<strong>Lời giải chi tiết:</strong><br>a) Từ thông số ghi trên trạm biến áp 22/0,4 kV:<br>• Điện áp sơ cấp định mức: $U_1 = 22\\text{ kV}$.<br>• Điện áp thứ cấp định mức: $U_2 = 0,4\\text{ kV} = 400\\text{ V}$.<br>• Vì $U_2 < U_1$ nên đây là <strong>trạm biến áp hạ áp</strong>.<br>b) Cấp điện áp 0,4 kV ở đầu ra là mạng 3 pha 4 dây:<br>• Điện áp dây định mức: $U_d = 380\\text{ V}$ (theo chuẩn mới là 400 V).<br>• Điện áp pha định mức: $U_p = 220\\text{ V}$ (hoặc 230 V), tính theo $U_p = \\frac{U_d}{\\sqrt{3}}$.<br>• <strong>Đối tượng phục vụ:</strong><br>+ Điện áp pha 220 V phục vụ cho các thiết bị sinh hoạt gia đình 1 pha (chiếu sáng, thiết bị gia dụng).<br>+ Điện áp dây 380 V phục vụ cho các động cơ và thiết bị 3 pha trong các cơ sở tiểu thủ công nghiệp, xưởng sản xuất quy mô nhỏ."
+                }
+        ]
 }
 ];

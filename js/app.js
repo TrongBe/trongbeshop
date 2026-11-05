@@ -1,4 +1,4 @@
-import { mockQuizzes } from './data.js?v=93';
+import { mockQuizzes } from './data.js?v=94';
 import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
@@ -74,7 +74,7 @@ window.isQuizDeleted = isQuizDeleted;
 
 if (isVACTPage) {
     // Giữ lại tất cả đề V-ACT / ĐGNL / Chương / Ôn tập / Hóa / Advertisement từ data.js
-    const vactQuizzes = mockQuizzes.filter(q => q && q.id && (q.id.endsWith('_dgnl') || q.id.startsWith('de_') || q.id.startsWith('vact_') || q.id.startsWith('on_tap_') || q.id.includes('chuong_') || q.id.includes('advertisement') || q.category === 'hoa' || q.category === 'anh' || q.category === 'ly' || q.category === 'su' || q.category === 'lichsu'));
+    const vactQuizzes = mockQuizzes.filter(q => q && q.id && (q.id.endsWith('_dgnl') || q.id.startsWith('de_') || q.id.startsWith('vact_') || q.id.startsWith('on_tap_') || q.id.includes('chuong_') || q.id.includes('advertisement') || q.category === 'hoa' || q.category === 'anh' || q.category === 'ly' || q.category === 'su' || q.category === 'lichsu' || q.category === 'sinh' || q.category === 'cong_nghe'));
     mockQuizzes.length = 0;
     mockQuizzes.push(...vactQuizzes);
 
@@ -258,6 +258,12 @@ function initQuizList() {
         } else if (quiz.category === 'su' || quiz.category === 'lichsu' || titleLower.includes('lịch sử') || titleLower.includes('sử 12')) {
             subjectBadge = '<span class="quiz-pill-badge badge-su">📜 Lịch sử</span>';
             accentClass = 'accent-su';
+        } else if (quiz.category === 'sinh' || quiz.category === 'sinhhoc' || titleLower.includes('sinh học') || titleLower.includes('sinh 12')) {
+            subjectBadge = '<span class="quiz-pill-badge badge-sinh">🧬 Sinh học</span>';
+            accentClass = 'accent-sinh';
+        } else if (quiz.category === 'cong_nghe' || quiz.category === 'congnghe' || titleLower.includes('công nghệ') || titleLower.includes('cncn')) {
+            subjectBadge = '<span class="quiz-pill-badge badge-congnghe">⚡ Công nghệ</span>';
+            accentClass = 'accent-congnghe';
         }
 
         const privacyBadge = (quiz.privacy === 'public' || !quiz.privacy) 
