@@ -186,6 +186,8 @@ function showView(viewName) {
             document.body.classList.add('in-quiz-active');
         } else {
             document.body.classList.remove('in-quiz-active');
+            const resModal = document.getElementById('tronexResultModal');
+            if (resModal) resModal.style.display = 'none';
         }
         // Tự động kích hoạt Zen Mode khi vào làm bài thi, tắt khi rời khỏi
         if (typeof toggleZenMode === 'function') {
@@ -922,9 +924,10 @@ if (btnConfirmStart) {
         });
 
         showView('active');
-        if (window.innerWidth <= 768) {
-            const sidebar = document.getElementById('tronexSidebar');
-            if (sidebar) sidebar.classList.add('minimized');
+        const sidebar = document.getElementById('tronexSidebar');
+        if (sidebar) {
+            sidebar.classList.remove('minimized');
+            sidebar.style.transform = '';
         }
         startTimer(); // Bắt đầu tính giờ từ đây
         window.currentActiveQuiz = currentQuiz;
@@ -933,8 +936,16 @@ if (btnConfirmStart) {
         // Cập nhật lại UI sau khi hiển thị
         const timerBox = document.getElementById('tronexTimerBox');
         if (timerBox) timerBox.style.display = 'flex';
-        document.getElementById('tronexResultSummary').style.display = 'none';
-        document.getElementById('btnSubmitQuiz').style.display = 'block';
+        const resultSummary = document.getElementById('tronexResultSummary');
+        if (resultSummary) resultSummary.style.display = 'none';
+        const mainBanner = document.getElementById('tronexMainResultBanner');
+        if (mainBanner) mainBanner.style.display = 'none';
+        const resModal = document.getElementById('tronexResultModal');
+        if (resModal) resModal.style.display = 'none';
+        const bottomSubmit = document.getElementById('quizBottomSubmitWrap');
+        if (bottomSubmit) bottomSubmit.style.display = 'flex';
+        const submitBtnEl = document.getElementById('btnSubmitQuiz');
+        if (submitBtnEl) submitBtnEl.style.display = 'block';
 
         // Reset nút rời khỏi về trạng thái đang làm bài
         const leaveBtn = document.getElementById('btnLeaveQuiz');
@@ -1451,6 +1462,7 @@ function renderResults(correct, incorrect, unanswered) {
     let score;
     const isDgnl120 = (total === 120);
     const scoreContainer = document.querySelector('.tronex-score');
+    const scale = isDgnl120 ? 1200 : 10;
 
     if (isDgnl120) {
         // Thang điểm 1200 cho đề chuẩn ĐGNL 120 câu (10đ mỗi câu đúng)
@@ -1472,28 +1484,130 @@ function renderResults(correct, incorrect, unanswered) {
     // Hiển thị thời gian làm bài
     const savedStartTime = sessionStorage.getItem('tronex_quiz_start_time') || quizStartTime;
     let elapsedSeconds = 0;
+    let timeStr = '00:00';
     if (savedStartTime) {
         const endTime = Date.now();
         elapsedSeconds = Math.floor((endTime - parseInt(savedStartTime)) / 1000);
         const mins = Math.floor(elapsedSeconds / 60);
         const secs = elapsedSeconds % 60;
-        const timeStr = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        timeStr = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
         const timeEl = document.getElementById('tronexTimeSpent');
         if (timeEl) timeEl.textContent = timeStr;
     }
 
-    // Cập nhật Result Summary (TRONEX Style)
-    document.getElementById('tronexCorrect').textContent = correct;
-    document.getElementById('tronexIncorrect').textContent = incorrect;
-    document.getElementById('tronexUnanswered').textContent = unanswered;
+    // Đảm bảo sidebar không bị minimized để hiển thị bảng kết quả
+    const sidebar = document.getElementById('tronexSidebar');
+    if (sidebar) {
+        sidebar.classList.remove('minimized');
+    }
 
-    document.getElementById('tronexResultSummary').style.display = 'block';
+    // 1. Cập nhật Result Summary trong Tronex Sidebar
+    const elCorrect = document.getElementById('tronexCorrect');
+    const elIncorrect = document.getElementById('tronexIncorrect');
+    const elUnanswered = document.getElementById('tronexUnanswered');
+    const elSummary = document.getElementById('tronexResultSummary');
+    if (elCorrect) elCorrect.textContent = correct;
+    if (elIncorrect) elIncorrect.textContent = incorrect;
+    if (elUnanswered) elUnanswered.textContent = unanswered;
+    if (elSummary) elSummary.style.display = 'block';
 
+    // 2. Cập nhật Result Banner trên đầu danh sách câu hỏi
+    const bannerScoreNum = document.getElementById('bannerScoreNum');
+    const bannerScoreScale = document.getElementById('bannerScoreScale');
+    const bannerCorrect = document.getElementById('bannerCorrect');
+    const bannerIncorrect = document.getElementById('bannerIncorrect');
+    const bannerUnanswered = document.getElementById('bannerUnanswered');
+    const bannerTime = document.getElementById('bannerTime');
+    const mainBanner = document.getElementById('tronexMainResultBanner');
+
+    if (bannerScoreNum) bannerScoreNum.textContent = score;
+    if (bannerScoreScale) bannerScoreScale.textContent = ` / ${scale}`;
+    if (bannerCorrect) bannerCorrect.textContent = correct;
+    if (bannerIncorrect) bannerIncorrect.textContent = incorrect;
+    if (bannerUnanswered) bannerUnanswered.textContent = unanswered;
+    if (bannerTime) bannerTime.textContent = timeStr;
+    if (mainBanner) mainBanner.style.display = 'block';
+
+    // Nút trên Banner
+    const btnBannerRetry = document.getElementById('btnBannerRetry');
+    if (btnBannerRetry) {
+        btnBannerRetry.onclick = () => {
+            const btnRetry = document.getElementById('btnRetry');
+            if (btnRetry) btnRetry.click();
+        };
+    }
+    const btnBannerBack = document.getElementById('btnBannerBack');
+    if (btnBannerBack) {
+        btnBannerBack.onclick = () => {
+            const leaveBtn = document.getElementById('btnLeaveQuiz');
+            if (leaveBtn) leaveBtn.click();
+        };
+    }
+
+    // 3. Cập nhật và hiển thị Modal Popup Kết Quả Nổi Bật
+    const modalScoreNum = document.getElementById('modalScoreNum');
+    const modalScoreScale = document.getElementById('modalScoreScale');
+    const modalCorrect = document.getElementById('modalCorrect');
+    const modalIncorrect = document.getElementById('modalIncorrect');
+    const modalUnanswered = document.getElementById('modalUnanswered');
+    const modalTime = document.getElementById('modalTime');
+    const modalGradeTag = document.getElementById('modalGradeTag');
+    const modalIcon = document.getElementById('resultModalIcon');
+    const modalTitle = document.getElementById('resultModalTitle');
+    const resultModal = document.getElementById('tronexResultModal');
+
+    const scoreRatio = total > 0 ? (correct / total) : 0;
+
+    if (modalScoreNum) modalScoreNum.textContent = score;
+    if (modalScoreScale) modalScoreScale.textContent = `/ ${scale}`;
+    if (modalCorrect) modalCorrect.textContent = correct;
+    if (modalIncorrect) modalIncorrect.textContent = incorrect;
+    if (modalUnanswered) modalUnanswered.textContent = unanswered;
+    if (modalTime) modalTime.textContent = timeStr;
+
+    if (modalGradeTag) {
+        modalGradeTag.className = 'result-modal-grade-tag';
+        if (scoreRatio >= 0.9) {
+            modalGradeTag.classList.add('grade-excellent');
+            modalGradeTag.textContent = 'Xuất Sắc! 🌟';
+            if (modalIcon) modalIcon.textContent = '🏆';
+            if (modalTitle) modalTitle.textContent = 'Chúc Mừng Thành Tích Xuất Sắc!';
+        } else if (scoreRatio >= 0.8) {
+            modalGradeTag.classList.add('grade-great');
+            modalGradeTag.textContent = 'Rất Tốt! 🎯';
+            if (modalIcon) modalIcon.textContent = '🎉';
+            if (modalTitle) modalTitle.textContent = 'Đã Hoàn Thành Bài Thi!';
+        } else if (scoreRatio >= 0.65) {
+            modalGradeTag.classList.add('grade-good');
+            modalGradeTag.textContent = 'Khá Tốt! 👏';
+            if (modalIcon) modalIcon.textContent = '✨';
+            if (modalTitle) modalTitle.textContent = 'Kết Quả Khá Tốt!';
+        } else if (scoreRatio >= 0.5) {
+            modalGradeTag.classList.add('grade-pass');
+            modalGradeTag.textContent = 'Đạt Yêu Cầu! 👍';
+            if (modalIcon) modalIcon.textContent = '📈';
+            if (modalTitle) modalTitle.textContent = 'Đã Đạt Yêu Cầu!';
+        } else {
+            modalGradeTag.classList.add('grade-need-work');
+            modalGradeTag.textContent = 'Cần Cố Gắng! 💪';
+            if (modalIcon) modalIcon.textContent = '💡';
+            if (modalTitle) modalTitle.textContent = 'Hãy Tiếp Tục Rèn Luyện!';
+        }
+    }
+
+    if (resultModal) {
+        resultModal.style.display = 'flex';
+    }
+
+    // 4. Ẩn nút nộp bài và đồng hồ
     const timerBox = document.getElementById('tronexTimerBox');
     if (timerBox) timerBox.style.display = 'none';
 
     const submitBtn = document.getElementById('btnSubmitQuiz');
     if (submitBtn) submitBtn.style.display = 'none';
+
+    const bottomSubmit = document.getElementById('quizBottomSubmitWrap');
+    if (bottomSubmit) bottomSubmit.style.display = 'none';
 
     const leaveBtn = document.getElementById('btnLeaveQuiz');
     if (leaveBtn) {
@@ -1518,11 +1632,15 @@ function renderResults(correct, incorrect, unanswered) {
     } catch (e) { console.warn('Không thể lưu lịch sử:', e); }
 
     // === CONFETTI KHI ĐIỂM CAO ===
-    const scoreRatio = total > 0 ? correct / total : 0;
     if (scoreRatio >= 0.8) {
         fireConfetti();
     }
 }
+
+window.closeResultModal = function() {
+    const modal = document.getElementById('tronexResultModal');
+    if (modal) modal.style.display = 'none';
+};
 
 // === CÁC TIỆN ÍCH KHÁC (LOAD/SAVE/UI) ===
 function highlightAnswer(q, optionsList) {
@@ -2053,9 +2171,16 @@ document.addEventListener('DOMContentLoaded', () => {
             input.readOnly = false;
         });
         document.getElementById('btnSubmitQuiz').style.display = 'block';
+        const bottomSubmit = document.getElementById('quizBottomSubmitWrap');
+        if (bottomSubmit) bottomSubmit.style.display = 'flex';
         const timerBox = document.getElementById('tronexTimerBox');
         if (timerBox) timerBox.style.display = 'flex';
-        document.getElementById('tronexResultSummary').style.display = 'none';
+        const resultSummary = document.getElementById('tronexResultSummary');
+        if (resultSummary) resultSummary.style.display = 'none';
+        const mainBanner = document.getElementById('tronexMainResultBanner');
+        if (mainBanner) mainBanner.style.display = 'none';
+        const resModal = document.getElementById('tronexResultModal');
+        if (resModal) resModal.style.display = 'none';
         const leaveBtn = document.getElementById('btnLeaveQuiz');
         if (leaveBtn) leaveBtn.textContent = 'Rời khỏi';
         startTimer();
@@ -2125,8 +2250,8 @@ function initDraggableSidebar() {
     const handle = document.getElementById('tronexSidebarHandle');
     if (!sidebar || !handle) return;
 
-    // Trên thiết bị di động, để CSS Bottom Sheet tự quản lý vị trí
-    if (window.innerWidth <= 768) {
+    // Trên thiết bị di động & tablet, để CSS quản lý vị trí cố định
+    if (window.innerWidth <= 1024) {
         sidebar.style.transform = '';
         return;
     }
@@ -2141,7 +2266,7 @@ function initDraggableSidebar() {
 
     // Load saved position (chỉ áp dụng cho màn hình lớn)
     const savedPos = localStorage.getItem('tronex_sidebar_pos');
-    if (savedPos && window.innerWidth > 768) {
+    if (savedPos && window.innerWidth > 1024) {
         try {
             const pos = JSON.parse(savedPos);
             xOffset = pos.x;
@@ -2152,11 +2277,11 @@ function initDraggableSidebar() {
 
     handle.addEventListener('mousedown', dragStart);
     handle.addEventListener('touchstart', (e) => {
-        if (window.innerWidth > 768) dragStart(e.touches[0]);
+        if (window.innerWidth > 1024) dragStart(e.touches[0]);
     }, { passive: false });
 
     function dragStart(e) {
-        if (window.innerWidth <= 768) return;
+        if (window.innerWidth <= 1024) return;
         initialX = e.clientX - xOffset;
         initialY = e.clientY - yOffset;
         isDragging = true;
@@ -2168,7 +2293,7 @@ function initDraggableSidebar() {
     }
 
     function drag(e) {
-        if (isDragging && window.innerWidth > 768) {
+        if (isDragging && window.innerWidth > 1024) {
             e.preventDefault();
             currentX = e.clientX - initialX;
             currentY = e.clientY - initialY;

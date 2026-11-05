@@ -242,9 +242,40 @@
           </div>
           <button type="button" id="btnZenToggle" class="btn-zen-toggle" onclick="toggleZenMode()" title="Bật/Tắt chế độ tập trung (ẩn mọi thành phần gây xao nhãng)">🧘 Chế độ tập trung</button>
         </div>
+
+        <!-- Banner kết quả hiển thị cố định ở đầu trang khi xem lại bài -->
+        <div id="tronexMainResultBanner" class="tronex-main-result-banner" style="display:none;">
+          <div class="result-banner-card">
+            <div class="result-banner-header">
+              <span class="result-banner-icon">🏆</span>
+              <div>
+                <h3 class="result-banner-title">Kết Quả Bài Thi</h3>
+                <p class="result-banner-sub">Xem chi tiết các câu đúng, sai và phân tích đáp án bên dưới</p>
+              </div>
+              <div class="result-banner-score-badge">
+                <span id="bannerScoreNum">0</span><span id="bannerScoreScale"> / 10</span>
+              </div>
+            </div>
+            <div class="result-banner-stats">
+              <div class="stat-pill stat-correct">✅ Đúng: <strong id="bannerCorrect">0</strong> câu</div>
+              <div class="stat-pill stat-incorrect">❌ Sai: <strong id="bannerIncorrect">0</strong> câu</div>
+              <div class="stat-pill stat-unanswered">⏳ Chưa làm: <strong id="bannerUnanswered">0</strong> câu</div>
+              <div class="stat-pill stat-time">⏱️ Thời gian: <strong id="bannerTime">00:00</strong></div>
+            </div>
+            <div class="result-banner-actions">
+              <button type="button" class="btn btn-outline" id="btnBannerRetry">🔄 Làm lại đề này</button>
+              <button type="button" class="btn btn-primary" id="btnBannerBack">← Trở về danh sách</button>
+            </div>
+          </div>
+        </div>
+
         <form id="quizForm">
           <div id="questionsContainer">
             <!-- Javascript sẽ tự động thêm câu hỏi vào đây -->
+          </div>
+          <!-- Nút nộp bài lớn ở cuối danh sách câu hỏi -->
+          <div class="quiz-bottom-submit-wrap" id="quizBottomSubmitWrap">
+            <button type="submit" class="btn btn-primary btn-large btn-bottom-submit">📥 Nộp Bài Thi</button>
           </div>
           <!-- Đệm an toàn chống khuất đáp án D ở câu cuối cùng -->
           <div class="quiz-scroll-spacer" style="height: 160px; width: 100%; pointer-events: none; clear: both;" aria-hidden="true"></div>
@@ -898,6 +929,52 @@
       }
     };
   </script>
+
+  <!-- Modal Chấm Điểm & Kết Quả Nổi Bật (TRONEX Modal) -->
+  <div id="tronexResultModal" class="tronex-result-modal-backdrop" style="display:none;" onclick="if(event.target===this) closeResultModal();">
+    <div class="tronex-result-modal-box">
+      <button type="button" class="result-modal-close" onclick="closeResultModal()">&times;</button>
+      <div class="result-modal-celebration" id="resultModalIcon">🎉</div>
+      <h2 class="result-modal-title" id="resultModalTitle">Đã Hoàn Thành Bài Thi!</h2>
+      <p class="result-modal-subtitle" id="resultModalSubtitle">Dưới đây là kết quả đánh giá năng lực của bạn</p>
+      
+      <div class="result-modal-score-wrap">
+        <div class="result-modal-score-circle">
+          <span class="result-modal-score-number" id="modalScoreNum">0</span>
+          <span class="result-modal-score-max" id="modalScoreScale">/ 10</span>
+        </div>
+        <div class="result-modal-grade-tag grade-great" id="modalGradeTag">Khá Tốt!</div>
+      </div>
+
+      <div class="result-modal-stats-grid">
+        <div class="result-stat-box box-correct">
+          <span class="stat-label">Số câu đúng</span>
+          <span class="stat-val"><span id="modalCorrect">0</span> câu</span>
+        </div>
+        <div class="result-stat-box box-incorrect">
+          <span class="stat-label">Số câu sai</span>
+          <span class="stat-val"><span id="modalIncorrect">0</span> câu</span>
+        </div>
+        <div class="result-stat-box box-unanswered">
+          <span class="stat-label">Chưa làm</span>
+          <span class="stat-val"><span id="modalUnanswered">0</span> câu</span>
+        </div>
+        <div class="result-stat-box box-time">
+          <span class="stat-label">Thời gian làm</span>
+          <span class="stat-val" id="modalTime">00:00</span>
+        </div>
+      </div>
+
+      <div class="result-modal-actions">
+        <button type="button" class="btn btn-primary result-btn-review" onclick="closeResultModal(); window.scrollTo({top: 0, behavior: 'smooth'});">
+          🔍 Xem chi tiết từng câu
+        </button>
+        <button type="button" class="btn btn-outline result-btn-leave" onclick="closeResultModal(); if(typeof showView==='function') { showView('list'); initQuizList(); }">
+          🏠 Trở về danh sách đề
+        </button>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

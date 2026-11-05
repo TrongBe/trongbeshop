@@ -3884,1886 +3884,1886 @@ export const mockQuizzes = [
                 ]
         },
         {
-        "id": "on_tap_giua_ki_1_lich_su_12",
-        "title": "Ôn tập GKI - Lịch sử 12",
-        "category": "su",
-        "subject": "Lịch sử",
-        "description": "Trọn bộ đề cương ôn tập kiểm tra Giữa kì I môn Lịch sử 12 (Chương trình mới). Bao gồm 6 bài học: Liên Hợp Quốc, Trật tự thế giới trong Chiến tranh Lạnh, Trật tự thế giới sau Chiến tranh Lạnh, Sự ra đời và phát triển của ASEAN, Cộng đồng ASEAN, Cách mạng Tháng Tám năm 1945. Gồm 96 câu trắc nghiệm nhiều lựa chọn và 16 câu trắc nghiệm Đúng/Sai (64 mệnh đề) có đáp án chuẩn xác.",
-        "presets": [
-                {
-                        "id": "all",
-                        "label": "✨ Toàn bộ 6 bài (112 câu hỏi)",
-                        "sectionIds": [
-                                "b1_mcq",
-                                "b1_tf",
-                                "b2_mcq",
-                                "b2_tf",
-                                "b3_mcq",
-                                "b3_tf",
-                                "b4_mcq",
-                                "b4_tf",
-                                "b5_mcq",
-                                "b5_tf",
-                                "b6_mcq",
-                                "b6_tf"
-                        ]
-                },
-                {
-                        "id": "b1",
-                        "label": "🌐 Bài 1: Liên Hợp Quốc (18 câu)",
-                        "sectionIds": [
-                                "b1_mcq",
-                                "b1_tf"
-                        ]
-                },
-                {
-                        "id": "b2",
-                        "label": "❄️ Bài 2: Chiến tranh Lạnh (19 câu)",
-                        "sectionIds": [
-                                "b2_mcq",
-                                "b2_tf"
-                        ]
-                },
-                {
-                        "id": "b3",
-                        "label": "🌍 Bài 3: Sau Chiến tranh Lạnh (19 câu)",
-                        "sectionIds": [
-                                "b3_mcq",
-                                "b3_tf"
-                        ]
-                },
-                {
-                        "id": "b4",
-                        "label": "🤝 Bài 4: ASEAN ra đời & phát triển (19 câu)",
-                        "sectionIds": [
-                                "b4_mcq",
-                                "b4_tf"
-                        ]
-                },
-                {
-                        "id": "b5",
-                        "label": "🏙️ Bài 5: Cộng đồng ASEAN (17 câu)",
-                        "sectionIds": [
-                                "b5_mcq",
-                                "b5_tf"
-                        ]
-                },
-                {
-                        "id": "b6",
-                        "label": "⭐ Bài 6: Cách mạng Tháng Tám 1945 (20 câu)",
-                        "sectionIds": [
-                                "b6_mcq",
-                                "b6_tf"
-                        ]
-                },
-                {
-                        "id": "all_mcq",
-                        "label": "🎯 Chỉ làm Trắc nghiệm 4 lựa chọn (96 câu)",
-                        "sectionIds": [
-                                "b1_mcq",
-                                "b2_mcq",
-                                "b3_mcq",
-                                "b4_mcq",
-                                "b5_mcq",
-                                "b6_mcq"
-                        ]
-                },
-                {
-                        "id": "all_tf",
-                        "label": "⚖️ Chỉ làm Trắc nghiệm Đúng/Sai (16 câu)",
-                        "sectionIds": [
-                                "b1_tf",
-                                "b2_tf",
-                                "b3_tf",
-                                "b4_tf",
-                                "b5_tf",
-                                "b6_tf"
-                        ]
-                }
-        ],
-        "selectableSections": [
-                {
-                        "id": "b1_mcq",
-                        "name": "Bài 1 - Trắc nghiệm (16 câu)",
-                        "group": "Bài 1: LIÊN HỢP QUỐC",
-                        "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
-                        "count": 16
-                },
-                {
-                        "id": "b1_tf",
-                        "name": "Bài 1 - Đúng / Sai (2 câu)",
-                        "group": "Bài 1: LIÊN HỢP QUỐC",
-                        "section": "BÀI 1: LIÊN HỢP QUỐC - ĐÚNG / SAI",
-                        "count": 2
-                },
-                {
-                        "id": "b2_mcq",
-                        "name": "Bài 2 - Trắc nghiệm (16 câu)",
-                        "group": "Bài 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH",
-                        "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "count": 16
-                },
-                {
-                        "id": "b2_tf",
-                        "name": "Bài 2 - Đúng / Sai (3 câu)",
-                        "group": "Bài 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH",
-                        "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - ĐÚNG / SAI",
-                        "count": 3
-                },
-                {
-                        "id": "b3_mcq",
-                        "name": "Bài 3 - Trắc nghiệm (16 câu)",
-                        "group": "Bài 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH",
-                        "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "count": 16
-                },
-                {
-                        "id": "b3_tf",
-                        "name": "Bài 3 - Đúng / Sai (3 câu)",
-                        "group": "Bài 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH",
-                        "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - ĐÚNG / SAI",
-                        "count": 3
-                },
-                {
-                        "id": "b4_mcq",
-                        "name": "Bài 4 - Trắc nghiệm (17 câu)",
-                        "group": "Bài 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN",
-                        "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
-                        "count": 17
-                },
-                {
-                        "id": "b4_tf",
-                        "name": "Bài 4 - Đúng / Sai (2 câu)",
-                        "group": "Bài 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN",
-                        "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - ĐÚNG / SAI",
-                        "count": 2
-                },
-                {
-                        "id": "b5_mcq",
-                        "name": "Bài 5 - Trắc nghiệm (14 câu)",
-                        "group": "Bài 5: CỘNG ĐỒNG ASEAN: TỪ Ý TƯỞNG ĐẾN HIỆN THỰC",
-                        "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
-                        "count": 14
-                },
-                {
-                        "id": "b5_tf",
-                        "name": "Bài 5 - Đúng / Sai (3 câu)",
-                        "group": "Bài 5: CỘNG ĐỒNG ASEAN: TỪ Ý TƯỞNG ĐẾN HIỆN THỰC",
-                        "section": "BÀI 5: CỘNG ĐỒNG ASEAN - ĐÚNG / SAI",
-                        "count": 3
-                },
-                {
-                        "id": "b6_mcq",
-                        "name": "Bài 6 - Trắc nghiệm (17 câu)",
-                        "group": "Bài 6: CÁCH MẠNG THÁNG TÁM NĂM 1945",
-                        "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
-                        "count": 17
-                },
-                {
-                        "id": "b6_tf",
-                        "name": "Bài 6 - Đúng / Sai (3 câu)",
-                        "group": "Bài 6: CÁCH MẠNG THÁNG TÁM NĂM 1945",
-                        "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - ĐÚNG / SAI",
-                        "count": 3
-                }
-        ],
-        "questions": [
-                {
-                        "id": "ls12_b1_q1",
-                        "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 1: Những quốc gia nào sau đây đóng vai trò quyết định, đồng thời là sáng lập viên của tổ chức Liên hợp quốc?",
-                        "options": [
-                                "A. Liên Xô, Mỹ, Anh.",
-                                "B. Nga, Pháp, Việt Nam.",
-                                "C. Liên Xô, Anh, Nhật Bản.",
-                                "D. Liên Xô, Mỹ, Trung Quốc."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b1_q2",
-                        "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 2: Từ ngày 25 - 4 - 1945 đến ngày 26 - 6 - 1945, một hội nghị quốc tế được tổ chức tại Xan Phran-xi-xcô (Mỹ) với sự tham gia của đại biểu 50 nước đã thông qua văn kiện nào sau đây?",
-                        "options": [
-                                "A. Hiến chương Liên hợp quốc.",
-                                "B. Hiệp định đình chiến ở Triều Tiên.",
-                                "C. Hiến chương ASEAN.",
-                                "D. Hiệp định đình chiến ở Đông Dương."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b1_q3",
-                        "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 3: Sự kiện nào sau đây đánh dấu tổ chức Liên hợp quốc chính thức được thành lập?",
-                        "options": [
-                                "A. Ngày 24-10-1945, các nước thành viên phê chuẩn Hiến chương Liên hợp quốc.",
-                                "B. Tháng 1-1942, đại diện 26 nước kí bản Tuyên bố Liên hợp quốc.",
-                                "C. Năm 1945, đại diện 50 nước thông qua Hiến chương Liên hợp quốc.",
-                                "D. Tháng 2-1945, Liên Xô, Anh, Mỹ thống nhất thành lập Liên hợp quốc."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b1_q4",
-                        "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 4: Một trong những cơ quan chính của Liên hợp quốc được quy định trong Hiến chương Liên hợp quốc (năm 1945) là",
-                        "options": [
-                                "A. Hội đồng kinh tế - xã hội.",
-                                "B. Ngân hàng Thế giới.",
-                                "C. Quỹ Nhi đồng.",
-                                "D. Tổ chức Thương mại thế giới."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b1_q5",
-                        "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 5: Một trong những cơ quan chuyên môn của Liên hợp quốc là",
-                        "options": [
-                                "A. Quỹ Nhi đồng.",
-                                "B. Hội đồng Bảo an.",
-                                "C. Đại hội đồng.",
-                                "D. Ban thư ký."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b1_q6",
-                        "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 6: Hội nghị quốc tế nào sau đây đã đặt nền tảng cho sự ra đời của tổ chức Liên hợp quốc?",
-                        "options": [
-                                "A. Hội nghị I-an-ta.",
-                                "B. Hội nghị Pốt-xđam.",
-                                "C. Hội nghị Pa-ri.",
-                                "D. Hội nghị Oa-sinh-tơn."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b1_q7",
-                        "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 7: Cơ quan nào sau đây của Liên hợp quốc bao gồm tất cả các nước thành viên?",
-                        "options": [
-                                "A. Đại hội đồng.",
-                                "B. Hội đồng Bảo an.",
-                                "C. Ban thư ký.",
-                                "D. Tòa án Quốc tế."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b1_q8",
-                        "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 8: Cơ quan nào sau đây của Liên hợp quốc chịu trách nhiệm chính trong việc duy trì hòa bình và an ninh thế giới?",
-                        "options": [
-                                "A. Hội đồng Bảo an.",
-                                "B. Ban thư ký.",
-                                "C. Hội đồng quản thác.",
-                                "D. Tòa án Quốc tế."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b1_q9",
-                        "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 9: Tổ chức Liên hợp quốc ra đời trong bối cảnh lịch sử nào sau đây?",
-                        "options": [
-                                "A. Sau Chiến tranh thế giới thứ hai, nhu cầu cần một tổ chức để duy trì hòa bình và an ninh quốc tế.",
-                                "B. Các nước thắng trận trong Chiến tranh thế giới thứ nhất phân chia phạm vi ảnh hưởng toàn cầu.",
-                                "C. Sau cuộc Cách mạng công nghiệp lần thứ nhất, khi nhu cầu hợp tác quốc tế ngày càng tăng cao.",
-                                "D. Cuộc Chiến tranh lạnh giữa Mỹ và Liên Xô đang diễn ra căng thẳng trên phạm vi toàn thế giới."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b1_q10",
-                        "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 10: Nội dung nào sau đây không phải là nguyên tắc hoạt động của tổ chức Liên hợp quốc?",
-                        "options": [
-                                "A. Hợp tác có hiệu quả trong những lĩnh vực kinh tế - văn hóa - xã hội.",
-                                "B. Bình đẳng chủ quyền giữa các quốc gia và quyền tự quyết của các dân tộc.",
-                                "C. Giải quyết các tranh chấp quốc tế bằng biện pháp hòa bình.",
-                                "D. Không can thiệp vào công việc nội bộ của bất kì nước nào."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b1_q11",
-                        "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 11: Nội dung nào sau đây là mục tiêu hoạt động của tổ chức Liên hợp quốc?",
-                        "options": [
-                                "A. Hợp tác quốc tế trong việc giải quyết các vấn đề mang tính toàn cầu.",
-                                "B. Xây dựng Liên hợp quốc vững mạnh về quân sự, thịnh vượng về kinh tế.",
-                                "C. Giải quyết công bằng những vấn đề an sinh, xã hội của từng quốc gia.",
-                                "D. Liên kết các quốc gia thành các trung tâm kinh tế - văn hóa - giáo dục."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b1_q12",
-                        "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 12: Nội dung nào sau đây là vai trò của Liên hợp quốc về bảo đảm quyền con người, phát triển văn hóa, xã hội?",
-                        "options": [
-                                "A. Tăng cường bình đẳng giới và vị thế, năng lực của phụ nữ.",
-                                "B. Giảm lãi suất cho vay ở hầu hết các nước phát triển.",
-                                "C. Cải thiện năng lực công nghệ thông tin cho mọi người dân.",
-                                "D. Hoàn thành phổ cập giáo dục đại học ở các nước phát triển."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b1_q13",
-                        "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 13: Nội dung nào sau đây là vai trò của Liên hợp quốc trong việc duy trì hòa bình, an ninh quốc tế?",
-                        "options": [
-                                "A. Soạn thảo và xây dựng được hệ thống các công ước quốc tế về giải trừ quân bị.",
-                                "B. Ngăn chặn được các cuộc đối đầu Đông-Tây và xung đột trên thế giới.",
-                                "C. Giải quyết được mọi tranh chấp, xung đột trên thế giới bằng biện pháp hòa bình.",
-                                "D. Chấm dứt được tình trạng chạy đua vũ trang và sản xuất vũ khí hủy diệt."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b1_q14",
-                        "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 14: Nội dung nào sau đây là vai trò của Liên hợp quốc trong việc thúc đẩy phát triển kinh tế, tài chính và thương mại quốc tế?",
-                        "options": [
-                                "A. Thúc đẩy hợp tác quốc tế trong việc cải thiện điều kiện kinh tế và xã hội toàn cầu.",
-                                "B. Đảm bảo an ninh quốc tế thông qua các hoạt động quân sự và chính trị.",
-                                "C. Giải quyết các tranh chấp biên giới giữa các quốc gia thành viên.",
-                                "D. Thúc đẩy hoạt động nghiên cứu khoa học và công nghệ giữa các nước phát triển."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b1_q15",
-                        "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 15: Trải qua hơn 70 năm hoạt động (từ năm 1945), Liên hợp quốc đã có nhiều vai trò, đóng góp trên các lĩnh vực, nhưng không có vai trò nào sau đây?",
-                        "options": [
-                                "A. Ngăn chặn được các cuộc đối đầu Đông-Tây và xung đột trên thế giới.",
-                                "B. Góp phần thúc đẩy quá trình phi thực dân hóa ở nhiều nơi trên thế giới.",
-                                "C. Ra các văn bản, xây dựng môi trường thuận lợi thúc đẩy hợp tác quốc tế.",
-                                "D. Làm trung gian hòa giải chấm dứt xung đột và chiến tranh ở các khu vực."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b1_q16",
-                        "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 16: Việt Nam hai lần được bầu làm Ủy viên không thường trực Hội đồng Bảo an Liên hợp quốc (năm 2007 và 2019), chứng tỏ",
-                        "options": [
-                                "A. vị thế, uy tín được nâng cao trên trường quốc tế.",
-                                "B. Việt Nam đã trở thành một cường quốc chính trị.",
-                                "C. Việt Nam giải quyết căn bản vấn đề Biển Đông.",
-                                "D. Việt Nam đã chi phối được nhiều tổ chức quốc tế."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b1_tf1",
-                        "section": "BÀI 1: LIÊN HỢP QUỐC - ĐÚNG / SAI",
-                        "type": "true_false_group",
-                        "text": "Câu 1: Đọc đoạn tư liệu sau đây:\n“Sau hai tháng làm việc, qua các cuộc đấu tranh gay gắt giữa nhiều ý kiến và khuynh hướng khác nhau, hiến chương Liên Hợp Quốc được đại biểu của 50 nước ký kết ngày 26-6-1945. Hiến chương bắt đầu có hiệu lực kể từ ngày 24-10-1945 (ngày Quốc hội 5 cường quốc Liên Xô, Mỹ, Anh, Pháp và Trung Quốc thông qua Hiến chương Liên Hợp Quốc) và ngày này cũng được coi là ngày Liên Hợp Quốc chính thức được thành lập”.\n(Nguyễn Anh Thái (chủ biên), Lịch sử thế giới hiện đại, Nxb Giáo dục, Hà Nội, 2015, tr.226)",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Ngày 24-10-1945, bản Hiến chương Liên Hợp Quốc chính thức có hiệu lực, đánh dấu sự thành lập của Liên Hợp Quốc.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Hiến chương Liên Hợp Quốc được ký kết ngay sau khi Chiến tranh thế giới thứ hai kết thúc mà không gặp phải bất kỳ sự phản đối hay tranh luận nào từ các đại biểu tham gia.",
-                                        "correctAnswer": "Sai"
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Sự thông qua và có hiệu lực của Hiến chương Liên Hợp Quốc đã thiết lập một nền tảng pháp lý cho việc duy trì hòa bình và an ninh quốc tế trong giai đoạn sau Chiến tranh thế giới.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "d",
-                                        "text": "d) Sự ra đời của Liên Hợp Quốc đánh dấu một bước ngoặt quan trọng trong việc xây dựng hệ thống an ninh tập thể toàn cầu, nhằm ngăn chặn xung đột và bảo vệ hòa bình quốc tế.",
-                                        "correctAnswer": "Đúng"
-                                }
-                        ]
-                },
-                {
-                        "id": "ls12_b1_tf2",
-                        "section": "BÀI 1: LIÊN HỢP QUỐC - ĐÚNG / SAI",
-                        "type": "true_false_group",
-                        "text": "Câu 2: Đọc đoạn tư liệu sau đây:\n“Hiến chương Liên Hợp Quốc quy định mục đích cao nhất của Liên Hợp Quốc là nhằm duy trì hòa bình, an ninh thế giới bằng cách áp dụng những biện pháp có hiệu lực để đề phòng và thủ tiêu sự đe dọa đối với hòa bình, để trừng trị mọi hành động xâm lược và phá hoại hòa bình. Ngoài ra, Liên Hợp Quốc còn nhằm mục đích thúc đẩy sự phát triển quan hệ hữu nghị giữa các nước trên cơ sở tôn trọng quyền bình đẳng giữa các dân tộc và nguyên tắc dân tộc tự quyết”.\n(Nguyễn Anh Thái (chủ biên), Lịch sử thế giới hiện đại, Nxb Giáo dục, Hà Nội, 2015, tr.227)",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Mục đích cao nhất của Liên Hợp Quốc là duy trì hòa bình và an ninh thế giới.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Liên Hợp Quốc chỉ tập trung vào các biện pháp trừng phạt mà không quan tâm đến việc thúc đẩy quan hệ hữu nghị giữa các quốc gia.",
-                                        "correctAnswer": "Sai"
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Liên Hợp Quốc đóng vai trò quan trọng trong việc thúc đẩy hợp tác quốc tế, đảm bảo sự tôn trọng quyền bình đẳng giữa các dân tộc và nguyên tắc dân tộc tự quyết.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "d",
-                                        "text": "d) Liên Hợp Quốc không chỉ ngăn chặn xung đột và duy trì hòa bình, mà còn góp phần tạo ra một trật tự thế giới công bằng và bền vững thông qua việc thúc đẩy các nguyên tắc quốc tế như bình đẳng và quyền tự quyết dân tộc.",
-                                        "correctAnswer": "Đúng"
-                                }
-                        ]
-                },
-                {
-                        "id": "ls12_b2_q1",
-                        "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 1: Hội nghị I-an-ta (tháng 2-1945) được diễn ra trong giai đoạn nào sau đây của Chiến tranh thế giới thứ hai?",
-                        "options": [
-                                "A. Giai đoạn sắp kết thúc.",
-                                "B. Bùng nổ và lan rộng.",
-                                "C. Vừa mới kết thúc.",
-                                "D. Vừa mới bùng nổ."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b2_q2",
-                        "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 2: Quốc gia nào sau đây tham dự Hội nghị I-an-ta (tháng 2-1945)?",
-                        "options": [
-                                "A. Anh.",
-                                "B. Hà Lan.",
-                                "C. Pháp.",
-                                "D. Đức."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b2_q3",
-                        "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 3: Hội nghị I-an-ta (tháng 2-1945) thông qua nội dung nào sau đây?",
-                        "options": [
-                                "A. Phân chia phạm vi ảnh hưởng ở châu Âu và châu Á.",
-                                "B. Xây dựng một trật tự thế giới mới sau chiến tranh.",
-                                "C. Khôi phục Hội Quốc liên để giữ gìn hòa bình, an ninh thế giới.",
-                                "D. Phân chia phạm vi ảnh hưởng của Mỹ và Liên Xô ở châu Phi."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b2_q4",
-                        "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 4: Theo quyết định của Hội nghị I-an-ta (tháng 2-1945), quân đội Liên Xô chiếm đóng khu vực nào sau đây?",
-                        "options": [
-                                "A. Đông Béc-lin.",
-                                "B. Tây Béc-lin.",
-                                "C. Tây Âu.",
-                                "D. Nam Âu."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b2_q5",
-                        "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 5: Theo quyết định của Hội nghị I-an-ta (tháng 2-1945), quân đội Mỹ chiếm đóng khu vực nào sau đây?",
-                        "options": [
-                                "A. Tây Âu.",
-                                "B. Đông Béc-lin.",
-                                "C. Đông Âu.",
-                                "D. Nam Âu."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b2_q6",
-                        "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 6: Theo quyết định của Hội nghị I-an-ta (tháng 2-1945), những quốc gia nào sau đây trở thành nước trung lập?",
-                        "options": [
-                                "A. Áo, Phần Lan.",
-                                "B. Thái Lan, Việt Nam.",
-                                "C. Lào, Tiệp Khắc.",
-                                "D. Trung Quốc, Ấn Độ."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b2_q7",
-                        "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 7: Theo quyết định của Hội nghị I-an-ta (tháng 2-1945), quốc gia nào sau đây trở thành một quốc gia thống nhất và dân chủ?",
-                        "options": [
-                                "A. Trung Quốc.",
-                                "B. Ấn Độ.",
-                                "C. Cu Ba.",
-                                "D. Lào."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b2_q8",
-                        "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 8: Theo quyết định của Hội nghị I-an-ta (tháng 2-1945), khu vực Đông Nam Á thuộc phạm vi ảnh hưởng của",
-                        "options": [
-                                "A. Tây Âu.",
-                                "B. Đông Âu.",
-                                "C. Liên Xô.",
-                                "D. Trung Quốc."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b2_q9",
-                        "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 9: Trong giai đoạn từ năm 1945 đến đầu những năm 70 của thế kỉ XX, Trật tự thế giới hai cực I-an-ta có biểu hiện nào sau đây?",
-                        "options": [
-                                "A. Xác lập và phát triển nhanh với sự đối đầu diễn ra trên nhiều lĩnh vực.",
-                                "B. Từ đối kháng chuyển sang đối đầu giữa hai hệ thống xã hội đối lập.",
-                                "C. Phát triển mạnh và dẫn tới các cuộc chiến tranh cục bộ giữa Liên Xô - Mỹ.",
-                                "D. Từ đối đầu căng thẳng chuyển sang hoà dịu và hoà hoãn Đông - Tây."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b2_q10",
-                        "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 10: Trong giai đoạn từ những năm 70 của thế kỉ XX đến năm 1991, Trật tự thế giới hai cực I-an-ta có biểu hiện nào sau đây?",
-                        "options": [
-                                "A. Hòa hoãn Đông-Tây, đối thoại, hợp tác và đi đến chấm dứt sự đối đầu.",
-                                "B. Xác lập và phát triển nhanh với sự đối đầu diễn ra trên nhiều lĩnh vực.",
-                                "C. Phát triển mạnh và dẫn tới các cuộc chiến tranh cục bộ giữa Liên Xô - Mỹ.",
-                                "D. Các cuộc chiến tranh cục bộ diễn ra hầu khắp các khu vực trên thế giới."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b2_q11",
-                        "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 11: Sự kiện nào sau đây có ý nghĩa mở ra bước đột phá đầu tiên góp phần làm xói mòn và sụp đổ của trật tự thế giới hai cực I-an-ta?",
-                        "options": [
-                                "A. Thắng lợi của cách mạng Trung Quốc (1949).",
-                                "B. Cách mạng tháng Tám ở Việt Nam (1945).",
-                                "C. Chế độ độc tài thân Mỹ thất bại ở Cuba (1959).",
-                                "D. Anh, Pháp rút quân khỏi kênh đào Xuy-ê (1956)."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b2_q12",
-                        "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 12: Sự kiện nào sau đây chính thức chấm dứt sự tồn tại của Trật tự thế giới hai cực I-an-ta?",
-                        "options": [
-                                "A. Sự sụp đổ của chủ nghĩa xã hội ở Đông Âu và Liên Xô (1991).",
-                                "B. Cuộc gặp giữa hai nhà lãnh đạo Mỹ và Liên Xô ở đảo Man-ta (1989).",
-                                "C. Mỹ và Liên Xô ký Hiệp ước hạn chế vũ khí chiến lược (SALT1).",
-                                "D. Mỹ ký Hiệp định Pari về chấm dứt chiến tranh, lập lại hòa bình ở Việt Nam."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b2_q13",
-                        "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 13: Cho đoạn trích: “...Chúng ta đang đứng trước ngưỡng cửa của một kỉ nguyên hoàn toàn mới trong quan hệ Mỹ-Liên Xô. Chúng ta hoàn toàn có thể đóng góp theo cách riêng của mình nhằm vượt qua sự chia rẽ ở châu Âu và kết thúc cuộc đối đầu quân sự tại đó”. (Phát biểu của Tổng thống Mỹ G. Bút-sơ trong cuộc gặp với Tổng Bí thư Đảng Cộng sản Liên Xô M. Goóc-ba-chốp, tháng 12-1989).\nViệc Mỹ và Liên Xô “kết thúc cuộc đối đầu quân sự” có tác dụng nào sau đây đối với quan hệ quốc tế?",
-                        "options": [
-                                "A. Làm cho quan hệ quốc tế được mở rộng và đa dạng hơn.",
-                                "B. Chấm dứt hoàn toàn các cuộc chiến tranh trên thế giới.",
-                                "C. Đưa các dân tộc bước vào thời kì của Chiến tranh lạnh.",
-                                "D. Kinh tế trở thành nội dung duy nhất trong quan hệ quốc tế."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b2_q14",
-                        "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 14: Trật tự thế giới hai cực I-an-ta sụp đổ (1991) có tác động nào sau đây đến quốc tế?",
-                        "options": [
-                                "A. Tạo điều kiện để giải quyết các tranh chấp bằng biện pháp hòa bình.",
-                                "B. Mỹ chuyển sang ủng hộ sự phát triển xu thế đa cực, nhiều trung tâm.",
-                                "C. Đưa tới sự ra đời của Hiệp hội các quốc gia Đông Nam Á.",
-                                "D. Trung Quốc đã vươn lên trở thành nền kinh tế số 1 thế giới."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b2_q15",
-                        "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 15: Quyết định nào sau đây của Hội nghị I-an-ta (2-1945) là cơ sở hình thành trật tự thế giới hai cực sau Chiến tranh thế giới thứ hai?",
-                        "options": [
-                                "A. Phân chia phạm vi ảnh hưởng của Liên Xô và Mỹ.",
-                                "B. Đông Nam Á thuộc phạm vi ảnh hưởng của Liên Xô.",
-                                "C. Thành lập tổ chức Liên hợp quốc để giữ gìn hòa bình.",
-                                "D. Tây Âu và Đông Âu thuộc phạm vi ảnh hưởng của Mỹ."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b2_q16",
-                        "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 16: Nội dung nào sau đây là nhân tố hàng đầu chi phối toàn bộ đời sống chính trị thế giới trong phần lớn thời gian nửa sau thế kỉ XX?",
-                        "options": [
-                                "A. Cục diện trật tự hai cực, hai phe: tư bản chủ nghĩa và xã hội chủ nghĩa.",
-                                "B. Hai hệ thống xã hội đối lập ra đời: tư bản chủ nghĩa và xã hội chủ nghĩa.",
-                                "C. Xu hướng liên kết khu vực và xu thế toàn cầu hoá diễn ra mạnh mẽ.",
-                                "D. Các cuộc “chiến tranh nóng” ở châu Á liên tiếp diễn ra không có hồi kết."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b2_tf1",
-                        "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - ĐÚNG / SAI",
-                        "type": "true_false_group",
-                        "text": "Câu 1: Đọc đoạn tư liệu sau đây:\n“Cuộc Chiến tranh lạnh (1947-1989) chủ yếu diễn ra ở châu Âu, nhưng đã làm thay đổi sâu sắc quan hệ quốc tế : giữa Mỹ với Liên Xô, giữa các nước Đông Âu với các nước Tây Âu, giữa các nước tư bản chủ nghĩa với các nước xã hội chủ nghĩa. Sự đối đầu gay gắt giữa Mỹ và Liên Xô trong thời gian diễn ra Chiến tranh lạnh đã làm gia tăng cuộc chạy đua vũ trang, dẫn đến một số cuộc chiến tranh cục bộ trên thế giới”.\n(Nguyễn Anh Thái (chủ biên), Lịch sử thế giới hiện đại, Nxb Giáo dục, Hà Nội, 2015, tr.538)",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Một trong những nguyên nhân dẫn đến cuộc Chiến tranh lạnh là bắt nguồn từ những quyết định của Hội nghị I-an-ta (2-1945).",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Cuộc Chiến tranh lạnh đã làm thay đổi quan hệ giữa các cường quốc từng là đồng minh trong chiến tranh chống phát xít.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Cuộc chiến tranh của Mỹ ở Việt Nam (1954-1975) không chịu sự tác động của Chiến tranh lạnh.",
-                                        "correctAnswer": "Sai"
-                                },
-                                {
-                                        "id": "d",
-                                        "text": "d) Cuộc Chiến tranh lạnh (1947-1989) tuy đã kết thúc nhưng vấn đề lại nhiều di chứng đến ngày nay.",
-                                        "correctAnswer": "Đúng"
-                                }
-                        ]
-                },
-                {
-                        "id": "ls12_b2_tf2",
-                        "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - ĐÚNG / SAI",
-                        "type": "true_false_group",
-                        "text": "Câu 2: Đọc đoạn tư liệu sau đây:\n“Cuộc Chiến tranh lạnh kéo dài trên 40 năm đã chấm dứt và trong quan hệ quốc tế, từ xu thế “đối đầu” đã dần dần chuyển sang xu thế “đối thoại” hợp tác trên cơ sở hai bên cùng có lợi, tôn trọng lẫn nhau trong cùng tồn tại hòa bình, tình hình thế giới trở nên hòa dịu hơn, tuy thế vẫn bùng nổ những tranh chấp, xung đột mang tính chất khu vực”.\n(Nguyễn Anh Thái (chủ biên), Lịch sử thế giới hiện đại, Nxb Giáo dục, Hà Nội, 2015, tr.537)",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Chiến tranh lạnh chấm dứt, quan hệ quốc tế chuyển từ xu thế “đối đầu” sang xu thế “đối thoại”.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Trước sự khủng hoảng và sự suy giảm về tài chính kinh tế nên Mỹ và Liên Xô chấm dứt Chiến tranh lạnh.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Tất cả các cuộc chiến tranh ở thế kỉ XX đều bị ảnh hưởng, chi phối bởi cuộc Chiến tranh lạnh.",
-                                        "correctAnswer": "Sai"
-                                },
-                                {
-                                        "id": "d",
-                                        "text": "d) Cuộc Chiến tranh lạnh không diễn ra xung đột quân sự trực tiếp, là cuộc chiến không có hồi kết.",
-                                        "correctAnswer": "Sai"
-                                }
-                        ]
-                },
-                {
-                        "id": "ls12_b2_tf3",
-                        "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - ĐÚNG / SAI",
-                        "type": "true_false_group",
-                        "text": "Câu 3: Đọc đoạn tư liệu sau đây:\n“Trước kia, chế độ quân chủ tại Hy Lạp đã nhờ vào sự giúp đỡ của Anh, nhưng sau Chiến tranh thế giới thứ hai, kinh tế của nước Anh hoàn toàn suy kiệt, lo cho mình còn không xong, nên không thể giúp đỡ gì cho chế độ quân chủ ở Hy Lạp nữa.\nVào ngày 12-3-1947, Tổng thống Tơ-ru-man đã đọc một bài diễn văn tại lưỡng viện Quốc hội Mỹ, cho rằng Hy Lạp và Thổ Nhĩ Kỳ nếu bị rơi vào khối xã hội chủ nghĩa, thì cả Trung Đông cũng sẽ rơi theo... sẽ làm cho cả Tây Âu bị ảnh hưởng. Do vậy, ông thuyết phục Quốc hội Mỹ chi viện kinh tế và quân sự cho Hy Lạp và Thổ Nhĩ Kỳ với số tiền 400 triệu đô la. Lí luận này về sau được gọi là \"Học thuyết Tơ-ru-man\"”.\n(Vương Kính Chi, Lược sử nước Mỹ (Phong Đào dịch), NXB Thành phố Hồ Chí Minh, Thành phố Hồ Chí Minh, 2000, tr.145)",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Thông điệp của Tổng thống Mỹ Tơ-ru-man đọc trước Quốc hội Mỹ ngày 12-3-1947 đã khởi đầu cuộc Chiến tranh lạnh chống lại Liên Xô và các nước Đông Âu.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Nguồn gốc của sự đối đầu căng thẳng giữa Mỹ và Liên Xô xuất phát từ “vấn đề Hy Lạp và Thổ Nhĩ Kỳ” sau Chiến tranh thế giới thứ hai.",
-                                        "correctAnswer": "Sai"
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Học thuyết Tơ-ru-man phản ánh chính sách đối ngoại của Mỹ sau Chiến tranh thế giới thứ hai, muốn đưa nước Mỹ trở thành bá chủ thế giới.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "d",
-                                        "text": "d) Học thuyết Tơ-ru-man không chỉ là một biện pháp ngăn chặn sự lan rộng của chủ nghĩa xã hội mà còn là nền tảng cho chính sách đối ngoại của Mỹ trong thời kỳ Chiến tranh lạnh.",
-                                        "correctAnswer": "Đúng"
-                                }
-                        ]
-                },
-                {
-                        "id": "ls12_b3_q1",
-                        "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 1: Từ sau khi Chiến tranh lạnh kết thúc (1989), thế giới phát triển theo một trong những xu thế nào sau đây?",
-                        "options": [
-                                "A. Lấy kinh tế là trọng tâm.",
-                                "B. Lấy chính trị làm nền tảng.",
-                                "C. Thỏa hiệp để ổn định toàn cầu.",
-                                "D. Lấy văn hóa là trọng tâm."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b3_q2",
-                        "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 2: Từ sau khi Chiến tranh lạnh kết thúc (1989), thế giới phát triển theo một trong những xu thế nào sau đây?",
-                        "options": [
-                                "A. Đa cực, nhiều trung tâm.",
-                                "B. Lấy chính trị làm nền tảng.",
-                                "C. Thỏa hiệp để ổn định toàn cầu.",
-                                "D. Lấy văn hóa là trọng tâm."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b3_q3",
-                        "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 3: Từ sau khi Chiến tranh lạnh kết thúc (1989), thế giới phát triển theo một trong những xu thế nào sau đây?",
-                        "options": [
-                                "A. Hợp tác trong quan hệ quốc tế.",
-                                "B. Lấy chính trị làm nền tảng.",
-                                "C. Thỏa hiệp để ổn định toàn cầu.",
-                                "D. Lấy văn hóa là trọng tâm."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b3_q4",
-                        "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 4: Từ sau khi Chiến tranh lạnh kết thúc (1989), thế giới phát triển theo một trong những xu thế nào sau đây?",
-                        "options": [
-                                "A. Quốc tế hóa-toàn cầu hóa.",
-                                "B. Lấy chính trị làm nền tảng.",
-                                "C. Thỏa hiệp để ổn định toàn cầu.",
-                                "D. Lấy văn hóa là trọng tâm."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b3_q5",
-                        "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 5: Từ sau khi Chiến tranh lạnh kết thúc (1989), thế giới phát triển theo một trong những xu thế nào sau đây?",
-                        "options": [
-                                "A. Hòa bình, ổn định cùng phát triển.",
-                                "B. Lấy chính trị làm nền tảng.",
-                                "C. Thỏa hiệp để ổn định toàn cầu.",
-                                "D. Lấy văn hóa là trọng tâm."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b3_q6",
-                        "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 6: Một trật tự thế giới mà ở đó các nước lớn, các trung tâm kinh tế - tài chính lớn như Mỹ, Nhật Bản, Trung Quốc, Ấn Độ, Liên bang Nga,... có vị thế quan trọng đối với quan hệ quốc tế được gọi là trật tự",
-                        "options": [
-                                "A. đa cực, nhiều trung tâm.",
-                                "B. đa phương hoá.",
-                                "C. đơn cực, nhất thể.",
-                                "D. tam cường, đa phương."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b3_q7",
-                        "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 7: Sau Chiến tranh lạnh, các quốc gia nào sau đây là một trong những trung tâm quyền lực đang vươn lên khẳng định sức mạnh về kinh tế, quân sự và chính trị đối với quốc tế?",
-                        "options": [
-                                "A. Trung Quốc và Ấn Độ.",
-                                "B. Xin-ga-po và Nam Phi.",
-                                "C. Hà Lan và Tây Ban Nha.",
-                                "D. Bỉ và Mông Cổ."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b3_q8",
-                        "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 8: Sau Chiến tranh lạnh, các quốc gia nào sau đây là một trong những trung tâm quyền lực đang vươn lên khẳng định sức mạnh về kinh tế, quân sự và chính trị đối với quốc tế?",
-                        "options": [
-                                "A. Nga và Nhật Bản.",
-                                "B. Xi-ga-po và Nam Phi.",
-                                "C. Đan Mạch và Tây Ban Nha.",
-                                "D. I-ta-li-a và Mông Cổ."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b3_q9",
-                        "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 9: Nội dung nào sau đây là biểu hiện của xu thế toàn cầu hóa trong quan hệ quốc tế sau Chiến tranh lạnh?",
-                        "options": [
-                                "A. Sự phát triển nhanh quan hệ thương mại quốc tế.",
-                                "B. Các quốc gia ra sức chạy đua vũ trang mạnh mẽ.",
-                                "C. Đông Nam Á có tốc độ phát triển nhanh nhất thế giới.",
-                                "D. Xu thế liên kết khu vực trở thành chủ đạo của thế giới."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b3_q10",
-                        "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 10: Nội dung nào sau đây là biểu hiện của xu thế đa cực trong quan hệ quốc tế sau Chiến tranh lạnh?",
-                        "options": [
-                                "A. Sự suy giảm sức mạnh tương đối của Mỹ.",
-                                "B. Các quốc gia chạy đua vũ trang mạnh mẽ.",
-                                "C. Đông Nam Á phát triển nhanh nhất thế giới.",
-                                "D. Xu thế liên kết khu vực trở thành chủ đạo."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b3_q11",
-                        "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 11: Một trong những biểu hiện của xu thế đối thoại, hợp tác trong quan hệ quốc tế sau Chiến tranh lạnh là",
-                        "options": [
-                                "A. giải quyết mâu thuẫn bằng biện pháp hòa bình.",
-                                "B. sự suy giảm sức mạnh tương đối của nước Mỹ.",
-                                "C. sự hợp nhất các công ty thành các tập đoàn lớn.",
-                                "D. sự phát triển nhanh quan hệ thương mại quốc tế."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b3_q12",
-                        "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 12: Nội dung nào sau đây không phản ánh xu thế phát triển của thế giới sau Chiến tranh lạnh?",
-                        "options": [
-                                "A. Mỹ đang thực hiện âm mưu thiết lập lại trật tự thế giới đa cực.",
-                                "B. Một trật tự thế giới mới đang hình thành theo hướng đa cực.",
-                                "C. Các nước điều chỉnh chiến lược tập trung phát triển kinh tế.",
-                                "D. Các cuộc xung đột quân sự vẫn còn diễn ra ở một số khu vực."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b3_q13",
-                        "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 13: Từ sau Chiến tranh lạnh kết thúc, hầu hết các quốc gia điều chỉnh chiến lược lấy phát triển kinh tế làm trọng tâm vì lí do nào sau đây?",
-                        "options": [
-                                "A. Kinh tế trở thành nội dung căn bản trong quan hệ quốc tế.",
-                                "B. Giữa các cường quốc đã chấm dứt việc chạy đua vũ trang.",
-                                "C. Sức mạnh quốc gia không dựa trên lực lượng quốc phòng.",
-                                "D. Hòa bình và an ninh thế giới được bảo vệ ở mức cao nhất."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b3_q14",
-                        "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 14: Nội dung nào sau đây là xu thế phát triển của thế giới sau Chiến tranh lạnh được nhân dân các nước hi vọng, mong muốn trở thành hiện thực?",
-                        "options": [
-                                "A. Hoà bình, ổn định cùng phát triển.",
-                                "B. Đa cực, đa phe trong đối ngoại quốc tế.",
-                                "C. Liên kết và hội nhập giữa các nước lớn.",
-                                "D. Phát triển kinh tế, quân sự là trung tâm."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b3_q15",
-                        "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 15: Nhân tố nào sau đây đóng vai trò quyết định để các cường quốc tham gia xác lập trật tự thế giới mới sau Chiến tranh lạnh?",
-                        "options": [
-                                "A. Sức mạnh tổng hợp của quốc gia, trong đó kinh tế vẫn là trụ cột.",
-                                "B. Là một trong năm cường quốc của Hội đồng Bảo an Liên hợp quốc.",
-                                "C. Sự ra đời và ngày càng mở rộng của các tổ chức liên kết khu vực.",
-                                "D. Sức mạnh quân sự của quốc gia với lực lượng quân sự hùng hậu."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b3_q16",
-                        "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 16: Đọc đoạn tư liệu sau: “Bài học của thời kì Chiến tranh lạnh đã chứng tỏ phương thức quan hệ quốc tế lấy đối đầu chính trị - quân sự là chủ yếu không còn phù hợp, phải chịu nhiều tổn thất hoặc thất bại như hai nước Xô - Mỹ và một bị thương, một bị mất” (Vũ Dương Ninh (Chủ biên), Một số chuyên đề lịch sử thế giới, NXB Đại học Quốc gia Hà Nội, 2001, tr.401).\nCụm từ “một bị thương, một bị mất” được đề cập trong đoạn tư liệu phản ánh nội dung nào sau đây?",
-                        "options": [
-                                "A. Sự suy yếu của Mỹ và sự sụp đổ của Liên Xô.",
-                                "B. Sự trỗi dậy của các quốc gia thuộc thế giới thứ ba.",
-                                "C. Sự tan rã của các đế quốc thuộc địa trên thế giới.",
-                                "D. Sự hợp tác kinh tế và chính trị giữa các cường quốc."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b3_tf1",
-                        "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - ĐÚNG / SAI",
-                        "type": "true_false_group",
-                        "text": "Câu 1: Đọc đoạn tư liệu sau đây:\n“Trật tự thế giới này được hình thành như thế nào, còn tùy thuộc ở nhiều nhân tố: Sự phát triển về thực lực kinh tế, chính trị, quân sự của các cường quốc Mỹ, Nga, Trung Quốc, Anh, Pháp, Nhật Bản, Đức trong cuộc chạy đua về sức mạnh quốc gia tổng hợp...; Sự lớn mạnh của lực lượng cách mạng thế giới (sự thành bại của công cuộc cải cách, đổi mới ở các nước xã hội chủ nghĩa);...Sự phát triển của cách mạng khoa học-kĩ thuật sẽ còn tiếp tục tạo ra những “đột phá” và biến chuyển trên cục diện thế giới”.\n(Nguyễn Anh Thái (Chủ biên), Lịch sử thế giới hiện đại, NXB Giáo dục Việt Nam, Hà Nội, 2021, tr.424)",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) “Trật tự thế giới” được nhắc đến trong đoạn tư liệu trên là trật tự thế giới “hai cực Ianta” được hình thành sau Chiến tranh thế giới thứ hai.",
-                                        "correctAnswer": "Sai"
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Một trong những nhân tố tác động đến sự hình thành trật tự thế giới mới sau khi Chiến tranh lạnh kết thúc là sự vươn lên mạnh mẽ của các nước Á, Phi, Mĩ-latinh.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Nhân tố đóng vai trò quyết định đến sự hình thành trật tự thế giới mới sau Chiến tranh lạnh là cuộc chạy đua sức mạnh tổng hợp, nhưng sức mạnh kinh tế là trụ cột.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "d",
-                                        "text": "d) Một trong những đặc điểm nổi bật của trật tự thế giới mới được thiết lập sau Chiến tranh lạnh là thế giới bị chia thành hai hệ thống xã hội đối lập.",
-                                        "correctAnswer": "Sai"
-                                }
-                        ]
-                },
-                {
-                        "id": "ls12_b3_tf2",
-                        "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - ĐÚNG / SAI",
-                        "type": "true_false_group",
-                        "text": "Câu 2: Đọc đoạn tư liệu sau đây:\n“Hòa bình, hợp tác, liên kết và phát triển vẫn là xu thế lớn nhưng cạnh tranh chiến lược giữa các nước lớn rất phức tạp, gay gắt; cục diện đa cực ngày càng rõ nét. Toàn cầu hóa và hội nhập quốc tế tiếp tục tiến triển nhưng gặp nhiều trở ngại, thách thức; chủ nghĩa dân túy, bảo hộ có xu hướng tăng lên; sự điều chỉnh chính sách, quan hệ đối ngoại của các nước lớn trong khu vực và trên thế giới diễn biến khó lường”.\n(Đảng Cộng sản Việt Nam, Văn kiện Đại hội đại biểu toàn quốc lần thứ XIII, NXB Chính trị Quốc gia Sự thật, 2021, tr.206-207)",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Hòa bình, hợp tác, liên kết và phát triển vẫn là xu thế lớn trong quan hệ quốc tế hiện nay.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Toàn cầu hóa và hội nhập quốc tế không gặp bất kỳ trở ngại hay thách thức nào trong giai đoạn hiện tại.",
-                                        "correctAnswer": "Sai"
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Việc theo dõi chặt chẽ các điều chỉnh chính sách của các nước lớn là cần thiết để đối phó với những diễn biến khó lường trong quan hệ quốc tế.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "d",
-                                        "text": "d) Để thích ứng với cục diện đa cực và sự gia tăng của chủ nghĩa dân túy, các quốc gia cần linh hoạt trong chính sách đối ngoại và phát triển nội lực kinh tế.",
-                                        "correctAnswer": "Đúng"
-                                }
-                        ]
-                },
-                {
-                        "id": "ls12_b3_tf3",
-                        "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - ĐÚNG / SAI",
-                        "type": "true_false_group",
-                        "text": "Câu 3: Đọc đoạn thông tin sau đây:\n“Trong bối cảnh thế giới đa cực với nhiều trung tâm quyền lực, Mỹ và Trung Quốc nổi lên như hai cực có ảnh hưởng lớn nhất đến kinh tế toàn cầu. Mỹ tiếp tục giữ vững vị thế cường quốc số 1 thế giới, trong khi từ năm 2010, Trung Quốc đã vượt qua các nền kinh tế lớn như Anh, Pháp, Đức, và Nhật Bản để vươn lên vị trí thứ hai. Tuy nhiên, không chỉ Mỹ và Trung Quốc, các cường quốc khác như Nhật Bản, Liên minh châu Âu, Liên bang Nga, và Ấn Độ cũng đang nỗ lực mạnh mẽ để khẳng định vị thế của mình trên trường quốc tế. Trong cuộc đua này, mỗi quốc gia đều đặt mục tiêu nâng cao tầm ảnh hưởng và vai trò của mình trong một thế giới ngày càng phức tạp và cạnh tranh”.",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Trong trật tự thế giới đa cực, nhiều trung tâm, Mỹ và Trung Quốc là những nước đang có vị thế, ảnh hưởng hàng đầu thế giới.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Trật tự thế giới hai cực I-an-ta sụp đổ là nguyên nhân trực tiếp, tạo cơ hội cho Trung Quốc vươn lên trở thành nền kinh tế lớn thứ hai thế giới.",
-                                        "correctAnswer": "Sai"
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Phát huy thành công sức mạnh nội lực là yếu tố quyết định để các nước khẳng định vị thế trong xu thế đa cực, nhiều trung tâm.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "d",
-                                        "text": "d) Trong xu thế đa cực và xu thế toàn cầu hoá, các quốc gia có nhiều thời cơ lớn, nhưng cũng có không ít thách thức và rào cản.",
-                                        "correctAnswer": "Đúng"
-                                }
-                        ]
-                },
-                {
-                        "id": "ls12_b4_q1",
-                        "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 1: Quốc gia nào sau đây là một trong các thành viên sáng lập tổ chức Hiệp hội các quốc gia Đông Nam Á (ASEAN) năm 1967?",
-                        "options": [
-                                "A. Thái Lan.",
-                                "B. Hàn Quốc.",
-                                "C. Ba Lan.",
-                                "D. Mê-hi-cô."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b4_q2",
-                        "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 2: Năm 1984, quốc gia nào sau đây được kết nạp, trở thành thành viên thứ 6 của Hiệp hội các quốc gia Đông Nam Á (ASEAN)?",
-                        "options": [
-                                "A. Bru-nây.",
-                                "B. Mi-an-ma.",
-                                "C. Cam-pu-chia.",
-                                "D. In-đô-nê-xi-a."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b4_q3",
-                        "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 3: Năm 1995, quốc gia nào sau đây được kết nạp, trở thành thành viên thứ 7 của Hiệp hội các quốc gia Đông Nam Á (ASEAN)?",
-                        "options": [
-                                "A. Việt Nam.",
-                                "B. Mi-an-ma.",
-                                "C. Cam-pu-chia.",
-                                "D. In-đô-nê-xi-a."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b4_q4",
-                        "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 4: Năm 1997, hai quốc gia nào sau đây được kết nạp, trở thành thành viên thứ 8 và thứ 9 của Hiệp hội các quốc gia Đông Nam Á (ASEAN)?",
-                        "options": [
-                                "A. Lào và Mi-an-ma.",
-                                "B. Việt Nam và Cam-pu-chia.",
-                                "C. Thái Lan và Xin-ga-po.",
-                                "D. In-đô-nê-xi-a và Ma-lai-xi-a."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b4_q5",
-                        "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 5: Năm 1999, quốc gia nào sau đây được kết nạp, trở thành thành viên thứ 10 của Hiệp hội các quốc gia Đông Nam Á (ASEAN)?",
-                        "options": [
-                                "A. Cam-pu-chia.",
-                                "B. Mi-an-ma.",
-                                "C. Việt Nam.",
-                                "D. In-đô-nê-xi-a."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b4_q6",
-                        "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 6: Nội dung nào sau đây là một trong những hoạt động nổi bật của Hiệp hội các quốc gia Đông Nam Á (ASEAN) trong giai đoạn 1967-1976?",
-                        "options": [
-                                "A. Tập trung vào hợp tác trên lĩnh vực chính trị - an ninh.",
-                                "B. Phản đối Trật tự thế giới hai cực I-an-ta, ủng hộ xu thế đa cực.",
-                                "C. Tích cực ủng hộ việc đấu tranh chống Mỹ xâm lược Việt Nam.",
-                                "D. Tham gia vào việc giải quyết căng thẳng trên bán đảo Triều Tiên."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b4_q7",
-                        "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 7: Nội dung nào sau đây là một trong những hoạt động nổi bật của Hiệp hội các quốc gia Đông Nam Á (ASEAN) trong giai đoạn 1976-1999?",
-                        "options": [
-                                "A. Phát triển số lượng thành viên từ 5 nước lên 10 nước.",
-                                "B. Hợp tác hiệu quả trong hoạt động chống chủ nghĩa khủng bố.",
-                                "C. Bước đầu phát triển về cơ cấu tổ chức, nguyên tắc hoạt động.",
-                                "D. Các nước tập trung hợp tác trên lĩnh vực chính trị - an ninh."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b4_q8",
-                        "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 8: Nội dung nào sau đây là một trong những thành tựu về chính trị - an ninh của Hiệp hội các quốc gia Đông Nam Á (ASEAN) trong giai đoạn 1976-1999?",
-                        "options": [
-                                "A. Tham gia vào việc giải quyết lập lại hòa bình ở Cam-pu-chia.",
-                                "B. Hợp tác hiệu quả trong hoạt động chống chủ nghĩa khủng bố.",
-                                "C. Bước đầu phát triển về cơ cấu tổ chức, nguyên tắc hoạt động.",
-                                "D. Các nước tập trung hợp tác trên lĩnh vực chính trị - an ninh."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b4_q9",
-                        "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 9: Nội dung nào sau đây là một trong những hoạt động nổi bật của Hiệp hội các quốc gia Đông Nam Á (ASEAN) trong giai đoạn 1999-2015?",
-                        "options": [
-                                "A. Họp bàn và đã thông qua bản Hiến chương ASEAN.",
-                                "B. Hoàn thiện cơ cấu tổ chức và nguyên tắc hoạt động.",
-                                "C. Tham gia giải quyết vấn đề hòa bình ở In-đô-nê-xi-a.",
-                                "D. Hoàn thành việc kết nạp Đông Ti-mo vào ASEAN."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b4_q10",
-                        "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 10: Hiệp hội các quốc gia Đông Nam Á (ASEAN) được thành lập trong bối cảnh lịch sử nào sau đây?",
-                        "options": [
-                                "A. Các nước có độc lập dân tộc nhưng gặp khó khăn trong phát triển.",
-                                "B. Các nước trong khu vực đã hoàn thành công nghiệp hóa đất nước.",
-                                "C. Nhiều nước Đông Nam Á đã vươn lên trở thành “con rồng” kinh tế.",
-                                "D. Xu thế toàn cầu hóa xuất hiện và ngày càng phát triển mạnh mẽ."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b4_q11",
-                        "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 11: Hiệp hội các quốc gia Đông Nam Á (ASEAN) được thành lập với mục đích nào sau đây?",
-                        "options": [
-                                "A. Thúc đẩy hòa bình và ổn định khu vực.",
-                                "B. Tạo lập một thị trường chung và đồng tiền chung.",
-                                "C. Phát triển quân sự và xây dựng liên minh quân sự.",
-                                "D. Loại trừ sự cạnh tranh kinh tế giữa các nước thành viên."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b4_q12",
-                        "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 12: Ba nước Đông Dương và Mi-an-ma gia nhập Hiệp hội các quốc gia Đông Nam Á (ASEAN) trong bối cảnh nào sau đây?",
-                        "options": [
-                                "A. Xu thế toàn cầu hóa đang diễn ra mạnh mẽ.",
-                                "B. Chủ nghĩa xã hội trở thành hệ thống thế giới.",
-                                "C. Bán đảo Triều Tiên được thống nhất trở lại.",
-                                "D. Chiến tranh lạnh đang diễn ra căng thẳng."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b4_q13",
-                        "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 13: Trong giai đoạn 1967-1976, Hiệp hội các quốc gia Đông Nam Á (ASEAN) coi trọng vấn đề chính trị - an ninh vì một trong những lí do nào sau đây?",
-                        "options": [
-                                "A. Cuộc Chiến tranh lạnh đã và đang tác động sâu sắc đến nhiều nước.",
-                                "B. Mỹ bắt đầu có những hành động can thiệp, dính líu vào Đông Dương.",
-                                "C. Xu thế toàn cầu hóa xuất hiện và có những bước phát triển mạnh mẽ.",
-                                "D. Việc lập lại hòa bình ở Cam-pu-chia trở thành tâm điểm của khu vực."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b4_q14",
-                        "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 14: Quá trình mở rộng thành viên của Hiệp hội các quốc gia Đông Nam Á (ASEAN) diễn ra lâu dài và đầy trở ngại vì một trong những lí do nào sau đây?",
-                        "options": [
-                                "A. Thời gian độc lập các nước không đồng đều.",
-                                "B. Nền kinh tế của các nước có nhiều cách biệt.",
-                                "C. Khả năng đóng góp của các nước yếu kém.",
-                                "D. Các nước không có nhu cầu liên kết khu vực."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b4_q15",
-                        "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 15: Hiệp ước Ba-li (1976) đánh dấu bước phát triển mới của Hiệp hội các quốc gia Đông Nam Á (ASEAN) vì một trong những lí do nào sau đây?",
-                        "options": [
-                                "A. Đã đề ra được những nguyên tắc cơ bản trong quan hệ giữa các nước.",
-                                "B. Có những biện pháp xây dựng khu vực hòa bình, tự do, trung lập.",
-                                "C. Đề ra biện pháp cụ thể hóa hợp tác kinh tế, chính trị trong khu vực.",
-                                "D. Có biện pháp để nâng cao vị thế quốc tế của các nước trong khu vực."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b4_q16",
-                        "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 16: Đọc đoạn thông tin: “Hiệp hội các quốc gia Đông Nam Á (ASEAN) ra đời là một tất yếu trong thời kì Chiến tranh lạnh khi một số nước Đông Nam Á lo ngại sự mở rộng của chủ nghĩa xã hội ra khu vực. Trong bối cảnh ấy, Việt Nam - một nước xã hội chủ nghĩa - là một nhân tố khách quan tác động đến sự thành lập ASEAN, từ đây Việt Nam đối tượng chủ yếu được tính đến trong cách hành xử của nhóm nước sáng lập ASEAN trong thời gian từ năm 1967 đến năm 1991”.\nViệt Nam được coi là một “nhân tố” trong thành lập Hiệp hội các quốc gia Đông Nam Á (ASEAN) vì lí do nào sau đây?",
-                        "options": [
-                                "A. Việt Nam là một nước xã hội chủ nghĩa có thể mở rộng ảnh hưởng ra khu vực.",
-                                "B. Việt Nam có quan hệ chính trị, kinh tế chặt chẽ với các nước Đông Nam Á.",
-                                "C. Việt Nam là một trong những nước sáng lập tổ chức liên kết của khu vực.",
-                                "D. Việt Nam là quốc gia có chính sách trung lập trong thời kỳ Chiến tranh lạnh."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b4_q17",
-                        "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 17: Nội dung nào sau đây phản ánh đúng một trong những đóng góp của Việt Nam đối với sự phát triển của Hiệp hội các quốc gia Đông Nam Á (ASEAN)?",
-                        "options": [
-                                "A. Việt Nam đã tích cực tham gia và thúc đẩy quá trình mở rộng thành viên của ASEAN.",
-                                "B. Việt Nam là một trong những nước tham gia sáng lập và dẫn dắt ASEAN ngay từ đầu.",
-                                "C. Việt Nam đã đề xuất và thiết lập liên minh quân sự vững mạnh trong khối ASEAN.",
-                                "D. Việt Nam đã trở thành trung tâm kinh tế - tài chính của ASEAN ngay khi gia nhập."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b4_tf1",
-                        "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - ĐÚNG / SAI",
-                        "type": "true_false_group",
-                        "text": "Câu 1: Đọc đoạn tư liệu sau đây:\n“Việc Việt Nam tham gia ASEAN đã góp phần quan trọng thúc đẩy việc thành lập một ASEAN bao gồm cả 10 nước Đông Nam Á, chấm dứt tình trạng chia rẽ, đối đầu, căng thẳng ở khu vực, mở ra một giai đoạn mới khác hẳn về chất của quan hệ giữa các quốc gia ở khu vực; mở rộng hợp tác vì hòa bình phát triển, để ASEAN thực sự là của Đông Nam Á và vì Đông Nam Á”.\n(Học viện Ngoại giao, Việt Nam trong tiến trình hội nhập và phát triển, Nxb. Chính trị quốc gia, Hà Nội, 2009, tr. 292)",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) ASEAN bao gồm 10 nước Đông Nam Á được đánh dấu khi Việt Nam trở thành thành viên chính thức.",
-                                        "correctAnswer": "Sai"
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Việt Nam gia nhập ASEAN đã mở ra giai đoạn mới trong quan hệ giữa các quốc gia trong khu vực.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Việt Nam gia nhập ASEAN đã chấm dứt hoàn toàn mọi mâu thuẫn, tranh chấp giữa các quốc gia trong khu vực.",
-                                        "correctAnswer": "Sai"
-                                },
-                                {
-                                        "id": "d",
-                                        "text": "d) Sự tham gia của Việt Nam vào ASEAN đã giúp mở ra giai đoạn hợp tác mới, vì hòa bình và phát triển cho toàn khu vực.",
-                                        "correctAnswer": "Đúng"
-                                }
-                        ]
-                },
-                {
-                        "id": "ls12_b4_tf2",
-                        "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - ĐÚNG / SAI",
-                        "type": "true_false_group",
-                        "text": "Câu 2: Đọc đoạn tư liệu sau đây:\n“Nhất quán trong tư duy và hành động thực hiện đường lối đối ngoại đa phương hóa, đa dạng hóa của Đảng và Nhà nước, Việt Nam đã và sẽ tiếp tục tham gia hợp tác ASEAN một cách tích cực, chủ động và có trách nhiệm, để góp phần xây dựng ASEAN trở thành một tổ chức liên kết chặt chẽ, đoàn kết và vững mạnh, có vai trò chủ đạo trong việc bảo đảm môi trường hòa bình, ổn định và thịnh vượng ở khu vực”.\n(Học viện Ngoại giao, Việt Nam trong tiến trình hội nhập và phát triển, Nxb. Chính trị quốc gia, Hà Nội, 2009, tr. 397)",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Theo đoạn tư liệu, Việt Nam là thành viên tích cực, chủ động và có trách nhiệm trong việc xây dựng ASEAN trở thành tổ chức liên kết chặt chẽ.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Nhằm góp phần xây dựng ASEAN phát triển và hoàn thiện hơn, Việt Nam sẽ giữ vai trò chủ đạo và quyết định mọi vấn đề của khu vực.",
-                                        "correctAnswer": "Sai"
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Trải qua thời gian hình thành và phát triển, ASEAN ngày càng khẳng định được vị thế là tổ chức hợp tác ổn định và thịnh vượng nhất hành tinh.",
-                                        "correctAnswer": "Sai"
-                                },
-                                {
-                                        "id": "d",
-                                        "text": "d) Là thành viên của ASEAN, các quốc gia phải có trách nhiệm tạo ra môi trường phát triển thuận lợi để hợp tác có hiệu quả trong khu vực và thế giới.",
-                                        "correctAnswer": "Đúng"
-                                }
-                        ]
-                },
-                {
-                        "id": "ls12_b5_q1",
-                        "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 1: Ý tưởng về việc xây dựng Cộng đồng ASEAN được khởi nguồn từ khi",
-                        "options": [
-                                "A. thành lập tổ chức ASEAN (1967) tại Thái Lan.",
-                                "B. các nước ASEAN kí kết Hiệp ước Ba-li (1976).",
-                                "C. tổ chức ASEAN có đủ 10 nước thành viên (1999).",
-                                "D. “vấn đề Cam-pu-chia” được giải quyết (1991)."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b5_q2",
-                        "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 2: Trong Tuyên bố Băng Cốc (1967), các nước thành viên ASEAN đã đề ra ý tưởng nào sau đây?",
-                        "options": [
-                                "A. Xây dựng một cộng đồng các nước Đông Nam Á hòa bình và thịnh vượng.",
-                                "B. Tổ chức Đông Nam Á thành một khu vực mậu dịch tự do trong vòng 10 năm.",
-                                "C. Thành lập tổ chức liên minh chính trị - quân sự của các nước trong khu vực.",
-                                "D. Thúc đẩy quan hệ kinh tế, văn hóa giữa ASEAN và Cộng đồng châu Âu (EC)."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b5_q3",
-                        "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 3: Hội nghị cấp cao ASEAN không chính thức được tổ chức tại Ma-lai-xi-a (1997) có nội dung cơ bản nào sau đây?",
-                        "options": [
-                                "A. Các nước chính thức khẳng định ý tưởng lập ra Cộng đồng ASEAN.",
-                                "B. Thảo luận và chính thức thông qua bản Hiến chương của ASEAN.",
-                                "C. Quyết định tổ chức Đông Nam Á thành khu vực mậu dịch tự do.",
-                                "D. Kí Hiệp ước thân thiện và hợp tác ở Đông Nam Á (Hiệp ước Ba-li)."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b5_q4",
-                        "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 4: Năm 2015, các nhà lãnh đạo ASEAN kí kết Tuyên bố Cua-la Lăm-pơ, đánh dấu sự ra đời của tổ chức nào sau đây?",
-                        "options": [
-                                "A. Cộng đồng ASEAN.",
-                                "B. Hiệp hội các quốc gia Đông Nam Á.",
-                                "C. Tổ chức phòng thủ Đông Nam Á.",
-                                "D. Liên minh vì sự tiến bộ Đông Nam Á."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b5_q5",
-                        "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 5: Nội dung nào sau đây là một trong những mục tiêu xây dựng Cộng đồng ASEAN?",
-                        "options": [
-                                "A. Thúc đẩy ASEAN mở rộng hợp tác với bên ngoài.",
-                                "B. Tạo điều kiện để ASEAN tập trung phát triển nội khối.",
-                                "C. Đưa tốc độ tăng trưởng của ASEAN cao nhất thế giới.",
-                                "D. Đưa ASEAN trở thành một tổ chức nhất thể hóa khu vực."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b5_q6",
-                        "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 6: Một trong những nội dung chính của Cộng đồng Chính trị - An ninh ASEAN (APSC) là",
-                        "options": [
-                                "A. xây dựng một cộng đồng theo các giá trị và chuẩn mực chung.",
-                                "B. xây dựng thành một thị trường và hệ thống sản xuất thống nhất.",
-                                "C. xây dựng khu vực kinh tế có sức cạnh tranh cao, phát triển đều.",
-                                "D. xây dựng một xã hội chia sẻ, đùm bọc, hòa thuận và rộng mở."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b5_q7",
-                        "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 7: Nội dung nào sau đây phản ánh không đúng thách thức của Cộng đồng ASEAN?",
-                        "options": [
-                                "A. Mức độ liên kết của ba trụ cột: chính trị - an ninh, kinh tế và văn hóa – xã hội.",
-                                "B. Sự đa dạng về chế độ chính trị, những mâu thuẫn trong quan hệ song phương.",
-                                "C. Khoảng cách kinh tế, sự chênh lệch trình độ phát triển, sự cạnh tranh sản xuất.",
-                                "D. An ninh phi truyền thống, ô nhiễm môi trường và các tội phạm xuyên quốc gia."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b5_q8",
-                        "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 8: Nội dung nào sau đây phản ánh đúng một trong những thách thức bên ngoài tác động đến Cộng đồng ASEAN?",
-                        "options": [
-                                "A. Sự cạnh tranh chiến lược của các nước lớn và sự thay đổi cấu trúc địa-chính trị.",
-                                "B. Sự đa dạng về chế độ chính trị, những mâu thuẫn trong quan hệ song phương.",
-                                "C. Khoảng cách kinh tế, sự chênh lệch trình độ phát triển, sự cạnh tranh sản xuất.",
-                                "D. Tình hình chính trị một số nước còn phức tạp, sự chênh lệch trình độ phát triển."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b5_q9",
-                        "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 9: Sự ra đời của Cộng đồng ASEAN đánh dấu bước phát triển mới trong hợp tác khu vực ở Đông Nam Á vì lí do nào sau đây?",
-                        "options": [
-                                "A. Thúc đẩy sự liên kết sâu rộng và toàn diện trên nhiều lĩnh vực giữa các nước thành viên.",
-                                "B. Tạo động lực để ASEAN trở thành trung tâm kinh tế - tài chính lớn nhất trên thế giới.",
-                                "C. Đã giải quyết được mọi mâu thuẫn, nhất là xung đột quân sự giữa các nước trong khu vực.",
-                                "D. Hoàn thiện được cơ cấu tổ chức và xác lập những nguyên tắc hoạt động của ASEAN."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b5_q10",
-                        "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 10: Nội dung nào sau đây là một trong những triển vọng của Cộng đồng ASEAN?",
-                        "options": [
-                                "A. Mức độ liên kết ngày càng chặt chẽ và sâu rộng trên cả ba trụ cột.",
-                                "B. Có quan hệ đối tác chiến lược toàn diện với tất cả các nước châu Á.",
-                                "C. Có tốc độ tăng trưởng kinh tế và phúc lợi xã hội cao nhất thế giới.",
-                                "D. Có vai trò định hướng và quyết định tại tất cả các diễn đàn quốc tế."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b5_q11",
-                        "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 11: Nội dung nào sau đây phản ánh không đúng triển vọng của Cộng đồng ASEAN?",
-                        "options": [
-                                "A. Sự đa dạng về chế độ chính trị, sự thay đổi cấu trúc địa-chính trị.",
-                                "B. Mức độ liên kết chính trị - an ninh, kinh tế và văn hóa - xã hội.",
-                                "C. Thể chế, chính sách và cơ chế hợp tác của Cộng đồng ASEAN.",
-                                "D. Vị thế, quan hệ với các đối tác bên ngoài, chế độ thuế quan."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b5_q12",
-                        "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 12: Nội dung nào sau đây phản ánh không đúng về Cộng đồng Chính trị - An ninh ASEAN (APSC)?",
-                        "options": [
-                                "A. Tạo ra một liên minh quân sự ở khu vực Đông Nam Á.",
-                                "B. Tạo khuôn khổ hợp tác chính trị - an ninh toàn diện.",
-                                "C. Xây dựng một môi trường hòa bình và ổn định.",
-                                "D. Hoạt động dựa trên cơ sở Hiến chương ASEAN."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b5_q13",
-                        "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 13: Đọc đoạn tư liệu sau: “Toàn bộ Đông Nam Á sẽ là một cộng đồng ASEAN, nhận thức được mối liên hệ lịch sử của mình, hiểu rõ di sản văn hóa của mình và gắn bó với nhau bằng một bản sắc chung của khu vực” (Nguồn: Cổng Thông tin ASEAN- Việt Nam).\nĐể xây dựng một bản sắc chung của Cộng đồng ASEAN như mục tiêu đề ra, các quốc gia thành viên cần phải thực hiện biện pháp nào sau đây?",
-                        "options": [
-                                "A. Thúc đẩy sự hiểu biết và tôn trọng lẫn nhau về di sản văn hóa và lịch sử của từng quốc gia.",
-                                "B. Đồng nhất hóa các nền văn hóa trong ASEAN để tạo ra một bản sắc khu vực duy nhất.",
-                                "C. Ưu tiên phát triển kinh tế mà không cần chú trọng đến các yếu tố văn hóa và lịch sử.",
-                                "D. Tách biệt hoàn toàn các yếu tố văn hóa truyền thống để hội nhập với các khu vực khác."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b5_q14",
-                        "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 14: Nội dung nào sau đây là một trong những cơ hội đối với Việt Nam khi gia nhập Cộng đồng Kinh tế ASEAN (AEC)?",
-                        "options": [
-                                "A. Mở rộng thị trường trong và ngoài khu vực.",
-                                "B. Xóa bỏ hoàn toàn sự chênh lệch về kinh tế.",
-                                "C. Tăng cường khả năng cạnh tranh và thu hút đầu tư.",
-                                "D. Thay đổi hoàn toàn cấu trúc kinh tế Việt Nam."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b5_tf1",
-                        "section": "BÀI 5: CỘNG ĐỒNG ASEAN - ĐÚNG / SAI",
-                        "type": "true_false_group",
-                        "text": "Câu 1: Đọc đoạn tư liệu sau đây:\n“Cộng đồng ASEAN với ba trụ cột về chính trị-an ninh, kinh tế và văn hóa-xã hội, có mục tiêu bao trùm là xây dựng Hiệp hội thành một tổ chức hợp tác liên chính phủ liên kết sâu rộng hơn và vững mạnh hơn, nhưng vẫn mở rộng hợp tác với bên ngoài, đồng thời hướng mạnh tới người dân, phục vụ và nâng cao cuộc sống của người dân”.\n(Học viện Ngoại giao, Việt Nam trong tiến trình hội nhập và phát triển, Nxb. Chính trị quốc gia, Hà Nội, 2009, tr. 393)",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Chính trị - an ninh, kinh tế và văn hóa - xã hội là ba trụ cột của cộng đồng ASEAN.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Cộng đồng ASEAN được xây dựng chỉ nhằm mở rộng quan hệ với các nước phát triển.",
-                                        "correctAnswer": "Sai"
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Cộng đồng ASEAN sẽ góp phần đưa các quốc gia thành viên phát triển về mọi mặt.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "d",
-                                        "text": "d) Cộng đồng ASEAN ra đời đánh dấu bước phát triển mới của tổ chức trong khu vực.",
-                                        "correctAnswer": "Đúng"
-                                }
-                        ]
-                },
-                {
-                        "id": "ls12_b5_tf2",
-                        "section": "BÀI 5: CỘNG ĐỒNG ASEAN - ĐÚNG / SAI",
-                        "type": "true_false_group",
-                        "text": "Câu 2: Đọc đoạn tư liệu sau đây:\n“Có thể nói, bằng những nỗ lực không ngừng nghỉ của các quốc gia thành viên ASEAN, đã góp phần kiến tạo nên một Đông Nam Á hòa bình, ổn định. Đây sẽ là một tiền lệ tốt cho các nước thành viên ASEAN trong quy cách ứng xử với các xung đột nảy sinh, lan tỏa giá trị hòa bình, hòa hợp trong tất cả các nước cùng chia sẻ lợi ích chung. Mặc dù còn những bất đồng chưa thể giải quyết triệt để, song những gì mà ASEAN làm được trong những năm đầu tiên sẽ đặt nền móng vững chắc để tiến tới xây dựng một cộng đồng phát triển thịnh vượng trong tương lai”.\n(Trần Xuân Hiệp, Cộng đồng ASEAN từ ý tưởng đến hiện thực, Nxb. Thế giới, Hà Nội, 2021, tr. 24)",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Đoạn tư liệu cho thấy triển vọng tốt đẹp trong việc xây dựng cộng đồng ASEAN phát triển thịnh vượng nhất hiện nay.",
-                                        "correctAnswer": "Sai"
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Xây dựng Cộng đồng ASEAN là một trong những biện pháp nhằm ngăn chặn sự ảnh hưởng của các cường quốc đối với khu vực.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Các quốc gia thành viên đã có những đóng góp quan trọng trong tiến trình hình thành và phát triển của Cộng đồng ASEAN.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "d",
-                                        "text": "d) Trong quá trình tồn tại và phát triển Cộng đồng ASEAN đã từng bước vượt qua mọi khó khăn, thử thách từ khu vực và thế giới.",
-                                        "correctAnswer": "Đúng"
-                                }
-                        ]
-                },
-                {
-                        "id": "ls12_b5_tf3",
-                        "section": "BÀI 5: CỘNG ĐỒNG ASEAN - ĐÚNG / SAI",
-                        "type": "true_false_group",
-                        "text": "Câu 3: Đọc đoạn tư liệu sau đây:\n“Sự ra đời của Cộng đồng ASEAN vào ngày 31-12-2015, đã nâng cao vai trò và giá trị chiến lược của ASEAN. Cùng với những kết quả tốt đẹp trong xây dựng APSC, ASEAN đã khẳng định là một trong những tổ chức hợp tác khu vực thành công nhất trên thế giới. Thông qua tiến trình liên kết nội khối, hợp tác về chính trị - an ninh, đặc biệt là trong ngăn ngừa xung đột bằng cách xây dựng lòng tin và chia sẻ các quy tắc ứng xử, ASEAN đã trở thành một nhân tố quan trọng hàng đầu trong bảo đảm hòa bình, ổn định và hợp tác vì sự phát triển ở khu vực”.\n(Trần Xuân Hiệp, Cộng đồng ASEAN từ ý tưởng đến hiện thực, Nxb. Thế giới, Hà Nội, 2021, tr. 497)",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Sự ra đời của Cộng đồng ASEAN vào ngày 31-12-2015 đã nâng cao vai trò và giá trị chiến lược của ASEAN.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) ASEAN không có vai trò quan trọng trong việc bảo đảm hòa bình và ổn định ở khu vực Đông Nam Á.",
-                                        "correctAnswer": "Sai"
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) ASEAN đã khẳng định mình là một trong những tổ chức hợp tác khu vực thành công nhất trên thế giới thông qua các nỗ lực về chính trị - an ninh và ngăn ngừa xung đột.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "d",
-                                        "text": "d) ASEAN đã trở thành một nhân tố quan trọng trong bảo đảm hòa bình và phát triển khu vực nhờ vào việc xây dựng lòng tin và chia sẻ quy tắc ứng xử.",
-                                        "correctAnswer": "Đúng"
-                                }
-                        ]
-                },
-                {
-                        "id": "ls12_b6_q1",
-                        "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 1: Trong Cách mạng tháng Tám năm 1945 ở Việt Nam, địa phương nào sau đây đã tiến hành khởi nghĩa và giành thắng lợi vào ngày 19-8-1945?",
-                        "options": [
-                                "A. Hà Nội.",
-                                "B. Huế.",
-                                "C. Hà Tiên.",
-                                "D. Sài Gòn."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b6_q2",
-                        "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 2: Chế độ phong kiến ở Việt Nam hoàn toàn sụp đổ được đánh dấu bằng sự kiện nào sau đây?",
-                        "options": [
-                                "A. Vua Bảo Đại tuyên bố thoái vị, trao ấn kiếm cho chính quyền cách mạng.",
-                                "B. Nhà Nguyễn ký với Pháp Hiệp ước Pa-tơ-nốt, thừa nhận sự bảo hộ của Pháp.",
-                                "C. Phát xít Nhật vào Đông Dương và cấu kết với Pháp để thống trị Việt Nam.",
-                                "D. Nhân dân các địa phương Hà Nội, Huế, Sài Gòn giành được chính quyền."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b6_q3",
-                        "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 3: Ngày 13-8-1945, khi nhận được tin Nhật Bản sắp đầu hàng Đồng minh, Trung ương Đảng và Tổng bộ Việt Minh đã thành lập",
-                        "options": [
-                                "A. Ủy ban Khởi nghĩa toàn quốc.",
-                                "B. Ủy ban Dân tộc giải phóng Việt Nam.",
-                                "C. Ủy ban Quân sự cách mạng Bắc Kì.",
-                                "D. Ủy ban lâm thời Khu giải phóng."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b6_q4",
-                        "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 4: Ngày 2 - 9 - 1945, tại Quảng trường Ba Đình (Hà Nội), Chủ tịch Hồ Chí Minh đã",
-                        "options": [
-                                "A. đọc bản Tuyên ngôn Độc lập.",
-                                "B. phát lệnh Tổng khởi nghĩa.",
-                                "C. đọc Lời kêu gọi toàn quốc kháng chiến.",
-                                "D. công bố Chỉ thị toàn dân kháng chiến."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b6_q5",
-                        "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 5: Trong Tổng khởi nghĩa Cách mạng tháng Tám năm 1945, nhân dân Việt Nam đã giành chính quyền từ tay",
-                        "options": [
-                                "A. phát xít Nhật.",
-                                "B. thực dân Pháp.",
-                                "C. đế quốc Mỹ.",
-                                "D. thực dân Anh."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b6_q6",
-                        "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 6: Hội nghị toàn quốc của Đảng họp ở Tân Trào (Tuyên Quang, ngày 14, 15-8-1945) đã thông qua nội dung quan trọng nào sau đây?",
-                        "options": [
-                                "A. Kế hoạch lãnh đạo toàn dân Tổng khởi nghĩa.",
-                                "B. Mười chính sách của Mặt trận Việt Minh.",
-                                "C. Hình thái khởi nghĩa giành chính quyền.",
-                                "D. Tạm gác khẩu hiệu cách mạng ruộng đất."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b6_q7",
-                        "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 7: Đại hội Quốc dân họp ở Tân Trào (Tuyên Quang, ngày 16, 17-8-1945) đã quyết định thành lập",
-                        "options": [
-                                "A. Ủy ban Dân tộc giải phóng Việt Nam.",
-                                "B. Chính phủ liên hiệp kháng chiến.",
-                                "C. Ủy ban lâm thời khu giải phóng.",
-                                "D. Ủy ban Khởi nghĩa toàn quốc."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b6_q8",
-                        "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 8: Trong Cách mạng tháng Tám năm 1945, nhân dân Việt Nam có hoạt động nào sau đây?",
-                        "options": [
-                                "A. Tổng khởi nghĩa giành chính quyền.",
-                                "B. Kháng chiến chống Pháp xâm lược.",
-                                "C. Đấu tranh chống phá “ấp chiến lược”.",
-                                "D. Ủng hộ phong trào “Tuần lễ vàng”."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b6_q9",
-                        "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 9: Đối với cách mạng Việt Nam, việc phát xít Nhật đầu hàng Đồng minh không điều kiện (15-8-1945) đã",
-                        "options": [
-                                "A. tạo điều kiện khách quan thuận lợi cho tổng khởi nghĩa.",
-                                "B. mở ra thời kỳ trực tiếp cho cuộc vận động giải phóng dân tộc.",
-                                "C. tạo cơ hội cho quân Đồng minh trợ giúp nhân dân khởi nghĩa.",
-                                "D. tạo điều kiện thuận lợi cho cuộc khởi nghĩa từng phần."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b6_q10",
-                        "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 10: “Hỡi quốc dân đồng bào! Phát xít Nhật đã đầu hàng Đồng minh, quân Nhật đã bị tan rã tại khắp các mặt trận, kẻ thù chúng ta đã ngã gục...”. (Ủy ban Khởi nghĩa toàn quốc, Quân lệnh số 1).\nĐoạn thông tin trên phản ánh",
-                        "options": [
-                                "A. điều kiện khách quan thuận lợi của Tổng khởi nghĩa tháng Tám.",
-                                "B. điều kiện chủ quan thuận lợi của Tổng khởi nghĩa tháng Tám.",
-                                "C. Cách mạng tháng Tám đã thành công ở Việt Nam và Đông Dương.",
-                                "D. phát xít Nhật đã đầu hàng quân Đồng minh và rút khỏi Việt Nam."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b6_q11",
-                        "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 11: “Pháp chạy, Nhật hàng, vua Bảo Đại thoái vị. Dân ta đã đánh đổ các xiềng xích thực dân gần 100 năm nay để gây nên nước Việt Nam độc lập. Dân ta lại đánh đổ chế độ quân chủ mấy mươi thế kỉ mà lập nên chế độ dân chủ cộng hoà”. (Hồ Chí Minh, Tuyên ngôn Độc lập (năm 1945), trích trong: Hồ Chí Minh, Toàn tập, Tập 4, NXB Chính trị Quốc gia, Hà Nội, 2011, tr.3)\nĐoạn tư liệu trên phản ánh",
-                        "options": [
-                                "A. những kết quả to lớn của cuộc Cách mạng tháng Tám năm 1945.",
-                                "B. sự suy yếu, lạc hậu của chế độ thực dân và phong kiến ở Việt Nam.",
-                                "C. những đóng góp của Cách mạng tháng Tám năm 1945 đối với thế giới.",
-                                "D. nhân dân Việt Nam đã giành chính quyền từ tay thực dân Pháp."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b6_q12",
-                        "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 12: Cuộc Tổng khởi nghĩa Tháng Tám năm 1945 ở Việt Nam",
-                        "options": [
-                                "A. có sự tham gia đông đảo của quần chúng nhân dân.",
-                                "B. diễn ra ngay khi Đảng Cộng sản Việt Nam thành lập.",
-                                "C. không diễn ra dưới hình thức đấu tranh vũ trang.",
-                                "D. được phát động ngay khi Hiệp định Pari được kí kết."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b6_q13",
-                        "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 13: Nội dung nào sau đây là một trong những nguyên nhân dẫn đến thắng lợi của Cách mạng tháng Tám năm 1945 ở Việt Nam?",
-                        "options": [
-                                "A. Truyền thống yêu nước, đoàn kết của nhân dân.",
-                                "B. Sự giúp đỡ to lớn từ các nước xã hội chủ nghĩa.",
-                                "C. Nhận được nguồn viện trợ của Mĩ từ kế hoạch Mác-san.",
-                                "D. Tình đoàn kết chiến đấu của ba nước Đông Dương."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b6_q14",
-                        "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 14: Nội dung nào sau đây không phải là nguyên nhân dẫn tới thắng lợi của Cách mạng tháng Tám năm 1945 ở Việt Nam?",
-                        "options": [
-                                "A. Sự chi viện đầy đủ, kịp thời của hậu phương miền Bắc.",
-                                "B. Sự lãnh đạo đúng đắn của Đảng Cộng sản Đông Dương.",
-                                "C. Dân tộc Việt Nam có truyền thống yêu nước, đoàn kết.",
-                                "D. Có sự chuẩn bị lâu dài, chu đáo suốt 15 năm (từ năm 1930)."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b6_q15",
-                        "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 15: Nội dung nào sau đây phản ánh đúng ý nghĩa lịch sử của Cách mạng tháng Tám năm 1945 ở Việt Nam?",
-                        "options": [
-                                "A. Đảng Cộng sản Đông Dương từ vai trò lãnh đạo, trở thành Đảng cầm quyền.",
-                                "B. Là yếu tố quyết định làm tan rã hệ thống thuộc địa của chủ nghĩa thực dân.",
-                                "C. Lật đổ chế độ phong kiến chuyên chế, hoàn thành triệt để nhiệm vụ dân chủ.",
-                                "D. Mở ra kỉ nguyên mới - độc lập, thống nhất, cả nước đi lên chủ nghĩa xã hội."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b6_q16",
-                        "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 16: Nội dung nào sau đây phản ánh đúng và đầy đủ về bối cảnh lịch sử của cuộc Tổng khởi nghĩa tháng Tám năm 1945 ở Việt Nam?",
-                        "options": [
-                                "A. Đảng sớm nhận thấy thời cơ đan xen lẫn nguy cơ.",
-                                "B. Nhật Bản đầu hàng quân Đồng minh vô điều kiện.",
-                                "C. Quân Đồng minh chưa kịp kéo vào Đông Dương.",
-                                "D. Phát xít Nhật là kẻ thù nguy hiểm của cách mạng."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b6_q17",
-                        "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
-                        "type": "multiple_choice",
-                        "text": "Câu 17: “Tình thế vô cùng khẩn cấp. Tất cả mọi việc đều phải nhằm vào ba nguyên tắc: a) Tập trung – tập trung lực lượng vào những việc chính. b) Thống nhất – thống nhất về mọi phương diện quân sự, chính trị, hành động và chỉ huy. c) Kịp thời – kịp thời hành động, không bỏ lỡ cơ hội”.\n(Nghị quyết Hội nghị toàn quốc của Đảng Cộng sản Đông Dương, tháng 8-1945, trích trong: Văn kiện Đảng, Toàn tập, Tập 7, NXB Chính trị Quốc gia, Hà Nội, 2000, tr.425)\nNghị quyết của Đảng Cộng sản Đông Dương phản ánh nội dung nào sau đây?",
-                        "options": [
-                                "A. Sự lãnh đạo của Đảng cần tập trung, thống nhất, kịp thời.",
-                                "B. Đảng phải lãnh đạo nhân dân giành chính quyền bằng mọi giá.",
-                                "C. Chính phủ Việt Nam đã chuẩn bị đầy đủ cho Tổng khởi nghĩa.",
-                                "D. Thời cơ của cuộc kháng chiến chống Pháp sắp xuất hiện."
-                        ],
-                        "correctIndex": 0
-                },
-                {
-                        "id": "ls12_b6_tf1",
-                        "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - ĐÚNG / SAI",
-                        "type": "true_false_group",
-                        "text": "Câu 1: Đọc đoạn tư liệu sau đây:\n“Chủ trương của Việt Nam độc lập đồng minh - chủ trương liên hiệp hết thảy các tầng lớp nhân dân không phân biệt tôn giáo, đảng phái, xu hướng chính trị nào, giai cấp nào, đoàn kết chiến đấu để đánh đuổi Pháp - Nhật giành quyền độc lập cho xứ sở. Việt Nam độc lập đồng minh lại còn hết sức giúp đỡ cho Ai Lao độc lập đồng minh và Cao Miên độc lập đồng minh”.\n(Đảng Cộng sản Việt Nam (2000), Văn kiện Đảng toàn tập, Tập 7, NXB Chính trị Quốc gia, Hà Nội)",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Việt Nam độc lập đồng minh chủ trương liên hiệp tất cả các tầng lớp nhân dân để đánh đuổi thực dân Pháp và phát xít Nhật.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Chủ trương của Việt Nam độc lập đồng minh không phân biệt tầng lớp, tôn giáo hay xu hướng chính trị nhằm đạt được sự đoàn kết toàn diện.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Việc liên hiệp các tầng lớp nhân dân trong chủ trương của Việt Minh đã tạo nên sự hỗn loạn và khó khăn trong việc quản lý và lãnh đạo phong trào độc lập.",
-                                        "correctAnswer": "Sai"
-                                },
-                                {
-                                        "id": "d",
-                                        "text": "d) Chủ trương giúp đỡ Ai Lao và Cao Miên độc lập đồng minh của Việt Minh là một hành động không có lợi ích chiến lược cho Việt Nam.",
-                                        "correctAnswer": "Sai"
-                                }
-                        ]
-                },
-                {
-                        "id": "ls12_b6_tf2",
-                        "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - ĐÚNG / SAI",
-                        "type": "true_false_group",
-                        "text": "Câu 2: Đọc đoạn tư liệu sau đây:\n“Bảo Đại đọc xong [Chiếu thoái vị] thì trên kì đài cờ vàng của nhà vua từ từ hạ xuống và lá cờ nền đỏ thắm tươi long lanh năm cánh sao vàng được kéo lên giữa những tiếng vỗ tay, những tiếng hoan hô như sấm...Rồi ông Trần Huy Liệu đọc bản tuyên bố của Đoàn đại biểu Chính phủ, nêu rõ thắng lợi của Cách mạng tháng Tám là kết quả của hàng mấy chục năm đấu tranh anh dũng, kiên cường, bền bỉ của nhân dân cả nước, tuyên bố chấm dứt vĩnh viễn chế độ quân chủ...”.\n(Phạm Khắc Hòe, Từ triều đình Huế đến chiến khu Việt Bắc, NXB Thuận Hóa, Huế, 1987, tr.86)",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Sự kiện vua Bảo Đại đọc chiếu thoái vị, trao ấn, kiếm cho chính quyền cách mạng đã đánh dấu chấm dứt sự tồn tại của chế độ phong kiến ở Việt Nam.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Cách mạng tháng Tám năm 1945 ở Việt Nam thắng lợi là kết quả của quá trình chuẩn bị lực lượng suốt 15 năm dưới sự lãnh đạo của Đảng Cộng sản Đông Dương.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Cách mạng tháng Tám năm 1945 mang tính chất dân chủ điển hình vì đã chấm dứt vĩnh viễn chế độ quân chủ chuyên chế ở Việt Nam.",
-                                        "correctAnswer": "Sai"
-                                },
-                                {
-                                        "id": "d",
-                                        "text": "d) Cách mạng tháng Tám năm 1945 ở Việt Nam thành công đã mở ra bước ngoặt vĩ đại đầu tiên trong tiến trình lịch sử của dân tộc Việt Nam ở thế kỉ XX.",
-                                        "correctAnswer": "Đúng"
-                                }
-                        ]
-                },
-                {
-                        "id": "ls12_b6_tf3",
-                        "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - ĐÚNG / SAI",
-                        "type": "true_false_group",
-                        "text": "Câu 3: Đọc đoạn tư liệu sau đây:\n“Đảng đã vận dụng một cách sáng tạo quy luật cách mạng bạo lực và khởi nghĩa giành chính quyền. Cách mạng tháng Tám là sự kết hợp giữa đấu tranh chính trị và đấu tranh quân sự, giữa chuẩn bị lâu dài về lực lượng chính trị và quân sự với mau lẹ chớp lấy thời cơ, phát động quần chúng vùng dậy đánh đổ chính quyền của đế quốc, phong kiến”.\n(Lê Duẩn, Dưới lá cờ vẻ vang của Đảng, vì độc lập, tự do, vì chủ nghĩa xã hội, tiến lên giành những thắng lợi mới, Nxb. Sự thật, Hà Nội, 1970, tr. 47)",
-                        "subQuestions": [
-                                {
-                                        "id": "a",
-                                        "text": "a) Cách mạng Tháng Tám là sự kết hợp giữa đấu tranh chính trị và đấu tranh quân sự.",
-                                        "correctAnswer": "Đúng"
-                                },
-                                {
-                                        "id": "b",
-                                        "text": "b) Đảng đã hoàn toàn dựa vào lực lượng quân sự để giành chính quyền trong Cách mạng Tháng Tám.",
-                                        "correctAnswer": "Sai"
-                                },
-                                {
-                                        "id": "c",
-                                        "text": "c) Việc Đảng chỉ tập trung vào chuẩn bị lực lượng chính trị mà không quan tâm đến lực lượng quân sự đã dẫn đến thành công của Cách mạng Tháng Tám.",
-                                        "correctAnswer": "Sai"
-                                },
-                                {
-                                        "id": "d",
-                                        "text": "d) Việc dự báo, nhận định đúng thời cơ, nghệ thuật chớp thời cơ là nguyên nhân hàng đầu đem đến sự thắng lợi của Cách mạng tháng Tám năm 1945.",
-                                        "correctAnswer": "Sai"
-                                }
-                        ]
-                }
-        ]
-}
+                "id": "on_tap_giua_ki_1_lich_su_12",
+                "title": "Ôn tập GKI - Lịch sử 12",
+                "category": "su",
+                "subject": "Lịch sử",
+                "description": "Trọn bộ đề cương ôn tập kiểm tra Giữa kì I môn Lịch sử 12 (Chương trình mới). Bao gồm 6 bài học: Liên Hợp Quốc, Trật tự thế giới trong Chiến tranh Lạnh, Trật tự thế giới sau Chiến tranh Lạnh, Sự ra đời và phát triển của ASEAN, Cộng đồng ASEAN, Cách mạng Tháng Tám năm 1945. Gồm 96 câu trắc nghiệm nhiều lựa chọn và 16 câu trắc nghiệm Đúng/Sai (64 mệnh đề) có đáp án chuẩn xác.",
+                "presets": [
+                        {
+                                "id": "all",
+                                "label": "✨ Toàn bộ 6 bài (112 câu hỏi)",
+                                "sectionIds": [
+                                        "b1_mcq",
+                                        "b1_tf",
+                                        "b2_mcq",
+                                        "b2_tf",
+                                        "b3_mcq",
+                                        "b3_tf",
+                                        "b4_mcq",
+                                        "b4_tf",
+                                        "b5_mcq",
+                                        "b5_tf",
+                                        "b6_mcq",
+                                        "b6_tf"
+                                ]
+                        },
+                        {
+                                "id": "b1",
+                                "label": "🌐 Bài 1: Liên Hợp Quốc (18 câu)",
+                                "sectionIds": [
+                                        "b1_mcq",
+                                        "b1_tf"
+                                ]
+                        },
+                        {
+                                "id": "b2",
+                                "label": "❄️ Bài 2: Chiến tranh Lạnh (19 câu)",
+                                "sectionIds": [
+                                        "b2_mcq",
+                                        "b2_tf"
+                                ]
+                        },
+                        {
+                                "id": "b3",
+                                "label": "🌍 Bài 3: Sau Chiến tranh Lạnh (19 câu)",
+                                "sectionIds": [
+                                        "b3_mcq",
+                                        "b3_tf"
+                                ]
+                        },
+                        {
+                                "id": "b4",
+                                "label": "🤝 Bài 4: ASEAN ra đời & phát triển (19 câu)",
+                                "sectionIds": [
+                                        "b4_mcq",
+                                        "b4_tf"
+                                ]
+                        },
+                        {
+                                "id": "b5",
+                                "label": "🏙️ Bài 5: Cộng đồng ASEAN (17 câu)",
+                                "sectionIds": [
+                                        "b5_mcq",
+                                        "b5_tf"
+                                ]
+                        },
+                        {
+                                "id": "b6",
+                                "label": "⭐ Bài 6: Cách mạng Tháng Tám 1945 (20 câu)",
+                                "sectionIds": [
+                                        "b6_mcq",
+                                        "b6_tf"
+                                ]
+                        },
+                        {
+                                "id": "all_mcq",
+                                "label": "🎯 Chỉ làm Trắc nghiệm 4 lựa chọn (96 câu)",
+                                "sectionIds": [
+                                        "b1_mcq",
+                                        "b2_mcq",
+                                        "b3_mcq",
+                                        "b4_mcq",
+                                        "b5_mcq",
+                                        "b6_mcq"
+                                ]
+                        },
+                        {
+                                "id": "all_tf",
+                                "label": "⚖️ Chỉ làm Trắc nghiệm Đúng/Sai (16 câu)",
+                                "sectionIds": [
+                                        "b1_tf",
+                                        "b2_tf",
+                                        "b3_tf",
+                                        "b4_tf",
+                                        "b5_tf",
+                                        "b6_tf"
+                                ]
+                        }
+                ],
+                "selectableSections": [
+                        {
+                                "id": "b1_mcq",
+                                "name": "Bài 1 - Trắc nghiệm (16 câu)",
+                                "group": "Bài 1: LIÊN HỢP QUỐC",
+                                "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
+                                "count": 16
+                        },
+                        {
+                                "id": "b1_tf",
+                                "name": "Bài 1 - Đúng / Sai (2 câu)",
+                                "group": "Bài 1: LIÊN HỢP QUỐC",
+                                "section": "BÀI 1: LIÊN HỢP QUỐC - ĐÚNG / SAI",
+                                "count": 2
+                        },
+                        {
+                                "id": "b2_mcq",
+                                "name": "Bài 2 - Trắc nghiệm (16 câu)",
+                                "group": "Bài 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH",
+                                "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "count": 16
+                        },
+                        {
+                                "id": "b2_tf",
+                                "name": "Bài 2 - Đúng / Sai (3 câu)",
+                                "group": "Bài 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH",
+                                "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - ĐÚNG / SAI",
+                                "count": 3
+                        },
+                        {
+                                "id": "b3_mcq",
+                                "name": "Bài 3 - Trắc nghiệm (16 câu)",
+                                "group": "Bài 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH",
+                                "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "count": 16
+                        },
+                        {
+                                "id": "b3_tf",
+                                "name": "Bài 3 - Đúng / Sai (3 câu)",
+                                "group": "Bài 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH",
+                                "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - ĐÚNG / SAI",
+                                "count": 3
+                        },
+                        {
+                                "id": "b4_mcq",
+                                "name": "Bài 4 - Trắc nghiệm (17 câu)",
+                                "group": "Bài 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN",
+                                "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
+                                "count": 17
+                        },
+                        {
+                                "id": "b4_tf",
+                                "name": "Bài 4 - Đúng / Sai (2 câu)",
+                                "group": "Bài 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN",
+                                "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - ĐÚNG / SAI",
+                                "count": 2
+                        },
+                        {
+                                "id": "b5_mcq",
+                                "name": "Bài 5 - Trắc nghiệm (14 câu)",
+                                "group": "Bài 5: CỘNG ĐỒNG ASEAN: TỪ Ý TƯỞNG ĐẾN HIỆN THỰC",
+                                "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
+                                "count": 14
+                        },
+                        {
+                                "id": "b5_tf",
+                                "name": "Bài 5 - Đúng / Sai (3 câu)",
+                                "group": "Bài 5: CỘNG ĐỒNG ASEAN: TỪ Ý TƯỞNG ĐẾN HIỆN THỰC",
+                                "section": "BÀI 5: CỘNG ĐỒNG ASEAN - ĐÚNG / SAI",
+                                "count": 3
+                        },
+                        {
+                                "id": "b6_mcq",
+                                "name": "Bài 6 - Trắc nghiệm (17 câu)",
+                                "group": "Bài 6: CÁCH MẠNG THÁNG TÁM NĂM 1945",
+                                "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
+                                "count": 17
+                        },
+                        {
+                                "id": "b6_tf",
+                                "name": "Bài 6 - Đúng / Sai (3 câu)",
+                                "group": "Bài 6: CÁCH MẠNG THÁNG TÁM NĂM 1945",
+                                "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - ĐÚNG / SAI",
+                                "count": 3
+                        }
+                ],
+                "questions": [
+                        {
+                                "id": "ls12_b1_q1",
+                                "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 1: Những quốc gia nào sau đây đóng vai trò quyết định, đồng thời là sáng lập viên của tổ chức Liên hợp quốc?",
+                                "options": [
+                                        "A. Liên Xô, Mỹ, Anh.",
+                                        "B. Nga, Pháp, Việt Nam.",
+                                        "C. Liên Xô, Anh, Nhật Bản.",
+                                        "D. Liên Xô, Mỹ, Trung Quốc."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b1_q2",
+                                "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 2: Từ ngày 25 - 4 - 1945 đến ngày 26 - 6 - 1945, một hội nghị quốc tế được tổ chức tại Xan Phran-xi-xcô (Mỹ) với sự tham gia của đại biểu 50 nước đã thông qua văn kiện nào sau đây?",
+                                "options": [
+                                        "A. Hiến chương Liên hợp quốc.",
+                                        "B. Hiệp định đình chiến ở Triều Tiên.",
+                                        "C. Hiến chương ASEAN.",
+                                        "D. Hiệp định đình chiến ở Đông Dương."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b1_q3",
+                                "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 3: Sự kiện nào sau đây đánh dấu tổ chức Liên hợp quốc chính thức được thành lập?",
+                                "options": [
+                                        "A. Ngày 24-10-1945, các nước thành viên phê chuẩn Hiến chương Liên hợp quốc.",
+                                        "B. Tháng 1-1942, đại diện 26 nước kí bản Tuyên bố Liên hợp quốc.",
+                                        "C. Năm 1945, đại diện 50 nước thông qua Hiến chương Liên hợp quốc.",
+                                        "D. Tháng 2-1945, Liên Xô, Anh, Mỹ thống nhất thành lập Liên hợp quốc."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b1_q4",
+                                "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 4: Một trong những cơ quan chính của Liên hợp quốc được quy định trong Hiến chương Liên hợp quốc (năm 1945) là",
+                                "options": [
+                                        "A. Hội đồng kinh tế - xã hội.",
+                                        "B. Ngân hàng Thế giới.",
+                                        "C. Quỹ Nhi đồng.",
+                                        "D. Tổ chức Thương mại thế giới."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b1_q5",
+                                "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 5: Một trong những cơ quan chuyên môn của Liên hợp quốc là",
+                                "options": [
+                                        "A. Quỹ Nhi đồng.",
+                                        "B. Hội đồng Bảo an.",
+                                        "C. Đại hội đồng.",
+                                        "D. Ban thư ký."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b1_q6",
+                                "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 6: Hội nghị quốc tế nào sau đây đã đặt nền tảng cho sự ra đời của tổ chức Liên hợp quốc?",
+                                "options": [
+                                        "A. Hội nghị I-an-ta.",
+                                        "B. Hội nghị Pốt-xđam.",
+                                        "C. Hội nghị Pa-ri.",
+                                        "D. Hội nghị Oa-sinh-tơn."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b1_q7",
+                                "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 7: Cơ quan nào sau đây của Liên hợp quốc bao gồm tất cả các nước thành viên?",
+                                "options": [
+                                        "A. Đại hội đồng.",
+                                        "B. Hội đồng Bảo an.",
+                                        "C. Ban thư ký.",
+                                        "D. Tòa án Quốc tế."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b1_q8",
+                                "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 8: Cơ quan nào sau đây của Liên hợp quốc chịu trách nhiệm chính trong việc duy trì hòa bình và an ninh thế giới?",
+                                "options": [
+                                        "A. Hội đồng Bảo an.",
+                                        "B. Ban thư ký.",
+                                        "C. Hội đồng quản thác.",
+                                        "D. Tòa án Quốc tế."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b1_q9",
+                                "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 9: Tổ chức Liên hợp quốc ra đời trong bối cảnh lịch sử nào sau đây?",
+                                "options": [
+                                        "A. Sau Chiến tranh thế giới thứ hai, nhu cầu cần một tổ chức để duy trì hòa bình và an ninh quốc tế.",
+                                        "B. Các nước thắng trận trong Chiến tranh thế giới thứ nhất phân chia phạm vi ảnh hưởng toàn cầu.",
+                                        "C. Sau cuộc Cách mạng công nghiệp lần thứ nhất, khi nhu cầu hợp tác quốc tế ngày càng tăng cao.",
+                                        "D. Cuộc Chiến tranh lạnh giữa Mỹ và Liên Xô đang diễn ra căng thẳng trên phạm vi toàn thế giới."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b1_q10",
+                                "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 10: Nội dung nào sau đây không phải là nguyên tắc hoạt động của tổ chức Liên hợp quốc?",
+                                "options": [
+                                        "A. Hợp tác có hiệu quả trong những lĩnh vực kinh tế - văn hóa - xã hội.",
+                                        "B. Bình đẳng chủ quyền giữa các quốc gia và quyền tự quyết của các dân tộc.",
+                                        "C. Giải quyết các tranh chấp quốc tế bằng biện pháp hòa bình.",
+                                        "D. Không can thiệp vào công việc nội bộ của bất kì nước nào."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b1_q11",
+                                "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 11: Nội dung nào sau đây là mục tiêu hoạt động của tổ chức Liên hợp quốc?",
+                                "options": [
+                                        "A. Hợp tác quốc tế trong việc giải quyết các vấn đề mang tính toàn cầu.",
+                                        "B. Xây dựng Liên hợp quốc vững mạnh về quân sự, thịnh vượng về kinh tế.",
+                                        "C. Giải quyết công bằng những vấn đề an sinh, xã hội của từng quốc gia.",
+                                        "D. Liên kết các quốc gia thành các trung tâm kinh tế - văn hóa - giáo dục."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b1_q12",
+                                "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 12: Nội dung nào sau đây là vai trò của Liên hợp quốc về bảo đảm quyền con người, phát triển văn hóa, xã hội?",
+                                "options": [
+                                        "A. Tăng cường bình đẳng giới và vị thế, năng lực của phụ nữ.",
+                                        "B. Giảm lãi suất cho vay ở hầu hết các nước phát triển.",
+                                        "C. Cải thiện năng lực công nghệ thông tin cho mọi người dân.",
+                                        "D. Hoàn thành phổ cập giáo dục đại học ở các nước phát triển."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b1_q13",
+                                "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 13: Nội dung nào sau đây là vai trò của Liên hợp quốc trong việc duy trì hòa bình, an ninh quốc tế?",
+                                "options": [
+                                        "A. Soạn thảo và xây dựng được hệ thống các công ước quốc tế về giải trừ quân bị.",
+                                        "B. Ngăn chặn được các cuộc đối đầu Đông-Tây và xung đột trên thế giới.",
+                                        "C. Giải quyết được mọi tranh chấp, xung đột trên thế giới bằng biện pháp hòa bình.",
+                                        "D. Chấm dứt được tình trạng chạy đua vũ trang và sản xuất vũ khí hủy diệt."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b1_q14",
+                                "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 14: Nội dung nào sau đây là vai trò của Liên hợp quốc trong việc thúc đẩy phát triển kinh tế, tài chính và thương mại quốc tế?",
+                                "options": [
+                                        "A. Thúc đẩy hợp tác quốc tế trong việc cải thiện điều kiện kinh tế và xã hội toàn cầu.",
+                                        "B. Đảm bảo an ninh quốc tế thông qua các hoạt động quân sự và chính trị.",
+                                        "C. Giải quyết các tranh chấp biên giới giữa các quốc gia thành viên.",
+                                        "D. Thúc đẩy hoạt động nghiên cứu khoa học và công nghệ giữa các nước phát triển."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b1_q15",
+                                "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 15: Trải qua hơn 70 năm hoạt động (từ năm 1945), Liên hợp quốc đã có nhiều vai trò, đóng góp trên các lĩnh vực, nhưng không có vai trò nào sau đây?",
+                                "options": [
+                                        "A. Ngăn chặn được các cuộc đối đầu Đông-Tây và xung đột trên thế giới.",
+                                        "B. Góp phần thúc đẩy quá trình phi thực dân hóa ở nhiều nơi trên thế giới.",
+                                        "C. Ra các văn bản, xây dựng môi trường thuận lợi thúc đẩy hợp tác quốc tế.",
+                                        "D. Làm trung gian hòa giải chấm dứt xung đột và chiến tranh ở các khu vực."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b1_q16",
+                                "section": "BÀI 1: LIÊN HỢP QUỐC - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 16: Việt Nam hai lần được bầu làm Ủy viên không thường trực Hội đồng Bảo an Liên hợp quốc (năm 2007 và 2019), chứng tỏ",
+                                "options": [
+                                        "A. vị thế, uy tín được nâng cao trên trường quốc tế.",
+                                        "B. Việt Nam đã trở thành một cường quốc chính trị.",
+                                        "C. Việt Nam giải quyết căn bản vấn đề Biển Đông.",
+                                        "D. Việt Nam đã chi phối được nhiều tổ chức quốc tế."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b1_tf1",
+                                "section": "BÀI 1: LIÊN HỢP QUỐC - ĐÚNG / SAI",
+                                "type": "true_false_group",
+                                "text": "Câu 1: Đọc đoạn tư liệu sau đây:\n“Sau hai tháng làm việc, qua các cuộc đấu tranh gay gắt giữa nhiều ý kiến và khuynh hướng khác nhau, hiến chương Liên Hợp Quốc được đại biểu của 50 nước ký kết ngày 26-6-1945. Hiến chương bắt đầu có hiệu lực kể từ ngày 24-10-1945 (ngày Quốc hội 5 cường quốc Liên Xô, Mỹ, Anh, Pháp và Trung Quốc thông qua Hiến chương Liên Hợp Quốc) và ngày này cũng được coi là ngày Liên Hợp Quốc chính thức được thành lập”.\n(Nguyễn Anh Thái (chủ biên), Lịch sử thế giới hiện đại, Nxb Giáo dục, Hà Nội, 2015, tr.226)",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Ngày 24-10-1945, bản Hiến chương Liên Hợp Quốc chính thức có hiệu lực, đánh dấu sự thành lập của Liên Hợp Quốc.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Hiến chương Liên Hợp Quốc được ký kết ngay sau khi Chiến tranh thế giới thứ hai kết thúc mà không gặp phải bất kỳ sự phản đối hay tranh luận nào từ các đại biểu tham gia.",
+                                                "correctAnswer": "Sai"
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Sự thông qua và có hiệu lực của Hiến chương Liên Hợp Quốc đã thiết lập một nền tảng pháp lý cho việc duy trì hòa bình và an ninh quốc tế trong giai đoạn sau Chiến tranh thế giới.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "d",
+                                                "text": "d) Sự ra đời của Liên Hợp Quốc đánh dấu một bước ngoặt quan trọng trong việc xây dựng hệ thống an ninh tập thể toàn cầu, nhằm ngăn chặn xung đột và bảo vệ hòa bình quốc tế.",
+                                                "correctAnswer": "Đúng"
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "ls12_b1_tf2",
+                                "section": "BÀI 1: LIÊN HỢP QUỐC - ĐÚNG / SAI",
+                                "type": "true_false_group",
+                                "text": "Câu 2: Đọc đoạn tư liệu sau đây:\n“Hiến chương Liên Hợp Quốc quy định mục đích cao nhất của Liên Hợp Quốc là nhằm duy trì hòa bình, an ninh thế giới bằng cách áp dụng những biện pháp có hiệu lực để đề phòng và thủ tiêu sự đe dọa đối với hòa bình, để trừng trị mọi hành động xâm lược và phá hoại hòa bình. Ngoài ra, Liên Hợp Quốc còn nhằm mục đích thúc đẩy sự phát triển quan hệ hữu nghị giữa các nước trên cơ sở tôn trọng quyền bình đẳng giữa các dân tộc và nguyên tắc dân tộc tự quyết”.\n(Nguyễn Anh Thái (chủ biên), Lịch sử thế giới hiện đại, Nxb Giáo dục, Hà Nội, 2015, tr.227)",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Mục đích cao nhất của Liên Hợp Quốc là duy trì hòa bình và an ninh thế giới.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Liên Hợp Quốc chỉ tập trung vào các biện pháp trừng phạt mà không quan tâm đến việc thúc đẩy quan hệ hữu nghị giữa các quốc gia.",
+                                                "correctAnswer": "Sai"
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Liên Hợp Quốc đóng vai trò quan trọng trong việc thúc đẩy hợp tác quốc tế, đảm bảo sự tôn trọng quyền bình đẳng giữa các dân tộc và nguyên tắc dân tộc tự quyết.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "d",
+                                                "text": "d) Liên Hợp Quốc không chỉ ngăn chặn xung đột và duy trì hòa bình, mà còn góp phần tạo ra một trật tự thế giới công bằng và bền vững thông qua việc thúc đẩy các nguyên tắc quốc tế như bình đẳng và quyền tự quyết dân tộc.",
+                                                "correctAnswer": "Đúng"
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "ls12_b2_q1",
+                                "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 1: Hội nghị I-an-ta (tháng 2-1945) được diễn ra trong giai đoạn nào sau đây của Chiến tranh thế giới thứ hai?",
+                                "options": [
+                                        "A. Giai đoạn sắp kết thúc.",
+                                        "B. Bùng nổ và lan rộng.",
+                                        "C. Vừa mới kết thúc.",
+                                        "D. Vừa mới bùng nổ."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b2_q2",
+                                "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 2: Quốc gia nào sau đây tham dự Hội nghị I-an-ta (tháng 2-1945)?",
+                                "options": [
+                                        "A. Anh.",
+                                        "B. Hà Lan.",
+                                        "C. Pháp.",
+                                        "D. Đức."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b2_q3",
+                                "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 3: Hội nghị I-an-ta (tháng 2-1945) thông qua nội dung nào sau đây?",
+                                "options": [
+                                        "A. Phân chia phạm vi ảnh hưởng ở châu Âu và châu Á.",
+                                        "B. Xây dựng một trật tự thế giới mới sau chiến tranh.",
+                                        "C. Khôi phục Hội Quốc liên để giữ gìn hòa bình, an ninh thế giới.",
+                                        "D. Phân chia phạm vi ảnh hưởng của Mỹ và Liên Xô ở châu Phi."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b2_q4",
+                                "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 4: Theo quyết định của Hội nghị I-an-ta (tháng 2-1945), quân đội Liên Xô chiếm đóng khu vực nào sau đây?",
+                                "options": [
+                                        "A. Đông Béc-lin.",
+                                        "B. Tây Béc-lin.",
+                                        "C. Tây Âu.",
+                                        "D. Nam Âu."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b2_q5",
+                                "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 5: Theo quyết định của Hội nghị I-an-ta (tháng 2-1945), quân đội Mỹ chiếm đóng khu vực nào sau đây?",
+                                "options": [
+                                        "A. Tây Âu.",
+                                        "B. Đông Béc-lin.",
+                                        "C. Đông Âu.",
+                                        "D. Nam Âu."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b2_q6",
+                                "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 6: Theo quyết định của Hội nghị I-an-ta (tháng 2-1945), những quốc gia nào sau đây trở thành nước trung lập?",
+                                "options": [
+                                        "A. Áo, Phần Lan.",
+                                        "B. Thái Lan, Việt Nam.",
+                                        "C. Lào, Tiệp Khắc.",
+                                        "D. Trung Quốc, Ấn Độ."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b2_q7",
+                                "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 7: Theo quyết định của Hội nghị I-an-ta (tháng 2-1945), quốc gia nào sau đây trở thành một quốc gia thống nhất và dân chủ?",
+                                "options": [
+                                        "A. Trung Quốc.",
+                                        "B. Ấn Độ.",
+                                        "C. Cu Ba.",
+                                        "D. Lào."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b2_q8",
+                                "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 8: Theo quyết định của Hội nghị I-an-ta (tháng 2-1945), khu vực Đông Nam Á thuộc phạm vi ảnh hưởng của",
+                                "options": [
+                                        "A. Tây Âu.",
+                                        "B. Đông Âu.",
+                                        "C. Liên Xô.",
+                                        "D. Trung Quốc."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b2_q9",
+                                "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 9: Trong giai đoạn từ năm 1945 đến đầu những năm 70 của thế kỉ XX, Trật tự thế giới hai cực I-an-ta có biểu hiện nào sau đây?",
+                                "options": [
+                                        "A. Xác lập và phát triển nhanh với sự đối đầu diễn ra trên nhiều lĩnh vực.",
+                                        "B. Từ đối kháng chuyển sang đối đầu giữa hai hệ thống xã hội đối lập.",
+                                        "C. Phát triển mạnh và dẫn tới các cuộc chiến tranh cục bộ giữa Liên Xô - Mỹ.",
+                                        "D. Từ đối đầu căng thẳng chuyển sang hoà dịu và hoà hoãn Đông - Tây."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b2_q10",
+                                "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 10: Trong giai đoạn từ những năm 70 của thế kỉ XX đến năm 1991, Trật tự thế giới hai cực I-an-ta có biểu hiện nào sau đây?",
+                                "options": [
+                                        "A. Hòa hoãn Đông-Tây, đối thoại, hợp tác và đi đến chấm dứt sự đối đầu.",
+                                        "B. Xác lập và phát triển nhanh với sự đối đầu diễn ra trên nhiều lĩnh vực.",
+                                        "C. Phát triển mạnh và dẫn tới các cuộc chiến tranh cục bộ giữa Liên Xô - Mỹ.",
+                                        "D. Các cuộc chiến tranh cục bộ diễn ra hầu khắp các khu vực trên thế giới."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b2_q11",
+                                "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 11: Sự kiện nào sau đây có ý nghĩa mở ra bước đột phá đầu tiên góp phần làm xói mòn và sụp đổ của trật tự thế giới hai cực I-an-ta?",
+                                "options": [
+                                        "A. Thắng lợi của cách mạng Trung Quốc (1949).",
+                                        "B. Cách mạng tháng Tám ở Việt Nam (1945).",
+                                        "C. Chế độ độc tài thân Mỹ thất bại ở Cuba (1959).",
+                                        "D. Anh, Pháp rút quân khỏi kênh đào Xuy-ê (1956)."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b2_q12",
+                                "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 12: Sự kiện nào sau đây chính thức chấm dứt sự tồn tại của Trật tự thế giới hai cực I-an-ta?",
+                                "options": [
+                                        "A. Sự sụp đổ của chủ nghĩa xã hội ở Đông Âu và Liên Xô (1991).",
+                                        "B. Cuộc gặp giữa hai nhà lãnh đạo Mỹ và Liên Xô ở đảo Man-ta (1989).",
+                                        "C. Mỹ và Liên Xô ký Hiệp ước hạn chế vũ khí chiến lược (SALT1).",
+                                        "D. Mỹ ký Hiệp định Pari về chấm dứt chiến tranh, lập lại hòa bình ở Việt Nam."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b2_q13",
+                                "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 13: Cho đoạn trích: “...Chúng ta đang đứng trước ngưỡng cửa của một kỉ nguyên hoàn toàn mới trong quan hệ Mỹ-Liên Xô. Chúng ta hoàn toàn có thể đóng góp theo cách riêng của mình nhằm vượt qua sự chia rẽ ở châu Âu và kết thúc cuộc đối đầu quân sự tại đó”. (Phát biểu của Tổng thống Mỹ G. Bút-sơ trong cuộc gặp với Tổng Bí thư Đảng Cộng sản Liên Xô M. Goóc-ba-chốp, tháng 12-1989).\nViệc Mỹ và Liên Xô “kết thúc cuộc đối đầu quân sự” có tác dụng nào sau đây đối với quan hệ quốc tế?",
+                                "options": [
+                                        "A. Làm cho quan hệ quốc tế được mở rộng và đa dạng hơn.",
+                                        "B. Chấm dứt hoàn toàn các cuộc chiến tranh trên thế giới.",
+                                        "C. Đưa các dân tộc bước vào thời kì của Chiến tranh lạnh.",
+                                        "D. Kinh tế trở thành nội dung duy nhất trong quan hệ quốc tế."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b2_q14",
+                                "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 14: Trật tự thế giới hai cực I-an-ta sụp đổ (1991) có tác động nào sau đây đến quốc tế?",
+                                "options": [
+                                        "A. Tạo điều kiện để giải quyết các tranh chấp bằng biện pháp hòa bình.",
+                                        "B. Mỹ chuyển sang ủng hộ sự phát triển xu thế đa cực, nhiều trung tâm.",
+                                        "C. Đưa tới sự ra đời của Hiệp hội các quốc gia Đông Nam Á.",
+                                        "D. Trung Quốc đã vươn lên trở thành nền kinh tế số 1 thế giới."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b2_q15",
+                                "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 15: Quyết định nào sau đây của Hội nghị I-an-ta (2-1945) là cơ sở hình thành trật tự thế giới hai cực sau Chiến tranh thế giới thứ hai?",
+                                "options": [
+                                        "A. Phân chia phạm vi ảnh hưởng của Liên Xô và Mỹ.",
+                                        "B. Đông Nam Á thuộc phạm vi ảnh hưởng của Liên Xô.",
+                                        "C. Thành lập tổ chức Liên hợp quốc để giữ gìn hòa bình.",
+                                        "D. Tây Âu và Đông Âu thuộc phạm vi ảnh hưởng của Mỹ."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b2_q16",
+                                "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 16: Nội dung nào sau đây là nhân tố hàng đầu chi phối toàn bộ đời sống chính trị thế giới trong phần lớn thời gian nửa sau thế kỉ XX?",
+                                "options": [
+                                        "A. Cục diện trật tự hai cực, hai phe: tư bản chủ nghĩa và xã hội chủ nghĩa.",
+                                        "B. Hai hệ thống xã hội đối lập ra đời: tư bản chủ nghĩa và xã hội chủ nghĩa.",
+                                        "C. Xu hướng liên kết khu vực và xu thế toàn cầu hoá diễn ra mạnh mẽ.",
+                                        "D. Các cuộc “chiến tranh nóng” ở châu Á liên tiếp diễn ra không có hồi kết."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b2_tf1",
+                                "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - ĐÚNG / SAI",
+                                "type": "true_false_group",
+                                "text": "Câu 1: Đọc đoạn tư liệu sau đây:\n“Cuộc Chiến tranh lạnh (1947-1989) chủ yếu diễn ra ở châu Âu, nhưng đã làm thay đổi sâu sắc quan hệ quốc tế : giữa Mỹ với Liên Xô, giữa các nước Đông Âu với các nước Tây Âu, giữa các nước tư bản chủ nghĩa với các nước xã hội chủ nghĩa. Sự đối đầu gay gắt giữa Mỹ và Liên Xô trong thời gian diễn ra Chiến tranh lạnh đã làm gia tăng cuộc chạy đua vũ trang, dẫn đến một số cuộc chiến tranh cục bộ trên thế giới”.\n(Nguyễn Anh Thái (chủ biên), Lịch sử thế giới hiện đại, Nxb Giáo dục, Hà Nội, 2015, tr.538)",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Một trong những nguyên nhân dẫn đến cuộc Chiến tranh lạnh là bắt nguồn từ những quyết định của Hội nghị I-an-ta (2-1945).",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Cuộc Chiến tranh lạnh đã làm thay đổi quan hệ giữa các cường quốc từng là đồng minh trong chiến tranh chống phát xít.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Cuộc chiến tranh của Mỹ ở Việt Nam (1954-1975) không chịu sự tác động của Chiến tranh lạnh.",
+                                                "correctAnswer": "Sai"
+                                        },
+                                        {
+                                                "id": "d",
+                                                "text": "d) Cuộc Chiến tranh lạnh (1947-1989) tuy đã kết thúc nhưng vấn đề lại nhiều di chứng đến ngày nay.",
+                                                "correctAnswer": "Đúng"
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "ls12_b2_tf2",
+                                "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - ĐÚNG / SAI",
+                                "type": "true_false_group",
+                                "text": "Câu 2: Đọc đoạn tư liệu sau đây:\n“Cuộc Chiến tranh lạnh kéo dài trên 40 năm đã chấm dứt và trong quan hệ quốc tế, từ xu thế “đối đầu” đã dần dần chuyển sang xu thế “đối thoại” hợp tác trên cơ sở hai bên cùng có lợi, tôn trọng lẫn nhau trong cùng tồn tại hòa bình, tình hình thế giới trở nên hòa dịu hơn, tuy thế vẫn bùng nổ những tranh chấp, xung đột mang tính chất khu vực”.\n(Nguyễn Anh Thái (chủ biên), Lịch sử thế giới hiện đại, Nxb Giáo dục, Hà Nội, 2015, tr.537)",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Chiến tranh lạnh chấm dứt, quan hệ quốc tế chuyển từ xu thế “đối đầu” sang xu thế “đối thoại”.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Trước sự khủng hoảng và sự suy giảm về tài chính kinh tế nên Mỹ và Liên Xô chấm dứt Chiến tranh lạnh.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Tất cả các cuộc chiến tranh ở thế kỉ XX đều bị ảnh hưởng, chi phối bởi cuộc Chiến tranh lạnh.",
+                                                "correctAnswer": "Sai"
+                                        },
+                                        {
+                                                "id": "d",
+                                                "text": "d) Cuộc Chiến tranh lạnh không diễn ra xung đột quân sự trực tiếp, là cuộc chiến không có hồi kết.",
+                                                "correctAnswer": "Sai"
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "ls12_b2_tf3",
+                                "section": "BÀI 2: TRẬT TỰ THẾ GIỚI TRONG CHIẾN TRANH LẠNH - ĐÚNG / SAI",
+                                "type": "true_false_group",
+                                "text": "Câu 3: Đọc đoạn tư liệu sau đây:\n“Trước kia, chế độ quân chủ tại Hy Lạp đã nhờ vào sự giúp đỡ của Anh, nhưng sau Chiến tranh thế giới thứ hai, kinh tế của nước Anh hoàn toàn suy kiệt, lo cho mình còn không xong, nên không thể giúp đỡ gì cho chế độ quân chủ ở Hy Lạp nữa.\nVào ngày 12-3-1947, Tổng thống Tơ-ru-man đã đọc một bài diễn văn tại lưỡng viện Quốc hội Mỹ, cho rằng Hy Lạp và Thổ Nhĩ Kỳ nếu bị rơi vào khối xã hội chủ nghĩa, thì cả Trung Đông cũng sẽ rơi theo... sẽ làm cho cả Tây Âu bị ảnh hưởng. Do vậy, ông thuyết phục Quốc hội Mỹ chi viện kinh tế và quân sự cho Hy Lạp và Thổ Nhĩ Kỳ với số tiền 400 triệu đô la. Lí luận này về sau được gọi là \"Học thuyết Tơ-ru-man\"”.\n(Vương Kính Chi, Lược sử nước Mỹ (Phong Đào dịch), NXB Thành phố Hồ Chí Minh, Thành phố Hồ Chí Minh, 2000, tr.145)",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Thông điệp của Tổng thống Mỹ Tơ-ru-man đọc trước Quốc hội Mỹ ngày 12-3-1947 đã khởi đầu cuộc Chiến tranh lạnh chống lại Liên Xô và các nước Đông Âu.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Nguồn gốc của sự đối đầu căng thẳng giữa Mỹ và Liên Xô xuất phát từ “vấn đề Hy Lạp và Thổ Nhĩ Kỳ” sau Chiến tranh thế giới thứ hai.",
+                                                "correctAnswer": "Sai"
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Học thuyết Tơ-ru-man phản ánh chính sách đối ngoại của Mỹ sau Chiến tranh thế giới thứ hai, muốn đưa nước Mỹ trở thành bá chủ thế giới.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "d",
+                                                "text": "d) Học thuyết Tơ-ru-man không chỉ là một biện pháp ngăn chặn sự lan rộng của chủ nghĩa xã hội mà còn là nền tảng cho chính sách đối ngoại của Mỹ trong thời kỳ Chiến tranh lạnh.",
+                                                "correctAnswer": "Đúng"
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "ls12_b3_q1",
+                                "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 1: Từ sau khi Chiến tranh lạnh kết thúc (1989), thế giới phát triển theo một trong những xu thế nào sau đây?",
+                                "options": [
+                                        "A. Lấy kinh tế là trọng tâm.",
+                                        "B. Lấy chính trị làm nền tảng.",
+                                        "C. Thỏa hiệp để ổn định toàn cầu.",
+                                        "D. Lấy văn hóa là trọng tâm."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b3_q2",
+                                "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 2: Từ sau khi Chiến tranh lạnh kết thúc (1989), thế giới phát triển theo một trong những xu thế nào sau đây?",
+                                "options": [
+                                        "A. Đa cực, nhiều trung tâm.",
+                                        "B. Lấy chính trị làm nền tảng.",
+                                        "C. Thỏa hiệp để ổn định toàn cầu.",
+                                        "D. Lấy văn hóa là trọng tâm."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b3_q3",
+                                "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 3: Từ sau khi Chiến tranh lạnh kết thúc (1989), thế giới phát triển theo một trong những xu thế nào sau đây?",
+                                "options": [
+                                        "A. Hợp tác trong quan hệ quốc tế.",
+                                        "B. Lấy chính trị làm nền tảng.",
+                                        "C. Thỏa hiệp để ổn định toàn cầu.",
+                                        "D. Lấy văn hóa là trọng tâm."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b3_q4",
+                                "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 4: Từ sau khi Chiến tranh lạnh kết thúc (1989), thế giới phát triển theo một trong những xu thế nào sau đây?",
+                                "options": [
+                                        "A. Quốc tế hóa-toàn cầu hóa.",
+                                        "B. Lấy chính trị làm nền tảng.",
+                                        "C. Thỏa hiệp để ổn định toàn cầu.",
+                                        "D. Lấy văn hóa là trọng tâm."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b3_q5",
+                                "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 5: Từ sau khi Chiến tranh lạnh kết thúc (1989), thế giới phát triển theo một trong những xu thế nào sau đây?",
+                                "options": [
+                                        "A. Hòa bình, ổn định cùng phát triển.",
+                                        "B. Lấy chính trị làm nền tảng.",
+                                        "C. Thỏa hiệp để ổn định toàn cầu.",
+                                        "D. Lấy văn hóa là trọng tâm."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b3_q6",
+                                "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 6: Một trật tự thế giới mà ở đó các nước lớn, các trung tâm kinh tế - tài chính lớn như Mỹ, Nhật Bản, Trung Quốc, Ấn Độ, Liên bang Nga,... có vị thế quan trọng đối với quan hệ quốc tế được gọi là trật tự",
+                                "options": [
+                                        "A. đa cực, nhiều trung tâm.",
+                                        "B. đa phương hoá.",
+                                        "C. đơn cực, nhất thể.",
+                                        "D. tam cường, đa phương."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b3_q7",
+                                "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 7: Sau Chiến tranh lạnh, các quốc gia nào sau đây là một trong những trung tâm quyền lực đang vươn lên khẳng định sức mạnh về kinh tế, quân sự và chính trị đối với quốc tế?",
+                                "options": [
+                                        "A. Trung Quốc và Ấn Độ.",
+                                        "B. Xin-ga-po và Nam Phi.",
+                                        "C. Hà Lan và Tây Ban Nha.",
+                                        "D. Bỉ và Mông Cổ."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b3_q8",
+                                "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 8: Sau Chiến tranh lạnh, các quốc gia nào sau đây là một trong những trung tâm quyền lực đang vươn lên khẳng định sức mạnh về kinh tế, quân sự và chính trị đối với quốc tế?",
+                                "options": [
+                                        "A. Nga và Nhật Bản.",
+                                        "B. Xi-ga-po và Nam Phi.",
+                                        "C. Đan Mạch và Tây Ban Nha.",
+                                        "D. I-ta-li-a và Mông Cổ."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b3_q9",
+                                "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 9: Nội dung nào sau đây là biểu hiện của xu thế toàn cầu hóa trong quan hệ quốc tế sau Chiến tranh lạnh?",
+                                "options": [
+                                        "A. Sự phát triển nhanh quan hệ thương mại quốc tế.",
+                                        "B. Các quốc gia ra sức chạy đua vũ trang mạnh mẽ.",
+                                        "C. Đông Nam Á có tốc độ phát triển nhanh nhất thế giới.",
+                                        "D. Xu thế liên kết khu vực trở thành chủ đạo của thế giới."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b3_q10",
+                                "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 10: Nội dung nào sau đây là biểu hiện của xu thế đa cực trong quan hệ quốc tế sau Chiến tranh lạnh?",
+                                "options": [
+                                        "A. Sự suy giảm sức mạnh tương đối của Mỹ.",
+                                        "B. Các quốc gia chạy đua vũ trang mạnh mẽ.",
+                                        "C. Đông Nam Á phát triển nhanh nhất thế giới.",
+                                        "D. Xu thế liên kết khu vực trở thành chủ đạo."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b3_q11",
+                                "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 11: Một trong những biểu hiện của xu thế đối thoại, hợp tác trong quan hệ quốc tế sau Chiến tranh lạnh là",
+                                "options": [
+                                        "A. giải quyết mâu thuẫn bằng biện pháp hòa bình.",
+                                        "B. sự suy giảm sức mạnh tương đối của nước Mỹ.",
+                                        "C. sự hợp nhất các công ty thành các tập đoàn lớn.",
+                                        "D. sự phát triển nhanh quan hệ thương mại quốc tế."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b3_q12",
+                                "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 12: Nội dung nào sau đây không phản ánh xu thế phát triển của thế giới sau Chiến tranh lạnh?",
+                                "options": [
+                                        "A. Mỹ đang thực hiện âm mưu thiết lập lại trật tự thế giới đa cực.",
+                                        "B. Một trật tự thế giới mới đang hình thành theo hướng đa cực.",
+                                        "C. Các nước điều chỉnh chiến lược tập trung phát triển kinh tế.",
+                                        "D. Các cuộc xung đột quân sự vẫn còn diễn ra ở một số khu vực."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b3_q13",
+                                "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 13: Từ sau Chiến tranh lạnh kết thúc, hầu hết các quốc gia điều chỉnh chiến lược lấy phát triển kinh tế làm trọng tâm vì lí do nào sau đây?",
+                                "options": [
+                                        "A. Kinh tế trở thành nội dung căn bản trong quan hệ quốc tế.",
+                                        "B. Giữa các cường quốc đã chấm dứt việc chạy đua vũ trang.",
+                                        "C. Sức mạnh quốc gia không dựa trên lực lượng quốc phòng.",
+                                        "D. Hòa bình và an ninh thế giới được bảo vệ ở mức cao nhất."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b3_q14",
+                                "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 14: Nội dung nào sau đây là xu thế phát triển của thế giới sau Chiến tranh lạnh được nhân dân các nước hi vọng, mong muốn trở thành hiện thực?",
+                                "options": [
+                                        "A. Hoà bình, ổn định cùng phát triển.",
+                                        "B. Đa cực, đa phe trong đối ngoại quốc tế.",
+                                        "C. Liên kết và hội nhập giữa các nước lớn.",
+                                        "D. Phát triển kinh tế, quân sự là trung tâm."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b3_q15",
+                                "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 15: Nhân tố nào sau đây đóng vai trò quyết định để các cường quốc tham gia xác lập trật tự thế giới mới sau Chiến tranh lạnh?",
+                                "options": [
+                                        "A. Sức mạnh tổng hợp của quốc gia, trong đó kinh tế vẫn là trụ cột.",
+                                        "B. Là một trong năm cường quốc của Hội đồng Bảo an Liên hợp quốc.",
+                                        "C. Sự ra đời và ngày càng mở rộng của các tổ chức liên kết khu vực.",
+                                        "D. Sức mạnh quân sự của quốc gia với lực lượng quân sự hùng hậu."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b3_q16",
+                                "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 16: Đọc đoạn tư liệu sau: “Bài học của thời kì Chiến tranh lạnh đã chứng tỏ phương thức quan hệ quốc tế lấy đối đầu chính trị - quân sự là chủ yếu không còn phù hợp, phải chịu nhiều tổn thất hoặc thất bại như hai nước Xô - Mỹ và một bị thương, một bị mất” (Vũ Dương Ninh (Chủ biên), Một số chuyên đề lịch sử thế giới, NXB Đại học Quốc gia Hà Nội, 2001, tr.401).\nCụm từ “một bị thương, một bị mất” được đề cập trong đoạn tư liệu phản ánh nội dung nào sau đây?",
+                                "options": [
+                                        "A. Sự suy yếu của Mỹ và sự sụp đổ của Liên Xô.",
+                                        "B. Sự trỗi dậy của các quốc gia thuộc thế giới thứ ba.",
+                                        "C. Sự tan rã của các đế quốc thuộc địa trên thế giới.",
+                                        "D. Sự hợp tác kinh tế và chính trị giữa các cường quốc."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b3_tf1",
+                                "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - ĐÚNG / SAI",
+                                "type": "true_false_group",
+                                "text": "Câu 1: Đọc đoạn tư liệu sau đây:\n“Trật tự thế giới này được hình thành như thế nào, còn tùy thuộc ở nhiều nhân tố: Sự phát triển về thực lực kinh tế, chính trị, quân sự của các cường quốc Mỹ, Nga, Trung Quốc, Anh, Pháp, Nhật Bản, Đức trong cuộc chạy đua về sức mạnh quốc gia tổng hợp...; Sự lớn mạnh của lực lượng cách mạng thế giới (sự thành bại của công cuộc cải cách, đổi mới ở các nước xã hội chủ nghĩa);...Sự phát triển của cách mạng khoa học-kĩ thuật sẽ còn tiếp tục tạo ra những “đột phá” và biến chuyển trên cục diện thế giới”.\n(Nguyễn Anh Thái (Chủ biên), Lịch sử thế giới hiện đại, NXB Giáo dục Việt Nam, Hà Nội, 2021, tr.424)",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) “Trật tự thế giới” được nhắc đến trong đoạn tư liệu trên là trật tự thế giới “hai cực Ianta” được hình thành sau Chiến tranh thế giới thứ hai.",
+                                                "correctAnswer": "Sai"
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Một trong những nhân tố tác động đến sự hình thành trật tự thế giới mới sau khi Chiến tranh lạnh kết thúc là sự vươn lên mạnh mẽ của các nước Á, Phi, Mĩ-latinh.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Nhân tố đóng vai trò quyết định đến sự hình thành trật tự thế giới mới sau Chiến tranh lạnh là cuộc chạy đua sức mạnh tổng hợp, nhưng sức mạnh kinh tế là trụ cột.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "d",
+                                                "text": "d) Một trong những đặc điểm nổi bật của trật tự thế giới mới được thiết lập sau Chiến tranh lạnh là thế giới bị chia thành hai hệ thống xã hội đối lập.",
+                                                "correctAnswer": "Sai"
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "ls12_b3_tf2",
+                                "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - ĐÚNG / SAI",
+                                "type": "true_false_group",
+                                "text": "Câu 2: Đọc đoạn tư liệu sau đây:\n“Hòa bình, hợp tác, liên kết và phát triển vẫn là xu thế lớn nhưng cạnh tranh chiến lược giữa các nước lớn rất phức tạp, gay gắt; cục diện đa cực ngày càng rõ nét. Toàn cầu hóa và hội nhập quốc tế tiếp tục tiến triển nhưng gặp nhiều trở ngại, thách thức; chủ nghĩa dân túy, bảo hộ có xu hướng tăng lên; sự điều chỉnh chính sách, quan hệ đối ngoại của các nước lớn trong khu vực và trên thế giới diễn biến khó lường”.\n(Đảng Cộng sản Việt Nam, Văn kiện Đại hội đại biểu toàn quốc lần thứ XIII, NXB Chính trị Quốc gia Sự thật, 2021, tr.206-207)",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Hòa bình, hợp tác, liên kết và phát triển vẫn là xu thế lớn trong quan hệ quốc tế hiện nay.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Toàn cầu hóa và hội nhập quốc tế không gặp bất kỳ trở ngại hay thách thức nào trong giai đoạn hiện tại.",
+                                                "correctAnswer": "Sai"
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Việc theo dõi chặt chẽ các điều chỉnh chính sách của các nước lớn là cần thiết để đối phó với những diễn biến khó lường trong quan hệ quốc tế.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "d",
+                                                "text": "d) Để thích ứng với cục diện đa cực và sự gia tăng của chủ nghĩa dân túy, các quốc gia cần linh hoạt trong chính sách đối ngoại và phát triển nội lực kinh tế.",
+                                                "correctAnswer": "Đúng"
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "ls12_b3_tf3",
+                                "section": "BÀI 3: TRẬT TỰ THẾ GIỚI SAU CHIẾN TRANH LẠNH - ĐÚNG / SAI",
+                                "type": "true_false_group",
+                                "text": "Câu 3: Đọc đoạn thông tin sau đây:\n“Trong bối cảnh thế giới đa cực với nhiều trung tâm quyền lực, Mỹ và Trung Quốc nổi lên như hai cực có ảnh hưởng lớn nhất đến kinh tế toàn cầu. Mỹ tiếp tục giữ vững vị thế cường quốc số 1 thế giới, trong khi từ năm 2010, Trung Quốc đã vượt qua các nền kinh tế lớn như Anh, Pháp, Đức, và Nhật Bản để vươn lên vị trí thứ hai. Tuy nhiên, không chỉ Mỹ và Trung Quốc, các cường quốc khác như Nhật Bản, Liên minh châu Âu, Liên bang Nga, và Ấn Độ cũng đang nỗ lực mạnh mẽ để khẳng định vị thế của mình trên trường quốc tế. Trong cuộc đua này, mỗi quốc gia đều đặt mục tiêu nâng cao tầm ảnh hưởng và vai trò của mình trong một thế giới ngày càng phức tạp và cạnh tranh”.",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Trong trật tự thế giới đa cực, nhiều trung tâm, Mỹ và Trung Quốc là những nước đang có vị thế, ảnh hưởng hàng đầu thế giới.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Trật tự thế giới hai cực I-an-ta sụp đổ là nguyên nhân trực tiếp, tạo cơ hội cho Trung Quốc vươn lên trở thành nền kinh tế lớn thứ hai thế giới.",
+                                                "correctAnswer": "Sai"
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Phát huy thành công sức mạnh nội lực là yếu tố quyết định để các nước khẳng định vị thế trong xu thế đa cực, nhiều trung tâm.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "d",
+                                                "text": "d) Trong xu thế đa cực và xu thế toàn cầu hoá, các quốc gia có nhiều thời cơ lớn, nhưng cũng có không ít thách thức và rào cản.",
+                                                "correctAnswer": "Đúng"
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "ls12_b4_q1",
+                                "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 1: Quốc gia nào sau đây là một trong các thành viên sáng lập tổ chức Hiệp hội các quốc gia Đông Nam Á (ASEAN) năm 1967?",
+                                "options": [
+                                        "A. Thái Lan.",
+                                        "B. Hàn Quốc.",
+                                        "C. Ba Lan.",
+                                        "D. Mê-hi-cô."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b4_q2",
+                                "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 2: Năm 1984, quốc gia nào sau đây được kết nạp, trở thành thành viên thứ 6 của Hiệp hội các quốc gia Đông Nam Á (ASEAN)?",
+                                "options": [
+                                        "A. Bru-nây.",
+                                        "B. Mi-an-ma.",
+                                        "C. Cam-pu-chia.",
+                                        "D. In-đô-nê-xi-a."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b4_q3",
+                                "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 3: Năm 1995, quốc gia nào sau đây được kết nạp, trở thành thành viên thứ 7 của Hiệp hội các quốc gia Đông Nam Á (ASEAN)?",
+                                "options": [
+                                        "A. Việt Nam.",
+                                        "B. Mi-an-ma.",
+                                        "C. Cam-pu-chia.",
+                                        "D. In-đô-nê-xi-a."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b4_q4",
+                                "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 4: Năm 1997, hai quốc gia nào sau đây được kết nạp, trở thành thành viên thứ 8 và thứ 9 của Hiệp hội các quốc gia Đông Nam Á (ASEAN)?",
+                                "options": [
+                                        "A. Lào và Mi-an-ma.",
+                                        "B. Việt Nam và Cam-pu-chia.",
+                                        "C. Thái Lan và Xin-ga-po.",
+                                        "D. In-đô-nê-xi-a và Ma-lai-xi-a."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b4_q5",
+                                "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 5: Năm 1999, quốc gia nào sau đây được kết nạp, trở thành thành viên thứ 10 của Hiệp hội các quốc gia Đông Nam Á (ASEAN)?",
+                                "options": [
+                                        "A. Cam-pu-chia.",
+                                        "B. Mi-an-ma.",
+                                        "C. Việt Nam.",
+                                        "D. In-đô-nê-xi-a."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b4_q6",
+                                "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 6: Nội dung nào sau đây là một trong những hoạt động nổi bật của Hiệp hội các quốc gia Đông Nam Á (ASEAN) trong giai đoạn 1967-1976?",
+                                "options": [
+                                        "A. Tập trung vào hợp tác trên lĩnh vực chính trị - an ninh.",
+                                        "B. Phản đối Trật tự thế giới hai cực I-an-ta, ủng hộ xu thế đa cực.",
+                                        "C. Tích cực ủng hộ việc đấu tranh chống Mỹ xâm lược Việt Nam.",
+                                        "D. Tham gia vào việc giải quyết căng thẳng trên bán đảo Triều Tiên."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b4_q7",
+                                "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 7: Nội dung nào sau đây là một trong những hoạt động nổi bật của Hiệp hội các quốc gia Đông Nam Á (ASEAN) trong giai đoạn 1976-1999?",
+                                "options": [
+                                        "A. Phát triển số lượng thành viên từ 5 nước lên 10 nước.",
+                                        "B. Hợp tác hiệu quả trong hoạt động chống chủ nghĩa khủng bố.",
+                                        "C. Bước đầu phát triển về cơ cấu tổ chức, nguyên tắc hoạt động.",
+                                        "D. Các nước tập trung hợp tác trên lĩnh vực chính trị - an ninh."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b4_q8",
+                                "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 8: Nội dung nào sau đây là một trong những thành tựu về chính trị - an ninh của Hiệp hội các quốc gia Đông Nam Á (ASEAN) trong giai đoạn 1976-1999?",
+                                "options": [
+                                        "A. Tham gia vào việc giải quyết lập lại hòa bình ở Cam-pu-chia.",
+                                        "B. Hợp tác hiệu quả trong hoạt động chống chủ nghĩa khủng bố.",
+                                        "C. Bước đầu phát triển về cơ cấu tổ chức, nguyên tắc hoạt động.",
+                                        "D. Các nước tập trung hợp tác trên lĩnh vực chính trị - an ninh."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b4_q9",
+                                "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 9: Nội dung nào sau đây là một trong những hoạt động nổi bật của Hiệp hội các quốc gia Đông Nam Á (ASEAN) trong giai đoạn 1999-2015?",
+                                "options": [
+                                        "A. Họp bàn và đã thông qua bản Hiến chương ASEAN.",
+                                        "B. Hoàn thiện cơ cấu tổ chức và nguyên tắc hoạt động.",
+                                        "C. Tham gia giải quyết vấn đề hòa bình ở In-đô-nê-xi-a.",
+                                        "D. Hoàn thành việc kết nạp Đông Ti-mo vào ASEAN."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b4_q10",
+                                "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 10: Hiệp hội các quốc gia Đông Nam Á (ASEAN) được thành lập trong bối cảnh lịch sử nào sau đây?",
+                                "options": [
+                                        "A. Các nước có độc lập dân tộc nhưng gặp khó khăn trong phát triển.",
+                                        "B. Các nước trong khu vực đã hoàn thành công nghiệp hóa đất nước.",
+                                        "C. Nhiều nước Đông Nam Á đã vươn lên trở thành “con rồng” kinh tế.",
+                                        "D. Xu thế toàn cầu hóa xuất hiện và ngày càng phát triển mạnh mẽ."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b4_q11",
+                                "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 11: Hiệp hội các quốc gia Đông Nam Á (ASEAN) được thành lập với mục đích nào sau đây?",
+                                "options": [
+                                        "A. Thúc đẩy hòa bình và ổn định khu vực.",
+                                        "B. Tạo lập một thị trường chung và đồng tiền chung.",
+                                        "C. Phát triển quân sự và xây dựng liên minh quân sự.",
+                                        "D. Loại trừ sự cạnh tranh kinh tế giữa các nước thành viên."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b4_q12",
+                                "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 12: Ba nước Đông Dương và Mi-an-ma gia nhập Hiệp hội các quốc gia Đông Nam Á (ASEAN) trong bối cảnh nào sau đây?",
+                                "options": [
+                                        "A. Xu thế toàn cầu hóa đang diễn ra mạnh mẽ.",
+                                        "B. Chủ nghĩa xã hội trở thành hệ thống thế giới.",
+                                        "C. Bán đảo Triều Tiên được thống nhất trở lại.",
+                                        "D. Chiến tranh lạnh đang diễn ra căng thẳng."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b4_q13",
+                                "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 13: Trong giai đoạn 1967-1976, Hiệp hội các quốc gia Đông Nam Á (ASEAN) coi trọng vấn đề chính trị - an ninh vì một trong những lí do nào sau đây?",
+                                "options": [
+                                        "A. Cuộc Chiến tranh lạnh đã và đang tác động sâu sắc đến nhiều nước.",
+                                        "B. Mỹ bắt đầu có những hành động can thiệp, dính líu vào Đông Dương.",
+                                        "C. Xu thế toàn cầu hóa xuất hiện và có những bước phát triển mạnh mẽ.",
+                                        "D. Việc lập lại hòa bình ở Cam-pu-chia trở thành tâm điểm của khu vực."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b4_q14",
+                                "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 14: Quá trình mở rộng thành viên của Hiệp hội các quốc gia Đông Nam Á (ASEAN) diễn ra lâu dài và đầy trở ngại vì một trong những lí do nào sau đây?",
+                                "options": [
+                                        "A. Thời gian độc lập các nước không đồng đều.",
+                                        "B. Nền kinh tế của các nước có nhiều cách biệt.",
+                                        "C. Khả năng đóng góp của các nước yếu kém.",
+                                        "D. Các nước không có nhu cầu liên kết khu vực."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b4_q15",
+                                "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 15: Hiệp ước Ba-li (1976) đánh dấu bước phát triển mới của Hiệp hội các quốc gia Đông Nam Á (ASEAN) vì một trong những lí do nào sau đây?",
+                                "options": [
+                                        "A. Đã đề ra được những nguyên tắc cơ bản trong quan hệ giữa các nước.",
+                                        "B. Có những biện pháp xây dựng khu vực hòa bình, tự do, trung lập.",
+                                        "C. Đề ra biện pháp cụ thể hóa hợp tác kinh tế, chính trị trong khu vực.",
+                                        "D. Có biện pháp để nâng cao vị thế quốc tế của các nước trong khu vực."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b4_q16",
+                                "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 16: Đọc đoạn thông tin: “Hiệp hội các quốc gia Đông Nam Á (ASEAN) ra đời là một tất yếu trong thời kì Chiến tranh lạnh khi một số nước Đông Nam Á lo ngại sự mở rộng của chủ nghĩa xã hội ra khu vực. Trong bối cảnh ấy, Việt Nam - một nước xã hội chủ nghĩa - là một nhân tố khách quan tác động đến sự thành lập ASEAN, từ đây Việt Nam đối tượng chủ yếu được tính đến trong cách hành xử của nhóm nước sáng lập ASEAN trong thời gian từ năm 1967 đến năm 1991”.\nViệt Nam được coi là một “nhân tố” trong thành lập Hiệp hội các quốc gia Đông Nam Á (ASEAN) vì lí do nào sau đây?",
+                                "options": [
+                                        "A. Việt Nam là một nước xã hội chủ nghĩa có thể mở rộng ảnh hưởng ra khu vực.",
+                                        "B. Việt Nam có quan hệ chính trị, kinh tế chặt chẽ với các nước Đông Nam Á.",
+                                        "C. Việt Nam là một trong những nước sáng lập tổ chức liên kết của khu vực.",
+                                        "D. Việt Nam là quốc gia có chính sách trung lập trong thời kỳ Chiến tranh lạnh."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b4_q17",
+                                "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 17: Nội dung nào sau đây phản ánh đúng một trong những đóng góp của Việt Nam đối với sự phát triển của Hiệp hội các quốc gia Đông Nam Á (ASEAN)?",
+                                "options": [
+                                        "A. Việt Nam đã tích cực tham gia và thúc đẩy quá trình mở rộng thành viên của ASEAN.",
+                                        "B. Việt Nam là một trong những nước tham gia sáng lập và dẫn dắt ASEAN ngay từ đầu.",
+                                        "C. Việt Nam đã đề xuất và thiết lập liên minh quân sự vững mạnh trong khối ASEAN.",
+                                        "D. Việt Nam đã trở thành trung tâm kinh tế - tài chính của ASEAN ngay khi gia nhập."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b4_tf1",
+                                "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - ĐÚNG / SAI",
+                                "type": "true_false_group",
+                                "text": "Câu 1: Đọc đoạn tư liệu sau đây:\n“Việc Việt Nam tham gia ASEAN đã góp phần quan trọng thúc đẩy việc thành lập một ASEAN bao gồm cả 10 nước Đông Nam Á, chấm dứt tình trạng chia rẽ, đối đầu, căng thẳng ở khu vực, mở ra một giai đoạn mới khác hẳn về chất của quan hệ giữa các quốc gia ở khu vực; mở rộng hợp tác vì hòa bình phát triển, để ASEAN thực sự là của Đông Nam Á và vì Đông Nam Á”.\n(Học viện Ngoại giao, Việt Nam trong tiến trình hội nhập và phát triển, Nxb. Chính trị quốc gia, Hà Nội, 2009, tr. 292)",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) ASEAN bao gồm 10 nước Đông Nam Á được đánh dấu khi Việt Nam trở thành thành viên chính thức.",
+                                                "correctAnswer": "Sai"
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Việt Nam gia nhập ASEAN đã mở ra giai đoạn mới trong quan hệ giữa các quốc gia trong khu vực.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Việt Nam gia nhập ASEAN đã chấm dứt hoàn toàn mọi mâu thuẫn, tranh chấp giữa các quốc gia trong khu vực.",
+                                                "correctAnswer": "Sai"
+                                        },
+                                        {
+                                                "id": "d",
+                                                "text": "d) Sự tham gia của Việt Nam vào ASEAN đã giúp mở ra giai đoạn hợp tác mới, vì hòa bình và phát triển cho toàn khu vực.",
+                                                "correctAnswer": "Đúng"
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "ls12_b4_tf2",
+                                "section": "BÀI 4: SỰ RA ĐỜI VÀ PHÁT TRIỂN CỦA ASEAN - ĐÚNG / SAI",
+                                "type": "true_false_group",
+                                "text": "Câu 2: Đọc đoạn tư liệu sau đây:\n“Nhất quán trong tư duy và hành động thực hiện đường lối đối ngoại đa phương hóa, đa dạng hóa của Đảng và Nhà nước, Việt Nam đã và sẽ tiếp tục tham gia hợp tác ASEAN một cách tích cực, chủ động và có trách nhiệm, để góp phần xây dựng ASEAN trở thành một tổ chức liên kết chặt chẽ, đoàn kết và vững mạnh, có vai trò chủ đạo trong việc bảo đảm môi trường hòa bình, ổn định và thịnh vượng ở khu vực”.\n(Học viện Ngoại giao, Việt Nam trong tiến trình hội nhập và phát triển, Nxb. Chính trị quốc gia, Hà Nội, 2009, tr. 397)",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Theo đoạn tư liệu, Việt Nam là thành viên tích cực, chủ động và có trách nhiệm trong việc xây dựng ASEAN trở thành tổ chức liên kết chặt chẽ.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Nhằm góp phần xây dựng ASEAN phát triển và hoàn thiện hơn, Việt Nam sẽ giữ vai trò chủ đạo và quyết định mọi vấn đề của khu vực.",
+                                                "correctAnswer": "Sai"
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Trải qua thời gian hình thành và phát triển, ASEAN ngày càng khẳng định được vị thế là tổ chức hợp tác ổn định và thịnh vượng nhất hành tinh.",
+                                                "correctAnswer": "Sai"
+                                        },
+                                        {
+                                                "id": "d",
+                                                "text": "d) Là thành viên của ASEAN, các quốc gia phải có trách nhiệm tạo ra môi trường phát triển thuận lợi để hợp tác có hiệu quả trong khu vực và thế giới.",
+                                                "correctAnswer": "Đúng"
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "ls12_b5_q1",
+                                "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 1: Ý tưởng về việc xây dựng Cộng đồng ASEAN được khởi nguồn từ khi",
+                                "options": [
+                                        "A. thành lập tổ chức ASEAN (1967) tại Thái Lan.",
+                                        "B. các nước ASEAN kí kết Hiệp ước Ba-li (1976).",
+                                        "C. tổ chức ASEAN có đủ 10 nước thành viên (1999).",
+                                        "D. “vấn đề Cam-pu-chia” được giải quyết (1991)."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b5_q2",
+                                "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 2: Trong Tuyên bố Băng Cốc (1967), các nước thành viên ASEAN đã đề ra ý tưởng nào sau đây?",
+                                "options": [
+                                        "A. Xây dựng một cộng đồng các nước Đông Nam Á hòa bình và thịnh vượng.",
+                                        "B. Tổ chức Đông Nam Á thành một khu vực mậu dịch tự do trong vòng 10 năm.",
+                                        "C. Thành lập tổ chức liên minh chính trị - quân sự của các nước trong khu vực.",
+                                        "D. Thúc đẩy quan hệ kinh tế, văn hóa giữa ASEAN và Cộng đồng châu Âu (EC)."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b5_q3",
+                                "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 3: Hội nghị cấp cao ASEAN không chính thức được tổ chức tại Ma-lai-xi-a (1997) có nội dung cơ bản nào sau đây?",
+                                "options": [
+                                        "A. Các nước chính thức khẳng định ý tưởng lập ra Cộng đồng ASEAN.",
+                                        "B. Thảo luận và chính thức thông qua bản Hiến chương của ASEAN.",
+                                        "C. Quyết định tổ chức Đông Nam Á thành khu vực mậu dịch tự do.",
+                                        "D. Kí Hiệp ước thân thiện và hợp tác ở Đông Nam Á (Hiệp ước Ba-li)."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b5_q4",
+                                "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 4: Năm 2015, các nhà lãnh đạo ASEAN kí kết Tuyên bố Cua-la Lăm-pơ, đánh dấu sự ra đời của tổ chức nào sau đây?",
+                                "options": [
+                                        "A. Cộng đồng ASEAN.",
+                                        "B. Hiệp hội các quốc gia Đông Nam Á.",
+                                        "C. Tổ chức phòng thủ Đông Nam Á.",
+                                        "D. Liên minh vì sự tiến bộ Đông Nam Á."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b5_q5",
+                                "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 5: Nội dung nào sau đây là một trong những mục tiêu xây dựng Cộng đồng ASEAN?",
+                                "options": [
+                                        "A. Thúc đẩy ASEAN mở rộng hợp tác với bên ngoài.",
+                                        "B. Tạo điều kiện để ASEAN tập trung phát triển nội khối.",
+                                        "C. Đưa tốc độ tăng trưởng của ASEAN cao nhất thế giới.",
+                                        "D. Đưa ASEAN trở thành một tổ chức nhất thể hóa khu vực."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b5_q6",
+                                "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 6: Một trong những nội dung chính của Cộng đồng Chính trị - An ninh ASEAN (APSC) là",
+                                "options": [
+                                        "A. xây dựng một cộng đồng theo các giá trị và chuẩn mực chung.",
+                                        "B. xây dựng thành một thị trường và hệ thống sản xuất thống nhất.",
+                                        "C. xây dựng khu vực kinh tế có sức cạnh tranh cao, phát triển đều.",
+                                        "D. xây dựng một xã hội chia sẻ, đùm bọc, hòa thuận và rộng mở."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b5_q7",
+                                "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 7: Nội dung nào sau đây phản ánh không đúng thách thức của Cộng đồng ASEAN?",
+                                "options": [
+                                        "A. Mức độ liên kết của ba trụ cột: chính trị - an ninh, kinh tế và văn hóa – xã hội.",
+                                        "B. Sự đa dạng về chế độ chính trị, những mâu thuẫn trong quan hệ song phương.",
+                                        "C. Khoảng cách kinh tế, sự chênh lệch trình độ phát triển, sự cạnh tranh sản xuất.",
+                                        "D. An ninh phi truyền thống, ô nhiễm môi trường và các tội phạm xuyên quốc gia."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b5_q8",
+                                "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 8: Nội dung nào sau đây phản ánh đúng một trong những thách thức bên ngoài tác động đến Cộng đồng ASEAN?",
+                                "options": [
+                                        "A. Sự cạnh tranh chiến lược của các nước lớn và sự thay đổi cấu trúc địa-chính trị.",
+                                        "B. Sự đa dạng về chế độ chính trị, những mâu thuẫn trong quan hệ song phương.",
+                                        "C. Khoảng cách kinh tế, sự chênh lệch trình độ phát triển, sự cạnh tranh sản xuất.",
+                                        "D. Tình hình chính trị một số nước còn phức tạp, sự chênh lệch trình độ phát triển."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b5_q9",
+                                "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 9: Sự ra đời của Cộng đồng ASEAN đánh dấu bước phát triển mới trong hợp tác khu vực ở Đông Nam Á vì lí do nào sau đây?",
+                                "options": [
+                                        "A. Thúc đẩy sự liên kết sâu rộng và toàn diện trên nhiều lĩnh vực giữa các nước thành viên.",
+                                        "B. Tạo động lực để ASEAN trở thành trung tâm kinh tế - tài chính lớn nhất trên thế giới.",
+                                        "C. Đã giải quyết được mọi mâu thuẫn, nhất là xung đột quân sự giữa các nước trong khu vực.",
+                                        "D. Hoàn thiện được cơ cấu tổ chức và xác lập những nguyên tắc hoạt động của ASEAN."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b5_q10",
+                                "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 10: Nội dung nào sau đây là một trong những triển vọng của Cộng đồng ASEAN?",
+                                "options": [
+                                        "A. Mức độ liên kết ngày càng chặt chẽ và sâu rộng trên cả ba trụ cột.",
+                                        "B. Có quan hệ đối tác chiến lược toàn diện với tất cả các nước châu Á.",
+                                        "C. Có tốc độ tăng trưởng kinh tế và phúc lợi xã hội cao nhất thế giới.",
+                                        "D. Có vai trò định hướng và quyết định tại tất cả các diễn đàn quốc tế."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b5_q11",
+                                "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 11: Nội dung nào sau đây phản ánh không đúng triển vọng của Cộng đồng ASEAN?",
+                                "options": [
+                                        "A. Sự đa dạng về chế độ chính trị, sự thay đổi cấu trúc địa-chính trị.",
+                                        "B. Mức độ liên kết chính trị - an ninh, kinh tế và văn hóa - xã hội.",
+                                        "C. Thể chế, chính sách và cơ chế hợp tác của Cộng đồng ASEAN.",
+                                        "D. Vị thế, quan hệ với các đối tác bên ngoài, chế độ thuế quan."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b5_q12",
+                                "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 12: Nội dung nào sau đây phản ánh không đúng về Cộng đồng Chính trị - An ninh ASEAN (APSC)?",
+                                "options": [
+                                        "A. Tạo ra một liên minh quân sự ở khu vực Đông Nam Á.",
+                                        "B. Tạo khuôn khổ hợp tác chính trị - an ninh toàn diện.",
+                                        "C. Xây dựng một môi trường hòa bình và ổn định.",
+                                        "D. Hoạt động dựa trên cơ sở Hiến chương ASEAN."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b5_q13",
+                                "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 13: Đọc đoạn tư liệu sau: “Toàn bộ Đông Nam Á sẽ là một cộng đồng ASEAN, nhận thức được mối liên hệ lịch sử của mình, hiểu rõ di sản văn hóa của mình và gắn bó với nhau bằng một bản sắc chung của khu vực” (Nguồn: Cổng Thông tin ASEAN- Việt Nam).\nĐể xây dựng một bản sắc chung của Cộng đồng ASEAN như mục tiêu đề ra, các quốc gia thành viên cần phải thực hiện biện pháp nào sau đây?",
+                                "options": [
+                                        "A. Thúc đẩy sự hiểu biết và tôn trọng lẫn nhau về di sản văn hóa và lịch sử của từng quốc gia.",
+                                        "B. Đồng nhất hóa các nền văn hóa trong ASEAN để tạo ra một bản sắc khu vực duy nhất.",
+                                        "C. Ưu tiên phát triển kinh tế mà không cần chú trọng đến các yếu tố văn hóa và lịch sử.",
+                                        "D. Tách biệt hoàn toàn các yếu tố văn hóa truyền thống để hội nhập với các khu vực khác."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b5_q14",
+                                "section": "BÀI 5: CỘNG ĐỒNG ASEAN - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 14: Nội dung nào sau đây là một trong những cơ hội đối với Việt Nam khi gia nhập Cộng đồng Kinh tế ASEAN (AEC)?",
+                                "options": [
+                                        "A. Mở rộng thị trường trong và ngoài khu vực.",
+                                        "B. Xóa bỏ hoàn toàn sự chênh lệch về kinh tế.",
+                                        "C. Tăng cường khả năng cạnh tranh và thu hút đầu tư.",
+                                        "D. Thay đổi hoàn toàn cấu trúc kinh tế Việt Nam."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b5_tf1",
+                                "section": "BÀI 5: CỘNG ĐỒNG ASEAN - ĐÚNG / SAI",
+                                "type": "true_false_group",
+                                "text": "Câu 1: Đọc đoạn tư liệu sau đây:\n“Cộng đồng ASEAN với ba trụ cột về chính trị-an ninh, kinh tế và văn hóa-xã hội, có mục tiêu bao trùm là xây dựng Hiệp hội thành một tổ chức hợp tác liên chính phủ liên kết sâu rộng hơn và vững mạnh hơn, nhưng vẫn mở rộng hợp tác với bên ngoài, đồng thời hướng mạnh tới người dân, phục vụ và nâng cao cuộc sống của người dân”.\n(Học viện Ngoại giao, Việt Nam trong tiến trình hội nhập và phát triển, Nxb. Chính trị quốc gia, Hà Nội, 2009, tr. 393)",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Chính trị - an ninh, kinh tế và văn hóa - xã hội là ba trụ cột của cộng đồng ASEAN.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Cộng đồng ASEAN được xây dựng chỉ nhằm mở rộng quan hệ với các nước phát triển.",
+                                                "correctAnswer": "Sai"
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Cộng đồng ASEAN sẽ góp phần đưa các quốc gia thành viên phát triển về mọi mặt.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "d",
+                                                "text": "d) Cộng đồng ASEAN ra đời đánh dấu bước phát triển mới của tổ chức trong khu vực.",
+                                                "correctAnswer": "Đúng"
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "ls12_b5_tf2",
+                                "section": "BÀI 5: CỘNG ĐỒNG ASEAN - ĐÚNG / SAI",
+                                "type": "true_false_group",
+                                "text": "Câu 2: Đọc đoạn tư liệu sau đây:\n“Có thể nói, bằng những nỗ lực không ngừng nghỉ của các quốc gia thành viên ASEAN, đã góp phần kiến tạo nên một Đông Nam Á hòa bình, ổn định. Đây sẽ là một tiền lệ tốt cho các nước thành viên ASEAN trong quy cách ứng xử với các xung đột nảy sinh, lan tỏa giá trị hòa bình, hòa hợp trong tất cả các nước cùng chia sẻ lợi ích chung. Mặc dù còn những bất đồng chưa thể giải quyết triệt để, song những gì mà ASEAN làm được trong những năm đầu tiên sẽ đặt nền móng vững chắc để tiến tới xây dựng một cộng đồng phát triển thịnh vượng trong tương lai”.\n(Trần Xuân Hiệp, Cộng đồng ASEAN từ ý tưởng đến hiện thực, Nxb. Thế giới, Hà Nội, 2021, tr. 24)",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Đoạn tư liệu cho thấy triển vọng tốt đẹp trong việc xây dựng cộng đồng ASEAN phát triển thịnh vượng nhất hiện nay.",
+                                                "correctAnswer": "Sai"
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Xây dựng Cộng đồng ASEAN là một trong những biện pháp nhằm ngăn chặn sự ảnh hưởng của các cường quốc đối với khu vực.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Các quốc gia thành viên đã có những đóng góp quan trọng trong tiến trình hình thành và phát triển của Cộng đồng ASEAN.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "d",
+                                                "text": "d) Trong quá trình tồn tại và phát triển Cộng đồng ASEAN đã từng bước vượt qua mọi khó khăn, thử thách từ khu vực và thế giới.",
+                                                "correctAnswer": "Sai"
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "ls12_b5_tf3",
+                                "section": "BÀI 5: CỘNG ĐỒNG ASEAN - ĐÚNG / SAI",
+                                "type": "true_false_group",
+                                "text": "Câu 3: Đọc đoạn tư liệu sau đây:\n“Sự ra đời của Cộng đồng ASEAN vào ngày 31-12-2015, đã nâng cao vai trò và giá trị chiến lược của ASEAN. Cùng với những kết quả tốt đẹp trong xây dựng APSC, ASEAN đã khẳng định là một trong những tổ chức hợp tác khu vực thành công nhất trên thế giới. Thông qua tiến trình liên kết nội khối, hợp tác về chính trị - an ninh, đặc biệt là trong ngăn ngừa xung đột bằng cách xây dựng lòng tin và chia sẻ các quy tắc ứng xử, ASEAN đã trở thành một nhân tố quan trọng hàng đầu trong bảo đảm hòa bình, ổn định và hợp tác vì sự phát triển ở khu vực”.\n(Trần Xuân Hiệp, Cộng đồng ASEAN từ ý tưởng đến hiện thực, Nxb. Thế giới, Hà Nội, 2021, tr. 497)",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Sự ra đời của Cộng đồng ASEAN vào ngày 31-12-2015 đã nâng cao vai trò và giá trị chiến lược của ASEAN.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) ASEAN không có vai trò quan trọng trong việc bảo đảm hòa bình và ổn định ở khu vực Đông Nam Á.",
+                                                "correctAnswer": "Sai"
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) ASEAN đã khẳng định mình là một trong những tổ chức hợp tác khu vực thành công nhất trên thế giới thông qua các nỗ lực về chính trị - an ninh và ngăn ngừa xung đột.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "d",
+                                                "text": "d) ASEAN đã trở thành một nhân tố quan trọng trong bảo đảm hòa bình và phát triển khu vực nhờ vào việc xây dựng lòng tin và chia sẻ quy tắc ứng xử.",
+                                                "correctAnswer": "Đúng"
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "ls12_b6_q1",
+                                "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 1: Trong Cách mạng tháng Tám năm 1945 ở Việt Nam, địa phương nào sau đây đã tiến hành khởi nghĩa và giành thắng lợi vào ngày 19-8-1945?",
+                                "options": [
+                                        "A. Hà Nội.",
+                                        "B. Huế.",
+                                        "C. Hà Tiên.",
+                                        "D. Sài Gòn."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b6_q2",
+                                "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 2: Chế độ phong kiến ở Việt Nam hoàn toàn sụp đổ được đánh dấu bằng sự kiện nào sau đây?",
+                                "options": [
+                                        "A. Vua Bảo Đại tuyên bố thoái vị, trao ấn kiếm cho chính quyền cách mạng.",
+                                        "B. Nhà Nguyễn ký với Pháp Hiệp ước Pa-tơ-nốt, thừa nhận sự bảo hộ của Pháp.",
+                                        "C. Phát xít Nhật vào Đông Dương và cấu kết với Pháp để thống trị Việt Nam.",
+                                        "D. Nhân dân các địa phương Hà Nội, Huế, Sài Gòn giành được chính quyền."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b6_q3",
+                                "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 3: Ngày 13-8-1945, khi nhận được tin Nhật Bản sắp đầu hàng Đồng minh, Trung ương Đảng và Tổng bộ Việt Minh đã thành lập",
+                                "options": [
+                                        "A. Ủy ban Khởi nghĩa toàn quốc.",
+                                        "B. Ủy ban Dân tộc giải phóng Việt Nam.",
+                                        "C. Ủy ban Quân sự cách mạng Bắc Kì.",
+                                        "D. Ủy ban lâm thời Khu giải phóng."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b6_q4",
+                                "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 4: Ngày 2 - 9 - 1945, tại Quảng trường Ba Đình (Hà Nội), Chủ tịch Hồ Chí Minh đã",
+                                "options": [
+                                        "A. đọc bản Tuyên ngôn Độc lập.",
+                                        "B. phát lệnh Tổng khởi nghĩa.",
+                                        "C. đọc Lời kêu gọi toàn quốc kháng chiến.",
+                                        "D. công bố Chỉ thị toàn dân kháng chiến."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b6_q5",
+                                "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 5: Trong Tổng khởi nghĩa Cách mạng tháng Tám năm 1945, nhân dân Việt Nam đã giành chính quyền từ tay",
+                                "options": [
+                                        "A. phát xít Nhật.",
+                                        "B. thực dân Pháp.",
+                                        "C. đế quốc Mỹ.",
+                                        "D. thực dân Anh."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b6_q6",
+                                "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 6: Hội nghị toàn quốc của Đảng họp ở Tân Trào (Tuyên Quang, ngày 14, 15-8-1945) đã thông qua nội dung quan trọng nào sau đây?",
+                                "options": [
+                                        "A. Kế hoạch lãnh đạo toàn dân Tổng khởi nghĩa.",
+                                        "B. Mười chính sách của Mặt trận Việt Minh.",
+                                        "C. Hình thái khởi nghĩa giành chính quyền.",
+                                        "D. Tạm gác khẩu hiệu cách mạng ruộng đất."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b6_q7",
+                                "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 7: Đại hội Quốc dân họp ở Tân Trào (Tuyên Quang, ngày 16, 17-8-1945) đã quyết định thành lập",
+                                "options": [
+                                        "A. Ủy ban Dân tộc giải phóng Việt Nam.",
+                                        "B. Chính phủ liên hiệp kháng chiến.",
+                                        "C. Ủy ban lâm thời khu giải phóng.",
+                                        "D. Ủy ban Khởi nghĩa toàn quốc."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b6_q8",
+                                "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 8: Trong Cách mạng tháng Tám năm 1945, nhân dân Việt Nam có hoạt động nào sau đây?",
+                                "options": [
+                                        "A. Tổng khởi nghĩa giành chính quyền.",
+                                        "B. Kháng chiến chống Pháp xâm lược.",
+                                        "C. Đấu tranh chống phá “ấp chiến lược”.",
+                                        "D. Ủng hộ phong trào “Tuần lễ vàng”."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b6_q9",
+                                "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 9: Đối với cách mạng Việt Nam, việc phát xít Nhật đầu hàng Đồng minh không điều kiện (15-8-1945) đã",
+                                "options": [
+                                        "A. tạo điều kiện khách quan thuận lợi cho tổng khởi nghĩa.",
+                                        "B. mở ra thời kỳ trực tiếp cho cuộc vận động giải phóng dân tộc.",
+                                        "C. tạo cơ hội cho quân Đồng minh trợ giúp nhân dân khởi nghĩa.",
+                                        "D. tạo điều kiện thuận lợi cho cuộc khởi nghĩa từng phần."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b6_q10",
+                                "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 10: “Hỡi quốc dân đồng bào! Phát xít Nhật đã đầu hàng Đồng minh, quân Nhật đã bị tan rã tại khắp các mặt trận, kẻ thù chúng ta đã ngã gục...”. (Ủy ban Khởi nghĩa toàn quốc, Quân lệnh số 1).\nĐoạn thông tin trên phản ánh",
+                                "options": [
+                                        "A. điều kiện khách quan thuận lợi của Tổng khởi nghĩa tháng Tám.",
+                                        "B. điều kiện chủ quan thuận lợi của Tổng khởi nghĩa tháng Tám.",
+                                        "C. Cách mạng tháng Tám đã thành công ở Việt Nam và Đông Dương.",
+                                        "D. phát xít Nhật đã đầu hàng quân Đồng minh và rút khỏi Việt Nam."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b6_q11",
+                                "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 11: “Pháp chạy, Nhật hàng, vua Bảo Đại thoái vị. Dân ta đã đánh đổ các xiềng xích thực dân gần 100 năm nay để gây nên nước Việt Nam độc lập. Dân ta lại đánh đổ chế độ quân chủ mấy mươi thế kỉ mà lập nên chế độ dân chủ cộng hoà”. (Hồ Chí Minh, Tuyên ngôn Độc lập (năm 1945), trích trong: Hồ Chí Minh, Toàn tập, Tập 4, NXB Chính trị Quốc gia, Hà Nội, 2011, tr.3)\nĐoạn tư liệu trên phản ánh",
+                                "options": [
+                                        "A. những kết quả to lớn của cuộc Cách mạng tháng Tám năm 1945.",
+                                        "B. sự suy yếu, lạc hậu của chế độ thực dân và phong kiến ở Việt Nam.",
+                                        "C. những đóng góp của Cách mạng tháng Tám năm 1945 đối với thế giới.",
+                                        "D. nhân dân Việt Nam đã giành chính quyền từ tay thực dân Pháp."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b6_q12",
+                                "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 12: Cuộc Tổng khởi nghĩa Tháng Tám năm 1945 ở Việt Nam",
+                                "options": [
+                                        "A. có sự tham gia đông đảo của quần chúng nhân dân.",
+                                        "B. diễn ra ngay khi Đảng Cộng sản Việt Nam thành lập.",
+                                        "C. không diễn ra dưới hình thức đấu tranh vũ trang.",
+                                        "D. được phát động ngay khi Hiệp định Pari được kí kết."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b6_q13",
+                                "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 13: Nội dung nào sau đây là một trong những nguyên nhân dẫn đến thắng lợi của Cách mạng tháng Tám năm 1945 ở Việt Nam?",
+                                "options": [
+                                        "A. Truyền thống yêu nước, đoàn kết của nhân dân.",
+                                        "B. Sự giúp đỡ to lớn từ các nước xã hội chủ nghĩa.",
+                                        "C. Nhận được nguồn viện trợ của Mĩ từ kế hoạch Mác-san.",
+                                        "D. Tình đoàn kết chiến đấu của ba nước Đông Dương."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b6_q14",
+                                "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 14: Nội dung nào sau đây không phải là nguyên nhân dẫn tới thắng lợi của Cách mạng tháng Tám năm 1945 ở Việt Nam?",
+                                "options": [
+                                        "A. Sự chi viện đầy đủ, kịp thời của hậu phương miền Bắc.",
+                                        "B. Sự lãnh đạo đúng đắn của Đảng Cộng sản Đông Dương.",
+                                        "C. Dân tộc Việt Nam có truyền thống yêu nước, đoàn kết.",
+                                        "D. Có sự chuẩn bị lâu dài, chu đáo suốt 15 năm (từ năm 1930)."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b6_q15",
+                                "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 15: Nội dung nào sau đây phản ánh đúng ý nghĩa lịch sử của Cách mạng tháng Tám năm 1945 ở Việt Nam?",
+                                "options": [
+                                        "A. Đảng Cộng sản Đông Dương từ vai trò lãnh đạo, trở thành Đảng cầm quyền.",
+                                        "B. Là yếu tố quyết định làm tan rã hệ thống thuộc địa của chủ nghĩa thực dân.",
+                                        "C. Lật đổ chế độ phong kiến chuyên chế, hoàn thành triệt để nhiệm vụ dân chủ.",
+                                        "D. Mở ra kỉ nguyên mới - độc lập, thống nhất, cả nước đi lên chủ nghĩa xã hội."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b6_q16",
+                                "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 16: Nội dung nào sau đây phản ánh đúng và đầy đủ về bối cảnh lịch sử của cuộc Tổng khởi nghĩa tháng Tám năm 1945 ở Việt Nam?",
+                                "options": [
+                                        "A. Đảng sớm nhận thấy thời cơ đan xen lẫn nguy cơ.",
+                                        "B. Nhật Bản đầu hàng quân Đồng minh vô điều kiện.",
+                                        "C. Quân Đồng minh chưa kịp kéo vào Đông Dương.",
+                                        "D. Phát xít Nhật là kẻ thù nguy hiểm của cách mạng."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b6_q17",
+                                "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - TRẮC NGHIỆM",
+                                "type": "multiple_choice",
+                                "text": "Câu 17: “Tình thế vô cùng khẩn cấp. Tất cả mọi việc đều phải nhằm vào ba nguyên tắc: a) Tập trung – tập trung lực lượng vào những việc chính. b) Thống nhất – thống nhất về mọi phương diện quân sự, chính trị, hành động và chỉ huy. c) Kịp thời – kịp thời hành động, không bỏ lỡ cơ hội”.\n(Nghị quyết Hội nghị toàn quốc của Đảng Cộng sản Đông Dương, tháng 8-1945, trích trong: Văn kiện Đảng, Toàn tập, Tập 7, NXB Chính trị Quốc gia, Hà Nội, 2000, tr.425)\nNghị quyết của Đảng Cộng sản Đông Dương phản ánh nội dung nào sau đây?",
+                                "options": [
+                                        "A. Sự lãnh đạo của Đảng cần tập trung, thống nhất, kịp thời.",
+                                        "B. Đảng phải lãnh đạo nhân dân giành chính quyền bằng mọi giá.",
+                                        "C. Chính phủ Việt Nam đã chuẩn bị đầy đủ cho Tổng khởi nghĩa.",
+                                        "D. Thời cơ của cuộc kháng chiến chống Pháp sắp xuất hiện."
+                                ],
+                                "correctIndex": 0
+                        },
+                        {
+                                "id": "ls12_b6_tf1",
+                                "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - ĐÚNG / SAI",
+                                "type": "true_false_group",
+                                "text": "Câu 1: Đọc đoạn tư liệu sau đây:\n“Chủ trương của Việt Nam độc lập đồng minh - chủ trương liên hiệp hết thảy các tầng lớp nhân dân không phân biệt tôn giáo, đảng phái, xu hướng chính trị nào, giai cấp nào, đoàn kết chiến đấu để đánh đuổi Pháp - Nhật giành quyền độc lập cho xứ sở. Việt Nam độc lập đồng minh lại còn hết sức giúp đỡ cho Ai Lao độc lập đồng minh và Cao Miên độc lập đồng minh”.\n(Đảng Cộng sản Việt Nam (2000), Văn kiện Đảng toàn tập, Tập 7, NXB Chính trị Quốc gia, Hà Nội)",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Việt Nam độc lập đồng minh chủ trương liên hiệp tất cả các tầng lớp nhân dân để đánh đuổi thực dân Pháp và phát xít Nhật.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Chủ trương của Việt Nam độc lập đồng minh không phân biệt tầng lớp, tôn giáo hay xu hướng chính trị nhằm đạt được sự đoàn kết toàn diện.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Việc liên hiệp các tầng lớp nhân dân trong chủ trương của Việt Minh đã tạo nên sự hỗn loạn và khó khăn trong việc quản lý và lãnh đạo phong trào độc lập.",
+                                                "correctAnswer": "Sai"
+                                        },
+                                        {
+                                                "id": "d",
+                                                "text": "d) Chủ trương giúp đỡ Ai Lao và Cao Miên độc lập đồng minh của Việt Minh là một hành động không có lợi ích chiến lược cho Việt Nam.",
+                                                "correctAnswer": "Sai"
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "ls12_b6_tf2",
+                                "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - ĐÚNG / SAI",
+                                "type": "true_false_group",
+                                "text": "Câu 2: Đọc đoạn tư liệu sau đây:\n“Bảo Đại đọc xong [Chiếu thoái vị] thì trên kì đài cờ vàng của nhà vua từ từ hạ xuống và lá cờ nền đỏ thắm tươi long lanh năm cánh sao vàng được kéo lên giữa những tiếng vỗ tay, những tiếng hoan hô như sấm...Rồi ông Trần Huy Liệu đọc bản tuyên bố của Đoàn đại biểu Chính phủ, nêu rõ thắng lợi của Cách mạng tháng Tám là kết quả của hàng mấy chục năm đấu tranh anh dũng, kiên cường, bền bỉ của nhân dân cả nước, tuyên bố chấm dứt vĩnh viễn chế độ quân chủ...”.\n(Phạm Khắc Hòe, Từ triều đình Huế đến chiến khu Việt Bắc, NXB Thuận Hóa, Huế, 1987, tr.86)",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Sự kiện vua Bảo Đại đọc chiếu thoái vị, trao ấn, kiếm cho chính quyền cách mạng đã đánh dấu chấm dứt sự tồn tại của chế độ phong kiến ở Việt Nam.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Cách mạng tháng Tám năm 1945 ở Việt Nam thắng lợi là kết quả của quá trình chuẩn bị lực lượng suốt 15 năm dưới sự lãnh đạo của Đảng Cộng sản Đông Dương.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Cách mạng tháng Tám năm 1945 mang tính chất dân chủ điển hình vì đã chấm dứt vĩnh viễn chế độ quân chủ chuyên chế ở Việt Nam.",
+                                                "correctAnswer": "Sai"
+                                        },
+                                        {
+                                                "id": "d",
+                                                "text": "d) Cách mạng tháng Tám năm 1945 ở Việt Nam thành công đã mở ra bước ngoặt vĩ đại đầu tiên trong tiến trình lịch sử của dân tộc Việt Nam ở thế kỉ XX.",
+                                                "correctAnswer": "Đúng"
+                                        }
+                                ]
+                        },
+                        {
+                                "id": "ls12_b6_tf3",
+                                "section": "BÀI 6: CÁCH MẠNG THÁNG TÁM NĂM 1945 - ĐÚNG / SAI",
+                                "type": "true_false_group",
+                                "text": "Câu 3: Đọc đoạn tư liệu sau đây:\n“Đảng đã vận dụng một cách sáng tạo quy luật cách mạng bạo lực và khởi nghĩa giành chính quyền. Cách mạng tháng Tám là sự kết hợp giữa đấu tranh chính trị và đấu tranh quân sự, giữa chuẩn bị lâu dài về lực lượng chính trị và quân sự với mau lẹ chớp lấy thời cơ, phát động quần chúng vùng dậy đánh đổ chính quyền của đế quốc, phong kiến”.\n(Lê Duẩn, Dưới lá cờ vẻ vang của Đảng, vì độc lập, tự do, vì chủ nghĩa xã hội, tiến lên giành những thắng lợi mới, Nxb. Sự thật, Hà Nội, 1970, tr. 47)",
+                                "subQuestions": [
+                                        {
+                                                "id": "a",
+                                                "text": "a) Cách mạng Tháng Tám là sự kết hợp giữa đấu tranh chính trị và đấu tranh quân sự.",
+                                                "correctAnswer": "Đúng"
+                                        },
+                                        {
+                                                "id": "b",
+                                                "text": "b) Đảng đã hoàn toàn dựa vào lực lượng quân sự để giành chính quyền trong Cách mạng Tháng Tám.",
+                                                "correctAnswer": "Sai"
+                                        },
+                                        {
+                                                "id": "c",
+                                                "text": "c) Việc Đảng chỉ tập trung vào chuẩn bị lực lượng chính trị mà không quan tâm đến lực lượng quân sự đã dẫn đến thành công của Cách mạng Tháng Tám.",
+                                                "correctAnswer": "Sai"
+                                        },
+                                        {
+                                                "id": "d",
+                                                "text": "d) Việc dự báo, nhận định đúng thời cơ, nghệ thuật chớp thời cơ là nguyên nhân hàng đầu đem đến sự thắng lợi của Cách mạng tháng Tám năm 1945.",
+                                                "correctAnswer": "Sai"
+                                        }
+                                ]
+                        }
+                ]
+        }
 ];

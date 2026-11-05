@@ -167,15 +167,13 @@ body.zen-mode::after {
     display: none !important;
 }
 
-/* Page Transition: Smooth Content Reveal across all pages */
+/* Page Transition: Smooth Content Reveal across all pages (No transform to avoid fixed positioning bugs) */
 @keyframes pageContentReveal {
     0% {
         opacity: 0;
-        transform: translateY(10px);
     }
     100% {
         opacity: 1;
-        transform: translateY(0);
     }
 }
 
@@ -183,6 +181,7 @@ main {
     animation: pageContentReveal 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     position: relative;
     z-index: 2;
+    transform: none !important;
 }
 
 .container {
@@ -2905,39 +2904,386 @@ main {
     color: #6366f1;
 }
 
+/* ============================================================
+   TRONEX SCORE & RESULT PRESENTATION (MODAL & TOP BANNER)
+   ============================================================ */
+
+/* 1. Modal Popup Kết Quả Nổi Bật */
+.tronex-result-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    animation: modalBackdropFadeIn 0.25s ease-out;
+}
+
+@keyframes modalBackdropFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.tronex-result-modal-box {
+    background: var(--bg-card, #ffffff);
+    color: var(--text-main, #1e293b);
+    border: 1px solid var(--border, #e2e8f0);
+    border-radius: 24px;
+    width: 100%;
+    max-width: 480px;
+    padding: 32px 24px 28px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    animation: modalPopUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalPopUp {
+    0% {
+        opacity: 0;
+        transform: scale(0.92) translateY(16px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.result-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    font-size: 28px;
+    line-height: 1;
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.result-modal-close:hover {
+    color: #ef4444;
+}
+
+.result-modal-celebration {
+    font-size: 48px;
+    line-height: 1;
+    margin-bottom: 8px;
+    animation: bouncePop 0.6s ease;
+}
+
+@keyframes bouncePop {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.result-modal-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0 0 6px 0;
+    color: var(--text-main, #0f172a);
+}
+
+.result-modal-subtitle {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin: 0 0 20px 0;
+}
+
+.result-modal-score-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 22px;
+}
+
+.result-modal-score-circle {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.08), rgba(99, 102, 241, 0.15));
+    border: 2px solid #6366f1;
+    padding: 12px 28px;
+    border-radius: 9999px;
+}
+
+.result-modal-score-number {
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+    color: #4f46e5;
+    letter-spacing: -1px;
+}
+
+.result-modal-score-max {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #64748b;
+}
+
+.result-modal-grade-tag {
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.grade-excellent {
+    background: #ecfdf5;
+    color: #059669;
+    border: 1px solid #a7f3d0;
+}
+
+.grade-great {
+    background: #eef2ff;
+    color: #4338ca;
+    border: 1px solid #c7d2fe;
+}
+
+.grade-good {
+    background: #eff6ff;
+    color: #2563eb;
+    border: 1px solid #bfdbfe;
+}
+
+.grade-pass {
+    background: #fffbeb;
+    color: #d97706;
+    border: 1px solid #fde68a;
+}
+
+.grade-need-work {
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+}
+
+.result-modal-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.result-stat-box {
+    background: var(--bg-surface, #f8fafc);
+    border: 1px solid var(--border, #e2e8f0);
+    border-radius: 14px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.result-stat-box .stat-label {
+    font-size: 0.8rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.result-stat-box .stat-val {
+    font-size: 1.25rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.box-correct .stat-val { color: #16a34a; }
+.box-incorrect .stat-val { color: #dc2626; }
+.box-unanswered .stat-val { color: #f59e0b; }
+.box-time .stat-val { color: #6366f1; }
+
+.result-modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.result-modal-actions button {
+    width: 100%;
+    min-height: 44px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+/* 2. Top Banner trong main questions container */
+.tronex-main-result-banner {
+    margin-bottom: 24px;
+    animation: bannerSlideDown 0.35s ease-out;
+}
+
+@keyframes bannerSlideDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.result-banner-card {
+    background: var(--bg-card, #ffffff);
+    border: 1.5px solid #6366f1;
+    border-radius: 16px;
+    padding: 18px 20px;
+    box-shadow: 0 4px 20px -2px rgba(99, 102, 241, 0.15);
+}
+
+.result-banner-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+}
+
+.result-banner-icon {
+    font-size: 32px;
+    line-height: 1;
+}
+
+.result-banner-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin: 0;
+    color: var(--text-main, #0f172a);
+}
+
+.result-banner-sub {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin: 2px 0 0 0;
+}
+
+.result-banner-score-badge {
+    margin-left: auto;
+    background: #4f46e5;
+    color: #ffffff;
+    padding: 8px 18px;
+    border-radius: 9999px;
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: -0.5px;
+}
+
+.result-banner-score-badge span:last-child {
+    font-size: 0.9rem;
+    opacity: 0.85;
+}
+
+.result-banner-stats {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+}
+
+.stat-pill {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: var(--bg-surface, #f8fafc);
+    border: 1px solid var(--border, #e2e8f0);
+}
+
+.stat-pill.stat-correct { color: #16a34a; }
+.stat-pill.stat-incorrect { color: #dc2626; }
+.stat-pill.stat-unanswered { color: #d97706; }
+.stat-pill.stat-time { color: #6366f1; }
+
+.result-banner-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.result-banner-actions button {
+    padding: 8px 16px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+/* 3. Nút nộp bài lớn ở cuối danh sách câu hỏi */
+.quiz-bottom-submit-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 24px 0 16px;
+    margin-bottom: 20px;
+}
+
+.btn-bottom-submit {
+    min-width: 220px;
+    padding: 14px 28px !important;
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35) !important;
+    transition: transform 0.2s, box-shadow 0.2s !important;
+}
+
+.btn-bottom-submit:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 24px rgba(79, 70, 229, 0.45) !important;
+}
+
+/* Dark Theme adaptations for Result Modal and Banner */
+[data-theme="dark"] .tronex-result-modal-box {
+    background: #111827 !important;
+    border-color: #374151 !important;
+    color: #f1f5f9 !important;
+}
+
+[data-theme="dark"] .result-modal-title {
+    color: #f8fafc !important;
+}
+
+[data-theme="dark"] .result-modal-score-circle {
+    background: rgba(99, 102, 241, 0.15) !important;
+    border-color: #818cf8 !important;
+}
+
+[data-theme="dark"] .result-modal-score-number {
+    color: #a5b4fc !important;
+}
+
+[data-theme="dark"] .result-stat-box {
+    background: #1f2937 !important;
+    border-color: #374151 !important;
+}
+
+[data-theme="dark"] .result-banner-card {
+    background: #111827 !important;
+    border-color: #6366f1 !important;
+}
+
+[data-theme="dark"] .result-banner-title {
+    color: #f8fafc !important;
+}
+
+[data-theme="dark"] .stat-pill {
+    background: #1f2937 !important;
+    border-color: #374151 !important;
+}
+
 
 /* ============================================================
    RESPONSIVE & FINAL FIXES
    ============================================================ */
 
-/* Mobile (Tablet & Phone) */
+/* Mobile (Tablet & Phone) General Responsive Settings */
 @media (max-width: 1024px) {
-    .tronex-main {
-        padding-right: 0 !important;
-    }
-
-    .tronex-sidebar {
-        position: fixed !important;
-        right: 10px !important;
-        top: auto !important;
-        bottom: 80px !important;
-        /* Floating bubble */
-        width: 280px !important;
-        z-index: 2500 !important;
-        max-height: 60vh !important;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
-        background: white !important;
-    }
-
-    .tronex-sidebar.minimized {
-        bottom: 20px !important;
-        right: 20px !important;
-    }
-
-    .tronex-palette {
-        grid-template-columns: repeat(5, 1fr) !important;
-    }
-
     .question-card {
         padding: 16px !important;
     }
@@ -5226,7 +5572,7 @@ main {
     }
 
     .tronex-palette {
-        grid-template-columns: repeat(5, 1fr) !important;
+        grid-template-columns: repeat(3, 1fr) !important;
     }
 }
 
@@ -5388,6 +5734,28 @@ body:has(.tronex-layout.active) .btn-create-quiz-fixed {
         height: auto !important;
         overflow: visible !important;
         padding-top: 8px !important;
+    }
+
+    /* Phiếu trả lời luôn bám dính màn hình khi cuộn xuống trên điện thoại */
+    .view-section.tronex-layout.active .tronex-sidebar,
+    .tronex-sidebar {
+        position: fixed !important;
+        right: 4px !important;
+        top: 68px !important;
+        width: 118px !important;
+        height: calc(100vh - 78px) !important;
+        max-height: calc(100vh - 78px) !important;
+        z-index: 2500 !important;
+        transform: none !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    body.zen-mode .view-section.tronex-layout.active .tronex-sidebar,
+    body.zen-mode .tronex-sidebar {
+        top: 10px !important;
+        height: calc(100vh - 20px) !important;
+        max-height: calc(100vh - 20px) !important;
     }
 }
 
