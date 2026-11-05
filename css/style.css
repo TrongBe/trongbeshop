@@ -5297,7 +5297,6 @@ main {
 /* --- 2. CHẾ ĐỘ TẬP TRUNG (ZEN MODE - ZERO DISTRACTION) --- */
 body.zen-mode {
     background-color: var(--bg-page, #f8fafc) !important;
-    overflow: hidden !important; /* Khóa cuộn trang chính, chỉ cuộn cột câu hỏi */
 }
 
 [data-theme="dark"] body.zen-mode {
@@ -5320,18 +5319,76 @@ body.zen-mode #setupView {
     display: none !important;
 }
 
-body.zen-mode .view-section.tronex-layout.active .tronex-main {
-    height: calc(100vh - 40px) !important;
-    padding-bottom: 220px !important;
+/* Tắt mọi hiệu ứng hoạt họa, quầng sáng và canvas khi ở chế độ tập trung hoặc đang làm bài thi để chống lag */
+body.zen-mode::before,
+body.zen-mode::after,
+body:has(.tronex-layout.active)::before,
+body:has(.tronex-layout.active)::after,
+body.zen-mode .aurora-ambient-container,
+body:has(.tronex-layout.active) .aurora-ambient-container,
+body.zen-mode #antigravityCanvas,
+body.zen-mode .cursor-glow-aura,
+body.zen-mode .cursor-magnetic-ring,
+body:has(.tronex-layout.active) #antigravityCanvas,
+body:has(.tronex-layout.active) .cursor-glow-aura,
+body:has(.tronex-layout.active) .cursor-magnetic-ring,
+body:has(.tronex-layout.active) .ai-chat-trigger,
+body:has(.tronex-layout.active) .btn-create-quiz-fixed {
+    display: none !important;
+    animation: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
 }
 
-body.zen-mode .view-section.tronex-layout.active .tronex-sidebar {
-    max-height: calc(100vh - 40px) !important;
+.view-section.tronex-layout {
+    animation: none !important;
+    transform: none !important;
 }
 
-body.zen-mode .tronex-layout {
-    padding-top: 12px !important;
-    padding-bottom: 12px !important;
+/* MÁY TÍNH (Desktop >= 1025px): Khóa cuộn trang chính, chỉ cuộn riêng cột câu hỏi */
+@media (min-width: 1025px) {
+    body.zen-mode {
+        overflow: hidden !important;
+    }
+
+    body.zen-mode .view-section.tronex-layout.active .tronex-main {
+        height: calc(100vh - 40px) !important;
+        overflow-y: auto !important;
+        padding-bottom: 220px !important;
+    }
+
+    body.zen-mode .view-section.tronex-layout.active .tronex-sidebar {
+        max-height: calc(100vh - 40px) !important;
+    }
+
+    body.zen-mode .tronex-layout {
+        padding-top: 12px !important;
+        padding-bottom: 12px !important;
+    }
+}
+
+/* THIẾT BỊ DI ĐỘNG & TABLET (< 1025px): Cuộn trang mượt mà tự nhiên, sửa lỗi không lướt xuống được khi bật Chế độ Tập trung */
+@media (max-width: 1024px) {
+    body.zen-mode {
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        height: auto !important;
+        min-height: 100vh !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+
+    body.zen-mode .view-section.tronex-layout.active .tronex-main {
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+        padding-bottom: 220px !important;
+    }
+
+    body.zen-mode .tronex-layout {
+        height: auto !important;
+        overflow: visible !important;
+        padding-top: 8px !important;
+    }
 }
 
 /* Nút bật/tắt chế độ tập trung */

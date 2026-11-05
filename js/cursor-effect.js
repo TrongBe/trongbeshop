@@ -18,6 +18,12 @@
   }
 
   function initAntigravityCursor() {
+    // Không chạy hiệu ứng hạt & con trỏ trên thiết bị cảm ứng / màn hình nhỏ (< 1025px) để giảm tải và chống giật lag
+    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) || window.innerWidth <= 1024;
+    if (isTouch) {
+      return;
+    }
+
     // -------------------------------------------------------------
     // 1. SETUP DOM ELEMENTS
     // -------------------------------------------------------------

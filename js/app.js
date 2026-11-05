@@ -190,7 +190,7 @@ function showView(viewName) {
         console.error('[TRONEX] Không tìm thấy view:', viewName);
         return;
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'auto' });
 }
 window.showView = showView;
 
