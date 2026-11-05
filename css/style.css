@@ -7536,6 +7536,10 @@ body.modern-saas-page {
     background: linear-gradient(90deg, #9333EA 0%, #C026D3 100%);
 }
 
+.quiz-card-accent-bar.accent-su {
+    background: linear-gradient(90deg, #D97706 0%, #B45309 100%);
+}
+
 .quiz-card-accent-bar.accent-default {
     background: linear-gradient(90deg, #6366F1 0%, #8B5CF6 100%);
 }
@@ -7605,6 +7609,17 @@ body.modern-saas-page {
     background: rgba(168, 85, 247, 0.2);
     color: #D8B4FE;
     border-color: rgba(168, 85, 247, 0.4);
+}
+
+.quiz-pill-badge.badge-su {
+    background: rgba(217, 119, 6, 0.12);
+    color: #B45309;
+    border: 1px solid rgba(217, 119, 6, 0.28);
+}
+[data-theme="dark"] .quiz-pill-badge.badge-su {
+    background: rgba(245, 158, 11, 0.2);
+    color: #FCD34D;
+    border-color: rgba(245, 158, 11, 0.4);
 }
 
 .quiz-pill-badge.badge-public {

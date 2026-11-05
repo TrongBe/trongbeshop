@@ -74,7 +74,7 @@ window.isQuizDeleted = isQuizDeleted;
 
 if (isVACTPage) {
     // Giữ lại tất cả đề V-ACT / ĐGNL / Chương / Ôn tập / Hóa / Advertisement từ data.js
-    const vactQuizzes = mockQuizzes.filter(q => q && q.id && (q.id.endsWith('_dgnl') || q.id.startsWith('de_') || q.id.startsWith('vact_') || q.id.startsWith('on_tap_') || q.id.includes('chuong_') || q.id.includes('advertisement') || q.category === 'hoa' || q.category === 'anh' || q.category === 'ly'));
+    const vactQuizzes = mockQuizzes.filter(q => q && q.id && (q.id.endsWith('_dgnl') || q.id.startsWith('de_') || q.id.startsWith('vact_') || q.id.startsWith('on_tap_') || q.id.includes('chuong_') || q.id.includes('advertisement') || q.category === 'hoa' || q.category === 'anh' || q.category === 'ly' || q.category === 'su' || q.category === 'lichsu'));
     mockQuizzes.length = 0;
     mockQuizzes.push(...vactQuizzes);
 
@@ -248,6 +248,9 @@ function initQuizList() {
         } else if (quiz.category === 'ly' || quiz.category === 'vatly' || titleLower.includes('vật lí') || titleLower.includes('vật lý') || titleLower.includes('nhiệt học')) {
             subjectBadge = '<span class="quiz-pill-badge badge-ly">⚛️ Vật lí</span>';
             accentClass = 'accent-ly';
+        } else if (quiz.category === 'su' || quiz.category === 'lichsu' || titleLower.includes('lịch sử') || titleLower.includes('sử 12')) {
+            subjectBadge = '<span class="quiz-pill-badge badge-su">📜 Lịch sử</span>';
+            accentClass = 'accent-su';
         }
 
         const privacyBadge = (quiz.privacy === 'public' || !quiz.privacy) 
@@ -704,7 +707,9 @@ function renderSectionSelector(quiz) {
             ? 'Lựa chọn ôn toàn bộ đề hoặc linh hoạt chọn riêng từng phần Trắc nghiệm / Viết câu của Phần A hoặc Phần B'
             : (quiz.category === 'ly'
                 ? 'Lựa chọn ôn trọn vẹn từng Đề (Đề 1, Đề 2, Đề 3) hoặc linh hoạt chọn theo từng phần: Trắc nghiệm 4 lựa chọn, Đúng/Sai, Trả lời ngắn, Tự luận'
-                : 'Chọn một hoặc nhiều phần bên dưới để tùy chỉnh nội dung bài làm phù hợp')));
+                : (quiz.category === 'su'
+                    ? 'Lựa chọn ôn trọn vẹn từng Bài học (từ Bài 1 đến Bài 6) hoặc linh hoạt chọn theo Trắc nghiệm 4 lựa chọn, Đúng/Sai'
+                    : 'Chọn một hoặc nhiều phần bên dưới để tùy chỉnh nội dung bài làm phù hợp'))));
 
     container.innerHTML = `
         <div class="section-selector-card">
