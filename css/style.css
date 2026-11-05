@@ -8295,3 +8295,11 @@ body.zen-mode .ai-chat-trigger {
 
 
 
+
+/* Ẩn vòng tròn con trỏ chuột trên màn hình cảm ứng / di động, chỉ hiển thị hạt lượng tử */
+@media (pointer: coarse), (max-width: 1024px) {
+    .cursor-magnetic-ring,
+    .cursor-glow-aura {
+        display: none !important;
+    }
+}

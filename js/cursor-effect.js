@@ -18,11 +18,7 @@
   }
 
   function initAntigravityCursor() {
-    // Không chạy hiệu ứng hạt & con trỏ trên thiết bị cảm ứng / màn hình nhỏ (< 1025px) để giảm tải và chống giật lag
-    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) || window.innerWidth <= 1024;
-    if (isTouch) {
-      return;
-    }
+
 
     // -------------------------------------------------------------
     // 1. SETUP DOM ELEMENTS
@@ -87,10 +83,18 @@
     // -------------------------------------------------------------
     // 3. CANVAS RESIZE & PARTICLE INITIALIZATION
     // -------------------------------------------------------------
+    function isQuizActive() {
+      const activeView = document.getElementById('activeQuizView');
+      if (activeView && activeView.classList.contains('active')) return true;
+      if (document.body.classList.contains('in-quiz-active')) return true;
+      if (document.body.classList.contains('zen-mode')) return true;
+      return false;
+    }
+
     function resize() {
       width = window.innerWidth;
       height = window.innerHeight;
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = width <= 768 ? 1 : Math.min(window.devicePixelRatio || 1, 2);
 
       canvas.width = Math.floor(width * dpr);
       canvas.height = Math.floor(height * dpr);
@@ -103,16 +107,17 @@
 
     function initAmbientParticles() {
       ambientParticles = [];
+      const numParticles = width <= 640 ? 28 : (width <= 1024 ? 45 : 82);
 
       // Grid-distributed initial anchors with organic jitter
-      const cols = Math.ceil(Math.sqrt(NUM_PARTICLES * (width / Math.max(height, 1))));
-      const rows = Math.ceil(NUM_PARTICLES / cols);
+      const cols = Math.ceil(Math.sqrt(numParticles * (width / Math.max(height, 1))));
+      const rows = Math.ceil(numParticles / cols);
       const stepX = width / cols;
       const stepY = height / rows;
 
       let count = 0;
-      for (let r = 0; r < rows && count < NUM_PARTICLES; r++) {
-        for (let c = 0; c < cols && count < NUM_PARTICLES; c++) {
+      for (let r = 0; r < rows && count < numParticles; r++) {
+        for (let c = 0; c < cols && count < numParticles; c++) {
           const originX = (c + 0.5) * stepX + (Math.random() - 0.5) * (stepX * 0.65);
           const originY = (r + 0.5) * stepY + (Math.random() - 0.5) * (stepY * 0.65);
           const colorKey = COLOR_KEYS[Math.floor(Math.random() * COLOR_KEYS.length)];
@@ -124,10 +129,10 @@
             y: originY,
             vx: 0,
             vy: 0,
-            radius: 2.0 + Math.random() * 1.5, // 2.0px - 3.5px
+            radius: 2.0 + Math.random() * 1.5,
             colorKey: colorKey,
             color: COLOR_PALETTE[colorKey],
-            baseAlpha: 0.48 + Math.random() * 0.28, // 0.48 - 0.76
+            baseAlpha: 0.48 + Math.random() * 0.28,
             orbitAngle: Math.random() * Math.PI * 2,
             orbitRadius: 10 + Math.random() * 20,
             orbitSpeed: 0.008 + Math.random() * 0.014
@@ -190,6 +195,30 @@
       mouseX = -9999;
       mouseY = -9999;
     });
+    // Touch support on mobile / tablet devices
+    window.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches[0]) {
+        mouseX = e.touches[0].clientX;
+        mouseY = e.touches[0].clientY;
+        prevMouseX = mouseX;
+        prevMouseY = mouseY;
+        isMouseOnScreen = true;
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches && e.touches[0]) {
+        mouseX = e.touches[0].clientX;
+        mouseY = e.touches[0].clientY;
+        isMouseOnScreen = true;
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => {
+      isMouseOnScreen = false;
+      mouseX = -9999;
+      mouseY = -9999;
+    }, { passive: true });
 
     // Interactive Hover Elements for Magnetic Ring scaling
     const HOVER_SELECTORS = 'a, button, .quiz-card, .mission-card, .stat-card, .bento-card, .home-quiz-card, .tronex-option-label, .filter-tab, [role="button"], input, select, textarea, .card-start-btn, .btn-start-home-quiz';
@@ -212,13 +241,16 @@
     // 5. ANIMATION & PHYSICS RENDER LOOP
     // -------------------------------------------------------------
     function render() {
-      // Safeguard: Pause rendering if user is in Zen Mode (v-act.html & simulation)
-      if (document.body.classList.contains('zen-mode')) {
+      // Dừng hoàn toàn và ẩn canvas khi đang làm bài thi để chống giật lag
+      if (isQuizActive()) {
         ctx.clearRect(0, 0, width, height);
+        if (canvas.style.display !== 'none') canvas.style.display = 'none';
         aura.style.opacity = '0';
         ring.style.opacity = '0';
         requestAnimationFrame(render);
         return;
+      } else {
+        if (canvas.style.display === 'none') canvas.style.display = 'block';
       }
 
       ctx.clearRect(0, 0, width, height);

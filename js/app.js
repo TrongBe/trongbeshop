@@ -182,6 +182,11 @@ function showView(viewName) {
     });
     if (views[viewName]) {
         views[viewName].classList.add('active');
+        if (viewName === 'active') {
+            document.body.classList.add('in-quiz-active');
+        } else {
+            document.body.classList.remove('in-quiz-active');
+        }
         // Tự động kích hoạt Zen Mode khi vào làm bài thi, tắt khi rời khỏi
         if (typeof toggleZenMode === 'function') {
             toggleZenMode(viewName === 'active');
